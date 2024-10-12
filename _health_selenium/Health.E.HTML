@@ -1,0 +1,88 @@
+
+
+
+<pre>
+
+	<header>Health Selenium</header>
+	
+	
+	<header>install</header>
+		
+		apt install python3-pip -y
+		
+		#
+		#
+		#	maybe:
+		#		need geckodriver in "path" for firefox
+		#
+		#		might need latest version of geckodriver
+		#
+		snap refresh firefox
+		
+	<header>run</header>	
+	
+		#
+		#
+		#	As non-root user
+		#
+		#
+	
+		#
+		#	Caution: "Emergency" simultaneous capacity is broken.
+		#	
+		#		Therefore, utilize ".Se.2.py" pattern, etc. to avoid
+		#		hurting CPU.
+		#
+	
+		#
+		#	The Variables can be changed here:
+		#		@: regions/rooms/vivaciousness/_plays/__init__.py
+		#
+		#		URL, etc.
+		#
+		
+		. build_1.sh
+		python3 regions/health.proc.py run --pattern ".Se.py"
+		python3 regions/health.proc.py run --pattern ".Se.2.py"
+	
+	<header>plays</header>
+		
+		Ever check is in "regions/__monitors"
+		
+	
+	
+	<header>importance</header>
+		
+		- relatives/choose_an_address/APT_Faucet
+			- Can send 
+		
+		- Friends/Moves/APT_Faucet
+			- Can send 
+			
+		- Friends/Moves/APT_Send
+			- Sends 
+
+
+	<header>Running as "root"</header>
+		<header>Allow "root" to access X server</header>
+		
+			attempt 1: failure:
+				[] apt install xauth
+				[] xhost +local:root
+
+
+				#
+				#	revert to where root cannot access X server
+				#
+				#
+				[] xhost -local:root
+
+
+
+
+
+
+
+
+
+</pre>

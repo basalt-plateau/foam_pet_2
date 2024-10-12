@@ -1,0 +1,73 @@
+
+
+<body style="white-space: pre-wrap">
+	
+	<nav>
+		<header>Docker</header>
+	</nav>
+	
+	<main>	
+		<article>	
+			<header>stop docker containers</header>
+			<code>
+				docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+			</code>
+		</article>
+		
+		<article>
+		
+			docker run --name foam_pet.1 --network lattice_1 --ip 172.16.0.20 -v .:/Metro -it boat:v1.0.0
+			. /Metro/_plays/board/build_1.sh
+			foam_pet_1 demux_hap build_unverified_certificates
+			foam_pet_1 ventures on
+			
+			docker run --name foam_pet.2 --network lattice_1 --ip 172.16.0.21 -v .:/Metro -it boat:v1.0.0
+			. /Metro/_plays/board/build_1.sh
+			foam_pet_1 demux_hap build_unverified_certificates
+			foam_pet_1 ventures on
+		
+		
+		
+		
+		
+		
+		</article>
+		
+		
+
+		
+		compose:
+			https://docs.docker.com/compose/install/linux/#install-using-the-repository
+
+
+		gateway:
+			the first usable address in the subnet range
+		
+		subnet:
+			The address space:
+			
+			172.16.0.0/16
+			
+			
+			10.0.0.0/8
+				
+
+
+		#docker network create --driver bridge --gateway=192.168.0.1 --subnet=192.168.0.0/24 threads_1 
+		
+		docker network rm lattice_1
+		docker network create --driver bridge --gateway=172.16.0.1 --subnet=172.16.0.0/16 lattice_1 
+		docker network inspect lattice_1
+		
+		docker compose up --scale jumps=4 -d
+
+
+		maybe..
+			docker swarm:
+				docker swarm init
+				docker stack deploy -c docker-stack.yml my_stack
+				docker service scale my_stack_jumps=4
+
+
+	</main>
+</body>

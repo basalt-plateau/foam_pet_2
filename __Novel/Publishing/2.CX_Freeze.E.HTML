@@ -1,0 +1,29 @@
+
+
+
+#
+#
+#	https://cx-freeze.readthedocs.io/en/stable/setup_script.html
+#
+#		pip install --upgrade cx_Freeze
+#
+#		# cd /Metro && cxfreeze build
+#		
+#		build the frontend.
+#
+#
+
+
+rm -rf /Metro/build && cd /Metro && python setup.py build
+
+cp /Metro/__Novel/Publishing/CX_Freeze/Rules.E.HTML /Metro/build/Foam_Pet_6_0_0.0.linux-x86_64/Rules.E.HTML
+
+chmod -R 777 /Metro
+
+/Metro/build/Foam_Pet_6_0_0.0.linux-x86_64/foam_pet
+
+#
+#	Selenium check
+#	
+#
+

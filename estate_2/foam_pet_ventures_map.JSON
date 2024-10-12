@@ -1,0 +1,8 @@
+{
+    "demux_hap": {
+        "kind": "task"
+    },
+    "sanique": {
+        "kind": "task"
+    }
+}

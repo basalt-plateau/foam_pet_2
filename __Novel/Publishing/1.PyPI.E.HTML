@@ -1,0 +1,210 @@
+
+
+
+<pre>
+
+
+	<header>publish</header>
+		
+			#
+			#	Change the app mode to "business" 
+			#		_essence/merge/__init__.py
+			#
+			. /Metro/_plays/board/build_1.sh
+			
+			
+			
+			#
+			#
+			#	Frontend: Build
+			#		
+			#		Location of build:
+			#			package.json
+			#			svelte.config.js
+			#
+			#
+			#		Rules.. builds the frontend
+			#
+			# (cd /Metro/vehicles_frontend/sveltenetics && pnpm run build_frontend)
+			
+			
+			#
+			#	Rules: 
+			#
+			#
+			sh /Metro/__Novel/Publishing/PyPI/Rules_Build.sh
+			
+			
+		
+			#//
+			#/
+			#	Frontend: Vitest + Lint
+			#
+			#
+			(cd /Metro/vehicles_frontend/sveltenetics && pnpm run health)
+		
+			
+			#
+			#
+			#	Backend: Build
+			#
+			#
+			foam_pet_1 demux_hap build_unverified_certificates
+			foam_pet_1 ventures refresh
+		
+
+			#
+			#
+			#	Backend: Health Monitor
+			#
+			#
+			foam_pet_1 health
+			# python3 /Metro/vehicles/foam_pet/_health/health.proc.py
+			
+			#
+			#	E2E: Docker Health
+			#
+			#		from outside of Docker run _health_selenium
+			#			change port to 22000
+			#
+			#		cd aptos_metropolis/foam_pet/_health_selenium/regions
+			#		python3 health.proc.py run
+			#
+
+			
+			#
+			#	poetry auth
+			#
+			#
+			poetry config pypi-token.pypi {}
+			
+			#
+			#
+			#	change the version number in pyproject.toml
+			#
+			#
+			
+			#
+			#	this doesn't seem to be necessary anymore:
+			#
+			#		from: vehicles/foam_pet/.gitignore
+			#			temporarily remove: sveltnetics_packets
+			#
+			#		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			#		!!!!! Important, After publish, add: sveltnetics_packets, 
+			#		!!!!! back to vehicles/foam_pet/.gitignore
+			#		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			#
+			(cd /Metro && rm -rf dist && poetry build --format sdist --verbose && chmod -R 777 /Metro && du -sh /Metro/dist)
+			poetry publish --verbose;
+			
+			
+			#
+			#
+			#	A git tag with the current version number
+			#
+			#
+			git add --all && git commit -m "6.0.0" && git tag 6.0.0
+			git push GH friends --tags && git push GH friends
+			
+			
+			#
+			#	statistics
+			#
+			find . -type d -exec du -sh {} \;
+			du -h --max-depth=1 .
+		
+		
+		<header>verify publication PyPI</header>
+			#
+			#
+			#	Maybe skip to PyPI docker for now..
+			#
+			#
+			
+			#
+			#
+			#	After publishing
+			#
+			#
+			cd /Metro/vehicles_pypi
+			docker run --name hemoglycin_docker_1 -e HOST_IP=host.docker.internal -p 22000:22000 -p 443:443 -p 80:80 -it jumps:v2.1.0 bash
+			pip install foam_pet
+		
+		
+		<header>Docker Image ---- This is probably ancient...</header>
+			<header>make</header>
+				#
+				#
+				#	docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+				#
+				#	images:
+				#		debian
+				#		
+				#
+			
+				[OS] docker pull debian
+				[OS] docker run --name foam_pet -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it debian 
+				
+				
+				[Container] apt update
+				
+				#
+				#
+				#	Python 3.12
+				#
+				#
+				[Boat] apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
+				[Boat] wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
+				[Boat] tar -xf Python-3.12.0.tgz
+				[Boat] cd Python-3.12.0
+				[Boat] ./configure --enable-optimizations
+				[Boat] make -j 8  # Replace 8 with the number of CPU cores you want to use
+				[Boat] make altinstall
+				[Boat] update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 2
+				[Boat] update-alternatives --set python3 /usr/local/bin/python3.12
+				
+				
+				# [Boat] update-alternatives --config python3
+				
+				
+				#
+				#
+				#	Haproxy
+				#
+				#
+				[Boat] apt install haproxy -y
+				
+				
+				#
+				#
+				#	Prepare
+				#
+				#
+				[Boat] mkdir /habitat && cd /habitat
+				[Boat] python3 -m venv v_env
+				[Boat] . v_env/bin/activate
+				
+				#
+				#
+				#	uv?
+				#
+				#
+				[Container]	pip install foam_pet
+				[Container]	foam_pet build
+				[Container]	foam_pet ventures on	
+				
+				
+
+
+				
+
+
+
+
+
+
+
+</pre>

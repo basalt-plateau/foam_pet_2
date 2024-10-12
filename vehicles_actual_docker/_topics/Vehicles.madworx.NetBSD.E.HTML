@@ -1,0 +1,70 @@
+
+
+
+
+<pre>
+
+	<header>madworx NetBSD</header>
+
+		This is NetBSD inside Ubuntu.
+		
+
+		@ Patient
+		@ Im_Patient_Fornia
+		
+		https://github.com/madworx/docker-netbsd
+		https://hub.docker.com/r/madworx/netbsd
+		https://netbsd.org/
+
+		https://ipxe.org/
+		https://www.seabios.org/SeaBIOS
+		
+		
+		
+	<header>start stopped</header>
+		docker start foam_pet
+		docker exec -it foam_pet /bin/sh
+		
+		
+		
+	<header>make</header>
+		#
+		#
+		#	docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+		#	docker rmi foam_pet:v1.0.0
+		#
+		#	images:
+		#		madworx/netbsd
+		#		
+		#	TODO:
+		#		have this script in a volume: -v 
+		#
+	
+		[OS] docker pull madworx/netbsd
+		
+		#
+		#
+		#	cd building
+		#
+		#
+		[OS] docker run --name foam_pet -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v .:/building -it madworx/netbsd 
+		 
+		[OS] login: root
+		 
+		[Boat] bash /building/build.sh
+		
+		[Boat] exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>

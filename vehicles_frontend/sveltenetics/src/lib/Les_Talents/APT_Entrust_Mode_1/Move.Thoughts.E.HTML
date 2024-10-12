@@ -1,0 +1,123 @@
+
+
+<pre>
+
+	
+	////
+	
+		Estate Creation:
+		
+			1. 	An Ask for Account Creation APT on chain 
+				that exists for 50,000 blocks and doesn't
+				require APT.
+			
+				[ ] Can be rejected from being added to a 
+					turn if like:
+
+						( ) IP Address is sending a lot of those Asks.
+				
+				Structure:
+					Function: __::Estate::Ask_for_Creation
+					Address: 
+					Amount:
+				
+				Returns:
+					
+					
+			2. Acquiesce to Ask:
+			
+				Structure:
+					Function: __::Estate::Acquiesce_to_Ask
+					Address: 
+					//
+					Gas, etc.:
+			
+	
+	////
+	
+		Asks:
+			
+			1. Open an on-chain ask for APT
+			
+				Structure:
+					Function: __::Asks::Ask_for_APT
+					Asking Address: 
+					Ask Number:
+					Amount:
+					Patron Address: 
+					//
+					Gas, etc.:
+					
+			2. Can send APT from Patron Address
+			
+				Structure:
+					Function: __::Asks::Agree_to_Ask
+					Ask: {
+						Asking Address:
+						Ask Number:
+					}
+					//
+					Gas, etc.:
+
+
+	////
+	
+		Direct Game:
+			
+			1. Allow direct sends of APT to an Estate Address.
+			
+				Structure:
+					Function: __::Direct::Allow
+					Address: 
+					//
+					Gas, etc.:
+					
+		
+	////
+	
+		Escrow Game:
+		
+			1. Join escrow game:
+		
+				Structure:
+					Function: __::Escrow::Join
+					Address: 
+					//
+					Gas, etc.:
+		
+			*. Send to escrow:
+					
+				Structure:
+					Function: __::Escrow::Send
+					Origin Address: 
+					To Address: 
+					//
+					Gas, etc.:
+				
+			*. Collect from escrow:
+					
+				Structure:
+					Function: __::Escrow::Send
+					Recipient Address:
+
+					#
+					#
+					#	The list of transactions to accept escrow from
+					#
+					From Transactions: [{
+						address: ...,
+						send #: 1
+					}]
+					//
+					Gas, etc.:
+					
+					
+			
+	
+	////
+
+
+
+
+
+</pre>

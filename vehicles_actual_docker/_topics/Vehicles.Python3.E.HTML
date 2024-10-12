@@ -1,0 +1,39 @@
+
+
+
+
+<pre>
+
+
+	#
+	#
+	#	Python 3.12
+	#
+	#
+	[Boat] apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
+	libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+	libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git -y
+	[Boat] wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
+	[Boat] tar -xf Python-3.12.0.tgz
+	[Boat] cd Python-3.12.0
+	[Boat] ./configure --enable-optimizations
+	[Boat] make -j 8  # Replace 8 with the number of CPU cores you want to use
+	[Boat] make altinstall
+	[Boat] update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 2
+	[Boat] update-alternatives --set python3 /usr/local/bin/python3.12
+	[Boat] python3 --version
+
+	#
+	#
+	#	Python 3.12, remove build dependencies
+	#
+	#
+	[Boat] apt-get remove --purge build-essential libssl-dev zlib1g-dev libbz2-dev \
+	libreadline-dev libsqlite3-dev libncurses5-dev libncursesw5-dev xz-utils tk-dev \
+	libffi-dev liblzma-dev git llvm curl wget -y
+	[Boat] apt-get autoremove -y
+	[Boat] apt-get clean
+
+
+
+</pre>

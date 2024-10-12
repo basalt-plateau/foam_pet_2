@@ -1,0 +1,47 @@
+
+
+
+<pre>
+	
+	<header>Debian Notes</header>
+		
+		https://cdimage.debian.org/debian-cd/current-live/source/tar/
+		https://www.debian.org/social_contract#guidelines
+		https://www.debian.org/legal/licenses/
+		
+		
+	<header>Choices</header>
+			
+		Jitesoft:
+			https://github.com/jitesoft/docker-debian
+			
+			docker pull jitesoft/debian
+			
+			#
+			#
+			#	https://github.com/jitesoft/docker-debian
+			#	docker pull jitesoft/debian
+			#	
+			#	https://www.debian.org/legal/licenses/
+			#
+			
+			find . -type d -exec du -sh {} \;
+			du -h --max-depth=1 .
+			
+		Docker:
+			docker pull debian
+	
+	<header>Rules</header>
+	
+		apt install git
+		git clone https://github.com/daald/dpkg-licenses.git
+		./dpkg-licenses/dpkg-licenses -c > licenses.csv
+
+	<header>bundle</header>	
+		[dir] foam_pet_v1.0.0-1.zip
+			[file] foam_pet_v1.0.0.docker_image.tar
+			[file] licenses_of_features.csv
+			[file] License.HTML
+
+
+</pre>

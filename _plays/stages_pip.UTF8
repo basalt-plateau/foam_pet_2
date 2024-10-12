@@ -1,0 +1,10 @@
+
+#
+#	(rm -rf stages_pip && pip install --requirement stages_pip.UTF8 --target stages_pip --upgrade)
+#
+
+ships
+
+rich
+semver
+toml

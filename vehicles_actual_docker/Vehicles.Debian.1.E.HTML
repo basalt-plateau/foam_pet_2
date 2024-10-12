@@ -1,0 +1,137 @@
+
+
+
+
+
+
+
+<pre>
+	
+	<header>Debian</header>
+		
+		
+	<header>Development</header>
+			
+
+		<header>make</header>
+			
+			
+			#
+			#	Need "localhost" to use prosthetic eye,
+			#	therefore there is overlap with ports of other
+			#	docker container.
+			#
+			
+			#
+			#	maybe:
+			#		docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+			#		docker container stop foam; docker container rm foam; 
+			#
+			#		docker rmi foam_pet:v1.0.0-1
+			#
+			
+			
+			#
+			#
+			#	pull the debian image
+			#
+			#
+			[OS] docker pull jitesoft/debian 
+			
+			
+			#	
+			#	1. cd vehicles_actual_docker
+			#		-td starts the container in the background and keeps it on
+			#
+			#	2. Open the container
+			#	
+			[OS] docker run --name foam_pet -td -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v ./building:/building jitesoft/debian
+			[OS] docker exec -it foam_pet bash -c "bash"
+			
+			
+			#
+			#
+			#	check the internal status
+			#		
+			#
+
+			
+			#
+			#	In "/building/build.sh" change this:
+			#
+			#		pip install foam_pet==5.0.0
+			#
+			[Boat] bash /building/build.sh
+			
+
+			
+			#
+			#
+			#
+			#
+			#
+			[Boat] exit
+			
+			
+			
+			
+		<header>save image</header>
+			
+			
+			#
+			#
+			#	This one isn't perfect..
+			#
+			#
+			
+			#
+			#
+			#	A "foam_pet" container needs to be running for this.
+			#
+			#
+			
+			#	
+			#	modify "the_build_readme.md"
+			#		docker load -i Foam_Pet_v6_0_0.0.Docker_image.tar
+			#
+			
+			#
+			#
+			#	modify the variables
+			#
+			#
+			[OS] python3 breaks.py save_docker_image
+			
+			
+			#
+			#	Foam_Pet_v6_0_0.0.zip
+			#		sha256: 854d9d2172a84cf021faa871123c2bda6d147449cf498734352d8afa54456244
+			#
+
+		<header>check the image</header>	
+			
+			#
+			#
+			#	modify these variables
+			#
+			#
+			[OS] python3 breaks.py check_image
+			
+			
+			#
+			#
+			#	Run the Selenium Checks
+			#
+			#
+		
+		<header>open container that off</header>
+			
+			docker start foam_pet.1
+			docker exec -it foam_pet.1 /bin/bash
+			cd /habitat && . v_env/bin/activate && foam_pet ventures on
+			
+			
+
+
+
+</pre>

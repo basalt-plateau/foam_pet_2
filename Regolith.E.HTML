@@ -1,0 +1,119 @@
+
+
+
+<body style="white-space: pre-wrap">
+	
+	<nav>
+		<header>foam_pet</header>
+			~ Metro
+			~ Basalt
+	</nav>
+	
+	<main>	
+		<article>	
+			<header>stop docker containers</header>
+			<code>
+				docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+			</code>
+		</article>
+	
+		<header>on</header>
+			<header>session 1</header>
+			<code>
+				docker run --name foam_pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
+				docker run --name foam_pet -v .:/Metro -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
+				
+				docker run --name foam_pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it jumps:v2.1.0 bash
+				
+				
+				#
+				#
+				#	Need to add HAProxy Install to this..
+				#
+				#
+				. /Metro/_plays/board/build_1.sh
+			</code>	
+				
+			<header>session 2</header>
+			<code>	
+				docker exec -it foam_pet bash -c "bash"
+				. /Metro/_plays/board/build_2.sh
+			</code>
+		</article>
+		
+		<header>on moves</header>
+			<header>session 1</header>
+			<code>
+				docker compose up -d
+				docker exec -it Foam_Pet.1 bash -c "bash"
+				. /Metro/_plays/board/build_1.sh
+			</code>	
+
+		</article>
+		
+		<header></header>
+			<header>ventures</header>
+				foam_pet_1 demux_hap build_unverified_certificates
+				foam_pet_1 ventures on
+			
+			<h3>svelte</h3>
+				<header>install</header>
+					(cd /Metro/vehicles_frontend/sveltenetics && rm -rf node_modules)
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm install)
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm build)
+			
+				<header>dev mode</header>
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm run foam)
+					localStorage.setItem ("mode", "nurture")
+					localStorage.setItem ("origin_address", "http://localhost:22000")
+					
+				<header>health</header>
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm run health)
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm add flowbite-svelte flowbite)
+					
+				<header>build</header>
+					
+					#
+					#	The build directory path is in:
+					#		svelte.config.js
+					#
+					#	This does a forget as well.
+					#
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm run build)
+					
+					# (cp -R /Metro/vehicles_frontend/sveltenetics/src /Metro/vehicles/foam_pet/sveltnetics_src)
+					
+				<haeder>build licenses</header>
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm run build_licenses)
+					
+		<header>health</header>
+			<header>Selenium</header>
+				#
+				# 	This doesn't work on docker at the moment.
+				#
+				#	Also, can't be "root" user.
+				#
+			
+				. ./foam_pet/_health_selenium/build_1.sh
+				python3 /Metro/_health_selenium/regions/vivaciousness/health.proc.py
+				
+		<h2>build #1</h2>
+			# if necessary:
+			# python3 /Metro/_plays/find_and_replace.py
+			
+			
+			
+		<h2>off</h2>
+
+			
+		<header>publish</header>
+		<a>Habitat.Publish.E.HTML</a>
+		
+		
+		
+	</main>
+
+
+
+
+</pre>

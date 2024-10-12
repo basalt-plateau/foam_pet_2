@@ -1,0 +1,55 @@
+
+
+
+<pre>
+
+	select:
+		[element]
+			driver_1.find_element (By.CSS_SELECTOR, "[currency_chooser]")
+	
+		[modify value]
+			from selenium.webdriver.support.ui import Select
+			Select (elements ["currency_chooser"]).select_by_value ("APT")
+	
+		[check value]
+			from selenium.webdriver.support.ui import Select
+		
+	
+	input:
+		[element]
+			driver_1.find_element (By.CSS_SELECTOR, "[currency_chooser]")
+
+
+		[modify value]
+			elements ["amount_field"].clear ()
+			elements ["amount_field"].send_keys ('9999')
+			
+		[click]
+			driver_1.execute_script("arguments[0].click();", elements ["faucet_button"])
+			
+		[check value]
+			def input_amount_is (amount):
+				assert (elements ["amount_field"].get_attribute ('value') == amount)
+				
+			loop (lambda : input_amount_is ('9999'))
+
+
+	button:
+		[click]
+			elements ["faucet_button"].click ()
+
+	div:
+		[text]
+			div.text
+
+
+	textarea:
+		assert (
+			elements ["address"].text ==
+			'188EB5EB600E70F53FE83231668284A7E6F688147E6FD1C0CF2899DD52755C32'
+		), elements ["address"].text
+
+
+
+
+</pre>

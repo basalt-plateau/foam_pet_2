@@ -1,0 +1,27 @@
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "foam_pet_health_selenium"
+version = "0.1.1"
+description = ""
+authors = []
+readme = "readme.md"
+packages = [
+    { include = "foam_pet", from = "venues" },
+]
+license = "GPL-3.0-only"
+exclude = []
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+deepdiff = "^7.0.1"
+Emergency = "^2.0.0"
+selenium = "^4.22.0"
+
+

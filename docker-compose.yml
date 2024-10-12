@@ -1,0 +1,30 @@
+
+
+#
+#
+#	docker network 
+#		
+#
+
+#
+#
+#	docker swarm init
+#
+#	docker node ls
+#
+
+
+services:
+  jumps:
+    image: boat:v1.0.0
+    volumes:
+      - .:/Metro
+    stdin_open: true
+    tty: true
+    privileged: true
+    deploy:
+      replicas: 4
+
+networks:
+  lattice_1:
+    external: true
