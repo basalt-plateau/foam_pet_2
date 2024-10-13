@@ -178,7 +178,7 @@ $: {
 		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Hacienda">Hacienda</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Nebulous">Nebulous</RadioItem>	
-		<RadioItem bind:group={theme} name="justify" value="O_Negative">O Negative</RadioItem>		
+		<RadioItem bind:group={theme} name="justify" value="O_Negative">O Negative, RH+</RadioItem>		
 	</RadioGroup>
 
 	<div style="height: 0.2cm"></div>
