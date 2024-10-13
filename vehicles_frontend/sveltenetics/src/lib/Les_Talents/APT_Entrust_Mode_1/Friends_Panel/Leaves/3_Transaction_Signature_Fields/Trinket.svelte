@@ -18,6 +18,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 //
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 import Barcode_Camera from './Barcode_Camera.svelte'
 import Hexadecimal_String_Field from './Hexadecimal.svelte'
@@ -70,13 +71,13 @@ let current_tab = 0;
 							font-size: 2em;
 							padding: .25cm 0;
 						"
-					>Signature Field</header>
+					><Slang text="Signature" /> Field</header>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
 					<p
 						style="text-align: center"
 					>
-						<span>A signature made in the Loyals form can be added here.</span> 
+						<span>A <Slang text="signature" /> made in the Loyals form can be added here.</span> 
 					</p>
 				</svelte:fragment>
 			</AccordionItem>

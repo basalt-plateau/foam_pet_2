@@ -368,27 +368,27 @@ p {
 						<ol class="list">
 							<li>
 								<span class="badge p-2 variant-soft-primary">1. online</span>
-								<span class="flex-auto">Petition Form</span>
+								<span class="flex-auto"><Slang text="Petition" /> Form</span>
 							</li>
 							<li>
 								<span class="badge p-2 variant-soft-tertiary">2. offline</span>
-								<span class="flex-auto">Petition QR Code Scan</span>
+								<span class="flex-auto"><Slang text="Petition" /> QR Code Scan</span>
 							</li>
 							<li>
 								<span class="badge p-2 variant-soft-tertiary">3. offline</span>
-								<span class="flex-auto">Petition Verification</span>
+								<span class="flex-auto"><Slang text="Petition" /> Verification</span>
 							</li>
 							<li>
 								<span class="badge p-2 variant-soft-tertiary">3. offline</span>
-								<span class="flex-auto">Petition Signature</span>
+								<span class="flex-auto"><Slang text="Petition" /> <Slang text="Signature" /></span>
 							</li>
 							<li>
 								<span class="badge p-2 variant-soft-primary">4. online</span>
-								<span class="flex-auto">Signature QR Code Scan</span>
+								<span class="flex-auto"><Slang text="Signature" /> QR Code Scan</span>
 							</li>
 							<li>
 								<span class="badge p-2 variant-soft-primary">5. online</span>
-								<span class="flex-auto">Petition Throw</span>
+								<span class="flex-auto"><Slang text="Petition" /> Throw</span>
 							</li>
 						</ol>
 					</div>

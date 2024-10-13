@@ -8,13 +8,22 @@
 */
 
 /*
+	import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+	<Slang 
+		text="transaction" 
+		reveal={ "no" }
+		badge={ "no" }
+	/>
+*/
+
+/*
 	Currently supports replacing 1 or 2 word sayings.
 */
 
 /*
-	@ Legend
-		@ Vernacular
-		@ Jargon
+	~ Legend
+		~ Vernacular
+		~ Jargon
 */
 
 /*
@@ -164,8 +173,12 @@ actual_styles = build_styles ();
 let timeout_1;
 let timeout_2;
 let timeout_3;
-let reveal_slang = ({ element, text, original }) => {
+let reveal_slang = ({ event, element, text, original }) => {
+	
 	if (use_slang === "yes" && reveal === "yes") {
+		event.stopPropagation ();
+		event.preventDefault ();
+		
 		console.log ("reveal_slang", { element });
 		
 		clearTimeout (timeout_1)
@@ -202,6 +215,7 @@ let reveal_slang = ({ element, text, original }) => {
 			
 			on:click={(event) => { 
 				reveal_slang ({ 
+					event,
 					element: event.target, 
 					original: part.original,
 					text: part.text 

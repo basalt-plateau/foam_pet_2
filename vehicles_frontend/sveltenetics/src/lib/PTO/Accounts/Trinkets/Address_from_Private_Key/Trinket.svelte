@@ -34,7 +34,7 @@ let single_key_fresh_address_hexadecimal_string = ""
 let alert_problem = ""
 let account_name_alert_problem = ""
 
-let directory_name = "Aptos Being 1"
+let directory_name = "Aptos Estate 1"
 
 const calculate_address = async () => {
 	try {

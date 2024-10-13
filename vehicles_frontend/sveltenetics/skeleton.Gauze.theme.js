@@ -1,8 +1,8 @@
 
 
 
-export const O_Negative_Theme = {
-    name: 'O_Negative',
+export const Gauze_Theme = {
+    name: 'Gauze',
     properties: {
 		// =~= Theme Properties =~=
 		"--theme-font-family-base": `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
@@ -101,3 +101,6 @@ export const O_Negative_Theme = {
 		
 	}
 }
+
+
+

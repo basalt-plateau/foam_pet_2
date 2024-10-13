@@ -93,14 +93,15 @@ const sign_the_transaction = async () => {
 		<div class="card p-4">
 			<span style="font-size: 1.5em;">Private Key</span>
 			<div style="height: 0.1cm"></div>
-			<textarea 
+			<input 
 				monitor="private key"
 			
 				bind:value={ private_key_hexadecimal_string }
 				
 				class="textarea"
 				style="min-height: 50px; padding: 10px"
-				type="text" 
+				
+				type="password" 
 				placeholder=""
 			/>
 		</div>

@@ -43,7 +43,7 @@ let private_key_glyphs = ""
 //		@ Wallet
 //		@ Account
 //
-let directory_name = "Aptos Being 1"
+let directory_name = "Aptos Estate 1"
 $: {
 	let _directory_name = directory_name;
 	if (directory_name.length === 0) {
