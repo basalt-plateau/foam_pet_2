@@ -40,8 +40,8 @@ const modal_store = getModalStore ();
 const tutorial_2 = '/pictures/tutorial_2.svg';
 const machines_picture = '/pictures/machines.svg';
 const pets = '/pictures/Foam_pet.svg';
-const pet = '/pictures/pet.svg';
-const pet_2 = '/pictures/pet_2.svg';
+const pet = '/pictures/Foam_Pet_0001.svg';
+const pet_2 = '/pictures/Foam_Pet_0002.svg';
 //
 ////
 
