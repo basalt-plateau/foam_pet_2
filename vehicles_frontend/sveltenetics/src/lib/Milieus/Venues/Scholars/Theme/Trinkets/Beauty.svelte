@@ -9,6 +9,8 @@
 	Themes:
 		tailwind.config.js
 
+	Original (Arrival) Theme:
+		src/app.html
 */
 
 import { onMount, onDestroy } from 'svelte'
@@ -19,6 +21,30 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 import { modeOsPrefers, modeUserPrefers, modeCurrent } from '@skeletonlabs/skeleton';
 import { getModeOsPrefers, getModeUserPrefers, getModeAutoPrefers } from '@skeletonlabs/skeleton';
 import { setModeUserPrefers, setModeCurrent } from '@skeletonlabs/skeleton';
+
+import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
+import { check_roomies_truck } from '$lib/Versies/Trucks'
+
+
+let window_width = 0;
+let is_vertical = true;
+
+let seeds_freight = {}
+let seeds_trucks_prepared = "no"
+const on_seeds_truck_change = ({ freight: _freight, happening }) => {
+	seeds_freight = _freight;
+	if (happening === "mounted") {
+		seeds_trucks_prepared = "yes"
+	}
+	
+	window_width = _freight.window_width;
+	if (window_width <= 800) {
+		is_vertical = true;
+	}
+	else {
+		is_vertical = false;
+	}
+}
 
 /*
 	Theme is part of 
@@ -87,6 +113,7 @@ $: {
 }
 
 
+
 </script>
 
 
@@ -99,6 +126,12 @@ $: {
 		flex-direction: column;
 	"
 >
+	<Seeds_Trucks on_change={ on_seeds_truck_change } />
+	
+	{#if seeds_trucks_prepared === "yes"}
+
+
+
 	<div
 		class="card p-2 variant-soft-surface"
 		style="
@@ -135,12 +168,17 @@ $: {
 	
 	<div style="height: 0.2cm"></div>
 	
-	<RadioGroup>
+	<RadioGroup 
+		flexDirection={is_vertical ? 'flex-col' : 'row'}
+		rounded={is_vertical ? 'rounded-container-token' : 'rounded-token'}
+	>
+
 		<RadioItem bind:group={theme} name="justify" value="Atolls">Atolls</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Hacienda">Hacienda</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="Nebulous">Nebulous</RadioItem>		
+		<RadioItem bind:group={theme} name="justify" value="Nebulous">Nebulous</RadioItem>	
+		<RadioItem bind:group={theme} name="justify" value="O_Negative">O Negative</RadioItem>		
 	</RadioGroup>
 
 	<div style="height: 0.2cm"></div>
@@ -182,4 +220,5 @@ $: {
 			<div class="card p-4 variant-filled-primary">Primary</div>
 		</div>
 	</div>
+	{/if}
 </div>

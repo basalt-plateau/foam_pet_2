@@ -10,11 +10,10 @@
 		%sveltekit.head%
 		
 		<script>
-			const arrival_theme = "Atolls"
+			const arrival_theme = "PTO"
 		
 			window.onload = function () {
 				let theme = localStorage.getItem ('body-theme');
-				console.log ({ theme })
 				
 				if (typeof theme === 'string' && theme.length >= 1) {
 					document.body.setAttribute ('data-theme', theme)
