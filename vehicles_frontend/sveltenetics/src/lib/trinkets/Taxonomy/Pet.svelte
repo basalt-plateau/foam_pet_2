@@ -39,7 +39,7 @@
 	<div style="height: 0.1cm"></div>
 	
 	<span class="badge variant-filled-primary">
-		<span>Royalty</span>
+		<span>Royaldom</span>
 		<span class="badge variant-filled">Skococere</span>
 	</span>
 </div>
