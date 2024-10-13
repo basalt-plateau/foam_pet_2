@@ -11,6 +11,10 @@
 
 	Original (Arrival) Theme:
 		src/app.html
+		
+	Order:
+		The themes are in alphabeticalish order
+		by last glyph.
 */
 
 import { onMount, onDestroy } from 'svelte'
@@ -172,13 +176,12 @@ $: {
 		flexDirection={is_vertical ? 'flex-col' : 'row'}
 		rounded={is_vertical ? 'rounded-container-token' : 'rounded-token'}
 	>
-
-		<RadioItem bind:group={theme} name="justify" value="Atolls">Atolls</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="O_Negative">O-, RH+</RadioItem>		
 		<RadioItem bind:group={theme} name="justify" value="Hacienda">Hacienda</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="Atolls">Atolls</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Nebulous">Nebulous</RadioItem>	
-		<RadioItem bind:group={theme} name="justify" value="O_Negative">O Negative, RH+</RadioItem>		
 	</RadioGroup>
 
 	<div style="height: 0.2cm"></div>
