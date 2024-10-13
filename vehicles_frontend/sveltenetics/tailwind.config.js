@@ -13,6 +13,7 @@ import { Established_Theme } from './skeleton.established.theme'
 import { Rhubarb_Theme } from './skeleton.rhubarb.theme'
 import { Atolls_Theme } from './skeleton.atolls.theme'
 import { Hacienda_Theme } from './skeleton.hacienda.theme'
+import { Nebulous_Theme } from './skeleton.nebulous.theme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -44,7 +45,8 @@ export default {
 					Atolls_Theme,
 					Rhubarb_Theme, 
 					PTO_theme, 
-					Hacienda_Theme
+					Hacienda_Theme,
+					Nebulous_Theme
 					
 					// Rust_Theme, 
 					// Established_Theme 

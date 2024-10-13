@@ -5,6 +5,12 @@
 <script>
 
 
+/*
+	Themes:
+		tailwind.config.js
+
+*/
+
 import { onMount, onDestroy } from 'svelte'
 import { LightSwitch } from '@skeletonlabs/skeleton';
 import { SlideToggle } from '@skeletonlabs/skeleton';
@@ -134,5 +140,46 @@ $: {
 		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Hacienda">Hacienda</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="Nebulous">Nebulous</RadioItem>		
 	</RadioGroup>
+
+	<div style="height: 0.2cm"></div>
+
+	<div class="card p-4 variant-soft-surface" style="width: 100%">
+		<div
+			class="card p-2 variant-soft-surface"
+			style="
+				padding: 0.2cm 1cm;
+				max-width: 250px;
+				
+				margin: 0 auto 0.25cm;
+			"
+		>
+			<header
+				style="
+					font-size: 1.4em;
+					line-height: 100%;
+					text-align: center;
+					
+				"
+			>Examples</header>
+		</div>
+		
+		<div
+			style="
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				grid-template-rows: auto;
+				gap: 10px;
+				
+				width: 100%;
+			"
+		>
+			<div class="card p-4 variant-filled-success">Success</div>
+			<div class="card p-4 variant-filled-warning">Caution</div>
+			<div class="card p-4 variant-filled-error">Problem</div>
+			<div class="card p-4 variant-filled-surface">Surface</div>
+			<div class="card p-4 variant-filled-primary">Primary</div>
+		</div>
+	</div>
 </div>
