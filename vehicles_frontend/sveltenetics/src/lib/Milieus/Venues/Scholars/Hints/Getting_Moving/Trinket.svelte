@@ -9,7 +9,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 
 
 /*
-	1. (Tough) Foam Pet Adoption.
+	1. (Tough) Adoption.
 	2. Choose a Players
 	3. Go on a vacation
 */
@@ -37,7 +37,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 							font-size: 1.5em;
 						"
 					>
-						<p>1. (Tough) Foam Pet Adoption</p>
+						<p>1. (Tough) Adoption</p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
