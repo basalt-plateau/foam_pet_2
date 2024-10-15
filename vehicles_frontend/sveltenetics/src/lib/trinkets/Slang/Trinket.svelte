@@ -8,6 +8,18 @@
 */
 
 /*
+	// If don't want to flip
+
+	import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+	<Slang 
+		text="transaction" 
+		reveal={ "no" }
+	/>
+*/
+
+/*
+	// If don't want to flip and don't want card around it.
+
 	import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 	<Slang 
 		text="transaction" 

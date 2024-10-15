@@ -20,14 +20,14 @@ certifi==2024.8.30
     # via
     #   requests
     #   selenium
-charset-normalizer==3.3.2
+charset-normalizer==3.4.0
     # via requests
 click==8.1.7
     # via
     #   body-scan
     #   emergency
     #   flask
-coverage==7.6.1
+coverage==7.6.3
     # via emergency
 deepdiff==7.0.1
     # via foam-pet-health-selenium (pyproject.toml)
@@ -49,7 +49,7 @@ html5tagger==1.3.0
     # via
     #   sanic
     #   tracerite
-httptools==0.6.1
+httptools==0.6.2
     # via sanic
 idna==3.10
     # via
@@ -108,7 +108,7 @@ sniffio==1.3.1
     # via trio
 sortedcontainers==2.4.0
     # via trio
-tinydb==4.8.1
+tinydb==4.8.2
     # via
     #   body-scan
     #   emergency
@@ -132,7 +132,7 @@ urllib3==2.2.3
     # via
     #   requests
     #   selenium
-uvloop==0.20.0
+uvloop==0.21.0
     # via sanic
 websocket-client==1.8.0
     # via selenium

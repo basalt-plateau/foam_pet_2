@@ -308,7 +308,7 @@ const modify_keys_count = () => {
 						<span
 							monitor="from hexadecimal"
 						>
-							<Slang text="Account" /> from <Slang text="Private Key" /> Hexadecimal
+							<Slang text="Account" reveal={ "no" } /> from <Slang text="Private Key" reveal={ "no" } /> Hexadecimal
 						</span>
 					</RadioItem>
 				</RadioGroup>

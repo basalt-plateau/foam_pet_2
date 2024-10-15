@@ -22,7 +22,6 @@
 			<code>
 				docker run --name foam_pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
 				docker run --name foam_pet -v .:/Metro -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
-				
 				docker run --name foam_pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it jumps:v2.1.0 bash
 				
 				#
@@ -58,8 +57,7 @@
 			<h3>svelte</h3>
 				<header>install</header>
 					(cd /Metro/vehicles_frontend/sveltenetics && rm -rf node_modules)
-					(cd /Metro/vehicles_frontend/sveltenetics && pnpm install)
-					(cd /Metro/vehicles_frontend/sveltenetics && pnpm build)
+					(cd /Metro/vehicles_frontend/sveltenetics && pnpm build_frontend)
 			
 				<header>dev mode</header>
 					(cd /Metro/vehicles_frontend/sveltenetics && pnpm run foam)

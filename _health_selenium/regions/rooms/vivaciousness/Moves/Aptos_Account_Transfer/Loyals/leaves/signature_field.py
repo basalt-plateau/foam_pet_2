@@ -33,7 +33,7 @@ from vivaciousness.procedures.loop import loop
 
 ''''
 	[monitor="signature field leaf"]
-		textarea[monitor="private key"]
+		[monitor="private key"]
 		button[monitor="sign"]
 		
 		[monitor="address is legacy lot"] input
@@ -72,7 +72,7 @@ def monitor_signature_field (packet):
 		)
 		field = tailfin.find_element (
 			By.CSS_SELECTOR, 
-			f'{ leaf } textarea[monitor="private key"]'
+			f'{ leaf } [monitor="private key"]'
 		)
 
 		sign_button = tailfin.find_element (

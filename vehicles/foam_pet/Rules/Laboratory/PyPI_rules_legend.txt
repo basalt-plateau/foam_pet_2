@@ -55,6 +55,6 @@
  typing_extensions          4.12.2     Python Software Foundation License              
  ujson                      5.10.0     BSD License                                     
  urllib3                    2.2.3      MIT License                                     
- uvloop                     0.20.0     Apache Software License; MIT License            
+ uvloop                     0.21.0     Apache Software License; MIT License            
  ventures                   3.0.0      GNU General Public License v3 (GPLv3)           
  websockets                 13.1       BSD License                                     

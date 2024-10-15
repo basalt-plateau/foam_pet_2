@@ -9,7 +9,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "foam_pet"
-version = "6.0.0"
+version = "7.0.0"
 description = "A foam pet that can play with Aptos from offline."
 authors = []
 readme = "vehicles/foam_pet/readme.md"
@@ -19,13 +19,12 @@ packages = [
 license = "Mix: GPL-3.0-only for originals + Laboratory Rules"
 
 exclude = [
-	"vehicles/foam_pet/_status/DB/**",
-	"node_modules/**"
+	"vehicles/foam_pet/_status/DB/**"
 ]
-
 include = [
 	"vehicles/foam_pet/sveltnetics_packets/**/*",
 ]
+
 
 [tool.poetry.scripts]
 foam_pet = 'foam_pet:clique'

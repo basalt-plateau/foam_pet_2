@@ -5,7 +5,12 @@
 
 cd "$(dirname "$0")" || exit
 
-
+#
+#
+#	
+#	export PATH="$HOME/.local/bin:$PATH"
+#
+export PATH="$HOME/.local/bin:$PATH"
 pip install uv
 
 #/
