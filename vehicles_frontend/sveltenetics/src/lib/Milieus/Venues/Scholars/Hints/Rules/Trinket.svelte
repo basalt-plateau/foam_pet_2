@@ -166,8 +166,8 @@ let clones_show = "Legend"
 		>
 			<RadioGroup>
 				<RadioItem bind:group={ show } name="justify" value={ "Originals" }>Originals</RadioItem>	
-				<RadioItem bind:group={ show } name="justify" value={ "Clones" }>Clones</RadioItem>	
-				<RadioItem bind:group={ show } name="justify" value={ "Anatomy" }>Anatomy</RadioItem>
+				<RadioItem bind:group={ show } name="justify" value={ "Anatomy" }>Anatomy</RadioItem>	
+				<RadioItem bind:group={ show } name="justify" value={ "Estates" }>Estates</RadioItem>
 			</RadioGroup>
 		</div>
 					
@@ -212,7 +212,7 @@ let clones_show = "Legend"
 			</div>
 			{/if}
 		
-			{#if show === "Anatomy" }
+			{#if show === "Estates" }
 			<div
 				style="
 					text-align: center;
@@ -222,9 +222,9 @@ let clones_show = "Legend"
 					style="
 						font-size: 2em;
 					"
-				>Anatomy</header>
+				>Estates</header>
 				
-				<p>These are the sources.</p>
+				<p>These are where Foam Pets are born.</p>
 			
 				<div style="height: 0.5cm"></div>	
 			
@@ -251,7 +251,7 @@ let clones_show = "Legend"
 			</div>
 			{/if}
 		
-			{#if show === "Clones" }
+			{#if show === "Anatomy" }
 				<div
 					style="
 						text-align: center;
@@ -261,7 +261,7 @@ let clones_show = "Legend"
 						style="
 							font-size: 2em;
 						"
-					>Clones</header>
+					>Anatomy</header>
 					
 					<div style="height: 0.5cm"></div>
 					

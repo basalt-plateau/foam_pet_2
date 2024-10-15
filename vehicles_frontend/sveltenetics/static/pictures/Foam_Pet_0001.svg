@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.0280428"
-     inkscape:cx="194.05807"
-     inkscape:cy="201.35348"
+     inkscape:cx="17.99536"
+     inkscape:cy="208.16254"
      inkscape:window-width="1846"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -38,6 +38,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <path
+       style="fill:#3433c7;stroke-width:0.239;fill-opacity:1"
+       d="m 45.689681,42.68266 c 0,0 -17.556538,1.13553 -21.129557,-12.199157 -3.573018,-13.334686 -6.819402,-19.405148 -9.957226,-12.785434 -3.137825,6.619715 -0.712302,25.812054 2.347326,27.135714 3.059627,1.323657 0.545955,5.362879 20.993708,6.689381 20.447754,1.326502 7.745749,-8.840504 7.745749,-8.840504 z"
+       id="path2" />
     <ellipse
        style="fill:#ddad62;fill-opacity:1;stroke-width:0.135533"
        id="path1-3-2"

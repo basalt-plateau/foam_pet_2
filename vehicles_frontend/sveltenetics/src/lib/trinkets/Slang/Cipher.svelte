@@ -14,6 +14,7 @@ import nlp from 'compromise/one'
 import { nocturnalize } from './screenplays/nocturnalize'
 
 import { American_1 } from './jargons/American_1'
+import { Reals } from './jargons/Reals'
 
 
 const organize_slang = (bracket) => {
@@ -29,7 +30,7 @@ const organize_slang = (bracket) => {
 	return organized
 }
 
-const organized = organize_slang (American_1)
+const organized = organize_slang (Reals)
 
 console.log ({ organized })
 
