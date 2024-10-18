@@ -5,6 +5,10 @@
 This pet can interact with Aptos with offline trinkets   
 like a "laptop", "desktop", etc.   
 
+With one Foam Pet living in an offline machine and another living in an online machine,   
+signatures can happen with QR code to bionic eye gestures,   
+as long as both machines have a bionic eye + a screen.
+
 A Foam Pet with a Docker Vehicle or a PyPI vehicle   
 can be adopted from here.   
 
