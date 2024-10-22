@@ -1,0 +1,122 @@
+
+
+
+
+<pre>
+		
+	<nav>
+		<header>Move</header>
+		
+			https://aptos.dev/en/build/smart-contracts/book/package-upgrades
+		
+			https://explorer.aptoslabs.com/account/0x0000000000000000000000000000000000000000000000000000000000000001/modules/run/aggregator?network=devnet
+		
+		
+			mainnet_publishing:
+				upgrade_policy = "immutable"
+	</nav>
+
+	
+
+
+	<main>
+		<article>
+			<header>publish</header>
+			<code>
+		
+				cd /Regolith/Mottos/Parador
+		
+				aptos init --assume-yes
+				
+				#
+				#
+				#	change the address in "story_1.py" to the
+				# 	one that was added from "init"
+				#
+				#
+				
+				#
+				#	Need to publish Loft and then the
+				#	other ones.
+				#
+				
+				#
+				#
+				#	Change the "module name" and "pack name"
+				#
+				#
+				python3 story.py publish
+				
+				(cd Move && aptos move compile --named-addresses ride=EAFB7C4FB1D07C6A365CB2AF9B010A6B1A893DE88B12452096CD)
+			</code>
+		</article>
+		
+		<article>
+			<header>monitor</header>
+			<code>
+				(cd Move && aptos move test --named-addresses ride=B32C58E6659C5C613CD818B04A2CDD57C94D1ED49291A205AB312F9445104F2C)
+			</code>
+		</article>
+		
+		<article>
+			<header>activities</header>
+			<article>
+				<header>create</header>
+				<code>
+					python3 story_1.py publish
+				</code>
+			</article>
+		</article>
+		
+		<article>
+			<header>version change</header>
+			<p>
+							
+				change the package version:
+				
+					For example: 
+						version = "0.1.0"
+						version = "0.1.0"
+			</p>
+		
+			<header>name change</header>
+			<p>
+			
+				change the module name:
+					
+					For example: 11 to 12:
+						module the_address::notes_11
+						module the_address::notes_12
+							
+							
+				change the package name:
+				
+					For example: 
+						[package]
+						name = "notes_11"
+						
+						[package]
+						name = "notes_12"
+			</p>		
+		</article>
+	
+		<article>
+			<header>clean</header>
+			<code>(rm -rf .aptos && rm -rf build)</code>
+		</article>
+	
+		<article>
+			<header>publish</header>
+					
+			<code>aptos init</code>
+				@ devnet
+				@ generate new key
+				
+			<code>bash story.sh</code>
+		</article>
+		
+		
+	</main>
+
+</pre>
+

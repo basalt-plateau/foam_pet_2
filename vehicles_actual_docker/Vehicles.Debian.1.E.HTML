@@ -13,7 +13,7 @@
 	<header>Development</header>
 			
 
-		<header>make</header>
+		<header>make the container</header>
 			
 			
 			#
@@ -25,45 +25,52 @@
 			#
 			#	maybe:
 			#		docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
-			#		docker container stop foam; docker container rm foam; 
+			#		docker container stop foam_pet_jetboat; docker container rm foam_pet_jetboat; 
 			#
 			#		docker rmi foam_pet:v1.0.0-1
 			#
-			
-			
-			#
-			#
-			#	pull the debian image
-			#
-			#
-			[OS] docker pull jitesoft/debian 
+
 			
 			
 			#	
+			#	0. pull the debian image
+			#
 			#	1. cd vehicles_actual_docker
 			#		-td starts the container in the background and keeps it on
 			#
 			#	2. Open the container
 			#	
-			[OS] docker run --name foam_pet -td -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v ./building:/building jitesoft/debian
-			[OS] docker exec -it foam_pet bash -c "bash"
+			[OS] docker pull jitesoft/debian 
+			[OS] docker run --name foam_pet_jetboat -td -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v ./building:/building jitesoft/debian
+			[OS] docker exec -it foam_pet_jetboat bash -c "bash"
 			
 			
 			#
-			#
-			#	check the internal status
-			#		
+			#	Make sure the rules are good:
+			#		vehicles_actual_docker/building/Foam_Pet.Rules.E.HTML
 			#
 
+			
+			
 			
 			#
 			#	In "/building/build.sh" change this:
 			#
-			#		pip install foam_pet==5.0.0
+			#		pip install foam_pet==7.0.0
 			#
 			[Boat] bash /building/build.sh
 			
 
+			#
+			#
+			#	check the internal status
+			#		
+			#		apt install nano -y
+			#		nano /Metro/v_env/lib/python3.11/site-packages/foam_pet/_health/__init__.py
+			#
+			#		vehicles = "/Metro/v_env/lib/python3.11/site-packages"
+			#
+			. /Metro/v_env/bin/activate && foam_pet health
 			
 			#
 			#
@@ -84,6 +91,9 @@
 			#
 			#
 			
+			[OS] rm -rf ./the_build_1/*
+			[OS] rm -rf ./the_build_2/*
+			
 			#
 			#
 			#	A "foam_pet" container needs to be running for this.
@@ -91,8 +101,9 @@
 			#
 			
 			#	
-			#	modify "the_build_readme.md"
-			#		docker load -i Foam_Pet_v6_0_0.0.Docker_image.tar
+			#	modify 2 lines of "the_build_readme.md" to say: v7_0_0_0
+			#
+			#		#	This should be the same as the breaks.py stuffing
 			#
 			
 			#
@@ -104,11 +115,11 @@
 			
 			
 			#
-			#	Foam_Pet_v6_0_0.0.zip
-			#		sha256: 854d9d2172a84cf021faa871123c2bda6d147449cf498734352d8afa54456244
+			#	Foam_Pet.Docker.v7_0_0_0.zip
+			#		sha256: 8c5c647b47bfe42e06f2f8c5ffad608194dc47512a0e5bda4c27e10d88b56756
 			#
 
-		<header>check the image</header>	
+		<header>store the image</header>	
 			
 			#
 			#
@@ -123,12 +134,17 @@
 			#	Run the Selenium Checks
 			#
 			#
-		
-		<header>open container that off</header>
 			
-			docker start foam_pet.1
-			docker exec -it foam_pet.1 /bin/bash
-			cd /habitat && . v_env/bin/activate && foam_pet ventures on
+		<header>archive the image</header>
+
+			mkdir -p __images_collection/v7_0_0_0
+			cp the_build_2/Foam_Pet.Docker.v7_0_0_0.zip __images_collection/v7_0_0_0/Foam_Pet.Docker.v7_0_0_0.zip
+			cp building/Foam_Pet.Rules.E.HTML __images_collection/v7_0_0_0/Foam_Pet.Docker_image_rules.v7_0_0_0.E.HTML
+			
+			chmod -R 777 .
+			
+		
+
 			
 			
 

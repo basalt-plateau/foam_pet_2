@@ -50,6 +50,8 @@ def merge_essence (external_essence, essence_path):
 		{
 			"essence_path": essence_path,
 			
+			"the_mix_directory": the_mix_directory,
+			
 			"ventures": {
 				"path": str (normpath (join (
 					essence_directory, 

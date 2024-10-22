@@ -1,0 +1,20 @@
+
+
+[package]
+name = "Parador"
+version = "1.0.0"
+authors = []
+
+[addresses]
+ride = "_"
+
+[dev-addresses]
+
+
+[dependencies.AptosFramework]
+local = "/Regolith/aptos-core/aptos-move/framework/aptos-framework" 
+
+[dependencies.AptosStdlib]
+local = "/Regolith/aptos-core/aptos-move/framework/aptos-stdlib" 
+
+

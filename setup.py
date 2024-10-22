@@ -14,7 +14,9 @@ build_exe_options = {
 '''
 
 # .py_3_11
-name = "Foam_Pet_6_0_0.0.linux-x86_64"
+
+version = "v7_0_0_0"
+name = f"Foam_Pet.linux-x86_64.{ version }"
 
 #base = "Win32GUI"
 base = "gui"
@@ -25,7 +27,7 @@ setup(
     description = "",
     options = {
 		"build_exe": {
-			"build_exe": f"build/{ name }",
+			"build_exe": f"vehicles_cx_freeze/_distributions/{ version }/{ name }",
 			"include_path": [
 				"vehicles"
 			],
@@ -36,6 +38,10 @@ setup(
     executables = [
 		Executable (
 			"vehicles/foam_pet/foam_pet.py", 
+			base = base
+		),
+		Executable (
+			"vehicles/foam_pet/clap.py", 
 			base = base
 		)
 	],

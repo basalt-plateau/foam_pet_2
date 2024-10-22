@@ -5,13 +5,13 @@
 
 ## Load Docker Image
 ```
-docker load -i Foam_Pet_v6_0_0.0.Docker_image.tar
+docker load -i Foam_Pet.Docker_image.v7_0_0_0.tar
 ```
 
 
 ## Run Docker Container from Image
 ```
-docker run --name foam_pet_1 -td -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 foam_pet:v5_0_0.0 /bin/bash -c "bash /embark.sh"
+docker run --name foam_pet_1 -td -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 foam_pet:v7_0_0_0 /bin/bash -c "bash /embark.sh"
 ```
 
 ## From a Web Browser

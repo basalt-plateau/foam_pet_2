@@ -18,26 +18,52 @@ import sys
 this_folder = pathlib.Path (__file__).parent.resolve ()
 
 
-version = "v6_0_0.0"
+''''
+	container: foam_pet_jetboat
+
+	image: foam_pet
+
+	/the_build_1
+		/Foam_Pet.Docker.v7_0_0_0.zip
+		/Foam_Pet.Docker.v7_0_0_0
+			/Foam_Pet.Docker_image.v7_0_0_0.tar
+			/Foam_Pet.Docker_image_rules.v7_0_0_0.E.HTML
+			/readme.md
+	
+	/the_build_2
+		/Foam_Pet.Docker.v7_0_0_0.zip
+		
+		
+		/Foam_Pet.Docker.v7_0_0_0
+			/Foam_Pet.Docker_image.v7_0_0_0.tar
+			/Foam_Pet.Docker_image_rules.v7_0_0_0.E.HTML
+			/readme.md
+"'''
+
+container_name = "foam_pet_jetboat"
+image_name = "foam_pet"
+
+version = "v7_0_0_0"
 name = "Foam_Pet"
 
-container_name = "foam_pet"
-image_name = "foam_pet"
+
 
 ####
 #
 #
 #
 image_name_plus_version = f"{ image_name }:{ version }"
-
-file_name = f"{name}_{ version }.Docker_image.tar"
-zip_file_name = f"{ file_name }.zip"
-
-packet = f"Foam_Pet_{ version }"
-packet_zip = f"Foam_Pet_{ version }.zip"
-
-tar_file = f"{ packet }/{file_name}"
-zip_tar_file = f"packet_zip/{ zip_file_name }"
+#
+#	Le "packet" is the directory that
+#	needs to be zipped.	
+#
+#		packet_zip is the zip_file_name
+#
+packet = f"{name}.Docker.{ version }"
+packet_zip = f"{name}.Docker.{ version }.zip"
+#
+tar_file_name = f"{name}.Docker_image.{ version }.tar"
+#
 #
 ####
 
@@ -49,6 +75,9 @@ zip_tar_file = f"packet_zip/{ zip_file_name }"
 "'''
 def retrieve_paths (theme = {}):
 	build_directory = "the_build_1"
+	
+	
+	
 	
 	return {
 		"readme": {
@@ -71,7 +100,7 @@ def retrieve_paths (theme = {}):
 			"destiny": str (normpath (join (
 				this_folder, 
 				build_directory,
-				f"{ packet }/Foam_Pet.Rules.E.HTML"
+				f"{ packet }/Foam_Pet.Docker_image_rules.{ version }.E.HTML"
 			)))
 		},
 		
@@ -79,34 +108,38 @@ def retrieve_paths (theme = {}):
 			"path": str (normpath (join (
 				this_folder, 
 				"the_build_1"
+			))),
+			"distribution_directory": str (normpath (join (
+				this_folder, 
+				f"the_build_1/{ packet }"
+			))),
+			"image_built": str (normpath (join (
+				this_folder, 
+				f"the_build_1/{ packet }/{ tar_file_name }"
+			))),
+			"distribution_zip": str (normpath (join (
+				this_folder, 
+				f"the_build_1/{ packet_zip }"
 			)))
 		},
-		
 		"the_build_2": {
 			"path": str (normpath (join (
 				this_folder, 
 				f"the_build_2"
 			))),
+			"distribution_directory": str (normpath (join (
+				this_folder, 
+				f"the_build_2/{ packet }"
+			))),
+			"image_built": str (normpath (join (
+				this_folder, 
+				f"the_build_2/{ packet }/{ tar_file_name }"
+			))),
+			"distribution_zip": str (normpath (join (
+				this_folder, 
+				f"the_build_2/{ packet_zip }"
+			)))
 		},
-		
-		"the_build": str (normpath (join (
-			this_folder, 
-			f"the_build_1"
-		))),
-		"distribution_directory": str (normpath (join (
-			this_folder, 
-			f"the_build_1/{ packet }"
-		))),
-		"image_built": str (normpath (join (
-			this_folder, 
-			f"the_build_1/{ packet }/{name}_{ version }.Docker_image.tar"
-		))),
-		
-		
-		"distribution_zip": str (normpath (join (
-			this_folder, 
-			f"the_build_1/{ packet_zip }"
-		)))
 	}
 
 
@@ -116,7 +149,7 @@ def run (screenplay):
 	print ("----")
 	print ("screenplay:", screenplay)
 	print ()
-	#input ("Press Enter to go on:")
+	# input ("Press Enter to go on:")
 	os.system (screenplay)
 	print ("----")
 
@@ -124,10 +157,15 @@ def run (screenplay):
 
 def check_image ():
 	paths = retrieve_paths ();
+
+	the_build_1__path = paths ["the_build_1"] ["path"]
+
+	the_build_2__path = paths ["the_build_2"] ["path"]
+	the_build_2__distribution_zip = paths ["the_build_2"] ["distribution_zip"]
+	the_build_2__distribution_directory = paths ["the_build_2"] ["distribution_directory"]
+	the_build_2__image_built = paths ["the_build_2"] ["image_built"]
 	
-	name = "Foam_Pet_v6_0_0.0"
-	image_name = "foam_pet:v6_0_0.0"
-	docker_image_name = "Foam_Pet_v6_0_0.0.Docker_image.tar"
+	
 	
 	#
 	#	maybe:
@@ -137,28 +175,25 @@ def check_image ():
 	#		[OS] unzip foam_pet_v1.3.0-1.tar.zip
 	#		[OS] docker load -i image/Foam_Pet_v1_3_0.0.Docker_image.tar
 	#
-	shutil.rmtree (paths ["the_build_2"] ["path"])
-	shutil.copytree (
-		paths ["the_build_1"] ["path"],
-		paths ["the_build_2"] ["path"]
-	)
+	shutil.rmtree (the_build_2__path)
+	shutil.copytree (the_build_1__path, the_build_2__path)
 	
 	
-	zip_file_path = paths ["the_build_2"] ["path"] + "/" + name + ".zip"
-	build_directory = paths ["the_build_2"] ["path"] + "/" + name;
-	docker_image_tar = paths ["the_build_2"] ["path"] + "/" + name + "/" + docker_image_name
 	
 	#
 	#	1. delete the directory "Foam_Pet_v2_0_0.0"
 	#	2. unzip zip file
-	#	3. docker load the .tar
+	#	3. remove the image 
+	#	4. docker load the .tar
+	#	5. stop and remove every container
+	#	6. run a container from the iamge
 	#
-	shutil.rmtree (build_directory)
-	run (f"""cd '{ paths ["the_build_2"] ["path"] }' && unzip '{ zip_file_path }'""");
-	run (f"docker rmi { image_name }");
-	run (f"docker load -i '{ docker_image_tar }'")
+	shutil.rmtree (the_build_2__distribution_directory)
+	run (f"""cd '{ the_build_2__path }' && unzip '{ the_build_2__distribution_zip }'""");
+	run (f"docker rmi { image_name_plus_version }");
+	run (f"docker load -i '{ the_build_2__image_built }'")
 	run (f"docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)")
-	run (f'docker run --name foam_pet_1 -td -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 { image_name } /bin/bash -c "bash /embark.sh"')
+	run (f'docker run --name foam_pet_1 -td -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 { image_name_plus_version } /bin/bash -c "bash /embark.sh"')
 	
 	
 	
@@ -168,9 +203,11 @@ def make_docker_image ():
 def save_docker_image ():
 	paths = retrieve_paths ();
 
-	distribution_zip = paths ['distribution_zip']
+	the_build_1 = paths ['the_build_1'] 
+	the_build_1__path = paths ['the_build_1'] ['path']
+	the_build_1__distribution_zip = paths ['the_build_1'] ['distribution_zip']
 	
-	run (f"mkdir -p '{ paths ['distribution_directory'] }'")
+	run (f"mkdir -p '{ paths ['the_build_1'] ['distribution_directory'] }'")
 	
 	#
 	#	create:
@@ -181,37 +218,24 @@ def save_docker_image ():
 	shutil.copy (paths ["rules"] ["origin"], paths ["rules"] ["destiny"])
 	
 	#
-	#
-	#	
-	#
+	#	* remove the image
+	#	* stop the container
+	#	* create an image in the docker drive
+	#	* save the image to the drive
 	#
 	run (f"docker rmi { image_name_plus_version }");
-	
-	
-	#
-	#	
-	#
-	#
 	run (f"docker stop { container_name }");
-	
-	
 	run (f"docker commit { container_name } { image_name_plus_version }")
-	
-	run (f"docker save -o { paths ['image_built'] } { image_name_plus_version }")
-	
-	#
-	#
-	#	cd the_build 
-	#	zip Foam_Pet_v2_0_0.0 Foam_Pet_v2_0_0.0.zip
-	#
-	run (f"(cd '{ paths ['the_build'] }' && zip -r '{ packet_zip }' '{ packet }')")
+	run (f"docker save -o { paths ['the_build_1'] ['image_built'] } { image_name_plus_version }")
 	
 	#
+	#	zip the directory:
+	#		cd the_build_1 
+	#		zip Foam_Pet_v2_0_0.0 Foam_Pet_v2_0_0.0.zip
 	#
-	#	SHA
-	#		# [OS] gzip foam_pet_v1.0.0.tar
-	#
-	# run (f"(cd '{ paths ['distribution_directory'] }' && sha256sum { file_name })")
+	run (f"(cd '{ the_build_1__path }' && zip -r '{ packet_zip }' '{ packet }')")
+	
+
 	
 	#
 	#	Distribution ZIP
@@ -219,7 +243,7 @@ def save_docker_image ():
 	#	Checksums: 
 	#		SHA
 	#
-	run (f"(cd '{ paths ['the_build'] }' && sha256sum { distribution_zip })")
+	run (f"(cd '{ the_build_1__path }' && sha256sum { the_build_1__distribution_zip })")
 	
 	
 	run (f"chmod -R 777 '{ this_folder }'")
