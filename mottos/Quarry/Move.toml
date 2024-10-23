@@ -1,0 +1,25 @@
+
+
+[package]
+name = "Quarry"
+version = "1.0.0"
+authors = []
+
+[addresses]
+ride = "_"
+
+[dev-addresses]
+
+
+[dependencies.Visiwa]
+local = "/Metro/mottos/Visiwa" 
+
+[dependencies.AptosFramework]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
+
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
+
+
+
+
