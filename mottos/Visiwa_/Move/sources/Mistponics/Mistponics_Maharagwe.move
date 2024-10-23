@@ -10,7 +10,7 @@ module ride::Mistponics_Maharagwe {
 	use std::signer;
 	
 	use ride::Loft;
-	use ride::Quary_u64;
+	use ride::Quarry_u64;
 
 	use ride::Mistponics_Shed;
 
@@ -61,7 +61,7 @@ module ride::Mistponics_Maharagwe {
 		//
 		//
 		//
-		let proceeds : String = Quary_u64::can_increase (packs, amount);
+		let proceeds : String = Quarry_u64::can_increase (packs, amount);
 		if (proceeds != string::utf8 (b"yes")) {
 			abort GROW_AMOUNT_IS_GREATER_THAN_UPPER_LIMIT
 		};

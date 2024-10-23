@@ -2,12 +2,12 @@
 
 
 /*
-	use ride::Quary_u64;
+	use ride::Quarry_u64;
 
 */
 
 
-module ride::Quary_u64 {
+module ride::Quarry_u64 {
 	use std::string::{ Self, String };
 	use ride::Loft;
 
@@ -36,7 +36,7 @@ module ride::Quary_u64 {
 	/*
 		perhaps:
 	
-			let proceeds : String = Quary_u64::can_increase (10, 20);
+			let proceeds : String = Quarry_u64::can_increase (10, 20);
 			if (proceeds != string::utf8(b"yes"))) {
 				abort
 			}
@@ -57,7 +57,7 @@ module ride::Quary_u64 {
 		
 		let u64_1 : u64 = 1;
 		let u64_2 : u64 = 1;
-		let u64_proceeds : u64 = Quary_u64::increase (u64_1, u64_2)
+		let u64_proceeds : u64 = Quarry_u64::increase (u64_1, u64_2)
 	
 	*/
 	public fun increase (u64_1: u64, u64_2: u64) : u64 {

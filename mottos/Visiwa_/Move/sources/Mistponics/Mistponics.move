@@ -6,7 +6,7 @@ module ride::Mistponics {
 	use std::signer;
 	
 	use ride::Loft;
-	use ride::Quary_u64;
+	use ride::Quarry_u64;
 
 	#[view]
 	public fun togetherness () : String {

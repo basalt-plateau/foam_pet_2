@@ -8,7 +8,7 @@ module ride::Mistponics_Gazebo {
 	
 	use ride::Loft;
 	
-	const A_GAZEBO_WAS_NOT_SPOTTED : u64 = 0;
+	const A_gazebo_was_not_spotted : u64 = 0;
 	
 	#[view]
 	public fun togetherness () : String {
@@ -44,7 +44,7 @@ module ride::Mistponics_Gazebo {
 	
 	public fun proceed_if_has_gazebo (estate_address: address) {
 		if (exists<Gazebo>(estate_address) != true) {
-			abort A_GAZEBO_WAS_NOT_SPOTTED
+			abort A_gazebo_was_not_spotted
 		};
 	}
 	
