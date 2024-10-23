@@ -2,10 +2,10 @@
 
 
 /*
+	
 	use ride::Quarry_u64;
 
 */
-
 
 module ride::Quarry_u64 {
 	use std::string::{ Self, String };
@@ -13,8 +13,7 @@ module ride::Quarry_u64 {
 
 	#[view]
 	public fun togetherness () : String {
-		let togetherness = Loft::togetherness ();
-		togetherness
+		Loft::togetherness ()
 	}
 	
 	
