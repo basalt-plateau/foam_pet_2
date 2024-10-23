@@ -14,7 +14,7 @@ def add_paths_to_system (paths):
 	
 
 add_paths_to_system ([
-	'rooms'
+	'trucks'
 ])
 #
 #/

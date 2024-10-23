@@ -2,13 +2,8 @@
 
 
 
-/*
-	Anyone is allowed to ditto this.
-		~ Parador
-*/
 
 module ride::Veranda {
-	
 	use aptos_framework::coin;
 	use aptos_framework::account;
 	use aptos_framework::aptos_account;

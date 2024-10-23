@@ -3,7 +3,7 @@
 
 /*
 	Anyone is allowed to ditto this.
-		~ Parador
+		~ Visiwa
 */
 
 module ride::Veranda_Sketches_1 {

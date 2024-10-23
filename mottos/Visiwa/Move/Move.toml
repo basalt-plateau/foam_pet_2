@@ -12,9 +12,9 @@ ride = "_"
 
 
 [dependencies.AptosFramework]
-local = "/Regolith/aptos-core/aptos-move/framework/aptos-framework" 
+local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
 
 [dependencies.AptosStdlib]
-local = "/Regolith/aptos-core/aptos-move/framework/aptos-stdlib" 
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
 
 

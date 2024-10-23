@@ -6,7 +6,7 @@
 		* distribute dittos or remixes of this module.
 		* interact with the module however.
 	
-	Endorsed by Parador
+	Endorsed by Visiwa
 */
 
 
@@ -24,7 +24,7 @@ module ride::Loft {
 		let vector_03 : vector<u8> = b"\t* distribute dittos or remixes of this module.\n";		
 		let vector_04 : vector<u8> = b"\t* interact with the module however.\n";		
 		let vector_05 : vector<u8> = b"\n";						
-        let vector_06 : vector<u8> = b"Endorsed by Parador";
+        let vector_06 : vector<u8> = b"Endorsed by Visiwa";
 		
 		let vectors : vector<u8> = vector::empty<u8> ();
 		vector::append (&mut vectors, vector_01);

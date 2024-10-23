@@ -8,7 +8,6 @@ module ride::Atrium {
 	
 
 
-
 	/*
 		
 		scouting
