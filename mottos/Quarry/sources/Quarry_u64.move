@@ -77,6 +77,10 @@ module ride::Quarry_u64 {
 	
 	/*
 		u64_1 - u64_2
+		
+		let u64_1 : u64 = 1;
+		let u64_2 : u64 = 1;
+		let u64_proceeds : u64 = Quarry_u64::decrease (u64_1, u64_2)
 	*/
 	public fun decrease (u64_1: u64, u64_2: u64) : u64 {
 		if (u64_2 > u64_1) {
