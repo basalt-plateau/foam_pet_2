@@ -1,0 +1,31 @@
+
+
+[package]
+name = "Pergola"
+version = "1.0.0"
+authors = []
+
+[addresses]
+ride = "_"
+
+[dev-addresses]
+
+
+
+[dependencies.AptosFramework]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
+
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
+
+[dependencies.Quarry]
+local = "/Metro/Mottos/Quarry" 
+
+[dependencies.Visiwa]
+local = "/Metro/Mottos/Visiwa" 
+
+
+
+
+
+

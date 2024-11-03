@@ -12,7 +12,7 @@ ride = "_"
 
 
 [dependencies.Visiwa]
-local = "/Metro/mottos/Visiwa" 
+local = "/Metro/Mottos/Visiwa" 
 
 [dependencies.AptosFramework]
 local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 

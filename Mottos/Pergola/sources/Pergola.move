@@ -20,6 +20,22 @@ module ride::Pergola {
     }
 	
 	
+	//
+	//
+	//	Estates
+	//
+	//
+	public entry fun build_estate (address_1: address) {
+		assert! (account::exists_at (address_1) == false, 0);
+		aptos_account::create_account (address_1);
+	}
+	
+	
+	//
+	//
+	//	APT
+	//
+	//
 	public entry fun ship <CoinType> (
 		sender: &signer, 
 		recipient: address, 
@@ -56,8 +72,8 @@ module ride::Pergola {
 		This can show the APT scoreboard for an address. 
 	*/
 	#[view]
-    public fun APT_scoreboard <Coin> (address_1: address): u64 {
-        let score: u64 = coin::balance<Coin>(address_1);
+    public fun APT_scoreboard <Coin> (address_1: address) : u64 {
+        let score : u64 = coin::balance<Coin>(address_1);
 		score
     }
 	
@@ -65,13 +81,5 @@ module ride::Pergola {
 	
 	
 	
-	//
-	//
-	//
-	//
-	//
-	public entry fun build_estate (address_1: address) {
-		assert! (account::exists_at (address_1) == false, 0);
-		aptos_account::create_account (address_1);
-	}
+	
 }

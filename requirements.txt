@@ -2,7 +2,7 @@
 #    uv pip compile pyproject.toml -o requirements.txt
 aiofiles==24.1.0
     # via sanic
-async-timeout==4.0.3
+async-timeout==5.0.0
     # via redis
 attrs==24.2.0
     # via
@@ -43,7 +43,7 @@ coverage==7.6.4
     # via
     #   biotech
     #   emergency
-cx-freeze==7.2.3
+cx-freeze==7.2.4
     # via foam-pet (pyproject.toml)
 dnspython==2.7.0
     # via pymongo
@@ -101,13 +101,13 @@ pexpect==4.9.0
     # via
     #   biotech
     #   emergency
-pip==24.2
+pip==24.3.1
     # via pipdeptree
 pip-licenses==5.0.0
     # via foam-pet (pyproject.toml)
 pipdeptree==2.23.4
     # via foam-pet (pyproject.toml)
-prettytable==3.11.0
+prettytable==3.12.0
     # via pip-licenses
 psutil==5.9.8
     # via
@@ -132,7 +132,7 @@ pymongo==4.10.1
     #   emergency
 pyyaml==6.0.2
     # via sanic-ext
-redis==5.1.1
+redis==5.2.0
     # via
     #   biotech
     #   emergency
@@ -146,7 +146,7 @@ requests==2.32.3
     #   biotech
     #   body-scan
     #   emergency
-rich==13.9.3
+rich==13.9.4
     # via
     #   foam-pet (pyproject.toml)
     #   biotech
@@ -154,7 +154,7 @@ rich==13.9.3
     #   ships
     #   somatic
     #   ventures
-rpds-py==0.20.0
+rpds-py==0.20.1
     # via
     #   jsonschema
     #   referencing
@@ -204,5 +204,5 @@ wcwidth==0.2.13
     # via prettytable
 websockets==13.1
     # via sanic
-werkzeug==3.0.4
+werkzeug==3.1.1
     # via flask
