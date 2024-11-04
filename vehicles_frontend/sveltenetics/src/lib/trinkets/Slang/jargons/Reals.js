@@ -13,12 +13,22 @@ const blockchain = {
 	"Transaction": "Adaptation",
 	"Transactions": "Adaptations",
 	
+	
+	//
+	//
+	//	Don't use these anymore.
+	//	Use "Unsigned_Transaction" instead.
+	//
+	"Petition": "Petition",
+	"Petitions": "Petitions",
+	
+	
 	//
 	//	Treaty, Bargain
 	//
 	//
-	"Petition": "Petition",
-	"Petitions": "Petitions",
+	"Unsigned_Transaction": "Petition",
+	"Unsigned_Transactions": "Petitions",
 }
 
 const account = {

@@ -42,7 +42,9 @@ import { modal_plugs, trends } from './Trinket'
 //
 //\
 
-
+import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico.svelte'
+import { open_adapation_panel } from '$lib/Les_Talents/Adaptation/Open'	
+		
 
 
 
@@ -266,36 +268,17 @@ let friends_pronunciation = "gwadenyawotch"
 		</Panel>
 		{/if}
 		
+		
+		
 		{#if mode === "nurture" }
 		<Panel 
 			styles={ trends.panel }
 		>		
-			<div class="relative inline-block">
-
-				<button 
-					octas_gifts__version_1
-					
-					on:click={ open_transaction_modal }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>Story</p>
-					<span 
-						class="badge variant-filled-primary"
-						style="margin: 0; display: none;"
-					>Iteration 1</span>
-				</button>
-			</div>
+			<Adaptation_Portico 
+				open={() => {
+					open_adapation_panel ({ modal_store })
+				}}
+			/>	
 		</Panel>
 		{/if}
 

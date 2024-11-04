@@ -30,16 +30,12 @@ module ride::Tholvi {
 	}
 	
 	//
-	//	This is broken..
 	//
 	//
 	#[view]
-	public fun ask_turn_u64 () : u64 {
-		let epoch_interval_seconds : u64 = block::get_epoch_interval_secs ();
-		epoch_interval_seconds
-		
-		// let turn_u64 : u64 = block::get_current_block_height ();
-		// turn_u64
+	public fun ask_turn_u64 () : u64 {		
+		let turn_u64 : u64 = block::get_current_block_height ();
+		turn_u64
 	}
 }
 

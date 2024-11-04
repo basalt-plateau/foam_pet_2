@@ -3,11 +3,15 @@
 <script>
 
 
-import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
+
 
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 import _merge from 'lodash/merge'
+
+import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
+
+import Online_Petition from './Online_Petition/Trinket.svelte'
 
 const prepare = () => {
 	return {
@@ -30,7 +34,7 @@ const on_modal_change = () => {
 	
 }
 
-let current = 1;
+let show_panel = "Wheel";
 const on_next_pressed = () => {
 	console.info ("on_next_pressed")
 	
@@ -51,20 +55,43 @@ const on_next_pressed = () => {
 }
 
 				
+const online_petition = () => {
+	polytope_modal.advance (({ freight }) => {
+		freight.back.permitted = "yes"
+		
+		show_panel = "Online Petition"
+		
+		return freight;		
+	})
+}
 
+let polytope_freight = {}
+let prepared = "no"
 const on_prepare = () => {
 	polytope_modal.advance (({ freight }) => {
 		return _merge ({}, freight, {
 			showing: 'yes',
+			
 			name: 'Transaction',
+			
 			unfinished: {
 				showing: 'no',
 			},
 			back: {
 				text: 'Back',
 				permitted: "no",
-				go: () => {
-					console.log ('back pressed')
+				go: async () => {
+					console.log ("back pressed");
+					
+					polytope_modal.advance (({ freight }) => {
+						if (show_panel === "Online Petition") {
+							freight.back.permitted = "no"
+							
+							show_panel = "Wheel"
+						}
+						
+						return freight;
+					})
 				}
 			},
 			next: {
@@ -84,6 +111,8 @@ const on_prepare = () => {
 		// freight.show = "yes"
 		return freight;
 	})
+	
+	prepared = "yes"
 }
 
 let isOpen = false;
@@ -98,15 +127,16 @@ let isOpen = false;
 >
 	<div slot="leaves"
 		style="
-				height: 100%;
-				width: 100%;
-				
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			"
+			height: 100%;
+			width: 100%;
+			
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		"
 	>
-		{#if current === 1}
+		{#if prepared === "yes" }
+		{#if show_panel === "Wheel" }
 		<div
 			style="
 				box-sizing: border-box;
@@ -118,50 +148,23 @@ let isOpen = false;
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				
+				flex-direction: column;
+				
+				gap: 0.5cm;
 			"
 		>
-			<label class="label"
-				style="
-					width: 100%;
-				"
-			>
-				<header
-					style="
-						margin: 0 auto;
-						font-size: 2em;
-						text-align: center;
-					"
-				>Function ID</header>
-				
-				<div
-					style="
-						display: block;
-						text-align: center;
-						padding: 0.2cm 0;
-					"
-				>
-					<span 
-						class="badge variant-soft"
-						style="
-							display: inline-flex;
-							position: relative;
-							font-size: 1.2em;
-							margin: 0 auto;
-							text-align: center;
-						"
-					>
-						<span>Example</span>
-						<span class="badge variant-filled-surface">0x1::aptos_account::transfer</span>
-					</span>
-				</div>
-				
-				<textarea 
-					class="textarea p-4" 
-					rows="1" 
-					placeholder="" 
-				/>
-			</label>
+			<button type="button" class="btn variant-filled"
+				on:click={ online_petition }
+			>Online</button>
+			<button type="button" class="btn variant-filled" disabled>Offline Create Petition</button>
+			<button type="button" class="btn variant-filled" disabled>Offline Sign Petition</button>
 		</div>
+		{:else if show_panel === "Online Petition" }
+		<Online_Petition />
+		
+		
+		{/if}
 		{/if}
 	</div>
 	

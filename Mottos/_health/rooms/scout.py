@@ -1,17 +1,12 @@
 
-''''
-	0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f
 
-"'''
+'''
+	import scout
+	scout.leap ()
+'''
 
 
-
-import requests
-
-''''
-	
-"'''
-def scout (packet):
+def leap (packet):
 	#module_name, function_name, args):
 
 	URL = packet ["URL"]
@@ -21,6 +16,7 @@ def scout (packet):
 	function_name = packet ["function_name"]
 	
 	args = packet ["args"]
+	type_arguments = packet ["type_arguments"]
 	
 	"""Call a function in a Move module on the Aptos testnet."""
 	url = f"{ URL }/view"
@@ -29,7 +25,7 @@ def scout (packet):
 	
 	data = {
 		"function": f"{ address }::{module_name}::{function_name}",
-		"type_arguments": [],
+		"type_arguments": type_arguments,
 		"arguments": args
 	}
 	headers = {"Content-Type": "application/json"}
@@ -41,29 +37,7 @@ def scout (packet):
 
 	if response.status_code == 200:
 		return response.json ()
-	else:
-		print (f"Error calling function: { response.status_code } - { response.text }")
-		return None
-
-
-def check_1 ():
-	BASE_URL = "https://fullnode.testnet.aptoslabs.com/v1"
-	address = "0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f"
-
-	scouted = scout ({
-		"URL": BASE_URL,
-		
-		"address": address,
-		"module_name": "Pergola",
-		"function_name": "togetherness",
-		
-		"args": []
-	})
 	
-	print ("scouted:", scouted)
-
-	return;
 	
-checks = {
-	'check 1': check_1
-}
+	print (f"Error calling function: { response.status_code } - { response.text }")
+	return None

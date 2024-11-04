@@ -1,4 +1,7 @@
 
+
+
+
 ''''
 	0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f
 
@@ -24,9 +27,7 @@ def scout (packet):
 	
 	"""Call a function in a Move module on the Aptos testnet."""
 	url = f"{ URL }/view"
-	
-	url = "https://api.testnet.aptoslabs.com/v1/view"
-	
+		
 	data = {
 		"function": f"{ address }::{module_name}::{function_name}",
 		"type_arguments": [],
@@ -47,17 +48,18 @@ def scout (packet):
 
 
 def check_1 ():
-	BASE_URL = "https://fullnode.testnet.aptoslabs.com/v1"
+	URL = "https://api.testnet.aptoslabs.com/v1"
 	address = "0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f"
 
 	scouted = scout ({
-		"URL": BASE_URL,
+		"URL": URL,
 		
 		"address": address,
-		"module_name": "Pergola",
+		"module_name": "Loft",
 		"function_name": "togetherness",
 		
-		"args": []
+		"args": [],
+		"type_arguments": []
 	})
 	
 	print ("scouted:", scouted)

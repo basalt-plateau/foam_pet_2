@@ -63,7 +63,7 @@ $: freight = {
 	}
 }
 
-
+export let on_change = () => {};
 export let on_prepare;
 export const advance = (action) => {
 	// @ advance, promote, evolve, adapt

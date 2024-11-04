@@ -24,12 +24,27 @@ import { parse_styles } from '$lib/trinkets/styles/parse'
 import Layer_Octas_Gifts_Friends from '$lib/Les_Talents/APT_Entrust_Mode_1/Friends_Panel/Trinket.svelte'
 import Layer_Faucet from '$lib/Les_Talents/Faucet/Trinket.svelte'
 import Les_Talents_Coin_Transfer_Mode_1 from '$lib/Les_Talents/Coin_Transfer_Mode_1/Friends_Move/Trinket.svelte'
-import Transaction_Modal from '$lib/Les_Talents/Transaction/Friends_Move/Trinket.svelte'
 import Address_Search_Modal from '$lib/Les_Talents/Address_Search/Trinket.svelte'
 //
 ////
 
-
+const open_modal = ({
+	modal_store,
+	modal_ref
+}) => {
+	modal_store.trigger ({
+		type: 'component',
+		
+		backdropClasses: '!p-0',
+		
+		component: {
+			ref: modal_ref,
+			props: { 
+				modal_store
+			}
+		}
+	});
+}
 
 export const modal_plugs = ({
 	modal_store
@@ -68,19 +83,13 @@ export const modal_plugs = ({
 		});
 	}
 	
+	
+	
 	const open_transaction_modal = () => {
-		modal_store.trigger ({
-			type: 'component',
-			
-			backdropClasses: '!p-0',
-			
-			component: {
-				ref: Transaction_Modal,
-				props: { 
-					modal_store
-				}
-			}
-		});
+		open_modal ({
+			modal_store,
+			modal_ref: Adaptation_Modal
+		})
 	}
 
 	const open_coin_transfer = () => {

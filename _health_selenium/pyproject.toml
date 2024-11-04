@@ -20,8 +20,9 @@ exclude = []
 [tool.poetry.dependencies]
 python = "^3.10"
 
-deepdiff = "^7.0.1"
 Emergency = "^2.0.0"
-selenium = "^4.22.0"
 
+deepdiff = "^7.0.1"
+selenium = "^4.22.0"
+requests = "^2.32.3"
 

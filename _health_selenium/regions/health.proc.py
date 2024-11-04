@@ -53,6 +53,12 @@ def clique ():
 	
 		print ("glob string:", glob_string);
 	
+		relative_path = "/Metro/Mottos"
+		rooms_paths = [
+			"/Metro/Mottos/_health/rooms"
+		]
+
+	
 		promote = Emergency.on ({
 			
 			"intro_port": 52123,
@@ -99,9 +105,7 @@ def clique ():
 			#	These are added to the sys.path of the process of
 			#	each quest in the glob_string.
 			#
-			"module_paths": [
-				rooms_path
-			],
+			"module_paths": rooms_paths,
 
 			#
 			#	[voluntary]
@@ -116,7 +120,7 @@ def clique ():
 			#		relative path: /habitats/venue.1/health/monitors
 			#		reported path: health_1.py
 			#
-			"relative_path": monitors_path,
+			"relative_path": relative_path,
 			
 			#
 			#	[voluntary]

@@ -11,15 +11,13 @@ ride = "_"
 [dev-addresses]
 
 
-[dependencies.Visiwa]
-local = "/Metro/Mottos/Visiwa" 
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
 
 [dependencies.AptosFramework]
 local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
 
-[dependencies.AptosStdlib]
-local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
-
-
+[dependencies.Visiwa]
+local = "/Metro/Mottos/Visiwa" 
 
 
