@@ -22,7 +22,7 @@
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 
 
-export async const suggest_petition = ({
+export const suggest_petition = async ({
 	private_key,
 	petition
 }) => {
@@ -33,7 +33,7 @@ export async const suggest_petition = ({
 		// client: { provider: custom_client }
 	}));
 	
-	const petition = await aptos.transaction.build.simple ({
+	const le_petition = await aptos.transaction.build.simple ({
 		sender: alice.accountAddress,
 		data: petition.data
 	});
@@ -46,7 +46,7 @@ export async const suggest_petition = ({
 	//
 	const [ userTransactionResponse ] = await aptos.transaction.simulate.simple({
         signerPublicKey: sender.publicKey,
-        transaction: petition
+        transaction: le_petition
     });
 
 	//

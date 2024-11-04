@@ -19,7 +19,6 @@ module ride::Mistponics_Gazebo {
 	
 	////
 	
-	
 	struct Gazebo has key, drop {
         allow_mistponics: String,
 		estate_address: address

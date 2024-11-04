@@ -18,7 +18,6 @@ import { onMount, onDestroy } from 'svelte';
 //
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
 import Panel from '$lib/trinkets/panel/trinket.svelte'
-import Net_Choices from '$lib/PTO/Nets/Choices.svelte'
 //
 import Amount_Field from '$lib/trinkets/Amount_Field/Trinket.svelte'
 import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'

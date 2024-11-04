@@ -115,7 +115,7 @@ psutil==5.9.8
     #   ships
 ptyprocess==0.7.0
     # via pexpect
-pydash==8.0.3
+pydash==8.0.4
     # via
     #   foam-pet (pyproject.toml)
     #   ships
@@ -204,5 +204,5 @@ wcwidth==0.2.13
     # via prettytable
 websockets==13.1
     # via sanic
-werkzeug==3.1.1
+werkzeug==3.1.2
     # via flask
