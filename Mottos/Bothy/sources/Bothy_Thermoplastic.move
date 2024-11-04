@@ -16,7 +16,7 @@ module ride::Bothy_Thermoplastic {
 		togetherness
 	}
 
-	struct Thermoplastic has key, drop {
+	struct Thermoplastic has key, drop, store {
         sheets: u64,
 		harvest: address
     }
