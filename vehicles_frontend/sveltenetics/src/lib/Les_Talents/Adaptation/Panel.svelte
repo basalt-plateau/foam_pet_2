@@ -54,7 +54,11 @@ const on_next_pressed = () => {
 	})
 }
 
-				
+
+const open_a_panel = ({ panel_name }) => {
+	show_panel = panel_name
+}
+
 const online_petition = () => {
 	polytope_modal.advance (({ freight }) => {
 		freight.back.permitted = "yes"
@@ -161,7 +165,9 @@ let isOpen = false;
 			<button type="button" class="btn variant-filled" disabled>Offline Sign Petition</button>
 		</div>
 		{:else if show_panel === "Online Petition" }
-		<Online_Petition />
+		<Online_Petition 
+			open_a_panel={ open_a_panel }
+		/>
 		
 		
 		{/if}

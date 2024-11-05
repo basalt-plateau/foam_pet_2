@@ -2,9 +2,13 @@
 /*
 	import { Account_from_private_key } from '$lib/PTO/Accounts/from_private_key'
 	const {
+		pristine_account,
+		legacy_account,
+		
 		public_key_hexadecimal_string,	
-		fresh_address_hexadecimal_string,
-		legacy_address_hexadecimal_string
+
+		pristine_address_hexadecimal_string,
+		legacy_address_hexadecimal_string,
 	} = await Account_from_private_key ({
 		private_key_hexadecimal_string: "89ABCDEF89AB8EFD9ACB76051243760512437568C9AFEBDC89FAEDBC07615234"
 	})
@@ -42,12 +46,12 @@ const build_legacy_EEC_25519_Account = async ({
 	
 	const legacy_account = AptosSDK.Account.fromPrivateKey ({ 
 		privateKey: private_key, 
-		legacy: true 
+		legacy: true
 	});
-	
-	console.info ({ legacy_account })
-	
+
 	return {
+		"account": legacy_account,
+		
 		"address": string_from_Uint8Array (legacy_account.accountAddress.data),
 		"private_key": string_from_Uint8Array (legacy_account.privateKey.signingKey.data),
 		"public_key": string_from_Uint8Array (legacy_account.publicKey.key.data)
@@ -72,6 +76,8 @@ const build_fresh_EEC_25519_Account = async ({
 	console.log ({ fresh_account })
 	
 	return {
+		"account": fresh_account,
+		
 		"address": string_from_Uint8Array (fresh_account.accountAddress.data),
 		"private_key": string_from_Uint8Array (fresh_account.privateKey.signingKey.data),
 		"public_key": string_from_Uint8Array (fresh_account.publicKey.publicKey.key.data)
@@ -98,9 +104,15 @@ export const Account_from_private_key = async ({
 	}
 	
 	return {
+		pristine_account: fresh_account.account,
+		legacy_account: legacy_account.account,
+		
 		public_key_hexadecimal_string: fresh_account ["public_key"],	
 
+		pristine_address_hexadecimal_string: fresh_account ["address"],
+		legacy_address_hexadecimal_string: legacy_account ["address"],
+		
+		// vintage
 		fresh_address_hexadecimal_string: fresh_account ["address"],
-		legacy_address_hexadecimal_string: legacy_account ["address"]
 	}
 }

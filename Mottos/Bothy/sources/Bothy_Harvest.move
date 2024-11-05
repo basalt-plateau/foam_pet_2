@@ -4,7 +4,7 @@
 
 
 
-module ride::Bothy_Guild {
+module ride::Bothy_Harvest {
 	
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
@@ -27,7 +27,7 @@ module ride::Bothy_Guild {
 		thermoplastic: Bothy_Thermoplastic::Thermoplastic
     }
 	
-	struct Guild has key, drop {
+	struct Harvest has key, drop {
         is_open: String,
 		mwanaangas: vector<Mwanaanga>
     }
@@ -48,7 +48,7 @@ module ride::Bothy_Guild {
 		assert! (le_address == Novelist, 1);
 	}
 	
-	public fun Establish_Guild (
+	public fun Establish_Harvest (
 		harvest: &signer
 	) {
 		let estate_1_address = signer::address_of (harvest);
@@ -61,7 +61,7 @@ module ride::Bothy_Guild {
 		
 		let mwanaangas : vector<Mwanaanga> = vector::empty<Mwanaanga> ();
 		
-        let guild = Guild {
+        let le_harvest = Harvest {
             is_open: is_open,
             mwanaangas
         };
@@ -75,7 +75,7 @@ module ride::Bothy_Guild {
 	//	Mwanaanga Level
 	//
 	//
-	public fun Join_Guild () {		
+	public fun Join_Harvest () {		
        
     }
 	
