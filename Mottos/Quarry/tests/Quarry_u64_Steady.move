@@ -8,6 +8,7 @@
 
 module ride::Quarry_u64_Steady {
 	use std::string::{ Self, String };
+	use std::debug;
 	
 	use ride::Quarry_u64;
 
@@ -21,9 +22,7 @@ module ride::Quarry_u64_Steady {
 	   Quarry_u64::increase (u64_upper_limit, u64_addend);
     }
 	
-	
-	
-	
+
 	
 	#[test]
     public fun steady_2 () {
@@ -46,6 +45,34 @@ module ride::Quarry_u64_Steady {
 		let proceeds : String = Quarry_u64::can_increase (u64_upper_limit, u64_addend);
 		assert! (
 			proceeds == string::utf8 (b"yes"), 
+			PROBLEM
+		);
+    }
+	
+	
+	//
+	//	create_string_from_u64
+	//
+	//
+	#[test]
+    public fun create_string_from_u64_0 () {
+		let u64_1 : u64 = 0;
+		let proceeds : String = Quarry_u64::create_string_from_u64 (u64_1);
+		assert! (
+			proceeds == string::utf8 (b"0"), 
+			PROBLEM
+		);
+    }
+	
+	#[test]
+    public fun create_string_from_u64_1000 () {
+		let u64_1 : u64 = 0x1;
+		let proceeds : String = Quarry_u64::create_string_from_u64 (u64_1);
+		
+		debug::print (& proceeds);
+		
+		assert! (
+			proceeds == string::utf8 (b"1000"), 
 			PROBLEM
 		);
     }

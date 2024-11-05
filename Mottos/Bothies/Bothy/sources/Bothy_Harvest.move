@@ -77,6 +77,57 @@ module ride::Bothy_Harvest {
 		
 		move_to (estate, le_harvest);
     }
+	
+	#[view]
+	public fun is_mwanaanga_at_harvest (
+		estate_address: address, 
+		mwanaanga_address: address
+	) : String acquires Harvest {
+		if (!exists<Harvest>(estate_address)) {
+           return utf8 (b"There is not a harvest at that estate.")
+        };
+		
+		let harvest = borrow_global<Harvest>(estate_address);
+		
+		let last_index = vector::length (& harvest.mwanaangas) - 1;
+		let at_harvest = utf8 (b"perhaps");
+
+		if (vector::length (& harvest.mwanaangas) == 0) {
+			return utf8 (b"no")
+		};
+
+		let gezegen = 0;
+		while (gezegen <= last_index) {
+			let mwanaanga = vector::borrow (& harvest.mwanaangas, gezegen);
+			if (mwanaanga.address == mwanaanga_address) {
+				at_harvest = utf8 (b"yes");
+				break;
+			};
+		};
+
+		at_harvest
+	}
+
+	
+	public entry fun Embark_on_Harvest (
+		estate: & signer
+	) acquires Harvest {
+		let estate_1_address = signer::address_of (estate);
+		let thermoplastic_1 = Bothy_Thermoplastic::polymerize_thermoplastics ();
+		
+		let mwanaanga_1 = Mwanaanga {
+            address: estate_1_address,
+            thermoplastic: thermoplastic_1
+        };
+		
+		//
+		//	This is the flourishing estate's harvest.
+		//	This should be another estate's harvest though.
+		//
+		let le_harvest = borrow_global_mut<Harvest>(estate_1_address);
+
+		vector::push_back (&mut le_harvest.mwanaangas, mwanaanga_1);
+	}
 	//
 	////
 	

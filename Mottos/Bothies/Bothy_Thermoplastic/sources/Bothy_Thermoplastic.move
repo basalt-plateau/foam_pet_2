@@ -28,17 +28,13 @@ module ride::Bothy_Thermoplastic {
         }
     }
 	
-	/*
-	public fun polymerize_thermoplastic (
-		harvest: &signer, 
-		amount: u64
-	) {
-		let harvest_address = signer::address_of (harvest);
-        let le_thermoplastics = Thermoplastic { sheets: amount };
+	public fun polymerize_thermoplastics () : Thermoplastic {
+		let sheets : u64 = 10000000000;
 		
-		move_to (harvest, le_thermoplastics);
+        Thermoplastic {
+            sheets
+        }
 	}
-	*/
 
 	
 	
