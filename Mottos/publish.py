@@ -7,7 +7,7 @@ import os
 #	legacy address
 #
 #
-ride = "265b37de65ef8e91d5592c32508673ec9c1ede4b40a2e04598d32ba818102b3e"
+ride = "0f77ed769edda3660495078937d366dc9a133837a816718d6058276f723c8fa8"
 
 '''
 aptos account list --query resources

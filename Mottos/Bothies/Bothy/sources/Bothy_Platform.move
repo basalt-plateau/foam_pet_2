@@ -19,12 +19,16 @@ module ride::Bothy_Platform {
 	}
 	
 	
+	
 	public entry fun address_of_signer (
 		estate_1: & signer
 	) {
 		let estate_1_address = signer::address_of (estate_1);
 		debug::print (& estate_1_address);
 	}
+	
+	
+	
 }
 
 

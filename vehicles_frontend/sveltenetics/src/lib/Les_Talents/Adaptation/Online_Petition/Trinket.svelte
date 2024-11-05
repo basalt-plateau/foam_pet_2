@@ -14,14 +14,15 @@ import { check_roomies_truck } from '$lib/Versies/Trucks'
 
 import { suggest_petition } from './Trinket'
 import { SlideToggle } from '@skeletonlabs/skeleton';
-
+import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
+	
 
 
 let fonction_type = "Run"
-let fonction = "265b37de65ef8e91d5592c32508673ec9c1ede4b40a2e04598d32ba818102b3e::Bothy_Platform::address_of_signer"
-let private_key_hexadecimal_string = "341625349eadbc8f9eadbc162359cbe9dabc8f9eadbc162349eadbc8f9eacb61"
-let origin_address_hexadecimal_string = "265b37de65ef8e91d5592c32508673ec9c1ede4b40a2e04598d32ba818102b3e"
-let is_legacy_address_boolean = false;
+let fonction = "0f77ed769edda3660495078937d366dc9a133837a816718d6058276f723c8fa8::Bothy_Platform::address_of_signer"
+let private_key_hexadecimal_string = "89ab04125389fe9dacb712625bc9eadbc8f9eadbc162534b8c9eeadbc8f16234"
+let origin_address_hexadecimal_string = "0f77ed769edda3660495078937d366dc9a133837a816718d6058276f723c8fa8"
+let is_legacy_address_boolean = true;
 
 let show_proceeds = ""
 
@@ -61,7 +62,7 @@ const suggest = async () => {
 		petition
 	});
 	
-	console.info ({ proceeds });
+	// console.info ({ proceeds });
 	
 	show_proceeds = proceeds;
 	
@@ -217,7 +218,11 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 		</label>
 		
 		<p>is legacy address</p>
-		<label class="label">
+		<label class="label"
+			style="
+				
+			"
+		>
 			<p>no</p>
 			<SlideToggle name="slide" bind:checked={ is_legacy_address_boolean } />
 			<p>yes</p>
@@ -260,7 +265,6 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 					text-align: center;
 				"
 			>Type Arguments</header>
-
 		</label>
 	</div>
 	
@@ -276,7 +280,10 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 	<div style="height: 1cm"></div>
 	
 	<div class="card p-4">
-		{ show_proceeds }
+		<Code_Wall 
+			text={ show_proceeds } 
+			can_clone={ "yes" }
+		/>
 	</div>
 	{/if}
 	

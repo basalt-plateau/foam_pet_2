@@ -98,32 +98,41 @@ export const suggest_petition = async ({
 		})
 
 		if (is_legacy_address === "yes") {
-			const committed_transaction = await aptos.signAndSubmitTransaction ({ 
+			const signed_and_submitted = await aptos.signAndSubmitTransaction ({ 
 				signer: legacy_account, 
 				transaction: le_petition
 			});
 			
-			console.log ({ committed_transaction });
+			console.log ({ signed_and_submitted });
 
-			await aptos.waitForTransaction ({ 
-				transactionHash: committed_transaction.hash 
+			const waited = await aptos.waitForTransaction ({ 
+				transactionHash: signed_and_submitted.hash 
 			});
+
+			// console.log ({ waited });
+			// console.log (JSON.stringify (waited, null, 4));
+
+			return {
+				proceeds: JSON.stringify (waited, null, 4)
+			}
 			
 			// throw new Error ("Legacy Addresses are not yet accounted for.")
 		}
 		else {
 			console.log ({ pristine_account, le_petition });
 			
-			const committed_transaction = await aptos.signAndSubmitTransaction ({ 
+			const signed_and_submitted = await aptos.signAndSubmitTransaction ({ 
 				signer: pristine_account, 
 				transaction: le_petition
 			});
 			
-			console.log ({ committed_transaction });
+			console.log ({ signed_and_submitted });
 
-			await aptos.waitForTransaction ({ 
-				transactionHash: committed_transaction.hash 
+			const waited = await aptos.waitForTransaction ({ 
+				transactionHash: signed_and_submitted.hash 
 			});
+			
+			console.log ({ waited });
 			
 			
 			return 
