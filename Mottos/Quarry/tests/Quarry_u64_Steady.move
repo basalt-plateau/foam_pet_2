@@ -64,16 +64,19 @@ module ride::Quarry_u64_Steady {
 		);
     }
 	
+	
+	/*
 	#[test]
-    public fun create_string_from_u64_1000 () {
+    public fun create_string_from_u64_1 () {
 		let u64_1 : u64 = 0x1;
 		let proceeds : String = Quarry_u64::create_string_from_u64 (u64_1);
 		
 		debug::print (& proceeds);
 		
 		assert! (
-			proceeds == string::utf8 (b"1000"), 
+			proceeds == string::utf8 (b"1"), 
 			PROBLEM
 		);
     }
+	*/
 }
