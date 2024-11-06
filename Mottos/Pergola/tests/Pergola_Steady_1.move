@@ -7,13 +7,14 @@
 module ride::Pergola_Steady_1 {
 	use std::debug;
 	use std::string::utf8;
+	use std::signer;
 
 	use aptos_framework::coin;
 	use aptos_framework::aptos_coin;
 	
 	use ride::Pergola;
 
-	const PROBLEM : u64 = 0;
+	const Problem : u64 = 0;
 	
 	#[test]
     public fun steady_estate_scout () {
@@ -24,7 +25,7 @@ module ride::Pergola_Steady_1 {
         let string_1 = Pergola::estate_scout (estate_1_legacy_address);
         debug::print (& string_1);
 		
-		assert! (string_1 == utf8 (b"There is not an estate at that address."), PROBLEM);
+		assert! (string_1 == utf8 (b"There is not an estate at that address."), Problem);
     }
 	
 	
@@ -40,6 +41,15 @@ module ride::Pergola_Steady_1 {
         // let u64_1 : u64 = Pergola::APT_scoreboard <aptos_coin::AptosCoin> (estate_1_legacy_address);
         
 		
-		assert! (u64_1 == 0, PROBLEM);
+		assert! (u64_1 == 0, Problem);
+    }
+
+
+	#[test(estate_1 = @ride)]
+    public fun steady_sequence_numerals (
+		estate_1 : signer
+	) {
+		let estate_1_legacy_address = signer::address_of (& estate_1);
+		let sequence_number = Pergola::get_sequence_number (estate_1_legacy_address);
     }
 }

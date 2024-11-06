@@ -55,6 +55,7 @@ import { ProgressRadial } from '@skeletonlabs/skeleton';
 import anime from 'animejs/lib/anime.es.js';
 //
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import { ask_sequence_number } from '$lib/PTO/Address/Sequence_Number'
 	
 
 export let name = "Address"
@@ -67,6 +68,7 @@ let balance = ""
 let Octa_count = ""
 let APT_count = ""
 let table_opacity = 0
+let Sequence_Number = "?"
 
 let alert_exception = ""
 let alert_caution = ""
@@ -162,13 +164,14 @@ const show = {
 		
 		send_on_change ()
 	},
-	proceeds ({ Octas }) {
+	proceeds ({ Octas, le_sequence_number }) {
 		alert_exception = ""
 		alert_caution = ""
 		alert_info = "The address was found."
 		alert_proceeds = "yes";
 		
 		Octa_count = parse_with_commas (Octas)
+		Sequence_Number = le_sequence_number
 		
 		send_on_change ()
 	}
@@ -259,8 +262,15 @@ const ask_balance = async () => {
 			net_path: RT_Freight.net_path
 		})
 		
+		const { sequence_number } = await ask_sequence_number ({ 
+			net_path: RT_Freight.net_path,
+			address: address_hexadecimal_string_ask
+		})	
+		
 		//
 		// if the address changed during the request
+		//
+		//
 		if (address_hexadecimal_string_ask !== address_hexadecimal_string) {
 			show.info ({
 				info: "searching for address"
@@ -268,6 +278,11 @@ const ask_balance = async () => {
 			return;
 		}
 		
+		
+		//
+		//	If there was a problem:
+		//
+		//
 		if (APT_count_ask.effective !== "yes") {
 			if (APT_count_ask.error_code === "resource_not_found") {
 				show.caution ({
@@ -283,7 +298,8 @@ const ask_balance = async () => {
 		}
 		 
 		show.proceeds ({
-			Octas: APT_count_ask.Octa_count
+			Octas: APT_count_ask.Octa_count,
+			le_sequence_number: sequence_number
 		})
 	}
 	catch (_exception) {
@@ -488,6 +504,37 @@ onDestroy (() => {
 				class="badge variant-filled-surface"
 				
 			>{ Octa_count }</span>
+		</span>
+		<span class="badge variant-soft"
+			style="
+				position: relative;
+				font-size: 1.2em;
+			"
+		>
+			<span
+				style="
+					position: absolute;
+					left: 0.2cm;
+					top: 50%;
+					transform: translateY(-50%);
+					opacity: { asking ? 1 : 0 };
+				"
+			>
+				<div bind:this={ octas_count_element }>
+					<ProgressRadial 
+						value={undefined} 
+						width="w-6"
+						fill="#222"
+						stroke="90"
+						strokeLinecap="round"
+					/>
+				</div>
+			</span>
+			<span>Sequence Number</span>
+			<span 
+				class="badge variant-filled-surface"
+				
+			>{ Sequence_Number }</span>
 		</span>
 	</div>
 	

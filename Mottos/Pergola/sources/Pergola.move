@@ -25,11 +25,21 @@ module ride::Pergola {
 	//	Estates
 	//
 	//
-	public entry fun build_estate (address_1: address) {
+	public entry fun build_estate (address_1 : address) {
 		assert! (account::exists_at (address_1) == false, 0);
 		aptos_account::create_account (address_1);
 	}
 	
+	
+	//
+	//
+	//	get_sequence_number
+	//
+	//
+	public fun get_sequence_number (address_1 : address) : u64 {
+		account::get_sequence_number (address_1)
+	}
+		
 	
 	//
 	//

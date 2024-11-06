@@ -40,9 +40,19 @@ export const suggest_petition = async ({
 	}));
 	
 	if (fonction_type === "View") {
-		console.info (petition.gift)
+		// 0x1::account::get_sequence_number
+		console.info ({ petition })
 		
-		const proceeds = await aptos.view ({ payload: petition.gift });
+		petition.gift.functionArguments = [ "0f77ed769edda3660495078937d366dc9a133837a816718d6058276f723c8fa8" ]
+		console.info ({ petition })
+		
+		const proceeds = await aptos.view ({ 
+			payload: petition.gift 
+		});
+
+		console.info ({ proceeds })
+
+		
 		return { proceeds };
 	}
 	else {
@@ -54,12 +64,12 @@ export const suggest_petition = async ({
 		
 		console.info ({
 			sender: petition.sender,
-			data: petition.data
+			data: petition.gift
 		});
 		
 		const le_petition = await aptos.transaction.build.simple ({
 			sender: petition.sender,
-			data: petition.data
+			data: petition.gift
 		});
 		
 		

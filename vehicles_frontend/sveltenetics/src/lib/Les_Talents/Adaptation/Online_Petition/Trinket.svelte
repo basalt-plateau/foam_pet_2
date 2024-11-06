@@ -30,7 +30,7 @@ export const open_a_panel = () => {}
 
 const suggest = async () => {
 	const petition = {
-		data: {
+		gift: {
 			function: fonction,
 			typeArguments: [],
 			functionArguments: []
