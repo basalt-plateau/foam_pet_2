@@ -7,14 +7,15 @@ import { join } from 'path';
 // 1. Import the Skeleton plugin
 import { skeleton } from '@skeletonlabs/tw-plugin';
 
-import { PTO_theme } from './skeleton.theme'
-import { Rust_Theme } from './skeleton.rust.theme'
-import { Established_Theme } from './skeleton.established.theme'
-import { Rhubarb_Theme } from './skeleton.rhubarb.theme'
-import { Atolls_Theme } from './skeleton.atolls.theme'
-import { Hacienda_Theme } from './skeleton.hacienda.theme'
-import { Motto_Theme } from './skeleton.motto.theme'
-import { Gauze_Theme } from './skeleton.Gauze.theme'
+import { PTO_theme } from './_themes/skeleton.theme'
+import { Rust_Theme } from './_themes/skeleton.rust.theme'
+import { Established_Theme } from './_themes/skeleton.established.theme'
+import { Rhubarb_Theme } from './_themes/skeleton.rhubarb.theme'
+import { Atolls_Theme } from './_themes/skeleton.atolls.theme'
+import { Hacienda_Theme } from './_themes/skeleton.hacienda.theme'
+import { Motto_Theme } from './_themes/skeleton.motto.theme'
+import { Gauze_Theme } from './_themes/skeleton.Gauze.theme'
+import { Domes_Theme } from './_themes/skeleton.Domes.theme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -48,7 +49,8 @@ export default {
 					PTO_theme, 
 					Hacienda_Theme,
 					Motto_Theme,
-					Gauze_Theme
+					Gauze_Theme,
+					Domes_Theme
 					
 					// Rust_Theme, 
 					// Established_Theme 

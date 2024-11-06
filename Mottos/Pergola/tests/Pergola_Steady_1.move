@@ -50,6 +50,6 @@ module ride::Pergola_Steady_1 {
 		estate_1 : signer
 	) {
 		let estate_1_legacy_address = signer::address_of (& estate_1);
-		let sequence_number = Pergola::get_sequence_number (estate_1_legacy_address);
+		// let sequence_number = Pergola::get_sequence_number (estate_1_legacy_address);
     }
 }
