@@ -13,7 +13,7 @@ module ride::Bothy_Mwanaanga {
 	
 	use ride::Loft;
 	
-	use ride::Quarry_64;
+	use ride::Quarry_u64;
 	
 	use ride::Bothy_Thermoplastic;
 	
@@ -98,9 +98,9 @@ module ride::Bothy_Mwanaanga {
 		//	Check if mtumaji has enough.
 		//
 		//
-		let mtumaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mtumaji);
+		let mtumaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mtumaji.thermoplastic);
 		if (mtumaji_sheets_count < to_add) {
-			return utf8 (b"Mtumaji does not have enough thermoplastic sheets for that ask.");
+			return utf8 (b"Mtumaji does not have enough thermoplastic sheets for that ask.")
 		};
 		
 		
@@ -108,10 +108,10 @@ module ride::Bothy_Mwanaanga {
 		//	Check if mpokeaji has room.
 		//
 		//
-		let mpokeaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mpokeaji);
+		let mpokeaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mpokeaji.thermoplastic);
 		let mpokeaji_has_capacity : String = Quarry_u64::can_increase (to_add, mpokeaji_sheets_count);
 		if (mpokeaji_has_capacity != utf8 (b"yes")) {
-			return utf8 (b"Mpokeaji does not have room for additional thermoplastic sheets.");
+			return utf8 (b"Mpokeaji does not have room for additional thermoplastic sheets.")
 		};
 		
 		
