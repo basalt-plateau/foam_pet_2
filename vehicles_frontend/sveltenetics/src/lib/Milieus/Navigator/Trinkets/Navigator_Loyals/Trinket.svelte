@@ -62,6 +62,20 @@ const build = () => {
 	}
 }
 
+/*
+	Flourishes [ Caligraphy, Ornaments ]:
+		Burmese:
+			ဖွံ့ဖြိုးတိုးတက်သည်
+	
+		Persian:
+			𐎲𐎼𐎺𐎱𐎾
+			
+		Greek:
+			Ακμάζει
+		
+		Sinhala:
+			පැතිරීම
+*/
 
 </script>
 

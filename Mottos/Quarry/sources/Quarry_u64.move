@@ -16,8 +16,6 @@ module ride::Quarry_u64 {
 	use ride::Loft;
 	use ride::Quarry_u8;
 
-	const problem
-
 
 	#[view]
 	public fun togetherness () : String {

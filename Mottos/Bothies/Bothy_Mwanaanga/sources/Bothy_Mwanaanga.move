@@ -86,35 +86,36 @@ module ride::Bothy_Mwanaanga {
 	
 	//
 	//	thermoplastic sheets logistics:
-	//		from_mwanaanga -> to_mwanaanga
+	//
+	//		mpokeaji -> mpokeaji
 	//
 	public fun ask_to_send_thermoplastic_sheets (
-		from_mwanaanga : &mut Mwanaanga,
-		to_mwanaanga : &mut Mwanaanga,
+		mtumaji : &mut Mwanaanga,
+		mpokeaji : &mut Mwanaanga,
 		to_add : u64
 	) : String {	
 		//
-		//	Check if from_mwanaanga has enough.
+		//	Check if mtumaji has enough.
 		//
 		//
-		from_mwanaanga_tp_sheets_count = Bothy_Thermoplastic::ask_sheets_count (& from_mwanaanga);
-		if (from_mwanaanga_tp_sheets_count < to_add) {
-			utf8 ("Origin does not have enough thermoplastic sheets for that send.")
-		}
+		let mtumaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mtumaji);
+		if (mtumaji_sheets_count < to_add) {
+			return utf8 (b"Mtumaji does not have enough thermoplastic sheets for that ask.");
+		};
 		
 		
 		//
-		//	Check if to_mwanaanga has capacity.
+		//	Check if mpokeaji has room.
 		//
 		//
-		to_mwanaanga_tp_sheets_count = Bothy_Thermoplastic::ask_sheets_count (& from_mwanaanga);
-		let to_mwanaanga_has_capacity : String = Quarry_u64::can_increase (to_add, to_mwanaanga_tp_sheets_count);
-		if (to_mwanaanga_has_capacity != utf8 (b"yes"))) {
-			utf8 ("Origin does not have enough thermoplastic sheets for that send.")
-		}
+		let mpokeaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mpokeaji);
+		let mpokeaji_has_capacity : String = Quarry_u64::can_increase (to_add, mpokeaji_sheets_count);
+		if (mpokeaji_has_capacity != utf8 (b"yes")) {
+			return utf8 (b"Mpokeaji does not have room for additional thermoplastic sheets.");
+		};
 		
 		
-		
+		utf8 (b"The thermoplastic could not be sent.")
 	}
 	
 	
