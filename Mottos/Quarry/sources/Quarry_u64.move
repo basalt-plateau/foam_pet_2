@@ -10,11 +10,10 @@
 module ride::Quarry_u64 {
 	
 	use std::debug;
-	use std::string::{ Self, String, utf8 };
-	use std::vector;
+	use std::string::{ String, utf8 };
 	
 	use ride::Loft;
-	use ride::Quarry_u8;
+	// use ride::Quarry_u8;
 
 
 	#[view]
@@ -26,8 +25,8 @@ module ride::Quarry_u64 {
 	const U64_UPPER_LIMIT : u64 = 18_446_744_073_709_551_615;
 	const U64_LOWER_LIMIT : u64 = 0;
 	
-	const AFTER_U64_UPPER_LIMIT : u64 = 0x9001;
-	const AFTER_U64_LOWER_LIMIT : u64 = 0x9002;
+	const AFTER_U64_UPPER_LIMIT : u64 = 9001;
+	const AFTER_U64_LOWER_LIMIT : u64 = 9002;
 	
 	public fun ask_u64_upper_limit () : u64 {
 		U64_UPPER_LIMIT
@@ -37,49 +36,7 @@ module ride::Quarry_u64 {
 		U64_LOWER_LIMIT
 	}
 	
-	
-	
-	
-	/*
-	
-		unfinished
-		
-	*/
-	public fun create_string_from_u64 (u64_1: u64) : String {
-		let bytes: vector<u8> = vector::empty<u8>();
-		
-		if (u64_1 == 0) {
-            // vector::push_back (&mut bytes, 0x0);
-            return utf8 (b"0")
-        };
-		
-		let gezegen = u64_1;
-        // let u8_hexadecimal_string_vector : vector<u8> = vector::empty<u8>();
-		let u8_hexadecimal_string_vector: vector<String> = vector::empty<String>();
-		
-		while (gezegen > 0) {
-            let remainder : u64 = gezegen % 16;
-			let remainder_u8 : u8 = remainder as u8;
-			
-			let vector_01 : vector<u8> = b"0";
-			let vector_02 : String = Quarry_u8::u8_to_hexadecimal_string (remainder_u8);
-			
-			debug::print (& vector_02);
-			
-			// vector::append (&mut u8_hexadecimal_string_vector, vector_02);
-			// vector::push_back (&mut u8_hexadecimal_string_vector, remainder_u8);
-			
-			debug::print (& remainder_u8);
-			
-            gezegen = gezegen / 16;
-        };
-		
-		// let proceeds : String = utf8 (u8_hexadecimal_string_vector);		
-		let proceeds : String = utf8 (b"");
-		proceeds
-		
-		// utf8 (b"?")
-	}
+
 	
 	
 	
@@ -148,5 +105,19 @@ module ride::Quarry_u64 {
 		};
 		
 		u64_2 - u64_1
+	}
+	
+	
+	
+	
+	
+	/*
+	
+		unfinished
+		
+	*/
+	public fun create_string_from_u64 (f64_1 : u64) : String {
+		debug::print (& f64_1);
+		utf8 (b"A string could not be created.")
 	}
 }

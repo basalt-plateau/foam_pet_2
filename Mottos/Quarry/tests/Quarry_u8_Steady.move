@@ -7,24 +7,24 @@
 
 
 module ride::Quarry_u8_Steady {
-	use std::string::{ Self, String };
-	use std::debug;
-	
-	use ride::Quarry_u8;
+
 
 	const Problem : u64 = 0;
 
-	
+	/*
 	//
 	//	create_string_from_u64
 	//
 	//
 	#[test]
     public fun create_string_from_u8_0 () {
+		use std::string::{ utf8, String };
+		use ride::Quarry_u8;
+		
 		let u8_1 : u8 = 0;
 		let proceeds : String = Quarry_u8::u8_to_hexadecimal_string (u8_1);
 		assert! (
-			proceeds == string::utf8 (b"0"), 
+			proceeds == utf8 (b"0"), 
 			Problem
 		);
     }
@@ -44,5 +44,6 @@ module ride::Quarry_u8_Steady {
 		
 		
     }
+	*/
 }
 

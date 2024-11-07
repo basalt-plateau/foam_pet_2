@@ -5,7 +5,7 @@
 import os
 
 
-estate_1_legacy_address = "265b37de65ef8e91d5592c32508673ec9c1ede4b40a2e04598d32ba818102b3e"
+estate_1_legacy_address = "ca5b9eff57b3f39e1e2cc3852a01d51091572af44ae37929cdad8d26a6b2c6cf"
 
 
 

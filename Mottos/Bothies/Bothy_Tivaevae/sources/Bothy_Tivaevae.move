@@ -42,7 +42,7 @@ module ride::Bothy_Tivaevae {
 	//		This fonction is the one that creates the Tivaevae resource though.
 	//
 	public entry fun Establish_a_Tivaevae (
-		estate: &signer
+		estate: & signer
 	) {
 		let estate_1_address = signer::address_of (estate);
 		// is_novelist (estate_1_address);
@@ -51,14 +51,9 @@ module ride::Bothy_Tivaevae {
             abort (0x1001);
         };
 		
-		let vectors : vector<u8> = vector::empty<u8> ();
-		let vector_01 : vector<u8> = b"yes";
-		vector::append (&mut vectors, vector_01);
-		let is_open : String = utf8 (vectors);
-		
 		let mwanaangas : vector<Bothy_Mwanaanga::Mwanaanga> = vector::empty<Bothy_Mwanaanga::Mwanaanga> ();
         let le_Tivaevae = Tivaevae {
-            is_open: is_open,
+            is_open: utf8 (b"yes"),
             mwanaangas
         };
 		
