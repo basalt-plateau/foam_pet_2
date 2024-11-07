@@ -9,10 +9,7 @@ import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
-
 import { check_roomies_truck } from '$lib/Versies/Trucks'
-//
-//
 import { parse_styles } from '$lib/trinkets/styles/parse'
 //
 ////

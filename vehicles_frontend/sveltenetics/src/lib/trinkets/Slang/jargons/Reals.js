@@ -124,6 +124,9 @@ const consensus = {
 }
 
 
+const move = {
+	"function": "fonction"
+}
 
 
 

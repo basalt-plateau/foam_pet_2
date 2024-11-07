@@ -30,11 +30,9 @@ import { check_roomies_truck } from '$lib/Versies/Trucks'
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-//
 import Stats_Wall from '$lib/Les_Talents/Stats/Wall.svelte'
 //
 import { parse_styles } from '$lib/trinkets/styles/parse'
-//
 import { open_bit_throw } from '$lib/Les_Talents/Bit_Pack/open'
 //
 //
@@ -42,9 +40,22 @@ import { modal_plugs, trends } from './Trinket'
 //
 //\
 
+
+//
+//
+//	Adaptation Talent
+//
+//
 import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico.svelte'
 import { open_adapation_panel } from '$lib/Les_Talents/Adaptation/Open'	
 		
+
+//
+//
+//	Digital Assets Talent
+//
+//
+import Digital_Assets_Portico from '$lib/Les_Talents/Digital_Assets/Portico/Trinket.svelte'
 
 
 
@@ -281,6 +292,19 @@ let friends_pronunciation = "gwadenyawotch"
 			/>	
 		</Panel>
 		{/if}
+
+
+		{#if mode === "nurture" }
+		<Panel 
+			styles={ trends.panel }
+		>		
+			<Digital_Assets_Portico 
+				{ modal_store }
+			/>	
+		</Panel>
+		{/if}
+
+		
 
 		
 		
