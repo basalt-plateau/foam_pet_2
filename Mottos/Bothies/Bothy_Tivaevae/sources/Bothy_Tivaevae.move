@@ -168,23 +168,6 @@ module ride::Bothy_Tivaevae {
 			utf8 (b"There is not a Tivaevae at that estate.")
 		}
     }
-	
-	
-	//
-	//
-	// 	Vintage
-	//
-	//
-	/*
-	public fun Establish_Tivaevae (le_tivaevae: &signer) {}
-	public fun Join_Tivaevae (estate: &signer) {	}
-	public fun join_a_Tivaevae (estate: &signer) {}
-	public entry fun Join_a_Tivaevae (estate: &signer) {}
-	struct Mwanaanga has key, drop, store {
-        address: address,
-		thermoplastic: Bothy_Thermoplastic::Thermoplastic
-    }
-	*/
 }
 
 

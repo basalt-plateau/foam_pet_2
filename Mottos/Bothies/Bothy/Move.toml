@@ -23,5 +23,3 @@ local = "/Metro/aptos-core/aptos-move/framework/aptos-framework"
 [dependencies.Visiwa]
 local = "/Metro/Mottos/Visiwa" 
 
-[dependencies.Bothy_Thermoplastic]
-local = "/Metro/Mottos/Bothies/Bothy_Thermoplastic" 
