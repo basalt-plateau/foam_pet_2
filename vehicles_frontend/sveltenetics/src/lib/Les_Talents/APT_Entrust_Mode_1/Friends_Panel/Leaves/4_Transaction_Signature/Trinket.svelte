@@ -10,9 +10,12 @@
 import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
-import { onMount, onDestroy } from 'svelte';
-
 //
+import { onMount, onDestroy } from 'svelte';
+//
+//
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 //\
 //\\
 
@@ -21,7 +24,6 @@ import {
 	retrieve_truck, 
 	monitor_truck,
 } from '$lib/Les_Talents/APT_Entrust_Mode_1/Friends_Panel/Logistics/Truck'
-import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 
 let prepared = "no"
 let Truck_Monitor;
@@ -70,8 +72,8 @@ let current_show = 0;
 				font-size: 2em;
 				padding: .2cm 0;
 			"
-		>Signature Verfication</header>
-		<p>This Signature should be the same as the one that was created on the other trinket.</p>
+		><Slang text="Signature" /> Verfication</header>
+		<p>This <Slang text="signature" /> should be the same as the one that was created on the other trinket.</p>
 	</div>
 	
 	<div

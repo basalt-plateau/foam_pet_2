@@ -18,23 +18,24 @@
 // import { ask_commit } from './../Screenplays/ask_consensus_to_commit_transaction' 
 //
 //
-import { ConicGradient } from '@skeletonlabs/skeleton';
-
-import CircleAlert from 'lucide-svelte/icons/circle-alert'
-
-import { ask_consensus_to_add_transaction } from './ask_consensus_to_add_transaction'
-import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
-
 import { onMount, onDestroy } from 'svelte';
-//
-//\
-//\\
-import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import { ConicGradient } from '@skeletonlabs/skeleton';
 import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+import CircleAlert from 'lucide-svelte/icons/circle-alert'
+//
+//
+import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Alert_Success from '$lib/trinkets/Alerts/Success.svelte'
 import Alert_Info from '$lib/trinkets/Alerts/Info.svelte'
 import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
-	
+//
+//
+import { ask_consensus_to_add_transaction } from './ask_consensus_to_add_transaction'
+//
+//\
+//\\
+
 
 import { 
 	retrieve_truck, 
@@ -96,7 +97,7 @@ const ask = () => {
 				font-size: 2em;
 				padding: .2cm 0;
 			"
-		>Suggestion</header>
+		><Slang text="Transaction" /> Suggestion</header>
 		
 		<div style="height: 0.5cm"></div>
 		
@@ -104,7 +105,7 @@ const ask = () => {
 			style="
 				font-size: 1.1em;
 			"
-		><Slang text="Petition" /> + <Slang text="Signature" /> + <Slang text="consensus" /> approval = A <Slang text="transaction" /> on the <Slang text="Blockchain" /></p>
+		><Slang text="Petition" /> + <Slang text="Signature" /> + <Slang text="Consensus" /> approval = <Slang text="Blockchain" /> <Slang text="Transaction" /> </p>
 	</div>
 
 	<div style="height: 1cm"></div>

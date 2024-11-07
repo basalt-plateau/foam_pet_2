@@ -5,7 +5,7 @@ const blockchain = {
 	//	Map		
 	//	[ Dream, Story, Note ]	
 	//			
-	"blockchain": "Board",
+	"blockchain": "board",
 	"Blockchain": "Board",
 	"Block": "Turn",
 	
@@ -99,6 +99,7 @@ const account = {
 	"Signer": "Flourisher",		
 	//
 	"Signing": "Flourishing",
+	"signing": "flourishing",	
 	//
 	"Signed": "Flourished",
 	"signed": "Flourished",
@@ -111,7 +112,7 @@ const consensus = {
 	//	Maintenance, Leaders, Care,
 	//	Theater
 	//
-	"consensus": "Fest",
+	"consensus": "fest",
 	"Consensus": "Fest",
 	
 	//
@@ -197,11 +198,11 @@ export const Reals = {
 	// 	Loyals Meteor
 	//	Friends Zone
 	//
-	"Online Machine": "Friends Trinket",
-	"Online_Machines": "Friends Trinket",
-	"an_Online_Machine": "a Friends Trinket",
+	"Online Machine": "Friendly Pet",
+	"Online_Machines": "Friendly Pets",
+	"an_Online_Machine": "a Friendly Pet",
 	//
-	"Offline_Machine": "Loyals Trinket",
-	"Offline Machine": "Loyals Trinket",
-	"an_Offline_Machine": "a Loyals Trinket",
+	"Offline_Machine": "Loyal Pet",
+	"Offline Machines": "Loyal Pets",
+	"an_Offline_Machine": "a Loyal Pet",
 }

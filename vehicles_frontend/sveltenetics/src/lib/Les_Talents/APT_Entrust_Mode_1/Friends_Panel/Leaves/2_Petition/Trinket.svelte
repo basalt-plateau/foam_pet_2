@@ -277,7 +277,7 @@ let selected_option = "barcode"
 						text-align: center;
 					"
 				>
-					<span>The <b>Barcode</b> can be scanned and signed from <Slang text="transaction" /></span> 
+					<span>The <b>Barcode</b> can be scanned and signed by a <Slang text="Offline_Machine" />.</span> 
 				</p>
 			
 				<Barcode_Visual 

@@ -6,11 +6,14 @@
 <script>
 
 //
-import { verify_signature } from './verify_signature'
-//
-//
 import { onMount, onDestroy } from 'svelte';
 import * as AptosSDK from "@aptos-labs/ts-sdk";
+//
+//
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+//
+//
+import { verify_signature } from './verify_signature'
 //
 
 
@@ -61,13 +64,12 @@ const add_Signature_hexadecimal_string = async () => {
 				font-size: 1.4em;
 				padding: .2cm 0;
 			"
-		>
-		Signature Hexadecimal String</header>
+		><Slang text="Signature" /> Hexadecimal String</header>
 		<p
 			style="
 				text-align: center;
 			"
-		>The hexadecimal string of the signature can be pasted here.</p>
+		>The <Slang text="signature" /> as a hexadecimal string can be pasted here.</p>
 	</div>
 	
 	<label class="label">
