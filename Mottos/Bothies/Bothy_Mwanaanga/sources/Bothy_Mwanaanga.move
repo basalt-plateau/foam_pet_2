@@ -6,10 +6,12 @@
 
 
 module ride::Bothy_Mwanaanga {
+	
+	
 	// use std::vector;
 	use std::string::{ Self, String, utf8 };
+	use std::debug;
 	// use std::signer;
-	// use std::debug;
 	
 	use ride::Loft;
 	
@@ -94,8 +96,11 @@ module ride::Bothy_Mwanaanga {
 		mpokeaji : &mut Mwanaanga,
 		to_add : u64
 	) : String {	
+		
 		//
-		//	Check if mtumaji has enough.
+		//	Check 1: Check if mtumaji has enough.
+		//
+		//		yes if: to_add > mtumaji.thermoplastic
 		//
 		//
 		let mtumaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mtumaji.thermoplastic);
@@ -105,17 +110,31 @@ module ride::Bothy_Mwanaanga {
 		
 		
 		//
-		//	Check if mpokeaji has room.
-		//
+		//	Check 2: Check if mpokeaji has room.
+		//		
+		//		yes if: mpokeaji.thermoplastic + to_add > u64_limit
 		//
 		let mpokeaji_sheets_count : u64 = Bothy_Thermoplastic::ask_sheets_count (& mpokeaji.thermoplastic);
 		let mpokeaji_has_capacity : String = Quarry_u64::can_increase (to_add, mpokeaji_sheets_count);
 		if (mpokeaji_has_capacity != utf8 (b"yes")) {
-			return utf8 (b"Mpokeaji does not have room for additional thermoplastic sheets.")
+			return utf8 (b"Mpokeaji does not have room for those additional thermoplastic sheets.")
 		};
 		
 		
-		utf8 (b"The thermoplastic could not be sent.")
+		//
+		//
+		//
+		//
+		Bothy_Thermoplastic::ask_to_differentiate_thermoplastic_sheets_count (
+			&mut mtumaji.thermoplastic,
+			mtumaji_sheets_count - to_add
+		);
+		Bothy_Thermoplastic::ask_to_differentiate_thermoplastic_sheets_count (
+			&mut mpokeaji.thermoplastic,
+			mpokeaji_sheets_count + to_add
+		);
+		
+		utf8 (b"The thermoplastic sheets were sent.")
 	}
 	
 	

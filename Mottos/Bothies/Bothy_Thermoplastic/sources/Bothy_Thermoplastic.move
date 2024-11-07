@@ -5,10 +5,13 @@
 
 
 module ride::Bothy_Thermoplastic {
-	use std::string::{ String };
+	
+	use std::string::{ String, utf8 };
 	use std::signer;
 	
 	use ride::Loft;
+	use ride::Quarry_u64;
+	
 
 	#[view]
 	public fun togetherness () : String {
@@ -42,11 +45,27 @@ module ride::Bothy_Thermoplastic {
         }
 	}
 	
+	public fun ask_to_differentiate_thermoplastic_sheets_count (
+		thermoplastic_1 : &mut Thermoplastic,
+		sheets_count : u64
+	) : u64 {
+		thermoplastic_1.sheets = sheets_count;
+		thermoplastic_1.sheets
+    }
+	
+	
 	public fun ask_to_add_thermoplastic_sheets (
 		thermoplastic_1 : &mut Thermoplastic,
-		to_add: u64
+		to_add : u64
 	) {
-		thermoplastic_1.sheets = thermoplastic_1.sheets + to_add;
+		let thermoplastic_1_sheets : u64 = thermoplastic_1.sheets;
+		
+		let proceeds : String = Quarry_u64::can_increase (thermoplastic_1_sheets, to_add);
+		if (proceeds != utf8 (b"yes")) {
+			abort 478932
+		};
+		
+		thermoplastic_1.sheets = thermoplastic_1_sheets + to_add;
     }
 
 	
