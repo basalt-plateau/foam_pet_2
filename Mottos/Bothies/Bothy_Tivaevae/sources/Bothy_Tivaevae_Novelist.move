@@ -5,9 +5,16 @@
 
 module ride::Bothy_Tivaevae_Novelist {
 	
-	use std::debug;
-	use std::string::{ String, utf8 };
 	use std::vector;
+	use std::string::{ Self, String, utf8 };
+	use std::signer;
+	use std::debug;
+	
+	use ride::Loft;
+
+	use ride::Bothy_Vitrine;
+	use ride::Bothy_Thermoplastic;
+	use ride::Bothy_Mwanaanga;	
 	
 	const Novelist : address = @0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f;
 	
@@ -27,6 +34,8 @@ module ride::Bothy_Tivaevae_Novelist {
 		
 		utf8 (b"perhaps")
 	}
+	
+	
 	
 	
 }

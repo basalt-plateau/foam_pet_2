@@ -39,6 +39,8 @@ module ride::Bothy_Tivaevae {
 	//	Novelist Level
 	//		These should be possible if Novelist.
 	//
+	//		This fonction is the one that creates the Tivaevae resource though.
+	//
 	public entry fun Establish_a_Tivaevae (
 		estate: &signer
 	) {
@@ -173,6 +175,7 @@ module ride::Bothy_Tivaevae {
 	// 	Vintage
 	//
 	//
+	/*
 	public fun Establish_Tivaevae (le_tivaevae: &signer) {}
 	public fun Join_Tivaevae (estate: &signer) {	}
 	public fun join_a_Tivaevae (estate: &signer) {}
@@ -181,6 +184,7 @@ module ride::Bothy_Tivaevae {
         address: address,
 		thermoplastic: Bothy_Thermoplastic::Thermoplastic
     }
+	*/
 }
 
 
