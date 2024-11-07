@@ -163,7 +163,7 @@ let selected_option = "object"
 				text-align: center;
 				font-size: 2em;
 			"
-		>Petition Verification</header>
+		><Slang text="Petition" /> Verification</header>
 	</div>
 
 	<section

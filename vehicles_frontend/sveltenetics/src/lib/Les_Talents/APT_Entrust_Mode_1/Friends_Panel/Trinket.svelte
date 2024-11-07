@@ -16,6 +16,7 @@ import { onMount, onDestroy } from 'svelte';
 //
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 import { 
 	refresh_truck, 

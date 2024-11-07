@@ -111,8 +111,8 @@ onDestroy (() => {
 				text-align: center;
 				font-size: 2em;
 			"
-		>Petition Verification</header>
-		<p>This petition should be the same as the one that was created on the other trinket.</p>
+		><Slang text="Petition" /> Verification</header>
+		<p>This <Slang text="petition" /> should be the same as the one that was created on the other trinket.</p>
 	</div>
 	
 	<div style="height: 1cm" ></div>
@@ -178,7 +178,7 @@ onDestroy (() => {
 										text-align: center;
 										padding: 10px 0 20px;
 									"
-								>This is the petition as a bracket.</p>
+								>This is the <Slang text="petition" /> as a bracket.</p>
 							
 								<p>For the purpose of showing the bracket,</p>
 								<p>Fields of type <b>Uint8Array</b> were adapted into type <b>hexadecimal</b>.</p>
@@ -293,7 +293,7 @@ onDestroy (() => {
 					text-align: center;
 					padding: 10px 0 20px;
 				"
-			>This is the petition as a hexadecimal string.</p>
+			>This is the <Slang text="petition" /> as a hexadecimal string.</p>
 
 			<div TP_hexadecimal_string>
 				<Code_Wall 

@@ -6,19 +6,20 @@
 
 ///
 //
-import { sign } from './../../Screenplays/sign'
+import { SlideToggle } from '@skeletonlabs/skeleton';
+import { onMount, onDestroy } from 'svelte';
 //
 //
 import { fiberize_signed_transaction } from '$lib/PTO/Transaction/Signed/Fiberize'
 import Net_Choices from '$lib/PTO/Nets/Choices.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 //
-import { SlideToggle } from '@skeletonlabs/skeleton';
-import { onMount, onDestroy } from 'svelte';
+import { sign } from './../../Screenplays/sign'
 //
 //\
-import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+
 	
 import { 
 	retrieve_truck, 
@@ -85,13 +86,13 @@ const sign_the_transaction = async () => {
 				font-size: 2em;
 				padding: 1cm 0;
 			"
-		>Signature Field</header>
-		<p>The "Sign" button creates a <b>signature</b> from the <b>petition</b> with the <Slang text="private key" />.</p>
+		><Slang text="Signature" /> Field</header>
+		<p>The "Sign" button creates a <Slang text="signature" /> from the <Slang text="petition" /> with the <Slang text="private key" />.</p>
 		
 		<div style="height: 0.2cm"></div>
 		
 		<div class="card p-4">
-			<span style="font-size: 1.5em;">Private Key</span>
+			<span style="font-size: 1.5em;"><Slang text="Private Key" /></span>
 			<div style="height: 0.1cm"></div>
 			<input 
 				monitor="private key"
@@ -109,7 +110,7 @@ const sign_the_transaction = async () => {
 		<div style="height: 0.2cm"></div>
 		
 		<div class="card p-4">
-			<span style="font-size: 1.5em;">Address is Legacy</span>
+			<span style="font-size: 1.5em;"><Slang text="Address" /> is Legacy</span>
 			<div
 				style="
 					display: flex;

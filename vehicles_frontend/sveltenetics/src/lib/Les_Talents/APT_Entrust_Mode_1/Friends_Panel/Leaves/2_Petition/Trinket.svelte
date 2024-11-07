@@ -184,7 +184,7 @@ let selected_option = "barcode"
 									text-align: center;
 									font-size: 2em;
 								"
-							>Petition</header>
+							><Slang text="Petition"/></header>
 						</svelte:fragment>
 						<svelte:fragment slot="content">
 							<div style="">

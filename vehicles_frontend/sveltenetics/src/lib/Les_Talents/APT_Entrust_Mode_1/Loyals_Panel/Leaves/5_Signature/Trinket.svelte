@@ -7,14 +7,17 @@
 
 ///
 //
-import Barcode from './Barcode/Trinket.svelte'
-import Hexadecimal from './Hexadecimal/Trinket.svelte'
-//
-import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
-//
 import { onMount, onDestroy } from 'svelte';
 import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+//
+//
+import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+//
+//
+import Barcode from './Barcode/Trinket.svelte'
+import Hexadecimal from './Hexadecimal/Trinket.svelte'
 //
 //\
 
@@ -74,9 +77,9 @@ let selected_option = "barcode"
 				font-size: 2em;
 				padding: .3cm 0;
 			"
-		>Signature</header>
+		><Slang text="Signature" /></header>
 		<p>
-			<span>The barcode (or hexadecimal string) signature can be sent to the friends modal.</span>			
+			<span>The barcode (or hexadecimal string) <Slang text="signature" /> can be sent to the friends modal.</span>			
 		</p>
 	</div>
 	

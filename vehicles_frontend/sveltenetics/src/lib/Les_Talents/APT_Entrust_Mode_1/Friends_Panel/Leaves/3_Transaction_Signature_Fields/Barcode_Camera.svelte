@@ -3,19 +3,19 @@
 <script>
 ///
 //
-import { verify_signature } from './verify_signature'
+import * as AptosSDK from "@aptos-labs/ts-sdk";
+import { Html5QrcodeScanner, Html5QrcodeScanType, Html5Qrcode } from "html5-qrcode";
+import { onMount, onDestroy } from 'svelte';
+import { ConicGradient } from '@skeletonlabs/skeleton';
+//
 //
 import Barcode_Vision from '$lib/trinkets/Barcode/Vision/Trinket.svelte'
-//
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
-import { ConicGradient } from '@skeletonlabs/skeleton';
-import * as AptosSDK from "@aptos-labs/ts-sdk";
 //
-import { onMount, onDestroy } from 'svelte';
-import { Html5QrcodeScanner, Html5QrcodeScanType, Html5Qrcode } from "html5-qrcode";
-//
+import { verify_signature } from './verify_signature'
 //
 //\
 
@@ -97,7 +97,7 @@ const on_scan_error = () => {
 		<p>
 			<span>After signing at "Loyals, Flourishes"</span>
 		</p>
-		<p>a picture of the signatures barcode can be recorded here.</p>
+		<p>a picture of the <Slang text="signatures" /> barcode can be recorded here.</p>
 		
 		<div style="height: 8px"></div>
 	</div>

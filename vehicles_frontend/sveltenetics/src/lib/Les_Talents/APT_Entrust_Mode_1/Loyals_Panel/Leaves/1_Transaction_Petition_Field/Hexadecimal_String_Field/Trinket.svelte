@@ -16,6 +16,7 @@ import { add_unsigned_transaction } from '../Screenplays/add_unsigned_transactio
 //\
 //\\
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 
 
 
@@ -82,7 +83,7 @@ const add_UT_hexadecimal_string = async () => {
 				style="
 					text-align: center;
 				"
-			>The hexadecimal string of the petition can be pasted here.</p>
+			>The hexadecimal string of the <Slang text="petition" /> can be pasted here.</p>
 		</div>
 	</div>
 	

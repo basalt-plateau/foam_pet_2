@@ -262,10 +262,17 @@ const ask_balance = async () => {
 			net_path: RT_Freight.net_path
 		})
 		
-		const { sequence_number } = await ask_sequence_number ({ 
-			net_path: RT_Freight.net_path,
-			address: address_hexadecimal_string_ask
-		})	
+		let sequence_number = "?"
+		try {
+			const sequence_number_proceeds = await ask_sequence_number ({ 
+				net_path: RT_Freight.net_path,
+				address: address_hexadecimal_string_ask
+			})	
+			sequence_number = sequence_number_proceeds.sequence_number;
+		}
+		catch (anomaly) {
+			console.error (anomaly)
+		}
 		
 		//
 		// if the address changed during the request

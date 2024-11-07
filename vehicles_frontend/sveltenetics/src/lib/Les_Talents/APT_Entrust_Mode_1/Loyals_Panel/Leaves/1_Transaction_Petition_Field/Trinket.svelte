@@ -28,6 +28,8 @@ import UT_Stringified from '$lib/PTO/Transaction/Unsigned/Stringified.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Alert_Info from '$lib/trinkets/Alerts/Info.svelte'
 import Alert_Success from '$lib/trinkets/Alerts/Success.svelte'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+
 //
 //
 import Loyals_Truck from '../../Logistics/Truck.svelte'
@@ -82,14 +84,14 @@ let current_tab = 0;
 								font-size: 2em;
 								padding: .25cm 0;
 							"
-						>Petition Field</header>
+						><Slang text="Petition" /> Field</header>
 					</svelte:fragment>
 					<svelte:fragment slot="content">
 						<p
 							style="
 								text-align: center;
 							"
-						>A <b>QR code picture</b> or a <b>hexadecimal string</b> of the petition can be added here.</p>
+						>A <b>QR code picture</b> or a <b>hexadecimal string</b> of the <Slang text="petition" /> can be added here.</p>
 					</svelte:fragment>
 				</AccordionItem>
 			</Accordion>

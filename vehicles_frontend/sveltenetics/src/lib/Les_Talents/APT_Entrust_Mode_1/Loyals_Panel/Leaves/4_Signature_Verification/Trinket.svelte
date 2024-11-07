@@ -9,12 +9,15 @@
 
 ///
 //
-import AO from './Object/Trinket.svelte'
-//
-import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
-//
 import { onMount, onDestroy } from 'svelte';
 import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
+//
+//
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
+//
+//
+import AO from './Object/Trinket.svelte'
 //
 //\
 
@@ -73,9 +76,9 @@ let selected_option = "barcode"
 				font-size: 2em;
 				padding: .3cm 0;
 			"
-		>Signature Verification</header>
+		><Slang text="Signature" /> Verification</header>
 		<p>
-			<span>This is the signature as a <b>bracket</b>.</span>
+			<span>This is the <Slang text="signature" /> as a <b>bracket</b>.</span>
 			<span>The next slide has a format that can be sent.</span>
 		</p>
 	</div>

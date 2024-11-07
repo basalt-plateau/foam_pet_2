@@ -21,6 +21,7 @@ import {
 	retrieve_truck, 
 	monitor_truck,
 } from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Logistics/Truck'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 //
 import { add_unsigned_transaction } from '../Screenplays/add_unsigned_transaction'
@@ -89,7 +90,7 @@ onDestroy (() => {
 			style="
 				text-align: center;
 			"
-		>A prosthetic eye can etch a petition barcode here.</p>
+		>A prosthetic eye can etch a <Slang text="petition" /> barcode here.</p>
 		<p
 			style="
 				text-align: center;

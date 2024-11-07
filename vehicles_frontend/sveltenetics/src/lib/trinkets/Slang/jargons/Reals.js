@@ -19,6 +19,7 @@ const blockchain = {
 	//	Don't use these anymore.
 	//	Use "Unsigned_Transaction" instead.
 	//
+	"petition": "petition",	
 	"Petition": "Petition",
 	"Petitions": "Petitions",
 	
@@ -87,9 +88,9 @@ const account = {
 	//	Ink, Tat, Impression
 	//	Story, Boast, Flourish
 	//
-	"signature": "Flourish",
-	"A_signature": "a Flourish",
-	"a_signature": "a Flourish",
+	"signature": "flourish",
+	"A_signature": "A flourish",
+	"a_signature": "a flourish",
 	"Signature": "Flourish",
 	"Signatures": "Flourishes",
 	//
