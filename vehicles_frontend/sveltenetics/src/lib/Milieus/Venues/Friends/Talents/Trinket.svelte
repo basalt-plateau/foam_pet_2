@@ -43,18 +43,10 @@ import { modal_plugs, trends } from './Trinket'
 
 //
 //
-//	Adaptation Talent
+//	Porticos
 //
 //
-import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico.svelte'
-import { open_adapation_panel } from '$lib/Les_Talents/Adaptation/Open'	
-		
-
-//
-//
-//	Digital Assets Talent
-//
-//
+import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico/Trinket.svelte'
 import Digital_Assets_Portico from '$lib/Les_Talents/Digital_Assets/Portico/Trinket.svelte'
 
 
@@ -285,11 +277,7 @@ let friends_pronunciation = "gwadenyawotch"
 		<Panel 
 			styles={ trends.panel }
 		>		
-			<Adaptation_Portico 
-				open={() => {
-					open_adapation_panel ({ modal_store })
-				}}
-			/>	
+			<Adaptation_Portico { modal_store }/>
 		</Panel>
 		{/if}
 
@@ -298,9 +286,7 @@ let friends_pronunciation = "gwadenyawotch"
 		<Panel 
 			styles={ trends.panel }
 		>		
-			<Digital_Assets_Portico 
-				{ modal_store }
-			/>	
+			<Digital_Assets_Portico { modal_store }/>	
 		</Panel>
 		{/if}
 

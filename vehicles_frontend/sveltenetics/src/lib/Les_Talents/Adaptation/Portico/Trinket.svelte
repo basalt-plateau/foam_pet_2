@@ -3,7 +3,24 @@
 <script>
 
 
-export let open = () => {}
+import Panel from './../Panel/Trinket.svelte'
+
+export let modal_store;
+
+let open = () => {
+	modal_store.trigger ({
+		type: 'component',
+		
+		backdropClasses: '!p-0',
+		
+		component: {
+			ref: Panel,
+			props: { 
+				modal_store
+			}
+		}
+	});
+}
 
 
 </script>
