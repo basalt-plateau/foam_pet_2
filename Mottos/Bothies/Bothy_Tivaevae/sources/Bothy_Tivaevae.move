@@ -92,10 +92,11 @@ module ride::Bothy_Tivaevae {
 		let last_index = vector::length (& le_tivaevae.mwanaangas) - 1;
 		let at_Tivaevae = utf8 (b"perhaps");
 
+		/*
 		if (vector::length (& le_tivaevae.mwanaangas) == 0) {
 			return utf8 (b"no")
 		};
-
+		
 		let gezegen = 0;
 		while (gezegen <= last_index) {
 			let mwanaanga = vector::borrow (& le_tivaevae.mwanaangas, gezegen);
@@ -106,6 +107,7 @@ module ride::Bothy_Tivaevae {
 				break;
 			};
 		};
+		*/
 
 		at_Tivaevae
 	}
@@ -115,12 +117,12 @@ module ride::Bothy_Tivaevae {
 		estate: & signer
 	) acquires Tivaevae {
 		let estate_1_address = signer::address_of (estate);
-		let thermoplastic_1 = Bothy_Thermoplastic::polymerize_thermoplastics ();
 		
-		let mwanaanga_1 = Bothy_Mwanaanga::Mwanaanga {
-            address: estate_1_address,
-            thermoplastic: thermoplastic_1
-        };
+		let mwanaanga_1 = Bothy_Mwanaanga::accept_mwanaanga (
+           estate_1_address
+        );
+		
+
 		
 		//
 		//	This is the flourishing estate's Tivaevae.
@@ -138,6 +140,8 @@ module ride::Bothy_Tivaevae {
 	//
 	//	Mwanaanga Level
 	//
+	//		
+	//
 	//
 	public entry fun Attend_Tivaevae (
 		estate: & signer
@@ -145,10 +149,9 @@ module ride::Bothy_Tivaevae {
 		let estate_1_address = signer::address_of (estate);
 		let thermoplastic_1 = Bothy_Thermoplastic::polymerize_a_thermoplastic_dome ();
 		
-		let mwanaanga_1 = Mwanaanga {
-            address: estate_1_address,
-            thermoplastic: thermoplastic_1
-        };
+		let mwanaanga_1 = Bothy_Mwanaanga::accept_mwanaanga (
+           estate_1_address
+        );
 		
 		//
 		//	This is the flourishing estate's Tivaevae.

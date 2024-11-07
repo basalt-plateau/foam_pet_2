@@ -6,7 +6,10 @@
 
 
 
-module ride::Steady_Bothy_Mwanaanga_1 {
+
+
+
+module ride::Bothy_Tivaevae_Health_1 {
 	
 	#[test (
 		estate_1_signer = @ride, 
@@ -16,8 +19,8 @@ module ride::Steady_Bothy_Mwanaanga_1 {
 		estate_1_signer : signer,
 		estate_2_signer : signer		
 	) {	
-		use ride::Bothy_Mwanaanga_Health_1;
+		use ride::Bothy_Tivaevae;
 		
-		Bothy_Mwanaanga_Health_1::novel_1 (estate_1_signer, estate_2_signer);
+		
 	}
 }

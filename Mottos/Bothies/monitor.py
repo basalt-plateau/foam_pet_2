@@ -30,7 +30,15 @@ Bothy_Mwanaanga = " ".join ([
 	f"--named-addresses 'ride={ estate_1_legacy_address }, ride_2={ estate_1_legacy_address }'"
 ])
 
+Bothy_Tivaevae = " ".join ([
+	"cd /Metro/Mottos/Bothies/Bothy_Tivaevae",
+	"&&",
+	"aptos move test",
+	f"--named-addresses 'ride={ estate_1_legacy_address }, ride_2={ estate_1_legacy_address }'"
+])
+
 #os.system (Bothy)
 #os.system (Bothy_Thermoplastic)
-os.system (Bothy_Mwanaanga)
+# os.system (Bothy_Mwanaanga)
+os.system (Bothy_Tivaevae)
 

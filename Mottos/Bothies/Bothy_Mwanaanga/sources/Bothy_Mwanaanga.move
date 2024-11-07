@@ -33,7 +33,10 @@ module ride::Bothy_Mwanaanga {
 		thermoplastic: Bothy_Thermoplastic::Thermoplastic
     }
 	
-	
+	//
+	//	+ Mwanaanga
+	//
+	//
 	public fun accept_mwanaanga (
 		address_1 : address
 	) : Mwanaanga {
