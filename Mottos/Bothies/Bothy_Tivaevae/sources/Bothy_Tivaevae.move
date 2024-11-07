@@ -10,6 +10,7 @@ module ride::Bothy_Tivaevae {
 	
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
+	use std::string_utils;	
 	use std::signer;
 	use std::debug;
 	
@@ -18,6 +19,7 @@ module ride::Bothy_Tivaevae {
 	use ride::Bothy_Vitrine;
 	use ride::Bothy_Thermoplastic;
 	use ride::Bothy_Mwanaanga;	
+	use ride::Bothy_Mwanaanga::{ Mwanaanga };	
 
 	
 
@@ -30,7 +32,7 @@ module ride::Bothy_Tivaevae {
 	
 	struct Tivaevae has key, drop {
         is_open: String,
-		mwanaangas: vector<Bothy_Mwanaanga::Mwanaanga>
+		mwanaangas: vector<Mwanaanga>
     }
 	
 	
@@ -48,10 +50,10 @@ module ride::Bothy_Tivaevae {
 		// is_novelist (estate_1_address);
 		
 		if (exists<Tivaevae>(estate_1_address)) {
-            abort (0x1001);
+            abort (1001);
         };
 		
-		let mwanaangas : vector<Bothy_Mwanaanga::Mwanaanga> = vector::empty<Bothy_Mwanaanga::Mwanaanga> ();
+		let mwanaangas : vector<Mwanaanga> = vector::empty<Mwanaanga> ();
         let le_Tivaevae = Tivaevae {
             is_open: utf8 (b"yes"),
             mwanaangas
@@ -61,39 +63,16 @@ module ride::Bothy_Tivaevae {
     }
 	
 	#[view]
-	public fun is_mwanaanga_at_Tivaevae (
-		estate_address: address, 
-		mwanaanga_address: address
-	) : String acquires Tivaevae {
-		if (!exists<Tivaevae>(estate_address)) {
-           return utf8 (b"There is not a Tivaevae at that estate.")
+	public fun Ask_if_estate_has_a_Tivaevae (
+		estate_1_address : address
+	) : String {
+		if (exists<Tivaevae>(estate_1_address)) {
+            return utf8 (b"yes")
         };
 		
-		let le_tivaevae = borrow_global<Tivaevae>(estate_address);
-		
-		let last_index = vector::length (& le_tivaevae.mwanaangas) - 1;
-		let at_Tivaevae = utf8 (b"perhaps");
-
-		/*
-		if (vector::length (& le_tivaevae.mwanaangas) == 0) {
-			return utf8 (b"no")
-		};
-		
-		let gezegen = 0;
-		while (gezegen <= last_index) {
-			let mwanaanga = vector::borrow (& le_tivaevae.mwanaangas, gezegen);
-			let this_mwanaanga_address : address = Bothy_Mwanaanga::ask_for_address (& mwanaanga);
-			
-			if (this_mwanaanga_address == mwanaanga_address) {
-				at_Tivaevae = utf8 (b"yes");
-				break;
-			};
-		};
-		*/
-
-		at_Tivaevae
-	}
-
+		utf8 (b"no")
+    }
+	
 	
 	public entry fun Join_a_Tivaevae (
 		estate: & signer
@@ -104,7 +83,7 @@ module ride::Bothy_Tivaevae {
 			Accept the Mwanaanga into the Tivaevae.
 		*/
 		let mwanaanga_1 = Bothy_Mwanaanga::accept_mwanaanga (
-           estate_1_address
+			estate_1_address
         );
 		
 		//
@@ -114,6 +93,62 @@ module ride::Bothy_Tivaevae {
 		let le_tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
 
 		vector::push_back (&mut le_tivaevae.mwanaangas, mwanaanga_1);
+	}
+	
+	public fun get_mwanaanga_at_index_0 (estate_address : address) : address acquires Tivaevae {
+		let le_tivaevae = borrow_global<Tivaevae>(estate_address);
+		
+		let first_mwanaanga = vector::borrow (& le_tivaevae.mwanaangas, 0);
+		let this_mwanaanga_address : address = Bothy_Mwanaanga::ask_for_address (first_mwanaanga);
+		this_mwanaanga_address
+	}
+	
+	
+	/*
+		Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (
+			tivaevae_address,
+			mwanaanga_address
+		) == utf8 (b"yes")
+		
+		proceeds:
+			yes
+			no
+			There is not a Tivaevae at that estate.
+	*/
+	public fun is_mwanaanga_at_Tivaevae (
+		tivaevae_address : address,
+		mwanaanga_address : address		
+	) : String acquires Tivaevae {
+		if (!exists<Tivaevae>(tivaevae_address)) {
+           return utf8 (b"There is not a Tivaevae at that estate.")
+        };
+		
+		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
+
+		if (vector::length (& le_tivaevae.mwanaangas) == 0) {
+			return utf8 (b"no")
+		};
+
+		let last_index : u64 = vector::length (& le_tivaevae.mwanaangas) - 1;
+		// debug::print (& string_utils::format1 (& b"last_index: {}", last_index));
+
+		let gezegen : u64 = 0;
+		while (gezegen <= last_index) {
+			debug::print (& string_utils::format1 (& b"gezegen: {}", gezegen));
+		
+			let mwanaanga_1 = vector::borrow (& le_tivaevae.mwanaangas, gezegen);
+			let this_mwanaanga_address : address = Bothy_Mwanaanga::ask_for_address (mwanaanga_1);
+			debug::print (& string_utils::format1 (& b"mwanaanga_address: {}", this_mwanaanga_address));
+		
+			if (this_mwanaanga_address == mwanaanga_address) {
+				return utf8 (b"yes")
+			};
+			
+			gezegen = gezegen + 1;
+		};
+		
+
+		utf8 (b"no")
 	}
 	//
 	////
