@@ -7,7 +7,6 @@
 module ride::Bothy_Thermoplastic {
 	
 	use std::string::{ String, utf8 };
-	use std::signer;
 	
 	use ride::Loft;
 	use ride::Quarry_u64;

@@ -10,7 +10,6 @@ module ride::Bothy_Vitrine {
 	
 	use std::string::{ String, utf8 };
 	use std::vector;
-	use std::debug;
 	
 	use ride::Loft;
 
