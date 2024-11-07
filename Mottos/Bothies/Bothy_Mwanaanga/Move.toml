@@ -1,0 +1,29 @@
+
+
+
+
+
+
+[package]
+name = "Bothy_Mwanaanga"
+version = "1.0.0"
+authors = []
+
+[addresses]
+ride = "_"
+
+[dev-addresses]
+
+
+
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
+
+[dependencies.AptosFramework]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
+
+[dependencies.Visiwa]
+local = "/Metro/Mottos/Visiwa" 
+
+[dependencies.Bothy_Thermoplastic]
+local = "/Metro/Mottos/Bothies/Bothy_Thermoplastic" 

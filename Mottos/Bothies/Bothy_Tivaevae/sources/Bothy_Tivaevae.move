@@ -4,7 +4,9 @@
 
 
 
-module ride::Bothy_Harvest {
+
+
+module ride::Bothy_Tivaevae {
 	
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
@@ -12,8 +14,10 @@ module ride::Bothy_Harvest {
 	use std::debug;
 	
 	use ride::Loft;
-	use ride::Bothy_Thermoplastic;
+
 	use ride::Bothy_Vitrine;
+	use ride::Bothy_Thermoplastic;
+	use ride::Bothy_Mwanaanga;	
 
 	const Novelist : address = @0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f;
 
@@ -23,14 +27,11 @@ module ride::Bothy_Harvest {
 		togetherness
 	}
 	
-	struct Mwanaanga has key, drop, store {
-        address: address,
-		thermoplastic: Bothy_Thermoplastic::Thermoplastic
-    }
 	
-	struct Harvest has key, drop {
+	
+	struct Tivaevae has key, drop {
         is_open: String,
-		mwanaangas: vector<Mwanaanga>
+		mwanaangas: vector<Bothy_Mwanaanga::Mwanaanga>
     }
 	
 	
@@ -53,13 +54,13 @@ module ride::Bothy_Harvest {
 	}
 	
 	
-	public entry fun Establish_a_Harvest (
+	public entry fun Establish_a_Tivaevae (
 		estate: &signer
 	) {
 		let estate_1_address = signer::address_of (estate);
 		// is_novelist (estate_1_address);
 		
-		if (exists<Harvest>(estate_1_address)) {
+		if (exists<Tivaevae>(estate_1_address)) {
             abort (0x1001);
         };
 		
@@ -68,65 +69,66 @@ module ride::Bothy_Harvest {
 		vector::append (&mut vectors, vector_01);
 		let is_open : String = utf8 (vectors);
 		
-		let mwanaangas : vector<Mwanaanga> = vector::empty<Mwanaanga> ();
-		
-        let le_harvest = Harvest {
+		let mwanaangas : vector<Bothy_Mwanaanga::Mwanaanga> = vector::empty<Bothy_Mwanaanga::Mwanaanga> ();
+        let le_Tivaevae = Tivaevae {
             is_open: is_open,
             mwanaangas
         };
 		
-		move_to (estate, le_harvest);
+		move_to (estate, le_Tivaevae);
     }
 	
 	#[view]
-	public fun is_mwanaanga_at_harvest (
+	public fun is_mwanaanga_at_Tivaevae (
 		estate_address: address, 
 		mwanaanga_address: address
-	) : String acquires Harvest {
-		if (!exists<Harvest>(estate_address)) {
-           return utf8 (b"There is not a harvest at that estate.")
+	) : String acquires Tivaevae {
+		if (!exists<Tivaevae>(estate_address)) {
+           return utf8 (b"There is not a Tivaevae at that estate.")
         };
 		
-		let harvest = borrow_global<Harvest>(estate_address);
+		let le_tivaevae = borrow_global<Tivaevae>(estate_address);
 		
-		let last_index = vector::length (& harvest.mwanaangas) - 1;
-		let at_harvest = utf8 (b"perhaps");
+		let last_index = vector::length (& le_tivaevae.mwanaangas) - 1;
+		let at_Tivaevae = utf8 (b"perhaps");
 
-		if (vector::length (& harvest.mwanaangas) == 0) {
+		if (vector::length (& le_tivaevae.mwanaangas) == 0) {
 			return utf8 (b"no")
 		};
 
 		let gezegen = 0;
 		while (gezegen <= last_index) {
-			let mwanaanga = vector::borrow (& harvest.mwanaangas, gezegen);
-			if (mwanaanga.address == mwanaanga_address) {
-				at_harvest = utf8 (b"yes");
+			let mwanaanga = vector::borrow (& le_tivaevae.mwanaangas, gezegen);
+			let this_mwanaanga_address : address = Bothy_Mwanaanga::ask_for_address (& mwanaanga);
+			
+			if (this_mwanaanga_address == mwanaanga_address) {
+				at_Tivaevae = utf8 (b"yes");
 				break;
 			};
 		};
 
-		at_harvest
+		at_Tivaevae
 	}
 
 	
-	public entry fun Embark_on_Harvest (
+	public entry fun Embark_on_Tivaevae (
 		estate: & signer
-	) acquires Harvest {
+	) acquires Tivaevae {
 		let estate_1_address = signer::address_of (estate);
 		let thermoplastic_1 = Bothy_Thermoplastic::polymerize_thermoplastics ();
 		
-		let mwanaanga_1 = Mwanaanga {
+		let mwanaanga_1 = Bothy_Mwanaanga::Mwanaanga {
             address: estate_1_address,
             thermoplastic: thermoplastic_1
         };
 		
 		//
-		//	This is the flourishing estate's harvest.
-		//	This should be another estate's harvest though.
+		//	This is the flourishing estate's Tivaevae.
+		//	This should be another estate's Tivaevae though.
 		//
-		let le_harvest = borrow_global_mut<Harvest>(estate_1_address);
+		let le_tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
 
-		vector::push_back (&mut le_harvest.mwanaangas, mwanaanga_1);
+		vector::push_back (&mut le_tivaevae.mwanaangas, mwanaanga_1);
 	}
 	//
 	////
@@ -137,9 +139,9 @@ module ride::Bothy_Harvest {
 	//	Mwanaanga Level
 	//
 	//
-	public entry fun Attend_Harvest (
+	public entry fun Attend_Tivaevae (
 		estate: & signer
-	) acquires Harvest {
+	) acquires Tivaevae {
 		let estate_1_address = signer::address_of (estate);
 		let thermoplastic_1 = Bothy_Thermoplastic::polymerize_a_thermoplastic_dome ();
 		
@@ -149,12 +151,12 @@ module ride::Bothy_Harvest {
         };
 		
 		//
-		//	This is the flourishing estate's harvest.
-		//	This should be another estate's harvest though.
+		//	This is the flourishing estate's Tivaevae.
+		//	This should be another estate's Tivaevae though.
 		//
-		let le_harvest = borrow_global_mut<Harvest>(estate_1_address);
+		let le_Tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
 
-		vector::push_back (&mut le_harvest.mwanaangas, mwanaanga_1);
+		vector::push_back (&mut le_Tivaevae.mwanaangas, mwanaanga_1);
 	}
 	
 	
@@ -166,24 +168,31 @@ module ride::Bothy_Harvest {
 	//
 	//
 	#[view]
-	public fun is_there_a_harvest (
+	public fun is_there_a_Tivaevae (
 		estate_1_address : address
 	) : String {
-		if (exists<Harvest>(estate_1_address)) {
-           utf8 (b"There is a harvest at that estate.")
+		if (exists<Tivaevae>(estate_1_address)) {
+           utf8 (b"There is a Tivaevae at that estate.")
         }
 		else {
-			utf8 (b"There is not a harvest at that estate.")
+			utf8 (b"There is not a Tivaevae at that estate.")
 		}
     }
 	
 	
-	
-	// Vintage
-	public fun Establish_Harvest (harvest: &signer) {}
-	public fun Join_Harvest (estate: &signer) {	}
-	public fun join_a_harvest (estate: &signer) {}
-	public entry fun Join_a_Harvest (estate: &signer) {}
+	//
+	//
+	// 	Vintage
+	//
+	//
+	public fun Establish_Tivaevae (le_tivaevae: &signer) {}
+	public fun Join_Tivaevae (estate: &signer) {	}
+	public fun join_a_Tivaevae (estate: &signer) {}
+	public entry fun Join_a_Tivaevae (estate: &signer) {}
+	struct Mwanaanga has key, drop, store {
+        address: address,
+		thermoplastic: Bothy_Thermoplastic::Thermoplastic
+    }
 }
 
 
