@@ -65,6 +65,17 @@ const build = () => {
 	}
 }
 
+/*
+	Inuit: 
+		ᐊᔭᕙᓘᓐᖏᑦ
+	
+	Cherokee: 
+		ᎦᎵᏉᎩ
+*/
+const names = {
+	garden: "ᐊᔭᕙᓘᓐᖏᑦ"
+}
+
 
 </script>
 
@@ -83,8 +94,13 @@ const build = () => {
 			
 			style={ buttons_styles }
 		/>
+		
+
+		
 		<Milieus_Button
-			name={ "Garden" }
+			monitor="Garden"
+		
+			name={ names.garden }
 			location={[ "Scholars", "Garden" ]}
 			is_open_location={[ "Scholars", "Garden" ]}
 			

@@ -53,7 +53,7 @@ let seeds_name = (
 )
 */
 
-let seeds = {
+let tamil_seeds = {
 	name: (
 		"அறிஞர்கள்"
 	),
@@ -62,6 +62,18 @@ let seeds = {
 	),
 	pronunciation: (
 		"aṟiñarhal"
+	)
+}
+
+let seeds = {
+	name: (
+		"പണ്ഡിതർ"
+	),
+	language: (
+		"Malayalam"
+	),
+	pronunciation: (
+		"paṇḍitar"
 	)
 }
 

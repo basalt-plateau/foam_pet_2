@@ -59,13 +59,45 @@ const build = () => {
 	}
 }
 
+/*
+	Tamil, Malayalam, Kannada, Telugu
+	
+	Armenian, Georgian,
+	
+	Lao
+	
+	Ladakhi
+*/
 
+// Sri Lanka
+let scholars = {
+	Tamil: (
+		"அறிஞர்கள்"
+	),
+	Malayalam: (
+		"പണ്ഡിതർ"
+	),
+	Kannada: (
+		"ಜ್ಞಾನಿಗಳು"
+	),
+	Telugu: (
+		"పండితులు"
+	),
+	
+	Odia: (
+		"ବିଦ୍ୱାନ"
+	),
+	
+	Sinhalese: ("")
+}
+
+let friends = {
+	
+}
 
 // "ᎤᏓᏅᏙᏗ"
 let names = {
-	seeds: (
-		"அறிஞர்கள்"
-	),
+	seeds: scholars.Malayalam,
 	friends: (
 		"ጓደኛዎች"
 	),

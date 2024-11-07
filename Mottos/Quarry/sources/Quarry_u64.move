@@ -13,9 +13,10 @@ module ride::Quarry_u64 {
 	use std::string::{ Self, String, utf8 };
 	use std::vector;
 	
-	
 	use ride::Loft;
 	use ride::Quarry_u8;
+
+	const problem
 
 
 	#[view]
@@ -27,8 +28,8 @@ module ride::Quarry_u64 {
 	const U64_UPPER_LIMIT : u64 = 18_446_744_073_709_551_615;
 	const U64_LOWER_LIMIT : u64 = 0;
 	
-	const AFTER_U64_UPPER_LIMIT : u64 = 1;
-	const AFTER_U64_LOWER_LIMIT : u64 = 2;
+	const AFTER_U64_UPPER_LIMIT : u64 = 0x9001;
+	const AFTER_U64_LOWER_LIMIT : u64 = 0x9002;
 	
 	public fun ask_u64_upper_limit () : u64 {
 		U64_UPPER_LIMIT
@@ -107,6 +108,8 @@ module ride::Quarry_u64 {
 	
 	/*
 		increase:
+			Quarry_u64::increase ();
+		
 			fomula:
 				u64_1 + u64_2
 		

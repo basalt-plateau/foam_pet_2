@@ -12,7 +12,11 @@ module ride::Bothy_Mwanaanga {
 	// use std::debug;
 	
 	use ride::Loft;
+	
+	use ride::Quarry_64;
+	
 	use ride::Bothy_Thermoplastic;
+	
 
 	// const Novelist : address = @0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f;
 
@@ -46,7 +50,10 @@ module ride::Bothy_Mwanaanga {
 	}
 	
 	
-	
+	//
+	//	? thermoplastic_sheets
+	//
+	//
 	public fun ask_for_thermoplastic_sheets_count (
 		mwanaanga_1 : & Mwanaanga
 	) : u64 {
@@ -56,11 +63,14 @@ module ride::Bothy_Mwanaanga {
 		sheets
 	}
 	
+	//
+	//	+ thermoplastic_sheets
+	//
+	//
 	public fun ask_to_add_thermoplastic_sheets (
 		mwanaanga_1 : &mut Mwanaanga,
 		to_add: u64
 	) : u64 {	
-		/*
 		Bothy_Thermoplastic::ask_to_add_thermoplastic_sheets (
 			&mut mwanaanga_1.thermoplastic,
 			to_add
@@ -71,13 +81,41 @@ module ride::Bothy_Mwanaanga {
 		);
 		
 		sheets
-		*/
-		
-		to_add
 	}
 	
 	
-	
+	//
+	//	thermoplastic sheets logistics:
+	//		from_mwanaanga -> to_mwanaanga
+	//
+	public fun ask_to_send_thermoplastic_sheets (
+		from_mwanaanga : &mut Mwanaanga,
+		to_mwanaanga : &mut Mwanaanga,
+		to_add : u64
+	) : String {	
+		//
+		//	Check if from_mwanaanga has enough.
+		//
+		//
+		from_mwanaanga_tp_sheets_count = Bothy_Thermoplastic::ask_sheets_count (& from_mwanaanga);
+		if (from_mwanaanga_tp_sheets_count < to_add) {
+			utf8 ("Origin does not have enough thermoplastic sheets for that send.")
+		}
+		
+		
+		//
+		//	Check if to_mwanaanga has capacity.
+		//
+		//
+		to_mwanaanga_tp_sheets_count = Bothy_Thermoplastic::ask_sheets_count (& from_mwanaanga);
+		let to_mwanaanga_has_capacity : String = Quarry_u64::can_increase (to_add, to_mwanaanga_tp_sheets_count);
+		if (to_mwanaanga_has_capacity != utf8 (b"yes"))) {
+			utf8 ("Origin does not have enough thermoplastic sheets for that send.")
+		}
+		
+		
+		
+	}
 	
 	
 	
