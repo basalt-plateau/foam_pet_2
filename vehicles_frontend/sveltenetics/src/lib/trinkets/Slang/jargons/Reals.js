@@ -48,12 +48,12 @@ const account = {
 	
 	//
 	//	Avatar, Character, Body, VIN
-	//	Pieces
+	//	Pieces, Name
 	//
-	"Address": "Address",
-	"An_Address": "An Address",	
-	"an_Address": "an Address",		
-	"Addresses": "Addresses",
+	"Address": "Name",
+	"An_Address": "A Name",	
+	"an_Address": "a Name",		
+	"Addresses": "Names",
 	
 	//
 	//
@@ -78,9 +78,9 @@ const account = {
 	//	Reflection, Abstrakt
 	//
 	//
-	"public key": "reflection",
-	"Public Key": "Reflection"	,
-	"Public Keys": "Reflections",
+	"public key": "abstraction",
+	"Public Key": "Abstraction"	,
+	"Public Keys": "Abstractions",
 	
 	////
 	//

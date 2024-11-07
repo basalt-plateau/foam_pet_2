@@ -204,11 +204,11 @@ const show_rules = () => {
 					style="text-align: center; font-size: 1.5em;"
 				><Slang text="Offline Machine" /></p>
 				<p style="font-size: 1em; text-align: center; line-height: 2em">
-					<span class="badge bg-initial">~ Offline Machine</span>
-					<span class="badge bg-initial">~ Offline Signing</span>
-					<span class="badge bg-initial">~ Beacon with Limited Connectivity</span>
-					<span class="badge bg-initial">~ Keys Ring</span>
-					<span class="badge bg-initial">~ Loyal Pet</span>	
+					<span class="badge variant-soft-primary">Offline Machine</span>
+					<span class="badge variant-soft-primary">Offline Signing</span>
+					<span class="badge variant-soft-primary">Beacon with Limited Connectivity</span>
+					<span class="badge variant-soft-primary">Keys Ring</span>
+					<span class="badge variant-soft-primary">Loyal Pet</span>	
 				</p>
 			</div>
 			
@@ -224,14 +224,14 @@ const show_rules = () => {
 					style="text-align: center; font-size: 1.5em;"
 				><Slang text="Online Machine" /></p>
 				<p style="font-size: 1em; text-align: center; line-height: 2em">
-					<span class="badge bg-initial">~ Emergency Dispatch Buttons</span>
-					<span class="badge bg-initial">~ SOS Beacon</span>
-					<span class="badge bg-initial">~ Emergency Kiosk</span>
-					<span class="badge bg-initial">~ Howl Amp</span>
-					<span class="badge bg-initial">~ Internet Connected Beacon</span>
-					<span class="badge bg-initial">~ Friendly Pet</span>
-					<span class="badge bg-initial">~ Online Machine</span>
-					<span class="badge bg-initial">~ Checkout</span>
+					<span class="badge variant-soft-primary">Emergency Dispatch Buttons</span>
+					<span class="badge variant-soft-primary">SOS Beacon</span>
+					<span class="badge variant-soft-primary">Emergency Kiosk</span>
+					<span class="badge variant-soft-primary">Howl Amp</span>
+					<span class="badge variant-soft-primary">Internet Connected Beacon</span>
+					<span class="badge variant-soft-primary">Friendly Pet</span>
+					<span class="badge variant-soft-primary">Online Machine</span>
+					<span class="badge variant-soft-primary">Checkout</span>
 				</p>
 			</div>
 		</div>

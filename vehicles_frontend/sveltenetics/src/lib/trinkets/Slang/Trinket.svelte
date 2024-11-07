@@ -147,6 +147,7 @@ const build_styles = () => {
 		
 		font-size: 1em;
 		white-space: break-spaces;
+		line-height: 1em;
 		
 		transition: .75s transform, width .5s;
 		transform: rotateX(0deg);
