@@ -28,8 +28,8 @@ let Milieus = {
 		"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') }
 	},
 	"Loyals": {
-		"Hints": async () => { return await import ('./Venues/Loyals/Players/Trinket.svelte') },
-		"Accounts": async () => { return await import ('./Venues/Loyals/Hints/Trinket.svelte') },
+		"Hints": async () => { return await import ('./Venues/Loyals/Hints/Trinket.svelte') },
+		"Accounts": async () => { return await import ('./Venues/Loyals/Players/Trinket.svelte') },
 		"Signatures": async () => { return await import ('./Venues/Loyals/Flourishes/Trinket.svelte') }
 	},
 	"Technicians": {

@@ -1,0 +1,38 @@
+
+
+
+<pre>
+
+	<header>Fonctions</header>
+		
+		entry:
+			public entry fun
+			
+		public:			
+			public fun
+		
+		public friend:
+			public(friend) fun
+			
+		protected:
+			fun
+
+
+		returning:
+			fun example<T1: copy, T2>(x: T1, y: T2): (T1, T1, T2) { (copy x, x, y) }
+
+		multi-var:
+			fun fonction_1<Type_1>(
+				veldt_1 : Type_1
+			) : (u64, u64) {
+				f64_1 : u64 = 1;
+				f64_2 : u64 = 2;
+				
+				(f64_1, f64_2)
+			}
+		
+			let x = fonction_1<bool>(true);
+
+</pre>
+
+

@@ -18,7 +18,7 @@ module ride::Rondoval_Thermoplastic {
 		togetherness
 	}
 
-	struct Thermoplastic has key, drop, store {
+	struct Thermoplastic has store, drop {
         sheets: u64
     }
 	

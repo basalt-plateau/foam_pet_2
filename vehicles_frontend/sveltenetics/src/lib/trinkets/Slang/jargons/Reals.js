@@ -49,12 +49,12 @@ const account = {
 	
 	//
 	//	Avatar, Character, Body, VIN
-	//	Pieces, Name
+	//	Pieces, Name, Ride
 	//
-	"Address": "Name",
-	"An_Address": "A Name",	
-	"an_Address": "a Name",		
-	"Addresses": "Names",
+	"Address": "Ride",
+	"An_Address": "A Ride",	
+	"an_Address": "a Ride",		
+	"Addresses": "Rides",
 	
 	//
 	//
