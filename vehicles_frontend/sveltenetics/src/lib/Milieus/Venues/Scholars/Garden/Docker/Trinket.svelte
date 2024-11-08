@@ -41,7 +41,7 @@ let the_panel = 1
 	"
 >
 	<Accordion>
-		<AccordionItem open>
+		<AccordionItem>
 			<svelte:fragment slot="summary">
 				<header
 					style="
@@ -49,7 +49,7 @@ let the_panel = 1
 						font-size: 2em;
 						text-align: center;
 					"
-				>Offline Wallet with Docker</header>
+				><Slang text="Pet" /> with Docker Vehicle</header>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
 				<div style="text-align: center; font-size: 1.2em">

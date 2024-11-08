@@ -25,6 +25,9 @@ import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 import Installation_with_Docker from './Docker/Trinket.svelte'
+import Installation_with_Linux from './Linux/Trinket.svelte'
+//
+///
 
 </script>
 
@@ -64,6 +67,10 @@ a {
 			>A <Slang text="Pet" /> can be adopted from here.</p>
 			<div style="height: 0.5cm"></div>
 		</div>
+		
+		<div style="height: 0.5cm"></div>
+	
+		<Installation_with_Linux />
 		
 		<div style="height: 0.5cm"></div>
 	

@@ -140,6 +140,7 @@ export const Reals = {
 	"label": "foam pet",
 	"labels": "foam pets",		
 	"Pet": "Foam Pet",	
+	"pet": "foam pet",		
 	"Pets": "Foam Pets",	
 	
 	//
@@ -206,6 +207,7 @@ export const Reals = {
 	"an_Online_Machine": "a Friendly Pet",
 	//
 	"Offline_Machine": "Loyal Pet",
+	"Offline Machine": "Loyal Pet",
 	"Offline Machines": "Loyal Pets",
 	"an_Offline_Machine": "a Loyal Pet",
 }

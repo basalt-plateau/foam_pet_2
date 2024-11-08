@@ -120,51 +120,55 @@ const show_rules = () => {
 	<div style="height: 0.5cm"></div>
 
 	<div class="card p-4">
-		<div style="height: 1cm"></div>
-	
-		<header 
-			style="
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				gap: 5%;
-				
-				margin: 0 auto;
-				
-				width: 100%;
-				max-width: 600px;
-				
-				font-size: 4em; 
-				text-align: center;
-				font-family: sans-serif !important;
-			"
-		>
-			<img 
-				style="
-					height: 1.4cm;
-				"
-				src={ pet } 
-				alt="pet" 
-			/>
+		
+		<div class="card p-4 variant-soft-primary">
+			<div style="height: 1cm"></div>
 			
 			<header 
 				style="
-					font-weight: bold;
-					font-family: sans-serif;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 5%;
+					
+					margin: 0 auto;
+					
+					width: 100%;
+					max-width: 600px;
+					
+					font-size: 4em; 
+					text-align: center;
+					font-family: sans-serif !important;
 				"
-				class="gradient-heading"
-			>Foam Pet</header>
-			
-			<img 
-				style="
-					height: 1.4cm;
-				"
-				src={ pet_2 } 
-				alt="pet 2" 
-			/>
-		</header>
+			>
+				<img 
+					style="
+						height: 1.4cm;
+					"
+					src={ pet } 
+					alt="pet" 
+				/>
 				
-		<div style="height: 1cm"></div>
+				<header 
+					style="
+						font-weight: bold;
+						font-family: sans-serif;
+					"
+					class="gradient-heading"
+				>Foam Pet</header>
+				
+				<img 
+					style="
+						height: 1.4cm;
+					"
+					src={ pet_2 } 
+					alt="pet 2" 
+				/>
+			</header>
+					
+			<div style="height: 1cm"></div>
+
+		</div>
 
 		<!-- 
 		<Taxonomy /> 
