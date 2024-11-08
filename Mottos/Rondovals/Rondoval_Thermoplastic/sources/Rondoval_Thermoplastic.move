@@ -1,9 +1,15 @@
 
 
+/*
+	Thermoplastic
 
+		T1: Thermoplastic:
+			sheets count
+		
+		T2: polymerize_a_thermoplastic_dome
 
-
-
+		T3: ask_to_differentiate_thermoplastic_sheets_count
+*/
 module ride::Rondoval_Thermoplastic {
 	
 	use std::string::{ String, utf8 };
@@ -22,32 +28,16 @@ module ride::Rondoval_Thermoplastic {
         sheets: u64
     }
 	
-	public fun ask_sheets_count (
-		thermoplastic_1 : & Thermoplastic
-	) : u64 {
+	public fun T1 (thermoplastic_1 : & Thermoplastic) : u64 {
 		thermoplastic_1.sheets
     }
 	
-	public fun polymerize_a_thermoplastic_dome () : Thermoplastic {
-		let sheets : u64 = 0;
-		
-        Thermoplastic {
-            sheets
-        }
+	public fun T2 () : Thermoplastic {
+        Thermoplastic { sheets: 0 }
     }
 	
-	public fun polymerize_thermoplastics () : Thermoplastic {
-		let sheets : u64 = 10000000000;
-		
-        Thermoplastic {
-            sheets
-        }
-	}
 	
-	public fun ask_to_differentiate_thermoplastic_sheets_count (
-		thermoplastic_1 : &mut Thermoplastic,
-		sheets_count : u64
-	) : u64 {
+	public fun T3 (thermoplastic_1 : &mut Thermoplastic, sheets_count : u64) : u64 {
 		thermoplastic_1.sheets = sheets_count;
 		thermoplastic_1.sheets
     }

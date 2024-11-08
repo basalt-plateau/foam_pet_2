@@ -58,7 +58,7 @@ module ride::Rondoval_Geimfara {
 	public fun G1 (address_1 : address) : Geimfara {
 		Geimfara {
 			address: address_1,
-			thermoplastic: Rondoval_Thermoplastic::polymerize_a_thermoplastic_dome ()
+			thermoplastic: Rondoval_Thermoplastic::T2 ()
 		}
 	}
 	
@@ -79,7 +79,7 @@ module ride::Rondoval_Geimfara {
 	//		let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::G3 (& geimfara_1);
 	//
 	public fun G3 (geimfara_1 : & Geimfara) : u64 {
-		Rondoval_Thermoplastic::ask_sheets_count (& geimfara_1.thermoplastic)
+		Rondoval_Thermoplastic::T1 (& geimfara_1.thermoplastic)
 	}
 	
 	
@@ -96,7 +96,7 @@ module ride::Rondoval_Geimfara {
 			to_add
 		);
 		
-		Rondoval_Thermoplastic::ask_sheets_count (& geimfara_1.thermoplastic)
+		Rondoval_Thermoplastic::T1 (& geimfara_1.thermoplastic)
 	}
 	
 	
@@ -118,7 +118,7 @@ module ride::Rondoval_Geimfara {
 		//		yes if: to_add > mtumaji.thermoplastic
 		//
 		//
-		let mtumaji_sheets_count : u64 = Rondoval_Thermoplastic::ask_sheets_count (& mtumaji.thermoplastic);
+		let mtumaji_sheets_count : u64 = Rondoval_Thermoplastic::T1 (& mtumaji.thermoplastic);
 		if (mtumaji_sheets_count < to_add) {
 			return utf8 (b"Mtumaji does not have enough thermoplastic sheets for that ask.")
 		};
@@ -129,7 +129,7 @@ module ride::Rondoval_Geimfara {
 		//		
 		//		yes if: mpokeaji.thermoplastic + to_add > u64_limit
 		//
-		let mpokeaji_sheets_count : u64 = Rondoval_Thermoplastic::ask_sheets_count (& mpokeaji.thermoplastic);
+		let mpokeaji_sheets_count : u64 = Rondoval_Thermoplastic::T1 (& mpokeaji.thermoplastic);
 		let mpokeaji_has_capacity : String = Quarry_u64::can_increase (to_add, mpokeaji_sheets_count);
 		if (mpokeaji_has_capacity != utf8 (b"yes")) {
 			return utf8 (b"Mpokeaji does not have room for those additional thermoplastic sheets.")
@@ -140,11 +140,11 @@ module ride::Rondoval_Geimfara {
 		//
 		//
 		//
-		Rondoval_Thermoplastic::ask_to_differentiate_thermoplastic_sheets_count (
+		Rondoval_Thermoplastic::T3 (
 			&mut mtumaji.thermoplastic,
 			mtumaji_sheets_count - to_add
 		);
-		Rondoval_Thermoplastic::ask_to_differentiate_thermoplastic_sheets_count (
+		Rondoval_Thermoplastic::T3 (
 			&mut mpokeaji.thermoplastic,
 			mpokeaji_sheets_count + to_add
 		);
