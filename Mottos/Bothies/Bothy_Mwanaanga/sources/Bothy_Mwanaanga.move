@@ -70,7 +70,7 @@ module ride::Bothy_Mwanaanga {
 	
 	//
 	//	+ thermoplastic_sheets
-	//
+	//		Bothy_Mwanaanga::ask_to_add_thermoplastic_sheets (mwanaanga_1, to_add_f64);
 	//
 	public fun ask_to_add_thermoplastic_sheets (
 		mwanaanga_1 : &mut Mwanaanga,

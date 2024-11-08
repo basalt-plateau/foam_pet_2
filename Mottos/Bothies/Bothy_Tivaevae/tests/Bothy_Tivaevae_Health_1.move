@@ -20,6 +20,7 @@ module ride::Bothy_Tivaevae_Health_1 {
 		estate_2_signer : signer		
 	) {	
 		use std::string::{ String, utf8 };
+		use std::string_utils;
 		use std::signer;
 		use std::debug;
 		
@@ -36,7 +37,7 @@ module ride::Bothy_Tivaevae_Health_1 {
 		
 
 		//
-		//	Founding:
+		//	Novelist: Establish
 		//		* Learn if the estate already has a tivaevae.
 		//		* Establish a Tivaevae.
 		//		* Learn if the estate has a tivaevae.
@@ -46,25 +47,35 @@ module ride::Bothy_Tivaevae_Health_1 {
 		assert! (Bothy_Tivaevae::Ask_if_estate_has_a_Tivaevae (estate_1_address) == utf8 (b"yes"), 1);
 
 		//
-		//	Founding: Join:
+		//	Novelist: Join:
 		//		* Learn if the estate has a mwanaanga present at the tivaevae.
 		//		* Join the Tivaevae as a Mwanaanga.
 		//
 		assert! (Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (tivaevae_address, mwanaanga_1_address) == utf8 (b"no"), 1);
-		Bothy_Tivaevae::Join_a_Tivaevae (& estate_1_signer);
+		Bothy_Tivaevae::Join_a_Tivaevae (& estate_1_signer, tivaevae_address);
 		assert! (Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (tivaevae_address, mwanaanga_1_address) == utf8 (b"yes"), 1);
 		
+		//
+		//
+		//	Novelist: Give thermoplastic to Mwanaanga 1
+		//
+		//
+		Bothy_Tivaevae::Establish_thermoplastic (mwanaanga_1_address);
+		Bothy_Tivaevae::Ask_mwanaanga_thermoplastic_sheet_count (mwanaanga_1_address);
+		
 		
 		//
 		//
-		//	Estate 2: Join:
+		//	Mwanaanga 2: Join:
 		//
 		//
 		debug::print (& utf8 (b"estate 2 joining"));
+		debug::print (& mwanaanga_1_address);				
+		debug::print (& mwanaanga_2_address);		
 		debug::print (& Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (tivaevae_address, mwanaanga_2_address));
 		
 		assert! (Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (tivaevae_address, mwanaanga_2_address) == utf8 (b"no"), 1);
-		Bothy_Tivaevae::Join_a_Tivaevae (& estate_2_signer);
+		Bothy_Tivaevae::Join_a_Tivaevae (& estate_2_signer, tivaevae_address);
 		assert! (Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (tivaevae_address, mwanaanga_2_address) == utf8 (b"yes"), 1);
 
 		

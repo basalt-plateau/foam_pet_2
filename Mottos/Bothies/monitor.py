@@ -34,7 +34,7 @@ Bothy_Tivaevae = " ".join ([
 	"cd /Metro/Mottos/Bothies/Bothy_Tivaevae",
 	"&&",
 	"aptos move test",
-	f"--named-addresses 'ride={ estate_1_legacy_address }, ride_2={ estate_1_legacy_address }'"
+	f"--named-addresses 'ride={ estate_1_legacy_address }, ride_2={ estate_2_legacy_address }'"
 ])
 
 #os.system (Bothy)

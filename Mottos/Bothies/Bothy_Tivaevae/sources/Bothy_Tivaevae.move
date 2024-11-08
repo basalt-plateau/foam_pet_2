@@ -55,7 +55,7 @@ module ride::Bothy_Tivaevae {
 		
 		let mwanaangas : vector<Mwanaanga> = vector::empty<Mwanaanga> ();
         let le_Tivaevae = Tivaevae {
-            is_open: utf8 (b"yes"),
+            is_open: utf8 (b"no"),
             mwanaangas
         };
 		
@@ -74,35 +74,42 @@ module ride::Bothy_Tivaevae {
     }
 	
 	
+	public fun Establish_thermoplastic (
+		mwanaanga_1_address : address
+	) {
+		let sheets : u64 = 900000;
+		
+		
+    }
+	
+	public fun Ask_mwanaanga_thermoplastic_sheet_count (
+		mwanaanga_1_address : address
+	) : u64 {
+		let f64_1 = 0;
+		
+		f64_1
+    }
+	
 	public entry fun Join_a_Tivaevae (
-		estate: & signer
+		estate: & signer,
+		tivaevae_address : address
 	) acquires Tivaevae {
-		let estate_1_address = signer::address_of (estate);
+		if (!exists<Tivaevae>(tivaevae_address)) {
+           abort 1001;
+        };
+		let le_tivaevae = borrow_global_mut<Tivaevae>(tivaevae_address);
 		
 		/*
 			Accept the Mwanaanga into the Tivaevae.
+			
 		*/
+		let estate_1_address = signer::address_of (estate);		
 		let mwanaanga_1 = Bothy_Mwanaanga::accept_mwanaanga (
 			estate_1_address
         );
-		
-		//
-		//	This is the flourishing estate's Tivaevae.
-		//	This should be another estate's Tivaevae though.
-		//
-		let le_tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
-
 		vector::push_back (&mut le_tivaevae.mwanaangas, mwanaanga_1);
 	}
-	
-	public fun get_mwanaanga_at_index_0 (estate_address : address) : address acquires Tivaevae {
-		let le_tivaevae = borrow_global<Tivaevae>(estate_address);
-		
-		let first_mwanaanga = vector::borrow (& le_tivaevae.mwanaangas, 0);
-		let this_mwanaanga_address : address = Bothy_Mwanaanga::ask_for_address (first_mwanaanga);
-		this_mwanaanga_address
-	}
-	
+
 	
 	/*
 		Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (

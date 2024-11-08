@@ -18,64 +18,34 @@ import { onMount, onDestroy } from 'svelte'
 
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 
-
-////
-//
-//	Venues
-//
-//
-import Scholars_Hints from './Venues/Scholars/Hints/Trinket.svelte'
-import Scholars_Theme from './Venues/Scholars/Theme/Trinket.svelte'
-import Scholars_Garden from './Venues/Scholars/Garden/Trinket.svelte'
-
-import Friends_Talents from './Venues/Friends/Talents/Trinket.svelte'
-
-import Loyals_Players from './Venues/Loyals/Players/Trinket.svelte'
-import Loyals_Hints from './Venues/Loyals/Hints/Trinket.svelte'
-import Loyals_Flourishes from './Venues/Loyals/Flourishes/Trinket.svelte'
-
-import Technicians_Map from './Venues/Technicians/Trinket.svelte'
-import Technicians_Address_Qualities from './Venues/Technicians/Address_Qualities/Trinket.svelte'
-import Technicians_Address_Qualities_with_Address from './Venues/Technicians/Address_Qualities_with_Address/Trinket.svelte'
-import Technicians_Amount_Field from './Venues/Technicians/Amount_Field/Trinket.svelte'
-import Technicians_Consensus_Transactions from './Venues/Technicians/Consensus_Transactions/Trinket.svelte'
-import Technicians_Hone_Focus from './Venues/Technicians/Hone_Focus/Trinket.svelte'
-import Technicians_Net_Choices_with_Text from './Venues/Technicians/Net_Choices_with_Text/Trinket.svelte'
-import Technicians_Net_Choices from './Venues/Technicians/Nets_Choices/Trinket.svelte'
-import Technicians_Polytope from './Venues/Technicians/Polytope/Trinket.svelte'
-import Technicians_Slang from './Venues/Technicians/Slang/Trinket.svelte'
-import Technicians_Field from './Venues/Technicians/Field/Trinket.svelte'
-//
-////
-
 let Milieus = {
 	"Scholars": {
-		"Hints": Scholars_Hints,
-		"Garden": Scholars_Garden,
-		"Theme": Scholars_Theme
+		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
+		"Garden": async () => { return await import ('./Venues/Scholars/Garden/Trinket.svelte') },
+		"Theme": async () => { return await import ('./Venues/Scholars/Theme/Trinket.svelte') },
 	},
 	"Friends": {
-		"Talents": Friends_Talents
+		"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') }
 	},
 	"Loyals": {
-		"Hints": Loyals_Hints,
-		"Accounts": Loyals_Players,
-		"Signatures": Loyals_Flourishes
+		"Hints": async () => { return await import ('./Venues/Loyals/Players/Trinket.svelte') },
+		"Accounts": async () => { return await import ('./Venues/Loyals/Hints/Trinket.svelte') },
+		"Signatures": async () => { return await import ('./Venues/Loyals/Flourishes/Trinket.svelte') }
 	},
 	"Technicians": {
-		"Map": Technicians_Map,
+		"Map": async () => { return await import ('./Venues/Technicians/Trinket.svelte') },
 		
-		"Address Qualities": Technicians_Address_Qualities,
-		"Address Qualities with Address": Technicians_Address_Qualities_with_Address,
-		"Amount Field": Technicians_Amount_Field,		
-		"Consensus Transactions": Technicians_Consensus_Transactions,		
-		"Hone Focus": Technicians_Hone_Focus,		
-		"Net Choices with Text": Technicians_Net_Choices_with_Text,		
-		"Net Choices": Technicians_Net_Choices,		
-		"Polytope": Technicians_Polytope,		
-		"Slang": Technicians_Slang,
+		"Address Qualities": async () => { return await import ('./Venues/Technicians/Address_Qualities/Trinket.svelte') },
+		"Address Qualities with Address": async () => { return await import ('./Venues/Technicians/Address_Qualities_with_Address/Trinket.svelte') },
+		"Amount Field": async () => { return await import ('./Venues/Technicians/Amount_Field/Trinket.svelte') },		
+		"Consensus Transactions": async () => { return await import ('./Venues/Technicians/Consensus_Transactions/Trinket.svelte') },		
+		"Hone Focus": async () => { return await import ('./Venues/Technicians/Hone_Focus/Trinket.svelte') },
+		"Net Choices with Text": async () => { return await import ('./Venues/Technicians/Net_Choices_with_Text/Trinket.svelte') },		
+		"Net Choices": async () => { return await import ('./Venues/Technicians/Nets_Choices/Trinket.svelte') },		
+		"Polytope": async () => { return await import ('./Venues/Technicians/Polytope/Trinket.svelte') },		
+		"Slang": async () => { return await import ('./Venues/Technicians/Slang/Trinket.svelte') },
 		
-		"Field": Technicians_Field
+		"Field": async () => { return await import ('./Venues/Technicians/Field/Trinket.svelte') },
 	}
 }
 
@@ -84,23 +54,32 @@ let component = Milieus [ "Scholars" ] [ "Hints" ]
 
 let Milieus_freight = {}
 let Milieus_truck_prepared = "no"
-const on_Milieus_truck_change = ({ freight: _freight, happening }) => {
+const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	Milieus_freight = _freight;
-	if (happening === "mounted") {
-		Milieus_truck_prepared = "yes"
-	}
+	
 	
 	const location = Milieus_freight.location;
 	
 	console.log ("Milieus Location:", location [0], location [1])
 	
+	// component = await import ('./Venues/Scholars/Hints/Trinket.svelte');
+	// component = (await import('./Venues/Scholars/Hints/Trinket.svelte')).default;	
+	// console.log ({ component });
+	
+	
+	// return;
+	
 	try {
-		component = Milieus [ location [0] ] [ location [1] ]
+		component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
 	}
 	catch (exception) {
 		console.error (exception)
 		
-		component = Milieus [ "Scholars" ] [ "Hints" ]
+		component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
+	}
+	
+	if (happening === "mounted") {
+		Milieus_truck_prepared = "yes"
 	}
 }
 
