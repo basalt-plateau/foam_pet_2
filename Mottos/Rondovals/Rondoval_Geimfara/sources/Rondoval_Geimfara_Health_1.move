@@ -70,7 +70,7 @@ module ride::Rondoval_Geimfara_Health_1 {
 		//
 		//
 		let to_send_1 : u64 = 10;
-		let receipt_1 : String = Rondoval_Geimfara::ask_to_send_thermoplastic_sheets (
+		let receipt_1 : String = Rondoval_Geimfara::G5 (
 			&mut geimfara_1, 
 			&mut geimfara_2,
 			to_send_1
@@ -85,7 +85,7 @@ module ride::Rondoval_Geimfara_Health_1 {
 		//
 		//
 		let to_send_2 : u64 = 1;
-		let receipt_2 : String = Rondoval_Geimfara::ask_to_send_thermoplastic_sheets (
+		let receipt_2 : String = Rondoval_Geimfara::G5 (
 			&mut geimfara_1, 
 			&mut geimfara_2,
 			to_send_2
@@ -100,7 +100,7 @@ module ride::Rondoval_Geimfara_Health_1 {
 		//
 		//
 		let to_send_3 : u64 = 1;
-		let receipt_3 : String = Rondoval_Geimfara::ask_to_send_thermoplastic_sheets (
+		let receipt_3 : String = Rondoval_Geimfara::G5 (
 			&mut geimfara_2, 
 			&mut geimfara_1,
 			to_send_3

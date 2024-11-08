@@ -13,7 +13,11 @@
 		G4: Thermoplastic:
 				+ sheets
 				
-		
+		G5: Thermoplastic Shipping
+	
+	
+	
+		G6: ask_for_measure_of_thermoplastic_sheets
 */
 
 
@@ -86,20 +90,13 @@ module ride::Rondoval_Geimfara {
 	//
 	//			Rondoval_Geimfara::G4 (geimfara_1, to_add_f64);
 	//
-	public fun G4 (
-		geimfara_1 : &mut Geimfara,
-		to_add: u64
-	) : u64 {	
+	public fun G4 (geimfara_1 : &mut Geimfara, to_add: u64) : u64 {	
 		Rondoval_Thermoplastic::ask_to_add_thermoplastic_sheets (
 			&mut geimfara_1.thermoplastic,
 			to_add
 		);
 		
-		let sheets : u64 = Rondoval_Thermoplastic::ask_sheets_count (
-			& geimfara_1.thermoplastic
-		);
-		
-		sheets
+		Rondoval_Thermoplastic::ask_sheets_count (& geimfara_1.thermoplastic)
 	}
 	
 	
@@ -109,7 +106,7 @@ module ride::Rondoval_Geimfara {
 	
 				mpokeaji -> mpokeaji
 	*/
-	public fun ask_to_send_thermoplastic_sheets (
+	public fun G5 (
 		mtumaji : &mut Geimfara,
 		mpokeaji : &mut Geimfara,
 		to_add : u64
@@ -154,22 +151,4 @@ module ride::Rondoval_Geimfara {
 		
 		utf8 (b"The thermoplastic sheets were sent.")
 	}
-	
-	
-	
-	//
-	//
-	//	Vintage
-	//
-	//	
-	public fun ask_for_measure_of_thermoplastic_sheets (
-		geimfara_1 : & Geimfara
-	) : u64 {
-		let sheets : u64 = Rondoval_Thermoplastic::ask_sheets_count (
-			& geimfara_1.thermoplastic
-		);
-		sheets
-	}
-	
-	
 }
