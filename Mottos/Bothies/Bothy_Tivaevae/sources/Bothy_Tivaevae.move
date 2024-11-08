@@ -18,8 +18,8 @@ module ride::Bothy_Tivaevae {
 
 	use ride::Bothy_Vitrine;
 	use ride::Bothy_Thermoplastic;
-	use ride::Bothy_Mwanaanga;	
-	use ride::Bothy_Mwanaanga::{ Mwanaanga };	
+	use ride::Bothy_Mtembezi;	
+	use ride::Bothy_Mtembezi::{ Mtembezi };	
 
 	
 
@@ -32,7 +32,7 @@ module ride::Bothy_Tivaevae {
 	
 	struct Tivaevae has key, drop {
         is_open: String,
-		mwanaangas: vector<Mwanaanga>
+		mtembezis: vector<Mtembezi>
     }
 	
 	
@@ -53,10 +53,10 @@ module ride::Bothy_Tivaevae {
             abort (1001);
         };
 		
-		let mwanaangas : vector<Mwanaanga> = vector::empty<Mwanaanga> ();
+		let mtembezis : vector<Mtembezi> = vector::empty<Mtembezi> ();
         let le_Tivaevae = Tivaevae {
             is_open: utf8 (b"no"),
-            mwanaangas
+            mtembezis
         };
 		
 		move_to (estate, le_Tivaevae);
@@ -75,15 +75,15 @@ module ride::Bothy_Tivaevae {
 	
 	
 	public fun Establish_thermoplastic (
-		mwanaanga_1_address : address
+		mtembezi_1_address : address
 	) {
 		let sheets : u64 = 900000;
 		
 		
     }
 	
-	public fun Ask_mwanaanga_thermoplastic_sheet_count (
-		mwanaanga_1_address : address
+	public fun Ask_mtembezi_thermoplastic_sheet_count (
+		mtembezi_1_address : address
 	) : u64 {
 		let f64_1 = 0;
 		
@@ -100,21 +100,21 @@ module ride::Bothy_Tivaevae {
 		let le_tivaevae = borrow_global_mut<Tivaevae>(tivaevae_address);
 		
 		/*
-			Accept the Mwanaanga into the Tivaevae.
+			Accept the Mtembezi into the Tivaevae.
 			
 		*/
 		let estate_1_address = signer::address_of (estate);		
-		let mwanaanga_1 = Bothy_Mwanaanga::accept_mwanaanga (
+		let mtembezi_1 = Bothy_Mtembezi::accept_mtembezi (
 			estate_1_address
         );
-		vector::push_back (&mut le_tivaevae.mwanaangas, mwanaanga_1);
+		vector::push_back (&mut le_tivaevae.mtembezis, mtembezi_1);
 	}
 
 	
 	/*
-		Bothy_Tivaevae::is_mwanaanga_at_Tivaevae (
+		Bothy_Tivaevae::is_mtembezi_at_Tivaevae (
 			tivaevae_address,
-			mwanaanga_address
+			mtembezi_address
 		) == utf8 (b"yes")
 		
 		proceeds:
@@ -122,9 +122,9 @@ module ride::Bothy_Tivaevae {
 			no
 			There is not a Tivaevae at that estate.
 	*/
-	public fun is_mwanaanga_at_Tivaevae (
+	public fun is_mtembezi_at_Tivaevae (
 		tivaevae_address : address,
-		mwanaanga_address : address		
+		mtembezi_address : address		
 	) : String acquires Tivaevae {
 		if (!exists<Tivaevae>(tivaevae_address)) {
            return utf8 (b"There is not a Tivaevae at that estate.")
@@ -132,22 +132,22 @@ module ride::Bothy_Tivaevae {
 		
 		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
 
-		if (vector::length (& le_tivaevae.mwanaangas) == 0) {
+		if (vector::length (& le_tivaevae.mtembezis) == 0) {
 			return utf8 (b"no")
 		};
 
-		let last_index : u64 = vector::length (& le_tivaevae.mwanaangas) - 1;
+		let last_index : u64 = vector::length (& le_tivaevae.mtembezis) - 1;
 		// debug::print (& string_utils::format1 (& b"last_index: {}", last_index));
 
 		let gezegen : u64 = 0;
 		while (gezegen <= last_index) {
 			debug::print (& string_utils::format1 (& b"gezegen: {}", gezegen));
 		
-			let mwanaanga_1 = vector::borrow (& le_tivaevae.mwanaangas, gezegen);
-			let this_mwanaanga_address : address = Bothy_Mwanaanga::ask_for_address (mwanaanga_1);
-			debug::print (& string_utils::format1 (& b"mwanaanga_address: {}", this_mwanaanga_address));
+			let mtembezi_1 = vector::borrow (& le_tivaevae.mtembezis, gezegen);
+			let this_mtembezi_address : address = Bothy_Mtembezi::ask_for_address (mtembezi_1);
+			debug::print (& string_utils::format1 (& b"mtembezi_address: {}", this_mtembezi_address));
 		
-			if (this_mwanaanga_address == mwanaanga_address) {
+			if (this_mtembezi_address == mtembezi_address) {
 				return utf8 (b"yes")
 			};
 			
@@ -163,7 +163,7 @@ module ride::Bothy_Tivaevae {
 	
 	////
 	//
-	//	Mwanaanga Level
+	//	Mtembezi Level
 	//
 	//		
 	//
@@ -174,7 +174,7 @@ module ride::Bothy_Tivaevae {
 		let estate_1_address = signer::address_of (estate);
 		let thermoplastic_1 = Bothy_Thermoplastic::polymerize_a_thermoplastic_dome ();
 		
-		let mwanaanga_1 = Bothy_Mwanaanga::accept_mwanaanga (
+		let mtembezi_1 = Bothy_Mtembezi::accept_mtembezi (
            estate_1_address
         );
 		
@@ -184,7 +184,7 @@ module ride::Bothy_Tivaevae {
 		//
 		let le_Tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
 
-		vector::push_back (&mut le_Tivaevae.mwanaangas, mwanaanga_1);
+		vector::push_back (&mut le_Tivaevae.mtembezis, mtembezi_1);
 	}
 	
 	
@@ -215,7 +215,7 @@ module ride::Bothy_Tivaevae {
 	public entry fun Embark_on_Tivaevae (estate: & signer) acquires Tivaevae {
 		let estate_1_address = signer::address_of (estate);
 		
-		let mwanaanga_1 = Bothy_Mwanaanga::accept_mwanaanga (
+		let mtembezi_1 = Bothy_Mtembezi::accept_mtembezi (
            estate_1_address
         );
 		
@@ -225,7 +225,7 @@ module ride::Bothy_Tivaevae {
 		//
 		let le_tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
 
-		vector::push_back (&mut le_tivaevae.mwanaangas, mwanaanga_1);
+		vector::push_back (&mut le_tivaevae.mtembezis, mtembezi_1);
 	}
 }
 

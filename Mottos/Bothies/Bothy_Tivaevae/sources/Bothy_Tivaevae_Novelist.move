@@ -21,7 +21,7 @@ module ride::Bothy_Tivaevae_Novelist {
 
 		use ride::Bothy_Vitrine;
 		use ride::Bothy_Thermoplastic;
-		use ride::Bothy_Mwanaanga;	
+		use ride::Bothy_Mtembezi;	
 		
 		let novelist_1 : address = @0x265b37de65ef8e91d5592c32508673ec9c1ede4b40a2e04598d32ba818102b3e;
 		let novelist_1_bytes : vector<u8> = Bothy_Vitrine::address_to_bytes (novelist_1);

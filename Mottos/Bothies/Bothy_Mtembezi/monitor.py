@@ -29,7 +29,7 @@ aptos account list --query resources
 
 
 os.system (" ".join ([
-	"cd /Metro/Mottos/Bothies/Bothy_Mwanaanga",
+	"cd /Metro/Mottos/Bothies/Bothy_Mtembezi",
 	"&&",
 	"aptos move test",
 	f"--named-addresses 'ride={ estate_1_legacy_address }, ride_2={ estate_2_legacy_address }'"

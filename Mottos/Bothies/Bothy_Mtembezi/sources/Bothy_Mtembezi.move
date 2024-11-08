@@ -5,7 +5,7 @@
 
 
 
-module ride::Bothy_Mwanaanga {
+module ride::Bothy_Mtembezi {
 	
 	
 	// use std::vector;
@@ -28,30 +28,30 @@ module ride::Bothy_Mwanaanga {
 		togetherness
 	}
 	
-	struct Mwanaanga has key, drop, store {
+	struct Mtembezi has key, drop, store {
         address: address,
 		thermoplastic: Bothy_Thermoplastic::Thermoplastic
     }
 	
 	//
-	//	+ Mwanaanga
+	//	+ Mtembezi
 	//
 	//
-	public fun accept_mwanaanga (
+	public fun accept_mtembezi (
 		address_1 : address
-	) : Mwanaanga {
+	) : Mtembezi {
 		let thermoplastic : Bothy_Thermoplastic::Thermoplastic = Bothy_Thermoplastic::polymerize_a_thermoplastic_dome ();
 		
-		Mwanaanga {
+		Mtembezi {
 			address: address_1,
 			thermoplastic
 		}
 	}
 	
 	public fun ask_for_address (
-		mwanaanga_1 : & Mwanaanga
+		mtembezi_1 : & Mtembezi
 	) : address {
-		mwanaanga_1.address	
+		mtembezi_1.address	
 	}
 	
 	
@@ -60,29 +60,29 @@ module ride::Bothy_Mwanaanga {
 	//
 	//
 	public fun ask_for_thermoplastic_sheets_count (
-		mwanaanga_1 : & Mwanaanga
+		mtembezi_1 : & Mtembezi
 	) : u64 {
 		let sheets : u64 = Bothy_Thermoplastic::ask_sheets_count (
-			& mwanaanga_1.thermoplastic
+			& mtembezi_1.thermoplastic
 		);
 		sheets
 	}
 	
 	//
 	//	+ thermoplastic_sheets
-	//		Bothy_Mwanaanga::ask_to_add_thermoplastic_sheets (mwanaanga_1, to_add_f64);
+	//		Bothy_Mtembezi::ask_to_add_thermoplastic_sheets (mtembezi_1, to_add_f64);
 	//
 	public fun ask_to_add_thermoplastic_sheets (
-		mwanaanga_1 : &mut Mwanaanga,
+		mtembezi_1 : &mut Mtembezi,
 		to_add: u64
 	) : u64 {	
 		Bothy_Thermoplastic::ask_to_add_thermoplastic_sheets (
-			&mut mwanaanga_1.thermoplastic,
+			&mut mtembezi_1.thermoplastic,
 			to_add
 		);
 		
 		let sheets : u64 = Bothy_Thermoplastic::ask_sheets_count (
-			& mwanaanga_1.thermoplastic
+			& mtembezi_1.thermoplastic
 		);
 		
 		sheets
@@ -95,8 +95,8 @@ module ride::Bothy_Mwanaanga {
 	//		mpokeaji -> mpokeaji
 	//
 	public fun ask_to_send_thermoplastic_sheets (
-		mtumaji : &mut Mwanaanga,
-		mpokeaji : &mut Mwanaanga,
+		mtumaji : &mut Mtembezi,
+		mpokeaji : &mut Mtembezi,
 		to_add : u64
 	) : String {	
 		
@@ -148,10 +148,10 @@ module ride::Bothy_Mwanaanga {
 	//
 	//	
 	public fun ask_for_measure_of_thermoplastic_sheets (
-		mwanaanga_1 : & Mwanaanga
+		mtembezi_1 : & Mtembezi
 	) : u64 {
 		let sheets : u64 = Bothy_Thermoplastic::ask_sheets_count (
-			& mwanaanga_1.thermoplastic
+			& mtembezi_1.thermoplastic
 		);
 		sheets
 	}
