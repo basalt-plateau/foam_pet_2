@@ -37,8 +37,8 @@ Rondoval_Tivaevae = " ".join ([
 	f"--named-addresses 'ride={ estate_1_legacy_address }, ride_2={ estate_2_legacy_address }'"
 ])
 
-os.system (Rondoval)
-os.system (Rondoval_Thermoplastic)
-os.system (Rondoval_Geimfara)
+#os.system (Rondoval)
+#os.system (Rondoval_Thermoplastic)
+#os.system (Rondoval_Geimfara)
 os.system (Rondoval_Tivaevae)
 

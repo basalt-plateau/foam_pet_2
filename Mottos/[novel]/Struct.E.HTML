@@ -25,9 +25,30 @@
 
 
 
+		runs:
+			moving:
+				move_to:
+					move_to<T>(&signer, resource)
+				
+					Publishes the resource to the signer's address.
+				
+					Perhaps this can be called exclusively from
+					the module where the struct is defined.
+				
+				move_from:
+					move_from<T>(address)
+				
+					Removes the resource from the address.
+					
+					Perhaps this can be called exclusively from
+					the module where the struct is defined.
+			
+			
+			borrowing:
+				borrow_global_mut
+				borrow_global
 
-
-
+			exists
 
 
 

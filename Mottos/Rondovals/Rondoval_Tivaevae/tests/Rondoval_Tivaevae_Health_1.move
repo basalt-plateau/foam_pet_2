@@ -61,8 +61,9 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		//
 		//
 		Rondoval_Tivaevae::Establish_thermoplastic (geimfara_1_address);
-		Rondoval_Tivaevae::Ask_geimfara_thermoplastic_sheet_count (geimfara_1_address);
-		
+		assert! (Rondoval_Tivaevae::Ask_geimfara_thermoplastic_sheet_count (geimfara_1_address) == 0, 1);
+		let thermoplastic_sheets_count_1 : u64 = Rondoval_Tivaevae::search_geimfara_thermoplastic_count (tivaevae_address, geimfara_1_address);
+		assert! (thermoplastic_sheets_count_1 == 0, 1);
 		
 		//
 		//

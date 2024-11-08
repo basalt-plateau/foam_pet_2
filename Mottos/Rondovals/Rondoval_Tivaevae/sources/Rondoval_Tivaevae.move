@@ -25,12 +25,11 @@ module ride::Rondoval_Tivaevae {
 
 	#[view]
 	public fun togetherness () : String {
-		let togetherness = Loft::togetherness ();
-		togetherness
+		Loft::togetherness ()
 	}
 	
 	
-	struct Tivaevae has key, drop {
+	struct Tivaevae has key, drop, store {
         is_open: String,
 		geimfaras: vector<Geimfara>
     }
@@ -61,6 +60,35 @@ module ride::Rondoval_Tivaevae {
 		
 		move_to (estate, le_Tivaevae);
     }
+	
+	
+	/*
+		
+	
+	*/
+	public fun obtain_Tivaevae (
+		tivaevae_address : address
+	) : Tivaevae acquires Tivaevae {
+		if (!exists<Tivaevae>(tivaevae_address)) {
+           abort 1001;
+        };
+
+		// borrow_global<Tivaevae>(tivaevae_address)
+
+		let tivaevae = move_from<Tivaevae>(tivaevae_address);
+		tivaevae
+    }
+	
+	
+	/*
+	public fun give_Tivaevae (
+		le_tivaevae : Tivaevae,
+		tivaevae_address : address
+	) acquires Tivaevae {
+		move_to (tivaevae_address, le_tivaevae);
+    }
+	*/
+	
 	
 	#[view]
 	public fun Ask_if_estate_has_a_Tivaevae (
@@ -110,6 +138,78 @@ module ride::Rondoval_Tivaevae {
 		vector::push_back (&mut le_tivaevae.geimfaras, geimfara_1);
 	}
 
+	
+	
+	/*
+		let index : u64 = Rondoval_Tivaevae::search_geimfara_index (tivaevae_address, geimfara_address);
+		
+		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
+		let geimfara = vector::borrow (& le_tivaevae.geimfaras, index);
+	*/
+	public fun search_geimfara_index (
+		tivaevae_address : address,
+		geimfara_address : address		
+	) : u64 acquires Tivaevae {
+		if (!exists<Tivaevae>(tivaevae_address)) {
+           abort 794
+        };
+		
+		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
+
+		if (vector::length (& le_tivaevae.geimfaras) == 0) {
+			abort 79491
+		};
+
+		let last_index : u64 = vector::length (& le_tivaevae.geimfaras) - 1;
+
+		let gezegen : u64 = 0;
+		while (gezegen <= last_index) {
+			let geimfara_1 = vector::borrow (& le_tivaevae.geimfaras, gezegen);
+			let this_geimfara_address : address = Rondoval_Geimfara::ask_for_address (geimfara_1);
+			if (this_geimfara_address == geimfara_address) {
+				return gezegen
+			};
+			
+			gezegen = gezegen + 1;
+		};
+		
+
+		abort 959
+	}
+	
+	
+	public fun search_geimfara_thermoplastic_count (
+		tivaevae_address : address,
+		geimfara_address : address		
+	) : u64 acquires Tivaevae {
+		if (!exists<Tivaevae>(tivaevae_address)) {
+           abort 794
+        };
+		
+		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
+
+		if (vector::length (& le_tivaevae.geimfaras) == 0) {
+			abort 79491
+		};
+
+		let last_index : u64 = vector::length (& le_tivaevae.geimfaras) - 1;
+
+		let gezegen : u64 = 0;
+		while (gezegen <= last_index) {
+			let geimfara_1 = vector::borrow (& le_tivaevae.geimfaras, gezegen);
+			let this_geimfara_address : address = Rondoval_Geimfara::ask_for_address (geimfara_1);
+			if (this_geimfara_address == geimfara_address) {
+				let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (geimfara_1);
+				return thermoplastic_sheets_count
+			};
+			
+			gezegen = gezegen + 1;
+		};
+		
+
+		abort 959
+	}
+	
 	
 	/*
 		Rondoval_Tivaevae::is_geimfara_at_Tivaevae (

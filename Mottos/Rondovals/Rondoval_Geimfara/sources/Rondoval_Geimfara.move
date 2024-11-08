@@ -64,6 +64,8 @@ module ride::Rondoval_Geimfara {
 	//		Thermoplastic_sheets:
 	//			count
 	//
+	//		let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_1);
+	//
 	public fun ask_for_thermoplastic_sheets_count (
 		geimfara_1 : & Geimfara
 	) : u64 {
@@ -72,6 +74,8 @@ module ride::Rondoval_Geimfara {
 		);
 		sheets
 	}
+	
+	
 	
 	//
 	//	Geimfara: 
