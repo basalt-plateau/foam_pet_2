@@ -42,9 +42,9 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		//		* Establish a Tivaevae.
 		//		* Learn if the estate has a tivaevae.
 		//
-		assert! (Rondoval_Tivaevae::D (estate_1_address) == utf8 (b"no"), 1);
+		assert! (Rondoval_Tivaevae::A (estate_1_address) == utf8 (b"no"), 1);
 		Rondoval_Tivaevae::B (& estate_1_signer);
-		assert! (Rondoval_Tivaevae::D (estate_1_address) == utf8 (b"yes"), 1);
+		assert! (Rondoval_Tivaevae::A (estate_1_address) == utf8 (b"yep"), 1);
 
 		//
 		//	Novelist: Join:
@@ -52,7 +52,7 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		//		* Join the Tivaevae as a Geimfara.
 		//
 		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_1_address) == utf8 (b"no"), 1);
-		Rondoval_Tivaevae::Join_a_Tivaevae (& estate_1_signer, tivaevae_address);
+		Rondoval_Tivaevae::E (& estate_1_signer, tivaevae_address);
 		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_1_address) == utf8 (b"yes"), 1);
 		
 		
@@ -62,15 +62,15 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		//	Novelist: Give thermoplastic to Geimfara 1
 		//
 		//
-		assert! (Rondoval_Tivaevae::search_geimfara_thermoplastic_count (tivaevae_address, geimfara_1_address) == 0, 1);
+		assert! (Rondoval_Tivaevae::F (tivaevae_address, geimfara_1_address) == 0, 1);
 		
-		let thermoplastic_sheets_count_1 : u64 = Rondoval_Tivaevae::search_geimfara_thermoplastic_count (tivaevae_address, geimfara_1_address);
+		let thermoplastic_sheets_count_1 : u64 = Rondoval_Tivaevae::F (tivaevae_address, geimfara_1_address);
 		assert! (thermoplastic_sheets_count_1 == 0, 1);
 		
 		let thermoplastic_sheets_to_add : u64 = 900000;
 		Rondoval_Tivaevae::amplify_geimfara_thermoplastic_count (tivaevae_address, geimfara_1_address, thermoplastic_sheets_to_add);
 		
-		let thermoplastic_sheets_count_2 : u64 = Rondoval_Tivaevae::search_geimfara_thermoplastic_count (tivaevae_address, geimfara_1_address);
+		let thermoplastic_sheets_count_2 : u64 = Rondoval_Tivaevae::F (tivaevae_address, geimfara_1_address);
 		assert! (thermoplastic_sheets_count_2 == 900000, 1);
 		
 		
@@ -87,7 +87,7 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		debug::print (& Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_2_address));
 		
 		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_2_address) == utf8 (b"no"), 1);
-		Rondoval_Tivaevae::Join_a_Tivaevae (& estate_2_signer, tivaevae_address);
+		Rondoval_Tivaevae::E (& estate_2_signer, tivaevae_address);
 		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_2_address) == utf8 (b"yes"), 1);
 		
 		

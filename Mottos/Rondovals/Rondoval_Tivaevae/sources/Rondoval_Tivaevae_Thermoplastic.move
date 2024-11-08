@@ -40,21 +40,6 @@ module ride::Rondoval_Tivaevae_Thermoplastic {
 		Loft::togetherness ()
 	}
 	
-	
-	public fun sheets_count (
-		geimfara_address : address,
-		tivaevae_address : address
-	) : u64 {
-		let index : u64 = Rondoval_Tivaevae::search_geimfara_index (tivaevae_address, geimfara_address);
-		
-		/*
-		let geimfara_1 = vector::borrow (& le_tivaevae.geimfaras, index);
-		let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_1);
-		thermoplastic_sheets_count
-		Rondoval_Tivaevae::give_Tivaevae (le_tivaevae, tivaevae_address);
-		*/
-		
-		index
-    }
+
 	
 }

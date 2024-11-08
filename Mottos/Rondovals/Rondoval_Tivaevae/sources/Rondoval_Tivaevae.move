@@ -5,18 +5,26 @@
 
 /*
 	Fonctions:
-		A: is_there_a_Tivaevae
-		B: Establish_a_Tivaevae
-		C: obtain_Tivaevae
-		D: Ask_if_estate_has_a_Tivaevae
-		E: 
+		A: Tivaevae: Existstence Check
+		B: Tivaevae: Establish
+		C: Tivaevae: Obtain
+		D: Tivaevae: search_geimfara_index
+		E: Tivaevae: Join
+		
+		F: Tivaevae:Geimfara: search_geimfara_thermoplastic_count
+	
 	
 	Novelist Level:
 		These should be possible if Novelist.
 		This fonction is the one that creates the Tivaevae resource though.
 		
 		B:
-				
+		
+	
+	Fonctions that wrench the global storage.
+		
+	
+	
 */
 module ride::Rondoval_Tivaevae {
 	
@@ -48,13 +56,9 @@ module ride::Rondoval_Tivaevae {
 	
 	#[view]
 	public fun A (estate_1_address : address) : String {
-		if (exists<Tivaevae>(estate_1_address)) {
-			return utf8 (b"yep")
-        };
-		
+		if (exists<Tivaevae>(estate_1_address)) { return utf8 (b"yep") };
 		utf8 (b"no")
     }
-	
 	
 
 	public entry fun B (
@@ -76,11 +80,7 @@ module ride::Rondoval_Tivaevae {
 		move_to (estate, le_Tivaevae);
     }
 	
-	
-	/*
-		
-	
-	*/
+
 	public fun C (
 		tivaevae_address : address
 	) : Tivaevae acquires Tivaevae {
@@ -94,20 +94,8 @@ module ride::Rondoval_Tivaevae {
 		tivaevae
     }
 	
-	
 
-	
-	
-	#[view]
-	public fun D (estate_1_address : address) : String {
-		if (exists<Tivaevae>(estate_1_address)) { return utf8 (b"yes") };
-		utf8 (b"no")
-    }
-	
-	
-
-
-	public entry fun Join_a_Tivaevae (
+	public entry fun E (
 		estate: & signer,
 		tivaevae_address : address
 	) acquires Tivaevae {
@@ -130,12 +118,14 @@ module ride::Rondoval_Tivaevae {
 	
 	
 	/*
-		let index : u64 = Rondoval_Tivaevae::search_geimfara_index (tivaevae_address, geimfara_address);
-		
-		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
-		let geimfara = vector::borrow (& le_tivaevae.geimfaras, index);
+		Search Geimfara Index:
+	
+			let index : u64 = Rondoval_Tivaevae::D (tivaevae_address, geimfara_address);
+			
+			let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
+			let geimfara = vector::borrow (& le_tivaevae.geimfaras, index);
 	*/
-	public fun search_geimfara_index (
+	public fun D (
 		tivaevae_address : address,
 		geimfara_address : address		
 	) : u64 acquires Tivaevae {
@@ -167,11 +157,11 @@ module ride::Rondoval_Tivaevae {
 	}
 	
 	
-	public fun search_geimfara_thermoplastic_count (
+	public fun F (
 		tivaevae_address : address,
 		geimfara_address : address		
 	) : u64 acquires Tivaevae {
-		let index : u64 = search_geimfara_index (tivaevae_address, geimfara_address);
+		let index : u64 = D (tivaevae_address, geimfara_address);
 		
 		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
 		let geimfara = vector::borrow (& le_tivaevae.geimfaras, index);
@@ -185,7 +175,7 @@ module ride::Rondoval_Tivaevae {
 		geimfara_address : address,
 		to_add_f64 : u64
 	) : u64 acquires Tivaevae {
-		let index : u64 = search_geimfara_index (tivaevae_address, geimfara_address);
+		let index : u64 = D (tivaevae_address, geimfara_address);
 		
 		let le_tivaevae = borrow_global_mut<Tivaevae>(tivaevae_address);
 		let geimfara = vector::borrow_mut (&mut le_tivaevae.geimfaras, index);
