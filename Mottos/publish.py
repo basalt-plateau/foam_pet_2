@@ -29,4 +29,4 @@ os.system (f"cd /Metro/Mottos/Quarry && aptos move publish --assume-yes --named-
 os.system (f"cd /Metro/Mottos/Pergola && aptos move publish --assume-yes --named-addresses ride={ ride }");
 os.system (f"cd /Metro/Mottos/Tholvi && aptos move publish --assume-yes --named-addresses ride={ ride }");
 
-# os.system (f"cd /Metro/Mottos/Bothy && aptos move publish --assume-yes --named-addresses ride={ ride }");
+# os.system (f"cd /Metro/Mottos/Rondoval && aptos move publish --assume-yes --named-addresses ride={ ride }");

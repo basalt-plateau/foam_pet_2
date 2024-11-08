@@ -37,8 +37,8 @@ for place in places:
 	find_and_replace_string_v2.start (
 		the_path = place,
 
-		find = 'Bothies',
-		replace_with = 'Rondovals',
+		find = 'Bothy',
+		replace_with = 'Rondoval',
 		
 		replace_contents = "yes",
 		replace_paths = "yes"
