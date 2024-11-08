@@ -182,6 +182,14 @@ module ride::Rondoval_Tivaevae {
 		tivaevae_address : address,
 		geimfara_address : address		
 	) : u64 acquires Tivaevae {
+		let index : u64 = search_geimfara_index (tivaevae_address, geimfara_address);
+		
+		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
+		let geimfara = vector::borrow (& le_tivaevae.geimfaras, index);
+		let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (geimfara);
+		thermoplastic_sheets_count
+		
+		/*
 		if (!exists<Tivaevae>(tivaevae_address)) {
            abort 794
         };
@@ -208,6 +216,7 @@ module ride::Rondoval_Tivaevae {
 		
 
 		abort 959
+		*/
 	}
 	
 	
