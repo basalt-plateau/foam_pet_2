@@ -6,7 +6,7 @@
 
 
 
-module ride::Steady_Rondoval_Mtembezi_1 {
+module ride::Steady_Rondoval_Geimfara_1 {
 	
 	#[test (
 		estate_1_signer = @ride, 
@@ -16,8 +16,8 @@ module ride::Steady_Rondoval_Mtembezi_1 {
 		estate_1_signer : signer,
 		estate_2_signer : signer		
 	) {	
-		use ride::Rondoval_Mtembezi_Health_1;
+		use ride::Rondoval_Geimfara_Health_1;
 		
-		Rondoval_Mtembezi_Health_1::novel_1 (estate_1_signer, estate_2_signer);
+		Rondoval_Geimfara_Health_1::novel_1 (estate_1_signer, estate_2_signer);
 	}
 }

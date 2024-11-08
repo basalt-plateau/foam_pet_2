@@ -21,7 +21,7 @@ module ride::Rondoval_Tivaevae_Novelist {
 
 		use ride::Rondoval_Vitrine;
 		use ride::Rondoval_Thermoplastic;
-		use ride::Rondoval_Mtembezi;	
+		use ride::Rondoval_Geimfara;	
 		
 		let novelist_1 : address = @0x265b37de65ef8e91d5592c32508673ec9c1ede4b40a2e04598d32ba818102b3e;
 		let novelist_1_bytes : vector<u8> = Rondoval_Vitrine::address_to_bytes (novelist_1);

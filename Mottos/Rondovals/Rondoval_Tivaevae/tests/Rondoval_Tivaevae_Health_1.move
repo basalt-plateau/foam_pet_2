@@ -26,14 +26,14 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		
 		use ride::Rondoval_Tivaevae;
 		use ride::Rondoval_Tivaevae::{ Tivaevae };
-		use ride::Rondoval_Mtembezi;
+		use ride::Rondoval_Geimfara;
 
 		let estate_1_address = signer::address_of (& estate_1_signer);
 		let tivaevae_address = estate_1_address;
-		let mtembezi_1_address = estate_1_address;
+		let geimfara_1_address = estate_1_address;
 		
 		let estate_2_address = signer::address_of (& estate_2_signer);
-		let mtembezi_2_address = estate_2_address;
+		let geimfara_2_address = estate_2_address;
 		
 
 		//
@@ -48,35 +48,35 @@ module ride::Rondoval_Tivaevae_Health_1 {
 
 		//
 		//	Novelist: Join:
-		//		* Learn if the estate has a mtembezi present at the tivaevae.
-		//		* Join the Tivaevae as a Mtembezi.
+		//		* Learn if the estate has a geimfara present at the tivaevae.
+		//		* Join the Tivaevae as a Geimfara.
 		//
-		assert! (Rondoval_Tivaevae::is_mtembezi_at_Tivaevae (tivaevae_address, mtembezi_1_address) == utf8 (b"no"), 1);
+		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_1_address) == utf8 (b"no"), 1);
 		Rondoval_Tivaevae::Join_a_Tivaevae (& estate_1_signer, tivaevae_address);
-		assert! (Rondoval_Tivaevae::is_mtembezi_at_Tivaevae (tivaevae_address, mtembezi_1_address) == utf8 (b"yes"), 1);
+		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_1_address) == utf8 (b"yes"), 1);
 		
 		//
 		//
-		//	Novelist: Give thermoplastic to Mtembezi 1
+		//	Novelist: Give thermoplastic to Geimfara 1
 		//
 		//
-		Rondoval_Tivaevae::Establish_thermoplastic (mtembezi_1_address);
-		Rondoval_Tivaevae::Ask_mtembezi_thermoplastic_sheet_count (mtembezi_1_address);
+		Rondoval_Tivaevae::Establish_thermoplastic (geimfara_1_address);
+		Rondoval_Tivaevae::Ask_geimfara_thermoplastic_sheet_count (geimfara_1_address);
 		
 		
 		//
 		//
-		//	Mtembezi 2: Join:
+		//	Geimfara 2: Join:
 		//
 		//
 		debug::print (& utf8 (b"estate 2 joining"));
-		debug::print (& mtembezi_1_address);				
-		debug::print (& mtembezi_2_address);		
-		debug::print (& Rondoval_Tivaevae::is_mtembezi_at_Tivaevae (tivaevae_address, mtembezi_2_address));
+		debug::print (& geimfara_1_address);				
+		debug::print (& geimfara_2_address);		
+		debug::print (& Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_2_address));
 		
-		assert! (Rondoval_Tivaevae::is_mtembezi_at_Tivaevae (tivaevae_address, mtembezi_2_address) == utf8 (b"no"), 1);
+		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_2_address) == utf8 (b"no"), 1);
 		Rondoval_Tivaevae::Join_a_Tivaevae (& estate_2_signer, tivaevae_address);
-		assert! (Rondoval_Tivaevae::is_mtembezi_at_Tivaevae (tivaevae_address, mtembezi_2_address) == utf8 (b"yes"), 1);
+		assert! (Rondoval_Tivaevae::is_geimfara_at_Tivaevae (tivaevae_address, geimfara_2_address) == utf8 (b"yes"), 1);
 
 		
 		

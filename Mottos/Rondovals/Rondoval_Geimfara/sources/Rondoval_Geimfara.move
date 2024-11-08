@@ -5,7 +5,7 @@
 
 
 
-module ride::Rondoval_Mtembezi {
+module ride::Rondoval_Geimfara {
 	
 	
 	// use std::vector;
@@ -28,61 +28,68 @@ module ride::Rondoval_Mtembezi {
 		togetherness
 	}
 	
-	struct Mtembezi has key, drop, store {
+	struct Geimfara has key, drop, store {
         address: address,
 		thermoplastic: Rondoval_Thermoplastic::Thermoplastic
     }
 	
 	//
-	//	+ Mtembezi
+	//	+ Geimfara
 	//
 	//
-	public fun accept_mtembezi (
+	public fun accept_geimfara (
 		address_1 : address
-	) : Mtembezi {
+	) : Geimfara {
 		let thermoplastic : Rondoval_Thermoplastic::Thermoplastic = Rondoval_Thermoplastic::polymerize_a_thermoplastic_dome ();
 		
-		Mtembezi {
+		Geimfara {
 			address: address_1,
 			thermoplastic
 		}
 	}
 	
+	//
+	//	Geimfara: Address
+	//
+	//
 	public fun ask_for_address (
-		mtembezi_1 : & Mtembezi
+		geimfara_1 : & Geimfara
 	) : address {
-		mtembezi_1.address	
+		geimfara_1.address	
 	}
 	
 	
 	//
-	//	? thermoplastic_sheets
-	//
+	//	Geimfara: 
+	//		Thermoplastic_sheets:
+	//			count
 	//
 	public fun ask_for_thermoplastic_sheets_count (
-		mtembezi_1 : & Mtembezi
+		geimfara_1 : & Geimfara
 	) : u64 {
 		let sheets : u64 = Rondoval_Thermoplastic::ask_sheets_count (
-			& mtembezi_1.thermoplastic
+			& geimfara_1.thermoplastic
 		);
 		sheets
 	}
 	
 	//
-	//	+ thermoplastic_sheets
-	//		Rondoval_Mtembezi::ask_to_add_thermoplastic_sheets (mtembezi_1, to_add_f64);
+	//	Geimfara: 
+	//		+ thermoplastic_sheets
+	//
+	//			Rondoval_Geimfara::ask_to_add_thermoplastic_sheets (geimfara_1, to_add_f64);
 	//
 	public fun ask_to_add_thermoplastic_sheets (
-		mtembezi_1 : &mut Mtembezi,
+		geimfara_1 : &mut Geimfara,
 		to_add: u64
 	) : u64 {	
 		Rondoval_Thermoplastic::ask_to_add_thermoplastic_sheets (
-			&mut mtembezi_1.thermoplastic,
+			&mut geimfara_1.thermoplastic,
 			to_add
 		);
 		
 		let sheets : u64 = Rondoval_Thermoplastic::ask_sheets_count (
-			& mtembezi_1.thermoplastic
+			& geimfara_1.thermoplastic
 		);
 		
 		sheets
@@ -90,13 +97,14 @@ module ride::Rondoval_Mtembezi {
 	
 	
 	//
-	//	thermoplastic sheets logistics:
+	//	Geimfara:
+	//		thermoplastic sheets: logistics:
 	//
-	//		mpokeaji -> mpokeaji
+	//			mpokeaji -> mpokeaji
 	//
 	public fun ask_to_send_thermoplastic_sheets (
-		mtumaji : &mut Mtembezi,
-		mpokeaji : &mut Mtembezi,
+		mtumaji : &mut Geimfara,
+		mpokeaji : &mut Geimfara,
 		to_add : u64
 	) : String {	
 		
@@ -148,10 +156,10 @@ module ride::Rondoval_Mtembezi {
 	//
 	//	
 	public fun ask_for_measure_of_thermoplastic_sheets (
-		mtembezi_1 : & Mtembezi
+		geimfara_1 : & Geimfara
 	) : u64 {
 		let sheets : u64 = Rondoval_Thermoplastic::ask_sheets_count (
-			& mtembezi_1.thermoplastic
+			& geimfara_1.thermoplastic
 		);
 		sheets
 	}

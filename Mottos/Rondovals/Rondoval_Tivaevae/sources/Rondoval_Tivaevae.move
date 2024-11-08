@@ -18,8 +18,8 @@ module ride::Rondoval_Tivaevae {
 
 	use ride::Rondoval_Vitrine;
 	use ride::Rondoval_Thermoplastic;
-	use ride::Rondoval_Mtembezi;	
-	use ride::Rondoval_Mtembezi::{ Mtembezi };	
+	use ride::Rondoval_Geimfara;	
+	use ride::Rondoval_Geimfara::{ Geimfara };	
 
 	
 
@@ -32,7 +32,7 @@ module ride::Rondoval_Tivaevae {
 	
 	struct Tivaevae has key, drop {
         is_open: String,
-		mtembezis: vector<Mtembezi>
+		geimfaras: vector<Geimfara>
     }
 	
 	
@@ -53,10 +53,10 @@ module ride::Rondoval_Tivaevae {
             abort (1001);
         };
 		
-		let mtembezis : vector<Mtembezi> = vector::empty<Mtembezi> ();
+		let geimfaras : vector<Geimfara> = vector::empty<Geimfara> ();
         let le_Tivaevae = Tivaevae {
             is_open: utf8 (b"no"),
-            mtembezis
+            geimfaras
         };
 		
 		move_to (estate, le_Tivaevae);
@@ -75,15 +75,15 @@ module ride::Rondoval_Tivaevae {
 	
 	
 	public fun Establish_thermoplastic (
-		mtembezi_1_address : address
+		geimfara_1_address : address
 	) {
 		let sheets : u64 = 900000;
 		
 		
     }
 	
-	public fun Ask_mtembezi_thermoplastic_sheet_count (
-		mtembezi_1_address : address
+	public fun Ask_geimfara_thermoplastic_sheet_count (
+		geimfara_1_address : address
 	) : u64 {
 		let f64_1 = 0;
 		
@@ -100,21 +100,21 @@ module ride::Rondoval_Tivaevae {
 		let le_tivaevae = borrow_global_mut<Tivaevae>(tivaevae_address);
 		
 		/*
-			Accept the Mtembezi into the Tivaevae.
+			Accept the Geimfara into the Tivaevae.
 			
 		*/
 		let estate_1_address = signer::address_of (estate);		
-		let mtembezi_1 = Rondoval_Mtembezi::accept_mtembezi (
+		let geimfara_1 = Rondoval_Geimfara::accept_geimfara (
 			estate_1_address
         );
-		vector::push_back (&mut le_tivaevae.mtembezis, mtembezi_1);
+		vector::push_back (&mut le_tivaevae.geimfaras, geimfara_1);
 	}
 
 	
 	/*
-		Rondoval_Tivaevae::is_mtembezi_at_Tivaevae (
+		Rondoval_Tivaevae::is_geimfara_at_Tivaevae (
 			tivaevae_address,
-			mtembezi_address
+			geimfara_address
 		) == utf8 (b"yes")
 		
 		proceeds:
@@ -122,9 +122,9 @@ module ride::Rondoval_Tivaevae {
 			no
 			There is not a Tivaevae at that estate.
 	*/
-	public fun is_mtembezi_at_Tivaevae (
+	public fun is_geimfara_at_Tivaevae (
 		tivaevae_address : address,
-		mtembezi_address : address		
+		geimfara_address : address		
 	) : String acquires Tivaevae {
 		if (!exists<Tivaevae>(tivaevae_address)) {
            return utf8 (b"There is not a Tivaevae at that estate.")
@@ -132,22 +132,22 @@ module ride::Rondoval_Tivaevae {
 		
 		let le_tivaevae = borrow_global<Tivaevae>(tivaevae_address);
 
-		if (vector::length (& le_tivaevae.mtembezis) == 0) {
+		if (vector::length (& le_tivaevae.geimfaras) == 0) {
 			return utf8 (b"no")
 		};
 
-		let last_index : u64 = vector::length (& le_tivaevae.mtembezis) - 1;
+		let last_index : u64 = vector::length (& le_tivaevae.geimfaras) - 1;
 		// debug::print (& string_utils::format1 (& b"last_index: {}", last_index));
 
 		let gezegen : u64 = 0;
 		while (gezegen <= last_index) {
 			debug::print (& string_utils::format1 (& b"gezegen: {}", gezegen));
 		
-			let mtembezi_1 = vector::borrow (& le_tivaevae.mtembezis, gezegen);
-			let this_mtembezi_address : address = Rondoval_Mtembezi::ask_for_address (mtembezi_1);
-			debug::print (& string_utils::format1 (& b"mtembezi_address: {}", this_mtembezi_address));
+			let geimfara_1 = vector::borrow (& le_tivaevae.geimfaras, gezegen);
+			let this_geimfara_address : address = Rondoval_Geimfara::ask_for_address (geimfara_1);
+			debug::print (& string_utils::format1 (& b"geimfara_address: {}", this_geimfara_address));
 		
-			if (this_mtembezi_address == mtembezi_address) {
+			if (this_geimfara_address == geimfara_address) {
 				return utf8 (b"yes")
 			};
 			
@@ -163,7 +163,7 @@ module ride::Rondoval_Tivaevae {
 	
 	////
 	//
-	//	Mtembezi Level
+	//	Geimfara Level
 	//
 	//		
 	//
@@ -174,7 +174,7 @@ module ride::Rondoval_Tivaevae {
 		let estate_1_address = signer::address_of (estate);
 		let thermoplastic_1 = Rondoval_Thermoplastic::polymerize_a_thermoplastic_dome ();
 		
-		let mtembezi_1 = Rondoval_Mtembezi::accept_mtembezi (
+		let geimfara_1 = Rondoval_Geimfara::accept_geimfara (
            estate_1_address
         );
 		
@@ -184,7 +184,7 @@ module ride::Rondoval_Tivaevae {
 		//
 		let le_Tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
 
-		vector::push_back (&mut le_Tivaevae.mtembezis, mtembezi_1);
+		vector::push_back (&mut le_Tivaevae.geimfaras, geimfara_1);
 	}
 	
 	
@@ -215,7 +215,7 @@ module ride::Rondoval_Tivaevae {
 	public entry fun Embark_on_Tivaevae (estate: & signer) acquires Tivaevae {
 		let estate_1_address = signer::address_of (estate);
 		
-		let mtembezi_1 = Rondoval_Mtembezi::accept_mtembezi (
+		let geimfara_1 = Rondoval_Geimfara::accept_geimfara (
            estate_1_address
         );
 		
@@ -225,7 +225,7 @@ module ride::Rondoval_Tivaevae {
 		//
 		let le_tivaevae = borrow_global_mut<Tivaevae>(estate_1_address);
 
-		vector::push_back (&mut le_tivaevae.mtembezis, mtembezi_1);
+		vector::push_back (&mut le_tivaevae.geimfaras, geimfara_1);
 	}
 }
 

@@ -33,5 +33,5 @@ local = "/Metro/Mottos/Rondovals/Rondoval"
 [dependencies.Rondoval_Thermoplastic]
 local = "/Metro/Mottos/Rondovals/Rondoval_Thermoplastic" 
 
-[dependencies.Rondoval_Mtembezi]
-local = "/Metro/Mottos/Rondovals/Rondoval_Mtembezi" 
+[dependencies.Rondoval_Geimfara]
+local = "/Metro/Mottos/Rondovals/Rondoval_Geimfara" 
