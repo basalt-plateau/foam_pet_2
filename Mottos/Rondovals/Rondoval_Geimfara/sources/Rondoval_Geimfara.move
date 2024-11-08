@@ -1,6 +1,20 @@
 
 
-
+/*
+	fonctions:
+		G1: add geimfara
+		
+		G2: Geimfara:
+				ask for address
+		
+		G3: Thermoplastic:
+				ask for sheets count
+		
+		G4: Thermoplastic:
+				+ sheets
+				
+		
+*/
 
 
 
@@ -37,14 +51,10 @@ module ride::Rondoval_Geimfara {
 	//	+ Geimfara
 	//
 	//
-	public fun accept_geimfara (
-		address_1 : address
-	) : Geimfara {
-		let thermoplastic : Rondoval_Thermoplastic::Thermoplastic = Rondoval_Thermoplastic::polymerize_a_thermoplastic_dome ();
-		
+	public fun G1 (address_1 : address) : Geimfara {
 		Geimfara {
 			address: address_1,
-			thermoplastic
+			thermoplastic: Rondoval_Thermoplastic::polymerize_a_thermoplastic_dome ()
 		}
 	}
 	
@@ -52,9 +62,7 @@ module ride::Rondoval_Geimfara {
 	//	Geimfara: Address
 	//
 	//
-	public fun ask_for_address (
-		geimfara_1 : & Geimfara
-	) : address {
+	public fun G2 (geimfara_1 : & Geimfara) : address {
 		geimfara_1.address	
 	}
 	
@@ -64,15 +72,10 @@ module ride::Rondoval_Geimfara {
 	//		Thermoplastic_sheets:
 	//			count
 	//
-	//		let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_1);
+	//		let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::G3 (& geimfara_1);
 	//
-	public fun ask_for_thermoplastic_sheets_count (
-		geimfara_1 : & Geimfara
-	) : u64 {
-		let sheets : u64 = Rondoval_Thermoplastic::ask_sheets_count (
-			& geimfara_1.thermoplastic
-		);
-		sheets
+	public fun G3 (geimfara_1 : & Geimfara) : u64 {
+		Rondoval_Thermoplastic::ask_sheets_count (& geimfara_1.thermoplastic)
 	}
 	
 	
@@ -81,9 +84,9 @@ module ride::Rondoval_Geimfara {
 	//	Geimfara: 
 	//		+ thermoplastic_sheets
 	//
-	//			Rondoval_Geimfara::ask_to_add_thermoplastic_sheets (geimfara_1, to_add_f64);
+	//			Rondoval_Geimfara::G4 (geimfara_1, to_add_f64);
 	//
-	public fun ask_to_add_thermoplastic_sheets (
+	public fun G4 (
 		geimfara_1 : &mut Geimfara,
 		to_add: u64
 	) : u64 {	
@@ -100,12 +103,12 @@ module ride::Rondoval_Geimfara {
 	}
 	
 	
-	//
-	//	Geimfara:
-	//		thermoplastic sheets: logistics:
-	//
-	//			mpokeaji -> mpokeaji
-	//
+	/*
+		Geimfara:
+			thermoplastic sheets: logistics:
+	
+				mpokeaji -> mpokeaji
+	*/
 	public fun ask_to_send_thermoplastic_sheets (
 		mtumaji : &mut Geimfara,
 		mpokeaji : &mut Geimfara,

@@ -9,7 +9,7 @@ module ride::Rondoval_Geimfara_Health_1 {
 	use std::string::{ String, utf8 };
 	
 	use ride::Rondoval_Geimfara;
-	use ride::Rondoval_Geimfara::{ accept_geimfara, Geimfara };
+	use ride::Rondoval_Geimfara::{ G1, Geimfara };
 	
 	const Problem : u64 = 0;
 	
@@ -20,17 +20,17 @@ module ride::Rondoval_Geimfara_Health_1 {
 		let estate_1_legacy_address = signer::address_of (& estate_1_signer);
 		let estate_2_legacy_address = signer::address_of (& estate_2_signer);
 		
-		let geimfara_1 : Geimfara = accept_geimfara (estate_1_legacy_address);
-		let geimfara_2 : Geimfara = accept_geimfara (estate_2_legacy_address);
+		let geimfara_1 : Geimfara = G1 (estate_1_legacy_address);
+		let geimfara_2 : Geimfara = G1 (estate_2_legacy_address);
 		
 		//
 		//	check geimfara_1
 		//		* address
 		//		* thermoplastic_sheets_count
 		//
-		let geimfara_1_address : address = Rondoval_Geimfara::ask_for_address (& geimfara_1);
+		let geimfara_1_address : address = Rondoval_Geimfara::G2 (& geimfara_1);
 		assert! (geimfara_1_address == estate_1_legacy_address, Problem);
-		let geimfara_1_thermoplastic_sheets_count = Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_1);
+		let geimfara_1_thermoplastic_sheets_count = Rondoval_Geimfara::G3 (& geimfara_1);
 		assert! (geimfara_1_thermoplastic_sheets_count == 0, Problem);
 		
 		
@@ -39,14 +39,14 @@ module ride::Rondoval_Geimfara_Health_1 {
 		//
 		//
 		let add_sheets_1 : u64 = 1;
-		let geimfara_1_thermoplastic_sheets_count_1 : u64 = Rondoval_Geimfara::ask_to_add_thermoplastic_sheets (
+		let geimfara_1_thermoplastic_sheets_count_1 : u64 = Rondoval_Geimfara::G4 (
 			&mut geimfara_1, 
 			add_sheets_1
 		);
 		debug::print (& geimfara_1_thermoplastic_sheets_count_1);
 		assert! (geimfara_1_thermoplastic_sheets_count_1 == add_sheets_1, Problem);
-		debug::print (& Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_1));
-		assert! (Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_1) == add_sheets_1, Problem);
+		debug::print (& Rondoval_Geimfara::G3 (& geimfara_1));
+		assert! (Rondoval_Geimfara::G3 (& geimfara_1) == add_sheets_1, Problem);
 		
 		
 		//
@@ -54,14 +54,14 @@ module ride::Rondoval_Geimfara_Health_1 {
 		//
 		//
 		let add_sheets_2 : u64 = 18_446_744_073_709_551_615;
-		let geimfara_2_thermoplastic_sheets_count_1 : u64 = Rondoval_Geimfara::ask_to_add_thermoplastic_sheets (
+		let geimfara_2_thermoplastic_sheets_count_1 : u64 = Rondoval_Geimfara::G4 (
 			&mut geimfara_2, 
 			add_sheets_2
 		);
 		debug::print (& geimfara_2_thermoplastic_sheets_count_1);
 		assert! (geimfara_2_thermoplastic_sheets_count_1 == add_sheets_2, Problem);
-		debug::print (& Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_2));
-		assert! (Rondoval_Geimfara::ask_for_thermoplastic_sheets_count (& geimfara_2) == add_sheets_2, Problem);
+		debug::print (& Rondoval_Geimfara::G3 (& geimfara_2));
+		assert! (Rondoval_Geimfara::G3 (& geimfara_2) == add_sheets_2, Problem);
 		
 
 		//

@@ -39,6 +39,6 @@ Rondoval_Tivaevae = " ".join ([
 
 #os.system (Rondoval)
 #os.system (Rondoval_Thermoplastic)
-#os.system (Rondoval_Geimfara)
+os.system (Rondoval_Geimfara)
 os.system (Rondoval_Tivaevae)
 
