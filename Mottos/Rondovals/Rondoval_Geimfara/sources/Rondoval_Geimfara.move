@@ -16,7 +16,6 @@
 		G5: Thermoplastic Shipping
 	
 	
-	
 		G6: ask_for_measure_of_thermoplastic_sheets
 */
 
@@ -36,7 +35,7 @@ module ride::Rondoval_Geimfara {
 	use ride::Quarry_u64;
 	
 	use ride::Rondoval_Thermoplastic;
-	
+	// friend ride::Rondoval_Thermoplastic;
 
 	// const Novelist : address = @0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f;
 
@@ -91,7 +90,7 @@ module ride::Rondoval_Geimfara {
 	//			Rondoval_Geimfara::G4 (geimfara_1, to_add_f64);
 	//
 	public fun G4 (geimfara_1 : &mut Geimfara, to_add: u64) : u64 {	
-		Rondoval_Thermoplastic::ask_to_add_thermoplastic_sheets (
+		Rondoval_Thermoplastic::T4 (
 			&mut geimfara_1.thermoplastic,
 			to_add
 		);

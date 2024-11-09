@@ -68,11 +68,9 @@ module ride::Rondoval_Tivaevae {
 	use ride::Loft;
 
 	use ride::Rondoval_Vitrine;
-	use ride::Rondoval_Thermoplastic;
 	use ride::Rondoval_Geimfara;	
 	use ride::Rondoval_Geimfara::{ Geimfara };	
 
-	
 
 	#[view]
 	public fun togetherness () : String {
