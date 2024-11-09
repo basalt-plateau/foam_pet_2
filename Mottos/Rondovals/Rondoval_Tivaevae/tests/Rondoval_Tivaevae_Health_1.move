@@ -51,6 +51,5 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		
 		Rondoval_Tivaevae::J (tivaevae_spot);
 		assert! (Rondoval_Tivaevae::A (estate_1_spot) == utf8 (b"no"), 1);
-		
 	}
 }
