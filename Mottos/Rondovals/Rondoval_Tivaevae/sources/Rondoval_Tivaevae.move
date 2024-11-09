@@ -326,17 +326,9 @@ module ride::Rondoval_Tivaevae {
 	/*
 		This is for destroying a Tivaevae.
 	*/
-	public entry fun J (
-		geimfara_1: & signer,
-		geimfara_2: address,
-		sheets_count_f64 : u64
-	) {
-		/*
-			guarantee that geimfara_1 has enough sheets for the send.		
-		*/
-		
-		
-		
+	public entry fun J (tivaevae_spot : address) acquires Tivaevae {
+		// let tivaevae = borrow_global_mut<Tivaevae>(geimfara_1_spot);
+        move_from<Tivaevae> (tivaevae_spot);
 	}
 
 }
