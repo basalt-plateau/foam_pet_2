@@ -19,18 +19,16 @@ module ride::Rondoval_Tivaevae_Health_1 {
 		estate_1_signer : signer,
 		estate_2_signer : signer		
 	) {	
-		use std::string::{ String, utf8 };
-		use std::string_utils;
+		use std::string::{ utf8 };
+		// use std::string_utils;
 		use std::signer;
-		use std::debug;
+		// use std::debug;
 		
 		use ride::Rondoval_Tivaevae;
-		use ride::Rondoval_Tivaevae::{ Tivaevae };
-		use ride::Rondoval_Geimfara;
 
 		let estate_1_address = signer::address_of (& estate_1_signer);
 		let tivaevae_address = estate_1_address;
-		let geimfara_1_address = estate_1_address;
+		// let geimfara_1_address = estate_1_address;
 		
 		let estate_2_address = signer::address_of (& estate_2_signer);
 		let geimfara_2_address = estate_2_address;

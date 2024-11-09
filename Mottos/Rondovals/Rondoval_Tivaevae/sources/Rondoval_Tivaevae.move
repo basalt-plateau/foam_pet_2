@@ -31,8 +31,7 @@
 			
 			Ship: Thermoplastic
 	
-	
-	
+
 	
 	Novelist Level:
 		These should be possible if Novelist.

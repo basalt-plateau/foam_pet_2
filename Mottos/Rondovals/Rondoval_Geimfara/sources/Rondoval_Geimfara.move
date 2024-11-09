@@ -2,21 +2,21 @@
 
 /*
 	fonctions:
-		G1: add geimfara
+		G1: Geimfara:
+				+ Geimfara
 		
-		G2: Geimfara:
-				ask for address
+		G2: Geimfara:estate_address
+				ask for estate_address
 		
-		G3: Thermoplastic:
+		G3: Geimfara:thermoplastic:
 				ask for sheets count
 		
-		G4: Thermoplastic:
+		G4: Geimfara:thermoplastic:
 				+ sheets
 				
-		G5: Thermoplastic Shipping
+		G5: Geimfara:thermoplastic Shipping
 	
 	
-		G6: ask_for_measure_of_thermoplastic_sheets
 */
 
 
@@ -34,10 +34,19 @@ module ride::Rondoval_Geimfara {
 	
 	use ride::Quarry_u64;
 	
+	
 	use ride::Rondoval_Thermoplastic;
 	// friend ride::Rondoval_Thermoplastic;
 
 	// const Novelist : address = @0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f;
+
+	//
+	//	Friends
+	//
+	//
+	friend ride::Rondoval_Tivaevae;
+	friend ride::Rondoval_Geimfara_Health_1;
+
 
 	#[view]
 	public fun togetherness () : String {
@@ -46,7 +55,7 @@ module ride::Rondoval_Geimfara {
 	}
 	
 	struct Geimfara has key, drop, store {
-        address: address,
+        estate_address : address,
 		thermoplastic: Rondoval_Thermoplastic::Thermoplastic
     }
 	
@@ -54,19 +63,19 @@ module ride::Rondoval_Geimfara {
 	//	+ Geimfara
 	//
 	//
-	public fun G1 (address_1 : address) : Geimfara {
+	public (friend) fun G1 (address_1 : address) : Geimfara {
 		Geimfara {
-			address: address_1,
+			estate_address : address_1,
 			thermoplastic: Rondoval_Thermoplastic::T2 ()
 		}
 	}
 	
 	//
-	//	Geimfara: Address
+	//	Geimfara: estate_address
 	//
 	//
-	public fun G2 (geimfara_1 : & Geimfara) : address {
-		geimfara_1.address	
+	public (friend) fun G2 (geimfara_1 : & Geimfara) : address {
+		geimfara_1.estate_address	
 	}
 	
 	
@@ -77,7 +86,7 @@ module ride::Rondoval_Geimfara {
 	//
 	//		let thermoplastic_sheets_count : u64 = Rondoval_Geimfara::G3 (& geimfara_1);
 	//
-	public fun G3 (geimfara_1 : & Geimfara) : u64 {
+	public (friend) fun G3 (geimfara_1 : & Geimfara) : u64 {
 		Rondoval_Thermoplastic::T1 (& geimfara_1.thermoplastic)
 	}
 	
@@ -89,7 +98,7 @@ module ride::Rondoval_Geimfara {
 	//
 	//			Rondoval_Geimfara::G4 (geimfara_1, to_add_f64);
 	//
-	public fun G4 (geimfara_1 : &mut Geimfara, to_add: u64) : u64 {	
+	public (friend) fun G4 (geimfara_1 : &mut Geimfara, to_add: u64) : u64 {	
 		Rondoval_Thermoplastic::T4 (
 			&mut geimfara_1.thermoplastic,
 			to_add
@@ -105,7 +114,7 @@ module ride::Rondoval_Geimfara {
 	
 				mpokeaji -> mpokeaji
 	*/
-	public fun G5 (
+	public (friend) fun G5 (
 		mtumaji : &mut Geimfara,
 		mpokeaji : &mut Geimfara,
 		to_add : u64

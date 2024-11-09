@@ -35,16 +35,16 @@ module ride::Rondoval_Thermoplastic {
         sheets: u64
     }
 	
-	public(friend) fun T1 (thermoplastic_1 : & Thermoplastic) : u64 {
+	public (friend) fun T1 (thermoplastic_1 : & Thermoplastic) : u64 {
 		thermoplastic_1.sheets
     }
 	
-	public(friend) fun T2 () : Thermoplastic {
+	public (friend) fun T2 () : Thermoplastic {
         Thermoplastic { sheets: 0 }
     }
 	
 	
-	public(friend) fun T3 (
+	public (friend) fun T3 (
 		thermoplastic_1 : &mut Thermoplastic, 
 		sheets_count : u64
 	) : u64 {
@@ -53,7 +53,7 @@ module ride::Rondoval_Thermoplastic {
     }
 	
 	
-	public(friend) fun T4 (
+	public (friend) fun T4 (
 		thermoplastic_1 : &mut Thermoplastic,
 		to_add : u64
 	) {
