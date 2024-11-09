@@ -32,9 +32,7 @@
 			Ship: Thermoplastic
 	
 		J [entry]: Tivaevae: Destroy
-	
-	
-	
+
 	
 	Novelist Level:
 		These should be possible if Novelist.
@@ -62,14 +60,14 @@
 module ride::Rondoval_Tivaevae {
 	
 	use std::vector;
-	use std::string::{ Self, String, utf8 };
+	use std::string::{ String, utf8 };
 	use std::string_utils;	
 	use std::signer;
 	use std::debug;
 	
 	use ride::Loft;
 
-	use ride::Rondoval_Vitrine;
+	// use ride::Rondoval_Vitrine;
 	use ride::Rondoval_Geimfara;	
 	use ride::Rondoval_Geimfara::{ Geimfara };	
 
@@ -110,7 +108,7 @@ module ride::Rondoval_Tivaevae {
 		//
 		
 		if (exists<Tivaevae>(tivaevae_address)) {
-            abort (1001);
+            abort (1001)
         };
 		
 		
@@ -156,7 +154,7 @@ module ride::Rondoval_Tivaevae {
 
 	public fun C (tivaevae_address : address) : Tivaevae acquires Tivaevae {
 		if (!exists<Tivaevae>(tivaevae_address)) {
-           abort 1001;
+           abort 1001
         };
 
 		// borrow_global<Tivaevae>(tivaevae_address)
@@ -170,9 +168,7 @@ module ride::Rondoval_Tivaevae {
 		estate: & signer,
 		tivaevae_address : address
 	) acquires Tivaevae {
-		if (!exists<Tivaevae>(tivaevae_address)) {
-           abort 1001;
-        };
+		if (!exists<Tivaevae>(tivaevae_address)) { abort 1001 };
 		let le_tivaevae = borrow_global_mut<Tivaevae>(tivaevae_address);
 		
 		/*
@@ -327,7 +323,6 @@ module ride::Rondoval_Tivaevae {
 		This is for destroying a Tivaevae.
 	*/
 	public entry fun J (tivaevae_spot : address) acquires Tivaevae {
-		// let tivaevae = borrow_global_mut<Tivaevae>(geimfara_1_spot);
         move_from<Tivaevae> (tivaevae_spot);
 	}
 
