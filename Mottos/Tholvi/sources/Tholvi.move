@@ -8,6 +8,7 @@ module ride::Tholvi {
 	
 	use aptos_framework::block;
 	use aptos_framework::chain_id;
+	use aptos_framework::timestamp;
 	
 	use ride::Loft;
 
@@ -37,6 +38,7 @@ module ride::Tholvi {
 		let turn_u64 : u64 = block::get_current_block_height ();
 		turn_u64
 	}
+
 }
 
 

@@ -4,7 +4,7 @@
 
 
 
-module ride::Tholvi_Steady_1 {
+module ride::Steady_Tholvi_1 {
 	use std::debug;
 	use std::string::utf8;
 

@@ -31,7 +31,10 @@
 			
 			Ship: Thermoplastic
 	
-
+		J [entry]: Tivaevae: Destroy
+	
+	
+	
 	
 	Novelist Level:
 		These should be possible if Novelist.
@@ -320,8 +323,21 @@ module ride::Rondoval_Tivaevae {
 	}
 	
 
-	
-	
+	/*
+		This is for destroying a Tivaevae.
+	*/
+	public entry fun J (
+		geimfara_1: & signer,
+		geimfara_2: address,
+		sheets_count_f64 : u64
+	) {
+		/*
+			guarantee that geimfara_1 has enough sheets for the send.		
+		*/
+		
+		
+		
+	}
 
 }
 
