@@ -8,7 +8,6 @@ module ride::Tholvi {
 	
 	use aptos_framework::block;
 	use aptos_framework::chain_id;
-	use aptos_framework::timestamp;
 	
 	use ride::Loft;
 
