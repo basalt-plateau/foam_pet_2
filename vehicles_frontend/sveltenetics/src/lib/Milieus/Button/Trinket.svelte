@@ -25,7 +25,7 @@
 import { onMount, onDestroy } from 'svelte'
 import { check_Milieus_truck, monitor_Milieus_truck } from '$lib/Milieus/Truck'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-	
+import lo_clone from 'lodash/clone'	
 
 export let monitor = ""
 
@@ -119,10 +119,14 @@ let button_tapped = () => {
 		return;
 	}
 	
+	Scholars_Trucks_Freight.location = lo_clone (location);
+	
+	/*
 	Scholars_Trucks_Freight.location = [ 
 		location [0],
 		location [1]
 	]
+	*/
 	
 	if (scroll_to_top === "yes") {
 		//window.scrollTo ({ top: 0, behavior: 'smooth' });

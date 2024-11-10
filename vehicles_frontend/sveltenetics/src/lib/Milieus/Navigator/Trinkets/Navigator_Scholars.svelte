@@ -66,15 +66,22 @@ const build = () => {
 }
 
 /*
-	Inuit: 
-		ᐊᔭᕙᓘᓐᖏᑦ
-	
-	Cherokee: 
-		ᎦᎵᏉᎩ
+
+	Friends:
+		
+
+	Garden:
+		Inuit: 
+			ᐊᔭᕙᓘᓐᖏᑦ
+		
+		Cherokee: 
+			ᎠᏫᏒᏅ
 */
 const names = {
-	garden: "ᐊᔭᕙᓘᓐᖏᑦ"
+	garden: "ᎠᏫᏒᏅ"
 }
+
+
 
 
 </script>

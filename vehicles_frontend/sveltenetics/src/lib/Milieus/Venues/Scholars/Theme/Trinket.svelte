@@ -88,6 +88,7 @@ onMount (() => {
 });
 
 
+
 </script>
 
 <style>
@@ -110,8 +111,10 @@ a {
 
 <Leaf>
 	<Scholars_Trucks on_change={ on_seeds_truck_change } />
-	{#if seeds_trucks_prepared === "yes" && mounted === "yes" }
-	<div>		
+	
+	
+	{#if seeds_trucks_prepared === "yes" && mounted === "yes" }	
+	<div>
 		<div
 			class="card p-4"
 			style="

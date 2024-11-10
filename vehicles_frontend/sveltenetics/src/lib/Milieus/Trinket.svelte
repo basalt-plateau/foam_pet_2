@@ -25,6 +25,7 @@ let Milieus = {
 		"Garden": async () => { return await import ('./Venues/Scholars/Garden/Trinket.svelte') },
 		"Theme": async () => { return await import ('./Venues/Scholars/Theme/Trinket.svelte') },
 	},
+	"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') },
 	"Friends": {
 		"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') }
 	},
@@ -67,7 +68,7 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	
 	
 	const location = Milieus_freight.location;
-	
+	console.log ({ location });
 
 
 	
@@ -77,8 +78,17 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	
 	let next_component;
 	try {
-		next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
-		console.log ("Milieus Location:", location [0], location [1])
+		if (location.length == 2) {
+			next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
+			console.log ("Milieus Location:", location [0], location [1])
+		}
+		else if (location.length == 1) {
+			next_component = (await Milieus [ location [0] ] ()).default;
+			console.log ("Milieus Location:", location [0])
+		}
+		else {
+			next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
+		}
 	}
 	catch (exception) {
 		console.error (exception)

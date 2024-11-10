@@ -95,6 +95,32 @@ let friends = {
 	
 }
 
+/*
+	Possibilities:
+		Talents, Tricks, Opportunities
+	
+
+	Languages:
+		Tifinagh:
+			
+		
+		N'Ko:
+			
+		
+		Amharic, Ge'ez, Tigrinya, Tigre
+		
+		
+		Syriac
+*/
+
+let Amharic = {
+	Friendships: (
+		"ጓደኝነት"
+	)
+}
+
+
+
 // "ᎤᏓᏅᏙᏗ"
 let names = {
 	seeds: scholars.Malayalam,
@@ -141,9 +167,9 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	<Milieus_Button
 		monitor="Friends"
 	
-		name={ names.friends }
-		location={[ "Friends", "Talents" ]}
-		is_open_location={[ "Friends" ]}
+		name={ Amharic.Friendships }
+		location={[ "Talents" ]}
+		is_open_location={[ "Talents" ]}
 		
 		style={ buttons_styles }
 	/>

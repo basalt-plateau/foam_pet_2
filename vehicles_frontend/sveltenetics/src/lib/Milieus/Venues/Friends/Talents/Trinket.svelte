@@ -71,6 +71,21 @@ let friends_name = "ጓደኛዎች"
 let friends_language = "Amharic"
 let friends_pronunciation = "gwadenyawotch"
 
+let Amharic_Friendships = {
+	name: (
+		"ጓደኝነት"
+	),
+	english: (
+		"Friendships"
+	),
+	language: (
+		"Amharic"
+	),
+	pronunciation: (
+		"Gwadenyanet"
+	)
+}
+
 </script>
 
 <style>
@@ -91,21 +106,6 @@ let friends_pronunciation = "gwadenyawotch"
 
 <Leaf>
 	<div
-		class="card p-1"
-		style="
-			width: 100%;
-		"
-	>
-		<p
-			style="
-				text-align: center;
-			"
-		>"{ friends_name }", pronounced "{ friends_pronunciation }", might be { friends_language } for "friends".</p>
-	</div>
-
-	<div style="height: 0.2cm"></div>
-
-	<div
 		class="card p-4"
 		style="
 			padding: 1cm;
@@ -114,10 +114,37 @@ let friends_pronunciation = "gwadenyawotch"
 	>
 		<header
 			style="
-				font-size: 2.5em;
+				font-size: 3em;
 				text-align: center;
+				font-size: bold;
 			"
-		>Talents</header>
+		>{ Amharic_Friendships.name }</header>
+
+		<div style="height: 0.25cm"></div>
+
+
+		<div
+			class="card p-1 variant-filled-primary"
+			style="
+				width: 100%;
+			"
+		>
+			<span
+				style="
+					display: block;
+					text-align: center;
+				"
+			>Perhaps occassionally pronounced <b>{ Amharic_Friendships.pronunciation }</b>, </span>
+			<span
+				style="
+					display: block;
+					text-align: center;
+				"
+			><b style="font-size: 1.2em">{ Amharic_Friendships.name }</b> might be <b>{ Amharic_Friendships.language }</b> for <b>{ Amharic_Friendships.english }</b>.</span>
+		</div>
+		
+		<div style="height: 0.25cm"></div>
+		
 		<p
 			style="
 				text-align: center;
@@ -141,7 +168,9 @@ let friends_pronunciation = "gwadenyawotch"
 			display: 'grid',
 			'width': '100%',
 			'grid-template-columns': 'repeat(auto-fit, minmax(400px, 1fr))',
-			'grid-gap': '10px'
+			'grid-gap': '10px',
+			
+			'padding-bottom': '5cm'
 		}) }
 	>
 		<Panel styles={ trends.panel }>		
