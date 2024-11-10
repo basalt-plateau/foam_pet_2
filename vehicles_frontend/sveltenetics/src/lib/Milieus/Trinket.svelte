@@ -67,7 +67,7 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	
 	
 	const location = Milieus_freight.location;
-	console.log ("Milieus Location:", location [0], location [1])
+	
 
 
 	
@@ -78,6 +78,7 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	let next_component;
 	try {
 		next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
+		console.log ("Milieus Location:", location [0], location [1])
 	}
 	catch (exception) {
 		console.error (exception)

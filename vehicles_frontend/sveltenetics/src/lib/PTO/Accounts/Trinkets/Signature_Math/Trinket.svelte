@@ -23,7 +23,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 						'display': 'block',
 						'text-align': 'center',
 						'font-size': '2em',
-						'padding': '0.2cm',
+						'padding': '0cm',
 					})}"
 				>
 					<Slang text="Private Key" /> Math

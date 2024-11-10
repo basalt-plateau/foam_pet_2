@@ -30,7 +30,7 @@
 						'display': 'block',
 						'text-align': 'center',
 						'font-size': '2em',
-						'padding': '0.2cm',
+						'padding': '0cm',
 					})}"
 				>
 					Legitimacy
