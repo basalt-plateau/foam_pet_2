@@ -116,22 +116,44 @@ let tabSet = 0
 			<p
 				style="
 					text-align: center;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					
 					padding: 1em;
+					line-height: 2em;
 				"
 			>
 				<span
 					style="
-						display: inline-flex;
-						align-items: center;
-						transform: scale(1.3);
+						text-align: center;
+						display: block;
 					"
-				><Loyals /></span>
-				<span style="width: 10px"> </span>
-				<span>might be <b>{ pet_language.language }</b> for <b>{ pet_language.name }</b>.</span>
+				>Although the glyph seems vague and dissimilar,</span>
+				<span
+					style="
+						text-align: center;
+						display: block;
+						justify-content: center;
+						align-items: cetner;
+					"
+				>
+					<div
+						style="
+							display: inline-block;
+							transform: scale(1.2) translateY(5px);
+							padding-right: .25em;
+						"
+					>
+						<Loyals />
+					</div>
+					<div
+						style="
+							display: inline-block;
+						"
+					>seems to evoke</div>
+					<div
+						style="
+							display: inline-block;
+						"
+					><b>loyalty</b></div>.
+				</span>
 			</p>
 		</div>
 	</div>
