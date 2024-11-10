@@ -14,7 +14,7 @@ biotech==1.1.10
     #   ships
     #   somatic
     #   ventures
-blinker==1.8.2
+blinker==1.9.0
     # via flask
 body-scan==1.1.1
     # via
@@ -202,7 +202,7 @@ ventures==3.0.0
     # via foam-pet (pyproject.toml)
 wcwidth==0.2.13
     # via prettytable
-websockets==13.1
+websockets==14.0
     # via sanic
 werkzeug==3.1.3
     # via flask

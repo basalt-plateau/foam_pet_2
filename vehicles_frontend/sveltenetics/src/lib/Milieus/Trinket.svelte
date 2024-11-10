@@ -17,7 +17,8 @@
 import { onMount, onDestroy } from 'svelte'
 
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
-
+import { parse_styles } from '$lib/trinkets/styles/parse'
+	
 let Milieus = {
 	"Scholars": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
@@ -49,8 +50,15 @@ let Milieus = {
 	}
 }
 
+let milieu_venue;
+
 let location = []
 let component = Milieus [ "Scholars" ] [ "Hints" ]
+
+let style = parse_styles ({
+	opacity: 1,
+	transition: "opacity .1s"
+})
 
 let Milieus_freight = {}
 let Milieus_truck_prepared = "no"
@@ -59,24 +67,33 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	
 	
 	const location = Milieus_freight.location;
-	
 	console.log ("Milieus Location:", location [0], location [1])
+
+
 	
-	// component = await import ('./Venues/Scholars/Hints/Trinket.svelte');
-	// component = (await import('./Venues/Scholars/Hints/Trinket.svelte')).default;	
-	// console.log ({ component });
+	if (happening !== "mounted") {
+		milieu_venue.style.opacity = 0;
+	}
 	
-	
-	// return;
-	
+	let next_component;
 	try {
-		component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
+		next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
 	}
 	catch (exception) {
 		console.error (exception)
-		
-		component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
+		next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
 	}
+	
+	
+	await new Promise (resolve => {
+		setTimeout (() => { 
+			resolve ();
+		}, 100);			
+	});
+	
+	component = next_component;
+	
+	milieu_venue.style.opacity = 1;
 	
 	if (happening === "mounted") {
 		Milieus_truck_prepared = "yes"
@@ -90,7 +107,11 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 
 
 
-<div>	
+<div
+	bind:this={ milieu_venue }
+
+	style={ style }
+>	
 	<Milieus_Truck on_change={ on_Milieus_truck_change } />
 	
 	{#if Milieus_truck_prepared === "yes" }
