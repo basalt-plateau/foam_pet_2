@@ -31,31 +31,6 @@ module ride::Pergola_Steady_1 {
     }
 	
 	
-	/*
-		Unfinished:
-			
-	
-	*/
-	#[test]
-    public fun steady_estate_APT_coins () {
-		use std::debug;
-
-		use aptos_framework::aptos_coin::{ AptosCoin };
-		use aptos_framework::coin;
-		
-		
-		// let estate_1_legacy_address : address = @0x99caba6e28919a1ef5ada895a9e0b1093159f823c523eaf5eddf5cfdc3293e2f;
-		let estate_1_legacy_address : address = @0x652b8d45aebc4237cb4a4ca1d8b99725d8f973676844fe85eb09286d7f9d3808;
-		
-		let u64_1 : u64 = coin::balance<AptosCoin>(estate_1_legacy_address);
-		if (u64_1 != 0) {
-			debug::print (& u64_1);
-			abort 947283
-		}
-		
-        // let u64_1 : u64 = Pergola::APT_scoreboard <aptos_coin::AptosCoin> (estate_1_legacy_address);
-
-    }
 
 
 	#[test(estate_1 = @ride)]
