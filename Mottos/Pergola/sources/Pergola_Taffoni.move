@@ -9,6 +9,7 @@ module ride::Pergola_Taffoni {
 	use std::string::{ String, utf8 };
 	use std::signer;
 	use std::string_utils;
+	use aptos_std::table::{Self, Table};
 	
 	use aptos_framework::coin::{ Self, Coin, CoinStore };
 	use aptos_framework::aptos_coin::{ AptosCoin, Self };
@@ -22,8 +23,14 @@ module ride::Pergola_Taffoni {
     }
 	
 	struct Lock<phantom CoinType> has store {
-        coins : Coin<CoinType>,
-        unlock_time_secs: u64
+        coins: Coin<CoinType>,
+        unlock_time_secs: u64,
+    }
+
+	struct Locks<phantom CoinType> has key {
+        locks: Table<address, Lock<CoinType>>,
+        withdrawal_address: address,
+        total_locks: u64
     }
 	
 	
@@ -31,7 +38,7 @@ module ride::Pergola_Taffoni {
 	struct Taffoni has key {
 		aptos_coins : Coin<AptosCoin>
 	}
-	
+
 	/*
 		similar:
 			create-resource-account
@@ -52,6 +59,13 @@ module ride::Pergola_Taffoni {
         };
 		
 		move_to (estate_1_flourisher, le_Taffoni);
+		
+		
+		move_to (estate_1_flourisher, Locks {
+            locks: table::new<address, Lock<AptosCoin>>(),
+            withdrawal_address: estate_1_spot,
+            total_locks: 0
+        })
 	}
 	
 	#[view]
@@ -76,17 +90,27 @@ module ride::Pergola_Taffoni {
 	public entry fun add_AptosCoin_to_Taffoni (
 		estate_1_signer: & signer,
 		amount : u64
-	) acquires Taffoni {
+	) acquires Taffoni, Locks {
 		let estate_1_address = signer::address_of (estate_1_signer);
 		let le_taffoni = borrow_global_mut<Taffoni>(estate_1_address);
-		// let le_taffoni_aptos_coins : Coin<AptosCoin> = le_taffoni.aptos_coins;
+		let coin_amount : u64 = coin::value (& le_taffoni.aptos_coins);
+		debug::print (& string_utils::format1 (& b"coins: {}", coin_amount));
 		
-		let coin_value : u64 = coin::value (& le_taffoni.aptos_coins);
-		debug::print (& string_utils::format1 (& b"coins: {}", coin_value))
+		
 		
 		// let le_taffoni_balance : u64 = coin::balance (le_taffoni.aptos_coins);
-		// let coins = coin::withdraw<AptosCoin>(estate_1_signer, amount);
-		// debug::print ()
+		
+		
+		let withdrawn_coins = coin::withdraw<AptosCoin>(estate_1_signer, amount);
+		
+		// coin::deposit (le_taffoni, withdrawn_coins);
+		
+		let locks = borrow_global_mut<Locks<AptosCoin>>(estate_1_address);
+		table::add (
+			&mut locks.locks, 
+			estate_1_address, 
+			Lock<AptosCoin> { coins: withdrawn_coins, unlock_time_secs: 10 }
+		);
 	}
 	
 	
