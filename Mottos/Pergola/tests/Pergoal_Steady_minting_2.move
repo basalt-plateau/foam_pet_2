@@ -45,7 +45,11 @@ module ride::Pergola_Steady_minting_2 {
 		use std::signer;
 		use std::vector;
 		use std::string;
-			
+		use std::string::{ utf8 };
+		use std::debug;
+		
+		use ride::Pergola_Taffoni;
+		
         timestamp::set_time_has_started_for_testing (aptos_framework);
 		
 		//
@@ -62,6 +66,10 @@ module ride::Pergola_Steady_minting_2 {
             false,
         );
 		
+		//
+		//	Create Accounts
+		//
+		//
 		let estate_1_spot = signer::address_of (estate_1_flourisher);
         account::create_account_for_test (estate_1_spot);
         coin::register<AptosCoin>(estate_1_flourisher);
@@ -70,7 +78,10 @@ module ride::Pergola_Steady_minting_2 {
 		account::create_account_for_test (estate_2_spot);
 		coin::register<AptosCoin>(estate_2_flourisher);
 		
-		
+		//
+		//	Mint 
+		//
+		//
         let coins = coin::mint<AptosCoin>(2000, &mint_cap);
         coin::deposit (estate_1_spot, coins);
 		
@@ -81,6 +92,18 @@ module ride::Pergola_Steady_minting_2 {
 		coin::transfer<AptosCoin>(estate_1_flourisher, estate_2_spot, to_send);
 		
 		
+		
+		Pergola_Taffoni::establish_Taffoni (estate_1_flourisher);
+		if (Pergola_Taffoni::has_Taffoni (estate_1_spot) != utf8 (b"yep")) {
+			debug::print (& utf8 (b""));
+			abort 89319
+		};
+		if (Pergola_Taffoni::retrieve_Taffoni_AptosCoin_amount (estate_1_flourisher) != 0) {
+			abort 89349
+		};
+	
+	
+
 		
 		
         coin::destroy_mint_cap (mint_cap);
@@ -128,8 +151,6 @@ module ride::Pergola_Steady_minting_2 {
 		
 		
 
-		
-		
 		
 		
 		
