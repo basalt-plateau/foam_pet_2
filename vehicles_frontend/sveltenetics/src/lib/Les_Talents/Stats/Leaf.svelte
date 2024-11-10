@@ -4,11 +4,17 @@
 
 
 /*
-	@ Present
-		@ Now
-		@ Current
-		@ Story
-		@ Freshest
+	.Scoreboard
+	.Stats
+	
+	.Health
+		.Monitor
+
+	. Present
+		. Now
+		. Current
+		. Story
+		. Freshest
 */
 
 import { onMount, onDestroy } from 'svelte'

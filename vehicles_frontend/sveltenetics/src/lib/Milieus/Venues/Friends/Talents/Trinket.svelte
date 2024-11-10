@@ -7,6 +7,14 @@
 <script>
 	
 /*
+	Friendships
+	
+	Scoreboards
+	
+	Playbook
+	
+	Tricks
+
 	Talents:
 		@ Plays
 

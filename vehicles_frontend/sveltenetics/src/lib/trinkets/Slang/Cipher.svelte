@@ -8,6 +8,12 @@
 	<Slang_Cipher />
 */
 
+/*
+	Original:
+		Traditional:
+
+*/
+
 import { has_field } from '$lib/taverns/procedures/object/has_field'
 import { onMount } from 'svelte'
 import nlp from 'compromise/one'
@@ -42,15 +48,15 @@ console.log ({ organized })
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th style="width: 6cm">Slang</th>
-					<th>Original</th>
+					<th style="width: 50%">Original</th>
+					<th style="width: 50%">Slang</th>
 				</tr>
 			</thead>
 			<tbody>
 				{#each Object.entries (organized) as [ saying, equivalent ]}
 					<tr>
-						<td>{ equivalent }</td>
 						<td>{ saying }</td>
+						<td>{ equivalent }</td>
 					</tr>
 				{/each}
 			</tbody>

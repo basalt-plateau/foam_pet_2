@@ -110,7 +110,7 @@ a {
 				style="
 					text-align: center;
 				"
-			>might be the <b>{ Cherokee_Garden.language }</b> sound for <b>{ Cherokee_Garden.name }</b>.</p>
+			>might be the <b>{ Cherokee_Garden.language }</b> sound for <b>{ Cherokee_Garden.english }</b>.</p>
 		</div>
 		
 		<div style="height: 0.5cm"></div>
