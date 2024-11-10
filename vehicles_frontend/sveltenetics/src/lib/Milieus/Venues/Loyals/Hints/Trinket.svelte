@@ -108,7 +108,7 @@ let tabSet = 0
 		<div style="height: 0.5cm"></div>
 
 		<div
-			class="card p-1 variant-filled-primary"
+			class="card p-2 variant-filled-primary"
 			style="
 				width: 100%;
 			"
@@ -116,7 +116,6 @@ let tabSet = 0
 			<p
 				style="
 					text-align: center;
-					padding: 1em;
 					line-height: 2em;
 				"
 			>
@@ -125,7 +124,7 @@ let tabSet = 0
 						text-align: center;
 						display: block;
 					"
-				>Although the glyph seems vague and dissimilar,</span>
+				>Although the glyph seems vague,</span>
 				<span
 					style="
 						text-align: center;

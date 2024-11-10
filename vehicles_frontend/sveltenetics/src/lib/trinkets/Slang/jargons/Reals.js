@@ -64,15 +64,19 @@ const account = {
 	"Key": "Key",
 	"Keys": "Keys",
 	
-	//
-	//	Liberty, Life, Volition
-	//
-	//
-	"private key": "advantage",
-	"Private Key": "Advantage",
-	"A_Private_Key": "An Advantage",	
-	"a_Private_Key": "an Advantage",	
-	"Private Keys": "Advantages",
+	/*
+		Liberty, Life, Volition,
+		Burden, Omega, tricks, talents,
+		advantages, obligation
+	*/
+	"private key": "obligation",
+	"Private Key": "Obligation",
+	
+	"private keys": "obligations",
+	
+	"A_Private_Key": "An Obligation",	
+	"a_Private_Key": "an obligation",	
+	"Private Keys": "Obligations",
 	
 	//
 	//
