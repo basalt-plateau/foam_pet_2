@@ -5,8 +5,8 @@ const blockchain = {
 	//	Map		
 	//	[ Dream, Story, Note ]	
 	//			
-	"blockchain": "board",
-	"Blockchain": "Board",
+	"blockchain": "socreboard",
+	"Blockchain": "Scoreboard",
 	"Block": "Turn",
 	
 	"transaction": "adaptation",

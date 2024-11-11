@@ -90,7 +90,10 @@ module ride::Rondoval_Tivaevae {
     }
 	
 
-	public entry fun B (estate_flourisher : & signer) acquires Tivaevae {
+	public entry fun B (
+		estate_flourisher : & signer,
+		thermoplastic_sheets_to_add : u64
+	) acquires Tivaevae {
 		/*
 			tivaevae_address =
 				estate_address
@@ -146,7 +149,7 @@ module ride::Rondoval_Tivaevae {
 		//
 		assert! (F (tivaevae_address, geimfara_1_address) == 0, 1);
 		
-		let thermoplastic_sheets_to_add : u64 = 900000;		
+				
 		G (tivaevae_address, geimfara_1_address, thermoplastic_sheets_to_add);
 		assert! (F (tivaevae_address, geimfara_1_address) == 900000, 1);
     }
@@ -304,19 +307,19 @@ module ride::Rondoval_Tivaevae {
 	}
 	
 	
-	
+	/*
 	public entry fun I (
 		geimfara_1: & signer,
 		geimfara_2: address,
 		sheets_count_f64 : u64
 	) {
-		/*
-			guarantee that geimfara_1 has enough sheets for the send.		
-		*/
+		// guarantee that geimfara_1 has enough sheets for the send.		
+		
 		
 		
 		
 	}
+	*/
 	
 
 	/*

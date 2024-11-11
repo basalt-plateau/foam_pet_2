@@ -12,7 +12,9 @@ module ride::Moo {
 	}
 	
 	
-
+	struct Pastures has key {
+		token_data_id: TokenDataId,
+	}
 }
 
 

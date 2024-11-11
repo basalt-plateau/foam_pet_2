@@ -34,10 +34,10 @@ module ride::Rondoval_Geimfara_Health_1 {
 		assert! (geimfara_1_thermoplastic_sheets_count == 0, Problem);
 		
 		
-		//
-		//	give sheets to geimfara_1
-		//
-		//
+		/*
+			Mint sheets for Geimfara 1
+		
+		*/
 		let add_sheets_1 : u64 = 1;
 		let geimfara_1_thermoplastic_sheets_count_1 : u64 = Rondoval_Geimfara::G4 (
 			&mut geimfara_1, 
@@ -49,10 +49,10 @@ module ride::Rondoval_Geimfara_Health_1 {
 		assert! (Rondoval_Geimfara::G3 (& geimfara_1) == add_sheets_1, Problem);
 		
 		
-		//
-		//	give sheets to geimfara_2
-		//
-		//
+		/*
+			Mint sheets for Geimfara 2
+		
+		*/
 		let add_sheets_2 : u64 = 18_446_744_073_709_551_615;
 		let geimfara_2_thermoplastic_sheets_count_1 : u64 = Rondoval_Geimfara::G4 (
 			&mut geimfara_2, 
@@ -63,12 +63,11 @@ module ride::Rondoval_Geimfara_Health_1 {
 		debug::print (& Rondoval_Geimfara::G3 (& geimfara_2));
 		assert! (Rondoval_Geimfara::G3 (& geimfara_2) == add_sheets_2, Problem);
 		
-
-		//
-		//
-		//	attempt send thermoplastic sheets from geimfara_1 to geimfara_2
-		//
-		//
+		
+		/*
+			Attempt send Thermoplastic sheets from:
+				Geimfara 1 to Geimfara 2
+		*/
 		let to_send_1 : u64 = 10;
 		let receipt_1 : String = Rondoval_Geimfara::G5 (
 			&mut geimfara_1, 
@@ -79,11 +78,10 @@ module ride::Rondoval_Geimfara_Health_1 {
 		assert! (receipt_1 == utf8 (b"Mtumaji does not have enough thermoplastic sheets for that ask."), Problem);
 	
 		
-		//
-		//
-		//	attempt send thermoplastic sheets from geimfara_1 to geimfara_2
-		//
-		//
+		/*
+			Attempt send Thermoplastic sheets from:
+				Geimfara 1 to Geimfara 2
+		*/
 		let to_send_2 : u64 = 1;
 		let receipt_2 : String = Rondoval_Geimfara::G5 (
 			&mut geimfara_1, 
@@ -94,11 +92,10 @@ module ride::Rondoval_Geimfara_Health_1 {
 		assert! (receipt_2 == utf8 (b"Mpokeaji does not have room for those additional thermoplastic sheets."), Problem);
 		
 		
-		//
-		//
-		//	actually send thermoplastic sheets from geimfara_2 to geimfara_1
-		//
-		//
+		/*
+			Actually send Thermoplastic sheets from:
+				Geimfara 1 to Geimfara 2
+		*/
 		let to_send_3 : u64 = 1;
 		let receipt_3 : String = Rondoval_Geimfara::G5 (
 			&mut geimfara_2, 

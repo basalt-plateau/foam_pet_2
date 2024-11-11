@@ -146,7 +146,8 @@ const ask = () => {
 				white-space: preserve;
 				word-wrap: break-word;
 				
-				width: 80%;
+				width: 50%;
+				min-width: 300px;
 				height: 100px;
 				
 				font-size: 2em;

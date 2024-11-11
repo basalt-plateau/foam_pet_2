@@ -56,6 +56,8 @@ import { modal_plugs, trends } from './Trinket'
 //
 import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico/Trinket.svelte'
 import Digital_Assets_Portico from '$lib/Les_Talents/Digital_Assets/Portico/Trinket.svelte'
+import Rondovals_Portico from '$lib/Les_Talents/Rondovals/Portico/Trinket.svelte'
+import Mercy_Portico from '$lib/Les_Talents/Mercy/Portico/Trinket.svelte'
 
 
 
@@ -178,7 +180,7 @@ let Amharic_Friendships = {
 			'grid-template-columns': 'repeat(auto-fit, minmax(400px, 1fr))',
 			'grid-gap': '10px',
 			
-			'padding-bottom': '5cm'
+			'padding-bottom': '1cm'
 		}) }
 	>
 		<Panel styles={ trends.panel }>		
@@ -277,7 +279,21 @@ let Amharic_Friendships = {
 			</div>
 		</Panel>
 	
-		{#if mode === "nurture" }
+	</section>
+	
+	
+	{#if mode === "nurture" }
+	<section
+		style={ parse_styles ({
+			position: 'relative',
+			display: 'grid',
+			'width': '100%',
+			'grid-template-columns': 'repeat(auto-fit, minmax(400px, 1fr))',
+			'grid-gap': '10px',
+			
+			'padding-bottom': '5cm'
+		}) }
+	>
 		<Panel styles={ trends.panel }>		
 			<div class="relative inline-block">
 				<button 
@@ -306,32 +322,28 @@ let Amharic_Friendships = {
 				
 			</div>
 		</Panel>
-		{/if}
 		
 		
-		
-		{#if mode === "nurture" }
+		<Panel 
+			styles={ trends.panel }
+		>		
+			<Mercy_Portico { modal_store }/>	
+		</Panel>
 		<Panel 
 			styles={ trends.panel }
 		>		
 			<Adaptation_Portico { modal_store }/>
 		</Panel>
-		{/if}
-
-
-		{#if mode === "nurture" }
 		<Panel 
 			styles={ trends.panel }
 		>		
 			<Digital_Assets_Portico { modal_store }/>	
 		</Panel>
-		{/if}
-
-		
-
-		
-		
-		{#if mode === "nurture" }
+		<Panel 
+			styles={ trends.panel }
+		>		
+			<Rondovals_Portico { modal_store }/>	
+		</Panel>
 		<Panel 
 			styles={ trends.panel }
 		>		
@@ -374,6 +386,6 @@ let Amharic_Friendships = {
 				<span class="badge variant-filled-surface">0x1::coin::transfer</span>
 			</span>
 		</Panel>
-		{/if}
 	</section>
+	{/if}
 </Leaf>

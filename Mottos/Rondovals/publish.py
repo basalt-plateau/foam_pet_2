@@ -7,7 +7,7 @@
 import os
 
 
-ride = "9b30243a0cc51b6a59a0fbc2220adcb0601bf9627eb35400d5760a1292b4184d"
+ride = "4f17759878b2e2278cdfc5a8259a0436d7fba14c2887c9491d36d8c3c116fe34"
 
 os.system (f"cd /Metro/Mottos/Rondovals/Rondoval && aptos move publish --assume-yes --named-addresses ride={ ride }");
 

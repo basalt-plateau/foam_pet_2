@@ -15,8 +15,6 @@
 				+ sheets
 				
 		G5: Geimfara:thermoplastic Shipping
-	
-	
 */
 
 

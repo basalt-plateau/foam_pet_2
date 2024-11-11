@@ -83,7 +83,7 @@ module ride::Pergola_Taffoni {
 	public entry fun add_AptosCoin_to_Taffoni (
 		estate_1_signer: & signer,
 		taffoni_address : address,
-		amount : u64
+		amount_to_ship : u64
 	) acquires Taffoni {
 		let estate_1_address = signer::address_of (estate_1_signer);
 		let le_taffoni = borrow_global_mut<Taffoni>(taffoni_address);
@@ -120,7 +120,7 @@ module ride::Pergola_Taffoni {
 		//	Withdraw from estate 1, then merge the withdrawn 
 		//	coins into the taffoni.
 		//
-		let withdrawn_coins = coin::withdraw<AptosCoin>(estate_1_signer, amount);
+		let withdrawn_coins = coin::withdraw<AptosCoin>(estate_1_signer, amount_to_ship);
 		coin::merge (&mut le_taffoni.aptos_coins, withdrawn_coins);
 		
 		
