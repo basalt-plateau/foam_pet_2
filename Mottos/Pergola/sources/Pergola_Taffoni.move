@@ -93,6 +93,7 @@ module ride::Pergola_Taffoni {
 	) acquires Taffoni, Locks {
 		let estate_1_address = signer::address_of (estate_1_signer);
 		let le_taffoni = borrow_global_mut<Taffoni>(estate_1_address);
+		let locks = borrow_global_mut<Locks<AptosCoin>>(estate_1_address);
 		
 		//
 		//	Amounts
@@ -112,8 +113,11 @@ module ride::Pergola_Taffoni {
 		// let estate_1_coins : u64 = coin::balance<Coin>(address_1)
 		
 		
+		coin::merge (&mut le_taffoni.aptos_coins, withdrawn_coins);
 		
-		let locks = borrow_global_mut<Locks<AptosCoin>>(estate_1_address);
+		
+		/*
+		
 		table::add (
 			&mut locks.locks, 
 			estate_1_address, 
@@ -122,6 +126,7 @@ module ride::Pergola_Taffoni {
 				unlock_time_secs: 10 
 			}
 		);
+		*/
 		
 		
 		let taffoni_coin_amount_2 : u64 = coin::value (& le_taffoni.aptos_coins);
