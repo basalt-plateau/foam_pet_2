@@ -4,15 +4,17 @@
 # Foam Pet
 ![Foam Pet](vehicles_frontend/sveltenetics/static/pictures/Foam_Pet_0001.svg)
 
-This pet can interact with Aptos with offline trinkets   
-like a "laptop", "desktop", etc.   
+A pet on an offline machine (such as a laptop or desktop) 
+can interact with https://foam.pet
 
-With one Foam Pet living in an offline machine and another living in an online machine,   
-signatures can happen with QR code to bionic eye gestures,   
-as long as both machines have a bionic eye + a screen.
+By doing so, ultra secure Aptos (APT) transactions can happen.
+https://aptosfoundation.org
 
-A Foam Pet with a Docker Vehicle or a PyPI vehicle   
-can be adopted from here.   
+Both machines need a camera (bionic eye) and screen.
+
+A pet for a Linux_x86_64 machine or docker   
+can be adopted from releases:
+https://github.com/basalt-plateau/foam_pet/releases
 
 ----
 
