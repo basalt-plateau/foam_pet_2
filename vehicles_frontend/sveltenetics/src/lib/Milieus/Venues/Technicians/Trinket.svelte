@@ -126,6 +126,17 @@ a {
 			style="margin: 4px 0 12px"
 		>
 		
+		
+		<Panel 
+			styles={ trends.panel }
+		>
+			<Milieus_Button
+				name={ "Wallet Socket" }
+				location={[ "Technicians", "Wallet Socket" ]}
+				is_open_location={[ "Technicians", "Wallet Socket" ]}
+			/>
+		</Panel>
+		
 		<Panel 
 			styles={ trends.panel }
 		>

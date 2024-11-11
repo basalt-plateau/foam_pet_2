@@ -47,6 +47,8 @@ let Milieus = {
 		"Polytope": async () => { return await import ('./Venues/Technicians/Polytope/Trinket.svelte') },		
 		"Slang": async () => { return await import ('./Venues/Technicians/Slang/Trinket.svelte') },
 		
+		"Wallet Socket": async () => { return await import ('./Venues/Technicians/Wallet_Socket/Trinket.svelte') },
+		
 		"Field": async () => { return await import ('./Venues/Technicians/Field/Trinket.svelte') },
 	}
 }

@@ -101,6 +101,14 @@ const ask = () => {
 		
 		<div style="height: 0.5cm"></div>
 		
+	</div>
+
+	<div
+		class="card p-4"
+		style="
+			text-align: center;
+		"
+	>
 		<p
 			style="
 				font-size: 1.1em;
@@ -108,13 +116,23 @@ const ask = () => {
 		><Slang text="Petition" /> + <Slang text="Signature" /> + <Slang text="Consensus" /> approval = <Slang text="Blockchain" /> <Slang text="Transaction" /> </p>
 	</div>
 
-	<div style="height: 1cm"></div>
+	<div style="height: 0.5cm"></div>
 
 	<div
+		class="card p-4"
 		style="
 			text-align: center;
 		"
 	>
+		<div style="height: 1cm"></div>
+	
+		<p>
+			<span style="display: block;">To Suggest the <Slang text="Petition" /> + <Slang text="Signature" /> to the <Slang text="Consensus" />,
+			<span style="display: block;">press this button:</span>
+		</p>
+	
+		<div style="height: 1cm"></div>
+	
 		<button 
 			monitor="suggestion pad"
 			
@@ -127,13 +145,16 @@ const ask = () => {
 				max-width: 15cm;
 				white-space: preserve;
 				word-wrap: break-word;
+				
+				width: 80%;
+				height: 100px;
+				
+				font-size: 2em;
 			"
 			
-		>	
-			<p>Suggest the <Slang text="Petition" /> + <Slang text="Signature" /> to the <Slang text="Consensus" />.</p>
-			
-			<!-- <p>Suggest that the <Slang text="Consensus" /> make the <Slang text="Transaction" /> on the <Slang text="Blockchain" /> based on the <b>Petition</b> + <b>Signature</b>.</p> -->
-		</button>
+		>Suggest</button>
+		
+		<div style="height: 1cm"></div>		
 	</div>
 	
 	<div style="height: 1cm"></div>

@@ -1,6 +1,6 @@
 
 
-module ride::Woofs {
+module ride::Moo {
 
 	use std::string::{ String };
 	use ride::Loft;
