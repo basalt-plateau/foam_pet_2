@@ -102,8 +102,12 @@ module ride::Pergola_Steady_minting_2 {
 			abort 89349
 		};
 	
-	
-
+		//
+		//	.. save coins in the taffoni
+		//
+		//
+		let to_send_to_taffoni : u64 = 100;
+		Pergola_Taffoni::add_AptosCoin_to_Taffoni (estate_1_flourisher, to_send_to_taffoni);
 		
 		
         coin::destroy_mint_cap (mint_cap);
