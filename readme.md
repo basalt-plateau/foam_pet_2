@@ -2,6 +2,8 @@
 
 
 # Foam Pet
+![Foam Pet](vehicles_frontend/sveltenetics/static/pictures/Foam_Pet_0001.svg)
+
 This pet can interact with Aptos with offline trinkets   
 like a "laptop", "desktop", etc.   
 
