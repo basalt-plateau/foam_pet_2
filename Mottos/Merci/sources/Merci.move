@@ -1,37 +1,35 @@
 
 
 
-module ride::Merci {
+module ride_1::Merci_Pets {
 	
 	use std::string::{ String, utf8 };
 	use std::vector;
 	
+	use ride_1::Merci_Symbiotic;
+	
 	#[view]
-	public fun symbiotic () : String {
-		Merci_Symbiotic::symbiotic ()
+	public fun Symbiotic () : String {
+		Merci_Symbiotic::Symbiotic ()
 	}	
 	
 	struct Mercy {
-		planets: u64
+		pets: u64
 	}
 	
 	
 	
 	/*
 		
-		Discover the amount of mercy planets.
+		Discover the amount of mercy pets.
 		
-	*/
+	
 	#[view]
 	public fun discover_amount_of_mercy_planets (estate_1_spot : address) : u64 {}
-		
-	public entry fun Join_the_Mercy_Harvest () {
-		Mercy { planets: 0 }
-	}
+	*/
 	
-	public entry fun Evoke_Mercy () {
-		Mercy { planets: 0 }
-	}
+	
+	
 	
 	
 }

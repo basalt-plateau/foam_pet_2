@@ -200,7 +200,14 @@ let isOpen = false;
 				>Mercy</header>
 			</div>
 			
-			
+			<div class="card p-4"
+				style="
+					width: 100%;
+					text-align: center;
+				"
+			>
+				<button type="button" class="btn variant-filled">Establish the Mercy Harvest</button>
+			</div>
 			
 			<div class="card p-4"
 				style="
@@ -218,8 +225,42 @@ let isOpen = false;
 					text-align: center;
 				"
 			>
-				<button type="button" class="btn variant-filled">Send Mercy Planets</button>
-				<button type="button" class="btn variant-filled">Receive Mercy Planets</button>
+				<button type="button" class="btn variant-filled">Buy Mercy</button>
+				
+				<div class="card p-4 variant-soft-primary"
+					style="
+						margin: 1cm 0;
+						width: 100%;
+						text-align: center;
+					"
+				>
+					<h1
+						style="
+							margin: 1cm 0;
+						"
+					>Sales</h1>
+				
+					<ol class="list">
+						<li>
+							<span class="badge-icon p-4 variant-filled-primary">1.</span>
+							<span class="flex-auto badge p-4 variant-filled-primary">1 Mercy for 1 APT</span>
+						</li>
+					</ol>
+				</div>
+				
+				<button type="button" class="btn variant-filled">Sell Mercy</button>
+				
+			</div>
+			
+			
+			<div class="card p-4"
+				style="
+					width: 100%;
+					text-align: center;
+				"
+			>
+				<button type="button" class="btn variant-filled">Send Mercy</button>
+				<button type="button" class="btn variant-filled">Receive Mercy</button>
 			</div>
 		</div>
 

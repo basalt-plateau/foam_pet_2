@@ -15,13 +15,13 @@
 */
 
 
-module ride::Merci_Symbiotic {
+module ride_1::Merci_Symbiotic {
 	
 	use std::string::{ String, utf8 };
 	use std::vector;
 	
 	#[view]
-    public fun togetherness () : String {
+    public fun Symbiotic () : String {
 		let vector_01 : vector<u8> = b"This .move is everyone's kisiwa to\n";
 		let vector_02 : vector<u8> = b"affect however they so please.\n";
 		let vector_03 : vector<u8> = b"\n";		

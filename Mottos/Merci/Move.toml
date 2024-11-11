@@ -6,7 +6,7 @@ version = "1.0.0"
 authors = []
 
 [addresses]
-ride = "_"
+ride_1 = "_"
 
 [dev-addresses]
 
