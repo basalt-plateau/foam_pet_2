@@ -47,6 +47,7 @@ module ride::Pergola_Steady_minting_2 {
 		use std::string;
 		use std::string::{ utf8 };
 		use std::debug;
+		use std::string_utils;
 		
 		use ride::Pergola_Taffoni;
 		
@@ -84,18 +85,14 @@ module ride::Pergola_Steady_minting_2 {
 		//	Mint 
 		//
 		//
-        let coins = coin::mint<AptosCoin>(2000, &mint_cap);
+        let coins = coin::mint<AptosCoin>(10000, &mint_cap);
         coin::deposit (estate_1_spot, coins);
 		
 		
 		//
-		//	Send coins to estate 2.
+		//	Establish a Taffoni.
 		//
 		//
-		let to_send : u64 = 100;
-		coin::transfer<AptosCoin>(estate_1_flourisher, estate_2_spot, to_send);
-		
-		
 		Pergola_Taffoni::establish_Taffoni (estate_1_flourisher);
 		if (Pergola_Taffoni::has_Taffoni (estate_1_spot) != utf8 (b"yep")) {
 			debug::print (& utf8 (b""));
@@ -111,7 +108,7 @@ module ride::Pergola_Steady_minting_2 {
 		//	Sends coins to the taffoni.
 		//
 		//
-		let to_send_to_taffoni : u64 = 100;
+		let to_send_to_taffoni : u64 = 2000;
 		Pergola_Taffoni::add_AptosCoin_to_Taffoni (
 			estate_1_flourisher, 
 			taffoni_address,
@@ -120,21 +117,31 @@ module ride::Pergola_Steady_minting_2 {
 		if (Pergola_Taffoni::retrieve_Taffoni_AptosCoin_amount (estate_1_spot) != to_send_to_taffoni) {
 			abort 89387
 		};
-		if (coin::balance<AptosCoin>(estate_1_spot) != 1800) {
+		if (coin::balance<AptosCoin>(estate_1_spot) != 8000) {
 			abort 89389
 		};
+		debug::print (& string_utils::format1 (& b"after send: taffoni_coin_amount: {}", Pergola_Taffoni::retrieve_Taffoni_AptosCoin_amount (estate_1_spot)));
+		debug::print (& string_utils::format1 (& b"after send: estate_1_coins: {}", coin::balance<AptosCoin>(estate_1_spot)));
 		
 		
 		//
 		//	Take coins from the taffoni.
 		//
 		//
-		let to_take_from_taffoni : u64 = 100;
-		Pergola_Taffoni::take_AptosCoin_from_Taffoni (
+		let to_ship_from_taffoni : u64 = 1000;
+		Pergola_Taffoni::ship_AptosCoin_from_Taffoni (
 			estate_1_flourisher, 
 			taffoni_address,
-			to_take_from_taffoni
+			to_ship_from_taffoni
 		);
+		if (Pergola_Taffoni::retrieve_Taffoni_AptosCoin_amount (estate_1_spot) != to_ship_from_taffoni) {
+			abort 89387
+		};
+		if (coin::balance<AptosCoin>(estate_1_spot) != 9000) {
+			abort 89389
+		};
+		
+		
 		
         coin::destroy_mint_cap (mint_cap);
         coin::destroy_freeze_cap (freeze_cap);

@@ -105,9 +105,7 @@ module ride::Pergola_Taffoni {
 		if (estate_1_coins < amount) {
 			abort 237584;
 		};
-		debug::print (& string_utils::format1 (& b"taffoni_coin_amount: {}", taffoni_coin_amount));
-		debug::print (& string_utils::format1 (& b"estate_1_coins: {}", estate_1_coins));
-	
+
 		
 		//
 		//	Withdraw from estate 1, then merge the withdrawn 
@@ -116,18 +114,15 @@ module ride::Pergola_Taffoni {
 		let withdrawn_coins = coin::withdraw<AptosCoin>(estate_1_signer, amount);
 		coin::merge (&mut le_taffoni.aptos_coins, withdrawn_coins);
 		
-		
 		//
 		//
 		//
 		//
 		let taffoni_coin_amount_2 : u64 = coin::value (& le_taffoni.aptos_coins);
 		let estate_1_coins_2 : u64 = coin::balance<AptosCoin>(estate_1_address);
-		debug::print (& string_utils::format1 (& b"taffoni_coin_amount: {}", taffoni_coin_amount_2));
-		debug::print (& string_utils::format1 (& b"estate_1_coins: {}", estate_1_coins_2));
 	}
 	
-	public entry fun take_AptosCoin_from_Taffoni (
+	public entry fun ship_AptosCoin_from_Taffoni (
 		estate_1_signer: & signer,
 		taffoni_address : address,
 		amount : u64
@@ -148,9 +143,26 @@ module ride::Pergola_Taffoni {
 		debug::print (& string_utils::format1 (& b"estate_1_coins: {}", estate_1_coins));
 		
 		
-		let amount = coin::value (& le_taffoni.aptos_coins);
-        // coin::deposit(recipient_address, coins);
+		// let amount = coin::value (& le_taffoni.aptos_coins);
+		// coin::deposit (estate_1_address, coins);
 		
+		
+		let Taffoni { aptos_coins } = le_taffoni;
+		let extracted_coins = coin::extract<AptosCoin>(&mut le_taffoni.aptos_coins, amount);
+		let amount_extracted = coin::value (& extracted_coins);
+		debug::print (& string_utils::format1 (& b"amount_extracted: {}", amount_extracted));
+		
+		
+		// coin::merge (&mut le_taffoni.aptos_coins, amount_extracted);
+		coin::deposit (estate_1_address, extracted_coins);
+		debug::print (& string_utils::format1 (& b"taffoni_coin_amount: {}", coin::value (& le_taffoni.aptos_coins)));
+		debug::print (& string_utils::format1 (& b"estate_1_coins: {}", coin::balance<AptosCoin>(estate_1_address)));
+		
+		
+		
+		
+		// let amount = coin::value (&aptos_coins);
+		// let withdrawn_coins = coin::withdraw<AptosCoin>(& le_taffoni.aptos_coins, amount);
 		//
 		//	Withdraw from taffoni, then merge the withdrawn 
 		//	coins into the taffoni.
