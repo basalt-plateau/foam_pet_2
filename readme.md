@@ -4,15 +4,15 @@
 # Foam Pet
 ![Foam Pet](vehicles_frontend/sveltenetics/static/pictures/Foam_Pet_0001.svg)
 
-A pet on an offline machine (such as a laptop or desktop) 
+A pet on an offline machine (such as a laptop or desktop)  
 can interact with https://foam.pet
 
-By doing so, ultra secure Aptos (APT) transactions can happen.
+By doing so, ultra secure Aptos (APT) transactions can happen.  
 https://aptosfoundation.org
 
-Both machines need a camera (bionic eye) and screen.
+Both machines need a camera (bionic eye) and screen.  
 
-A pet for a Linux_x86_64 machine or docker   
+A pet for a Linux_x86_64 machine or docker     
 can be adopted from releases:
 https://github.com/basalt-plateau/foam_pet/releases
 
