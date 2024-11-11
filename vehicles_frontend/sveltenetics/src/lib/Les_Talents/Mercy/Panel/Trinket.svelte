@@ -187,11 +187,20 @@ let isOpen = false;
 				gap: 0.5cm;
 			"
 		>
-			<header
+			<div class="card p-4"
 				style="
-					font-size: 3em;
+					width: 100%;
+					text-align: center;
 				"
-			>Mercy</header>
+			>
+				<header
+					style="
+						font-size: 3em;
+					"
+				>Mercy</header>
+			</div>
+			
+			
 			
 			<div class="card p-4"
 				style="
@@ -199,8 +208,18 @@ let isOpen = false;
 					text-align: center;
 				"
 			>
-				<button type="button" class="btn variant-filled">Send</button>
-				<button type="button" class="btn variant-filled">Receive</button>
+				<button type="button" class="btn variant-filled">Join the Mercy Harvest</button>
+				<button type="button" class="btn variant-filled">Leave the Mercy Harvest</button>
+			</div>
+			
+			<div class="card p-4"
+				style="
+					width: 100%;
+					text-align: center;
+				"
+			>
+				<button type="button" class="btn variant-filled">Send Mercy Planets</button>
+				<button type="button" class="btn variant-filled">Receive Mercy Planets</button>
 			</div>
 		</div>
 

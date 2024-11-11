@@ -15,7 +15,7 @@
 */
 
 
-module ride::Mercy_Symbiotic {
+module ride::Merci_Symbiotic {
 	
 	use std::string::{ String, utf8 };
 	use std::vector;
@@ -39,8 +39,7 @@ module ride::Mercy_Symbiotic {
 		vector::append (&mut vectors, vector_06);
 		vector::append (&mut vectors, vector_07);
 
-		let proceeds : String = utf8 (vectors);
-		proceeds
+		utf8 (vectors)
 	}
 }
 
