@@ -42,12 +42,10 @@ module ride::Quarry_u64 {
 	
 	
 	/*
-		perhaps:
-	
-			let proceeds : String = Quarry_u64::can_increase (10, 20);
-			if (proceeds != utf8 (b"yes")) {
-				abort
-			};
+		let proceeds : String = Quarry_u64::can_increase (10, 20);
+		if (proceeds != utf8 (b"yes")) {
+			abort
+		};
 	*/
 	public fun can_increase (u64_1: u64, u64_2: u64) : String {
 		if (u64_1 > (U64_UPPER_LIMIT - u64_2)) {

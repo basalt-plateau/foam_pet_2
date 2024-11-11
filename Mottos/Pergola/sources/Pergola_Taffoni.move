@@ -1,7 +1,29 @@
 
 
 
+/*
+	fonctions:
+		entry: 
+			establish_Taffoni
+			
+			add_AptosCoin_to_Taffoni
+			
+			ship_AptosCoin_from_Taffoni
+			
+			
+		view:
+			has_Taffoni
+		
+		public:
+			retrieve_Taffoni_AptosCoin_amount
+			
+		private:
+*/
 
+/*
+	todo:
+		should be 
+*/
 
 module ride::Pergola_Taffoni {
 	
@@ -15,39 +37,18 @@ module ride::Pergola_Taffoni {
 	use aptos_framework::aptos_coin::{ AptosCoin, Self };
 	
 	use ride::Loft;
+	use ride::Quarry_u64;
 	
 	#[view]
     public fun togetherness () : String {
 		let togetherness = Loft::togetherness ();
 		togetherness
     }
-	
-	struct Lock<phantom CoinType> has store {
-        coins: Coin<CoinType>,
-        unlock_time_secs: u64,
-    }
 
-	struct Locks<phantom CoinType> has key {
-        locks: Table<address, Lock<CoinType>>,
-        withdrawal_address: address,
-        total_locks: u64
-    }
-	
-	
-	// aptos_coin_store : CoinStore<AptosCoin>,
 	struct Taffoni has key {
 		aptos_coins : Coin<AptosCoin>
 	}
 
-	/*
-		similar:
-			create-resource-account
-	struct Taffoni  {
-		Octas : AptosCoin
-	}
-	*/
-
-	
 	public entry fun establish_Taffoni (estate_1_flourisher: & signer) {
 		let estate_1_spot = signer::address_of (estate_1_flourisher);
 		if (exists<Taffoni>(estate_1_spot)) {
@@ -88,11 +89,6 @@ module ride::Pergola_Taffoni {
 		let le_taffoni = borrow_global_mut<Taffoni>(taffoni_address);
 		
 		
-		/*
-			Todo:
-				* Make sure there is enough in estate_1 to take.	
-				* If gas fees are over.. that's probably a different problem.
-		*/
 		
 		
 		
@@ -102,9 +98,22 @@ module ride::Pergola_Taffoni {
 		//
 		let taffoni_coin_amount : u64 = coin::value (& le_taffoni.aptos_coins);
 		let estate_1_coins : u64 = coin::balance<AptosCoin>(estate_1_address);
-		if (estate_1_coins < amount) {
-			abort 237584;
+
+		
+		/*
+			Todo:
+				* If gas fees are over.. that's probably a different problem.
+		*/
+		/* 
+			
+			Verifications
+				* Verification: There is enough coins in the estate
+				
+		*/
+		if (estate_1_coins < amount_to_ship) {
+			abort 237584
 		};
+		
 
 		
 		//
@@ -113,6 +122,8 @@ module ride::Pergola_Taffoni {
 		//
 		let withdrawn_coins = coin::withdraw<AptosCoin>(estate_1_signer, amount);
 		coin::merge (&mut le_taffoni.aptos_coins, withdrawn_coins);
+		
+		
 		
 		//
 		//
@@ -125,9 +136,9 @@ module ride::Pergola_Taffoni {
 	public entry fun ship_AptosCoin_from_Taffoni (
 		estate_1_signer: & signer,
 		taffoni_address : address,
-		amount : u64
+		amount_to_ship : u64
 	) acquires Taffoni {
-		let estate_1_address = signer::address_of (estate_1_signer);
+		let estate_1_spot = signer::address_of (estate_1_signer);
 		let le_taffoni = borrow_global_mut<Taffoni>(taffoni_address);
 		
 		//
@@ -135,41 +146,54 @@ module ride::Pergola_Taffoni {
 		//
 		//
 		let taffoni_coin_amount : u64 = coin::value (& le_taffoni.aptos_coins);
-		let estate_1_coins : u64 = coin::balance<AptosCoin>(estate_1_address);
-		if (taffoni_coin_amount < amount) {
-			abort 237584;
+		let estate_1_coins_amount : u64 = coin::balance<AptosCoin>(estate_1_spot);
+		
+
+		
+		/* 
+			
+			Verifications
+				* Verification: There is enough coins in the Taffoni
+				
+				* Verification: estate_1_coins_amount + amount_to_ship isn't going to overflow
+					^ This might be unecessary; this might abort with the built in u64 math.
+					
+		*/
+		if (taffoni_coin_amount < amount_to_ship) {
+			abort 237584
 		};
-		debug::print (& string_utils::format1 (& b"taffoni_coin_amount: {}", taffoni_coin_amount));
-		debug::print (& string_utils::format1 (& b"estate_1_coins: {}", estate_1_coins));
+		if (Quarry_u64::can_increase (estate_1_coins_amount, amount_to_ship) != utf8 (b"yes")) {
+			abort 237585
+		};
+		let expected_taffoni_amount : u64 = taffoni_coin_amount - amount_to_ship;
+		let expected_estate_1_amount : u64 = coin::balance<AptosCoin>(estate_1_spot) + amount_to_ship;
 		
 		
-		// let amount = coin::value (& le_taffoni.aptos_coins);
-		// coin::deposit (estate_1_address, coins);
-		
-		
+
+		//
+		//	Extract from Taffoni
+		//
+		//
 		let Taffoni { aptos_coins } = le_taffoni;
-		let extracted_coins = coin::extract<AptosCoin>(&mut le_taffoni.aptos_coins, amount);
-		let amount_extracted = coin::value (& extracted_coins);
-		debug::print (& string_utils::format1 (& b"amount_extracted: {}", amount_extracted));
-		
-		
-		// coin::merge (&mut le_taffoni.aptos_coins, amount_extracted);
-		coin::deposit (estate_1_address, extracted_coins);
-		debug::print (& string_utils::format1 (& b"taffoni_coin_amount: {}", coin::value (& le_taffoni.aptos_coins)));
-		debug::print (& string_utils::format1 (& b"estate_1_coins: {}", coin::balance<AptosCoin>(estate_1_address)));
+		let extracted_coins = coin::extract<AptosCoin>(&mut le_taffoni.aptos_coins, amount_to_ship);
+		if (coin::value (& extracted_coins) != amount_to_ship) {
+			abort 89386
+		};
 		
 		
 		
-		
-		// let amount = coin::value (&aptos_coins);
-		// let withdrawn_coins = coin::withdraw<AptosCoin>(& le_taffoni.aptos_coins, amount);
 		//
-		//	Withdraw from taffoni, then merge the withdrawn 
-		//	coins into the taffoni.
+		//	Deposit into estate_1
 		//
-		// coin::extract<AptosCoin>(&mut le_taffoni.aptos_coins, amount);
+		//
+		coin::deposit (estate_1_spot, extracted_coins);
+		if (retrieve_Taffoni_AptosCoin_amount (estate_1_spot) != expected_taffoni_amount) {
+			abort 89387
+		};
+		if (coin::balance<AptosCoin>(estate_1_spot) != expected_estate_1_amount) {
+			abort 89389
+		};
 	}
-	
 }
 
 

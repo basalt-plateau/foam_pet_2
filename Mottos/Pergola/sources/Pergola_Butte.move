@@ -1,14 +1,14 @@
 
 
 
-
+/*
+	Vintage.  
+		Butte -> Taffoni
+*/
 
 module ride::Pergola_Butte {
 	
 	use std::string::{ String };
-	
-	use aptos_framework::coin;
-    use aptos_framework::aptos_coin;
 	
 	use ride::Loft;
 	
@@ -18,9 +18,7 @@ module ride::Pergola_Butte {
 		togetherness
     }
 	
-	struct Butte {
-		
-	}
+	struct Butte {}
 	
 
 	

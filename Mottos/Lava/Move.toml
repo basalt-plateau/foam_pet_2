@@ -11,12 +11,17 @@ ride = "_"
 [dev-addresses]
 
 
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
 
 [dependencies.AptosFramework]
 local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
 
-[dependencies.AptosStdlib]
-local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
+[dependencies.AptosTokenObjects]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-token-objects"
+
+[dependencies.AptosToken]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-token"
 
 [dependencies.Quarry]
 local = "/Metro/Mottos/Quarry" 

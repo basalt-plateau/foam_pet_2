@@ -140,7 +140,8 @@ module ride::Pergola_Steady_minting_2 {
 		if (coin::balance<AptosCoin>(estate_1_spot) != 9000) {
 			abort 89389
 		};
-		
+		debug::print (& string_utils::format1 (& b"estate_1_coins: {}", coin::balance<AptosCoin>(estate_1_spot)));
+		debug::print (& string_utils::format1 (& b"after send: taffoni_coin_amount: {}", Pergola_Taffoni::retrieve_Taffoni_AptosCoin_amount (estate_1_spot)));
 		
 		
         coin::destroy_mint_cap (mint_cap);
