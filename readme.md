@@ -54,7 +54,7 @@ For various reasons (mostly licensing) the .git repository
 has been refreshed a few times.   
    
 These are the previous repositories (most recent is on top)  
-[https://github.com/basalt-plateau/foam_pet_G1](https://github.com/basalt-plateau/foam_pet_G1)
-[https://github.com/basalt-plateau/foam_2](https://github.com/basalt-plateau/foam_2)
+[https://github.com/basalt-plateau/foam_pet_G1](https://github.com/basalt-plateau/foam_pet_G1)    
+[https://github.com/basalt-plateau/foam_2](https://github.com/basalt-plateau/foam_2)    
 [https://github.com/basalt-plateau/foam](https://github.com/basalt-plateau/foam)
 
