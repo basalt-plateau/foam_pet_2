@@ -7,8 +7,11 @@ module ride_1::Merci_Harvest {
 	
 	use std::string::{ String, utf8 };
 	use std::vector;
+	use std::signer;
 	
 	use ride_1::Merci_Symbiotic;
+	use ride_1::Merci_Kisiwa;
+	use ride_1::Merci_Kisiwa::{ Kisiwa };
 	
 	#[view]
 	public fun Symbiotic () : String {
@@ -16,8 +19,7 @@ module ride_1::Merci_Harvest {
 	}	
 	
 	
-	
-	struct Mercy_Harvest {
+	struct Mercy_Harvest has key {
 		visiwa: vector<Kisiwa>
 	}
 	
@@ -38,24 +40,25 @@ module ride_1::Merci_Harvest {
 			25: 1,00000,00000,00000,00000,00000		
 				10000000000000000000000000	
 		*/
-		let mercy : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
-		let kisiwa = Kisiwa {
-			spot : estate_1_address,
-			mercy : mercy 
-		};
+		let myrci : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
+		let kisiwa = Merci_Kisiwa::Establish_a_Kisiwa (estate_1_address);
+		
+		
+		let visiwa : vector<Kisiwa> = vector::empty<Kisiwa>();
+		vector::push_back (&mut visiwa, kisiwa);
 		
 		let le_mercy_harvest = Mercy_Harvest { 
-			estates
+			visiwa : visiwa
 		};
 		
 		
-		
+		move_to<Mercy_Harvest>(estate_flourisher, le_mercy_harvest)
 	}
 
 	public entry fun Join_the_Mercy_Harvest () {
 	}
 	
-	public entry fun Leave_the_Mercy_Harvest () : Mercy  {
+	public entry fun Leave_the_Mercy_Harvest ()  {
 		
 	}
 

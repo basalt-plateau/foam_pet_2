@@ -18,16 +18,17 @@ module ride_1::Merci_Kisiwa {
 		Merci_Symbiotic::Symbiotic ()
 	}	
 	
-	struct Kisiwa {
+	struct Kisiwa has store {
 		spot : address,
-		mercy : u256
+		myrci : u256
 	}
 	
-	public entry fun Establish_a_Kisiwa (estate_flourisher : & signer) {
-		let kisiwa = Kisiwa {
-			spot : estate_1_address,
-			mercy : mercy 
-		};
+	public fun Establish_a_Kisiwa (estate_1_spot : address) : Kisiwa {
+		let myrci : u256 = 0;
+		Kisiwa {
+			spot : estate_1_spot,
+			myrci : myrci 
+		}		
 	}
 }
 

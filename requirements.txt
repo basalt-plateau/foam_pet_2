@@ -43,7 +43,7 @@ coverage==7.6.4
     # via
     #   biotech
     #   emergency
-cx-freeze==7.2.4
+cx-freeze==7.2.5
     # via foam-pet (pyproject.toml)
 dnspython==2.7.0
     # via pymongo
@@ -184,7 +184,7 @@ tinydb==4.8.2
     #   biotech
     #   body-scan
     #   emergency
-tomli==2.0.2
+tomli==2.1.0
     # via pip-licenses
 tracerite==1.1.1
     # via sanic
