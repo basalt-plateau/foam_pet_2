@@ -132,7 +132,17 @@ const move = {
 	"function": "fonction"
 }
 
-
+const leaves = {
+	Scholars: (
+		"പണ്ഡിതർ"
+	),
+	Garden: (
+		"ᎠᏫᏒᏅ"
+	),
+	Friendships: (
+		"ጓደኝነት"
+	)
+}
 
 export const Reals = {
 	// "Pet": "Orbital Covergence Softwhere",	

@@ -1,5 +1,7 @@
 
-
+/*
+	https://aptos.dev/en/build/smart-contracts/move-reference?page=aptos-stdlib%2Fdoc%2Fsimple_map.md#@Specification_1_add
+*/
 
 module ride_1::Merci_Steady_1 {
 	
@@ -55,6 +57,9 @@ module ride_1::Merci_Steady_1 {
 		if (Merci_Harvest::has_estate (estate_3_spot) != utf8 (b"yup")) { abort 89321 };
 		if (Merci_Harvest::ask_estate_mercy_amount (estate_3_spot) != 0) { abort 89322 };
 		
+		
+		Merci_Harvest::Leave_the_Mercy_Harvest (& estate_3_flourisher);
+		if (Merci_Harvest::has_estate (estate_3_spot) == utf8 (b"yup")) { abort 89323 };
 		
 	}
 }

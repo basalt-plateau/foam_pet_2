@@ -211,14 +211,31 @@ let isOpen = false;
 					<button type="button" class="btn variant-filled">Establish the Mercy Harvest</button>
 				</div>
 				
-				<div class="card p-4"
+				<div
 					style="
+						display: flex;
+						gap: 1em;
+					
 						width: 100%;
 						text-align: center;
 					"
 				>
-					<button type="button" class="btn variant-filled">Join the Mercy Harvest</button>
-					<button type="button" class="btn variant-filled">Leave the Mercy Harvest</button>
+					<div class="card p-4"
+						style="
+							width: 100%;
+							text-align: center;
+						"
+					>
+						<button type="button" class="btn variant-filled">Join</button>
+					</div>
+					<div class="card p-4"
+						style="
+							width: 100%;
+							text-align: center;
+						"
+					>
+						<button type="button" class="btn variant-filled">Leave</button>
+					</div>
 				</div>
 				
 				<div class="card p-4"

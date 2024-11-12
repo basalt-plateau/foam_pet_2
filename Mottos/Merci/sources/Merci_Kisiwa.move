@@ -36,13 +36,18 @@ module ride_1::Merci_Kisiwa {
 		le_kisiwa.mercy		
 	}
 	
-	
-	/*
-	public fun mercy_amount (estate_1_spot : address) : Kisiwa {
-		let le_kisiwa : Kisiwa = borrow_global<Kisiwa>(estate_1_spot);
-		le_kisiwa.mercy		
+	public fun send_mercy (
+		origin_kisiwa : & Kisiwa,
+		to_kisiwa : & Kisiwa
+	) {
+		let origin_kisiwa_mercy : u256 = origin_kisiwa.mercy;
+		let to_kisiwa_mercy : u256 = origin_kisiwa.mercy;
+		
+		
+		// le_kisiwa.mercy		
 	}
-	*/
+
+	
 }
 
 

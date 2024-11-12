@@ -4,7 +4,11 @@
 /*
 	entry:
 		Establish_the_Mercy_Harvest
+		
+		Join_the_Mercy_Harvest
+		Leave_the_Mercy_Harvest
 	
+		Send_Mercy
 	
 	scouting:
 		has_estate : String
@@ -107,11 +111,32 @@ module ride_1::Merci_Harvest {
 		simple_map::add (visiwa, estate_spot, le_kisiwa);
 	}
 	
-	public entry fun Leave_the_Mercy_Harvest ()  {
+	public entry fun Leave_the_Mercy_Harvest (estate_flourisher : & signer) acquires Mercy_Harvest  {
+		let estate_spot = signer::address_of (estate_flourisher);
+		if (has_estate (estate_spot) != utf8 (b"yup")) { abort 89319 };
 		
+		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
+		let visiwa = &mut le_mercy_harvest.visiwa;
+		
+		simple_map::remove (visiwa, & estate_spot);
 	}
 
-	
+	public entry fun Send_Mercy (
+		estate_flourisher : & signer,
+		to_spot : address
+	) acquires Mercy_Harvest  {
+		let origin_spot = signer::address_of (estate_flourisher);
+		if (has_estate (origin_spot) != utf8 (b"yup")) { abort 89319 };
+		if (has_estate (to_spot) != utf8 (b"yup")) { abort 89320 };
+		
+		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
+		let visiwa = &mut le_mercy_harvest.visiwa;
+		
+		let origin_kisiwa = simple_map::borrow (visiwa, & origin_spot);
+		let to_kisiwa = simple_map::borrow (visiwa, & to_spot);
+		
+		// Merci_Kisiwa::send_mercy ();
+	}
 	
 }
 
