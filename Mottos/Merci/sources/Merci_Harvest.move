@@ -32,6 +32,8 @@ module ride_1::Merci_Harvest {
 	
 	const Novelist_spot : address = @0x4b1082b9c8f6250e01acb41aa4d2efce56a1278ee2309fefdbf0d5c59e5ac5e3;
 	
+	const Origin_kisiwa_does_not_have_enough_mercy : u64 = 1;
+	
 	#[view]
 	public fun Bayanihan () : String {
 		Merci_Bayanihan::Bayanihan ()
@@ -130,13 +132,29 @@ module ride_1::Merci_Harvest {
 		if (has_estate (origin_spot) != utf8 (b"yup")) { abort 89319 };
 		if (has_estate (to_spot) != utf8 (b"yup")) { abort 89320 };
 		
+		// let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
+		// let visiwa = &mut le_mercy_harvest.visiwa;
+		
+		let origin_mercy_amount = ask_estate_mercy_amount (origin_spot);
+		let to_mercy_amount = ask_estate_mercy_amount (to_spot);
+		if (mercy_to_send > origin_mercy_amount) {
+			abort Origin_kisiwa_does_not_have_enough_mercy
+		};
+		
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
-		let visiwa = &mut le_mercy_harvest.visiwa;
+		let origin_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.visiwa, & origin_spot);
+		Merci_Kisiwa::sub_mercy (origin_kisiwa, mercy_to_send);
 		
-		let origin_kisiwa = simple_map::borrow (visiwa, & origin_spot);
-		let to_kisiwa = simple_map::borrow (visiwa, & to_spot);
 		
+		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
+		let to_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.visiwa, & to_spot);
+		Merci_Kisiwa::add_mercy (to_kisiwa, mercy_to_send);
+		
+		
+		
+		/*
 		Merci_Kisiwa::send_mercy (origin_kisiwa, to_kisiwa, mercy_to_send);
+		*/
 	}
 	
 }

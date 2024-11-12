@@ -14,6 +14,7 @@ module ride_1::Merci_Kisiwa {
 	use ride_1::Merci_Bayanihan;
 	
 	const Origin_kisiwa_does_not_have_enough_mercy : u64 = 1;
+	const Kisiwa_does_not_have_enough_mercy : u64 = 2;
 	
 	#[view]
 	public fun Bayanihan () : String {
@@ -38,9 +39,29 @@ module ride_1::Merci_Kisiwa {
 		le_kisiwa.mercy		
 	}
 	
+	public fun sub_mercy (
+		kisiwa : &mut Kisiwa,
+		amount : u256
+	) {
+		let kisiwa_mercy : u256 = kisiwa.mercy;
+		if (amount > kisiwa_mercy) {
+			abort Kisiwa_does_not_have_enough_mercy
+		};
+		
+		kisiwa.mercy = kisiwa.mercy - amount;
+	}
+	
+	public fun add_mercy (
+		kisiwa : &mut Kisiwa,
+		amount : u256
+	) {
+		let kisiwa_mercy : u256 = kisiwa.mercy;
+		kisiwa.mercy = kisiwa.mercy + amount;
+	}
+	
 	public fun send_mercy (
-		origin_kisiwa : & Kisiwa,
-		to_kisiwa : & Kisiwa,
+		origin_kisiwa : &mut Kisiwa,
+		to_kisiwa : &mut Kisiwa,
 		amount : u256
 	) {
 		let origin_kisiwa_mercy : u256 = origin_kisiwa.mercy;
@@ -48,7 +69,9 @@ module ride_1::Merci_Kisiwa {
 		
 		if (amount > origin_kisiwa_mercy) {
 			abort Origin_kisiwa_does_not_have_enough_mercy
-		}
+		};
+		
+		to_kisiwa.mercy = to_kisiwa.mercy + origin_kisiwa_mercy;
 		
 		
 		// le_kisiwa.mercy		
