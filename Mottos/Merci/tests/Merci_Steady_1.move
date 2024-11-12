@@ -56,11 +56,19 @@ module ride_1::Merci_Steady_1 {
 		Merci_Harvest::Join_the_Mercy_Harvest (& estate_3_flourisher);
 		if (Merci_Harvest::has_estate (estate_3_spot) != utf8 (b"yup")) { abort 89321 };
 		if (Merci_Harvest::ask_estate_mercy_amount (estate_3_spot) != 0) { abort 89322 };
-		
-		
+
+	
+		let mercy_to_send : u256 = 1000000000000000000000000000000000000000000000000000000000000000000000000000;
+		Merci_Harvest::Send_Mercy (
+			& estate_1_flourisher,
+			estate_2_spot,
+			mercy_to_send
+		);
+
+
+
 		Merci_Harvest::Leave_the_Mercy_Harvest (& estate_3_flourisher);
-		if (Merci_Harvest::has_estate (estate_3_spot) == utf8 (b"yup")) { abort 89323 };
-		
+		if (Merci_Harvest::has_estate (estate_3_spot) == utf8 (b"yup")) { abort 89323 };		
 	}
 }
 

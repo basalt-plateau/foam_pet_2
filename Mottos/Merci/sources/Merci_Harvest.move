@@ -123,7 +123,8 @@ module ride_1::Merci_Harvest {
 
 	public entry fun Send_Mercy (
 		estate_flourisher : & signer,
-		to_spot : address
+		to_spot : address,
+		mercy_to_send : u256
 	) acquires Mercy_Harvest  {
 		let origin_spot = signer::address_of (estate_flourisher);
 		if (has_estate (origin_spot) != utf8 (b"yup")) { abort 89319 };
@@ -135,7 +136,7 @@ module ride_1::Merci_Harvest {
 		let origin_kisiwa = simple_map::borrow (visiwa, & origin_spot);
 		let to_kisiwa = simple_map::borrow (visiwa, & to_spot);
 		
-		// Merci_Kisiwa::send_mercy ();
+		Merci_Kisiwa::send_mercy (origin_kisiwa, to_kisiwa, mercy_to_send);
 	}
 	
 }
