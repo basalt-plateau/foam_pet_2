@@ -18,23 +18,31 @@ module ride_1::Merci_Kisiwa {
 		Merci_Bayanihan::Bayanihan ()
 	}	
 	
-	struct Kisiwa has store {
-		spot : address,
+	struct Kisiwa has store, drop {
 		mercy : u256
 	}
 	
-	public fun Establish_a_Kisiwa (estate_1_spot : address) : Kisiwa {
-		let mercy : u256 = 0;
+	public fun Establish_a_Kisiwa (
+		estate_1_spot : address,
+		mercy : u256
+	) : Kisiwa {
 		Kisiwa {
-			spot : estate_1_spot,
 			mercy : mercy 
 		}		
 	}
 	
+	
+	public fun mercy_amount_from_kisiwa (le_kisiwa : & Kisiwa) : u256 {
+		le_kisiwa.mercy		
+	}
+	
+	
+	/*
 	public fun mercy_amount (estate_1_spot : address) : Kisiwa {
 		let le_kisiwa : Kisiwa = borrow_global<Kisiwa>(estate_1_spot);
 		le_kisiwa.mercy		
 	}
+	*/
 }
 
 

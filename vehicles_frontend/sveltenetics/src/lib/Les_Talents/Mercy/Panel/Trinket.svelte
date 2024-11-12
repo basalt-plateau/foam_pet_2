@@ -34,6 +34,7 @@ import _merge from 'lodash/merge'
 //
 //
 import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
+import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 //
 //
 ///
@@ -170,100 +171,101 @@ let isOpen = false;
 	>
 		{#if prepared === "yes" }
 		{#if show_panel === "Digital Assets 1" }
-		<div
-			style="
-				box-sizing: border-box;
-				height: 100%;
-				width: 100%;
-				
-				padding: 1cm;
-				
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				
-				flex-direction: column;
-				
-				gap: 0.5cm;
-			"
-		>
-			<div class="card p-4"
+		<Leaf>
+			<div
 				style="
+					box-sizing: border-box;
+					height: 100%;
 					width: 100%;
-					text-align: center;
+					
+					padding: 1cm;
+					
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					
+					flex-direction: column;
+					
+					gap: 0.5cm;
 				"
 			>
-				<header
+				<div class="card p-4"
 					style="
-						font-size: 3em;
-					"
-				>Mercy</header>
-			</div>
-			
-			<div class="card p-4"
-				style="
-					width: 100%;
-					text-align: center;
-				"
-			>
-				<button type="button" class="btn variant-filled">Establish the Mercy Harvest</button>
-			</div>
-			
-			<div class="card p-4"
-				style="
-					width: 100%;
-					text-align: center;
-				"
-			>
-				<button type="button" class="btn variant-filled">Join the Mercy Harvest</button>
-				<button type="button" class="btn variant-filled">Leave the Mercy Harvest</button>
-			</div>
-			
-			<div class="card p-4"
-				style="
-					width: 100%;
-					text-align: center;
-				"
-			>
-				<button type="button" class="btn variant-filled">Buy Mercy</button>
-				
-				<div class="card p-4 variant-soft-primary"
-					style="
-						margin: 1cm 0;
 						width: 100%;
 						text-align: center;
 					"
 				>
-					<h1
+					<header
 						style="
-							margin: 1cm 0;
+							font-size: 3em;
 						"
-					>Sales</h1>
-				
-					<ol class="list">
-						<li>
-							<span class="badge-icon p-4 variant-filled-primary">1.</span>
-							<span class="flex-auto badge p-4 variant-filled-primary">1 Mercy for 1 APT</span>
-						</li>
-					</ol>
+					>Mercy</header>
 				</div>
 				
-				<button type="button" class="btn variant-filled">Sell Mercy</button>
+				<div class="card p-4"
+					style="
+						width: 100%;
+						text-align: center;
+					"
+				>
+					<button type="button" class="btn variant-filled">Establish the Mercy Harvest</button>
+				</div>
 				
+				<div class="card p-4"
+					style="
+						width: 100%;
+						text-align: center;
+					"
+				>
+					<button type="button" class="btn variant-filled">Join the Mercy Harvest</button>
+					<button type="button" class="btn variant-filled">Leave the Mercy Harvest</button>
+				</div>
+				
+				<div class="card p-4"
+					style="
+						width: 100%;
+						text-align: center;
+					"
+				>
+					<button type="button" class="btn variant-filled">Buy Mercy</button>
+					
+					<div class="card p-4 variant-soft-primary"
+						style="
+							margin: 1cm 0;
+							width: 100%;
+							text-align: center;
+						"
+					>
+						<h1
+							style="
+								margin: 1cm 0;
+							"
+						>Sales</h1>
+					
+						<ol class="list">
+							<li>
+								<span class="badge-icon p-4 variant-filled-primary">1.</span>
+								<span class="flex-auto badge p-4 variant-filled-primary">1 Mercy for 1 APT</span>
+							</li>
+						</ol>
+					</div>
+					
+					<button type="button" class="btn variant-filled">Sell Mercy</button>
+					
+				</div>
+				
+				
+				<div class="card p-4"
+					style="
+						width: 100%;
+						text-align: center;
+					"
+				>
+					<button type="button" class="btn variant-filled">Send Mercy</button>
+					<button type="button" class="btn variant-filled">Receive Mercy</button>
+				</div>
 			</div>
-			
-			
-			<div class="card p-4"
-				style="
-					width: 100%;
-					text-align: center;
-				"
-			>
-				<button type="button" class="btn variant-filled">Send Mercy</button>
-				<button type="button" class="btn variant-filled">Receive Mercy</button>
-			</div>
-		</div>
-
+		</Leaf>
 		
 		
 		
