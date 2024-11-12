@@ -9,7 +9,11 @@
 		Leave_the_Mercy_Harvest
 	
 		Send_Mercy
-	
+		Receive_Mercy
+			(Obtain)
+			
+			
+			
 	scouting:
 		has_estate : String
 			returns "yup" if has estate
@@ -39,9 +43,14 @@ module ride_1::Merci_Harvest {
 		Merci_Bayanihan::Bayanihan ()
 	}	
 	
+	struct Receiving has store {
+		origin_address : address,
+		mercy : u256
+	}
 	
 	struct Mercy_Harvest has key {
-		visiwa: SimpleMap<address, Kisiwa>
+		visiwa: SimpleMap<address, Kisiwa>,
+		receiving: SimpleMap<address, Receiving>,
 	}
 	
 	
@@ -69,7 +78,8 @@ module ride_1::Merci_Harvest {
         simple_map::add (&mut visiwa, estate_1_spot, kisiwa);
 		
 		let le_mercy_harvest = Mercy_Harvest { 
-			visiwa : visiwa
+			visiwa : visiwa,
+			receiving : simple_map::create<address, Receiving>()
 		};
 		
 		move_to<Mercy_Harvest>(estate_flourisher, le_mercy_harvest)
@@ -149,13 +159,26 @@ module ride_1::Merci_Harvest {
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
 		let to_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.visiwa, & to_spot);
 		Merci_Kisiwa::add_mercy (to_kisiwa, mercy_to_send);
-		
-		
-		
-		/*
-		Merci_Kisiwa::send_mercy (origin_kisiwa, to_kisiwa, mercy_to_send);
-		*/
 	}
+	
+	
+	
+	/*
+	public entry fun Receive_Mercy (
+		estate_flourisher : & signer,
+		from_spot : address,
+		mercy_to_receive : u256
+	) acquires Mercy_Harvest  {
+		
+		
+		
+	}
+	*/
+	
+	
+	
+	
+	
 	
 }
 
