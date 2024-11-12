@@ -106,7 +106,7 @@ const on_prepare = () => {
 		return _merge ({}, freight, {
 			showing: 'yes',
 			
-			name: 'Rondovals',
+			name: '',
 			
 			unfinished: {
 				showing: 'no',
