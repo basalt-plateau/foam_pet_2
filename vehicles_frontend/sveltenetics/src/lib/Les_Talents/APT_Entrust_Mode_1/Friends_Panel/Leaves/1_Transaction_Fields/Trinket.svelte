@@ -279,10 +279,6 @@ const gas_unit_price_on_prepare = () => {
 
 
 
-
-
-
-
 const link = [
 	"https://explorer.aptoslabs.com/account/",
 	"0x0000000000000000000000000000000000000000000000000000000000000001",
@@ -324,6 +320,25 @@ p {
 			"
 		>Petition Form</header>
 	</div>
+	
+	<div
+			style="
+				padding: 1em 0;
+				margin: 0 auto;
+				width: 100%;
+				
+			"
+		>
+			<iframe 
+				class="rumble card p-2"
+				style="
+					width: 100%;
+					max-width: 800px;
+					margin: 0 auto;
+					border-radius: 14px;
+				"
+				height="360" src="https://rumble.com/embed/v5gocl0/?pub=4" frameborder="0" allowfullscreen></iframe>
+		</div>
 	
 	<hr class="!border-t8" 
 		style="

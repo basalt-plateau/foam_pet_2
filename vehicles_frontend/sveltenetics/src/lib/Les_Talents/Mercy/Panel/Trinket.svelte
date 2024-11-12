@@ -35,6 +35,7 @@ import _merge from 'lodash/merge'
 //
 import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
+import Join_Harvest from './Leaves/Join_Harvest/Trinket.svelte'
 //
 //
 ///
@@ -86,15 +87,18 @@ const on_next_pressed = () => {
 }
 
 
+let on_back = []
+
 const open_a_panel = ({ panel_name }) => {
 	show_panel = panel_name
 }
 
-const online_petition = () => {
+const join_mercy_harvest = () => {
 	polytope_modal.advance (({ freight }) => {
 		freight.back.permitted = "yes"
+		show_panel = "Join Mercy Harvest"
 		
-		show_panel = "Online Petition"
+		on_back.push ('Mercy Show')
 		
 		return freight;		
 	})
@@ -146,6 +150,8 @@ const on_prepare = () => {
 		return freight;
 	})
 	
+	
+	show_panel = "Mercy Show"
 	prepared = "yes"
 }
 
@@ -170,7 +176,7 @@ let isOpen = false;
 		"
 	>
 		{#if prepared === "yes" }
-		{#if show_panel === "Digital Assets 1" }
+		{#if show_panel === "Mercy Show" }
 		<Leaf>
 			<div
 				style="
@@ -226,7 +232,11 @@ let isOpen = false;
 							text-align: center;
 						"
 					>
-						<button type="button" class="btn variant-filled">Join</button>
+						<button 
+							type="button" 
+							class="btn variant-filled"
+							on:click={ join_mercy_harvest }
+						>Join</button>
 					</div>
 					<div class="card p-4"
 						style="
@@ -283,9 +293,8 @@ let isOpen = false;
 				</div>
 			</div>
 		</Leaf>
-		
-		
-		
+		{:else if show_panel === "Join Mercy Harvest" }
+		<Join_Harvest />
 		{/if}
 		{/if}
 	</div>

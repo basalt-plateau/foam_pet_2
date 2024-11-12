@@ -177,6 +177,8 @@ var modal_style = `
 			<hr class="!border-t-2" />
 		</div>
 	
+		
+	
 		<div
 			style="
 				position: relative;
