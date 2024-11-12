@@ -11,24 +11,29 @@ module ride_1::Merci_Kisiwa {
 	use std::string::{ String, utf8 };
 	use std::vector;
 	
-	use ride_1::Merci_Symbiotic;
+	use ride_1::Merci_Bayanihan;
 	
 	#[view]
-	public fun Symbiotic () : String {
-		Merci_Symbiotic::Symbiotic ()
+	public fun Bayanihan () : String {
+		Merci_Bayanihan::Bayanihan ()
 	}	
 	
 	struct Kisiwa has store {
 		spot : address,
-		myrci : u256
+		mercy : u256
 	}
 	
 	public fun Establish_a_Kisiwa (estate_1_spot : address) : Kisiwa {
-		let myrci : u256 = 0;
+		let mercy : u256 = 0;
 		Kisiwa {
 			spot : estate_1_spot,
-			myrci : myrci 
+			mercy : mercy 
 		}		
+	}
+	
+	public fun mercy_amount (estate_1_spot : address) : Kisiwa {
+		let le_kisiwa : Kisiwa = borrow_global<Kisiwa>(estate_1_spot);
+		le_kisiwa.mercy		
 	}
 }
 

@@ -4,13 +4,13 @@
 module ride_1::Merci_Steady_1 {
 	
 	use std::string::{ String, utf8 };
-	use std::vector;
 	
-	use ride_1::Merci_Symbiotic;
+	
+	use ride_1::Merci_Bayanihan;
 	
 	#[view]
-	public fun Symbiotic () : String {
-		Merci_Symbiotic::Symbiotic ()
+	public fun Bayanihan () : String {
+		Merci_Bayanihan::Bayanihan ()
 	}	
 	
 	#[test (
@@ -21,6 +21,10 @@ module ride_1::Merci_Steady_1 {
 		estate_1_signer : signer,
 		estate_2_signer : signer		
 	) {	
+		use std::vector;
+		use ride_1::Merci_Harvest;
+		
+		Merci_Harvest::Establish_the_Mercy_Harvest (& estate_1_signer)
 		
 	}
 }
