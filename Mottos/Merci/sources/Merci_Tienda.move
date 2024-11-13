@@ -63,10 +63,10 @@ module ride_1::Merci_Tienda {
 		octas_price : u64
 	) acquires Mercy_Sales {
 		let vendor_spot = signer::address_of (vendor_flourisher);
-		let mercy_sales = borrow_global_mut<Mercy_Sales>(estate_spot);
+		let mercy_sales = borrow_global_mut<Mercy_Sales>(vendor_spot);
 		
 		let mercy_sale = Mercy_Sale {
-            address : address,
+            address : vendor_spot,
 			mercy_for_sale: mercy_for_sale,
 			octas_price : octas_price
         };

@@ -11,6 +11,7 @@ module ride_1::Merci_Tienda_Steady_1 {
 	
 	use ride_1::Merci_Bayanihan;
 	use ride_1::Merci_Tienda;
+	use ride_1::Merci_Harvest;
 	
 	#[view]
 	public fun Bayanihan () : String {
@@ -40,13 +41,36 @@ module ride_1::Merci_Tienda_Steady_1 {
 		let estate_3_spot = signer::address_of (& estate_3_flourisher);
 		
 		
+		
+		
+		
 		/*
-			Establishing
+			Establishing Harvest
+		
+		*/
+		let mercyverse : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
+		Merci_Harvest::Establish_the_Mercy_Harvest (& estate_1_flourisher);
+		if (Merci_Harvest::has_estate (estate_1_spot) != utf8 (b"yup")) { abort 89319 };
+		if (Merci_Harvest::ask_estate_mercy_amount (estate_1_spot) != mercyverse) { abort 89320 };
+		
+		/*
+			Joining
+		
+		*/
+		Merci_Harvest::Join_the_Mercy_Harvest (& estate_2_flourisher);
+		if (Merci_Harvest::has_estate (estate_2_spot) != utf8 (b"yup")) { abort 89321 };
+		if (Merci_Harvest::ask_estate_mercy_amount (estate_2_spot) != 0) { abort 89322 };
+		
+		Merci_Harvest::Join_the_Mercy_Harvest (& estate_3_flourisher);
+		if (Merci_Harvest::has_estate (estate_3_spot) != utf8 (b"yup")) { abort 89321 };
+		if (Merci_Harvest::ask_estate_mercy_amount (estate_3_spot) != 0) { abort 89322 };
+		
+		
+		/*
+			Establishing Sales
 		
 		*/
 		Merci_Tienda::Establish_Sales (& estate_1_flourisher);
-		
-		
 	}
 }
 
