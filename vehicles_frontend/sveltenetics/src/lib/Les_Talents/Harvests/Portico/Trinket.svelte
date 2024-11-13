@@ -4,6 +4,9 @@
 
 
 
+// import Panel from './../Panel/Trinket.svelte'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+
 
 export let modal_store;
 
@@ -44,6 +47,6 @@ let open = async () => {
 			align-items: center;
 		"
 	>
-		<p>Rondovals</p>
+		<p><Slang text="Accounts" reveal={ "no" }/></p>
 	</button>
 </div>

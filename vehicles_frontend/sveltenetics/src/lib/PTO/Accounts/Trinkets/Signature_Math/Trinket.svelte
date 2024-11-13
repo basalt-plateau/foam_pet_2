@@ -10,7 +10,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 </script>
 
 <div
-	class="card p-2 variant-filled-primary"
+	class="card p-0 variant-filled-primary"
 	style="
 		word-wrap: break-word;
 	"

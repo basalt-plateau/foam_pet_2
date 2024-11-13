@@ -2,6 +2,9 @@
 
 
 /*
+	Taffoni:
+		This is like an escrow wallet.
+
 	fonctions:
 		entry: 
 			establish_Taffoni

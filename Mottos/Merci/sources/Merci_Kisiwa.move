@@ -53,7 +53,6 @@ module ride_1::Merci_Kisiwa {
 		kisiwa : &mut Kisiwa,
 		amount : u256
 	) {
-		let kisiwa_mercy : u256 = kisiwa.mercy;
 		kisiwa.mercy = kisiwa.mercy + amount;
 	}
 	
@@ -63,16 +62,11 @@ module ride_1::Merci_Kisiwa {
 		amount : u256
 	) {
 		let origin_kisiwa_mercy : u256 = origin_kisiwa.mercy;
-		let to_kisiwa_mercy : u256 = origin_kisiwa.mercy;
-		
 		if (amount > origin_kisiwa_mercy) {
 			abort Origin_kisiwa_does_not_have_enough_mercy
 		};
 		
 		to_kisiwa.mercy = to_kisiwa.mercy + origin_kisiwa_mercy;
-		
-		
-		// le_kisiwa.mercy		
 	}
 
 	

@@ -64,7 +64,7 @@ const modify_keys_count = () => {
 
 <Leaf>
 <main addresses monitor="accounts">
-	<Panel>
+	<div class="card p-4">
 		<div style="height: 2cm" />
 	
 		<header
@@ -94,44 +94,61 @@ const modify_keys_count = () => {
 				text-align: center;
 			"
 		><Slang text="A_Private_Key" /> is necessary to act as <Slang text="an_Address" />.</p>
+	
+		<div style="height: 0.5cm" />	
+	
+		<div class="card p-1 variant-soft-surface">
+			<Accordion>
+				<AccordionItem>
+					<svelte:fragment slot="summary">
+						<header
+							style="{parse_styles ({
+								'display': 'block',
+								'text-align': 'center',
+								'font-size': '2em',
+								'padding': '0cm',
+							})}"
+						>Hints</header>
+					</svelte:fragment>
+					<svelte:fragment slot="content">				
+						<Signature_Ownership />
+						<Signature_Math />					
+					</svelte:fragment>
+				</AccordionItem>
+			</Accordion>
+		</div>
 		
-		<div style="height: 2cm" />
-	</Panel>
+		<div style="height: 0cm" />
+	</div>
 
 	<div style="height: 20px"></div>
 
 
-	<div class="card p-2">
-		<Accordion>
-			<AccordionItem>
-				<svelte:fragment slot="summary">
-					<header
-						style="{parse_styles ({
-							'display': 'block',
-							'text-align': 'center',
-							'font-size': '2em',
-							'padding': '0cm',
-						})}"
-					>Hints</header>
-				</svelte:fragment>
-				<svelte:fragment slot="content">				
-					<Signature_Ownership />
-					<Signature_Math />					
-				</svelte:fragment>
-			</AccordionItem>
-		</Accordion>
-	</div>
+	
 	
 	<div style="height: 0.4cm"></div>
 	
-	<div class="card p-4">
+	<div class="card p-2">
 		<div class="card variant-soft-primary p-4">
 			<header
 				style="{parse_styles ({
 					'display': 'block',
 					'text-align': 'center',
 					'font-size': '2em',
-					'padding': '1cm',
+				})}"
+			
+			><Slang text="Account" /> Chooser</header>
+		</div>
+
+		<div style="height: 0.4cm"></div>
+
+		<div class="card variant-soft-primary p-4">
+			<header
+				style="{parse_styles ({
+					'display': 'block',
+					'text-align': 'center',
+					'font-size': '2em',
+					'padding': '0.5cm',
 				})}"
 			><Slang text="Account" /> Type</header>
 			
@@ -181,7 +198,17 @@ const modify_keys_count = () => {
 		{#if account_variety === "EEC_25519_single_key_account" }
 		
 		
-		
+		<header
+			style="{parse_styles ({
+				'display': 'block',
+				'text-align': 'center',
+				'font-size': '1.5em',
+				'line-height': '1em',
+				'padding': '1em'
+			})}"
+		>
+			<span>EEC 25519 Single Key <Slang text="Account" /></span>
+		</header>
 		
 		<div class="card p-2 variant-filled-primary">
 			<Accordion>
@@ -265,10 +292,10 @@ const modify_keys_count = () => {
 					'display': 'block',
 					'text-align': 'center',
 					'font-size': '2em',
-					'padding': '1cm',
+					'padding': '0.25cm',
 				})}"
 			
-			><Slang text="Account" /> Pick</header>
+			>Form Type</header>
 			
 			
 			

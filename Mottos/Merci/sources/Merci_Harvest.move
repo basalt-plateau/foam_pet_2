@@ -25,7 +25,6 @@
 module ride_1::Merci_Harvest {
 	
 	use std::string::{ String, utf8 };
-	use std::vector;
 	use std::signer;
 	
 	use aptos_std::simple_map::{Self, SimpleMap};

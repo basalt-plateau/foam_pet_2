@@ -3,28 +3,6 @@
 <script>
 
 
-const address_builder = ""
-
-const visiwas = {
-	tivaevae: {
-		establish: address_builder + "::Rondoval_Tivaevae::B",
-		destroy: address_builder + "::Rondoval_Tivaevae::J"
-	}
-}
-
-
-/*
-	Establish Tivaevae:
-		Rondoval_Tivaevae::B (& estate_1_signer, thermoplastic_sheets_to_add);
-
-
-
-
-
-
-
-*/
-
 
 ///
 //
@@ -34,13 +12,11 @@ import _merge from 'lodash/merge'
 //
 //
 import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
-import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import { TreeView, TreeViewItem, RecursiveTreeView } from '@skeletonlabs/skeleton';
 //
-import Panel_1 from './Leaves/Panel_1/Trinket.svelte'
-import Join_Harvest from './Leaves/Join_Harvest/Trinket.svelte'
 //
 ///
-
 
 //
 //
@@ -66,7 +42,9 @@ const on_click = () => {
 	})
 }
 
-const on_modal_change = () => {}
+const on_modal_change = () => {
+	
+}
 
 
 const on_next_pressed = () => {
@@ -89,20 +67,15 @@ const on_next_pressed = () => {
 }
 
 
-let on_back = []
-
 const open_a_panel = ({ panel_name }) => {
 	show_panel = panel_name
 }
 
-const join_mercy_harvest = () => {
-	console.log ("join_mercy_harvest");
-	
+const online_petition = () => {
 	polytope_modal.advance (({ freight }) => {
 		freight.back.permitted = "yes"
-		show_panel = "Join Mercy Harvest"
 		
-		on_back.push ('Mercy Show')
+		show_panel = "Online Petition"
 		
 		return freight;		
 	})
@@ -115,7 +88,7 @@ const on_prepare = () => {
 		return _merge ({}, freight, {
 			showing: 'yes',
 			
-			name: '',
+			name: 'Digital Assets',
 			
 			unfinished: {
 				showing: 'no',
@@ -129,6 +102,7 @@ const on_prepare = () => {
 					polytope_modal.advance (({ freight }) => {
 						if (show_panel === "Online Petition") {
 							freight.back.permitted = "no"
+							
 							show_panel = "Wheel"
 						}
 						
@@ -154,8 +128,6 @@ const on_prepare = () => {
 		return freight;
 	})
 	
-	
-	show_panel = "Mercy Show"
 	prepared = "yes"
 }
 
@@ -173,21 +145,80 @@ let isOpen = false;
 		style="
 			height: 100%;
 			width: 100%;
+			padding: 1cm;
 			
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			flex-direction: column;
 		"
 	>
+		<div class="card p-2"
+			style="
+				width: 100%;
+			"
+		>
+			<TreeView>
+				<TreeViewItem>
+					Places
+					<svelte:fragment slot="children">
+						<TreeViewItem>
+							Hints
+							<svelte:fragment slot="children">
+								<TreeViewItem>
+									Legitimacy
+								</TreeViewItem>
+								<TreeViewItem>
+									Obligation Math
+								</TreeViewItem>
+							</svelte:fragment>
+						</TreeViewItem>
+						
+						<TreeViewItem>
+							<Slang text="Account" /> Types
+							<svelte:fragment slot="children">
+								<TreeViewItem>
+									<button type="button" class="btn variant-filled">
+										EEC 25519 Single Key <Slang text="Account" />
+									</button>
+								</TreeViewItem>
+								<TreeViewItem>
+									<button type="button" class="btn variant-filled">
+										Multi Key <Slang text="Account" />
+									</button>
+								</TreeViewItem>
+							</svelte:fragment>
+						</TreeViewItem>
+						
+					</svelte:fragment>
+				</TreeViewItem>
+			</TreeView>
+		</div>
+	
 		{#if prepared === "yes" }
-		{#if show_panel === "Mercy Show" }
-		<Panel_1 
-			join_mercy_harvest={ join_mercy_harvest }
-		/>
-		{:else if show_panel === "Join Mercy Harvest" }
-		<Join_Harvest 
+		{#if show_panel === "Digital Assets 1" }
+		<div
+			style="
+				box-sizing: border-box;
+				height: 100%;
+				width: 100%;
+				
+				padding: 1cm;
+				
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				
+				flex-direction: column;
+				
+				gap: 0.5cm;
+			"
+		>
+			<h1><Slang text="Accounts" /></h1>
+		</div>
+
 		
-		/>
+		
 		{/if}
 		{/if}
 	</div>
