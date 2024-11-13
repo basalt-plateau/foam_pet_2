@@ -7,7 +7,7 @@
 A pet on an offline machine (such as a laptop or desktop)  
 can interact with https://foam.pet
 
-By doing so, ultra secure Aptos (APT) transactions can happen.  
+By doing so, ultra safe Aptos (APT) transactions can happen.  
 https://aptosfoundation.org
 
 Both machines need a camera (bionic eye) and screen.  
