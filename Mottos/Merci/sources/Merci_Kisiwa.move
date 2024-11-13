@@ -8,8 +8,7 @@
 */
 module ride_1::Merci_Kisiwa {
 	
-	use std::string::{ String, utf8 };
-	use std::vector;
+	use std::string::{ String };
 	
 	use ride_1::Merci_Bayanihan;
 	
@@ -26,7 +25,6 @@ module ride_1::Merci_Kisiwa {
 	}
 	
 	public fun Establish_a_Kisiwa (
-		estate_1_spot : address,
 		mercy : u256
 	) : Kisiwa {
 		Kisiwa {

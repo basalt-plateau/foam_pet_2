@@ -34,7 +34,7 @@ module ride_1::Merci_Harvest {
 	use ride_1::Merci_Kisiwa;
 	use ride_1::Merci_Kisiwa::{ Kisiwa };
 	
-	const Novelist_spot : address = @0x4b1082b9c8f6250e01acb41aa4d2efce56a1278ee2309fefdbf0d5c59e5ac5e3;
+	const Novelist_spot : address = @0x150755A53B2FD604F5072BDF22C2F1DCA1D9D730D1AFAF460A3D8C8E16528C5F;
 	
 	const Origin_kisiwa_does_not_have_enough_mercy : u64 = 1;
 	
@@ -53,6 +53,9 @@ module ride_1::Merci_Harvest {
 		receiving: SimpleMap<address, Receiving>,
 	}
 	
+	public fun search_novelist_spot () : address {
+		Novelist_spot
+	}
 	
 	public entry fun Establish_the_Mercy_Harvest (estate_flourisher : & signer) {
 		let estate_1_spot = signer::address_of (estate_flourisher);
@@ -72,7 +75,7 @@ module ride_1::Merci_Harvest {
 				10000000000000000000000000	
 		*/
 		let mercy : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
-		let kisiwa = Merci_Kisiwa::Establish_a_Kisiwa (estate_1_spot, mercy);
+		let kisiwa = Merci_Kisiwa::Establish_a_Kisiwa (mercy);
 
 		let visiwa = simple_map::create<address, Kisiwa>();
         simple_map::add (&mut visiwa, estate_1_spot, kisiwa);
@@ -115,7 +118,7 @@ module ride_1::Merci_Harvest {
 		if (has_estate (estate_spot) == utf8 (b"yup")) { abort 89319 };
 		
 		let mercy : u256 = 0;
-		let le_kisiwa = Merci_Kisiwa::Establish_a_Kisiwa (estate_spot, mercy);
+		let le_kisiwa = Merci_Kisiwa::Establish_a_Kisiwa (mercy);
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
 		
 		let visiwa = &mut le_mercy_harvest.visiwa;

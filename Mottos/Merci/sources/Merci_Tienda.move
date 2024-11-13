@@ -2,6 +2,7 @@
 
 module ride_1::Merci_Tienda {
 	
+	/*
 	use std::signer;
 	
 	public entry fun Buy_Mercy (
@@ -23,5 +24,5 @@ module ride_1::Merci_Tienda {
 		
 		
 	}
-	
+	*/
 }
