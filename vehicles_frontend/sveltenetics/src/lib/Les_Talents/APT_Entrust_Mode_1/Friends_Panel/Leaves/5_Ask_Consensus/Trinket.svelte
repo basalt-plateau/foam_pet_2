@@ -142,18 +142,18 @@ const ask = () => {
 			type="button" 
 			class="btn variant-filled-primary"
 			style="
-				max-width: 15cm;
 				white-space: preserve;
 				word-wrap: break-word;
 				
-				width: 50%;
-				min-width: 300px;
-				height: 100px;
+				width: 200px;
+				height: 200px;
+				
+				border: 0.25cm solid rgb(var(--color-tertiary-500));
 				
 				font-size: 2em;
 			"
 			
-		>Suggest</button>
+		></button>
 		
 		<div style="height: 1cm"></div>		
 	</div>

@@ -3,29 +3,34 @@
 
 
 <script>
+
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 
+export let join_mercy_harvest__petition = () => {}
+export let join_mercy_harvest__sign = () => {}
 
-export let join_mercy_harvest = () => {}
 
 </script>
 
-<Leaf>
+<div
+	style="
+		height: 100%;
+		overflow: auto;
+		width: 100%;
+		max-width: 28cm;
+	"
+>
 	<div
 		style="
 			box-sizing: border-box;
-			height: 100%;
 			width: 100%;
 			
 			padding: 1cm;
 			
 			display: flex;
-			justify-content: center;
-			align-items: center;
+			gap: 0.2cm;
 			
 			flex-direction: column;
-			
-			gap: 0.5cm;
 		"
 	>
 		<div class="card p-4"
@@ -65,11 +70,23 @@ export let join_mercy_harvest = () => {}
 					text-align: center;
 				"
 			>
+				<header
+					style="
+						font-size: 2em;
+					"
+				>Join</header>
+			
 				<button 
 					type="button" 
 					class="btn variant-filled"
-					on:click={ join_mercy_harvest }
-				>Join</button>
+					on:click={ join_mercy_harvest__petition }
+				>Petition</button>
+				
+				<button 
+					type="button" 
+					class="btn variant-filled"
+					on:click={ join_mercy_harvest__sign }
+				>Sign</button>
 			</div>
 			<div class="card p-4"
 				style="
@@ -77,7 +94,79 @@ export let join_mercy_harvest = () => {}
 					text-align: center;
 				"
 			>
-				<button type="button" class="btn variant-filled">Leave</button>
+				<header
+					style="
+						font-size: 2em;
+					"
+				>Leave</header>
+			
+				<button 
+					type="button" 
+					class="btn variant-filled"
+				>Petition</button>
+				
+				<button 
+					type="button" 
+					class="btn variant-filled"
+				>Sign</button>
+			</div>
+		</div>
+		
+		<div
+			style="
+				display: flex;
+				gap: 1em;
+			
+				width: 100%;
+				text-align: center;
+			
+				width: 100%;
+				text-align: center;
+			"
+		>
+			<div class="card p-4"
+				style="
+					width: 100%;
+					text-align: center;
+				"
+			>
+				<header
+					style="
+						font-size: 2em;
+					"
+				>Send</header>
+			
+				<button 
+					type="button" 
+					class="btn variant-filled"
+				>Petition</button>
+				
+				<button 
+					type="button" 
+					class="btn variant-filled"
+				>Sign</button>
+			</div>
+			<div class="card p-4"
+				style="
+					width: 100%;
+					text-align: center;
+				"
+			>
+				<header
+					style="
+						font-size: 2em;
+					"
+				>Receive</header>
+			
+				<button 
+					type="button" 
+					class="btn variant-filled"
+				>Petition</button>
+				
+				<button 
+					type="button" 
+					class="btn variant-filled"
+				>Sign</button>
 			</div>
 		</div>
 		
@@ -115,15 +204,7 @@ export let join_mercy_harvest = () => {}
 		</div>
 		
 		
-		<div class="card p-4"
-			style="
-				width: 100%;
-				text-align: center;
-			"
-		>
-			<button type="button" class="btn variant-filled">Send Mercy</button>
-			<button type="button" class="btn variant-filled">Receive Mercy</button>
-		</div>
+		
 	</div>
-</Leaf>
+</div>
 

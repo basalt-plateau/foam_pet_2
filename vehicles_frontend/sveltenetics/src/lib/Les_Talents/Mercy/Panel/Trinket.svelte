@@ -37,7 +37,8 @@ import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 //
 import Panel_1 from './Leaves/Panel_1/Trinket.svelte'
-import Join_Harvest from './Leaves/Join_Harvest/Trinket.svelte'
+import Join_Harvest__Petition from './Leaves/Join_Harvest/Petition/Trinket.svelte'
+import Join_Harvest__Sign from './Leaves/Join_Harvest/Sign/Trinket.svelte'
 //
 ///
 
@@ -95,12 +96,32 @@ const open_a_panel = ({ panel_name }) => {
 	show_panel = panel_name
 }
 
-const join_mercy_harvest = () => {
-	console.log ("join_mercy_harvest");
-	
+
+const join_mercy_harvest__petition = () => {
 	polytope_modal.advance (({ freight }) => {
 		freight.back.permitted = "yes"
-		show_panel = "Join Mercy Harvest"
+		show_panel = "Join Mercy Harvest, Petition"
+		
+		on_back.push ('Mercy Show')
+		
+		return freight;		
+	})
+}
+const join_mercy_harvest__sign = () => {
+	polytope_modal.advance (({ freight }) => {
+		freight.back.permitted = "yes"
+		show_panel = "Join Mercy Harvest, Sign"
+		
+		on_back.push ('Mercy Show')
+		
+		return freight;		
+	})
+}
+
+const join_mercy_harvest_from_offline = () => {
+	polytope_modal.advance (({ freight }) => {
+		freight.back.permitted = "yes"
+		show_panel = "Join Mercy Harvest from Offline"
 		
 		on_back.push ('Mercy Show')
 		
@@ -182,12 +203,13 @@ let isOpen = false;
 		{#if prepared === "yes" }
 		{#if show_panel === "Mercy Show" }
 		<Panel_1 
-			join_mercy_harvest={ join_mercy_harvest }
+			join_mercy_harvest__petition={ join_mercy_harvest__petition }
+			join_mercy_harvest__sign={ join_mercy_harvest__sign }
 		/>
-		{:else if show_panel === "Join Mercy Harvest" }
-		<Join_Harvest 
-		
-		/>
+		{:else if show_panel === "Join Mercy Harvest, Petition" }
+		<Join_Harvest__Petition />
+		{:else if show_panel === "Join Mercy Harvest, Sign" }
+		<Join_Harvest__Sign />
 		{/if}
 		{/if}
 	</div>
