@@ -6,7 +6,9 @@ import { build_truck } from '$lib/trucks'
 
 const trucks = {}
 
-export const verify_leaf = () => {
+export const verify_leaf = ({ 
+	
+}) => {
 	const freight = trucks [1].freight;
 	const leaf_name = freight.leaf_name;
 	

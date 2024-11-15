@@ -23,7 +23,12 @@ import { ask_account_module } from '$lib/PTO/Account_Module/Ask'
 ////
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
-	
+
+import { verify_leaf } from './../Truck/index.js'
+
+import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_parameters'
+import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
+
 	
 /*
 	possibilities:
@@ -40,20 +45,18 @@ let le_move = {
 	explorer_address: ""
 }
 
+let fonction_type = "view"
+
 let fonction = {
 	name: "",
 	module: "",
 	fonction_name: "",
-	fonction_type: "",
-	
-	
-	
+	fonction_type: "",	
 	type_parameters: [],
 	parameters: []	
 }
 
 
-let fonction_type = "view"
 
 let fonction_placeholder = "0x1::account::exists_at"
 let fonction_spot = "0x1"
@@ -68,23 +71,44 @@ let fonction_name = ""
 
 let fonction_choose_accordion_open = true;
 
+
+const enhance = () => {
+	// verify_leaf
+	
+	console.log ({ fonction_name_index });
+		
+	fonction_selected = exposed_fonctions [ fonction_name_index ]
+	console.log ({ fonction_selected });
+	
+	fonction.parameters = retrieve_fonction_parameters ({
+		fonction_selected
+	});
+	
+	if (fonction_selected) {
+		fonction.type_parameters = retrieve_fonction_type_parameters ({
+			fonction_selected
+		});
+	}
+	
+	if (fonction_selected) {
+		le_move.explorer_address = [
+			"https://explorer.aptoslabs.com/account",
+			fonction_spot,
+			"modules/run",
+			fonction_module,
+			fonction_selected.name
+		].join ("/");	
+	}
+	
+	verify_leaf ({});
+}
+
 let exposed_fonction_name = ""
 $: {
 	if (versies_trucks_prepared === "yes") {
 		let _fonction_name_index = fonction_name_index;
-		
-		console.log ({ fonction_name_index });
-		
-		fonction_selected = exposed_fonctions [ fonction_name_index ]
-		
-		console.log ({ fonction_selected });
-		
-		fonction.parameters = retrieve_fonction_parameters ();
-		fonction.type_parameters = retrieve_fonction_type_parameters ();
-		
-			
+		enhance ();
 	}
-	
 }
 
 /*
@@ -98,37 +122,6 @@ let retrieve_module = async () => {
 */
 
 
-let retrieve_fonction_parameters = () => {
-	let proceeds = []
-	let parameters = []
-	
-	if (_get (fonction_selected, "is_entry", "") === true) {
-		parameters = fonction_selected.params.slice (1);
-	}
-	if (_get (fonction_selected, "is_view", "") === true) {
-		parameters = fonction_selected.params.slice (0);
-	}
-
-	console.log ({ parameters });
-
-	parameters.forEach (parameter => {
-		proceeds.push ({
-			name: parameter,
-			choosen: ""
-		})
-	});
-	
-	return proceeds;
-}
-let retrieve_fonction_type_parameters = () => {
-	
-}
-
-
-let fonction_name_changed = (fonction) => {
-	console.log ({ fonction_name_index });
-	
-}
 
 let on_fonction_select = () => {}
 
@@ -204,7 +197,6 @@ onMount (() => {})
 
 	{#if versies_trucks_prepared === "yes"}
 	<div class="card p-4"
-		style="display: none;"
 	>
 		<div
 			style={ `
@@ -224,6 +216,7 @@ onMount (() => {})
 			<RadioGroup>
 				<RadioItem bind:group={fonction_type} name="justify" value={"view"}>view</RadioItem>
 				<RadioItem bind:group={fonction_type} name="justify" value={"entry"}>entry</RadioItem>
+				<RadioItem bind:group={fonction_type} name="justify" value={"every"}>every</RadioItem>
 			</RadioGroup>
 		</div>
 	</div>
@@ -299,9 +292,11 @@ onMount (() => {})
 						<div style="width: 1cm;"></div>
 				
 						{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
+						
 						<div>
+							{ fonction_type }
 							{ fonction_selected.name }
-
+							
 							{#if fonction_selected.is_entry === true }
 							<span class="badge variant-filled">Entry</span>
 							{/if}
@@ -324,8 +319,11 @@ onMount (() => {})
 					>
 						<ListBox>
 							{#each exposed_fonctions as exposed_fonction, index }	
-							
-
+							{#if (
+								(fonction_type === "entry" && exposed_fonction.is_entry === true) ||
+								(fonction_type === "view" && exposed_fonction.is_view === true) ||
+								(fonction_type === "every")
+							)}
 							<ListBoxItem 
 								bind:group={ fonction_name_index } 
 								name="medium" 
@@ -350,6 +348,7 @@ onMount (() => {})
 									{/if}
 								</div>
 							</ListBoxItem>
+							{/if}
 							{/each}
 						</ListBox>
 					</div>
@@ -357,8 +356,6 @@ onMount (() => {})
 			</AccordionItem>
 		</Accordion>
 	</div>
-	
-	
 	
 	<div class="card p-4">	
 		<div
@@ -371,9 +368,23 @@ onMount (() => {})
 			<Slang text="Function" /> Type Parameters
 		</div>
 		
-		
-		
-		
+		{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
+			{#each fonction.type_parameters as type_parameter, index }
+			<div 
+				style="
+					text-align: center;
+				"
+				class="card p-1"
+			>				
+				<textarea 
+					style="
+						padding: 0.25cm;
+					"
+					class="textarea"  
+				/>
+			</div>
+			{/each}
+		{/if}
 	</div>
 	
 	<div class="card p-4">	
@@ -419,6 +430,11 @@ onMount (() => {})
 			{/each}
 		{/if}
 	</div>
+	
+	<button type="button" class="btn variant-filled">Next</button>
+	
+	<div style="height: 0.5cm" />
+	
 	{/if}
 
 </div>

@@ -20,6 +20,7 @@
 ////
 //
 import { onMount, onDestroy } from 'svelte';
+import { Paginator } from '@skeletonlabs/skeleton';
 //
 //
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
@@ -41,6 +42,15 @@ import {
 //
 ////
 
+
+let paginationSettings = {
+	page: 0,
+	limit: 1,
+	size: 7,
+	amounts: []
+	// amounts: [1,2,3,4,5,6,7],
+};
+					
 
 let prepared = "no"
 let freight = {}
@@ -66,10 +76,24 @@ onDestroy (() => {
 
 {#if prepared === "yes" }
 <div class="card p-2">
+	<div>
 	{#if freight.leaf_name === "Petition Form" }
 		<Petition_Form />
 	{:else if freight.leaf_name === "Petition Verification" }
 		<Petition_Verification />
 	{/if}
+	</div>
+	
+	<Paginator
+		justify={ "justify-center" }
+
+		showNumerals
+		maxNumerals={ 7 }
+		select={ "hidden" }
+		
+		bind:settings={paginationSettings}
+		showFirstLastButtons="{false}"
+		showPreviousNextButtons="{true}"
+	/>
 </div>
 {/if}
