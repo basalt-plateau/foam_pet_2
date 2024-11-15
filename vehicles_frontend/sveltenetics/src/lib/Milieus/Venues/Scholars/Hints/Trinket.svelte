@@ -6,7 +6,10 @@
 ////
 //
 import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
+//
+import { open_rules } from '$lib/Milieus/Venues/Scholars/Hints/Rules/open'
 //
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
@@ -28,8 +31,7 @@ import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
 //
 ////
 
-import { Modal, getModalStore } from '@skeletonlabs/skeleton';
-import { open_rules } from '$lib/Milieus/Venues/Scholars/Hints/Rules/open'
+
 
 const modal_store = getModalStore ();
 	
@@ -280,30 +282,6 @@ const show_rules = () => {
 	</div>
 	
 	<div style="height: 0.5cm"></div>
-	
-	<div
-		class="card p-4"
-		style="
-			margin: 0 auto;
-			text-align: center;
-		"
-	>
-		<header 
-			style="
-				font-size: 2em; 
-				text-align: center;
-				padding: 0cm 0;
-			"
-		>Rules</header>
-		
-		<button
-			on:click={ show_rules }
-			type="button" 
-			class="btn variant-filled"
-		>Show Rules</button>
-	</div>
-	
-	<div style="height: 0.5cm"></div>
 
 	<div class="card p-4">
 		<div style="height: 1cm"></div>
@@ -468,6 +446,30 @@ const show_rules = () => {
 				href="https://github.com/basalt-plateau/foam_pet/pulls"
 			>https://github.com/basalt-plateau/foam_pet/pulls</a>
 		</p>
+	</div>
+	
+	<div style="height: 0.5cm"></div>
+	
+	<div
+		class="card p-4"
+		style="
+			margin: 0 auto;
+			text-align: center;
+		"
+	>
+		<header 
+			style="
+				font-size: 2em; 
+				text-align: center;
+				padding: 0cm 0;
+			"
+		>Bayanihan</header>
+		
+		<button
+			on:click={ show_rules }
+			type="button" 
+			class="btn variant-filled"
+		>Show Bayanihan</button>
 	</div>
 	
 	<div style="height: 5cm"></div>

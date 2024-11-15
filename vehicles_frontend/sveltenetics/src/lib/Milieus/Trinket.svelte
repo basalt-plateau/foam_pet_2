@@ -36,7 +36,9 @@ let Milieus = {
 	},
 	"Technicians": {
 		"Map": async () => { return await import ('./Venues/Technicians/Trinket.svelte') },
-		
+
+		"Adaptation": async () => { return await import ('./Venues/Technicians/Adaptation/Trinket.svelte') },
+
 		"Address Qualities": async () => { return await import ('./Venues/Technicians/Address_Qualities/Trinket.svelte') },
 		"Address Qualities with Address": async () => { return await import ('./Venues/Technicians/Address_Qualities_with_Address/Trinket.svelte') },
 		"Amount Field": async () => { return await import ('./Venues/Technicians/Amount_Field/Trinket.svelte') },		
@@ -71,7 +73,6 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	
 	const location = Milieus_freight.location;
 	console.log ({ location });
-
 
 	
 	if (happening !== "mounted") {

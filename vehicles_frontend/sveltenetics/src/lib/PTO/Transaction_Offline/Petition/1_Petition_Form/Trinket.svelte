@@ -1,0 +1,424 @@
+
+
+<script>
+
+
+////
+//
+import { onMount } from 'svelte'
+//
+import { Autocomplete } from '@skeletonlabs/skeleton';
+import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
+import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';	
+//
+import _get from 'lodash/get'
+//
+//
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import Versies_Trucks from '$lib/Versies/Trucks.svelte'
+import { check_roomies_truck } from '$lib/Versies/Trucks'
+import { ask_account_module } from '$lib/PTO/Account_Module/Ask'
+//
+////
+import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
+import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
+	
+	
+/*
+	possibilities:
+		view
+		entry
+*/
+
+let versies_trucks_prepared = "no"
+
+let header_size = "1.5em"
+
+let le_move = {
+	utf8_string: "",
+	explorer_address: ""
+}
+
+let fonction = {
+	name: "",
+	module: "",
+	fonction_name: "",
+	fonction_type: "",
+	
+	
+	
+	type_parameters: [],
+	parameters: []	
+}
+
+
+let fonction_type = "view"
+
+let fonction_placeholder = "0x1::account::exists_at"
+let fonction_spot = "0x1"
+
+let fonction_options = []
+let exposed_fonctions = [];
+let fonction_selected = {}
+
+let fonction_name_index = ""
+
+let fonction_name = ""
+
+let fonction_choose_accordion_open = true;
+
+let exposed_fonction_name = ""
+$: {
+	if (versies_trucks_prepared === "yes") {
+		let _fonction_name_index = fonction_name_index;
+		
+		console.log ({ fonction_name_index });
+		
+		fonction_selected = exposed_fonctions [ fonction_name_index ]
+		
+		console.log ({ fonction_selected });
+		
+		fonction.parameters = retrieve_fonction_parameters ();
+		fonction.type_parameters = retrieve_fonction_type_parameters ();
+		
+			
+	}
+	
+}
+
+/*
+let retrieve_module = async () => {
+	const { enhanced } = await ask_account_module ({ 
+		net_path: versies_freight.net_path,
+		address_hexadecimal_string: fonction_spot,
+		module_name: fonction_module
+	})
+}
+*/
+
+
+let retrieve_fonction_parameters = () => {
+	let proceeds = []
+	let parameters = []
+	
+	if (_get (fonction_selected, "is_entry", "") === true) {
+		parameters = fonction_selected.params.slice (1);
+	}
+	if (_get (fonction_selected, "is_view", "") === true) {
+		parameters = fonction_selected.params.slice (0);
+	}
+
+	console.log ({ parameters });
+
+	parameters.forEach (parameter => {
+		proceeds.push ({
+			name: parameter,
+			choosen: ""
+		})
+	});
+	
+	return proceeds;
+}
+let retrieve_fonction_type_parameters = () => {
+	
+}
+
+
+let fonction_name_changed = (fonction) => {
+	console.log ({ fonction_name_index });
+	
+}
+
+let on_fonction_select = () => {}
+
+
+
+
+/*
+	::exists_at
+*/
+let fonction_module = "account"
+$: {
+	if (versies_trucks_prepared === "yes") {
+		let _fonction_module = fonction_module;
+		console.log ("fonction_module changed")
+		search_for_module ();
+	}
+}
+
+let search_for_module = async () => {
+	const { enhanced, successful } = await ask_account_module ({ 
+		net_path: versies_freight.net_path,
+		
+		address_hexadecimal_string: fonction_spot,
+		module_name: fonction_module
+	});
+	
+	console.info ({ enhanced });
+	
+	if (successful === "yes") {
+		exposed_fonctions = enhanced.abi.exposed_functions;
+		
+		le_move.explorer_address = [
+			"https://explorer.aptoslabs.com/account",
+			fonction_spot,
+			"modules/code",
+			fonction_module
+		].join ("/");
+		
+		console.log ({ le_move });
+		
+		return;
+	}
+	
+	exposed_fonctions = []
+}
+
+
+let versies_freight = {}
+
+const on_seeds_truck_change = ({ freight: _freight, happening }) => {
+	versies_freight = _freight;
+	if (happening === "mounted") {
+		versies_trucks_prepared = "yes"
+		search_for_module ();
+	}
+}
+
+
+onMount (() => {})
+
+</script>
+
+
+<div
+	style="
+		display: flex;
+		gap: 0.25cm;
+		
+		flex-direction: column;
+	"
+>
+	<Versies_Trucks on_change={ on_seeds_truck_change } />
+
+	{#if versies_trucks_prepared === "yes"}
+	<div class="card p-4"
+		style="display: none;"
+	>
+		<div
+			style={ `
+				text-align: center;
+				font-size: ${ header_size };
+				padding: 0.25cm 0;
+			` }
+		>
+			<Slang text="Function" /> Type
+		</div>
+		
+		<div
+			style="
+				text-align: center;
+			"
+		>
+			<RadioGroup>
+				<RadioItem bind:group={fonction_type} name="justify" value={"view"}>view</RadioItem>
+				<RadioItem bind:group={fonction_type} name="justify" value={"entry"}>entry</RadioItem>
+			</RadioGroup>
+		</div>
+	</div>
+		
+	<div 
+		style="
+			display: flex;
+			flex-direction: column;
+			gap: 0.1cm;
+		"
+		class="card p-4"
+	>	
+		
+		<div
+			style={ `
+				text-align: center;
+				font-size: ${ header_size };
+				padding: 0.25cm 0;
+			` }
+		>
+			<Slang text="Function" />
+		</div>
+		
+		<div class="card p-4">
+			<a class="anchor" href={ le_move.explorer_address }>{ le_move.explorer_address }</a>
+		</div>
+
+		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+			<div class="input-group-shim">name</div>
+			<input
+				bind:value={ fonction_spot }
+		
+				class="input" 
+				type="text" 
+				style="
+					padding: 0.25cm;
+				"
+			/>
+		</div>
+		
+		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+			<div class="input-group-shim">module</div>
+			<input
+				bind:value={ fonction_module }
+		
+				class="input" 
+				type="text" 
+				style="
+					padding: 0.25cm;
+				"
+			/>
+		</div>
+		
+		<Accordion>
+			<AccordionItem
+				open={ fonction_choose_accordion_open }
+			>
+				<svelte:fragment slot="summary">
+					<div
+						style="
+							display: flex;
+							align-items: center;
+							
+						"
+					>
+						<div class="badge variant-soft-primary"
+							style="
+								font-size: 1.5em;
+								padding: 0.25cm;
+							"
+						>function name</div>
+						
+						<div style="width: 1cm;"></div>
+				
+						{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
+						<div>
+							{ fonction_selected.name }
+
+							{#if fonction_selected.is_entry === true }
+							<span class="badge variant-filled">Entry</span>
+							{/if}
+							
+							{#if fonction_selected.is_view === true }
+							<span class="badge variant-filled">View</span>
+							{/if}
+						</div>
+						{/if}
+					</div>
+					
+				</svelte:fragment>
+				<svelte:fragment slot="content">
+					<div
+						class="card p-2"
+						style="
+							height: 300px;
+							overflow-y: scroll;
+						"
+					>
+						<ListBox>
+							{#each exposed_fonctions as exposed_fonction, index }	
+							
+
+							<ListBoxItem 
+								bind:group={ fonction_name_index } 
+								name="medium" 
+								value={ index }
+								
+								disabled={(
+									exposed_fonction.is_entry !== true &&
+									exposed_fonction.is_view !== true 
+								)}
+								
+								on:change={ fonction_name_changed }
+							>
+								<div>
+									{ exposed_fonction.name }
+
+									{#if exposed_fonction.is_entry === true }
+									<span class="badge variant-filled">Entry</span>
+									{/if}
+									
+									{#if exposed_fonction.is_view === true }
+									<span class="badge variant-filled">View</span>
+									{/if}
+								</div>
+							</ListBoxItem>
+							{/each}
+						</ListBox>
+					</div>
+				</svelte:fragment>
+			</AccordionItem>
+		</Accordion>
+	</div>
+	
+	
+	
+	<div class="card p-4">	
+		<div
+			style={ `
+				text-align: center;
+				font-size: ${ header_size };
+				padding: 0.25cm 0;
+			` }
+		>
+			<Slang text="Function" /> Type Parameters
+		</div>
+		
+		
+		
+		
+	</div>
+	
+	<div class="card p-4">	
+		<div
+			style={ `
+				text-align: center;
+				font-size: ${ header_size };
+				padding: 0.25cm 0;
+			` }
+		>
+			<Slang text="Function" /> Parameters
+		</div>
+		
+		{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
+			{#each fonction.parameters as parameter, index }
+			<div 
+				style="
+					text-align: center;
+				"
+				class="card p-1"
+			>
+				<div style="height: 0.25cm;"></div>
+			
+				<div>
+					<span 
+						style="
+							padding: 0.25cm 0.5cm;
+							font-size: 1.5em;
+						"
+						class="badge variant-soft-primary"
+					>{ parameter.name }</span>
+				</div>
+				
+				<div style="height: 0.25cm;"></div>
+				
+				<textarea 
+					style="
+						padding: 0.25cm;
+					"
+					class="textarea"  
+				/>
+			</div>
+			{/each}
+		{/if}
+	</div>
+	{/if}
+
+</div>

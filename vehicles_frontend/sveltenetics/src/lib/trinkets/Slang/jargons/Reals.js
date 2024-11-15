@@ -129,7 +129,8 @@ const consensus = {
 
 
 const move = {
-	"function": "fonction"
+	"function": "fonction",
+	"Function": "Fonction"	
 }
 
 const leaves = {
@@ -177,7 +178,7 @@ export const Reals = {
 	...blockchain,
 	...consensus,
 
-	
+	...move,
 	
 
 	

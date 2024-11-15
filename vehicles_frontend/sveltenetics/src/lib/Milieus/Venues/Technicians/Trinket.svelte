@@ -126,6 +126,15 @@ a {
 			style="margin: 4px 0 12px"
 		>
 		
+		<Panel 
+			styles={ trends.panel }
+		>
+			<Milieus_Button
+				name={ "Adaptation" }
+				location={[ "Technicians", "Adaptation" ]}
+				is_open_location={[ "Technicians", "Adaptation" ]}
+			/>
+		</Panel>
 		
 		<Panel 
 			styles={ trends.panel }

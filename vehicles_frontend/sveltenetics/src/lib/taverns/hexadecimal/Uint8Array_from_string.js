@@ -1,8 +1,8 @@
 
-//
-//	import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
-//
-//
+/*
+	import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+	const u_int_8_array = Uint8Array_from_string (hexadecimal_string)
+*/
 
 //
 //	nibble: 4 bits, for example: 0, 1, .., F
