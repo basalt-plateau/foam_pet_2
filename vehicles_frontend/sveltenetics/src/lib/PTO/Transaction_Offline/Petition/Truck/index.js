@@ -1,5 +1,8 @@
 
-
+/*
+	import { retrieve_truck } from './index.js'
+	const Truck = retrieve_truck ();
+*/
 
 import { build_truck } from '$lib/trucks'
 	
@@ -58,16 +61,20 @@ export const refresh_truck = () => {
 			leaves: {
 				"Petition Form": {
 					"next": "no",
-					"back": "no",
-					"fields": {
-						"name": "",
-						"module_name": "",
-						"fonction_name": "",
-						
-						"type_params": [],
-						"params": []
-					}
+					"back": "no"
 				}
+			},
+			
+			petition: {
+				fields: {
+					"name": "",
+					"module_name": "",
+					"fonction_name": "",
+					"type_params": [],
+					"params": []
+				},
+				bracket: "",
+				
 			}
 		}
 	})

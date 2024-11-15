@@ -72,24 +72,63 @@ onDestroy (() => {
 
 
 {#if prepared === "yes" }
-<div class="card p-2">
-	<div>
+<div 
+	style="
+		position: relative;
+		min-height: 100%;
+	"
+	class="card"
+>
 	
-	
-	{#if freight.leaf_name === "Petition Form" }
+
+	<div
+		style="
+			position: absolute;
+			height: calc(100% - 50px);
+			width: 100%;
+			overflow-y: scroll;
+		"
+	>
+		{#if freight.leaf_name === "Petition Form" }
 		<Petition_Form />
-	{:else if freight.leaf_name === "Petition Verification" }
+		{:else if freight.leaf_name === "Petition Verification" }
 		<Petition_Verification />
-	{/if}
+		{/if}
 	</div>
 	
 
 	<div
 		style="
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			
+			width: 100%;
+			height: 50px;
+		
 			display: flex;
 			justify-content: center;
+			gap: 0.25cm;
+			
+			padding: 0.2cm;
+			
+			border-top: 4px solid black;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+	
+	
+			border-bottom-left-radius: 8x;
+			border-bottom-right-radius: 8px;			
 		"
+		class="card"
 	>
+		<button
+			type="button" class="btn variant-filled"
+			disabled={ freight.back !== "yes" }
+			
+			on:click={ back }
+		>back</button>
+		
 		<div class="btn-group variant-filled">
 			{#each le_buttons as le_button }
 			<button
@@ -97,24 +136,7 @@ onDestroy (() => {
 			>{ le_button }</button>
 			{/each}
 		</div>
-	</div>
-	
-	<div style="height: 0.25cm"></div>
-	
-	<div
-		style="
-			display: flex;
-			justify-content: center;
-			gap: 0.25cm;
-		"
-	>
-		{ freight.leaf_name }
-		<button
-			type="button" class="btn variant-filled"
-			disabled={ freight.back !== "yes" }
-			
-			on:click={ back }
-		>back</button>
+		
 		<button
 			type="button" class="btn variant-filled"
 			disabled={ freight.next !== "yes" }
@@ -123,6 +145,5 @@ onDestroy (() => {
 		>next</button>			
 	</div>
 	
-	<div style="height: 1cm"></div>
 </div>
 {/if}

@@ -19,16 +19,19 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Versies_Trucks from '$lib/Versies/Trucks.svelte'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 import { ask_account_module } from '$lib/PTO/Account_Module/Ask'
-//
-////
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
+//
+////
+
 
 import { verify_leaf } from './../Truck/index.js'
 
 import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_parameters'
 import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
 
+import { build_petition } from '$lib/PTO/Transaction_Offline/Petition/Screenplays/build_petition'
+	
 	
 /*
 	possibilities:
@@ -56,6 +59,8 @@ let fonction = {
 	
 	fonction_name: "",
 	fonction_type: "",	
+	
+	signer_hexadecimal_address: "",
 	
 	type_parameters: [],
 	parameters: []	
@@ -118,6 +123,16 @@ const enhance = () => {
 	verify_leaf ({});
 	
 	fonction.found = "yes"
+	
+	try {
+		build_petition ({
+			net_path: versies_freight.net_path,
+			fonction
+		});
+	}
+	catch (mishap) {
+		console.error (mishap);
+	}
 }
 
 let exposed_fonction_name = ""
@@ -393,7 +408,25 @@ onMount (() => {})
 			</div>
 		</div>
 		{/if}
+		
+		{#if fonction_type === "entry"}
+		<div class="card p-1 variant-ringed-primary">
+			<div class="input-group-shim">signer hexadecimal address</div>
+			<textarea 
+				style="
+					padding: 0.25cm;
+				"
+				class="textarea"  
+				
+				bind:value={ fonction.signer_hexadecimal_address }
+				on:change={ enhance }
+			/>
+		</div>
+		{/if}
 	</div>
+	
+	
+	
 	
 	{#if fonction.found === "yes"}
 	<div class="card p-4">	
@@ -420,10 +453,21 @@ onMount (() => {})
 						padding: 0.25cm;
 					"
 					class="textarea"  
+					on:change={ enhance }
 				/>
 			</div>
 			{/each}
+			
+			{#if fonction.type_parameters.length === 0}
+			<p
+				style="
+					text-align: center;
+				"
+			>0 Type Parameters</p>
+			{/if}
 		{/if}
+		
+		
 	</div>
 	
 	<div class="card p-4">	
@@ -457,16 +501,26 @@ onMount (() => {})
 					>{ parameter.name }</span>
 				</div>
 				
-				<div style="height: 0.25cm;"></div>
+				<div style="height: 0.1cm;"></div>
 				
 				<textarea 
 					style="
 						padding: 0.25cm;
 					"
 					class="textarea"  
+					
+					on:change={ enhance }
 				/>
 			</div>
 			{/each}
+			
+			{#if fonction.parameters.length === 0}
+			<p
+				style="
+					text-align: center;
+				"
+			>0 Type Parameters</p>
+			{/if}
 		{/if}
 	</div>
 	{/if}

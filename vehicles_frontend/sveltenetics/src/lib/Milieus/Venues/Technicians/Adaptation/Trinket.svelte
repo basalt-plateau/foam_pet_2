@@ -15,6 +15,13 @@ import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svel
 <Leaf>
 	<header>Adaptation</header>
 	
-	<Offline_Petition />
-
+	<div
+		style="
+			height: 80vh;
+			overflow: scroll;
+		"
+		
+	>
+		<Offline_Petition />
+	</div>
 </Leaf>
