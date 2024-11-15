@@ -46,12 +46,17 @@ let le_move = {
 }
 
 let fonction_type = "view"
+let fonction_search = "fields"
 
 let fonction = {
+	found: "no",
+	
 	name: "",
 	module: "",
+	
 	fonction_name: "",
 	fonction_type: "",	
+	
 	type_parameters: [],
 	parameters: []	
 }
@@ -61,7 +66,6 @@ let fonction = {
 let fonction_placeholder = "0x1::account::exists_at"
 let fonction_spot = "0x1"
 
-let fonction_options = []
 let exposed_fonctions = [];
 let fonction_selected = {}
 
@@ -71,19 +75,28 @@ let fonction_name = ""
 
 let fonction_choose_accordion_open = true;
 
+let fonction_name_changed = () => {
+	enhance ();
+}
+
+const verify_can_go_on = () => {
+	
+	return "yes"
+}
 
 const enhance = () => {
 	// verify_leaf
-	
-	console.log ({ fonction_name_index });
 		
 	fonction_selected = exposed_fonctions [ fonction_name_index ]
-	console.log ({ fonction_selected });
-	
 	fonction.parameters = retrieve_fonction_parameters ({
 		fonction_selected
 	});
 	
+	if (fonction_selected === undefined) {
+		fonction.found = "no"
+		return;
+	}
+		
 	if (fonction_selected) {
 		fonction.type_parameters = retrieve_fonction_type_parameters ({
 			fonction_selected
@@ -100,7 +113,11 @@ const enhance = () => {
 		].join ("/");	
 	}
 	
+	verify_can_go_on ()
+	
 	verify_leaf ({});
+	
+	fonction.found = "yes"
 }
 
 let exposed_fonction_name = ""
@@ -135,7 +152,6 @@ let fonction_module = "account"
 $: {
 	if (versies_trucks_prepared === "yes") {
 		let _fonction_module = fonction_module;
-		console.log ("fonction_module changed")
 		search_for_module ();
 	}
 }
@@ -143,13 +159,9 @@ $: {
 let search_for_module = async () => {
 	const { enhanced, successful } = await ask_account_module ({ 
 		net_path: versies_freight.net_path,
-		
 		address_hexadecimal_string: fonction_spot,
 		module_name: fonction_module
 	});
-	
-	console.info ({ enhanced });
-	
 	if (successful === "yes") {
 		exposed_fonctions = enhanced.abi.exposed_functions;
 		
@@ -160,11 +172,12 @@ let search_for_module = async () => {
 			fonction_module
 		].join ("/");
 		
-		console.log ({ le_move });
+		enhance ();
 		
 		return;
 	}
 	
+	fonction.found = "no"	
 	exposed_fonctions = []
 }
 
@@ -234,129 +247,155 @@ onMount (() => {})
 			style={ `
 				text-align: center;
 				font-size: ${ header_size };
-				padding: 0.25cm 0;
+				padding: 0;
 			` }
 		>
 			<Slang text="Function" />
 		</div>
 		
-		<div class="card p-4">
-			<a class="anchor" href={ le_move.explorer_address }>{ le_move.explorer_address }</a>
+		<div
+			style="
+				text-align: center;
+			"
+		>
+			<RadioGroup>
+				<RadioItem bind:group={ fonction_search } name="justify" value={"fields"}>fields</RadioItem>
+				<RadioItem bind:group={ fonction_search } name="justify" value={"entire"}>entire</RadioItem>
+			</RadioGroup>
 		</div>
+		
+		<div style="height: 0.25cm" ></div>
+		
+		
+		{#if fonction_search === "fields" }
+		<div>
+			<div class="card p-4">
+				<a class="anchor" href={ le_move.explorer_address }>{ le_move.explorer_address }</a>
+			</div>
 
-		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-			<div class="input-group-shim">name</div>
-			<input
-				bind:value={ fonction_spot }
-		
-				class="input" 
-				type="text" 
+			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+				<div class="input-group-shim">name</div>
+				<input
+					bind:value={ fonction_spot }
+			
+					class="input" 
+					type="text" 
+					style="
+						padding: 0.25cm;
+					"
+				/>
+			</div>
+			
+			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+				<div class="input-group-shim">module</div>
+				<input
+					bind:value={ fonction_module }
+			
+					class="input" 
+					type="text" 
+					style="
+						padding: 0.25cm;
+					"
+				/>
+			</div>
+			
+			<div
 				style="
-					padding: 0.25cm;
+					border-width: 4px;
 				"
-			/>
-		</div>
-		
-		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-			<div class="input-group-shim">module</div>
-			<input
-				bind:value={ fonction_module }
-		
-				class="input" 
-				type="text" 
-				style="
-					padding: 0.25cm;
-				"
-			/>
-		</div>
-		
-		<Accordion>
-			<AccordionItem
-				open={ fonction_choose_accordion_open }
+				class="card p-2 variant-ringed-primary"
 			>
-				<svelte:fragment slot="summary">
-					<div
-						style="
-							display: flex;
-							align-items: center;
-							
-						"
+				<Accordion>
+					<AccordionItem
+						open={ fonction_choose_accordion_open }
 					>
-						<div class="badge variant-soft-primary"
-							style="
-								font-size: 1.5em;
-								padding: 0.25cm;
-							"
-						>function name</div>
-						
-						<div style="width: 1cm;"></div>
-				
-						{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
-						
-						<div>
-							{ fonction_type }
-							{ fonction_selected.name }
-							
-							{#if fonction_selected.is_entry === true }
-							<span class="badge variant-filled">Entry</span>
-							{/if}
-							
-							{#if fonction_selected.is_view === true }
-							<span class="badge variant-filled">View</span>
-							{/if}
-						</div>
-						{/if}
-					</div>
-					
-				</svelte:fragment>
-				<svelte:fragment slot="content">
-					<div
-						class="card p-2"
-						style="
-							height: 300px;
-							overflow-y: scroll;
-						"
-					>
-						<ListBox>
-							{#each exposed_fonctions as exposed_fonction, index }	
-							{#if (
-								(fonction_type === "entry" && exposed_fonction.is_entry === true) ||
-								(fonction_type === "view" && exposed_fonction.is_view === true) ||
-								(fonction_type === "every")
-							)}
-							<ListBoxItem 
-								bind:group={ fonction_name_index } 
-								name="medium" 
-								value={ index }
-								
-								disabled={(
-									exposed_fonction.is_entry !== true &&
-									exposed_fonction.is_view !== true 
-								)}
-								
-								on:change={ fonction_name_changed }
+						<svelte:fragment slot="summary">
+							<div
+								style="
+									display: flex;
+									align-items: center;
+									
+								"
 							>
+								<div class="badge variant-soft-primary"
+									style="
+										font-size: 1.5em;
+										padding: 0.25cm;
+									"
+								>function name</div>
+								
+								<div style="width: 1cm;"></div>
+						
+								{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
+								
 								<div>
-									{ exposed_fonction.name }
-
-									{#if exposed_fonction.is_entry === true }
+									{ fonction_type }
+									{ fonction_selected.name }
+									
+									{#if fonction_selected.is_entry === true }
 									<span class="badge variant-filled">Entry</span>
 									{/if}
 									
-									{#if exposed_fonction.is_view === true }
+									{#if fonction_selected.is_view === true }
 									<span class="badge variant-filled">View</span>
 									{/if}
 								</div>
-							</ListBoxItem>
-							{/if}
-							{/each}
-						</ListBox>
-					</div>
-				</svelte:fragment>
-			</AccordionItem>
-		</Accordion>
+								{/if}
+							</div>
+							
+						</svelte:fragment>
+						<svelte:fragment slot="content">
+							<div
+								class="card p-2"
+								style="
+									height: 300px;
+									overflow-y: scroll;
+								"
+							>
+								<ListBox>
+									{#each exposed_fonctions as exposed_fonction, index }	
+									{#if (
+										(fonction_type === "entry" && exposed_fonction.is_entry === true) ||
+										(fonction_type === "view" && exposed_fonction.is_view === true) ||
+										(fonction_type === "every")
+									)}
+									<ListBoxItem 
+										bind:group={ fonction_name_index } 
+										name="medium" 
+										value={ index }
+										
+										disabled={(
+											exposed_fonction.is_entry !== true &&
+											exposed_fonction.is_view !== true 
+										)}
+										
+										on:change={ fonction_name_changed }
+									>
+										<div>
+											{ exposed_fonction.name }
+
+											{#if exposed_fonction.is_entry === true }
+											<span class="badge variant-filled">Entry</span>
+											{/if}
+											
+											{#if exposed_fonction.is_view === true }
+											<span class="badge variant-filled">View</span>
+											{/if}
+										</div>
+									</ListBoxItem>
+									{/if}
+									{/each}
+								</ListBox>
+							</div>
+						</svelte:fragment>
+					</AccordionItem>
+				</Accordion>
+			</div>
+		</div>
+		{/if}
 	</div>
 	
+	{#if fonction.found === "yes"}
 	<div class="card p-4">	
 		<div
 			style={ `
@@ -430,8 +469,7 @@ onMount (() => {})
 			{/each}
 		{/if}
 	</div>
-	
-	<button type="button" class="btn variant-filled">Next</button>
+	{/if}
 	
 	<div style="height: 0.5cm" />
 	
