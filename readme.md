@@ -58,3 +58,15 @@ These are the previous repositories (most recent is on top)
 [https://github.com/basalt-plateau/foam_2](https://github.com/basalt-plateau/foam_2)    
 [https://github.com/basalt-plateau/foam](https://github.com/basalt-plateau/foam)
 
+## Amplifications
+If you'd like amplify this project, APT can be received at:
+Aptos Mainnet: 652b8d45aebc4237cb4a4ca1d8b99725d8f973676844fe85eb09286d7f9d3808
+
+
+
+
+
+
+
+
+
