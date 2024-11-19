@@ -131,7 +131,7 @@ a {
 	
 	<div style="height: 0.5cm"></div>
 
-	<Installation_with_Docker />
+	<!-- <Installation_with_Docker /> -->
 	
 	<div style="height: 3cm"></div>
 </Leaf>

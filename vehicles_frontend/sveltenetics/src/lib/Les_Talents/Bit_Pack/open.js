@@ -5,17 +5,18 @@
 	open_bit_throw ({ modal_store });
 */
 
-import Bit_Pack from './Trinket.svelte'
+// import Bit_Pack from './Trinket.svelte'
 
-export const open_bit_throw = ({ modal_store }) => {
+export const open_bit_throw = async ({ modal_store }) => {
 	modal_store.trigger ({
 		type: 'component',
 		backdropClasses: '!p-0 !fixed',
 		component: {
-			ref: Bit_Pack,
+			ref: (await import ('./Trinket.svelte')).default,
 			props: { 
 				modal_store
 			}
 		}
 	});
 }
+

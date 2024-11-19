@@ -39,7 +39,7 @@ click==8.1.7
     #   law-dictionary
     #   somatic
     #   ventures
-coverage==7.6.5
+coverage==7.6.7
     # via
     #   biotech
     #   emergency

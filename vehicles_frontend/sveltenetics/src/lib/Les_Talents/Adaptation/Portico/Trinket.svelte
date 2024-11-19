@@ -3,18 +3,15 @@
 <script>
 
 
-import Panel from './../Panel/Trinket.svelte'
 
 export let modal_store;
 
-let open = () => {
+let open = async () => {
 	modal_store.trigger ({
 		type: 'component',
-		
 		backdropClasses: '!p-0',
-		
 		component: {
-			ref: Panel,
+			ref: (await import ('./../Panel/Trinket.svelte')).default,
 			props: { 
 				modal_store
 			}
