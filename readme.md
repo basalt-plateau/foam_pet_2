@@ -60,7 +60,7 @@ These are the previous repositories (most recent is on top)
 
 ## Amplifications
 If you'd like amplify this project, APT can be received at:   
-Aptos Mainnet: 652b8d45aebc4237cb4a4ca1d8b99725d8f973676844fe85eb09286d7f9d3808
+Aptos Mainnet Address: 652b8d45aebc4237cb4a4ca1d8b99725d8f973676844fe85eb09286d7f9d3808
 
 
 
