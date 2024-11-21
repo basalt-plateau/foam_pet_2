@@ -18,13 +18,15 @@ export const ask_sequence_number = async ({
 }) => {
 	console.log ({ net_path })
 	
-	
 	const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
 		fullnode: net_path,
 		network: Aptos_SDK.Network.CUSTOM
 	}));
 	
-	console.log ("getting sequence number")
+	console.log ("getting sequence number", { 
+		net_path,
+		address 
+	})
 	
 	const proceeds = await aptos.view ({ 
 		payload: {
@@ -35,6 +37,8 @@ export const ask_sequence_number = async ({
 			]
 		}
 	});
+	
+	console.log ({ proceeds });
 	
 	const sequence_number = proceeds [0];
 	

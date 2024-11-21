@@ -4,6 +4,16 @@
 	const Truck = retrieve_truck ();
 */
 
+/*
+	start:
+		refresh_truck
+*/
+
+/*
+	end:
+		destroy_truck
+*/	
+
 import { build_truck } from '$lib/trucks'
 	
 
@@ -65,17 +75,17 @@ export const refresh_truck = () => {
 				}
 			},
 			
-			petition: {
-				fields: {
-					"name": "",
-					"module_name": "",
-					"fonction_name": "",
-					"type_params": [],
-					"params": []
-				},
-				bracket: "",
+			petition_fields: {
+				"mode": "",
 				
-			}
+				"address": "",
+				"module_name": "",
+				"fonction_name": "",
+				
+				"type_params": [],
+				"params": []
+			},
+			petition_bracket: {}
 		}
 	})
 }

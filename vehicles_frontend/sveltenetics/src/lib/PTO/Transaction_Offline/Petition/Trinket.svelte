@@ -21,6 +21,7 @@
 //
 import { onMount, onDestroy } from 'svelte';
 import { Paginator } from '@skeletonlabs/skeleton';
+import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 //
 //
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
@@ -33,16 +34,7 @@ import Flourish_Receive from './4_Flourish_Receive/Trinket.svelte'
 import Flourish_Verification from './5_Flourish_Verification/Trinket.svelte'
 import Adaptation_Suggestion from './6_Adaptation_Suggestion/Trinket.svelte'
 //
-import {
-	refresh_truck, 
-	retrieve_truck, 
-	monitor_truck,
-	destroy_truck,
-	
-	next,
-	back,
-	go_to
-} from './Truck/index.js'
+import * as Petition_Truck from './Truck/index.js'
 //
 ////
 
@@ -53,19 +45,21 @@ let prepared = "no"
 let freight = {}
 
 onMount (() => {
-	refresh_truck ()
+	Petition_Truck.refresh_truck ()
 	
-	const Truck = retrieve_truck ()
+	const Truck = Petition_Truck.retrieve_truck ()
 	freight = Truck.freight;
 	
-	monitor_truck ((_freight) => {
+	Petition_Truck.monitor_truck ((_freight) => {
 		freight = _freight;
+		
+		console.log ("Petition_Truck changed:", { _freight });
 	})
 	
 	prepared = "yes"
 });
 onDestroy (() => {
-	destroy_truck ()
+	Petition_Truck.destroy_truck ()
 });
 
 </script>
@@ -79,20 +73,76 @@ onDestroy (() => {
 	"
 	class="card"
 >
-	
-
 	<div
 		style="
 			position: absolute;
-			height: calc(100% - 50px);
+			height: 30px;
+			width: 100%;
+			
+			box-sizing: border-box;
+			
+			border-bottom: 2px solid black;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+	
+			border-top-left-radius: 8x;
+			border-top-right-radius: 8px;	
+		"
+	>
+		<header
+			style="
+				position: relative;
+				
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				
+				height: 100%;
+				width: 100%;
+			"
+		>
+			{ freight.leaf_name }
+		</header>
+	</div>
+	
+	
+	
+	<div
+		style="
+			position: absolute;
+			top: 30px;
+			height: calc(100% - 80px);
 			width: 100%;
 			overflow-y: scroll;
 		"
 	>
+		<div
+			style="
+				border-bottom: 2px solid black;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+		
+				border-top-left-radius: 8x;
+				border-top-right-radius: 8px;
+			"
+		>
+			<Accordion>
+				<AccordionItem>
+					<svelte:fragment slot="summary">petition freight</svelte:fragment>
+					<svelte:fragment slot="content"><pre>{ JSON.stringify (freight, null, 2) }</pre></svelte:fragment>
+				</AccordionItem>
+			</Accordion>
+		</div>
+
+	
 		{#if freight.leaf_name === "Petition Form" }
 		<Petition_Form />
 		{:else if freight.leaf_name === "Petition Verification" }
 		<Petition_Verification />
+		{:else if freight.leaf_name === "Petition Send" }
+		{:else if freight.leaf_name === "Flourish Receive" }
+		{:else if freight.leaf_name === "Flourish Verification" }
+		{:else if freight.leaf_name === "Adaptation Suggestion" }
 		{/if}
 	</div>
 	
@@ -112,10 +162,9 @@ onDestroy (() => {
 			
 			padding: 0.2cm;
 			
-			border-top: 4px solid black;
+			border-top: 2px solid black;
 			border-top-left-radius: 0;
 			border-top-right-radius: 0;
-	
 	
 			border-bottom-left-radius: 8x;
 			border-bottom-right-radius: 8px;			
@@ -126,13 +175,13 @@ onDestroy (() => {
 			type="button" class="btn variant-filled"
 			disabled={ freight.back !== "yes" }
 			
-			on:click={ back }
+			on:click={ Petition_Truck.back }
 		>back</button>
 		
 		<div class="btn-group variant-filled">
 			{#each le_buttons as le_button }
 			<button
-				on:click={ go_to ({ leaf_page: le_button }) }
+				on:click={ Petition_Truck.go_to ({ leaf_page: le_button }) }
 			>{ le_button }</button>
 			{/each}
 		</div>
@@ -141,7 +190,7 @@ onDestroy (() => {
 			type="button" class="btn variant-filled"
 			disabled={ freight.next !== "yes" }
 			
-			on:click={ next }
+			on:click={ Petition_Truck.next }
 		>next</button>			
 	</div>
 	

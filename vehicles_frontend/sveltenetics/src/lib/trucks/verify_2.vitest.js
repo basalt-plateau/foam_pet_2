@@ -1,5 +1,8 @@
 
-// bun run vitest "src/lib/trucks/verify_2.vitest.js"
+/*
+	(cd /Metro/vehicles_frontend/sveltenetics && pnpm run health "src/lib/trucks/verify_2.vitest.js")
+*/
+
 
 import { build_truck } from './index'
 	

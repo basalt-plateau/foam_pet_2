@@ -5,14 +5,15 @@
 
 ////
 //
-import { onMount } from 'svelte'
+//
+import _get from 'lodash/get'
+//
+import { onMount, onDestroy } from 'svelte'
 //
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';	
-//
-import _get from 'lodash/get'
 //
 //
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
@@ -25,21 +26,52 @@ import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte'
 ////
 
 
-import { verify_leaf } from './../Truck/index.js'
-
 import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_parameters'
 import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
 
-import { build_petition } from '$lib/PTO/Transaction_Offline/Petition/Screenplays/build_petition'
-	
-	
-/*
-	possibilities:
-		view
-		entry
-*/
 
+
+import * as PT from './../Truck/index.js'
+import { build_entry_petition } from '../Screenplays/build_entry_petition'
+
+
+////
+//
+//	Trucks
+//
+//
+let PT_prepared = "no"
+let PT_freight = {}
+let PT_monitor;
+onMount (() => {
+	PT_freight = PT.retrieve_truck ().freight;
+	PT_monitor = PT.monitor_truck ((_freight) => {
+		PT_freight = _freight;
+	})
+	
+	PT_prepared = "yes"
+});
+onDestroy (() => {
+	PT_monitor.stop ()
+});
+//
+//
+let versies_freight = {}
 let versies_trucks_prepared = "no"
+const on_seeds_truck_change = ({ freight: _freight, happening }) => {
+	versies_freight = _freight;
+	if (happening === "mounted") {
+		versies_trucks_prepared = "yes"
+		search_for_module ();
+	}
+}
+//
+//
+//
+//
+////
+
+
 
 let header_size = "1.5em"
 
@@ -48,17 +80,17 @@ let le_move = {
 	explorer_address: ""
 }
 
-let fonction_type = "view"
+let fonction_modes_shown = [ "view", "entry" ]
 let fonction_search = "fields"
 
 let fonction = {
 	found: "no",
 	
-	name: "",
-	module: "",
+	fonction_mode: "",	
 	
+	spot: "0x1",
+	module: "",
 	fonction_name: "",
-	fonction_type: "",	
 	
 	signer_hexadecimal_address: "",
 	
@@ -66,41 +98,49 @@ let fonction = {
 	parameters: []	
 }
 
-
-
-let fonction_placeholder = "0x1::account::exists_at"
-let fonction_spot = "0x1"
-
+/*
+	exposed_fonctions:
+	fonction_selected:
+	fonction_name_index:
+	fonction_name:
+	fonction_choose_accordion_open:
+*/
 let exposed_fonctions = [];
 let fonction_selected = {}
-
 let fonction_name_index = ""
-
 let fonction_name = ""
-
 let fonction_choose_accordion_open = true;
+
 
 let fonction_name_changed = () => {
 	enhance ();
 }
 
 const verify_can_go_on = () => {
-	
 	return "yes"
 }
 
+
+/*
+
+
+
+*/
 const enhance = () => {
-	// verify_leaf
-		
-	fonction_selected = exposed_fonctions [ fonction_name_index ]
-	fonction.parameters = retrieve_fonction_parameters ({
-		fonction_selected
-	});
+	console.log ("enhance");
 	
+	fonction_selected = exposed_fonctions [ fonction_name_index ]
 	if (fonction_selected === undefined) {
 		fonction.found = "no"
 		return;
 	}
+	
+	
+	fonction.parameters = retrieve_fonction_parameters ({
+		fonction_selected
+	});
+	
+	
 		
 	if (fonction_selected) {
 		fonction.type_parameters = retrieve_fonction_type_parameters ({
@@ -108,27 +148,32 @@ const enhance = () => {
 		});
 	}
 	
+	//
+	//	This is the code
+	//
 	if (fonction_selected) {
 		le_move.explorer_address = [
 			"https://explorer.aptoslabs.com/account",
-			fonction_spot,
+			fonction.spot,
 			"modules/run",
-			fonction_module,
+			fonction_module_name,
 			fonction_selected.name
 		].join ("/");	
 	}
 	
 	verify_can_go_on ()
 	
-	verify_leaf ({});
-	
 	fonction.found = "yes"
 	
+	console.info ({ fonction_selected });
+	
 	try {
-		build_petition ({
-			net_path: versies_freight.net_path,
-			fonction
-		});
+		if (fonction_selected.is_entry) {
+			build_entry_petition ({
+				net_path: versies_freight.net_path,
+				fonction
+			});
+		}
 	}
 	catch (mishap) {
 		console.error (mishap);
@@ -143,30 +188,16 @@ $: {
 	}
 }
 
-/*
-let retrieve_module = async () => {
-	const { enhanced } = await ask_account_module ({ 
-		net_path: versies_freight.net_path,
-		address_hexadecimal_string: fonction_spot,
-		module_name: fonction_module
-	})
-}
-*/
-
-
-
-let on_fonction_select = () => {}
-
 
 
 
 /*
 	::exists_at
 */
-let fonction_module = "account"
+let fonction_module_name = "account"
 $: {
 	if (versies_trucks_prepared === "yes") {
-		let _fonction_module = fonction_module;
+		let _fonction_module_name = fonction_module_name;
 		search_for_module ();
 	}
 }
@@ -174,17 +205,17 @@ $: {
 let search_for_module = async () => {
 	const { enhanced, successful } = await ask_account_module ({ 
 		net_path: versies_freight.net_path,
-		address_hexadecimal_string: fonction_spot,
-		module_name: fonction_module
+		address_hexadecimal_string: fonction.spot,
+		module_name: fonction_module_name
 	});
 	if (successful === "yes") {
 		exposed_fonctions = enhanced.abi.exposed_functions;
 		
 		le_move.explorer_address = [
 			"https://explorer.aptoslabs.com/account",
-			fonction_spot,
+			fonction.spot,
 			"modules/code",
-			fonction_module
+			fonction_module_name
 		].join ("/");
 		
 		enhance ();
@@ -197,18 +228,10 @@ let search_for_module = async () => {
 }
 
 
-let versies_freight = {}
-
-const on_seeds_truck_change = ({ freight: _freight, happening }) => {
-	versies_freight = _freight;
-	if (happening === "mounted") {
-		versies_trucks_prepared = "yes"
-		search_for_module ();
-	}
-}
 
 
-onMount (() => {})
+
+
 
 </script>
 
@@ -223,7 +246,7 @@ onMount (() => {})
 >
 	<Versies_Trucks on_change={ on_seeds_truck_change } />
 
-	{#if versies_trucks_prepared === "yes"}
+	{#if versies_trucks_prepared === "yes" && PT_prepared === "yes" }
 	<div class="card p-4"
 	>
 		<div
@@ -233,19 +256,22 @@ onMount (() => {})
 				padding: 0.25cm 0;
 			` }
 		>
-			<Slang text="Function" /> Type
+			<Slang text="Function" /> Mode
 		</div>
 		
 		<div
 			style="
 				text-align: center;
+				width: 100%;
+				max-width: 300px;
+				margin: 0 auto;
 			"
 		>
-			<RadioGroup>
-				<RadioItem bind:group={fonction_type} name="justify" value={"view"}>view</RadioItem>
-				<RadioItem bind:group={fonction_type} name="justify" value={"entry"}>entry</RadioItem>
-				<RadioItem bind:group={fonction_type} name="justify" value={"every"}>every</RadioItem>
-			</RadioGroup>
+			<ListBox multiple>
+				<ListBoxItem bind:group={fonction_modes_shown} name="view" value="view">View</ListBoxItem>
+				<ListBoxItem bind:group={fonction_modes_shown} name="entry" value="entry">Entry</ListBoxItem>
+			</ListBox>
+
 		</div>
 	</div>
 		
@@ -289,9 +315,9 @@ onMount (() => {})
 			</div>
 
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-				<div class="input-group-shim">name</div>
+				<div class="input-group-shim">address</div>
 				<input
-					bind:value={ fonction_spot }
+					bind:value={ fonction.spot }
 			
 					class="input" 
 					type="text" 
@@ -301,10 +327,12 @@ onMount (() => {})
 				/>
 			</div>
 			
+			<div style="height: 0.1cm" ></div>
+			
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-				<div class="input-group-shim">module</div>
+				<div class="input-group-shim">module name</div>
 				<input
-					bind:value={ fonction_module }
+					bind:value={ fonction_module_name }
 			
 					class="input" 
 					type="text" 
@@ -344,7 +372,6 @@ onMount (() => {})
 								{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
 								
 								<div>
-									{ fonction_type }
 									{ fonction_selected.name }
 									
 									{#if fonction_selected.is_entry === true }
@@ -370,9 +397,8 @@ onMount (() => {})
 								<ListBox>
 									{#each exposed_fonctions as exposed_fonction, index }	
 									{#if (
-										(fonction_type === "entry" && exposed_fonction.is_entry === true) ||
-										(fonction_type === "view" && exposed_fonction.is_view === true) ||
-										(fonction_type === "every")
+										(fonction_modes_shown.includes ("entry") && exposed_fonction.is_entry === true) ||
+										(fonction_modes_shown.includes ("view") && exposed_fonction.is_view === true)
 									)}
 									<ListBoxItem 
 										bind:group={ fonction_name_index } 
@@ -409,7 +435,7 @@ onMount (() => {})
 		</div>
 		{/if}
 		
-		{#if fonction_type === "entry"}
+		{#if fonction_modes_shown.includes ("entry") }
 		<div class="card p-1 variant-ringed-primary">
 			<div class="input-group-shim">signer hexadecimal address</div>
 			<textarea 

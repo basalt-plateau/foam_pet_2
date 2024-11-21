@@ -40,44 +40,18 @@
 import cloneDeep from 'lodash/cloneDeep'
 import _set from 'lodash/set'
 
+import { monitor_bracket } from '$lib/taverns/bracket/monitor'
+
 export const build_truck = ({ freight }) => {
 	let the_freight = {}
 	let monitors = []
 	let change_count = 0
 	
-	const monitor_deep = (obj, on_change) => {
-		const handler = {
-			get (target, property, receiver) {
-				try {
-					return new Proxy (target [ property ], handler);
-				} 
-				catch (err) {
-					return Reflect.get (target, property, receiver);
-				}
-			},
-			set (target, property, value, receiver) {
-				const current = target [ property ];
-				
-				// console.log ("set:", { target, property, value, receiver })
-				
-				
-				
-				const success = Reflect.set (target, property, value, receiver);
-				if (success && current !== value) {
-					on_change ({
-						target,
-						property,
-						value
-					});
-				}
-				
-				return success;
-			}
-		}
-		
-		return new Proxy (obj, handler);
-	};
-	the_freight = monitor_deep (freight, ({ property, target, value }) => {
+	//
+	//	This sends changes to each monitor.
+	//	
+	//
+	the_freight = monitor_bracket (freight, ({ property, target, value }) => {
 		change_count += 1
 		for (let E = 0; E < monitors.length; E++) {
 			monitors [E] ({ 
@@ -96,8 +70,7 @@ export const build_truck = ({ freight }) => {
 		return {
 			stop () {
 				for (let E = 0; E < monitors.length; E++) {
-					const monitor = monitors [E]
-					if (monitor === action) {
+					if (monitors [E] === action) {
 						monitors.splice (E, 1)
 						return;
 					}		
@@ -108,10 +81,12 @@ export const build_truck = ({ freight }) => {
 		}
 	}
 	
+	/*
 	// This makes multiple enhances
 	const enhance = (keys, contents) => {
 		_set (the_freight, keys, contents);
 	}
+	*/
 	
 	const stop = () => {
 		monitors = []
@@ -129,7 +104,7 @@ export const build_truck = ({ freight }) => {
 	return {
 		monitor,
 		monitors,
-		enhance,
+		// enhance,
 		freight: the_freight,
 		retrieve_change_count,
 		stop
