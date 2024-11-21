@@ -28,7 +28,7 @@
 		}
 	})
 	
-	let monitor = trucks [1].monitor (({ freight }) => {
+	let monitor = trucks [1].monitor (({ freight, original_freight }) => {
 		console.log ({ freight })
 	})	
 	
@@ -55,11 +55,16 @@ export const build_truck = ({ freight }) => {
 		change_count += 1
 		for (let E = 0; E < monitors.length; E++) {
 			monitors [E] ({ 
+				// vintage
 				freight: the_freight,
 				
+				pro_freight: the_freight,
+				original_freight: freight,
+				
 				property,
-				target,
-				value
+				value,
+				
+				target				
 			})
 		}
 	});

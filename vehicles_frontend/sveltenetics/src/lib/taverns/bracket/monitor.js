@@ -81,13 +81,13 @@ export const monitor_bracket = (bracket, on_change) => {
 			const success = Reflect.set (target, property, value, receiver);
 			if (success && current !== value) {
 				on_change ({
-					
-					
 					property,
 					value,
 					
 					target,
-					receiver
+					receiver,
+					
+					original_bracket: bracket
 				});
 			}
 			

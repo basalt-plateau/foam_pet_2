@@ -15,6 +15,7 @@
 */	
 
 import { build_truck } from '$lib/trucks'
+import { build_entry_petition_AO } from './screenplays/build_entry_petition_AO'
 	
 
 const trucks = {}
@@ -54,6 +55,8 @@ export const go_to = ({ leaf_page }) => {
 export const refresh_truck = () => {
 	trucks [1] = build_truck ({
 		freight: {
+			net_path: "",
+			
 			leaf_name: "Petition Form",
 			next: "no",
 			back: "no",
@@ -76,14 +79,14 @@ export const refresh_truck = () => {
 			},
 			
 			petition_fields: {
-				"mode": "",
+				mode: "",
 				
-				"address": "",
-				"module_name": "",
-				"fonction_name": "",
+				address: "",
+				module_name: "",
+				fonction_name: "",
 				
-				"type_params": [],
-				"params": []
+				type_parameters: [],
+				parameters: []
 			},
 			petition_bracket: {}
 		}
@@ -101,8 +104,28 @@ export const retrieve_truck = () => {
 
 
 export const monitor_truck = (action) => {	
-	return trucks [1].monitor (({ freight, property, value, target }) => {
-		console.info ("property:", { property, value, target });
+	return trucks [1].monitor (({ freight, property, value, target, original_freight }) => {
+		// console.info ("petition freight changed:", { property, value, target, original_freight });
+		
+		try {
+			if (target === original_freight.petition_fields) {
+				if (property === "address") {
+					console.log ("address changed");
+				}
+				else if (property === "type_parameters") {
+					console.log ("type_parameters changed");
+				}
+				
+				build_entry_petition_AO ({
+					net_path: original_freight.net_path,
+					petition_fields: original_freight.petition_fields
+				});
+			}
+
+		}
+		catch (exception) {
+			console.error ("exception", exception);
+		}
 		
 		if (property === "leaf_name") {
 			//

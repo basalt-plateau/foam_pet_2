@@ -24,13 +24,14 @@ import Slang_Cipher from '$lib/trinkets/Slang/Cipher.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
 import Taxonomy from '$lib/trinkets/Taxonomy/Pet.svelte'
+import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example/Trinket.svelte'
 //
 //
 import Getting_Moving from './Getting_Moving/Trinket.svelte'
 import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
 //
 ////
-
+import Boards from './Boards/Trinket.svelte'
 
 
 const modal_store = getModalStore ();
@@ -136,9 +137,9 @@ const show_rules = () => {
 					margin: 0 auto;
 					
 					width: 100%;
-					max-width: 600px;
+					max-width: 700px;
 					
-					font-size: 4em; 
+					
 					text-align: center;
 					font-family: sans-serif !important;
 				"
@@ -151,13 +152,25 @@ const show_rules = () => {
 					alt="pet" 
 				/>
 				
-				<header 
-					style="
-						font-weight: bold;
-						font-family: sans-serif;
-					"
-					class="gradient-heading"
-				>Foam Pet</header>
+				<div>
+					<header 
+						style="
+							font-weight: bold;
+							font-family: sans-serif;
+							font-size: 4em; 
+						"
+						class="gradient-heading"
+					>Foam Pets</header>
+					<!-- <div class="card p-1 variant-filled-surface">
+						<p
+							style="
+								width: 100%;
+							"
+						>	
+							Event Horizon Wallet Chaperones
+						</p>
+					</div> -->
+				</div>
 				
 				<img 
 					style="
@@ -169,7 +182,6 @@ const show_rules = () => {
 			</header>
 					
 			<div style="height: 1cm"></div>
-
 		</div>
 
 		<!-- 
@@ -178,70 +190,10 @@ const show_rules = () => {
 		-->
 	</div>
 
+
 	<div style="height: 0.5cm"></div>
 
-	<div
-		class="card p-4"
-		style="
-			width: 100%;
-		"
-	>	
-		<div
-			style="
-				display: flex;
-				border-radius: 4px;
-				justify-content: center;
-			"
-		>
-			<img src={ pets } alt="Machines" />
-		</div>
-		<div 
-			style="
-				display: flex;
-				justify-content: center;
-				flex-direction: row;
-			"
-		>
-			<div 
-				style="width: 50%"
-				class="card p-4"
-			>
-				<p
-					style="text-align: center; font-size: 1.5em;"
-				><Slang text="Offline Machine" /></p>
-				<p style="font-size: 1em; text-align: center; line-height: 2em">
-					<span class="badge variant-soft-primary">Offline Machine</span>
-					<span class="badge variant-soft-primary">Offline Signing</span>
-					<span class="badge variant-soft-primary">Beacon with Limited Connectivity</span>
-					<span class="badge variant-soft-primary">Keys Ring</span>
-					<span class="badge variant-soft-primary">Loyal Pet</span>	
-				</p>
-			</div>
-			
-			<div 
-				style="width: 1%"
-			></div>
-			
-			<div 
-				style="width: 50%"
-				class="card p-4"
-			>
-				<p
-					style="text-align: center; font-size: 1.5em;"
-				><Slang text="Online Machine" /></p>
-				<p style="font-size: 1em; text-align: center; line-height: 2em">
-					<span class="badge variant-soft-primary">Emergency Dispatch Buttons</span>
-					<span class="badge variant-soft-primary">SOS Beacon</span>
-					<span class="badge variant-soft-primary">Emergency Kiosk</span>
-					<span class="badge variant-soft-primary">Howl Amp</span>
-					<span class="badge variant-soft-primary">Internet Connected Beacon</span>
-					<span class="badge variant-soft-primary">Friendly Pet</span>
-					<span class="badge variant-soft-primary">Online Machine</span>
-					<span class="badge variant-soft-primary">Checkout</span>
-				</p>
-			</div>
-		</div>
-	</div>
+	<Boards />
 	
 	<div style="height: 0.5cm"></div>
 
@@ -284,13 +236,19 @@ const show_rules = () => {
 	<div style="height: 0.5cm"></div>
 
 	<div class="card p-4">
-		<div style="height: 1cm"></div>
+		<header 
+			style="
+				font-size: 2em; 
+				text-align: center;
+				padding: 0.5cm 0;
+			"
+		>Bouncy</header>
 	
 		<div style="font-size: 1em; text-align: center; line-height: 2em;">
 			<p
 				
 			>
-				<span><Slang text="Pets" /> can interact with <Slang text="Aptos" />.</span>
+				<span><Slang text="Pets" /> are event horizon wallet guardians for <Slang text="Aptos" />.</span>
 			</p> 
 			<p>
 				<a class="anchor" href="https://Aptos.dev">https://Aptos.dev</a>
@@ -305,12 +263,12 @@ const show_rules = () => {
 		<p
 			style="font-size: 1em; text-align: center; line-height: 2em;"
 		>
-			<span>A <Slang text="Pet" /> should live on an <Slang text="Online Machine" />.</span>
+			<span>A <Slang text="Publisher" /> <Slang text="Pet" /> should live on an <Slang text="Online Machine" />.</span>
 		</p> 
 		<p
 			style="font-size: 1em; text-align: center; line-height: 2em;"
 		>
-			<span><Slang text="This Domain" /> is a <Slang text="Pet" /> living in a <Slang text="Online Machine" />.</span>
+			<span><Slang text="This Domain" /> is a <Slang text="Publisher" /> <Slang text="Pet" />.</span>
 		</p> 
 	
 		<div style="height: 1cm"></div>
@@ -318,14 +276,13 @@ const show_rules = () => {
 		<p
 			style="font-size: 1em; text-align: center; line-height: 2em;"
 		>
-			<span>Another <Slang text="Pet" /> should live on an <Slang text="Offline Machine" />.</span>
+			<span>A <Slang text="Signer" /> <Slang text="Pet" /> should live on an <Slang text="Offline Machine" />.</span>
 		</p>
-		
-		<p style="font-size: 1em; text-align: center; line-height: 2em;">
-			<span>This is how Offline Wallet (Cold Wallet, Airgapped Wallet) moves happen.</span>
-		</p> 
+
 		
 		<div style="height: 1cm"></div>		
+		
+		<Offline_Signing_Example />
 	</div>
 	
 	<div style="height: 0.5cm"></div>

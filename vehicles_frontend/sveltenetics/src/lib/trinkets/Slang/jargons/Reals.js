@@ -7,27 +7,40 @@ const blockchain = {
 	//			
 	"blockchain": "socreboard",
 	"Blockchain": "Scoreboard",
-	"Block": "Turn",
 	
+	
+	"Block": "Turn",
+	"block": "turn",
+	
+	
+	"transaction petition": "petition",
+	"Transaction Petition": "petition",
+	"Transaction petition": "Petition",
+	"Transaction Petitions": "Petitions",
+	"Transaction petitions": "Petitions",
+
+	/*
+		Treaty, Bargain
+	
+	*/
+	"blockchain transaction": "adaptation",
+	"Blockchain Transaction": "Adaptation",
+	"Blockchain transaction": "Adaptation",	
+	"Blockchain Transactions": "Adaptations",
+	"Blockchain transactions": "Adaptations",
+	
+	
+	//	Vintage: use "blockchain transaction"
 	"transaction": "adaptation",
 	"Transaction": "Adaptation",
 	"Transactions": "Adaptations",
 	
-	
-	//
-	//
-	//	Don't use these anymore.
-	//	Use "Unsigned_Transaction" instead.
-	//
+	//	Vintage: use "transaction petition"
 	"petition": "petition",	
 	"Petition": "Petition",
 	"Petitions": "Petitions",
-	
-	
-	//
-	//	Treaty, Bargain
-	//
-	//
+
+	//	Vintage: use "transaction petition"
 	"Unsigned_Transaction": "Petition",
 	"Unsigned_Transactions": "Petitions",
 }
@@ -109,6 +122,10 @@ const account = {
 	"signed": "Flourished",
 	//
 	////
+	
+	
+	"publisher": "publisher",
+	"Publisher": "Publisher"	
 }
 
 const consensus = {
@@ -172,7 +189,7 @@ export const Reals = {
 	"Internet_Location": "Icanniana Neural Libration Lattice",
 	"Internet": "Icanniana Neural Libration Lattice",
 	
-	// "Aptos": "Aptos",
+	"Aptos": "Aptos",
 	
 	...account,
 	...blockchain,
@@ -207,8 +224,8 @@ export const Reals = {
 	// Meteor
 	// Machine
 	// Lodge
-	"Machine": "Trinket",
-	"Machines": "Trinket",
+	"Machine": "Board",
+	"Machines": "Board",
 	
 	//
 	// 	Howl
@@ -217,12 +234,12 @@ export const Reals = {
 	// 	Loyals Meteor
 	//	Friends Zone
 	//
-	"Online Machine": "Friendly Pet",
-	"Online_Machines": "Friendly Pets",
-	"an_Online_Machine": "a Friendly Pet",
+	"Online Machine": "Online Board",
+	"Online_Machines": "Online Boards",
+	"an_Online_Machine": "an Online Board",
 	//
-	"Offline_Machine": "Loyal Pet",
-	"Offline Machine": "Loyal Pet",
-	"Offline Machines": "Loyal Pets",
-	"an_Offline_Machine": "a Loyal Pet",
+	"Offline_Machine": "Offline Board",
+	"Offline Machine": "Offline Board",
+	"Offline Machines": "Offline Boards",
+	"an_Offline_Machine": "Offline Board",
 }

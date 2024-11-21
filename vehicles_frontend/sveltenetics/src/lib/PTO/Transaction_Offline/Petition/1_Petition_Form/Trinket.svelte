@@ -18,10 +18,11 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Versies_Trucks from '$lib/Versies/Trucks.svelte'
+import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
+//
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 import { ask_account_module } from '$lib/PTO/Account_Module/Ask'
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
-import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 //
 ////
 
@@ -32,7 +33,6 @@ import { retrieve_fonction_type_parameters } from './screenplays/retrieve_foncti
 
 
 import * as PT from './../Truck/index.js'
-import { build_entry_petition } from '../Screenplays/build_entry_petition'
 
 
 ////
@@ -88,8 +88,6 @@ let fonction = {
 	
 	fonction_mode: "",	
 	
-	spot: "0x1",
-	module: "",
 	fonction_name: "",
 	
 	signer_hexadecimal_address: "",
@@ -99,12 +97,18 @@ let fonction = {
 }
 
 /*
-	exposed_fonctions:
-	fonction_selected:
-	fonction_name_index:
+	// The fonctions possible for the address::module_name
+	exposed_fonctions: This is what is returned by API
+	
+	// The selected fonction
+	fonction_selected: This is the fonction that is selected
+	fonction_name_index: This is the index of the fonction that is selected.
+	
+	
 	fonction_name:
 	fonction_choose_accordion_open:
 */
+
 let exposed_fonctions = [];
 let fonction_selected = {}
 let fonction_name_index = ""
@@ -112,13 +116,12 @@ let fonction_name = ""
 let fonction_choose_accordion_open = true;
 
 
-let fonction_name_changed = () => {
-	enhance ();
+let fonction_spot = "0x1";
+$: {
+	let _fonction_spot = fonction_spot;
+	search_for_module ();
 }
 
-const verify_can_go_on = () => {
-	return "yes"
-}
 
 
 /*
@@ -127,7 +130,16 @@ const verify_can_go_on = () => {
 
 */
 const enhance = () => {
-	console.log ("enhance");
+	console.log ("enhance", {
+		fonction,
+		fonction_spot,
+		PT_freight
+	});
+	
+	if (PT_freight && PT_freight.petition_fields) {}
+	else {
+		return;
+	}
 	
 	fonction_selected = exposed_fonctions [ fonction_name_index ]
 	if (fonction_selected === undefined) {
@@ -135,49 +147,57 @@ const enhance = () => {
 		return;
 	}
 	
-	
-	fonction.parameters = retrieve_fonction_parameters ({
-		fonction_selected
-	});
-	
-	
-		
-	if (fonction_selected) {
-		fonction.type_parameters = retrieve_fonction_type_parameters ({
-			fonction_selected
-		});
-	}
+	/*
+		{
+			"name": "exists_at",
+			"visibility": "public",
+			"is_entry": false,
+			"is_view": true,
+			"generic_type_params": [],
+			"params": [
+				"address"
+			],
+			"return": [
+				"bool"
+			]
+		}
+	*/
+	console.log ({ fonction_selected });
 	
 	//
-	//	This is the code
+	//	This is the link to aptoslabs explorer.
 	//
 	if (fonction_selected) {
 		le_move.explorer_address = [
 			"https://explorer.aptoslabs.com/account",
-			fonction.spot,
+			fonction_spot,
 			"modules/run",
 			fonction_module_name,
 			fonction_selected.name
 		].join ("/");	
 	}
 	
-	verify_can_go_on ()
-	
-	fonction.found = "yes"
-	
-	console.info ({ fonction_selected });
-	
-	try {
-		if (fonction_selected.is_entry) {
-			build_entry_petition ({
-				net_path: versies_freight.net_path,
-				fonction
-			});
-		}
+	let mode = ""
+	if (fonction_selected.is_entry) {
+		mode = "entry"
 	}
-	catch (mishap) {
-		console.error (mishap);
+	else if (fonction_selected.is_view) {
+		mode = "view"
 	}
+	
+	PT_freight.petition_fields = {
+		mode,
+				
+		address: fonction_spot,
+		module_name: fonction_module_name,
+		fonction_name: fonction_selected.name,
+		
+		type_parameters: retrieve_fonction_type_parameters ({ fonction_selected }),
+		parameters: retrieve_fonction_parameters ({ fonction_selected })
+	}
+	
+
+	
 }
 
 let exposed_fonction_name = ""
@@ -205,7 +225,8 @@ $: {
 let search_for_module = async () => {
 	const { enhanced, successful } = await ask_account_module ({ 
 		net_path: versies_freight.net_path,
-		address_hexadecimal_string: fonction.spot,
+		
+		address_hexadecimal_string: fonction_spot,
 		module_name: fonction_module_name
 	});
 	if (successful === "yes") {
@@ -213,7 +234,7 @@ let search_for_module = async () => {
 		
 		le_move.explorer_address = [
 			"https://explorer.aptoslabs.com/account",
-			fonction.spot,
+			fonction_spot,
 			"modules/code",
 			fonction_module_name
 		].join ("/");
@@ -317,7 +338,8 @@ let search_for_module = async () => {
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 				<div class="input-group-shim">address</div>
 				<input
-					bind:value={ fonction.spot }
+					bind:value={ fonction_spot }
+					on:change={ enhance }
 			
 					class="input" 
 					type="text" 
@@ -333,6 +355,7 @@ let search_for_module = async () => {
 				<div class="input-group-shim">module name</div>
 				<input
 					bind:value={ fonction_module_name }
+					on:change={ enhance }
 			
 					class="input" 
 					type="text" 
@@ -410,7 +433,7 @@ let search_for_module = async () => {
 											exposed_fonction.is_view !== true 
 										)}
 										
-										on:change={ fonction_name_changed }
+										on:change={ enhance }
 									>
 										<div>
 											{ exposed_fonction.name }

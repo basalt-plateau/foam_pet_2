@@ -1,7 +1,7 @@
 
 /*
-	import { build_entry_petition } from '$lib/PTO/Transaction_Offline/Petition/Screenplays/build_entry_petition'
-	build_entry_petition ({
+	import { build_entry_petition_AO } from './screenplays/build_entry_petition_AO'
+	build_entry_petition_AO ({
 		address_signer_hexadecimal_string: "",
 	});
 */
@@ -9,16 +9,14 @@
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 import { pick_expiration } from '$lib/PTO/Petition/Options_Expiration'
-import { build_entry_petition_AO } from '$lib/PTO/Petition/Entry_AO_from_fields'
+import { build_entry_petition_AO as build_entry_petition_AO_ } from '$lib/PTO/Petition/Entry_AO_from_fields'
 
-import { retrieve_truck } from './../Truck/index.js'
 
-export const build_entry_petition = ({
+export const build_entry_petition_AO = ({
 	net_path,
-	fonction
+	
+	petition_fields
 }) => {
-	const Truck = retrieve_truck ();
-
 	console.info ({ fonction });
 
 	const sender = Aptos_SDK.AccountAddress.from (
@@ -44,7 +42,7 @@ export const build_entry_petition = ({
 		"build_entry_petition_AO": ""
 	})
 
-	build_entry_petition_AO ({
+	build_entry_petition_AO_ ({
 		net_path,
 		
 		fields: {
@@ -60,3 +58,4 @@ export const build_entry_petition = ({
 		}
 	});
 }
+
