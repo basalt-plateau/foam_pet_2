@@ -109,16 +109,38 @@ const show_rules = () => {
 
 <Leaf>
 	<div
-		class="card p-1"
 		style="
 			width: 100%;
 		"
+		class="card p-4"
 	>
 		<p
 			style="
 				text-align: center;
 			"
 		>"{ seeds.name }", pronounced { seeds.pronunciation }, might be { seeds.language } for "scholars".</p>
+	</div>
+
+	<div style="height: 0.5cm"></div>
+
+	<div
+		class="card p-1"
+		style="
+			width: 100%;
+		"
+	>
+		<header 
+			style="
+				font-weight: bold;
+				font-family: sans-serif;
+				font-size: 8vw; 
+				
+				text-align: center;
+				
+				font-family: 'Rubik Vinyl', sans-serif;
+			"
+			class="gradient-heading"
+		>Foam Pet</header>
 	</div>
 
 	<!-- 

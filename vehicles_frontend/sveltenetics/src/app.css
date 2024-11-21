@@ -24,6 +24,18 @@
 	
 	color: var(--color-text);
 }
+
+@font-face {
+	font-family: 'Lavishly_Yours';
+	src: url('Fonts/Lavishly_Yours/LavishlyYours-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: "Rubik Vinyl";
+	src: url('Fonts/Rubik_Vinyl/RubikVinyl-Regular.ttf') format('truetype');
+}
+
+
 body {
 	min-height: 100vh;
 	margin: 0;

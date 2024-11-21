@@ -31,8 +31,10 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 	>
 		<img src={ pets } alt="Machines" />
 	</div>
-	
-	<div class="card p-1 variant-filled-surface">
+
+	<div style="height: 2cm" />
+
+	<div class="card p-4">
 		<p
 			style="
 				width: 100%;
