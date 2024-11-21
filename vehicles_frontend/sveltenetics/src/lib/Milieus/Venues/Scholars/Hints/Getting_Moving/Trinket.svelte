@@ -37,7 +37,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 							font-size: 1.5em;
 						"
 					>
-						<p>1. (Tough) Adoption</p>
+						<p>1. Adoption</p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
