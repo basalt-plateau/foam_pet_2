@@ -81,8 +81,6 @@ a {
 
 <Leaf>
 
-	
-
 	<div style="height: 0.5cm"></div>
 	<div class="card p-4">
 		<div style="height: 0.5cm"></div>

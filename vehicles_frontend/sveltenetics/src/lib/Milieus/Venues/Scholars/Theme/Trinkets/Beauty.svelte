@@ -77,6 +77,10 @@ const change_tints = ({ theme: _theme }) => {
 	a theme picked.
 */
 const ask_for_theme = () => {
+	
+	/*
+		prefer a theme that is set in local storage
+	*/
 	let local_storage_theme = localStorage.getItem ('body-theme');
 	if (
 		typeof local_storage_theme === "string" &&
@@ -116,10 +120,13 @@ const change_visibility = () => {
 	setModeUserPrefers ($modeCurrent);
 	setModeCurrent ($modeCurrent);
 }
+
+/*
 $: {
 	let _visibility = visibility;
 	change_visibility ();	
 }
+*/
 
 
 
@@ -170,7 +177,7 @@ $: {
 
 		<!-- <LightSwitch /> -->
 		
-		<SlideToggle name="slide" bind:checked={ visibility } />
+		<SlideToggle name="slide" bind:checked={ visibility } on:change={ change_visibility } />
 		
 		<div>Diurnal</div>
 	</div>

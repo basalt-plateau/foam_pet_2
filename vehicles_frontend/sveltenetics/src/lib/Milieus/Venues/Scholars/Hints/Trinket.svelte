@@ -109,22 +109,7 @@ const show_rules = () => {
 
 <Leaf>
 	<div
-		style="
-			width: 100%;
-		"
 		class="card p-4"
-	>
-		<p
-			style="
-				text-align: center;
-			"
-		>"{ seeds.name }", pronounced { seeds.pronunciation }, might be { seeds.language } for "scholars".</p>
-	</div>
-
-	<div style="height: 0.5cm"></div>
-
-	<div
-		class="card p-1"
 		style="
 			width: 100%;
 		"
@@ -133,7 +118,7 @@ const show_rules = () => {
 			style="
 				font-weight: bold;
 				font-family: sans-serif;
-				font-size: 8vw; 
+				font-size: 10vw; 
 				
 				text-align: center;
 				
@@ -141,6 +126,24 @@ const show_rules = () => {
 			"
 			class="gradient-heading"
 		>Foam Pet</header>
+		
+		<div
+			class="card p-4 variant-soft-surface"
+			
+			style="
+				width: 100%;
+				font-size: 1.2em;
+			"
+		>
+			<p
+				style="
+					text-align: center;
+				"
+			>
+				<span style="display: block">Perhaps occassionally pronounced as { seeds.pronunciation },</span>
+				<span style="display: block"><b style="font-size: 1.4em">{ seeds.name }</b> might be { seeds.language } for <b>scholars</b>.</span>
+			</p>
+		</div>
 	</div>
 
 	<!-- 

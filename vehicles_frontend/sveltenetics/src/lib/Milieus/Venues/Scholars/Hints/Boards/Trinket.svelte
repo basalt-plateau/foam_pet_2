@@ -28,13 +28,14 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 			border-radius: 4px;
 			justify-content: center;
 		"
+		class="card p-4 variant-soft-surface"
 	>
 		<img src={ pets } alt="Machines" />
 	</div>
 
-	<div style="height: 2cm" />
+	<div style="height: 0.25cm" />
 
-	<div class="card p-4">
+	<div class="card p-4 variant-soft-surface">
 		<p
 			style="
 				width: 100%;
@@ -56,7 +57,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 	>
 		<div 
 			style="width: 50%"
-			class="card p-4"
+			class="card p-4 variant-soft-surface"
 		>
 			<p
 				style="text-align: center; font-size: 1em;"
@@ -69,7 +70,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 		
 		<div 
 			style="width: 50%"
-			class="card p-4"
+			class="card p-4 variant-soft-surface"
 		>
 			<p
 				style="text-align: center;"
@@ -89,7 +90,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 	>
 		<div 
 			style="width: 50%"
-			class="card p-4"
+			class="card p-4 variant-soft-surface"
 		>
 			<p
 				style="text-align: center; font-size: 1.5em;"
@@ -109,7 +110,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 		
 		<div 
 			style="width: 50%"
-			class="card p-4"
+			class="card p-4 variant-soft-surface"
 		>
 			<p
 				style="text-align: center; font-size: 1.5em;"
