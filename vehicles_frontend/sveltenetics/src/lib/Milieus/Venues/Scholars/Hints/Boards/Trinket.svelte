@@ -31,6 +31,53 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 	>
 		<img src={ pets } alt="Machines" />
 	</div>
+	
+	<div class="card p-1 variant-filled-surface">
+		<p
+			style="
+				width: 100%;
+				text-align: center;
+			"
+		>	
+			Event Horizon Wallet Logistics Duo for <Slang text="Aptos" />
+		</p>
+	</div>
+
+	<div style="height: 0.25cm" />
+
+	<div 
+		style="
+			display: flex;
+			justify-content: center;
+			flex-direction: row;
+		"
+	>
+		<div 
+			style="width: 50%"
+			class="card p-4"
+		>
+			<p
+				style="text-align: center; font-size: 1em;"
+			>Signatory</p>
+		</div>
+		
+		<div 
+			style="width: 1%"
+		></div>
+		
+		<div 
+			style="width: 50%"
+			class="card p-4"
+		>
+			<p
+				style="text-align: center;"
+			>Publicist</p>
+		</div>
+	</div>
+
+	<div style="height: 0.25cm" />
+
+
 	<div 
 		style="
 			display: flex;
@@ -75,38 +122,6 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 				<span class="badge variant-soft-primary">Online Machine</span>
 				<span class="badge variant-soft-primary">Checkout</span>
 			</p>
-		</div>
-	</div>
-	
-	<div style="height: 0.25cm" />
-	
-	<div 
-		style="
-			display: flex;
-			justify-content: center;
-			flex-direction: row;
-		"
-	>
-		<div 
-			style="width: 50%"
-			class="card p-4"
-		>
-			<p
-				style="text-align: center; font-size: 1em;"
-			>The <Slang text="Offline Machine" /> is where <Slang text="Petitions" /> are <Slang text="Signed" />.</p>
-		</div>
-		
-		<div 
-			style="width: 1%"
-		></div>
-		
-		<div 
-			style="width: 50%"
-			class="card p-4"
-		>
-			<p
-				style="text-align: center;"
-			>The <Slang text="Online Machine" /> is where <Slang text="Petitions" /> are suggested to the <Slang text="Consensus" />.</p>
 		</div>
 	</div>
 </div>

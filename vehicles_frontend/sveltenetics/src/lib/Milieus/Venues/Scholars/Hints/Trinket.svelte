@@ -32,6 +32,7 @@ import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
 //
 ////
 import Boards from './Boards/Trinket.svelte'
+import Mural from './Mural/Trinket.svelte'
 
 
 const modal_store = getModalStore ();
@@ -120,79 +121,12 @@ const show_rules = () => {
 		>"{ seeds.name }", pronounced { seeds.pronunciation }, might be { seeds.language } for "scholars".</p>
 	</div>
 
-	<div style="height: 0.5cm"></div>
-
-	<div class="card p-4">
-		
-		<div class="card p-4 variant-soft-primary">
-			<div style="height: 1cm"></div>
-			
-			<header 
-				style="
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					gap: 5%;
-					
-					margin: 0 auto;
-					
-					width: 100%;
-					max-width: 700px;
-					
-					
-					text-align: center;
-					font-family: sans-serif !important;
-				"
-			>
-				<img 
-					style="
-						height: 1.4cm;
-					"
-					src={ pet } 
-					alt="pet" 
-				/>
-				
-				<div>
-					<header 
-						style="
-							font-weight: bold;
-							font-family: sans-serif;
-							font-size: 4em; 
-						"
-						class="gradient-heading"
-					>Foam Pets</header>
-					<!-- <div class="card p-1 variant-filled-surface">
-						<p
-							style="
-								width: 100%;
-							"
-						>	
-							Event Horizon Wallet Chaperones
-						</p>
-					</div> -->
-				</div>
-				
-				<img 
-					style="
-						height: 1.4cm;
-					"
-					src={ pet_2 } 
-					alt="pet 2" 
-				/>
-			</header>
-					
-			<div style="height: 1cm"></div>
-		</div>
-
-		<!-- 
-		<Taxonomy /> 
-		<div style="height: 1cm"></div>
-		-->
-	</div>
-
+	<!-- 
+		<div style="height: 0.5cm"></div>
+		<Mural />
+	-->
 
 	<div style="height: 0.5cm"></div>
-
 	<Boards />
 	
 	<div style="height: 0.5cm"></div>
