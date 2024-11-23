@@ -35,7 +35,10 @@ onDestroy (() => {
 	const freight = ask_for_freight ();
 */
 
-
+/*	
+	import { ask_for_freight } from '$lib/Versies/Trucks'
+	const net_path = ask_for_freight ().net_path;
+*/
 
 
 /*

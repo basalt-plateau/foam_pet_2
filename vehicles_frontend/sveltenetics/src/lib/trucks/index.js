@@ -55,16 +55,17 @@ export const build_truck = ({ freight }) => {
 		change_count += 1
 		for (let E = 0; E < monitors.length; E++) {
 			monitors [E] ({ 
-				// vintage
-				freight: the_freight,
-				
 				pro_freight: the_freight,
 				original_freight: freight,
 				
 				property,
 				value,
 				
-				target				
+				target,
+				
+				
+				// vintage
+				freight: the_freight,
 			})
 		}
 	});

@@ -39,27 +39,47 @@ import * as Petition_Truck from './Truck/index.js'
 ////
 
 
+import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
+
+
+
+
 let le_buttons = [ 1,2,3,4,5,6 ]
 
 let prepared = "no"
 let freight = {}
 
-onMount (() => {
+
+let Seeds_Trucks_Prepared = "no"
+let Seeds_Trucks_Monitor;
+let Seeds_Trucks_Freight;
+onMount (async () => {
+	Seeds_Trucks_Freight = check_roomies_truck ().freight; 
+	Seeds_Trucks_Monitor = monitor_roomies_truck ((_freight) => {
+		Seeds_Trucks_Freight = _freight;
+		freight.net_path = Seeds_Trucks_Freight.net_path;		
+	})
+	Seeds_Trucks_Prepared = "yes"
+	
+	
+	
+	
+	
+	
 	Petition_Truck.refresh_truck ()
-	
-	const Truck = Petition_Truck.retrieve_truck ()
-	freight = Truck.freight;
-	
+	//
+	freight = Petition_Truck.retrieve_truck ().freight;
 	Petition_Truck.monitor_truck ((_freight) => {
 		freight = _freight;
-		
-		console.log ("Petition_Truck changed:", { _freight });
 	})
+	
+	freight.net_path = Seeds_Trucks_Freight.net_path;
 	
 	prepared = "yes"
 });
 onDestroy (() => {
 	Petition_Truck.destroy_truck ()
+	Seeds_Trucks_Monitor.stop ()
 });
 
 </script>
@@ -106,7 +126,6 @@ onDestroy (() => {
 	</div>
 	
 	
-	
 	<div
 		style="
 			position: absolute;
@@ -129,7 +148,10 @@ onDestroy (() => {
 			<Accordion>
 				<AccordionItem>
 					<svelte:fragment slot="summary">petition freight</svelte:fragment>
-					<svelte:fragment slot="content"><pre>{ JSON.stringify (freight, null, 2) }</pre></svelte:fragment>
+					<svelte:fragment slot="content">
+						<pre>{ freight.petition_field_barrier }</pre>
+						<pre>{ JSON.stringify (freight, null, 2) }</pre>
+					</svelte:fragment>
 				</AccordionItem>
 			</Accordion>
 		</div>

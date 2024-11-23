@@ -26,6 +26,7 @@ import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uin
 //
 ////
 
+import Options from "./Trinkets/Options.svelte"
 
 import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_parameters'
 import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
@@ -113,6 +114,7 @@ let exposed_fonctions = [];
 let fonction_selected = {}
 let fonction_name_index = ""
 let fonction_name = ""
+let fonction_signer_hexadecimal_address = "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5"
 let fonction_choose_accordion_open = true;
 
 
@@ -162,7 +164,7 @@ const enhance = () => {
 			]
 		}
 	*/
-	console.log ({ fonction_selected });
+	// console.log ({ fonction_selected });
 	
 	//
 	//	This is the link to aptoslabs explorer.
@@ -187,6 +189,8 @@ const enhance = () => {
 	
 	PT_freight.petition_fields = {
 		mode,
+		
+		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
 				
 		address: fonction_spot,
 		module_name: fonction_module_name,
@@ -289,10 +293,9 @@ let search_for_module = async () => {
 			"
 		>
 			<ListBox multiple>
-				<ListBoxItem bind:group={fonction_modes_shown} name="view" value="view">View</ListBoxItem>
-				<ListBoxItem bind:group={fonction_modes_shown} name="entry" value="entry">Entry</ListBoxItem>
+				<ListBoxItem bind:group={ fonction_modes_shown } name="view" value="view">View</ListBoxItem>
+				<ListBoxItem bind:group={ fonction_modes_shown } name="entry" value="entry">Entry</ListBoxItem>
 			</ListBox>
-
 		</div>
 	</div>
 		
@@ -390,6 +393,8 @@ let search_for_module = async () => {
 									"
 								>function name</div>
 								
+
+								
 								<div style="width: 1cm;"></div>
 						
 								{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
@@ -467,13 +472,12 @@ let search_for_module = async () => {
 				"
 				class="textarea"  
 				
-				bind:value={ fonction.signer_hexadecimal_address }
+				bind:value={ fonction_signer_hexadecimal_address }
 				on:change={ enhance }
 			/>
 		</div>
 		{/if}
 	</div>
-	
 	
 	
 	
@@ -572,6 +576,8 @@ let search_for_module = async () => {
 			{/if}
 		{/if}
 	</div>
+	
+	<Options />
 	{/if}
 	
 	<div style="height: 0.5cm" />

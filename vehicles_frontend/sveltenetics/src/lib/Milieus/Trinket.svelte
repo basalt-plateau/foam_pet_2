@@ -79,7 +79,9 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 		milieu_venue.style.opacity = 0;
 	}
 	
-	let next_component;
+	
+	
+	/*
 	try {
 		if (location.length == 2) {
 			next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
@@ -97,6 +99,21 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 		console.error (exception)
 		next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
 	}
+	*/
+	
+	let next_component;
+	if (location.length == 2) {
+		next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
+		console.log ("Milieus Location:", location [0], location [1])
+	}
+	else if (location.length == 1) {
+		next_component = (await Milieus [ location [0] ] ()).default;
+		console.log ("Milieus Location:", location [0])
+	}
+	else {
+		next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
+	}
+
 	
 	
 	await new Promise (resolve => {

@@ -16,7 +16,8 @@
 
 import { build_truck } from '$lib/trucks'
 import { build_entry_petition_AO } from './screenplays/build_entry_petition_AO'
-	
+import { ask_for_freight as ask_for_Versies_freight } from '$lib/Versies/Trucks'
+		
 
 const trucks = {}
 
@@ -53,9 +54,14 @@ export const go_to = ({ leaf_page }) => {
 }
 
 export const refresh_truck = () => {
+	const Versies_freight = ask_for_Versies_freight ().net_path;
+	const net_path = Versies_freight.net_path;
+	console.log ({ net_path });
+	
+	
 	trucks [1] = build_truck ({
 		freight: {
-			net_path: "",
+			net_path,
 			
 			leaf_name: "Petition Form",
 			next: "no",
@@ -88,7 +94,14 @@ export const refresh_truck = () => {
 				type_parameters: [],
 				parameters: []
 			},
-			petition_bracket: {}
+			
+			
+			petition_field_barrier: "",
+			
+			petition_AO_bracket: {},
+			petition_AO_hexadecimal_string: "",
+			petition_AO_fiberized: "",
+			
 		}
 	})
 }
@@ -104,11 +117,46 @@ export const retrieve_truck = () => {
 
 
 export const monitor_truck = (action) => {	
-	return trucks [1].monitor (({ freight, property, value, target, original_freight }) => {
+	return trucks [1].monitor (async ({ 
+		pro_freight, 
+		original_freight,
+		//
+		target,
+		//
+		property, 
+		value
+	}) => {
 		// console.info ("petition freight changed:", { property, value, target, original_freight });
 		
+		/*
+			target = bracket_of_freight
+		*/
 		try {
+			
+			// petition modification
+			if (
+				target === original_freight &&
+				property === "petition_fields"
+			) {
+				console.log ("petition modification");
+
+				if (original_freight.petition_fields.mode === "entry") {
+					const { barrier } = await build_entry_petition_AO ({
+						net_path: original_freight.net_path,
+						petition_fields: original_freight.petition_fields
+					});
+					
+					if (barrier !== false) {
+						console.error ({ barrier });
+						pro_freight.petition_field_barrier = barrier
+					}
+				}
+			}
+			
+			/*
 			if (target === original_freight.petition_fields) {
+				console.log ("target:", original_freight.petition_fields);
+				
 				if (property === "address") {
 					console.log ("address changed");
 				}
@@ -121,6 +169,7 @@ export const monitor_truck = (action) => {
 					petition_fields: original_freight.petition_fields
 				});
 			}
+			*/
 
 		}
 		catch (exception) {
@@ -136,7 +185,7 @@ export const monitor_truck = (action) => {
 			// verify_land ()
 		}
 		
-		action (freight);
+		action (pro_freight);
 	})
 }
 

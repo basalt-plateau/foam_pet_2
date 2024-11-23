@@ -1,25 +1,14 @@
 
 
 
-
-
 /*
-	import { 
-		fiberize_transaction_petition_object,
-		fiberize_transaction_petition_bytes
-	} from '$lib/PTO/Transaction/Petition/Fiberize'
+	import { fiberize_TP_AO } from '$lib/PTO/Transaction/Petition2/Fiberize'
+	const TP_fiberized = fiberize_TP_AO ({ TP_AO })
 */
 
 /*
-	import { stringify_TP_AO } from '../stringify'
-	const TP_stringified = stringify_TP_AO ({ TP_AO })
-*/
-
-/*
-	import { stringify_TP_bytes } from '../stringify'
-	const TP_stringified = stringify_TP_bytes ({
-		TP_bytes
-	})
+	import { fiberize_TP_bytes } from '$lib/PTO/Transaction/Petition2/Fiberize'
+	const TP_fiberized = fiberize_TP_bytes ({ TP_bytes })
 */
 
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
@@ -38,16 +27,12 @@ const replaces = (key, value) => {
 }
 
 
-export const stringify_TP_AO = ({
-	TP_AO
-}) => {
+export const fiberize_TP_AO = ({ TP_AO }) => {
 	return JSON.stringify (TP_AO, replaces, 4);
 }
 
 
-export const stringify_TP_bytes = ({
-	TP_bytes
-}) => {
+export const fiberize_TP_bytes = ({ TP_bytes }) => {
 	const deserialized = new Aptos_SDK.Deserializer (TP_bytes);
 	const TP_AO = Aptos_SDK.SimpleTransaction.deserialize (deserialized);
 	return JSON.stringify (TP_AO, replaces, 4);
