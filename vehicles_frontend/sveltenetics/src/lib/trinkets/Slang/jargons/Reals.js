@@ -12,7 +12,8 @@ const blockchain = {
 	"Block": "Turn",
 	"block": "turn",
 	
-	
+
+	"transaction_petition": "petition",
 	"transaction petition": "petition",
 	"Transaction Petition": "petition",
 	"Transaction petition": "Petition",

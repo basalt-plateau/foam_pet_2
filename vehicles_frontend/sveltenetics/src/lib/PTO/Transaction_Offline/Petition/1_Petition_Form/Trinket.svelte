@@ -81,12 +81,19 @@ let le_move = {
 	explorer_address: ""
 }
 
-let fonction_modes_shown = [ "view", "entry" ]
+let fonction_modes_shown = {
+	view: true,
+	entry: true
+}
+function fonction_modes_shown_toggle (flavor) {
+	console.log ("fonction_modes_shown_toggle", flavor);
+	
+	fonction_modes_shown [flavor] = !fonction_modes_shown [flavor];
+}
+
 let fonction_search = "fields"
 
 let fonction = {
-	found: "no",
-	
 	fonction_mode: "",	
 	
 	fonction_name: "",
@@ -112,10 +119,21 @@ let fonction = {
 
 let exposed_fonctions = [];
 let fonction_selected = {}
+let fonction_found = "no"
+//
 let fonction_name_index = ""
 let fonction_name = ""
+let fonction_mode = ""
+//
+let fonction_parameters = []
+let fonction_parameters_contents = []
+//
+let fonction_type_parameters = []
+let fonction_type_parameters_contents = []
+//
 let fonction_signer_hexadecimal_address = "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5"
 let fonction_choose_accordion_open = true;
+//
 
 
 let fonction_spot = "0x1";
@@ -125,12 +143,6 @@ $: {
 }
 
 
-
-/*
-
-
-
-*/
 const enhance = () => {
 	console.log ("enhance", {
 		fonction,
@@ -145,8 +157,11 @@ const enhance = () => {
 	
 	fonction_selected = exposed_fonctions [ fonction_name_index ]
 	if (fonction_selected === undefined) {
-		fonction.found = "no"
+		fonction_found = "no"
 		return;
+	}
+	else {
+		fonction_found = "yes"
 	}
 	
 	/*
@@ -166,6 +181,17 @@ const enhance = () => {
 	*/
 	// console.log ({ fonction_selected });
 	
+	
+	let mode_explorer = ""
+	if (fonction_selected.is_entry) {
+		fonction_mode = "entry"
+		mode_explorer = "run"
+	}
+	else if (fonction_selected.is_view) {
+		fonction_mode = "view"
+		mode_explorer = "view"
+	}
+	
 	//
 	//	This is the link to aptoslabs explorer.
 	//
@@ -173,22 +199,22 @@ const enhance = () => {
 		le_move.explorer_address = [
 			"https://explorer.aptoslabs.com/account",
 			fonction_spot,
-			"modules/run",
+			"modules",
+			mode_explorer,
 			fonction_module_name,
 			fonction_selected.name
 		].join ("/");	
 	}
 	
-	let mode = ""
-	if (fonction_selected.is_entry) {
-		mode = "entry"
-	}
-	else if (fonction_selected.is_view) {
-		mode = "view"
-	}
+	
+	
+	console.log ("building petition fields");
+	
+	fonction_parameters = retrieve_fonction_parameters ({ fonction_selected })
+	fonction_type_parameters = retrieve_fonction_type_parameters ({ fonction_selected })
 	
 	PT_freight.petition_fields = {
-		mode,
+		mode: fonction_mode,
 		
 		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
 				
@@ -196,8 +222,8 @@ const enhance = () => {
 		module_name: fonction_module_name,
 		fonction_name: fonction_selected.name,
 		
-		type_parameters: retrieve_fonction_type_parameters ({ fonction_selected }),
-		parameters: retrieve_fonction_parameters ({ fonction_selected })
+		type_parameters: fonction_type_parameters,
+		parameters: fonction_parameters
 	}
 	
 
@@ -248,7 +274,7 @@ let search_for_module = async () => {
 		return;
 	}
 	
-	fonction.found = "no"	
+	fonction_found = "no"	
 	exposed_fonctions = []
 }
 
@@ -267,47 +293,20 @@ let search_for_module = async () => {
 		gap: 0.25cm;
 		
 		flex-direction: column;
+		
+		padding: 0.25cm;
 	"
 >
 	<Versies_Trucks on_change={ on_seeds_truck_change } />
 
-	{#if versies_trucks_prepared === "yes" && PT_prepared === "yes" }
-	<div class="card p-4"
-	>
-		<div
-			style={ `
-				text-align: center;
-				font-size: ${ header_size };
-				padding: 0.25cm 0;
-			` }
-		>
-			<Slang text="Function" /> Mode
-		</div>
-		
-		<div
-			style="
-				text-align: center;
-				width: 100%;
-				max-width: 300px;
-				margin: 0 auto;
-			"
-		>
-			<ListBox multiple>
-				<ListBoxItem bind:group={ fonction_modes_shown } name="view" value="view">View</ListBoxItem>
-				<ListBoxItem bind:group={ fonction_modes_shown } name="entry" value="entry">Entry</ListBoxItem>
-			</ListBox>
-		</div>
-	</div>
-		
+	{#if versies_trucks_prepared === "yes" && PT_prepared === "yes" }		
 	<div 
 		style="
 			display: flex;
 			flex-direction: column;
 			gap: 0.1cm;
 		"
-		class="card p-4"
 	>	
-		
 		<div
 			style={ `
 				text-align: center;
@@ -318,8 +317,11 @@ let search_for_module = async () => {
 			<Slang text="Function" />
 		</div>
 		
+		
+		<!-- whether to have multiple fields or __::__::__ -->
 		<div
 			style="
+				display: none;
 				text-align: center;
 			"
 		>
@@ -334,8 +336,21 @@ let search_for_module = async () => {
 		
 		{#if fonction_search === "fields" }
 		<div>
-			<div class="card p-4">
-				<a class="anchor" href={ le_move.explorer_address }>{ le_move.explorer_address }</a>
+			<div 
+				style="
+					text-align: center;
+				"
+				class="card p-4"
+			>
+				<a 
+					href={ le_move.explorer_address }
+					target="_blank"
+					
+					style="
+						text-align: center;
+					"
+					class="anchor" 
+				>{ le_move.explorer_address }</a>
 			</div>
 
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
@@ -381,9 +396,7 @@ let search_for_module = async () => {
 						<svelte:fragment slot="summary">
 							<div
 								style="
-									display: flex;
 									align-items: center;
-									
 								"
 							>
 								<div class="badge variant-soft-primary"
@@ -393,24 +406,45 @@ let search_for_module = async () => {
 									"
 								>function name</div>
 								
-
-								
-								<div style="width: 1cm;"></div>
-						
-								{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
-								
-								<div>
-									{ fonction_selected.name }
-									
-									{#if fonction_selected.is_entry === true }
-									<span class="badge variant-filled">Entry</span>
-									{/if}
-									
-									{#if fonction_selected.is_view === true }
-									<span class="badge variant-filled">View</span>
-									{/if}
+								<div
+									style="
+										margin-top: 4px;
+										
+										display: flex;
+										gap: 2px;
+									"
+									class="card p-2"
+								>
+									<div
+										style={ `
+											padding-right: 0.5cm;
+											
+										` }
+									>
+										<Slang text="Function" /> Mode Filter
+									</div>
+									<div
+										style="
+											display: flex;
+											gap: 8px;
+										"
+									>
+										{#each Object.keys(fonction_modes_shown) as f}
+										<button
+											class="chip {fonction_modes_shown[f] ? 'variant-filled' : 'variant-soft'}"
+											on:click={(event) => { 
+												event.stopPropagation ();
+												fonction_modes_shown_toggle(f); 
+											}}
+											on:keypress
+										>
+											{#if false && fonction_modes_shown [f]}<span></span>{/if}
+											<span class="capitalize">{f}</span>
+										</button>
+										{/each}
+									</div>
 								</div>
-								{/if}
+
 							</div>
 							
 						</svelte:fragment>
@@ -425,8 +459,8 @@ let search_for_module = async () => {
 								<ListBox>
 									{#each exposed_fonctions as exposed_fonction, index }	
 									{#if (
-										(fonction_modes_shown.includes ("entry") && exposed_fonction.is_entry === true) ||
-										(fonction_modes_shown.includes ("view") && exposed_fonction.is_view === true)
+										(fonction_modes_shown.entry === true && exposed_fonction.is_entry === true) ||
+										(fonction_modes_shown.view === true && exposed_fonction.is_view === true)
 									)}
 									<ListBoxItem 
 										bind:group={ fonction_name_index } 
@@ -463,7 +497,7 @@ let search_for_module = async () => {
 		</div>
 		{/if}
 		
-		{#if fonction_modes_shown.includes ("entry") }
+		{#if fonction_mode === "entry" }
 		<div class="card p-1 variant-ringed-primary">
 			<div class="input-group-shim">signer hexadecimal address</div>
 			<textarea 
@@ -479,9 +513,7 @@ let search_for_module = async () => {
 		{/if}
 	</div>
 	
-	
-	
-	{#if fonction.found === "yes"}
+	{#if fonction_found === "yes"}
 	<div class="card p-4">	
 		<div
 			style={ `
@@ -494,33 +526,33 @@ let search_for_module = async () => {
 		</div>
 		
 		{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
-			{#each fonction.type_parameters as type_parameter, index }
-			<div 
-				style="
-					text-align: center;
-				"
-				class="card p-1"
-			>				
-				<textarea 
-					style="
-						padding: 0.25cm;
-					"
-					class="textarea"  
-					on:change={ enhance }
-				/>
-			</div>
-			{/each}
+		{#each fonction_type_parameters as type_parameter, index }
+		<div 
+			style="
+				text-align: center;
+			"
+			class="card p-1"
+		>				
+			<textarea 
+				bind:value={ fonction_type_parameters_contents [index] }
 			
-			{#if fonction.type_parameters.length === 0}
-			<p
 				style="
-					text-align: center;
+					padding: 0.25cm;
 				"
-			>0 Type Parameters</p>
-			{/if}
+				class="textarea"  
+				on:change={ enhance }
+			/>
+		</div>
+		{/each}
+		
+		{#if fonction_type_parameters.length === 0}
+		<p
+			style="
+				text-align: center;
+			"
+		>0 Type Parameters</p>
 		{/if}
-		
-		
+		{/if}
 	</div>
 	
 	<div class="card p-4">	
@@ -535,49 +567,65 @@ let search_for_module = async () => {
 		</div>
 		
 		{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
-			{#each fonction.parameters as parameter, index }
-			<div 
-				style="
-					text-align: center;
-				"
-				class="card p-1"
-			>
-				<div style="height: 0.25cm;"></div>
-			
-				<div>
-					<span 
-						style="
-							padding: 0.25cm 0.5cm;
-							font-size: 1.5em;
-						"
-						class="badge variant-soft-primary"
-					>{ parameter.name }</span>
-				</div>
-				
-				<div style="height: 0.1cm;"></div>
-				
-				<textarea 
+		{#each fonction_parameters as parameter, index }
+		<div 
+			style="
+				text-align: center;
+			"
+			class="card p-1"
+		>
+			<div style="height: 0.25cm;"></div>
+		
+			<div>
+				<span 
 					style="
-						padding: 0.25cm;
+						padding: 0.25cm 0.5cm;
+						font-size: 1.5em;
 					"
-					class="textarea"  
-					
-					on:change={ enhance }
-				/>
+					class="badge variant-soft-primary"
+				>{ parameter.name }</span>
 			</div>
-			{/each}
 			
-			{#if fonction.parameters.length === 0}
-			<p
+			<div style="height: 0.1cm;"></div>
+			
+			<textarea 
+				bind:value={ fonction_parameters_contents [index] }
+			
 				style="
-					text-align: center;
+					padding: 0.25cm;
 				"
-			>0 Type Parameters</p>
-			{/if}
+				class="textarea"  
+				
+				on:change={ enhance }
+			/>
+		</div>
+		{/each}
+		
+		{#if fonction.parameters.length === 0}
+		<p
+			style="
+				text-align: center;
+			"
+		>0 Type Parameters</p>
+		{/if}
+		
+		
+		<div
+			style="
+				text-align: right;
+			"
+		>
+			<button 
+				type="button" 
+				class="btn variant-filled btn-xl"
+			>Next</button>
+		</div>
 		{/if}
 	</div>
 	
-	<Options />
+	
+	
+	<!-- <Options /> -->
 	{/if}
 	
 	<div style="height: 0.5cm" />

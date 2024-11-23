@@ -17,7 +17,7 @@ import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svel
 	
 	<div
 		style="
-			height: 80vh;
+			height: 70vh;
 			overflow: scroll;
 		"
 		

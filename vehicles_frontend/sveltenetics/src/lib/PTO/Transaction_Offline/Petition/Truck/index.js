@@ -64,9 +64,11 @@ export const refresh_truck = () => {
 			net_path,
 			
 			leaf_name: "Petition Form",
+			
 			next: "no",
+			next_note: "Unfinished",
 			back: "no",
-			note: "Unfinished",
+			back_note: "Can't go back",
 			
 			legend: {
 				1: "Petition Form",
@@ -101,7 +103,6 @@ export const refresh_truck = () => {
 			petition_AO_bracket: {},
 			petition_AO_hexadecimal_string: "",
 			petition_AO_fiberized: "",
-			
 		}
 	})
 }
@@ -126,7 +127,7 @@ export const monitor_truck = (action) => {
 		property, 
 		value
 	}) => {
-		// console.info ("petition freight changed:", { property, value, target, original_freight });
+		console.info ("petition freight changed:", { property, value });
 		
 		/*
 			target = bracket_of_freight
@@ -138,10 +139,13 @@ export const monitor_truck = (action) => {
 				target === original_freight &&
 				property === "petition_fields"
 			) {
-				console.log ("petition modification");
-
 				if (original_freight.petition_fields.mode === "entry") {
-					const { barrier } = await build_entry_petition_AO ({
+					const { 
+						barrier,
+
+						TP2_fiberized
+						
+					} = await build_entry_petition_AO ({
 						net_path: original_freight.net_path,
 						petition_fields: original_freight.petition_fields
 					});
@@ -149,6 +153,9 @@ export const monitor_truck = (action) => {
 					if (barrier !== false) {
 						console.error ({ barrier });
 						pro_freight.petition_field_barrier = barrier
+					}
+					else {
+						pro_freight.petition_AO_fiberized = TP2_fiberized;
 					}
 				}
 			}

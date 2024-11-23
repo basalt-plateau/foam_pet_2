@@ -55,8 +55,7 @@ export const build_entry_petition_AO = async ({
 		const transaction_petition_bracket = {
 			sender,
 			data: {
-				function: "0x1::aptos_account::transfer",
-				_function: (
+				function: (
 					petition_fields.address + 
 					"::" +
 					petition_fields.module_name + 
@@ -66,7 +65,13 @@ export const build_entry_petition_AO = async ({
 				typeArguments: [],
 				functionArguments: []
 			},
-			options: {}
+			options: {
+				expireTimestamp: pick_expiration ({ 
+					after_seconds: 600
+				}).expiration_timestamp,
+				gasUnitPrice: BigInt (10),
+				maxGasAmount: BigInt (200000)
+			}
 		}
 		
 		console.log ({
@@ -81,57 +86,55 @@ export const build_entry_petition_AO = async ({
 			network: Aptos_SDK.Network.CUSTOM
 		}));
 
-		console.log ("building petition");
 		
+		let TP1_AO;
 		try {
-			const TP1_AO = await aptos.transaction.build.simple (transaction_petition_bracket);		
+			TP1_AO = await aptos.transaction.build.simple (transaction_petition_bracket);		
 		}
 		catch (barrier) {
-			console.error (barrier);
+			console.warn (barrier.message);
 			
 			return {
 				barrier: barrier.message
 			}
 		}
 		
-		const TP1_AO_bytes = TP_AO.bcsToBytes ()
-		const TP1_AO_hexadecimal_string = string_from_Uint8Array (TP_bytes)
-		const TP1_AO_fiberized = fiberize_TP_AO ({ TP_AO })
+		const TP1_AO_Uint8Array = TP1_AO.bcsToBytes ()
+		const TP1_AO_hexadecimal_string = string_from_Uint8Array (TP1_AO_Uint8Array)
+		const TP1_AO_fiberized = fiberize_TP_AO ({ TP_AO: TP1_AO })
 
+		console.log ({ TP1_AO_hexadecimal_string });
+		console.log ({ TP1_AO_Uint8Array });
 
 		////
-		///
-		// 		Unpack:
-		//			TODO: check that fiberized objects are equivalent.
 		//
-		const TP2_bytes = Uint8Array_from_string (TP1_AO_hexadecimal_string)
+		//		The "TP2_hexadecimal_string" is what is sent to the signatory.
+		//			Perhaps this should be the "TP2_AO_Uint8Array" though.
+		//
+		//		The TP2 isn't actually equivalent to the TP1.
+		//		The TP2 is what is parsed on the signatory though.
+		//
+		//		Tutorial:
+		//			* TP1_AO_hexadecimal_string is converted into bytes
+		//			* TP2_AO is built from the TP2_AO_bytes
+		//
+		const TP2_AO_Uint8Array = Uint8Array_from_string (TP1_AO_hexadecimal_string)
 		const TP2_AO = Aptos_SDK.SimpleTransaction.deserialize (
 			new Aptos_SDK.Deserializer (
-				TP1_AO_bytes
+				TP2_AO_Uint8Array
 			)
 		);
-		const TP2_fiberized = fiberize_TP_AO ({ TP_AO: TP1_AO_fiberized })
-		const TP2_hexadecimal_string = string_from_Uint8Array (TP2_bytes)
-		//\
-		//\\
-
-		/*
-		build_entry_petition_AO_ ({
-			net_path,
+		const TP2_fiberized = fiberize_TP_AO ({ TP_AO: TP2_AO })
+		const TP2_hexadecimal_string = string_from_Uint8Array (TP2_AO_Uint8Array)
+		//
+		////
+		
+		return {
+			TP2_AO,
+			TP2_fiberized,
 			
-			fields: {
-				sender,
-				data,
-				options: {
-					expireTimestamp: pick_expiration ({ 
-						after_seconds: 600
-					}).expiration_timestamp,
-					gasUnitPrice: BigInt (10),
-					maxGasAmount: BigInt (200000)
-				}
-			}
-		});
-		*/
+			barrier: false
+		}
 	}
 	catch (anomaly) {
 		console.error (anomaly);
@@ -142,7 +145,7 @@ export const build_entry_petition_AO = async ({
 	}
 	
 	return {
-		barrier: false
+		barrier: "Reached code that seemed to be beyond reach."
 	}
 }
 
