@@ -27,9 +27,16 @@ import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uin
 ////
 
 import Options from "./Trinkets/Options.svelte"
-import Address_Chooser from "./Trinkets/Address_Chooser.svelte"
-import Module_Name_Chooser from "./Trinkets/Module_Name_Chooser.svelte"
+//
 
+
+/*
+	Cards, Rolls, Roller
+*/
+import Chooser_Address from "./Trinkets/Chooser_Address.svelte"
+import Chooser_Module_Name from "./Trinkets/Chooser_Module_Name.svelte"
+import Chooser_Fonction from "./Trinkets/Chooser_Fonction.svelte"
+//
 import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_parameters'
 import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
 
@@ -83,16 +90,6 @@ let le_move = {
 	explorer_address: ""
 }
 
-let fonction_modes_shown = {
-	view: true,
-	entry: true
-}
-function fonction_modes_shown_toggle (flavor) {
-	console.log ("fonction_modes_shown_toggle", flavor);
-	
-	fonction_modes_shown [flavor] = !fonction_modes_shown [flavor];
-}
-
 let fonction_search = "fields"
 
 let fonction = {
@@ -123,9 +120,19 @@ let exposed_fonctions = [];
 let fonction_selected = {}
 let fonction_found = "no"
 //
+
+
+//
+let fonction_mode = ""
+//
+//
+let fonction_spot = "";
+//
 let fonction_name_index = ""
 let fonction_name = ""
-let fonction_mode = ""
+//
+let fonction_module_name = ""
+//
 //
 let fonction_parameters = []
 let fonction_parameters_contents = []
@@ -134,34 +141,25 @@ let fonction_type_parameters = []
 let fonction_type_parameters_contents = []
 //
 let fonction_signer_hexadecimal_address = "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5"
-let fonction_choose_accordion_open = true;
 //
 
 
-/*
 
-$: {
-	let _fonction_spot = fonction_spot;
-	search_for_module ();
-}
-*/
 
-let fonction_spot = "";
+
 let address_chosen = async ({ address }) => {
-	console.log ("address_chosen");
+	console.log ("address_chosen:", address);
 	fonction_spot = address;
-	
-	/*
-	const { le_modules } = await retrieve_modules_for_address ({ 
-		net_path: versies_freight.net_path,
-		address_hexadecimal_string: fonction_spot
-	});
-	console.log ({ le_modules });
-	*/
+	fonction_module_name = ""
 }
 
 let module_name_choosen = async ({ module_name }) => {
-	
+	console.log ("module_name_choosen:", module_name);
+	fonction_module_name = module_name;
+}
+
+let fonction_choosen = async () => {
+	console.log ("fonction_choosen:");
 }
 
 const enhance = () => {
@@ -265,13 +263,16 @@ $: {
 /*
 	::exists_at
 */
-let fonction_module_name = "account"
+
+
+/*
 $: {
 	if (versies_trucks_prepared === "yes") {
 		let _fonction_module_name = fonction_module_name;
 		search_for_module ();
 	}
 }
+*/
 
 let search_for_module = async () => {
 	const { enhanced, successful } = await ask_account_module ({ 
@@ -388,147 +389,33 @@ let search_for_module = async () => {
 				/>
 			</div> -->
 			
-			<Address_Chooser 
+			<Chooser_Address 
 				address_chosen={ address_chosen } 
 			/>
 			
 			<div style="height: 0.1cm" ></div>
 			
-			<Module_Name_Chooser 
-				address={ fonction_spot }
+			<Chooser_Module_Name 
 				net_path={ versies_freight.net_path }
+			
+				address={ fonction_spot }
+				
 				
 				module_name_choosen={ module_name_choosen }
 			/>
 			
 			<div style="height: 0.1cm" ></div>
 			
-			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-				<div class="input-group-shim">module name</div>
-				<input
-					bind:value={ fonction_module_name }
-					on:change={ enhance }
+			<Chooser_Fonction 
+				net_path={ versies_freight.net_path }
 			
-					class="input" 
-					type="text" 
-					style="
-						padding: 0.25cm;
-					"
-				/>
-			</div>
-			
-			<div
-				style="
-					border-width: 4px;
-				"
-				class="card p-2 variant-ringed-primary"
-			>
-				<Accordion>
-					<AccordionItem
-						open={ fonction_choose_accordion_open }
-					>
-						<svelte:fragment slot="summary">
-							<div
-								style="
-									align-items: center;
-								"
-							>
-								<div class="badge variant-soft-primary"
-									style="
-										font-size: 1.5em;
-										padding: 0.25cm;
-									"
-								>function name</div>
-								
-								<div
-									style="
-										margin-top: 4px;
-										
-										display: flex;
-										gap: 2px;
-									"
-									class="card p-2"
-								>
-									<div
-										style={ `
-											padding-right: 0.5cm;
-											
-										` }
-									>
-										<Slang text="Function" /> Mode Filter
-									</div>
-									<div
-										style="
-											display: flex;
-											gap: 8px;
-										"
-									>
-										{#each Object.keys(fonction_modes_shown) as f}
-										<button
-											class="chip {fonction_modes_shown[f] ? 'variant-filled' : 'variant-soft'}"
-											on:click={(event) => { 
-												event.stopPropagation ();
-												fonction_modes_shown_toggle(f); 
-											}}
-											on:keypress
-										>
-											{#if false && fonction_modes_shown [f]}<span></span>{/if}
-											<span class="capitalize">{f}</span>
-										</button>
-										{/each}
-									</div>
-								</div>
-
-							</div>
-							
-						</svelte:fragment>
-						<svelte:fragment slot="content">
-							<div
-								class="card p-2"
-								style="
-									height: 300px;
-									overflow-y: scroll;
-								"
-							>
-								<ListBox>
-									{#each exposed_fonctions as exposed_fonction, index }	
-									{#if (
-										(fonction_modes_shown.entry === true && exposed_fonction.is_entry === true) ||
-										(fonction_modes_shown.view === true && exposed_fonction.is_view === true)
-									)}
-									<ListBoxItem 
-										bind:group={ fonction_name_index } 
-										name="medium" 
-										value={ index }
-										
-										disabled={(
-											exposed_fonction.is_entry !== true &&
-											exposed_fonction.is_view !== true 
-										)}
-										
-										on:change={ enhance }
-									>
-										<div>
-											{ exposed_fonction.name }
-
-											{#if exposed_fonction.is_entry === true }
-											<span class="badge variant-filled">Entry</span>
-											{/if}
-											
-											{#if exposed_fonction.is_view === true }
-											<span class="badge variant-filled">View</span>
-											{/if}
-										</div>
-									</ListBoxItem>
-									{/if}
-									{/each}
-								</ListBox>
-							</div>
-						</svelte:fragment>
-					</AccordionItem>
-				</Accordion>
-			</div>
+				address={ fonction_spot }
+				module_name={ fonction_module_name }
+				
+				fonction_choosen={ fonction_choosen }
+			/>
 		</div>
+			
 		{/if}
 		
 		{#if fonction_mode === "entry" }

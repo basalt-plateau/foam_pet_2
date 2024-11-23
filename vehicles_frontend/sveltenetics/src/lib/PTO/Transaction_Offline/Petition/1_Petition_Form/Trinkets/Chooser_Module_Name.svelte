@@ -41,9 +41,7 @@ $: {
 	address_changed ();
 }
 
-export let module_name_chosen = () => {
-	
-}
+export let module_name_choosen = () => {}
 
 
 let les_modules = []
@@ -71,20 +69,14 @@ const address_changed = async () => {
 
 
 
-// let allowed_mods = []
-let allowed_mods = [
-	"Vanilla",
-	"Vanilla2"
-]
+
 
 let mod_name = "";
 $: {
 	let _mod_name = mod_name;
 	console.log ("module name changed", mod_name)
 	
-	if (allowed_mods.includes (mod_name)) {
-		// mod_chosen ({ mod_name });
-	}
+	module_name_choosen ({ module_name: mod_name });
 }
 
 
@@ -118,7 +110,7 @@ $: {
 			width: 100%;
 			height: 100%;
 		"
-		class="card p-3"
+		
 	>
 		<select
 			bind:value={ mod_name }
@@ -128,13 +120,21 @@ $: {
 			style="
 				width: 100%;
 				height: 100%;
+				
+				border-width: var(--theme-border-base);
+				border-color: rgb(var(--color-surface-400));
+				
+				border-radius: 50px;
 			"
+			class="card p-3"
 		>
 			{#each les_modules as le_module }
-			<option 
-				value={ le_module.abi.name }
-			>{ le_module.abi.name }</option>
+			<option value={ le_module.abi.name }>{ le_module.abi.name }</option>
 			{/each}
+			
+			{#if les_modules.length === 0 }
+			<option value="" disabled>No options available</option>
+			{/if}
 		</select>
 	</div>
 
