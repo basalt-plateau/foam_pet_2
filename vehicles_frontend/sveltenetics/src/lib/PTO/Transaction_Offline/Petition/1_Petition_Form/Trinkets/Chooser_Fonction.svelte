@@ -10,28 +10,42 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 import { retrieve_fonctions_for_module } from './../screenplays/retrieve_fonctions_for_module'
 //
+
+let fonction_choose_accordion_open = true;
+let le_fonction_index = ""
+let le_fonctions = [];
+let fonction_found = "no"
+let les_fonctions = []
+
 export let net_path = ""
 export let address = ""
 export let module_name = ""
 $: {
 	let _module_name = module_name;
 	if (typeof module_name === "string" && module_name.length >= 1) {
-		console.log ("module_name:", { module_name, address });
-		
-		retrieve_fonctions_for_module ({
-			net_path,
-			
-			address_hexadecimal_string: address,
-			module_name
-		});
-		
+		show_fonctions ();
 	}
 }
 
-let fonction_choose_accordion_open = true;
-let fonction_name_index = ""
-let exposed_fonctions = [];
-let fonction_found = "no"
+const show_fonctions = async () => {
+	console.log ("module_name:", { module_name, address });
+		
+	const { les_fonctions: _les_fonctions } = await retrieve_fonctions_for_module ({
+		net_path,
+		
+		address_hexadecimal_string: address,
+		module_name
+	});
+	
+	les_fonctions = _les_fonctions;
+	
+	console.log ({ les_fonctions });
+}
+
+
+const fonction_changed = () => {
+	
+}
 
 let fonction_modes_shown = {
 	view: true,
@@ -116,34 +130,35 @@ function fonction_modes_shown_toggle (flavor) {
 						overflow-y: scroll;
 					"
 				>
+				
 					<ListBox>
-						{#each exposed_fonctions as exposed_fonction, index }	
+						{#each les_fonctions as le_fonction, index }	
 						{#if (
-							(fonction_modes_shown.entry === true && exposed_fonction.is_entry === true) ||
-							(fonction_modes_shown.view === true && exposed_fonction.is_view === true)
+							(fonction_modes_shown.entry === true && le_fonction.is_entry === true) ||
+							(fonction_modes_shown.view === true && le_fonction.is_view === true)
 						)}
 						<ListBoxItem 
-							bind:group={ fonction_name_index } 
+							bind:group={ le_fonction_index } 
 							name="medium" 
 							value={ index }
 							
 							disabled={(
-								exposed_fonction.is_entry !== true &&
-								exposed_fonction.is_view !== true 
+								le_fonction.is_entry !== true &&
+								le_fonction.is_view !== true 
 							)}
 							
-							on:change={ enhance }
+							on:change={ fonction_changed }
 						>
 							<div>
-								{ exposed_fonction.name }
-
-								{#if exposed_fonction.is_entry === true }
+								{#if le_fonction.is_entry === true }
 								<span class="badge variant-filled">Entry</span>
 								{/if}
 								
-								{#if exposed_fonction.is_view === true }
+								{#if le_fonction.is_view === true }
 								<span class="badge variant-filled">View</span>
 								{/if}
+								
+								{ le_fonction.name }
 							</div>
 						</ListBoxItem>
 						{/if}
