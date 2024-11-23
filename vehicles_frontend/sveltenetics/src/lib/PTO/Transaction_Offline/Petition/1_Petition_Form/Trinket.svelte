@@ -27,6 +27,8 @@ import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uin
 ////
 
 import Options from "./Trinkets/Options.svelte"
+import Address_Chooser from "./Trinkets/Address_Chooser.svelte"
+import Module_Name_Chooser from "./Trinkets/Module_Name_Chooser.svelte"
 
 import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_parameters'
 import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
@@ -94,14 +96,14 @@ function fonction_modes_shown_toggle (flavor) {
 let fonction_search = "fields"
 
 let fonction = {
-	fonction_mode: "",	
+	// fonction_mode: "",	
 	
 	fonction_name: "",
 	
-	signer_hexadecimal_address: "",
+	// signer_hexadecimal_address: "",
 	
-	type_parameters: [],
-	parameters: []	
+	// type_parameters: [],
+	// parameters: []	
 }
 
 /*
@@ -136,12 +138,31 @@ let fonction_choose_accordion_open = true;
 //
 
 
-let fonction_spot = "0x1";
+/*
+
 $: {
 	let _fonction_spot = fonction_spot;
 	search_for_module ();
 }
+*/
 
+let fonction_spot = "";
+let address_chosen = async ({ address }) => {
+	console.log ("address_chosen");
+	fonction_spot = address;
+	
+	/*
+	const { le_modules } = await retrieve_modules_for_address ({ 
+		net_path: versies_freight.net_path,
+		address_hexadecimal_string: fonction_spot
+	});
+	console.log ({ le_modules });
+	*/
+}
+
+let module_name_choosen = async ({ module_name }) => {
+	
+}
 
 const enhance = () => {
 	console.log ("enhance", {
@@ -353,7 +374,7 @@ let search_for_module = async () => {
 				>{ le_move.explorer_address }</a>
 			</div>
 
-			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+			<!-- <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 				<div class="input-group-shim">address</div>
 				<input
 					bind:value={ fonction_spot }
@@ -365,7 +386,20 @@ let search_for_module = async () => {
 						padding: 0.25cm;
 					"
 				/>
-			</div>
+			</div> -->
+			
+			<Address_Chooser 
+				address_chosen={ address_chosen } 
+			/>
+			
+			<div style="height: 0.1cm" ></div>
+			
+			<Module_Name_Chooser 
+				address={ fonction_spot }
+				net_path={ versies_freight.net_path }
+				
+				module_name_choosen={ module_name_choosen }
+			/>
 			
 			<div style="height: 0.1cm" ></div>
 			

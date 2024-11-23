@@ -6,6 +6,8 @@
 */
 
 /*
+	// fonctions
+
 	import { ask_account_module } from '$lib/PTO/Account_Module/Ask'
 	const { enhanced } = await ask_account_module ({ 
 		net_path,
@@ -17,6 +19,8 @@
 
 
 /*
+	// modules for address
+
 	import { ask_account_module } from '$lib/PTO/Account_Module/Ask'
 	const { enhanced } = await ask_account_module ({ 
 		net_path,
