@@ -133,7 +133,7 @@ $: {
 			{/each}
 			
 			{#if les_modules.length === 0 }
-			<option value="" disabled>No options available</option>
+			<option value="" disabled>Zero modules found</option>
 			{/if}
 		</select>
 	</div>

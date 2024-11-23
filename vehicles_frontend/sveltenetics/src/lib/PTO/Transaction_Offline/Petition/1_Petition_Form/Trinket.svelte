@@ -95,7 +95,7 @@ let fonction_search = "fields"
 let fonction = {
 	// fonction_mode: "",	
 	
-	fonction_name: "",
+	// fonction_name: "",
 	
 	// signer_hexadecimal_address: "",
 	
@@ -103,18 +103,7 @@ let fonction = {
 	// parameters: []	
 }
 
-/*
-	// The fonctions possible for the address::module_name
-	exposed_fonctions: This is what is returned by API
-	
-	// The selected fonction
-	fonction_selected: This is the fonction that is selected
-	fonction_name_index: This is the index of the fonction that is selected.
-	
-	
-	fonction_name:
-	fonction_choose_accordion_open:
-*/
+
 
 let exposed_fonctions = [];
 let fonction_selected = {}
@@ -145,21 +134,73 @@ let fonction_signer_hexadecimal_address = "991378D74FAC384404B971765BEF7525CCE26
 
 
 
-
-
 let address_chosen = async ({ address }) => {
 	console.log ("address_chosen:", address);
 	fonction_spot = address;
+	
 	fonction_module_name = ""
+	fonction_found = "no"
 }
-
 let module_name_choosen = async ({ module_name }) => {
 	console.log ("module_name_choosen:", module_name);
 	fonction_module_name = module_name;
 }
+let fonction_choosen = async ({ fonction, fonction_mode }) => {
+	console.log ("fonction_choosen:", fonction);
+	
+	fonction_selected = fonction;
 
-let fonction_choosen = async () => {
-	console.log ("fonction_choosen:");
+	fonction_type_parameters = retrieve_fonction_type_parameters ({ fonction_selected: fonction })
+	
+	/*
+		[
+			{ "name": "address", "field": "" ],
+			[ "u64": "" ],
+			[ "address": "" ],
+			[ "address": "" ]
+		]
+	*/
+	fonction_parameters = retrieve_fonction_parameters ({ fonction_selected: fonction })
+	
+	
+	fonction_mode = fonction_mode;
+	
+	fonction_found = "yes"
+	
+	
+	PT_freight.petition_fields = {
+		mode: fonction_mode,
+		
+		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
+				
+		address: fonction_spot,
+		module_name: fonction_module_name,
+		fonction_name: fonction_selected.name,
+		
+		type_parameters: fonction_type_parameters,
+		parameters: fonction_parameters
+	}
+}
+
+let fonction_parameters_changed = ({ index, contents }) => {
+	console.log ({ fonction_parameters });
+	
+	fonction_parameters [ index ].field = contents;
+	
+	const fresh_petition_fields = {
+		mode: fonction_mode,
+		
+		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
+				
+		address: fonction_spot,
+		module_name: fonction_module_name,
+		fonction_name: fonction_selected.name,
+		
+		type_parameters: fonction_type_parameters,
+		parameters: fonction_parameters
+	}
+	
+	PT_freight.petition_fields = fresh_petition_fields;
 }
 
 const enhance = () => {
@@ -244,35 +285,8 @@ const enhance = () => {
 		type_parameters: fonction_type_parameters,
 		parameters: fonction_parameters
 	}
-	
-
-	
 }
 
-let exposed_fonction_name = ""
-$: {
-	if (versies_trucks_prepared === "yes") {
-		let _fonction_name_index = fonction_name_index;
-		enhance ();
-	}
-}
-
-
-
-
-/*
-	::exists_at
-*/
-
-
-/*
-$: {
-	if (versies_trucks_prepared === "yes") {
-		let _fonction_module_name = fonction_module_name;
-		search_for_module ();
-	}
-}
-*/
 
 let search_for_module = async () => {
 	const { enhanced, successful } = await ask_account_module ({ 
@@ -433,6 +447,7 @@ let search_for_module = async () => {
 		</div>
 		{/if}
 	</div>
+
 	
 	{#if fonction_found === "yes"}
 	<div class="card p-4">	
@@ -466,7 +481,7 @@ let search_for_module = async () => {
 		</div>
 		{/each}
 		
-		{#if fonction_type_parameters.length === 0}
+		{#if Array.isArray (fonction_type_parameters) && fonction_type_parameters.length === 0}
 		<p
 			style="
 				text-align: center;
@@ -475,6 +490,8 @@ let search_for_module = async () => {
 		{/if}
 		{/if}
 	</div>
+	
+	
 	
 	<div class="card p-4">	
 		<div
@@ -487,11 +504,12 @@ let search_for_module = async () => {
 			<Slang text="Function" /> Parameters
 		</div>
 		
+		
 		{#if fonction_selected && Object.keys (fonction_selected).length >= 1}
 		{#each fonction_parameters as parameter, index }
 		<div 
 			style="
-				text-align: center;
+				text-align: left;
 			"
 			class="card p-1"
 		>
@@ -510,41 +528,41 @@ let search_for_module = async () => {
 			<div style="height: 0.1cm;"></div>
 			
 			<textarea 
-				bind:value={ fonction_parameters_contents [index] }
-			
 				style="
 					padding: 0.25cm;
 				"
 				class="textarea"  
 				
-				on:change={ enhance }
+				on:keyup={(event) => {
+					const contents = event.target.value;
+					
+					// fonction_parameters [index].field
+					
+					console.log ("changed");
+					
+					fonction_parameters_changed ({
+						index,
+						contents
+					})
+				}}
 			/>
 		</div>
 		{/each}
 		
-		{#if fonction.parameters.length === 0}
+		{#if Array.isArray (fonction_parameters) && fonction_parameters.length === 0}
 		<p
 			style="
 				text-align: center;
 			"
-		>0 Type Parameters</p>
+		>0 Parameters</p>
 		{/if}
 		
 		
-		<div
-			style="
-				text-align: right;
-			"
-		>
-			<button 
-				type="button" 
-				class="btn variant-filled btn-xl"
-			>Next</button>
-		</div>
+		
 		{/if}
 	</div>
 	
-	
+
 	
 	<!-- <Options /> -->
 	{/if}

@@ -16,7 +16,12 @@ let le_fonction_index = ""
 let le_fonctions = [];
 let fonction_found = "no"
 let les_fonctions = []
+let le_move_explorer_address = ""
+let le_fonction_chosen = ""
 
+let fonction_mode = ""
+
+export let fonction_choosen = () => {}
 export let net_path = ""
 export let address = ""
 export let module_name = ""
@@ -44,7 +49,40 @@ const show_fonctions = async () => {
 
 
 const fonction_changed = () => {
+	le_fonction_chosen = les_fonctions [ le_fonction_index ]
+	if (le_fonction_chosen === undefined) {
+		fonction_found = "no"
+		return;
+	}
+	else {
+		fonction_found = "yes"
+	}
 	
+	let mode_explorer = ""
+	if (le_fonction_chosen.is_entry) {
+		fonction_mode = "entry"
+		mode_explorer = "run"
+	}
+	else if (le_fonction_chosen.is_view) {
+		fonction_mode = "view"
+		mode_explorer = "view"
+	}
+	
+	if (le_fonction_chosen) {
+		le_move_explorer_address = [
+			"https://explorer.aptoslabs.com/account",
+			address,
+			"modules",
+			mode_explorer,
+			module_name,
+			le_fonction_chosen.name
+		].join ("/");	
+	}
+	
+	fonction_choosen ({
+		fonction: le_fonction_chosen,
+		fonction_mode
+	});
 }
 
 let fonction_modes_shown = {
@@ -118,6 +156,21 @@ function fonction_modes_shown_toggle (flavor) {
 							{/each}
 						</div>
 					</div>
+					
+					<div style="height: 0.25cm" />
+					
+					<div 
+						style="
+							text-align: left;
+						"
+						class="card p-4"
+					>
+						<a 
+							href={ le_move_explorer_address }
+							target="_blank"
+							class="anchor" 
+						>{ le_move_explorer_address }</a>
+					</div>
 
 				</div>
 				
@@ -130,7 +183,6 @@ function fonction_modes_shown_toggle (flavor) {
 						overflow-y: scroll;
 					"
 				>
-				
 					<ListBox>
 						{#each les_fonctions as le_fonction, index }	
 						{#if (
