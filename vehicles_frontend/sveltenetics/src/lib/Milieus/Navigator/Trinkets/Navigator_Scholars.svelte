@@ -119,10 +119,10 @@ const names = {
 		/>
 		
 		<Milieus_Button
-			name={ "Eunoia" }
+			name={ "免疫" }
 			
-			location={[ "Scholars", "Eunoia", "Leaf" ]}
-			is_open_location={[ "Scholars", "Eunoia" ]}
+			location={[ "Scholars", "Immunity", "Leaf" ]}
+			is_open_location={[ "Scholars", "Immunity" ]}
 			
 			style={ buttons_styles }
 		/>

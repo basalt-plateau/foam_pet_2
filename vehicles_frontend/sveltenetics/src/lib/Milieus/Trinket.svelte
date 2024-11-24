@@ -19,14 +19,14 @@ import { onMount, onDestroy } from 'svelte'
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
 	
-import { technicians_leaves } from './Venues/Scholars/Technicians/Leaves.js'
+import { technicians_leaves } from './Venues/Scholars/Immunity/Leaves.js'
 	
 let Milieus = {
 	"Scholars": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
 		"Garden": async () => { return await import ('./Venues/Scholars/Garden/Trinket.svelte') },
 		"Theme": async () => { return await import ('./Venues/Scholars/Theme/Trinket.svelte') },
-		"Eunoia": technicians_leaves
+		"Immunity": technicians_leaves
 	},
 	"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') },
 	

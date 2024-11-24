@@ -187,16 +187,4 @@ let loyals_name_2 = '/pictures/loyals.svg';
 		
 		style={ buttons_styles }
 	/>
-	
-	{#if mode === "nurture" }
-	<!-- <div style="width: 0.5cm"></div> -->
-	<!-- <The_Map_Trinket /> -->
-	
-
-	<Milieus_Button
-		name={ "Technicians" }
-		location={[ "Technicians", "Map" ]}
-		is_open_location={[ "Technicians" ]}
-	/>
-	{/if}
 </div>
