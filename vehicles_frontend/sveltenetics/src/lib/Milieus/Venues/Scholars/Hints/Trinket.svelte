@@ -193,6 +193,32 @@ const show_rules = () => {
 	</div>
 	
 	<div style="height: 0.5cm"></div>
+	
+	<div
+		class="card p-4"
+		style="
+			margin: 0 auto;
+			text-align: center;
+		"
+	>		
+		<p>
+			<span>These are the rules.</span>
+		</p>
+
+		<div style="height: 0.25cm"></div>
+
+		<button
+			on:click={ show_rules }
+			type="button" 
+			
+			style="
+				padding: 0.25cm 1.5cm;
+			"
+			class="btn btn-lg btn bg-gradient-to-br variant-gradient-primary-secondary"
+		>Bayanihan</button>
+	</div>
+
+	<div style="height: 0.5cm"></div>
 
 	<div class="card p-4">
 		<header 
@@ -362,30 +388,6 @@ const show_rules = () => {
 				href="https://github.com/basalt-plateau/foam_pet/pulls"
 			>https://github.com/basalt-plateau/foam_pet/pulls</a>
 		</p>
-	</div>
-	
-	<div style="height: 0.5cm"></div>
-	
-	<div
-		class="card p-4"
-		style="
-			margin: 0 auto;
-			text-align: center;
-		"
-	>
-		<header 
-			style="
-				font-size: 2em; 
-				text-align: center;
-				padding: 0cm 0;
-			"
-		>Bayanihan</header>
-		
-		<button
-			on:click={ show_rules }
-			type="button" 
-			class="btn variant-filled"
-		>Show Bayanihan</button>
 	</div>
 	
 	<div style="height: 5cm"></div>
