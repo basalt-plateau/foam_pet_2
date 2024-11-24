@@ -54,7 +54,9 @@ const account = {
 	//	Players, Vehicles, Exosuit
 	//	Characters
 	//	Volition, Dynasty, Motto, Line, Lyrics, Rhyme, Ode
-	//	Ship, Smorgasbord, Plant, Seeds
+	//	Ship, Smorgasbord, Plant, Seeds,
+	//
+	//	Clique, Coterie, 
 	//
 	"Account": "Harvest",
 	"Accounts": "Harvests",
@@ -132,10 +134,10 @@ const account = {
 const consensus = {
 	//
 	//	Maintenance, Leaders, Care,
-	//	Theater
+	//	Theater, Fest
 	//
-	"consensus": "fest",
-	"Consensus": "Fest",
+	"consensus": "chaperones",
+	"Consensus": "Chaperones",
 	
 	//
 	//

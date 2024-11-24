@@ -15,19 +15,12 @@ import * as PT from './../Truck/index.js'
 //
 ////
 
-let PT_prepared = "no"
-let PT_freight = {}
-let PT_monitor;
-onMount (() => {
-	PT_freight = PT.retrieve_truck ().freight;
-	PT_monitor = PT.monitor_truck ((_freight) => {
-		PT_freight = _freight;
-	})
-	PT_prepared = "yes"
-});
-onDestroy (() => {
-	PT_monitor.stop ()
-});
+
+import Petition_Truck from '$lib/PTO/Transaction_Offline/Petition/Truck/Ride.svelte'
+let PT_Freight = false
+
+
+	
 
 </script>
 
@@ -41,5 +34,8 @@ onDestroy (() => {
 		padding: 0.25cm;
 	"
 >
-	
+	<Petition_Truck on_change={ ({ freight }) => { PT_Freight = freight; } } />
+	{#if typeof PT_Freight === "object"}
+	<div>: )</div>
+	{/if}
 </div>

@@ -2,6 +2,11 @@
 
 <script>
 
+/*
+	TODO:
+		detect Petra
+*/
+
 
 </script>
 

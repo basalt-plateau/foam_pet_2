@@ -33,7 +33,9 @@ import Barcode_Vision from '$lib/trinkets/Barcode/Vision/Trinket.svelte'
 import Alert_Success from '$lib/trinkets/Alerts/Success.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-	
+//
+import Originals from './Trinkets/Originals.svelte'
+
 
 const alert_success_note = "The bits were received successfully."
 let received_bits = "";
@@ -92,7 +94,7 @@ const on_prepare = () => {
 	polytope_modal.advance (({ freight }) => {
 		return _merge ({}, freight, {
 			showing: 'yes',
-			name: 'Rules',
+			name: 'Bayanihan',
 			
 			unfinished: {
 				showing: 'no',
@@ -130,7 +132,7 @@ const on_prepare = () => {
 }
 
 let show = "Originals";
-let clones_show = "Legend"
+let clones_show = "Index"
 
 </script>
 
@@ -166,7 +168,7 @@ let clones_show = "Legend"
 		>
 			<RadioGroup>
 				<RadioItem bind:group={ show } name="justify" value={ "Originals" }>Originals</RadioItem>	
-				<RadioItem bind:group={ show } name="justify" value={ "Anatomy" }>Anatomy</RadioItem>	
+				<RadioItem bind:group={ show } name="justify" value={ "Topics" }>Topics</RadioItem>	
 				<RadioItem bind:group={ show } name="justify" value={ "Estates" }>Estates</RadioItem>
 			</RadioGroup>
 		</div>
@@ -180,36 +182,9 @@ let clones_show = "Legend"
 			class="card p-4"
 		>
 			{#if show === "Originals" }
-			<div
-				style="
-					text-align: center;
-				"
-			>
-				<header
-					style="
-						font-size: 2em;
-					"
-				>Originals</header>
-				
-				<p>Original <Slang text="Pet" /> foam (frontend) is subject to these rules.</p>
-			
-				<div style="height: 0.5cm"></div>	
-				
-				<div class="card p-1 variant-filled-primary">
-					<iframe
-						src={ rules_originals_link }
-						
-						style="
-							width: 100%;
-							height: 25cm;
-						"
-
-						frameborder="0"
-						title="Rules Legend"
-					>
-					</iframe>
-				</div>
-			</div>
+			<Originals 
+				rules_originals_link={ rules_originals_link }
+			/>
 			{/if}
 		
 			{#if show === "Estates" }
@@ -251,36 +226,38 @@ let clones_show = "Legend"
 			</div>
 			{/if}
 		
-			{#if show === "Anatomy" }
+			{#if show === "Topics" }
 				<div
 					style="
 						text-align: center;
 					"
 				>
+					<!-- Surface, Skin, Topics, Crust, Hull, Interface -->
+				
 					<header
 						style="
 							font-size: 2em;
 						"
-					>Anatomy</header>
+					>Topics</header>
 					
 					<div style="height: 0.5cm"></div>
 					
 					<p><Slang text="Pet" /> is made from these.</p>
-					<p><b>Legend</b> is the name of every frontend license.</p>
-					<p><b>Entire</b> has the every frontend licenses.</p>
+					<p><b>Index</b> is the name of every Topics license.</p>
+					<p><b>Entire</b> has the every Topics licenses.</p>
 				
 					<div style="height: 0.5cm"></div>	
 				
 					<RadioGroup>
-						<RadioItem bind:group={ clones_show } name="justify" value={ "Legend" }>Legend</RadioItem>
+						<RadioItem bind:group={ clones_show } name="justify" value={ "Index" }>Index</RadioItem>
 						<RadioItem bind:group={ clones_show } name="justify" value={ "Entire" }>Entire</RadioItem>
 					</RadioGroup>
 					
 					<div style="height: 0.5cm"></div>
 				</div>
 				
-				<div class="card p-1 variant-filled-primary">
-					{#if clones_show === "Legend" }
+				<div class="card p-1">
+					{#if clones_show === "Index" }
 					<iframe
 						src={ rules_legend_link }
 						
@@ -290,7 +267,7 @@ let clones_show = "Legend"
 						"
 
 						frameborder="0"
-						title="Rules Legend"
+						title="Rules Index"
 					>
 					</iframe>
 					{/if}

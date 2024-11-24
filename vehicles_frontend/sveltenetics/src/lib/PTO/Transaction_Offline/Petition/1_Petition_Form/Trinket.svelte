@@ -17,7 +17,6 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
 //
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-import Versies_Trucks from '$lib/Versies/Trucks.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 //
 import { check_roomies_truck } from '$lib/Versies/Trucks'
@@ -41,43 +40,21 @@ import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_pa
 import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
 
 
+	
 
 import * as PT from './../Truck/index.js'
 
 
 ////
 //
-//	Trucks
+//	Truck Freight
 //
 //
-let PT_prepared = "no"
-let PT_freight = {}
-let PT_monitor;
-onMount (() => {
-	PT_freight = PT.retrieve_truck ().freight;
-	PT_monitor = PT.monitor_truck ((_freight) => {
-		PT_freight = _freight;
-	})
-	
-	PT_prepared = "yes"
-});
-onDestroy (() => {
-	PT_monitor.stop ()
-});
+import Petition_Truck from '$lib/PTO/Transaction_Offline/Petition/Truck/Ride.svelte'
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
 //
-//
-let versies_freight = {}
-let versies_trucks_prepared = "no"
-const on_seeds_truck_change = ({ freight: _freight, happening }) => {
-	versies_freight = _freight;
-	if (happening === "mounted") {
-		versies_trucks_prepared = "yes"
-		search_for_module ();
-	}
-}
-//
-//
-//
+let PT_Freight = false
+let Versies_Freight = false
 //
 ////
 
@@ -92,6 +69,7 @@ let le_move = {
 
 let fonction_search = "fields"
 
+/*
 let fonction = {
 	// fonction_mode: "",	
 	
@@ -102,6 +80,7 @@ let fonction = {
 	// type_parameters: [],
 	// parameters: []	
 }
+*/
 
 
 
@@ -145,11 +124,13 @@ let module_name_choosen = async ({ module_name }) => {
 	console.log ("module_name_choosen:", module_name);
 	fonction_module_name = module_name;
 }
-let fonction_choosen = async ({ fonction, fonction_mode }) => {
+let fonction_choosen = async ({ 
+	fonction, 
+	fonction_mode: _fonction_mode
+}) => {
 	console.log ("fonction_choosen:", fonction);
 	
 	fonction_selected = fonction;
-
 	fonction_type_parameters = retrieve_fonction_type_parameters ({ fonction_selected: fonction })
 	
 	/*
@@ -163,12 +144,10 @@ let fonction_choosen = async ({ fonction, fonction_mode }) => {
 	fonction_parameters = retrieve_fonction_parameters ({ fonction_selected: fonction })
 	
 	
-	fonction_mode = fonction_mode;
-	
+	fonction_mode = _fonction_mode;
 	fonction_found = "yes"
 	
-	
-	PT_freight.petition_fields = {
+	PT_Freight.petition_fields = {
 		mode: fonction_mode,
 		
 		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
@@ -200,17 +179,12 @@ let fonction_parameters_changed = ({ index, contents }) => {
 		parameters: fonction_parameters
 	}
 	
-	PT_freight.petition_fields = fresh_petition_fields;
+	PT_Freight.petition_fields = fresh_petition_fields;
 }
 
 const enhance = () => {
-	console.log ("enhance", {
-		fonction,
-		fonction_spot,
-		PT_freight
-	});
-	
-	if (PT_freight && PT_freight.petition_fields) {}
+
+	if (PT_Freight && PT_Freight.petition_fields) {}
 	else {
 		return;
 	}
@@ -273,7 +247,7 @@ const enhance = () => {
 	fonction_parameters = retrieve_fonction_parameters ({ fonction_selected })
 	fonction_type_parameters = retrieve_fonction_type_parameters ({ fonction_selected })
 	
-	PT_freight.petition_fields = {
+	PT_Freight.petition_fields = {
 		mode: fonction_mode,
 		
 		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
@@ -287,32 +261,6 @@ const enhance = () => {
 	}
 }
 
-
-let search_for_module = async () => {
-	const { enhanced, successful } = await ask_account_module ({ 
-		net_path: versies_freight.net_path,
-		
-		address_hexadecimal_string: fonction_spot,
-		module_name: fonction_module_name
-	});
-	if (successful === "yes") {
-		exposed_fonctions = enhanced.abi.exposed_functions;
-		
-		le_move.explorer_address = [
-			"https://explorer.aptoslabs.com/account",
-			fonction_spot,
-			"modules/code",
-			fonction_module_name
-		].join ("/");
-		
-		enhance ();
-		
-		return;
-	}
-	
-	fonction_found = "no"	
-	exposed_fonctions = []
-}
 
 
 
@@ -333,9 +281,13 @@ let search_for_module = async () => {
 		padding: 0.25cm;
 	"
 >
-	<Versies_Trucks on_change={ on_seeds_truck_change } />
-
-	{#if versies_trucks_prepared === "yes" && PT_prepared === "yes" }		
+	<Petition_Truck on_change={ ({ freight }) => { PT_Freight = freight; } } />
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	
+	{#if (
+		typeof Versies_Freight === "object" && 
+		typeof PT_Freight === "object" 
+	)}		
 	<div 
 		style="
 			display: flex;
@@ -388,20 +340,6 @@ let search_for_module = async () => {
 					class="anchor" 
 				>{ le_move.explorer_address }</a>
 			</div>
-
-			<!-- <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-				<div class="input-group-shim">address</div>
-				<input
-					bind:value={ fonction_spot }
-					on:change={ enhance }
-			
-					class="input" 
-					type="text" 
-					style="
-						padding: 0.25cm;
-					"
-				/>
-			</div> -->
 			
 			<Chooser_Address 
 				address_chosen={ address_chosen } 
@@ -410,7 +348,7 @@ let search_for_module = async () => {
 			<div style="height: 0.1cm" ></div>
 			
 			<Chooser_Module_Name 
-				net_path={ versies_freight.net_path }
+				net_path={ Versies_Freight.net_path }
 			
 				address={ fonction_spot }
 				
@@ -421,7 +359,7 @@ let search_for_module = async () => {
 			<div style="height: 0.1cm" ></div>
 			
 			<Chooser_Fonction 
-				net_path={ versies_freight.net_path }
+				net_path={ Versies_Freight.net_path }
 			
 				address={ fonction_spot }
 				module_name={ fonction_module_name }
@@ -429,25 +367,33 @@ let search_for_module = async () => {
 				fonction_choosen={ fonction_choosen }
 			/>
 		</div>
-			
-		{/if}
-		
-		{#if fonction_mode === "entry" }
-		<div class="card p-1 variant-ringed-primary">
-			<div class="input-group-shim">signer hexadecimal address</div>
-			<textarea 
-				style="
-					padding: 0.25cm;
-				"
-				class="textarea"  
-				
-				bind:value={ fonction_signer_hexadecimal_address }
-				on:change={ enhance }
-			/>
-		</div>
 		{/if}
 	</div>
 
+	
+	{#if fonction_mode === "entry" }
+	<div class="card p-4">
+		<div
+			style={ `
+				text-align: center;
+				font-size: ${ header_size };
+				padding: 0.25cm 0;
+			` }
+		>
+			<Slang text="Signer" /> Hexadecimal Address
+		</div>
+		
+		<textarea 
+			style="
+				padding: 0.25cm;
+			"
+			class="textarea"  
+			
+			bind:value={ fonction_signer_hexadecimal_address }
+			on:change={ enhance }
+		/>
+	</div>
+	{/if}
 	
 	{#if fonction_found === "yes"}
 	<div class="card p-4">	

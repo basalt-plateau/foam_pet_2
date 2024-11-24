@@ -70,6 +70,16 @@ export const refresh_truck = () => {
 			back: "no",
 			back_note: "Can't go back",
 			
+			
+			/*
+				perhaps:
+			
+				legend: {
+					Petition Form:
+						can visit: "yes"		
+				
+				}
+			*/
 			legend: {
 				1: "Petition Form",
 				2: "Petition Verification",

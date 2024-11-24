@@ -8,11 +8,11 @@
 import { onMount, onDestroy } from 'svelte'
 //
 //
-import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 //
 //
 import * as PT from './../Truck/index.js'
 import Details from './Trinkets/Details.svelte'
+import Bracket from './Trinkets/Bracket.svelte'
 //
 ////
 
@@ -43,8 +43,7 @@ onDestroy (() => {
 	"
 >
 	<Details />
+	<Bracket petition_AO_fiberized={ PT_freight.petition_AO_fiberized } />
 
-	<Code_Wall 
-		text={ PT_freight.petition_AO_fiberized } 
-	/>
+	
 </div>

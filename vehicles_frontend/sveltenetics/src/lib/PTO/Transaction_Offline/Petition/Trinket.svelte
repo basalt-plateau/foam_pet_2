@@ -162,6 +162,7 @@ onDestroy (() => {
 		{:else if freight.leaf_name === "Petition Verification" }
 		<Petition_Verification />
 		{:else if freight.leaf_name === "Petition Send" }
+		<Petition_Send />
 		{:else if freight.leaf_name === "Flourish Receive" }
 		{:else if freight.leaf_name === "Flourish Verification" }
 		{:else if freight.leaf_name === "Adaptation Suggestion" }

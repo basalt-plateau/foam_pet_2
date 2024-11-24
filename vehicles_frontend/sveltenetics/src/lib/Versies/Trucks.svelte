@@ -6,6 +6,18 @@
 
 <script>
 
+
+/*
+	import Versies_Truck from '$lib/Versies/Trucks.svelte'
+	let Versies_Freight = false
+	
+	
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	{#if typeof Versies_Freight === "object"}
+	
+	{/if}
+*/
+
 /*
 	import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
 	
