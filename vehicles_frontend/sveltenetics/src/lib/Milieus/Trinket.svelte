@@ -19,39 +19,25 @@ import { onMount, onDestroy } from 'svelte'
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
 	
+import { technicians_leaves } from './Venues/Scholars/Technicians/Leaves.js'
+	
 let Milieus = {
 	"Scholars": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
 		"Garden": async () => { return await import ('./Venues/Scholars/Garden/Trinket.svelte') },
 		"Theme": async () => { return await import ('./Venues/Scholars/Theme/Trinket.svelte') },
+		"Eunoia": technicians_leaves
 	},
 	"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') },
-	"Friends": {
+	
+	/*"Friends": {
 		"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') }
-	},
+	},*/
+	
 	"Loyals": {
 		"Hints": async () => { return await import ('./Venues/Loyals/Hints/Trinket.svelte') },
 		"Accounts": async () => { return await import ('./Venues/Loyals/Players/Trinket.svelte') },
 		"Signatures": async () => { return await import ('./Venues/Loyals/Flourishes/Trinket.svelte') }
-	},
-	"Technicians": {
-		"Map": async () => { return await import ('./Venues/Technicians/Trinket.svelte') },
-
-		"Adaptation": async () => { return await import ('./Venues/Technicians/Adaptation/Trinket.svelte') },
-
-		"Address Qualities": async () => { return await import ('./Venues/Technicians/Address_Qualities/Trinket.svelte') },
-		"Address Qualities with Address": async () => { return await import ('./Venues/Technicians/Address_Qualities_with_Address/Trinket.svelte') },
-		"Amount Field": async () => { return await import ('./Venues/Technicians/Amount_Field/Trinket.svelte') },		
-		"Consensus Transactions": async () => { return await import ('./Venues/Technicians/Consensus_Transactions/Trinket.svelte') },		
-		"Hone Focus": async () => { return await import ('./Venues/Technicians/Hone_Focus/Trinket.svelte') },
-		"Net Choices with Text": async () => { return await import ('./Venues/Technicians/Net_Choices_with_Text/Trinket.svelte') },		
-		"Net Choices": async () => { return await import ('./Venues/Technicians/Nets_Choices/Trinket.svelte') },		
-		"Polytope": async () => { return await import ('./Venues/Technicians/Polytope/Trinket.svelte') },		
-		"Slang": async () => { return await import ('./Venues/Technicians/Slang/Trinket.svelte') },
-		
-		"Wallet Socket": async () => { return await import ('./Venues/Technicians/Wallet_Socket/Trinket.svelte') },
-		
-		"Field": async () => { return await import ('./Venues/Technicians/Field/Trinket.svelte') },
 	}
 }
 
@@ -72,45 +58,26 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	
 	
 	const location = Milieus_freight.location;
-	console.log ({ location });
-
+	console.log ("on_Milieus_truck_change:", { location });
 	
 	if (happening !== "mounted") {
 		milieu_venue.style.opacity = 0;
 	}
-	
-	
-	
-	/*
-	try {
-		if (location.length == 2) {
-			next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
-			console.log ("Milieus Location:", location [0], location [1])
-		}
-		else if (location.length == 1) {
-			next_component = (await Milieus [ location [0] ] ()).default;
-			console.log ("Milieus Location:", location [0])
-		}
-		else {
-			next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
-		}
-	}
-	catch (exception) {
-		console.error (exception)
-		next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
-	}
-	*/
-	
+
 	let next_component;
-	if (location.length == 2) {
+	if (location.length == 3) {
+		next_component = (
+			await Milieus [ location [0] ] [ location [1] ] [ location [2] ] ()
+		).default;
+	}
+	else if (location.length == 2) {
 		next_component = (await Milieus [ location [0] ] [ location [1] ] ()).default;
-		console.log ("Milieus Location:", location [0], location [1])
 	}
 	else if (location.length == 1) {
 		next_component = (await Milieus [ location [0] ] ()).default;
-		console.log ("Milieus Location:", location [0])
 	}
 	else {
+		console.error ("Location was not accounted for:", { location })
 		next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
 	}
 

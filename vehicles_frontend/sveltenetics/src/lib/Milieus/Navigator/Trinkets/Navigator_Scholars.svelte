@@ -87,10 +87,10 @@ const names = {
 </script>
 
 {#if location [0] === "Scholars" }
-<div>
-	<Seeds_Trucks 
-		on_change={ on_seeds_truck_change } 
-	/>
+<div
+	style=""
+>
+	<Seeds_Trucks on_change={ on_seeds_truck_change } />
 
 	{#if seeds_trucks_prepared === "yes"}
 	<div>
@@ -101,9 +101,6 @@ const names = {
 			
 			style={ buttons_styles }
 		/>
-		
-
-		
 		<Milieus_Button
 			monitor="Garden"
 		
@@ -117,6 +114,15 @@ const names = {
 			name={ "Theme" }
 			location={[ "Scholars", "Theme" ]}
 			is_open_location={[ "Scholars", "Theme" ]}
+			
+			style={ buttons_styles }
+		/>
+		
+		<Milieus_Button
+			name={ "Eunoia" }
+			
+			location={[ "Scholars", "Eunoia", "Leaf" ]}
+			is_open_location={[ "Scholars", "Eunoia" ]}
 			
 			style={ buttons_styles }
 		/>

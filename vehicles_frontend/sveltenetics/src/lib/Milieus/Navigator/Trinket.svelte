@@ -12,27 +12,14 @@
 //\\
 //
 //
-import { planet, chameleon, spiderWeb } from '@lucide/lab'
-import Salad from 'lucide-svelte/icons/salad'
-import ScanQRCode from 'lucide-svelte/icons/scan-qr-code'
-//
-import { goto } from '$app/navigation';
-import { page } from '$app/stores';
-import { onMount, onDestroy } from 'svelte';
-import { get, writable } from 'svelte/store';
-//
-//
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
-import { check_Milieus_truck } from '$lib/Milieus/Truck'
 import Milieus_Trucks from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
 //
-import Buttons_Panel from './Trinkets/Buttons_Panel.svelte'
 import Net_Trinket from './Trinkets/Net.svelte'
 import Online_Caution_Alert from './Trinkets/Online_Caution_Alert.svelte'
-import The_Map_Trinket from './Trinkets/The_Map/Trinket.svelte'
 //
 import Navigator_1 from './Trinkets/Navigator_1.svelte'
 import Navigator_Scholars from './Trinkets/Navigator_Scholars.svelte'
@@ -98,7 +85,7 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 					
 					padding: 0.2cm;
 					
-					max-width: 12cm;
+					max-width: 20cm;
 					width: 100%;
 					
 					margin: 0 auto;
@@ -111,7 +98,6 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 		</nav>
 		
 		<Net_Trinket />
-		
 		<Online_Caution_Alert />
 	</div>
 	{/if}

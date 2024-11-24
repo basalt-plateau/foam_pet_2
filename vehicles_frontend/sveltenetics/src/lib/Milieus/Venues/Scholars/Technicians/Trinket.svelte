@@ -7,11 +7,11 @@
 
 <script>
 
+import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
 
 
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 
-import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
 import { parse_styles } from '$lib/trinkets/styles/parse'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
@@ -94,8 +94,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Net Choices with Text" }
-				location={[ "Technicians", "Net Choices with Text" ]}
-				is_open_location={[ "Technicians", "Net Choices with Text" ]}
+				location={[ "Scholars", "Eunoia", "Net Choices with Text" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Net Choices with Text" ]}
 			/>
 		</Panel>
 	
@@ -104,8 +104,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Amount Field" }
-				location={[ "Technicians", "Amount Field" ]}
-				is_open_location={[ "Technicians", "Amount Field" ]}
+				location={[ "Scholars", "Eunoia", "Amount Field" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Amount Field" ]}
 			/>
 		</Panel>
 		
@@ -114,8 +114,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Hone Focus" }
-				location={[ "Technicians", "Hone Focus" ]}
-				is_open_location={[ "Technicians", "Hone Focus" ]}
+				location={[ "Scholars", "Eunoia", "Hone Focus" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Hone Focus" ]}
 			/>
 		</Panel>
 		
@@ -131,8 +131,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Adaptation" }
-				location={[ "Technicians", "Adaptation" ]}
-				is_open_location={[ "Technicians", "Adaptation" ]}
+				location={[ "Scholars", "Eunoia", "Adaptation" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Adaptation" ]}
 			/>
 		</Panel>
 		
@@ -141,8 +141,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Wallet Socket" }
-				location={[ "Technicians", "Wallet Socket" ]}
-				is_open_location={[ "Technicians", "Wallet Socket" ]}
+				location={[ "Scholars", "Eunoia", "Wallet Socket" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Wallet Socket" ]}
 			/>
 		</Panel>
 		
@@ -151,8 +151,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Address Qualities with Address" }
-				location={[ "Technicians", "Address Qualities with Address" ]}
-				is_open_location={[ "Technicians", "Address Qualities with Address" ]}
+				location={[ "Scholars", "Eunoia", "Address Qualities with Address" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Address Qualities with Address" ]}
 			/>
 		</Panel>
 		
@@ -161,8 +161,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Address Qualities" }
-				location={[ "Technicians", "Address Qualities" ]}
-				is_open_location={[ "Technicians", "Address Qualities" ]}
+				location={[ "Scholars", "Eunoia", "Address Qualities" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Address Qualities" ]}
 			/>
 		</Panel>
 		
@@ -171,8 +171,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Nets Choices" }
-				location={[ "Technicians", "Nets Choices" ]}
-				is_open_location={[ "Technicians", "Nets Choices" ]}
+				location={[ "Scholars", "Eunoia", "Nets Choices" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Nets Choices" ]}
 			/>
 		</Panel>
 		
@@ -184,8 +184,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Consensus Transactions" }
-				location={[ "Technicians", "Consensus Transactions" ]}
-				is_open_location={[ "Technicians", "Consensus Transactions" ]}
+				location={[ "Scholars", "Eunoia", "Consensus Transactions" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Consensus Transactions" ]}
 			/>
 		</Panel>
 		<Panel 
@@ -193,8 +193,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Polytope" }
-				location={[ "Technicians", "Polytope" ]}
-				is_open_location={[ "Technicians", "Polytope" ]}
+				location={[ "Scholars", "Eunoia", "Polytope" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Polytope" ]}
 			/>
 		</Panel>
 		
@@ -203,8 +203,8 @@ a {
 		>
 			<Milieus_Button
 				name={ "Slang" }
-				location={[ "Technicians", "Slang" ]}
-				is_open_location={[ "Technicians", "Slang" ]}
+				location={[ "Scholars", "Eunoia", "Slang" ]}
+				is_open_location={[ "Scholars", "Eunoia", "Slang" ]}
 			/>
 		</Panel>
 		
@@ -219,8 +219,8 @@ a {
 	>
 		<Milieus_Button
 			name={ "Field" }
-			location={[ "Technicians", "Field" ]}
-			is_open_location={[ "Technicians", "Field" ]}
+			location={[ "Scholars", "Eunoia", "Field" ]}
+			is_open_location={[ "Scholars", "Eunoia", "Field" ]}
 		/>
 	</Panel>
 	
