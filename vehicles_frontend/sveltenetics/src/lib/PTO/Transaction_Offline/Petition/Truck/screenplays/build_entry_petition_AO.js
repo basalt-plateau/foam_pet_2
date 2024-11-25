@@ -42,7 +42,7 @@ export const build_entry_petition_AO = async ({
 				petition_fields.signer_hexadecimal_address
 			)
 		);
-		
+
 
 		/*
 			Aptos_SDK.AccountAddress.from (
@@ -74,12 +74,10 @@ export const build_entry_petition_AO = async ({
 			}
 		}
 		
-		/*
-		console.log ({
+		console.log ("build_entry_petition_AO::", {
 			"net_path": net_path,
 			"transaction_petition_bracket": transaction_petition_bracket
 		})
-		*/
 
 
 		
@@ -92,6 +90,8 @@ export const build_entry_petition_AO = async ({
 		let TP1_AO;
 		try {
 			TP1_AO = await aptos.transaction.build.simple (transaction_petition_bracket);		
+			
+			
 		}
 		catch (barrier) {
 			console.warn (barrier.message);

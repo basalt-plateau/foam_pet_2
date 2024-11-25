@@ -81,19 +81,27 @@ let Versies_Freight = false
 			let fully_elected_petition_fields = {
 				mode: "entry",
 										
-				address: "",
-				module_name: "",
-				fonction_name: "",
+				address: "0x1",
+				module_name: "aptos_account",
+				fonction_name: "transfer",
 
 				flourisher_address_hexadecimal: "",
 
 				type_parameters: [{
 					
 				}],
-				parameters: [{
-					
-				}]
+				parameters: [
+					{
+						"name": "address",
+						"field": ""
+					},
+					{
+						"name": "u64",
+						"field": ""
+					}
+				]
 			}
+
 	
 		* partially designated:
 			let use_partially_elected_petition_fields = "yes"
@@ -129,29 +137,7 @@ let le_move = {
 
 let fonction_search = "fields"
 
-/*
-let fonction = {
-	// fonction_mode: "",	
-	
-	// fonction_name: "",
-	
-	// signer_hexadecimal_address: "",
-	
-	// type_parameters: [],
-	// parameters: []	
-}
-*/
 
-
-
-let exposed_fonctions = [];
-let fonction_selected = {}
-let fonction_found = "no"
-//
-
-
-//
-let fonction_mode = ""
 //
 //
 let fonction_spot = "";
@@ -160,6 +146,12 @@ let fonction_name_index = ""
 let fonction_name = ""
 //
 let fonction_module_name = ""
+//
+//
+let fonction_mode = ""
+let fonction_found = "no"
+let fonction_selected = {}
+//
 //
 let fonction_signer_hexadecimal_address = ""
 //
