@@ -118,6 +118,7 @@ const names = {
 			style={ buttons_styles }
 		/>
 		
+		{#if mode === "nurture" }
 		<Milieus_Button
 			name={ "免疫" }
 			
@@ -126,6 +127,7 @@ const names = {
 			
 			style={ buttons_styles }
 		/>
+		{/if}
 	</div>
 	{/if}
 </div>
