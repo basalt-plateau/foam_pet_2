@@ -53,10 +53,9 @@ This is the pet with a PyPI vehicle.
 For various reasons (mostly licensing) the .git repository   
 has been refreshed a few times.   
    
-These are the previous repositories (most recent is on top)  
+This is a previous repository:
 [https://github.com/basalt-plateau/foam_pet_G1](https://github.com/basalt-plateau/foam_pet_G1)    
-[https://github.com/basalt-plateau/foam_2](https://github.com/basalt-plateau/foam_2)    
-[https://github.com/basalt-plateau/foam](https://github.com/basalt-plateau/foam)
+
 
 ## Amplifications
 If you'd like amplify this project, APT can be received at:   

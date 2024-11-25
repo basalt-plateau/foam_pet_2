@@ -4,6 +4,7 @@
 
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 
+export let header_size = ""
 
 export let fonction_parameters = []
 
