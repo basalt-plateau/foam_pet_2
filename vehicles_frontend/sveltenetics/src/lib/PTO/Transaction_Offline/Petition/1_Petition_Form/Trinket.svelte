@@ -67,14 +67,36 @@ let Versies_Freight = false
 ////
 
 
+/*
+	Example:
+		0x1::aptos_account::transfer
+
+*/
+
 
 /*
 	TODO:
-		partially designated:
-		fully designated:
+		* fully designated:
+			let use_fully_elected_petition_fields = "yes"
+			let fully_elected_petition_fields = {
+				mode: "entry",
+										
+				address: "",
+				module_name: "",
+				fonction_name: "",
+
+				flourisher_address_hexadecimal: "",
+
+				type_parameters: [{
+					
+				}],
+				parameters: [{
+					
+				}]
+			}
 	
-		partially elected fields:
-	
+		* partially designated:
+			let use_partially_elected_petition_fields = "yes"
 			PT_Freight.petition_fields = {
 				mode: "entry",
 				
@@ -90,29 +112,10 @@ let Versies_Freight = false
 				parameters: [{
 					
 				}]
-			}
-			
-			
-		let use_partially_elected_petition_fields = "yes"
-		let use_fully_elected_petition_fields = "yes"
-		let partially_elected_petition_fields = {
-			mode: "entry",
-									
-			address: "",
-			module_name: "",
-			fonction_name: "",
+			}	
 
-			flourisher_address_hexadecimal: "",
-
-			type_parameters: [{
-				
-			}],
-			parameters: [{
-				
-			}]
-		}
 */
-
+let use_fully_elected_petition_fields = "yes"
 /**/
 
 
@@ -166,14 +169,7 @@ let fonction_type_parameters = []
 //
 
 let build_petition = () => {
-	console.log (`
-	
-		build_petition called!
-		
-		
-	`);
-	
-	PT_Freight.petition_fields = {
+	var petition_fields = {
 		mode: fonction_mode,
 		
 		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
@@ -184,7 +180,18 @@ let build_petition = () => {
 		
 		type_parameters: fonction_type_parameters,
 		parameters: fonction_parameters
-	}
+	};
+	
+	console.log (`
+	
+		build_petition called!
+		
+			fonction_signer_hexadecimal_address: ${ fonction_signer_hexadecimal_address }
+		
+			petition fields: ${ JSON.stringify (petition_fields, null, 4) }
+	`);
+	
+	PT_Freight.petition_fields = petition_fields;
 }
 
 let address_chosen = async ({ address }) => {
@@ -219,6 +226,8 @@ let fonction_choosen = async ({
 	
 	fonction_mode = _fonction_mode;
 	fonction_found = "yes"
+	
+	console.log ({ fonction_found });
 
 	build_petition ();
 }
@@ -226,7 +235,9 @@ let fonction_choosen = async ({
 let address_of_flourisher_chosen = ({
 	address_of_flourisher
 }) => {
+	console.log ("address_of_flourisher_chosen", { address_of_flourisher });
 	fonction_signer_hexadecimal_address = address_of_flourisher;
+	build_petition ();
 }
 
 let fonction_type_parameters_changed = ({ index, contents }) => {
@@ -255,8 +266,10 @@ let fonction_parameters_changed = ({ index, contents }) => {
 		padding: 0.25cm;
 	"
 >
-	<Petition_Truck on_change={ ({ freight }) => { PT_Freight = freight; } } />
+	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	
+	{ PT_Freight }
 	
 	{#if (
 		typeof Versies_Freight === "object" && 
@@ -316,11 +329,7 @@ let fonction_parameters_changed = ({ index, contents }) => {
 			</div>
 			
 			<Elector_Address 
-				address_chosen={ async ({ address }) => {
-					fonction_spot = address;
-					fonction_module_name = ""
-					fonction_found = "no"
-				}} 
+				address_chosen={ address_chosen } 
 			/>
 			
 			<div style="height: 0.1cm" ></div>
@@ -353,7 +362,7 @@ let fonction_parameters_changed = ({ index, contents }) => {
 		address_of_flourisher_chosen={ address_of_flourisher_chosen }
 	/>
 	{/if}
-	
+		
 	{#if fonction_found === "yes"}
 	<Elector_Fonction_Parameters 
 		header_size={ header_size }

@@ -22,14 +22,20 @@
 		origin_address.exception = exception;
 	}
 	
+	//
+	// This is for electing the original value of the trinket.
+	//
+	//
 	let address_trinket = ""
 	const on_prepare = () => {
 		address_trinket.change_address_hexadecimal_string ("")
 	}
 
 	<Address_Qualities_Trinket 
-		bind:this={ address_trinket }
 		name="Origin Address"
+	
+		bind:this={ address_trinket }
+		
 		on_change={ on_change }
 		on_prepare={ on_prepare }
 	/>

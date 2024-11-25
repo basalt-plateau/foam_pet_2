@@ -20,7 +20,6 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 
 export let styles;
 
-console.log ({ styles })
 </script>
 
 <div

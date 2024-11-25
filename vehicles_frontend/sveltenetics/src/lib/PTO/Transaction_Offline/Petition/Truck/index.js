@@ -126,17 +126,26 @@ export const refresh_truck = () => {
 		value
 	}) => {
 		console.info ("petition freight changed:", { property, value });
-		return;
+
+
 		/*
 			target = bracket_of_freight
 		*/
 		try {
 			
-			// petition modification
+			/*
+				wait for petition modification
+				
+			*/
 			if (
 				target === original_freight &&
 				property === "petition_fields"
 			) {
+				
+				/*
+					wait for entry fonction
+				
+				*/
 				if (original_freight.petition_fields.mode === "entry") {
 					const { barrier, TP2_fiberized } = await build_entry_petition_AO ({
 						net_path: original_freight.net_path,
@@ -151,6 +160,11 @@ export const refresh_truck = () => {
 						pro_freight.petition_AO_fiberized = TP2_fiberized;
 					}
 				}
+				
+				/*
+					wait for view fonction
+				
+				*/
 			}
 			
 			/*
@@ -210,6 +224,8 @@ export const monitor_truck = (action) => {
 		property, 
 		value
 	}) => {
+		console.log ("petition truck monitor");
+		
 		action ({
 			pro_freight, 
 			original_freight,

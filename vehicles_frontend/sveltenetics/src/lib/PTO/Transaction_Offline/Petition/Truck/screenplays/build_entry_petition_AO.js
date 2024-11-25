@@ -35,7 +35,7 @@ export const build_entry_petition_AO = async ({
 	petition_fields
 }) => {
 	try {
-		// console.info ("build_entry_petition_AO", { petition_fields });
+		console.info ("build_entry_petition_AO");
 
 		const sender = Aptos_SDK.AccountAddress.from (
 			Uint8Array_from_string (
@@ -139,7 +139,12 @@ export const build_entry_petition_AO = async ({
 		}
 	}
 	catch (anomaly) {
-		console.info (anomaly);
+		try {
+			console.info ("anomaly:", anomaly.message);
+		}
+		catch (exception) {
+			console.error (exception);
+		}
 		
 		return {
 			barrier: anomaly.message

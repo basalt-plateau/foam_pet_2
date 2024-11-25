@@ -37,6 +37,8 @@
 	delete trucks [1]
 */
 
+
+
 import cloneDeep from 'lodash/cloneDeep'
 import _set from 'lodash/set'
 
@@ -111,7 +113,9 @@ export const build_truck = ({ freight }) => {
 		monitor,
 		monitors,
 		// enhance,
+		pro_freight: the_freight,
 		freight: the_freight,
+		
 		retrieve_change_count,
 		stop
 	}

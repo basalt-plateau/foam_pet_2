@@ -14,8 +14,10 @@
 	let PT_Freight = false
 
 
+
+
 	
-	<Petition_Truck on_change={ ({ freight }) => { PT_Freight = freight; } } />
+	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
 	{#if typeof PT_Freight === "object"}
 	
 	{/if}
@@ -31,16 +33,18 @@ import { monitor_truck, retrieve_truck } from './index.js'
 export let on_change = () => {}
 
 let Truck_Monitor;
-let freight;
 onMount (async () => {
-	freight = retrieve_truck ().freight; 
-	
-	Truck_Monitor = monitor_truck ((_freight) => {
-		freight = _freight;
-		on_change ({ freight, happening: "modulated" })
+	Truck_Monitor = monitor_truck (({ pro_freight }) => {
+		on_change ({ 
+			pro_freight, 
+			happening: "modulated" 
+		})
 	})
 	
-	on_change ({ freight, happening: "mounted" })
+	on_change ({ 
+		pro_freight: retrieve_truck ().pro_freight, 
+		happening: "mounted" 
+	})
 });
 onDestroy (() => {
 	Truck_Monitor.stop ()

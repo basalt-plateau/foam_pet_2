@@ -70,7 +70,7 @@ export const nocturnalize = ({
 		const search_1 = words [E];
 		let search_2 = retrieve_search_2 ({ last, E, words })
 
-		console.log ({ search_1, search_2 });
+		// console.log ({ search_1, search_2 });
 		
 		if (has_field (legend_language, search_1)) {
 			// This checks for 1 word legends
