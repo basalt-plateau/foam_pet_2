@@ -36,6 +36,10 @@ let PT_Freight = false
 >
 	<Petition_Truck on_change={ ({ freight }) => { PT_Freight = freight; } } />
 	{#if typeof PT_Freight === "object"}
-	<div>: )</div>
+
+
+
+
+
 	{/if}
 </div>

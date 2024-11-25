@@ -59,6 +59,7 @@ import Digital_Assets_Portico from '$lib/Les_Talents/Digital_Assets/Portico/Trin
 import Rondovals_Portico from '$lib/Les_Talents/Rondovals/Portico/Trinket.svelte'
 import Mercy_Portico from '$lib/Les_Talents/Mercy/Portico/Trinket.svelte'
 import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
+import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 
 
 
@@ -324,6 +325,11 @@ let Amharic_Friendships = {
 			</div>
 		</Panel>
 		
+		
+		
+		<Panel styles={ trends.panel }>		
+			<Venues_Portico { modal_store }/>	
+		</Panel>
 		<Panel 
 			styles={ trends.panel }
 		>		

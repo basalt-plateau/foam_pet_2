@@ -3,17 +3,48 @@
 <script>
 
 
+const address_builder = ""
+
+const visiwas = {
+	tivaevae: {
+		establish: address_builder + "::Rondoval_Tivaevae::B",
+		destroy: address_builder + "::Rondoval_Tivaevae::J"
+	}
+}
 
 
+/*
+	Establish Tivaevae:
+		Rondoval_Tivaevae::B (& estate_1_signer, thermoplastic_sheets_to_add);
+
+
+
+
+
+
+
+*/
+
+
+///
+//
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 import _merge from 'lodash/merge'
-
+//
+//
 import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
+//
+//
+///
 
-import Online_Petition from './Online_Petition/Trinket.svelte'
-import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
-	
+//
+//
+let show_panel = "Digital Assets 1";
+//
+//
+
+
 const prepare = () => {
 	return {
 		name: "Transfer",
@@ -31,11 +62,9 @@ const on_click = () => {
 	})
 }
 
-const on_modal_change = () => {
-	
-}
+const on_modal_change = () => {}
 
-let show_panel = "Wheel";
+
 const on_next_pressed = () => {
 	console.info ("on_next_pressed")
 	
@@ -77,7 +106,7 @@ const on_prepare = () => {
 		return _merge ({}, freight, {
 			showing: 'yes',
 			
-			name: 'Transaction',
+			name: 'Venues',
 			
 			unfinished: {
 				showing: 'no',
@@ -91,7 +120,6 @@ const on_prepare = () => {
 					polytope_modal.advance (({ freight }) => {
 						if (show_panel === "Online Petition") {
 							freight.back.permitted = "no"
-							
 							show_panel = "Wheel"
 						}
 						
@@ -132,8 +160,6 @@ let isOpen = false;
 >
 	<div slot="leaves"
 		style="
-			position: relative;
-		
 			height: 100%;
 			width: 100%;
 			
@@ -143,7 +169,7 @@ let isOpen = false;
 		"
 	>
 		{#if prepared === "yes" }
-		{#if show_panel === "Wheel" }
+		{#if show_panel === "Digital Assets 1" }
 		<div
 			style="
 				box-sizing: border-box;
@@ -161,36 +187,13 @@ let isOpen = false;
 				gap: 0.5cm;
 			"
 		>
-			<button type="button" class="btn variant-filled"
-				on:click={ online_petition }
-			>Online Petition</button>
-			
-			<hr />
-			
-			<button type="button" class="btn variant-filled"
-				on:click={() => {
-					show_panel="Offline Petition"
-				}}
-			>Offline Petition</button>
-			<button type="button" class="btn variant-filled"
-			
-			>Offline Signature</button>
-		</div>
-		{:else if show_panel === "Online Petition" }
-		<Online_Petition 
-			open_a_panel={ open_a_panel }
-		/>
-		{:else if show_panel === "Offline Petition" }
-		<div
-			style="
-				max-width: 800px;
-				width: 100%;
-				
-				max-height: 700px;
-				height: 100%;
-			"
-		>
-			<Offline_Petition />
+			<header
+				style="
+					font-size: 3em;
+				"
+			>Venues</header>
+		
+		
 		</div>
 		{/if}
 		{/if}

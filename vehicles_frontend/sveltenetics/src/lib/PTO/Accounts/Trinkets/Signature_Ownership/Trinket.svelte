@@ -2,25 +2,24 @@
 
 <script>
 	
-	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-	
-	import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-	import { parse_styles } from '$lib/trinkets/styles/parse.js';
+import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import { parse_styles } from '$lib/trinkets/styles/parse.js';
 
 /*
 	Legitimacy
 	Dynasty
 	Ownership
-
 */
 
 </script>
 
 <div
-	class="card p-0 variant-filled-primary"
 	style="
 		word-wrap: break-word;
 	"
+	class="card p-0 variant-filled-primary"
 >
 	<Accordion>
 		<AccordionItem>
@@ -29,7 +28,7 @@
 					style="{parse_styles ({
 						'display': 'block',
 						'text-align': 'center',
-						'font-size': '2em',
+						'font-size': '1.5em',
 						'padding': '0cm',
 					})}"
 				>

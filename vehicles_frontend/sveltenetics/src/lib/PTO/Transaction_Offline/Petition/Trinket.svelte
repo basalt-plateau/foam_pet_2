@@ -8,6 +8,20 @@
 */
 
 /*
+	TODO:
+	
+		import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
+		<Offline_Petition 
+			begin_at_bracket="yes"
+		/>
+		
+		// somehow call function in Component
+		OP.use_fields ({
+			
+		})
+*/
+
+/*
 	Panels:
 		Petition Form
 		Petition Verification
@@ -89,7 +103,8 @@ onDestroy (() => {
 <div 
 	style="
 		position: relative;
-		min-height: 100%;
+		height: 100%;
+		width: 100%;
 	"
 	class="card"
 >

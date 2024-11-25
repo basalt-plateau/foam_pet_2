@@ -13,20 +13,18 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
-import Bike from 'lucide-svelte/icons/bike';
-//
 //
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keyboard/Trinket.svelte'
 import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-import Signature_Ownership from '$lib/PTO/Accounts/Trinkets/Signature_Ownership/Trinket.svelte'
-import Signature_Math from '$lib/PTO/Accounts/Trinkets/Signature_Math/Trinket.svelte'
-//
 //
 import { parse_with_commas } from '$lib/taverns/numbers/parse_with_commas'
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
+//
+//
+import Atrium from './Trinkets/Atrium.svelte';
 //
 //
 ////
@@ -64,69 +62,9 @@ const modify_keys_count = () => {
 
 <Leaf>
 <main addresses monitor="accounts">
-	<div class="card p-4">
-		<div style="height: 2cm" />
+	<Atrium />
 	
-		<header
-			style="{parse_styles ({
-				'display': 'flex',
-				'text-align': 'center',
-				'font-size': '2em',
-				'justify-content': 'center'
-			})}"
-		>
-			<Slang text="Accounts" /> 
-		</header>
-		
-		
-		<div style="height: 1cm" />
-		
-		<p
-			style="
-				text-align: center;
-			"
-		><Slang text="Accounts" /> each have 1 <Slang text="Private Key" /> that has 1 or more <Slang text="Addresses" />.</p>
-		
-		<div style="height: 0.5cm" />
-		
-		<p
-			style="
-				text-align: center;
-			"
-		><Slang text="A_Private_Key" /> is necessary to act as <Slang text="an_Address" />.</p>
-	
-		<div style="height: 0.5cm" />	
-	
-		<div class="card p-1 variant-soft-surface">
-			<Accordion>
-				<AccordionItem>
-					<svelte:fragment slot="summary">
-						<header
-							style="{parse_styles ({
-								'display': 'block',
-								'text-align': 'center',
-								'font-size': '2em',
-								'padding': '0cm',
-							})}"
-						>Hints</header>
-					</svelte:fragment>
-					<svelte:fragment slot="content">				
-						<Signature_Ownership />
-						<Signature_Math />					
-					</svelte:fragment>
-				</AccordionItem>
-			</Accordion>
-		</div>
-		
-		<div style="height: 0cm" />
-	</div>
-
-	<div style="height: 20px"></div>
-
-
-	
-	
-	<div style="height: 0.4cm"></div>
+	<div style="height: 0.5cm"></div>
 	
 	<div class="card p-2">
 		<div class="card variant-soft-primary p-4">
@@ -192,25 +130,11 @@ const modify_keys_count = () => {
 		</div>
 
 		<div style="height: 0.25cm" />
-		<hr class="!border-dotted" style="border-top-width: 0.1cm" />
+		<hr style="border-top-width: 0.1cm" />
 		<div style="height: 0.25cm" />
 		
 		{#if account_variety === "EEC_25519_single_key_account" }
-		
-		
-		<header
-			style="{parse_styles ({
-				'display': 'block',
-				'text-align': 'center',
-				'font-size': '1.5em',
-				'line-height': '1em',
-				'padding': '1em'
-			})}"
-		>
-			<span>EEC 25519 Single Key <Slang text="Account" /></span>
-		</header>
-		
-		<div class="card p-2 variant-filled-primary">
+		<div class="card p-1 variant-filled-primary">
 			<Accordion>
 				<AccordionItem>
 					<svelte:fragment slot="summary">
@@ -218,7 +142,7 @@ const modify_keys_count = () => {
 							style="{parse_styles ({
 								'display': 'block',
 								'text-align': 'center',
-								'font-size': '2em',
+								'font-size': '1.5em',
 								'line-height': '1.5em',
 							})}"
 						>

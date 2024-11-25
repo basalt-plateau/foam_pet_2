@@ -58,6 +58,11 @@ const account = {
 	//
 	//	Clique, Coterie, 
 	//
+	//	Harvest
+	//
+	//	Key, Combination, Groove,
+	//	Frequency, Vibe,
+	//
 	"Account": "Harvest",
 	"Accounts": "Harvests",
 	"an_Account": "a Harvest",
@@ -103,6 +108,8 @@ const account = {
 	"Public Key": "Abstraction"	,
 	"Public Keys": "Abstractions",
 	
+	
+	
 	////
 	//
 	//	Ink, Tat, Impression
@@ -126,7 +133,7 @@ const account = {
 	//
 	////
 	
-	
+	// publicist
 	"publisher": "publisher",
 	"Publisher": "Publisher"	
 }

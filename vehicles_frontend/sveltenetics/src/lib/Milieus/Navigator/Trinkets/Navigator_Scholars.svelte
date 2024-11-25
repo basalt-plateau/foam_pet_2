@@ -9,11 +9,13 @@ import { check_Milieus_truck, monitor_Milieus_truck } from '$lib/Milieus/Truck'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
 
-let mode;
+let mode = check_roomies_truck ().freight.mode;;
 let location = [ "", "" ];
 
 let update_variables = () => {
-	mode = check_Milieus_truck ().freight.mode;
+	console.log ("update_variables");
+	
+	mode = check_roomies_truck ().freight.mode;
 	location = check_Milieus_truck ().freight.location;
 }
 update_variables ();
@@ -27,10 +29,6 @@ onMount (async () => {
 	
 	Scholars_Trucks_Monitor = monitor_Milieus_truck ((_freight) => {
 		Scholars_Trucks_Freight = _freight;
-		
-		// mode = Scholars_Trucks_Freight.mode;
-		// location = Scholars_Trucks_Freight.location;
-		
 		update_variables ();
 	})
 	
@@ -120,10 +118,10 @@ const names = {
 		
 		{#if mode === "nurture" }
 		<Milieus_Button
-			name={ "免疫" }
+			name={ "Resilience" }
 			
-			location={[ "Scholars", "Immunity", "Leaf" ]}
-			is_open_location={[ "Scholars", "Immunity" ]}
+			location={[ "Scholars", "Resilience", "Leaf" ]}
+			is_open_location={[ "Scholars", "Resilience" ]}
 			
 			style={ buttons_styles }
 		/>

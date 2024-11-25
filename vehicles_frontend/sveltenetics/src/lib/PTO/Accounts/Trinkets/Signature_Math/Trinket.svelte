@@ -10,10 +10,10 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 </script>
 
 <div
-	class="card p-0 variant-filled-primary"
 	style="
 		word-wrap: break-word;
 	"
+	class="card p-0 variant-filled-primary"
 >
 	<Accordion>
 		<AccordionItem>
@@ -22,7 +22,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 					style="{parse_styles ({
 						'display': 'block',
 						'text-align': 'center',
-						'font-size': '2em',
+						'font-size': '1.5em',
 						'padding': '0cm',
 					})}"
 				>

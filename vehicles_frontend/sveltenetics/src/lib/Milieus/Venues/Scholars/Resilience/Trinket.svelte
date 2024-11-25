@@ -55,10 +55,10 @@ const trends = {
 	})
 }
 
-const Immunity = {
+const Resilience = {
 	Hakka: {
 		language: "Hakka",
-		english: "Immunity",
+		english: "Resilience",
 		pronunciation: "Mian-yik",
 		glyphs: "免疫",
 	}
@@ -101,9 +101,9 @@ a {
 				
 				text-align: center;
 			"
-		>免疫</header>
+		>Resilience</header>
 		
-		<div
+		<!-- <div
 			class="card p-1 variant-soft-surface"
 			style="
 				width: 100%;
@@ -113,21 +113,21 @@ a {
 				style="
 					text-align: center;
 				"
-			><b>{ Immunity.Hakka.glyphs }</b>, perhaps occassionally spoken as <b>{ Immunity.Hakka.pronunciation }</b>,</p>
+			><b>{ Resilience.Hakka.glyphs }</b>, perhaps occassionally spoken as <b>{ Resilience.Hakka.pronunciation }</b>,</p>
 			<p
 				style="
 					text-align: center;
 				"
-			>might be how to say <b>{ Immunity.Hakka.english }</b> with the <b>{ Immunity.Hakka.language }</b> language.</p>
-		</div>
+			>might be how to say <b>{ Resilience.Hakka.english }</b> with the <b>{ Resilience.Hakka.language }</b> language.</p>
+		</div> -->
 		
 		<div style="height: 20px"></div>
 		<p 
 			style="text-align: center"
-		>This region is for verifying and ensuring the health and continuity of the dapp.</p>
+		>This region is for verifying and ensuring the resilience of the dapp.</p>
 		<p
 			style="text-align: center"
-		>It's status checks that don't have an impact on the rest of the dapp.</p>
+		>These monitors don't have an impact on the rest of the dapp.</p>
 	</div>
 
 	<div style="height: 1cm" />
@@ -145,8 +145,8 @@ a {
 			<Panel styles={ trends.panel }>
 				<Milieus_Button
 					name={ "Net Choices with Text" }
-					location={[ "Scholars", "Immunity", "Net Choices with Text" ]}
-					is_open_location={[ "Scholars", "Immunity", "Net Choices with Text" ]}
+					location={[ "Scholars", "Resilience", "Net Choices with Text" ]}
+					is_open_location={[ "Scholars", "Resilience", "Net Choices with Text" ]}
 				/>
 			</Panel>
 		
@@ -155,8 +155,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Amount Field" }
-					location={[ "Scholars", "Immunity", "Amount Field" ]}
-					is_open_location={[ "Scholars", "Immunity", "Amount Field" ]}
+					location={[ "Scholars", "Resilience", "Amount Field" ]}
+					is_open_location={[ "Scholars", "Resilience", "Amount Field" ]}
 				/>
 			</Panel>
 			
@@ -166,8 +166,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Hone Focus" }
-					location={[ "Scholars", "Immunity", "Hone Focus" ]}
-					is_open_location={[ "Scholars", "Immunity", "Hone Focus" ]}
+					location={[ "Scholars", "Resilience", "Hone Focus" ]}
+					is_open_location={[ "Scholars", "Resilience", "Hone Focus" ]}
 				/>
 			</Panel>
 			{/if}
@@ -194,8 +194,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Adaptation" }
-					location={[ "Scholars", "Immunity", "Adaptation" ]}
-					is_open_location={[ "Scholars", "Immunity", "Adaptation" ]}
+					location={[ "Scholars", "Resilience", "Adaptation" ]}
+					is_open_location={[ "Scholars", "Resilience", "Adaptation" ]}
 				/>
 			</Panel>
 			
@@ -204,8 +204,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Wallet Socket" }
-					location={[ "Scholars", "Immunity", "Wallet Socket" ]}
-					is_open_location={[ "Scholars", "Immunity", "Wallet Socket" ]}
+					location={[ "Scholars", "Resilience", "Wallet Socket" ]}
+					is_open_location={[ "Scholars", "Resilience", "Wallet Socket" ]}
 				/>
 			</Panel>
 			
@@ -214,8 +214,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Address Qualities with Address" }
-					location={[ "Scholars", "Immunity", "Address Qualities with Address" ]}
-					is_open_location={[ "Scholars", "Immunity", "Address Qualities with Address" ]}
+					location={[ "Scholars", "Resilience", "Address Qualities with Address" ]}
+					is_open_location={[ "Scholars", "Resilience", "Address Qualities with Address" ]}
 				/>
 			</Panel>
 			
@@ -224,8 +224,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Address Qualities" }
-					location={[ "Scholars", "Immunity", "Address Qualities" ]}
-					is_open_location={[ "Scholars", "Immunity", "Address Qualities" ]}
+					location={[ "Scholars", "Resilience", "Address Qualities" ]}
+					is_open_location={[ "Scholars", "Resilience", "Address Qualities" ]}
 				/>
 			</Panel>
 			
@@ -234,8 +234,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Nets Choices" }
-					location={[ "Scholars", "Immunity", "Nets Choices" ]}
-					is_open_location={[ "Scholars", "Immunity", "Nets Choices" ]}
+					location={[ "Scholars", "Resilience", "Nets Choices" ]}
+					is_open_location={[ "Scholars", "Resilience", "Nets Choices" ]}
 				/>
 			</Panel>
 			
@@ -247,8 +247,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Consensus Transactions" }
-					location={[ "Scholars", "Immunity", "Consensus Transactions" ]}
-					is_open_location={[ "Scholars", "Immunity", "Consensus Transactions" ]}
+					location={[ "Scholars", "Resilience", "Consensus Transactions" ]}
+					is_open_location={[ "Scholars", "Resilience", "Consensus Transactions" ]}
 				/>
 			</Panel>
 			<Panel 
@@ -256,8 +256,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Polytope" }
-					location={[ "Scholars", "Immunity", "Polytope" ]}
-					is_open_location={[ "Scholars", "Immunity", "Polytope" ]}
+					location={[ "Scholars", "Resilience", "Polytope" ]}
+					is_open_location={[ "Scholars", "Resilience", "Polytope" ]}
 				/>
 			</Panel>
 			
@@ -266,8 +266,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Slang" }
-					location={[ "Scholars", "Immunity", "Slang" ]}
-					is_open_location={[ "Scholars", "Immunity", "Slang" ]}
+					location={[ "Scholars", "Resilience", "Slang" ]}
+					is_open_location={[ "Scholars", "Resilience", "Slang" ]}
 				/>
 			</Panel>
 			
@@ -276,8 +276,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Field" }
-					location={[ "Scholars", "Immunity", "Field" ]}
-					is_open_location={[ "Scholars", "Immunity", "Field" ]}
+					location={[ "Scholars", "Resilience", "Field" ]}
+					is_open_location={[ "Scholars", "Resilience", "Field" ]}
 				/>
 			</Panel>
 		</div>
