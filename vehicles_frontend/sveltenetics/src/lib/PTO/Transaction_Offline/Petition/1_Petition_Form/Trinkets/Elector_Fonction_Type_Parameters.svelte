@@ -6,7 +6,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 
 export let header_size = ""
 
-
+export let on_change = () => {}
 export let fonction_type_parameters = []
 export let fonction_type_parameters_changed = () => {
 	

@@ -166,6 +166,13 @@ let fonction_type_parameters = []
 //
 
 let build_petition = () => {
+	console.log (`
+	
+		build_petition called!
+		
+		
+	`);
+	
 	PT_Freight.petition_fields = {
 		mode: fonction_mode,
 		
@@ -224,98 +231,13 @@ let address_of_flourisher_chosen = ({
 
 let fonction_type_parameters_changed = ({ index, contents }) => {
 	fonction_type_parameters [ index ].field = contents;
-	
 	build_petition ();
 }
 
 let fonction_parameters_changed = ({ index, contents }) => {
 	fonction_parameters [ index ].field = contents;
-	
 	build_petition ();
 }
-
-const enhance = () => {
-
-	if (PT_Freight && PT_Freight.petition_fields) {}
-	else {
-		return;
-	}
-	
-	fonction_selected = exposed_fonctions [ fonction_name_index ]
-	if (fonction_selected === undefined) {
-		fonction_found = "no"
-		return;
-	}
-	else {
-		fonction_found = "yes"
-	}
-	
-	/*
-		{
-			"name": "exists_at",
-			"visibility": "public",
-			"is_entry": false,
-			"is_view": true,
-			"generic_type_params": [],
-			"params": [
-				"address"
-			],
-			"return": [
-				"bool"
-			]
-		}
-	*/
-	// console.log ({ fonction_selected });
-	
-	
-	let mode_explorer = ""
-	if (fonction_selected.is_entry) {
-		fonction_mode = "entry"
-		mode_explorer = "run"
-	}
-	else if (fonction_selected.is_view) {
-		fonction_mode = "view"
-		mode_explorer = "view"
-	}
-	
-	//
-	//	This is the link to aptoslabs explorer.
-	//
-	if (fonction_selected) {
-		le_move.explorer_address = [
-			"https://explorer.aptoslabs.com/account",
-			fonction_spot,
-			"modules",
-			mode_explorer,
-			fonction_module_name,
-			fonction_selected.name
-		].join ("/");	
-	}
-	
-	
-	
-	console.log ("building petition fields");
-	
-	fonction_parameters = retrieve_fonction_parameters ({ fonction_selected })
-	fonction_type_parameters = retrieve_fonction_type_parameters ({ fonction_selected })
-	
-	PT_Freight.petition_fields = {
-		mode: fonction_mode,
-		
-		signer_hexadecimal_address: fonction_signer_hexadecimal_address,
-				
-		address: fonction_spot,
-		module_name: fonction_module_name,
-		fonction_name: fonction_selected.name,
-		
-		type_parameters: fonction_type_parameters,
-		parameters: fonction_parameters
-	}
-}
-
-
-
-
 
 
 
@@ -394,7 +316,11 @@ const enhance = () => {
 			</div>
 			
 			<Elector_Address 
-				address_chosen={ address_chosen } 
+				address_chosen={ async ({ address }) => {
+					fonction_spot = address;
+					fonction_module_name = ""
+					fonction_found = "no"
+				}} 
 			/>
 			
 			<div style="height: 0.1cm" ></div>
@@ -403,7 +329,6 @@ const enhance = () => {
 				net_path={ Versies_Freight.net_path }
 			
 				address={ fonction_spot }
-				
 				module_name_choosen={ module_name_choosen }
 			/>
 			
@@ -433,10 +358,16 @@ const enhance = () => {
 	<Elector_Fonction_Parameters 
 		header_size={ header_size }
 		bind:fonction_parameters={ fonction_parameters }
+		on_change={() => {
+			
+		}}
 	/>
 	<Elector_Fonction_Type_Parameters 
 		header_size={ header_size }
 		bind:fonction_type_parameters={ fonction_type_parameters }
+		on_change={() => {
+			
+		}}
 	/>
 	<!-- <Options /> -->
 	{/if}

@@ -114,21 +114,9 @@ export const refresh_truck = () => {
 			petition_AO_hexadecimal_string: "",
 			petition_AO_fiberized: "",
 		}
-	})
-}
-
-export const destroy_truck = () => {
-	delete trucks [1];
-}
-
-export const retrieve_truck = () => {
-	return trucks [1];
-}
-
-
-
-export const monitor_truck = (action) => {	
-	return trucks [1].monitor (async ({ 
+	});
+	
+	let monitor = trucks [1].monitor (async ({
 		pro_freight, 
 		original_freight,
 		//
@@ -138,7 +126,7 @@ export const monitor_truck = (action) => {
 		value
 	}) => {
 		console.info ("petition freight changed:", { property, value });
-		
+		return;
 		/*
 			target = bracket_of_freight
 		*/
@@ -150,12 +138,7 @@ export const monitor_truck = (action) => {
 				property === "petition_fields"
 			) {
 				if (original_freight.petition_fields.mode === "entry") {
-					const { 
-						barrier,
-
-						TP2_fiberized
-						
-					} = await build_entry_petition_AO ({
+					const { barrier, TP2_fiberized } = await build_entry_petition_AO ({
 						net_path: original_freight.net_path,
 						petition_fields: original_freight.petition_fields
 					});
@@ -187,7 +170,6 @@ export const monitor_truck = (action) => {
 				});
 			}
 			*/
-
 		}
 		catch (exception) {
 			console.error ("exception", exception);
@@ -201,8 +183,42 @@ export const monitor_truck = (action) => {
 			//
 			// verify_land ()
 		}
-		
-		action (pro_freight);
+	})	
+}
+
+export const destroy_truck = () => {
+	delete trucks [1];
+}
+
+export const retrieve_truck = () => {
+	return trucks [1];
+}
+
+
+
+export const monitor_truck = (action) => {	
+	
+	/*
+		This
+	*/
+	return trucks [1].monitor (async ({ 
+		pro_freight, 
+		original_freight,
+		//
+		target,
+		//
+		property, 
+		value
+	}) => {
+		action ({
+			pro_freight, 
+			original_freight,
+			//
+			target,
+			//
+			property, 
+			value
+		});
 	})
 }
 

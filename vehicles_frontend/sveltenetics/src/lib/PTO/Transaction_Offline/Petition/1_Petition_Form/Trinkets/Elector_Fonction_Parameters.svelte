@@ -7,9 +7,12 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 export let header_size = ""
 
 export let fonction_parameters = []
+export let on_change = () => {}
 
 const fonction_parameters_changed = ({ index, contents }) => {
 	console.log ({ index, contents });
+	
+	on_change ();
 }
 
 </script>

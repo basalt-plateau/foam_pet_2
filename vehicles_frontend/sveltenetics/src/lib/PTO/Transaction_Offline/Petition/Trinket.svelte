@@ -83,8 +83,8 @@ onMount (async () => {
 	Petition_Truck.refresh_truck ()
 	//
 	freight = Petition_Truck.retrieve_truck ().freight;
-	Petition_Truck.monitor_truck ((_freight) => {
-		freight = _freight;
+	Petition_Truck.monitor_truck (({ pro_freight }) => {
+		freight = pro_freight;
 	})
 	
 	freight.net_path = Seeds_Trucks_Freight.net_path;

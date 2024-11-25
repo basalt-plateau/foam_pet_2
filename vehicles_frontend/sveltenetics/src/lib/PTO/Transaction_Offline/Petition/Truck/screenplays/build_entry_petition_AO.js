@@ -35,7 +35,7 @@ export const build_entry_petition_AO = async ({
 	petition_fields
 }) => {
 	try {
-		console.info ("build_entry_petition_AO", { petition_fields });
+		// console.info ("build_entry_petition_AO", { petition_fields });
 
 		const sender = Aptos_SDK.AccountAddress.from (
 			Uint8Array_from_string (
@@ -62,8 +62,8 @@ export const build_entry_petition_AO = async ({
 					"::" +
 					petition_fields.fonction_name
 				),
-				typeArguments: [],
-				functionArguments: []
+				typeArguments: petition_fields.type_parameters,
+				functionArguments: petition_fields.parameters
 			},
 			options: {
 				expireTimestamp: pick_expiration ({ 
@@ -74,10 +74,12 @@ export const build_entry_petition_AO = async ({
 			}
 		}
 		
+		/*
 		console.log ({
 			"net_path": net_path,
 			"transaction_petition_bracket": transaction_petition_bracket
 		})
+		*/
 
 
 		
@@ -103,8 +105,8 @@ export const build_entry_petition_AO = async ({
 		const TP1_AO_hexadecimal_string = string_from_Uint8Array (TP1_AO_Uint8Array)
 		const TP1_AO_fiberized = fiberize_TP_AO ({ TP_AO: TP1_AO })
 
-		console.log ({ TP1_AO_hexadecimal_string });
-		console.log ({ TP1_AO_Uint8Array });
+		// console.log ({ TP1_AO_hexadecimal_string });
+		// console.log ({ TP1_AO_Uint8Array });
 
 		////
 		//
@@ -137,7 +139,7 @@ export const build_entry_petition_AO = async ({
 		}
 	}
 	catch (anomaly) {
-		console.error (anomaly);
+		console.info (anomaly);
 		
 		return {
 			barrier: anomaly.message

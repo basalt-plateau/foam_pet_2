@@ -135,7 +135,9 @@ onMount (async () => {
 });
 
 onDestroy (() => {
-	Seeds_Trucks_Monitor.stop ()
+	if (Seeds_Trucks_Monitor) {
+		Seeds_Trucks_Monitor.stop ()
+	}
 }); 
 
 
