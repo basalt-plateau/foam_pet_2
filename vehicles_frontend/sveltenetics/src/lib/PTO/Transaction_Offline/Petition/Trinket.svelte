@@ -3,11 +3,6 @@
 <script>
 
 /*
-	import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
-	<Offline_Petition />
-*/
-
-/*
 	TODO:
 	
 		import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
@@ -19,6 +14,10 @@
 		OP.use_fields ({
 			
 		})
+*/
+
+/*
+	lib/Milieus/Venues/Scholars/Resilience/Adaptation Prebuilt
 */
 
 /*
@@ -48,58 +47,75 @@ import Flourish_Receive from './4_Flourish_Receive/Trinket.svelte'
 import Flourish_Verification from './5_Flourish_Verification/Trinket.svelte'
 import Adaptation_Suggestion from './6_Adaptation_Suggestion/Trinket.svelte'
 //
-import * as Petition_Truck from './Truck/index.js'
 //
 ////
 
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
+import Petition_Truck from '$lib/PTO/Transaction_Offline/Petition/Truck/Ride.svelte'
+import * as PT from '$lib/PTO/Transaction_Offline/Petition/Truck/index.js'
 
-import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
+
+
+export let use_fully_elected_petition_fields = "no"
+export let fully_elected_petition_fields = {}
 
 
 
+let PT_Freight = false;
+$: {
+	let _PT_Freight = PT_Freight;
+	build_petition ();
+}
+
+let Versies_Freight = false;
+$: {
+	let _Versies_Freight = Versies_Freight;
+	build_petition ();
+}
+	
+let build_petition = () => {	
+	
+	console.log ({ PT_prepared, PT_Freight, Versies_Freight });
+	
+	if (
+		PT_prepared === "yes" &&
+		typeof PT_Freight === "object" &&
+		typeof Versies_Freight === "object"
+	) {
+		console.log (`
+			PT_Freight: ${ PT_Freight }
+		
+			build_petition called!
+			
+				petition fields: ${ JSON.stringify (fully_elected_petition_fields, null, 4) }
+		`);
+
+		PT_Freight.net_path = Versies_Freight.net_path;
+		PT_Freight.petition_fields = fully_elected_petition_fields;
+	}
+	
+	
+}
 
 let le_buttons = [ 1,2,3,4,5,6 ]
 
-let prepared = "no"
-let freight = {}
-
-
-let Seeds_Trucks_Prepared = "no"
-let Seeds_Trucks_Monitor;
-let Seeds_Trucks_Freight;
-onMount (async () => {
-	Seeds_Trucks_Freight = check_roomies_truck ().freight; 
-	Seeds_Trucks_Monitor = monitor_roomies_truck ((_freight) => {
-		Seeds_Trucks_Freight = _freight;
-		freight.net_path = Seeds_Trucks_Freight.net_path;		
-	})
-	Seeds_Trucks_Prepared = "yes"
+let PT_prepared = "no"
+onMount (async () => {	
+	PT.make_truck ()
 	
+	if (use_fully_elected_petition_fields === "yes") {
+		build_petition ();
+	}	
 	
-	
-	
-	
-	
-	Petition_Truck.refresh_truck ()
-	//
-	freight = Petition_Truck.retrieve_truck ().freight;
-	Petition_Truck.monitor_truck (({ pro_freight }) => {
-		freight = pro_freight;
-	})
-	
-	freight.net_path = Seeds_Trucks_Freight.net_path;
-	
-	prepared = "yes"
+	PT_prepared = "yes"
 });
 onDestroy (() => {
-	Petition_Truck.destroy_truck ()
-	Seeds_Trucks_Monitor.stop ()
+	PT.destroy_truck ()
 });
 
 </script>
 
-
-{#if prepared === "yes" }
+{#if PT_prepared === "yes" }
 <div 
 	style="
 		position: relative;
@@ -108,6 +124,10 @@ onDestroy (() => {
 	"
 	class="card"
 >
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
+
+	{#if typeof PT_Freight === "object" && typeof Versies_Freight === "object"}
 	<div
 		style="
 			position: absolute;
@@ -136,7 +156,7 @@ onDestroy (() => {
 				width: 100%;
 			"
 		>
-			{ freight.leaf_name }
+			{ PT_Freight.leaf_name }
 		</header>
 	</div>
 	
@@ -164,23 +184,23 @@ onDestroy (() => {
 				<AccordionItem>
 					<svelte:fragment slot="summary">petition freight</svelte:fragment>
 					<svelte:fragment slot="content">
-						<pre>{ freight.petition_field_barrier }</pre>
-						<pre>{ JSON.stringify (freight, null, 2) }</pre>
+						<pre>{ PT_Freight.petition_field_barrier }</pre>
+						<pre>{ JSON.stringify (PT_Freight, null, 2) }</pre>
 					</svelte:fragment>
 				</AccordionItem>
 			</Accordion>
 		</div>
 
 	
-		{#if freight.leaf_name === "Petition Form" }
+		{#if PT_Freight.leaf_name === "Petition Form" }
 		<Petition_Form />
-		{:else if freight.leaf_name === "Petition Verification" }
+		{:else if PT_Freight.leaf_name === "Petition Verification" }
 		<Petition_Verification />
-		{:else if freight.leaf_name === "Petition Send" }
+		{:else if PT_Freight.leaf_name === "Petition Send" }
 		<Petition_Send />
-		{:else if freight.leaf_name === "Flourish Receive" }
-		{:else if freight.leaf_name === "Flourish Verification" }
-		{:else if freight.leaf_name === "Adaptation Suggestion" }
+		{:else if PT_Freight.leaf_name === "Flourish Receive" }
+		{:else if PT_Freight.leaf_name === "Flourish Verification" }
+		{:else if PT_Freight.leaf_name === "Adaptation Suggestion" }
 		{/if}
 	</div>
 	
@@ -211,26 +231,26 @@ onDestroy (() => {
 	>
 		<button
 			type="button" class="btn variant-filled"
-			disabled={ freight.back !== "yes" }
+			disabled={ PT_Freight.back !== "yes" }
 			
-			on:click={ Petition_Truck.back }
+			on:click={ PT.back }
 		>back</button>
 		
 		<div class="btn-group variant-filled">
 			{#each le_buttons as le_button }
 			<button
-				on:click={ Petition_Truck.go_to ({ leaf_page: le_button }) }
+				on:click={ PT.go_to ({ leaf_page: le_button }) }
 			>{ le_button }</button>
 			{/each}
 		</div>
 		
 		<button
 			type="button" class="btn variant-filled"
-			disabled={ freight.next !== "yes" }
+			disabled={ PT_Freight.next !== "yes" }
 			
-			on:click={ Petition_Truck.next }
+			on:click={ PT.next }
 		>next</button>			
 	</div>
-	
+	{/if}
 </div>
 {/if}

@@ -10,13 +10,15 @@
 <script>
 
 /*
+	// Create
+	
+*/
+
+/*
 	import Petition_Truck from '$lib/PTO/Transaction_Offline/Petition/Truck/Ride.svelte'
 	let PT_Freight = false
 
 
-
-
-	
 	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
 	{#if typeof PT_Freight === "object"}
 	

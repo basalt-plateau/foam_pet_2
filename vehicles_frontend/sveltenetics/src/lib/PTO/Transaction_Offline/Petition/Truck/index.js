@@ -53,7 +53,7 @@ export const go_to = ({ leaf_page }) => {
 	}
 }
 
-export const refresh_truck = () => {
+export const make_truck = () => {
 	const Versies_freight = ask_for_Versies_freight ().net_path;
 	const net_path = Versies_freight.net_path;
 	console.log ({ net_path });
@@ -103,6 +103,8 @@ export const refresh_truck = () => {
 				module_name: "",
 				fonction_name: "",
 				
+				signer_hexadecimal_address: "",
+				
 				type_parameters: [],
 				parameters: []
 			},
@@ -112,6 +114,7 @@ export const refresh_truck = () => {
 			
 			petition_AO_bracket: {},
 			petition_AO_hexadecimal_string: "",
+			petition_AO_Uint8Array: "",
 			petition_AO_fiberized: "",
 		}
 	});
@@ -125,7 +128,7 @@ export const refresh_truck = () => {
 		property, 
 		value
 	}) => {
-		console.info ("petition freight changed:", { property, value });
+		// console.info ("petition freight changed:", { property });
 
 
 		/*
@@ -147,7 +150,11 @@ export const refresh_truck = () => {
 				
 				*/
 				if (original_freight.petition_fields.mode === "entry") {
-					const { barrier, TP2_fiberized } = await build_entry_petition_AO ({
+					const { 
+						barrier, 
+						TP2_fiberized,
+						TP2_AO_Uint8Array
+					} = await build_entry_petition_AO ({
 						net_path: original_freight.net_path,
 						petition_fields: original_freight.petition_fields
 					});
@@ -158,6 +165,7 @@ export const refresh_truck = () => {
 					}
 					else {
 						pro_freight.petition_AO_fiberized = TP2_fiberized;
+						pro_freight.petition_AO_Uint8Array = TP2_AO_Uint8Array;
 					}
 				}
 				
@@ -224,7 +232,7 @@ export const monitor_truck = (action) => {
 		property, 
 		value
 	}) => {
-		console.log ("petition truck monitor");
+		// console.log ("petition truck monitor");
 		
 		action ({
 			pro_freight, 

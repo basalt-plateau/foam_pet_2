@@ -11,6 +11,7 @@ export const technicians_leaves = {
 	//
 
 	"Adaptation": async () => { return await import ('./Adaptation/Trinket.svelte') },
+	"Adaptation Prebuilt": async () => { return await import ('./Adaptation Prebuilt/Trinket.svelte') },
 
 	"Address Qualities": async () => { return await import ('./Address_Qualities/Trinket.svelte') },
 	"Address Qualities with Address": async () => { return await import ('./Address_Qualities_with_Address/Trinket.svelte') },

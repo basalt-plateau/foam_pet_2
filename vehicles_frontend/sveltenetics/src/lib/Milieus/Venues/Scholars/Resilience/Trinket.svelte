@@ -189,6 +189,14 @@ a {
 				gap: 0.25cm;
 			"
 		>
+			<Panel styles={ trends.panel }>
+				<Milieus_Button
+					name={ "Adaptation Prebuilt" }
+					location={[ "Scholars", "Resilience", "Adaptation Prebuilt" ]}
+					is_open_location={[ "Scholars", "Resilience", "Adaptation Prebuilt" ]}
+				/>
+			</Panel>
+		
 			<Panel 
 				styles={ trends.panel }
 			>

@@ -3,6 +3,36 @@
 <script>
 
 
+/*
+	const petition_fields = {
+		mode: "entry",
+								
+		address: "0x1",
+		module_name: "aptos_account",
+		fonction_name: "transfer",
+
+		flourisher_address_hexadecimal: "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5",
+
+		type_parameters: [],
+		parameters: [
+			{
+				"name": "address",
+				"field": "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE6"
+			},
+			{
+				"name": "u64",
+				"field": "1234"
+			}
+		]
+	}
+
+	<Petition_Form 
+		use_fully_elected_petition_fields="yes"
+		fully_elected_petition_fields={ petition_fields }
+	/>
+*/
+
+
 ////
 //
 //
@@ -31,7 +61,6 @@ import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uin
 
 /*
 	Cards, Rolls, Roller
-	
 	Electors
 */
 import Elector_Address from "./Trinkets/Elector_Address.svelte"
@@ -70,7 +99,6 @@ let Versies_Freight = false
 /*
 	Example:
 		0x1::aptos_account::transfer
-
 */
 
 
@@ -87,9 +115,7 @@ let Versies_Freight = false
 
 				flourisher_address_hexadecimal: "",
 
-				type_parameters: [{
-					
-				}],
+				type_parameters: [],
 				parameters: [
 					{
 						"name": "address",
@@ -232,15 +258,17 @@ let address_of_flourisher_chosen = ({
 	build_petition ();
 }
 
+let fonction_parameters_changed = ({ index, contents }) => {
+	fonction_parameters [ index ].field = contents;
+	build_petition ();
+}
+
 let fonction_type_parameters_changed = ({ index, contents }) => {
 	fonction_type_parameters [ index ].field = contents;
 	build_petition ();
 }
 
-let fonction_parameters_changed = ({ index, contents }) => {
-	fonction_parameters [ index ].field = contents;
-	build_petition ();
-}
+
 
 
 
@@ -261,12 +289,15 @@ let fonction_parameters_changed = ({ index, contents }) => {
 	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 	
-	{ PT_Freight }
-	
 	{#if (
 		typeof Versies_Freight === "object" && 
 		typeof PT_Freight === "object" 
-	)}		
+	)}
+	{#if use_fully_elected_petition_fields === "yes" }
+	<div>
+		The petition has already been built.
+	</div>	
+	{:else}
 	<div 
 		style="
 			display: flex;
@@ -359,9 +390,7 @@ let fonction_parameters_changed = ({ index, contents }) => {
 	<Elector_Fonction_Parameters 
 		header_size={ header_size }
 		bind:fonction_parameters={ fonction_parameters }
-		on_change={() => {
-			
-		}}
+		on_change={ fonction_parameters_changed }
 	/>
 	<Elector_Fonction_Type_Parameters 
 		header_size={ header_size }
@@ -375,6 +404,7 @@ let fonction_parameters_changed = ({ index, contents }) => {
 	
 	<div style="height: 2.5cm" />
 	
+	{/if}
 	{/if}
 
 </div>

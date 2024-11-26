@@ -10,9 +10,9 @@ export let fonction_parameters = []
 export let on_change = () => {}
 
 const fonction_parameters_changed = ({ index, contents }) => {
-	console.log ({ index, contents });
+	//console.log ({ index, contents });
 	
-	on_change ();
+	on_change ({ index, contents });
 }
 
 </script>

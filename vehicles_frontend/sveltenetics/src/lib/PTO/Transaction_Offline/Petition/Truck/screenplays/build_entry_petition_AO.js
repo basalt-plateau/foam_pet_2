@@ -37,11 +37,7 @@ export const build_entry_petition_AO = async ({
 	try {
 		console.info ("build_entry_petition_AO");
 
-		const sender = Aptos_SDK.AccountAddress.from (
-			Uint8Array_from_string (
-				petition_fields.signer_hexadecimal_address
-			)
-		);
+
 
 
 		/*
@@ -49,11 +45,23 @@ export const build_entry_petition_AO = async ({
 					Uint8Array_from_string (to_address_hexadecimal_string)
 				)
 		*/
-
-		
+		const { parameters } = petition_fields;
+		const functionArguments = parameters.map (parameter => {
+			if (parameter.name === "address") {
+				return Aptos_SDK.AccountAddress.from (
+					Uint8Array_from_string (parameter.field)
+				)
+			}
+			
+			return parameter.field
+		})
 		
 		const transaction_petition_bracket = {
-			sender,
+			sender: Aptos_SDK.AccountAddress.from (
+				Uint8Array_from_string (
+					petition_fields.signer_hexadecimal_address
+				)
+			),
 			data: {
 				function: (
 					petition_fields.address + 
@@ -63,7 +71,7 @@ export const build_entry_petition_AO = async ({
 					petition_fields.fonction_name
 				),
 				typeArguments: petition_fields.type_parameters,
-				functionArguments: petition_fields.parameters
+				functionArguments
 			},
 			options: {
 				expireTimestamp: pick_expiration ({ 
@@ -75,8 +83,8 @@ export const build_entry_petition_AO = async ({
 		}
 		
 		console.log ("build_entry_petition_AO::", {
-			"net_path": net_path,
-			"transaction_petition_bracket": transaction_petition_bracket
+			net_path,
+			transaction_petition_bracket
 		})
 
 
@@ -134,6 +142,7 @@ export const build_entry_petition_AO = async ({
 		return {
 			TP2_AO,
 			TP2_fiberized,
+			TP2_AO_Uint8Array,
 			
 			barrier: false
 		}
