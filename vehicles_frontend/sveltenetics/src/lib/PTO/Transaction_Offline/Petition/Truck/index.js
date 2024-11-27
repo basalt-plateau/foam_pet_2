@@ -93,6 +93,18 @@ export const make_truck = () => {
 				"Petition Form": {
 					"next": "no",
 					"back": "no"
+				},
+				"Petition Verification": {
+					"next": "no",
+					"back": "no"
+				},
+				"Petition Send": {
+					"next": "no",
+					"back": "no"
+				},
+				"Flourish Receive": {
+					"next": "no",
+					"back": "no"
 				}
 			},
 			

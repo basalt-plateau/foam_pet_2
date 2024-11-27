@@ -6,7 +6,8 @@
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 
 import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
-	
+import Offline_Signatory from '$lib/PTO/Transaction_Offline/Signatory/Trinket.svelte'
+
 const petition_fields = {
 	mode: "entry",
 								
@@ -48,5 +49,23 @@ const petition_fields = {
 			use_fully_elected_petition_fields="yes"
 			fully_elected_petition_fields={ petition_fields }
 		/>
+		
+		
+	</div>
+	
+	<div 
+		style="
+			height: 1cm;
+		" 
+	/>
+	
+	<div
+		style="
+			height: 70vh;
+			overflow: scroll;
+		"
+		
+	>
+		<Offline_Signatory />
 	</div>
 </Leaf>

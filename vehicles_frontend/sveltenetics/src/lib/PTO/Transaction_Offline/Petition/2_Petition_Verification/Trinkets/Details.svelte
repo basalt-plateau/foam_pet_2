@@ -7,7 +7,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 </script>
 
 
-<div class="card p-1">
+<div class="card p-1 variant-filled-primary">
 	<Accordion>
 		<AccordionItem>
 			<svelte:fragment slot="summary">
@@ -20,7 +20,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 				>Details</header>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
-				<div>
+				<div class="card p-4">
 					<p
 						style="
 							text-align: center;
@@ -47,7 +47,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 						"
 					>
 						<span>After making sure the <Slang text="transaction_petition" /> is good,<br/></span>
-						<span>the <Slang text="transaction_petition" /> as a <b>Barcode</b> can be scanned from the next panel.</span>
+						<span>the <Slang text="transaction_petition" /> as a <b>barcode</b> can be scanned from the next panel.</span>
 					</p>
 				</div>
 			</svelte:fragment>

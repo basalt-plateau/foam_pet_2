@@ -39,7 +39,7 @@ onDestroy (() => {
 		
 		flex-direction: column;
 		
-		padding: 0.25cm;
+		padding: 0.25cm 0.25cm 5cm; 
 	"
 >
 	<Details />

@@ -192,17 +192,23 @@ onDestroy (() => {
 			</Accordion>
 		</div>
 
-	
-		{#if PT_Freight.leaf_name === "Petition Form" }
-		<Petition_Form />
-		{:else if PT_Freight.leaf_name === "Petition Verification" }
-		<Petition_Verification />
-		{:else if PT_Freight.leaf_name === "Petition Send" }
-		<Petition_Send />
-		{:else if PT_Freight.leaf_name === "Flourish Receive" }
-		{:else if PT_Freight.leaf_name === "Flourish Verification" }
-		{:else if PT_Freight.leaf_name === "Adaptation Suggestion" }
-		{/if}
+		<div
+			style=""
+		>
+			{#if PT_Freight.leaf_name === "Petition Form" }
+			<Petition_Form />
+			{:else if PT_Freight.leaf_name === "Petition Verification" }
+			<Petition_Verification />
+			{:else if PT_Freight.leaf_name === "Petition Send" }
+			<Petition_Send />
+			{:else if PT_Freight.leaf_name === "Flourish Receive" }
+			<Flourish_Receive />
+			{:else if PT_Freight.leaf_name === "Flourish Verification" }
+			<Flourish_Verification />
+			{:else if PT_Freight.leaf_name === "Adaptation Suggestion" }
+			<Adaptation_Suggestion />
+			{/if}
+		</div>
 	</div>
 	
 
