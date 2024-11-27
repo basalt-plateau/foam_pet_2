@@ -67,6 +67,13 @@ export const make_truck = () => {
 				4: "Flourish Verification",
 				5: "Flourish Send"			
 			},
+			
+			leaves: {
+				Petition_Field: {
+					button_text: "add",
+					problem: ""
+				}
+			},
 
 			signature_field_barrier: ""
 		}

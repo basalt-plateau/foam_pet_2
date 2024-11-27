@@ -136,7 +136,7 @@ onDestroy (() => {
 		>
 			<Accordion>
 				<AccordionItem>
-					<svelte:fragment slot="summary">petition freight</svelte:fragment>
+					<svelte:fragment slot="summary">signatory freight</svelte:fragment>
 					<svelte:fragment slot="content">
 						<pre>{ ST_Freight.signature_field_barrier }</pre>
 						<pre>{ JSON.stringify (ST_Freight, null, 2) }</pre>

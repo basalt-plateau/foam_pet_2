@@ -3,6 +3,9 @@
 
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
+import Barcode_Eye from './Trinkets/Barcode_Eye.svelte'
+import Hexadecimal_String_Field from './Trinkets/Hexadecimal_String_Field.svelte'
+
 let leaf_elected = "Barcode"
 
 </script>
@@ -40,9 +43,13 @@ let leaf_elected = "Barcode"
 		</RadioGroup>
 	</div>
 
-
-
-
+	<div>
+		{#if leaf_elected === "Barcode" }
+		<Barcode_Eye />
+		{:else}
+		<Hexadecimal_String_Field />
+		{/if}
+	</div>
 </div>
 
 
