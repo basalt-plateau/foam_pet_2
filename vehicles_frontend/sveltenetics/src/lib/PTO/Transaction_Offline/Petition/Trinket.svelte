@@ -20,15 +20,6 @@
 	lib/Milieus/Venues/Scholars/Resilience/Adaptation Prebuilt
 */
 
-/*
-	Panels:
-		Petition Form
-		Petition Verification
-		Petition Send
-		Signature Reader
-		Signature Verification
-		Adaptation Suggestion
-*/
 
 ////
 //

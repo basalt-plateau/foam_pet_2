@@ -57,8 +57,18 @@ export const make_truck = () => {
 	trucks [1] = build_truck ({
 		freight: {
 			net_path,
-			
+			leaf_name: "Petition Field",
 
+			leaf_numeral: 1,
+			legend: {
+				1: "Petition Field",
+				2: "Petition Verification",
+				3: "Flourish Field",
+				4: "Flourish Verification",
+				5: "Flourish Send"			
+			},
+
+			signature_field_barrier: ""
 		}
 	});
 	
