@@ -196,7 +196,7 @@ const show_rules = () => {
 			<p
 				
 			>
-				<span><Slang text="Pets" /> are event horizon wallet guardians for <Slang text="Aptos" />.</span>
+				<span><Slang text="Pets" /> are cloudwalled wallet couriers for <Slang text="Aptos" />.</span>
 			</p> 
 			<p>
 				<a class="anchor" href="https://Aptos.dev">https://Aptos.dev</a>

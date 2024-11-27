@@ -35,6 +35,7 @@
 import { onMount, onDestroy } from 'svelte';
 import { Paginator } from '@skeletonlabs/skeleton';
 import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';	
 //
 //
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
@@ -236,16 +237,34 @@ onDestroy (() => {
 			on:click={ PT.back }
 		>back</button>
 		
-		<div class="btn-group variant-filled">
+		<!-- class="btn-group variant-filled" -->
+		<div
+			style="
+				display: flex;
+			"
+		>
 			{#each le_buttons as le_button }
 			<button
-				on:click={ PT.go_to ({ leaf_page: le_button }) }
+				style="
+					margin: 0 2px;
+					padding: 0.25cm 0.5cm;
+				"
+				class={(
+					[ 
+						"chip",
+						PT_Freight.leaf_numeral === le_button ? "variant-filled" : "variant-soft"	
+					].join (" ")
+				)}
+				on:click={ 
+					PT.go_to ({ leaf_page: le_button }) 
+				}
 			>{ le_button }</button>
 			{/each}
 		</div>
-		
+				
 		<button
-			type="button" class="btn variant-filled"
+			type="button" 
+			class="btn variant-filled"
 			disabled={ PT_Freight.next !== "yes" }
 			
 			on:click={ PT.next }

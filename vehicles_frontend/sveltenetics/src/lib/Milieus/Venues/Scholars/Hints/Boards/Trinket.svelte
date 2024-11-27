@@ -42,7 +42,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 				text-align: center;
 			"
 		>	
-			Event Horizon Wallet Logistics Duo for <Slang text="Aptos" />
+			Cloudwalled Wallet Logistics Duo for <Slang text="Aptos" />
 		</p>
 	</div>
 

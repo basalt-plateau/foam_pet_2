@@ -142,7 +142,9 @@ export const build_entry_petition_AO = async ({
 		return {
 			TP2_AO,
 			TP2_fiberized,
+			
 			TP2_AO_Uint8Array,
+			TP2_hexadecimal_string,
 			
 			barrier: false
 		}

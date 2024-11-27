@@ -49,6 +49,7 @@ export const go_to = ({ leaf_page }) => {
 		const freight = trucks [1].freight;
 		const leaf_name = freight.leaf_name;
 		
+		freight.leaf_numeral = leaf_page;
 		freight.leaf_name = freight.legend [ leaf_page ]	
 	}
 }
@@ -56,8 +57,6 @@ export const go_to = ({ leaf_page }) => {
 export const make_truck = () => {
 	const Versies_freight = ask_for_Versies_freight ().net_path;
 	const net_path = Versies_freight.net_path;
-	console.log ({ net_path });
-	
 	
 	trucks [1] = build_truck ({
 		freight: {
@@ -80,6 +79,7 @@ export const make_truck = () => {
 				
 				}
 			*/
+			leaf_numeral: 1,
 			legend: {
 				1: "Petition Form",
 				2: "Petition Verification",
@@ -153,7 +153,11 @@ export const make_truck = () => {
 					const { 
 						barrier, 
 						TP2_fiberized,
-						TP2_AO_Uint8Array
+						
+						TP2_AO_Uint8Array,
+						TP2_hexadecimal_string
+						
+						
 					} = await build_entry_petition_AO ({
 						net_path: original_freight.net_path,
 						petition_fields: original_freight.petition_fields
@@ -166,6 +170,7 @@ export const make_truck = () => {
 					else {
 						pro_freight.petition_AO_fiberized = TP2_fiberized;
 						pro_freight.petition_AO_Uint8Array = TP2_AO_Uint8Array;
+						pro_freight.petition_AO_hexadecimal_string = TP2_hexadecimal_string;
 					}
 				}
 				
