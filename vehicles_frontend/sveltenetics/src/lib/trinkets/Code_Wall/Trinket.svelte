@@ -122,6 +122,8 @@ const on_clone = async () => {
 			on:click={ on_clone }
 			disabled={ clone_text === "Cloned" }
 			use:clipboard={ text }
+			
+			
 			class="btn variant-filled"
 			type="button" 
 		>{ clone_text }</button>

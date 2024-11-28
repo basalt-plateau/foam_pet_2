@@ -5,8 +5,8 @@
 
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 
-import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
-import Offline_Signatory from '$lib/PTO/Transaction_Offline/Signatory/Trinket.svelte'
+import Offline_Petition from '$lib/PTO/Offline/Petition_Form/Trinket.svelte'
+import Offline_Signatory from '$lib/PTO/Offline/Signatory_Form/Trinket.svelte'
 
 const petition_fields = {
 	mode: "entry",

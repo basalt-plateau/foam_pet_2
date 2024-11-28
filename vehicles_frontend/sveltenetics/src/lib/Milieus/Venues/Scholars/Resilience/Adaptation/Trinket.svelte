@@ -5,8 +5,7 @@
 
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 
-import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
-	
+import Offline_Petition from '$lib/PTO/Offline/Petition_Form/Trinket.svelte'
 
 </script>
 

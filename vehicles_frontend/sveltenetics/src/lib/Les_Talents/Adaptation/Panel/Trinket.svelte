@@ -12,7 +12,7 @@ import _merge from 'lodash/merge'
 import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 
 import Online_Petition from './Online_Petition/Trinket.svelte'
-import Offline_Petition from '$lib/PTO/Transaction_Offline/Petition/Trinket.svelte'
+import Offline_Petition from '$lib/PTO/Offline/Petition/Trinket.svelte'
 	
 const prepare = () => {
 	return {
