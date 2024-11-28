@@ -148,7 +148,6 @@ export const make_truck = () => {
 						
 						TPK_fiberized,
 						TPK
-						
 					} = await build_entry_petition_AO ({
 						net_path: original_freight.net_path,
 						petition_fields: original_freight.petition_fields

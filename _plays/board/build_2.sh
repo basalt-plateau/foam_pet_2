@@ -27,4 +27,6 @@ export PATH=$PATH:/Metro/vehicles/foam_pet/__glossary
 #
 #
 
+. /root/.bashrc
+
 cd /Metro/estate

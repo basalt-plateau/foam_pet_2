@@ -47,7 +47,7 @@ export const make_truck = () => {
 				}
 			},
 
-			petition_hexadecimal_string: "",
+			petition_kit_hexadecimal_string: "",
 			petition_fiberized: "",
 
 			signature_field_barrier: ""

@@ -31,7 +31,7 @@ let ST_Freight = false
 
 import { fiberize_TP_AO } from '$lib/PTO/Offline/Petition/Fiberize'
 	
-
+import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
 
 
 const add_petition_hexadecimal_string = async () => {
@@ -41,10 +41,27 @@ const add_petition_hexadecimal_string = async () => {
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem = ""
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem_verbose = ""
 		
+		//
+		//	Parse the petition_kit_hexadecimal_string
+		//
+		//
+		const UTF8_string = JSON.parse (
+			UTF8_from_hexadecimal_string (ST_Freight.petition_kit_hexadecimal_string)
+		);
+		console.info ({ UTF8_string })
+		
+		
+		const { notes, petition: _petition_hexadecimal_string } = UTF8_string;
+		console.info ({ _petition_hexadecimal_string })
+		
+		//
+		//
+		//
+		//
 		const TP_AO = AptosSDK.SimpleTransaction.deserialize (
 			new AptosSDK.Deserializer (
 				Uint8Array_from_string (
-					ST_Freight.petition_hexadecimal_string
+					_petition_hexadecimal_string
 				)
 			)
 		);
@@ -96,7 +113,7 @@ const add_petition_hexadecimal_string = async () => {
 			<textarea 
 				monitor="hexadecimal string field"
 			
-				bind:value={ ST_Freight.petition_hexadecimal_string }
+				bind:value={ ST_Freight.petition_kit_hexadecimal_string }
 				
 				rows="4" 
 				placeholder="" 

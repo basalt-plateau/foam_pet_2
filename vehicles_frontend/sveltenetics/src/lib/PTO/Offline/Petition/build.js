@@ -19,7 +19,8 @@ import { build_entry_petition_AO as build_entry_petition_AO_ } from '$lib/PTO/Pe
 ////
 
 import { fiberize_TP_AO, fiberize_TP_bytes } from '$lib/PTO/Offline/Petition/Fiberize'
-
+import { hexadecimal_string_from_UTF8 } from '$lib/taverns/hexadecimal/UTF8'
+import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
 
 
 export const build_entry_petition_AO = async ({
@@ -129,6 +130,11 @@ export const build_entry_petition_AO = async ({
 		const TP2_fiberized = fiberize_TP_AO ({ TP_AO: TP2_AO })
 		const TP2_hexadecimal_string = string_from_Uint8Array (TP2_AO_Uint8Array)
 		//
+		//
+		//
+		//	TPK_fiberized isn't condensed
+		//	TPK is condensed
+		//
 		const notes = {
 			
 		}
@@ -136,10 +142,10 @@ export const build_entry_petition_AO = async ({
 			petition: TP2_AO,
 			notes
 		});
-		const TPK = JSON.stringify ({
-			petition_hexadecimal_string: TP2_hexadecimal_string,
+		const TPK = hexadecimal_string_from_UTF8 (JSON.stringify ({
+			petition: TP2_hexadecimal_string,
 			notes
-		});
+		}));
 		//
 		////
 		
@@ -148,6 +154,9 @@ export const build_entry_petition_AO = async ({
 			TP2_fiberized,
 			
 			TP2_AO_Uint8Array,
+			
+			//
+			// Perhaps this is what is sent to the "APT Entrust"
 			TP2_hexadecimal_string,
 			
 			TPK_fiberized,
