@@ -151,6 +151,8 @@ onDestroy (() => {
 		<div
 			style=""
 		>
+			{ ST_Freight.leaf_name }
+		
 			{#if ST_Freight.leaf_name === "Petition Field" }
 			<Petition_Field />
 			{:else if ST_Freight.leaf_name === "Petition Verification" }
@@ -159,7 +161,7 @@ onDestroy (() => {
 			<Flourish_Field />
 			{:else if ST_Freight.leaf_name === "Flourish Verification" }
 			<Flourish_Verification />
-			{:else if ST_Freight.leaf_name === "Flourish Code" }
+			{:else if ST_Freight.leaf_name === "Flourish Send" }
 			<Flourish_Code />
 			{/if}
 		</div>

@@ -100,7 +100,6 @@ const ask = () => {
 		><Slang text="Transaction" /> Suggestion</header>
 		
 		<div style="height: 0.5cm"></div>
-		
 	</div>
 
 	<div

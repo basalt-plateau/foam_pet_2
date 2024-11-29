@@ -47,7 +47,19 @@ export const make_truck = () => {
 				}
 			},
 
-			petition_kit_hexadecimal_string: "",
+
+			petition_envelope: "",
+			petition_envelope_bracket_show: "",
+			petition_envelope_hexadecimal_string: "",
+			//
+			//			
+			petition_aptos_object: "",
+			//
+			//
+			// this is the { petition, notes }
+			envelope_show: "",
+			//
+			
 			petition_fiberized: "",
 
 			signature_field_barrier: ""

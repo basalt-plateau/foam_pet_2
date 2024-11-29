@@ -85,7 +85,7 @@ let selected_option = "barcode"
 		</p>
 	
 		<Barcode_Visual_2
-			hexadecimal_string={ PT_Freight.petition_kit }
+			hexadecimal_string={ PT_Freight.petition_envelope }
 		/>
 	</div>
 	{:else}
@@ -93,7 +93,7 @@ let selected_option = "barcode"
 		<div monitor="hexadecimal">
 			<Code_Wall 
 				can_clone={ "yes" }
-				text={ PT_Freight.petition_kit } 
+				text={ PT_Freight.petition_envelope } 
 			/>
 		</div>
 	</div>

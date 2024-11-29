@@ -23,6 +23,9 @@ import { hexadecimal_string_from_UTF8 } from '$lib/taverns/hexadecimal/UTF8'
 import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
 
 
+import { pack_petition_envelope } from "$lib/PTO/Offline/Petition/Envelope"
+	
+
 export const build_entry_petition_AO = async ({
 	net_path,
 	petition_fields
@@ -130,22 +133,12 @@ export const build_entry_petition_AO = async ({
 		const TP2_fiberized = fiberize_TP_AO ({ TP_AO: TP2_AO })
 		const TP2_hexadecimal_string = string_from_Uint8Array (TP2_AO_Uint8Array)
 		//
-		//
-		//
-		//	TPK_fiberized isn't condensed
-		//	TPK is condensed
-		//
-		const notes = {
-			
-		}
-		const TPK_fiberized = fiberize_TP_AO ({
-			petition: TP2_AO,
-			notes
+		//	
+		const { TPE, TPE_fiberized } = pack_petition_envelope ({
+			petition_AO: TP2_AO,
+			petition_hexadecimal_string: TP2_hexadecimal_string
 		});
-		const TPK = hexadecimal_string_from_UTF8 (JSON.stringify ({
-			petition: TP2_hexadecimal_string,
-			notes
-		}));
+		
 		//
 		////
 		
@@ -159,11 +152,11 @@ export const build_entry_petition_AO = async ({
 			// Perhaps this is what is sent to the "APT Entrust"
 			TP2_hexadecimal_string,
 			
-			TPK_fiberized,
+			TPE_fiberized,
 			
 			//
 			// This is what is sent
-			TPK,
+			TPE,
 			
 			barrier: false
 		}
@@ -171,6 +164,7 @@ export const build_entry_petition_AO = async ({
 	catch (anomaly) {
 		try {
 			console.info ("anomaly:", anomaly.message);
+			console.error (anomaly);
 		}
 		catch (exception) {
 			console.error (exception);

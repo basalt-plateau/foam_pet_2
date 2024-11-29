@@ -32,7 +32,7 @@ let ST_Freight = false
 import { fiberize_TP_AO } from '$lib/PTO/Offline/Petition/Fiberize'
 	
 import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
-
+import { unpack_petition_envelope } from "$lib/PTO/Offline/Petition/Envelope"
 
 const add_petition_hexadecimal_string = async () => {
 	console.log ("add_petition_hexadecimal_string");
@@ -42,33 +42,32 @@ const add_petition_hexadecimal_string = async () => {
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem_verbose = ""
 		
 		//
-		//	Parse the petition_kit_hexadecimal_string
+		//	Parse the petition_envelope_hexadecimal_string
 		//
 		//
-		const UTF8_string = JSON.parse (
-			UTF8_from_hexadecimal_string (ST_Freight.petition_kit_hexadecimal_string)
+		
+		/*
+		const TPE = JSON.parse (
+			UTF8_from_hexadecimal_string (ST_Freight.petition_envelope_hexadecimal_string)
 		);
-		console.info ({ UTF8_string })
+		console.info ({ envelope_object })
+		*/
 		
 		
-		const { notes, petition: _petition_hexadecimal_string } = UTF8_string;
-		console.info ({ _petition_hexadecimal_string })
+		const { petition_aptos_object, envelope_show } = unpack_petition_envelope ({
+			TPE: ST_Freight.petition_envelope_hexadecimal_string
+		});
 		
-		//
-		//
-		//
-		//
-		const TP_AO = AptosSDK.SimpleTransaction.deserialize (
-			new AptosSDK.Deserializer (
-				Uint8Array_from_string (
-					_petition_hexadecimal_string
-				)
-			)
-		);
+		ST_Freight.envelope_show = envelope_show;
+		ST_Freight.petition_aptos_object = petition_aptos_object;
 		
-		console.log ({ TP_AO });
 		
-		ST_Freight.petition_fiberized = fiberize_TP_AO ({ TP_AO })
+		/*
+		ST_Freight.petition_envelope_bracket_show = JSON.stringify ({}, null, 2);		
+		
+		ST_Freight.petition_fiberized = fiberize_TP_AO (TP_AO)
+		ST_Freight.petition_notes = notes
+		*/
 		
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_button_text = "Added"
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_can_add = "no"		
@@ -113,7 +112,7 @@ const add_petition_hexadecimal_string = async () => {
 			<textarea 
 				monitor="hexadecimal string field"
 			
-				bind:value={ ST_Freight.petition_kit_hexadecimal_string }
+				bind:value={ ST_Freight.petition_envelope_hexadecimal_string }
 				
 				rows="4" 
 				placeholder="" 

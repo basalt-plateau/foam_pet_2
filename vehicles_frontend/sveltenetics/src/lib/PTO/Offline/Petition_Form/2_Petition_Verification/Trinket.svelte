@@ -42,7 +42,7 @@ import Petition2_Bracket_Details from '$lib/PTO/Offline/Petition/Bracket/Details
 	{#if typeof PT_Freight === "object"}
 	<Petition2_Bracket_Details />
 	<Petition2_Bracket 
-		petition_AO_fiberized={ PT_Freight.petition_kit_fiberized }
+		petition_AO_fiberized={ PT_Freight.petition_envelope_fiberized }
 	/>
 	{/if}
 </div>

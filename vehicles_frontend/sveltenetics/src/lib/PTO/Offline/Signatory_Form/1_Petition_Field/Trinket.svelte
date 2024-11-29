@@ -3,6 +3,9 @@
 
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+
+
 import Barcode_Eye from './Trinkets/Barcode_Eye.svelte'
 import Hexadecimal_String_Field from './Trinkets/Hexadecimal_String_Field.svelte'
 

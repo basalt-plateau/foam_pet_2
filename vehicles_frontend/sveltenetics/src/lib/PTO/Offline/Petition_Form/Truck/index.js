@@ -97,7 +97,7 @@ export const make_truck = () => {
 			
 			//
 			//
-			//	Kit: This is the petition with details
+			//	envelope: This is the petition with details
 			//
 			//		Fiberized: 
 			//			The AO bracket with parsing so as to render.
@@ -105,8 +105,8 @@ export const make_truck = () => {
 			//		Hexadecimal String: 
 			//			
 			//
-			petition_kit_fiberized: "",
-			petition_kit_hexadecimal_string: "",			
+			petition_envelope_fiberized: "",
+			petition_envelope_hexadecimal_string: "",			
 		}
 	});
 	
@@ -146,8 +146,8 @@ export const make_truck = () => {
 						TP2_AO_Uint8Array,
 						TP2_hexadecimal_string,
 						
-						TPK_fiberized,
-						TPK
+						TPE_fiberized,
+						TPE
 					} = await build_entry_petition_AO ({
 						net_path: original_freight.net_path,
 						petition_fields: original_freight.petition_fields
@@ -162,8 +162,8 @@ export const make_truck = () => {
 						pro_freight.petition_AO_Uint8Array = TP2_AO_Uint8Array;
 						pro_freight.petition_AO_hexadecimal_string = TP2_hexadecimal_string;
 						
-						pro_freight.petition_kit_fiberized = TPK_fiberized;
-						pro_freight.petition_kit = TPK;
+						pro_freight.petition_envelope_fiberized = TPE_fiberized;
+						pro_freight.petition_envelope = TPE;
 					}
 				}
 				
