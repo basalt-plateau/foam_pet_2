@@ -44,6 +44,10 @@ export const make_truck = () => {
 					hexadecimal_string_button_text: "add",
 					
 					hexadecimal_string_problem: ""
+				},
+				Flourish_Field: {
+					sign_button_text: "Sign",
+					sign_button_can_sign: "yes"
 				}
 			},
 

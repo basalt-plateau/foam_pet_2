@@ -41,33 +41,14 @@ const add_petition_hexadecimal_string = async () => {
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem = ""
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem_verbose = ""
 		
-		//
-		//	Parse the petition_envelope_hexadecimal_string
-		//
-		//
-		
-		/*
-		const TPE = JSON.parse (
-			UTF8_from_hexadecimal_string (ST_Freight.petition_envelope_hexadecimal_string)
-		);
-		console.info ({ envelope_object })
-		*/
-		
-		
-		const { petition_aptos_object, envelope_show } = unpack_petition_envelope ({
+
+		const { petition_aptos_object, envelope_show, petition_hexadecimal_string } = unpack_petition_envelope ({
 			TPE: ST_Freight.petition_envelope_hexadecimal_string
 		});
-		
 		ST_Freight.envelope_show = envelope_show;
 		ST_Freight.petition_aptos_object = petition_aptos_object;
+		ST_Freight.petition_hexadecimal_string = petition_hexadecimal_string;
 		
-		
-		/*
-		ST_Freight.petition_envelope_bracket_show = JSON.stringify ({}, null, 2);		
-		
-		ST_Freight.petition_fiberized = fiberize_TP_AO (TP_AO)
-		ST_Freight.petition_notes = notes
-		*/
 		
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_button_text = "Added"
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_can_add = "no"		

@@ -2,6 +2,7 @@
 <script>
 
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 
 import Signatory_Truck from '$lib/PTO/Offline/Signatory_Form/Truck/Ride.svelte'
 let ST_Freight = false
@@ -26,7 +27,15 @@ let ST_Freight = false
 				padding: .2cm 0;
 			"
 		><Slang text="Signature" /> Verfication</header>
-		<p>This <Slang text="signature" /> should be the same as the one that was created on the other trinket.</p>
+		<p>This is the <Slang text="signature" /> as a bracket.</p>
 	</div>
+	
+	<div monitor="signature bracket panel">
+		<Code_Wall
+			text={ ST_Freight.petition_signature_fiberized }
+			can_clone={ "no" }
+		/>
+	</div>
+		
 	{/if}
 </div>

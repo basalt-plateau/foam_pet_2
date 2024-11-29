@@ -70,13 +70,13 @@ export const pack_petition_envelope = ({
 export const unpack_petition_envelope = ({
 	TPE
 }) => {
-	console.log ({ TPE });
+	// console.log ({ TPE });
 
 	const UTF8_String = UTF8_from_hexadecimal_string (TPE);
-	console.log ({ UTF8_String });
+	// console.log ({ UTF8_String });
 	
 	const parsed = JSON.parse (UTF8_String);
-	console.log ({ parsed });	
+	// console.log ({ parsed });	
 	
 	const { petition, notes } = parsed;
 	
@@ -91,9 +91,10 @@ export const unpack_petition_envelope = ({
 		notes
 	});
 	
-	console.log ({ petition_aptos_object, envelope_show });
+	// console.log ({ petition_aptos_object, envelope_show });
 	
 	return {
+		petition_hexadecimal_string: petition,
 		petition_aptos_object,
 		envelope_show
 	}
