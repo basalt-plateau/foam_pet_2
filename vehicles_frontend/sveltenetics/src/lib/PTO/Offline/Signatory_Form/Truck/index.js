@@ -17,16 +17,18 @@
 import { build_truck } from '$lib/trucks'
 import { build_entry_petition_AO } from './screenplays/build_entry_petition_AO'
 import { ask_for_freight as ask_for_Versies_freight } from '$lib/Versies/Trucks'
-		
+
 
 const trucks = {}
 export const make_truck = () => {
 	const Versies_freight = ask_for_Versies_freight ().net_path;
 	const net_path = Versies_freight.net_path;
+
 	
 	trucks [1] = build_truck ({
 		freight: {
 			net_path,
+			
 			leaf_name: "Petition Field",
 
 			leaf_numeral: 1,
@@ -40,14 +42,29 @@ export const make_truck = () => {
 			
 			leaves: {
 				Petition_Field: {
+					
+					//
+					// if empty string, then don't alert
+					alert_note: "waiting for petition",
+					alert_problem_1: "",
+					alert_problem_2: "",					
+					alert_success: "",
+					
 					hexadecimal_string_can_add: "yes",
 					hexadecimal_string_button_text: "add",
-					
 					hexadecimal_string_problem: ""
 				},
 				Flourish_Field: {
+					alert_note: "waiting for signature",
+					alert_problem_1: "",
+					alert_problem_2: "",
+					alert_success: "",
+					
 					sign_button_text: "Sign",
-					sign_button_can_sign: "yes"
+					sign_button_can_sign: "yes",
+					
+					private_key_hexadecimal_string: "",
+					address_is_legacy: false
 				}
 			},
 
@@ -55,6 +72,7 @@ export const make_truck = () => {
 			petition_envelope: "",
 			petition_envelope_bracket_show: "",
 			petition_envelope_hexadecimal_string: "",
+			petition_fiberized: "",
 			//
 			//			
 			petition_aptos_object: "",
@@ -64,8 +82,9 @@ export const make_truck = () => {
 			envelope_show: "",
 			//
 			
-			petition_fiberized: "",
 
+			petition_signature_fiberized: "",
+			petition_signature_hexadecimal_string: "",
 			signature_field_barrier: ""
 		}
 	});

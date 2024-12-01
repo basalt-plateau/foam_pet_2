@@ -5,6 +5,40 @@
 
 	<header>Maybe</header>
 	
+		* CheckMK + Ansible
+			* CheckMK
+				
+				
+				
+				*] apt install -y wget apache2 libapache2-mod-php php libssl-dev build-essential
+				
+				Debian 12:
+					*] https://checkmk.com/download?method=cmk&edition=cre&version=2.3.0p21&platform=debian&os=bookworm&type=cmk&google_analytics_user_id=
+				
+					*] wget https://download.checkmk.com/checkmk/2.3.0p21/check-mk-raw-2.3.0p21_0.bookworm_amd64.deb
+					*] apt install ./check-mk-raw-2.3.0p21_0.bookworm_amd64.deb -y
+				
+					*] omd version
+					*] omd create monitoring
+
+				
+				22:
+					*] wget https://download.checkmk.com/checkmk/2.3.0p21/check-mk-raw-2.3.0p21_0.jammy_amd64.deb
+					
+					*]  apt install software-properties-common
+					*]
+					
+					*] apt install ./check-mk-raw-2.3.0p21_0.jammy_amd64.deb
+					
+					
+				24:
+					*] wget https://download.checkmk.com/checkmk/2.3.0p21/check-mk-raw-2.3.0p21_0.noble_amd64.deb				
+					*] apt install ./check-mk-raw-2.3.0p21_0.noble_amd64.deb
+
+
+			
+			* Ansible
+	
 		[ ] Could have the "sign" button below the 
 			talent.
 		

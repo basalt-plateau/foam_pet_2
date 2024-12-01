@@ -17,6 +17,10 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
+//
+import { fiberize_TP_AO } from '$lib/PTO/Offline/Petition/Fiberize'
+import { unpack_petition_envelope } from "$lib/PTO/Offline/Petition/Envelope"
 //
 //
 //
@@ -29,10 +33,24 @@ import Signatory_Truck from '../../Truck/Ride.svelte'
 let ST_Freight = false
 
 
-import { fiberize_TP_AO } from '$lib/PTO/Offline/Petition/Fiberize'
+const refresh = async () => {		
+	const production_freight = {
+		alert_note: "waiting for petition",
+		alert_problem_1: "",
+		alert_problem_2: "",
+		alert_success: "",
+		
+		hexadecimal_string_can_add: "yes",
+		hexadecimal_string_button_text: "add",
+		hexadecimal_string_problem: ""
+	}
 	
-import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
-import { unpack_petition_envelope } from "$lib/PTO/Offline/Petition/Envelope"
+	for (let key in production_freight) {		
+		ST_Freight.leaves.Petition_Field [ key ] = production_freight [ key ];
+	}
+	
+	add_petition_hexadecimal_string ();
+}
 
 const add_petition_hexadecimal_string = async () => {
 	console.log ("add_petition_hexadecimal_string");
@@ -49,16 +67,29 @@ const add_petition_hexadecimal_string = async () => {
 		ST_Freight.petition_aptos_object = petition_aptos_object;
 		ST_Freight.petition_hexadecimal_string = petition_hexadecimal_string;
 		
-		
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_button_text = "Added"
-		ST_Freight.leaves.Petition_Field.hexadecimal_string_can_add = "no"		
+		ST_Freight.leaves.Petition_Field.hexadecimal_string_can_add = "no"
+		
+		ST_Freight.leaves.Petition_Field.alert_success = "The petition was added."		
+		ST_Freight.leaves.Petition_Field.alert_note = ""	
+		ST_Freight.leaves.Petition_Field.alert_problem_1 = ""	
+		ST_Freight.leaves.Petition_Field.alert_problem_2 = ""	
+		
 	}
 	catch (anomaly) {
 		console.error (anomaly);
+		
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem = "That hexadecimal string could not be converted into an transaction petition bracket.";	
-		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem_verbose = anomaly.message		
+		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem_verbose = anomaly.message	
+		
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_button_text = "Add"
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_can_add = "yes"	
+		
+		ST_Freight.leaves.Petition_Field.alert_success = ""		
+		ST_Freight.leaves.Petition_Field.alert_note = ""	
+		ST_Freight.leaves.Petition_Field.alert_problem_1 = "That hexadecimal string could not be converted into an transaction petition bracket.";	
+		ST_Freight.leaves.Petition_Field.alert_problem_2 = anomaly.message
+		
 	}
 }
 
@@ -94,8 +125,9 @@ const add_petition_hexadecimal_string = async () => {
 				monitor="hexadecimal string field"
 			
 				bind:value={ ST_Freight.petition_envelope_hexadecimal_string }
+				on:keyup={ refresh }
 				
-				rows="4" 
+				rows="8" 
 				placeholder="" 
 				
 				style="padding: 10px"
@@ -103,8 +135,9 @@ const add_petition_hexadecimal_string = async () => {
 			/>
 		</label>
 		
+		<div style="height: 5cm" />
 		
-		<div style="text-align: right; margin-top: 10px;">
+		<!-- <div style="text-align: right; margin-top: 10px;">
 			<button 
 				monitor="add hexadecimal string"
 
@@ -116,33 +149,7 @@ const add_petition_hexadecimal_string = async () => {
 				style="padding: 10px 60px"
 				class="btn variant-filled"
 			>{ ST_Freight.leaves.Petition_Field.hexadecimal_string_button_text }</button>
-		</div>
-		
-		<!--
-		{#if freight.Unsigned_Transaction_Fields.hexadecimal.textarea_exception.length >= 1 }
-			<aside class="alert variant-filled-error">
-				<div class="alert-message">
-					<p>{ freight.Unsigned_Transaction_Fields.hexadecimal.textarea_exception_summary }</p>
-					<p>{ freight.Unsigned_Transaction_Fields.hexadecimal.textarea_exception }</p>
-				</div>
-			</aside>
-		{/if}
-		
-		
-		<div style="text-align: right; margin-top: 10px;">
-			<button 
-				monitor="add hexadecimal string"
-
-				type="button" 
-
-				disabled={ freight.Unsigned_Transaction_Fields.hexadecimal.hexadecimal_string_can_add != "Add" }
-				on:click={ add_UT_hexadecimal_string }
-				
-				style="padding: 10px 60px"
-				class="btn variant-filled"
-			>{ freight.Unsigned_Transaction_Fields.hexadecimal.hexadecimal_string_button_text }</button>
-		</div>
-		-->
+		</div> -->
 	</div>
 	{/if}
 </Leaf>

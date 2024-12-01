@@ -1,0 +1,27 @@
+{
+	"manifest_version": 3,
+	"name": "Foam Pet Chrome",
+	"description": "Foam Pet Chrome",
+	"version": "1.0",
+	"action": {
+		"default_popup": "popup.html",
+		"default_icon": {
+			"16": "icons/foam_pet.png",
+			"48": "icons/foam_pet.png",
+			"128": "icons/foam_pet.png"
+		}
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"permissions": [
+		"activeTab",
+		"cookies",
+		"storage",
+		"tabs"
+	],
+	
+	"host_permissions": [
+		"https://*/*"
+	]
+}

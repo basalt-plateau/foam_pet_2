@@ -105,6 +105,7 @@ if (size === "small") {
 		<p
 			style="
 				font-weight: bold;
+				word-wrap: anywhere;
 			"
 		>{ text }</p>
 		{/if}

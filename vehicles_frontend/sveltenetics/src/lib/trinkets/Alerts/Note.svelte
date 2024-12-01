@@ -6,11 +6,8 @@
 
 
 /*
-
-	use: Alert Note instead
-
-import Alert_Info from '$lib/trinkets/Alerts/Info.svelte'
-<Alert_Info 
+import Alert_Note from '$lib/trinkets/Alerts/Note.svelte'
+<Alert_Note
 	text={}
 	text_2={}
 	progress={{

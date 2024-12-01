@@ -149,10 +149,8 @@ onDestroy (() => {
 		</div>
 
 		<div
-			style=""
+			style="padding: 1cm"
 		>
-			{ ST_Freight.leaf_name }
-		
 			{#if ST_Freight.leaf_name === "Petition Field" }
 			<Petition_Field />
 			{:else if ST_Freight.leaf_name === "Petition Verification" }
