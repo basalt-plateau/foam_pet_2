@@ -206,6 +206,7 @@ let build_petition = () => {
 			fonction_signer_hexadecimal_address: ${ fonction_signer_hexadecimal_address }
 		
 			petition fields: ${ JSON.stringify (petition_fields, null, 4) }
+			
 	`);
 	
 	PT_Freight.petition_fields = petition_fields;
@@ -352,12 +353,15 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 			</div>
 			
 			<Elector_Address 
+				allow={ PT_Freight.allow }
 				address_chosen={ address_chosen } 
 			/>
 			
 			<div style="height: 0.1cm" ></div>
 			
 			<Elector_Module_Name 
+				allow={ PT_Freight.allow }
+			
 				net_path={ Versies_Freight.net_path }
 			
 				address={ fonction_spot }

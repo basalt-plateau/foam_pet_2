@@ -54,6 +54,8 @@ const add_Signature_hexadecimal_string = async () => {
 		PT_Freight.leaves.Flourish_Receive.alert_problem_1 = ""
 		PT_Freight.leaves.Flourish_Receive.alert_problem_2 = ""
 		
+		PT_Freight.sound_gem.playa ();
+		
 		button_text = "Added"
 	}
 	catch (anomaly) {

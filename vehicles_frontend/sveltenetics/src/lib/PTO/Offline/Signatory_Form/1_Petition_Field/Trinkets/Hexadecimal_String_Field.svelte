@@ -49,7 +49,7 @@ const refresh = async () => {
 		ST_Freight.leaves.Petition_Field [ key ] = production_freight [ key ];
 	}
 	
-	add_petition_hexadecimal_string ();
+	// add_petition_hexadecimal_string ();
 }
 
 const add_petition_hexadecimal_string = async () => {
@@ -141,9 +141,8 @@ const add_petition_hexadecimal_string = async () => {
 			/>
 		</label>
 		
-		<div style="height: 5cm" />
 		
-		<!-- <div style="text-align: right; margin-top: 10px;">
+		<div style="text-align: right; margin-top: 10px;">
 			<button 
 				monitor="add hexadecimal string"
 
@@ -155,7 +154,9 @@ const add_petition_hexadecimal_string = async () => {
 				style="padding: 10px 60px"
 				class="btn variant-filled"
 			>{ ST_Freight.leaves.Petition_Field.hexadecimal_string_button_text }</button>
-		</div> -->
+		</div>
+		
+		<div style="height: 5cm" />		
 	</div>
 	{/if}
 </Leaf>

@@ -24,10 +24,22 @@
 			}
 		]
 	}	
+	
+	const allow = "every"
+	const allow = "zero"
+	
+	const allow = {
+		"0x1": "every",
+		"0x4939": {
+			"module_1": "every",
+			"module_2": [ "fonction_1" ]				
+		}
+	}
 		
 	<Offline_Petition 
 		use_fully_elected_petition_fields="yes"
 		fully_elected_petition_fields={ petition_fields }
+		allow={ allow }
 	/>
 */
 
@@ -45,6 +57,10 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
 //
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
+import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
+import Petition_Truck from '$lib/PTO/Offline/Petition_Form/Truck/Ride.svelte'
+import * as PT from '$lib/PTO/Offline/Petition_Form/Truck/index.js'
 //
 //
 import Petition_Form from './1_Petition_Form/Trinket.svelte'
@@ -57,16 +73,11 @@ import Adaptation_Suggestion from './6_Adaptation_Suggestion/Trinket.svelte'
 //
 ////
 
-import Versies_Truck from '$lib/Versies/Trucks.svelte'
-import Petition_Truck from '$lib/PTO/Offline/Petition_Form/Truck/Ride.svelte'
-import * as PT from '$lib/PTO/Offline/Petition_Form/Truck/index.js'
-
 
 
 export let use_fully_elected_petition_fields = "no"
 export let fully_elected_petition_fields = {}
-
-
+export let allow = ""
 
 let PT_Freight = false;
 $: {
@@ -98,17 +109,20 @@ let build_petition = () => {
 		`);
 
 		PT_Freight.net_path = Versies_Freight.net_path;
-		PT_Freight.petition_fields = fully_elected_petition_fields;
+		PT_Freight.allow = allow;
 		
 		if (use_fully_elected_petition_fields === "yes") {
 			PT_Freight.use_fully_elected_petition_fields = "yes"	
+			PT_Freight.petition_fields = fully_elected_petition_fields;
+		}
+		else {
+			PT_Freight.use_fully_elected_petition_fields = "no"	
+			PT_Freight.petition_fields = {};
 		}
 	}
-	
-	
 }
 
-let le_buttons = [ 1,2,3,4,5,6 ]
+let le_buttons = [ 1, 2, 3, 4, 5, 6 ]
 
 let PT_prepared = "no"
 onMount (async () => {	
@@ -139,6 +153,11 @@ onDestroy (() => {
 	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
 
 	{#if typeof PT_Freight === "object" && typeof Versies_Freight === "object"}
+	<Sound_Gem 
+		bind:this={ PT_Freight.sound_gem }
+		source="/sonors/Beep/Beep.ogg"
+	/>
+	
 	<div
 		style="
 			position: absolute;

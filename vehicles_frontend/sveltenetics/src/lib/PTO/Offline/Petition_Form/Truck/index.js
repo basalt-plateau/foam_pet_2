@@ -28,6 +28,8 @@ export const make_truck = () => {
 		freight: {
 			net_path,
 			
+			sound_gem: "",
+			
 			leaf_name: "Petition Form",
 			
 			next: "no",

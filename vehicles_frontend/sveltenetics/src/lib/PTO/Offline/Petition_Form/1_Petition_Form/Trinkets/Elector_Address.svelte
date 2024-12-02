@@ -23,12 +23,12 @@ import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 */
 
 export let address_chosen = () => {}
+export let allow = ""
+console.log ({ allow });
 
-const allowed_addresses = [
-	"0x1",
-	"0x3",
-	"0x4"
-];
+const allowed_addresses = Object.keys (allow) 
+console.log ({ allowed_addresses });
+
 
 let address = ""
 $: {

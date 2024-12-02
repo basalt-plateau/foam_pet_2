@@ -31,17 +31,6 @@ import Hexadecimal_String_Field from './Trinkets/Hexadecimal.svelte'
 
 
 
-const play = () => {
-	console.log ("play:", typeof sound_gem, sound_gem);
-	
-	if (typeof sound_gem === "object") {
-		// sound_gem.pause ();
-		setTimeout (() => {
-			sound_gem.currentTime = 0;
-			sound_gem.play ()
-		}, 0);
-	}
-}
 
 let PT_Freight = false;
 $:{
@@ -50,11 +39,7 @@ $:{
 	
 let elected_leaf = "Barcode";
 
-let sound_gem = ""
-$:{
-	console.log ("sound gem changed");
-	let _sound_gem = sound_gem;
-}
+
 
 
 </script>
@@ -71,11 +56,6 @@ $:{
 >
 	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
 	{#if typeof PT_Freight === "object"}
-	<Sound_Gem 
-		bind:sound_gem={ sound_gem }
-		source="/sonors/Beep/Beep.ogg"
-	/>
-	
 	<div
 		style="
 			max-width: 90%;
@@ -110,11 +90,7 @@ $:{
 		/>
 		{/if}
 	</div>
-	
-	<button 
-		on:click={ play }
-	>button</button>
-	
+
 	<div
 		style="
 			text-align: center;
