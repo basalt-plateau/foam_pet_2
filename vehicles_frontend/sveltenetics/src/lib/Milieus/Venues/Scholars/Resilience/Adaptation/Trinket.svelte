@@ -20,7 +20,8 @@ const allow = {
 
 const allow = {
 	"0x1": {
-		"aptos_account": "every"
+		"account": "every",
+		"aptos_account": [ "transfer" ]
 	},
 	"0x2": "every",
 	"0x3": "every",

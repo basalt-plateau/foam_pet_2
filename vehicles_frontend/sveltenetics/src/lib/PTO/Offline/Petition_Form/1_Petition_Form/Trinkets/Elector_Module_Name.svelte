@@ -32,17 +32,10 @@ let allowed_modules = [];
 const parse_allowed_modules = () => {
 	console.log ({ address, allow });
 	
-	/*
-	if (typeof allow === "object" && allow !== null && Object.keys (allow) >= 1) {
-		if (typeof allow [ address ]) {
-			
-		}
-	}
-	*/
+	allowed_modules = "zero"
 	
 	try {
 		const modules_of_address = allow [ address ];
-		
 		console.log ({ modules_of_address }, modules_of_address === "every");
 		
 		if (modules_of_address === "every") {
@@ -61,8 +54,6 @@ const parse_allowed_modules = () => {
 	catch (anomaly) {
 		console.error (anomaly);
 	}
-	
-	
 }
 
 
@@ -168,7 +159,6 @@ $: {
 			width: 5px;
 		"
 	/>
-	
 	
 	<div
 		style="

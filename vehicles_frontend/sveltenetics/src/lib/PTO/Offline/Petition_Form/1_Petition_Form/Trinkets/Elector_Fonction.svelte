@@ -21,6 +21,10 @@ let le_fonction_chosen = ""
 
 let fonction_mode = ""
 
+export let allow = "";
+
+
+
 export let fonction_choosen = () => {}
 export let net_path = ""
 export let address = ""
@@ -28,9 +32,40 @@ export let module_name = ""
 $: {
 	let _module_name = module_name;
 	if (typeof module_name === "string" && module_name.length >= 1) {
+		parse_allowed_fonctions ();
 		show_fonctions ();
 	}
 }
+
+
+
+let allowed_fonctions = [];
+const parse_allowed_fonctions = () => {
+	console.log ("parse_allowed_fonctions:", { address, allow });
+	
+	allowed_fonctions = "zero"
+	
+	try {
+		const modules_of_address = allow [ address ];
+		const fonctions_of_module = modules_of_address [ module_name ];
+		
+		console.info ({ fonctions_of_module });
+		
+		if (fonctions_of_module === "every") {
+			allowed_fonctions = "every"
+			return;
+		}
+		if (Array.isArray (fonctions_of_module)) {
+			allowed_fonctions = fonctions_of_module
+			return;
+		}
+	}
+	catch (anomaly) {
+		console.error (anomaly);
+	}
+}
+
+
 
 const show_fonctions = async () => {
 	console.log ("module_name:", { module_name, address });
@@ -42,9 +77,20 @@ const show_fonctions = async () => {
 		module_name
 	});
 	
-	les_fonctions = _les_fonctions;
+	console.info ({ _les_fonctions, allowed_fonctions });
 	
-	console.log ({ les_fonctions });
+	if (allowed_fonctions === "every") {
+		les_fonctions = _les_fonctions;
+		return;
+	}
+	
+	les_fonctions = _les_fonctions.filter (le_fonction => {
+		if (allowed_fonctions.includes (le_fonction.name)) {
+			return true;
+		} 
+		
+		return false;
+	});
 }
 
 
@@ -141,7 +187,7 @@ function fonction_modes_shown_toggle (flavor) {
 								gap: 8px;
 							"
 						>
-							{#each Object.keys(fonction_modes_shown) as f}
+							{#each Object.keys (fonction_modes_shown) as f}
 							<button
 								class="chip {fonction_modes_shown[f] ? 'variant-filled' : 'variant-soft'}"
 								on:click={(event) => { 

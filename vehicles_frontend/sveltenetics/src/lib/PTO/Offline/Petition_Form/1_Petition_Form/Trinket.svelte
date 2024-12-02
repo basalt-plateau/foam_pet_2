@@ -371,6 +371,8 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 			<div style="height: 0.1cm" ></div>
 			
 			<Elector_Fonction 
+				allow={ PT_Freight.allow }
+			
 				net_path={ Versies_Freight.net_path }
 			
 				address={ fonction_spot }
