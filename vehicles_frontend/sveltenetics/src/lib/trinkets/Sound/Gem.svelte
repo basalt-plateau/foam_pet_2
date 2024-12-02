@@ -1,6 +1,5 @@
 
 <script>
-
 /*
 	import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
 	let sound_gem = ""
@@ -12,29 +11,42 @@
 		}
 	}
 	
-	
 	<Sound_Gem 
-		bind:sound_gem={ sound_gem }
+		bind:this={ sound_gem }
 		source="/sonors/Beep/Beep.ogg"
 	/>
-
+	
+	sound_gem.playa ();
 	
 */
+
+
 
 import { onMount } from 'svelte'
 
 export let source = ""
-export let sound_gem = ""
+
+let show_gem = ""
+
+export const playa = () => {
+	if (show_gem) {
+		show_gem.pause ();
+		show_gem.currentTime = 0;
+		show_gem.volume = 1;
+		show_gem.play ();
+	}
+	else {
+		console.error ("The audio show gem could not be found.");
+	}
+}
 
 onMount (() => {
-	sound_gem.play ();
+	// playa ();
 })
 
 </script>
 
-<audio 
-	bind:this={ sound_gem }
->
+<audio bind:this={ show_gem } >
 	<source src={ source } type="audio/ogg">
 	This browser does not support the audio element.
 </audio>

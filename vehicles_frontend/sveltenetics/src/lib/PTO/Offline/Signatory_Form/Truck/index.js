@@ -29,6 +29,8 @@ export const make_truck = () => {
 		freight: {
 			net_path,
 			
+			sound_gem: "",
+			
 			leaf_name: "Petition Field",
 
 			leaf_numeral: 1,
@@ -113,10 +115,20 @@ export const make_truck = () => {
 			//
 			// verify_land ()
 		}
-	})	
+	});
+	
+	/*
+		trucks [1].pro_freight
+	*/
+	return trucks [1]
 }
 
-
+export const play_sound = () => {
+	
+	
+	const original_freight = retrieve_truck ().original_freight;
+	
+}
 
 export const verify_leaf = ({ } = {}) => {
 	const freight = trucks [1].freight;

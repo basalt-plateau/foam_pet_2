@@ -112,11 +112,18 @@ export const build_truck = ({ freight }) => {
 	return {
 		monitor,
 		monitors,
+		
 		// enhance,
 		pro_freight: the_freight,
-		freight: the_freight,
+		original_freight: freight,
+		
+		
 		
 		retrieve_change_count,
-		stop
+		stop,
+		
+		//
+		// vintage
+		freight: the_freight,
 	}
 }

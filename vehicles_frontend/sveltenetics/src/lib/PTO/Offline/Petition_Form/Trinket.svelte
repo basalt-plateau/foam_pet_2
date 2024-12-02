@@ -99,6 +99,10 @@ let build_petition = () => {
 
 		PT_Freight.net_path = Versies_Freight.net_path;
 		PT_Freight.petition_fields = fully_elected_petition_fields;
+		
+		if (use_fully_elected_petition_fields === "yes") {
+			PT_Freight.use_fully_elected_petition_fields = "yes"	
+		}
 	}
 	
 	

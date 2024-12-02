@@ -75,6 +75,13 @@ const add_petition_hexadecimal_string = async () => {
 		ST_Freight.leaves.Petition_Field.alert_problem_1 = ""	
 		ST_Freight.leaves.Petition_Field.alert_problem_2 = ""	
 		
+		/*
+		console.log ("truck:", ST.retrieve_truck ())
+		const original_freight = ST.retrieve_truck ().original_freight;
+		original_freight.sound_gem.playa ();
+		*/
+		
+		ST_Freight.sound_gem.playa ();
 	}
 	catch (anomaly) {
 		console.error (anomaly);

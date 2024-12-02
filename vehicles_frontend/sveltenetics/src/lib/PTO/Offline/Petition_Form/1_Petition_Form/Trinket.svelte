@@ -149,7 +149,6 @@ let Versies_Freight = false
 			}	
 
 */
-let use_fully_elected_petition_fields = "yes"
 /**/
 
 
@@ -293,7 +292,8 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 		typeof Versies_Freight === "object" && 
 		typeof PT_Freight === "object" 
 	)}
-	{#if use_fully_elected_petition_fields === "yes" }
+	
+	{#if PT_Freight.use_fully_elected_petition_fields === "yes" }
 	<div>
 		The petition has already been built.
 	</div>	

@@ -42,28 +42,23 @@ import Flourish_Verification from './4_Flourish_Verification/Gem.svelte'
 import Flourish_Code from './5_Flourish_Code/Gem.svelte'
 
 
+import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
+
+let sound_gem = ""
+
 let ST_Freight = false;
-$: {
-	let _ST_Freight = ST_Freight;
-}
+$: { let _ST_Freight = ST_Freight; }
 
 let Versies_Freight = false;
-$: {
-	let _Versies_Freight = Versies_Freight;
-}
+$: { let _Versies_Freight = Versies_Freight; }
 	
-let build_petition = () => {	
-	
-
-	
-}
+let build_petition = () => {}
 
 let le_buttons = [ 1,2,3,4,5 ]
 
 let ST_prepared = "no"
 onMount (async () => {	
-	ST.make_truck ()
-
+	const ST_Freight = ST.make_truck ().pro_freight;	
 	ST_prepared = "yes"
 });
 onDestroy (() => {
@@ -85,6 +80,11 @@ onDestroy (() => {
 	<Signatory_Truck on_change={ ({ pro_freight }) => { ST_Freight = pro_freight; } } />
 
 	{#if typeof ST_Freight === "object" && typeof Versies_Freight === "object"}
+	<Sound_Gem 
+		bind:this={ ST_Freight.sound_gem }
+		source="/sonors/Beep/Beep.ogg"
+	/>
+
 	<div
 		style="
 			position: absolute;

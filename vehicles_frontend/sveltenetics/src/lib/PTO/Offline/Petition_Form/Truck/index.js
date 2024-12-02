@@ -113,6 +113,7 @@ export const make_truck = () => {
 				parameters: []
 			},
 			
+			use_fully_elected_petition_fields: "no",
 			
 			petition_field_barrier: "",
 			
