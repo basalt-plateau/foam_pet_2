@@ -13,6 +13,10 @@ import Barcode_Visual_2 from '$lib/trinkets/Barcode/Visual_2/Trinket.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
+import Alert_Success from '$lib/trinkets/Alerts/Success.svelte'
+import Alert_Problem from '$lib/trinkets/Alerts/Problem.svelte'
+import Alert_Note from '$lib/trinkets/Alerts/Note.svelte'
+//
 import Petition_Truck from '$lib/PTO/Offline/Petition_Form/Truck/Ride.svelte'
 //
 //
@@ -24,6 +28,7 @@ import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
 
 import Barcode_Camera from './Trinkets/Barcode_Camera.svelte'
 import Hexadecimal_String_Field from './Trinkets/Hexadecimal.svelte'
+
 
 
 const play = () => {
@@ -70,6 +75,41 @@ $:{
 		bind:sound_gem={ sound_gem }
 		source="/sonors/Beep/Beep.ogg"
 	/>
+	
+	<div
+		style="
+			max-width: 90%;
+			margin: 0 auto;
+			padding: 0.25cm 0;
+			
+			text-align: center;
+		"
+	>
+		{#if PT_Freight.leaves.Flourish_Receive.alert_note.length >= 1 }
+		<Alert_Note
+			text={ PT_Freight.leaves.Flourish_Receive.alert_note }
+			progress={{
+				show: "yes"
+			}}
+		/>
+		{/if}
+		
+		{#if PT_Freight.leaves.Flourish_Receive.alert_problem_1.length >= 1 }
+		<Alert_Problem
+			text={ PT_Freight.leaves.Flourish_Receive.alert_problem_1 }
+			text_2={ PT_Freight.leaves.Flourish_Receive.alert_problem_2 }
+			progress={{
+				show: "yes"
+			}}
+		/>
+		{/if}
+		
+		{#if PT_Freight.leaves.Flourish_Receive.alert_success.length >= 1 }
+		<Alert_Success
+			text={ PT_Freight.leaves.Flourish_Receive.alert_success }
+		/>
+		{/if}
+	</div>
 	
 	<button 
 		on:click={ play }

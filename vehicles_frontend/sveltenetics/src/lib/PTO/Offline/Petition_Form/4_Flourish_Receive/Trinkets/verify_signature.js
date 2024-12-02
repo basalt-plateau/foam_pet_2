@@ -16,13 +16,13 @@ export const verify_signature = ({ freight }) => {
 			)
 		)
 	);
-	freight.transaction_signature.Aptos_object = transaction_signature_Aptos_object
-	freight.transaction_signature.Aptos_object_fiberized = fiberize_signed_transaction ({
+	freight.leaves.Flourish_Receive.Aptos_object = transaction_signature_Aptos_object
+	freight.leaves.Flourish_Receive.Aptos_object_fiberized = fiberize_signed_transaction ({
 		signed_transaction: transaction_signature_Aptos_object
 	})
 	
-	freight.transaction_signature.verified = "yes"
-	freight.transaction_signature.info_text = "The signature was added."
+	freight.leaves.Flourish_Receive.alert_success = "The signature was added successfully."
+	freight.leaves.Flourish_Receive.alert_info = ""
 	
 	freight.lands.Transaction_Signature_Fields.next = "yes"
 	

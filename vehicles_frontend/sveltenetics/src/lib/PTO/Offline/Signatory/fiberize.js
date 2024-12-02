@@ -2,7 +2,7 @@
 
 
 /*
-	import { fiberize_signature } from '$lib/PTO/Offline/Signature/fiberize'
+	import { fiberize_signature } from '$lib/PTO/Offline/Signatory/fiberize'
 	const fiberized_signature = fiberize_signature (bracket)
 */
 

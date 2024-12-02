@@ -11,16 +11,18 @@ import * as AptosSDK from "@aptos-labs/ts-sdk";
 //
 //
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import Petition_Truck from '$lib/PTO/Offline/Petition_Form/Truck/Ride.svelte'
 //
 //
 import { verify_signature } from './verify_signature'
 //
 
+import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+import { fiberize_signature } from '$lib/PTO/Offline/Signatory/fiberize'
+
 
 import * as PT from '$lib/PTO/Offline/Petition_Form/Truck/index.js'
-import Petition_Truck from '$lib/PTO/Offline/Petition_Form/Truck/Ride.svelte'
 let PT_Freight = false
-
 
 
 
@@ -31,10 +33,37 @@ let hexadecimal_string = ""
 
 
 const add_Signature_hexadecimal_string = async () => {		
-	// verify_signature ({ freight })
+	console.log ("add_Signature_hexadecimal_string");
 	
 	// freight.transaction_signature.hexadecimal_land.added = "yes"
-	button_text = "Added"
+	
+	
+	try {
+		const signature_Aptos_object = AptosSDK.AccountAuthenticator.deserialize (
+			new AptosSDK.Deserializer (
+				Uint8Array_from_string (
+					PT_Freight.signature_hexadecimal_string
+				)
+			)
+		);
+		PT_Freight.leaves.Flourish_Receive.signature_Aptos_object = signature_Aptos_object
+		PT_Freight.leaves.Flourish_Receive.Aptos_object_fiberized = fiberize_signature (signature_Aptos_object)
+		
+		PT_Freight.leaves.Flourish_Receive.alert_success = "The signature was added successfully."
+		PT_Freight.leaves.Flourish_Receive.alert_note = ""
+		PT_Freight.leaves.Flourish_Receive.alert_problem_1 = ""
+		PT_Freight.leaves.Flourish_Receive.alert_problem_2 = ""
+		
+		button_text = "Added"
+	}
+	catch (anomaly) {
+		console.error (anomaly);
+		
+		PT_Freight.leaves.Flourish_Receive.alert_success = ""
+		PT_Freight.leaves.Flourish_Receive.alert_note = ""
+		PT_Freight.leaves.Flourish_Receive.alert_problem_1 = "The signature was not added successfully."
+		PT_Freight.leaves.Flourish_Receive.alert_problem_2 = anomaly.message;
+	}
 }
 
 
@@ -44,7 +73,7 @@ const add_Signature_hexadecimal_string = async () => {
 <div monitor="hexadecimal panel">
 	<Petition_Truck on_change={ ({ pro_freight }) => { PT_Freight = pro_freight; } } />
 	{#if typeof PT_Freight === "object"}
-
+	
 
 	<div style="padding: 5px 0 10px;">
 		<header
@@ -66,7 +95,7 @@ const add_Signature_hexadecimal_string = async () => {
 		<textarea 
 			monitor="hexadecimal string"
 		
-			bind:value={ hexadecimal_string }
+			bind:value={ PT_Freight.signature_hexadecimal_string }
 			
 			rows="4" 
 			placeholder="" 

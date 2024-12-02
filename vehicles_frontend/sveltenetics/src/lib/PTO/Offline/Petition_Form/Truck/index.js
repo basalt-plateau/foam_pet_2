@@ -68,9 +68,35 @@ export const make_truck = () => {
 					"next": "no",
 					"back": "no"
 				},
-				"Flourish Receive": {
+				Flourish_Receive: {
 					"next": "no",
-					"back": "no"
+					"back": "no",
+					
+					//
+					//	This is what is sent to the consensus.
+					//
+					//
+					signature_Aptos_object: "",
+					
+					
+					Aptos_object_fiberized: "",
+					
+					alert_note: "waiting for the signature",
+					alert_success: "",
+					alert_problem_1: "",
+					alert_problem_2: ""					
+				},
+				Adaptation_Suggestion: {
+					"next": "no",
+					"back": "no",
+					
+					adaptation_hash: "",
+					adaptation_fiberized: "",
+				
+					alert_note: "",
+					alert_success: "",
+					alert_problem_1: "",
+					alert_problem_2: ""	
 				}
 			},
 			
@@ -106,7 +132,14 @@ export const make_truck = () => {
 			//			
 			//
 			petition_envelope_fiberized: "",
-			petition_envelope_hexadecimal_string: "",			
+			petition_envelope_hexadecimal_string: "",		
+
+			
+			//
+			signature_hexadecimal_string: "",
+			
+			
+			
 		}
 	});
 	

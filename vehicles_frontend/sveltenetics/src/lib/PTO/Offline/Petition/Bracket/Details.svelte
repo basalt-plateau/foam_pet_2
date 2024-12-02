@@ -15,7 +15,6 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 					style="
 						text-align: center;
 						font-size: 1em;
-						font-weight: bold;
 					"
 				>Details</header>
 			</svelte:fragment>

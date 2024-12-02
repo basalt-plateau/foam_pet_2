@@ -2,18 +2,33 @@
 
 <script>
 
-/*
-	TODO:
-	
-		import Offline_Petition from '$lib/PTO/Offline/Petition_Form/Trinket.svelte'
-		<Offline_Petition 
-			begin_at_bracket="yes"
-		/>
+/*	
+	const petition_fields = {
+		mode: "entry",
+									
+		address: "0x1",
+		module_name: "aptos_account",
+		fonction_name: "transfer",
+
+		signer_hexadecimal_address: "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5",
 		
-		// somehow call function in Component
-		OP.use_fields ({
-			
-		})
+		type_parameters: [],
+		parameters: [
+			{
+				"name": "address",
+				"field": "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE6"
+			},
+			{
+				"name": "u64",
+				"field": "1234"
+			}
+		]
+	}	
+		
+	<Offline_Petition 
+		use_fully_elected_petition_fields="yes"
+		fully_elected_petition_fields={ petition_fields }
+	/>
 */
 
 /*
@@ -65,20 +80,20 @@ $: {
 	build_petition ();
 }
 	
+let built = "no"
 let build_petition = () => {	
-	
-	console.log ({ PT_prepared, PT_Freight, Versies_Freight });
-	
 	if (
 		PT_prepared === "yes" &&
 		typeof PT_Freight === "object" &&
-		typeof Versies_Freight === "object"
+		typeof Versies_Freight === "object" &&
+		built === "no"
 	) {
+		built = "yes"
+		
 		console.log (`
 			PT_Freight: ${ PT_Freight }
 		
-			build_petition called!
-			
+			build_petition called:
 				petition fields: ${ JSON.stringify (fully_elected_petition_fields, null, 4) }
 		`);
 

@@ -1,9 +1,13 @@
 
+
+
+
 <script>
 
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 
 import Petition_Truck from '$lib/PTO/Offline/Petition_Form/Truck/Ride.svelte'
 let PT_Freight = false
@@ -47,7 +51,7 @@ let show = "Bracket";
 	<div>
 		{#if show === "Bracket" }
 		<div monitor="signature bracket panel">
-			<!-- <Code_Wall text={  } /> -->
+			<Code_Wall text={ PT_Freight.leaves.Flourish_Receive.Aptos_object_fiberized  } />
 		</div>
 		{:else if show === "Hexadecimal" }
 		<div monitor="signature hexadecimal panel">

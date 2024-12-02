@@ -73,7 +73,7 @@ export const build_entry_petition_AO = async ({
 				expireTimestamp: pick_expiration ({ 
 					after_seconds: 600
 				}).expiration_timestamp,
-				gasUnitPrice: BigInt (10),
+				gasUnitPrice: BigInt (100),
 				maxGasAmount: BigInt (200000)
 			}
 		}

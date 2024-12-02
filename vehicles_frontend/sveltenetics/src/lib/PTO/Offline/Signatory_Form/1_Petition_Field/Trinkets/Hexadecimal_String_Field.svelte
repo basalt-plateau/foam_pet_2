@@ -89,7 +89,6 @@ const add_petition_hexadecimal_string = async () => {
 		ST_Freight.leaves.Petition_Field.alert_note = ""	
 		ST_Freight.leaves.Petition_Field.alert_problem_1 = "That hexadecimal string could not be converted into an transaction petition bracket.";	
 		ST_Freight.leaves.Petition_Field.alert_problem_2 = anomaly.message
-		
 	}
 }
 

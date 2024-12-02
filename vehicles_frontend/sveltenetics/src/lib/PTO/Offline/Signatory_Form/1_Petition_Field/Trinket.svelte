@@ -82,7 +82,6 @@ let leaf_elected = "Barcode"
 				name="justify" 
 				value="Hexadecimal"
 			>
-				<!-- <span>Hexadecimal String</span> -->
 				<span monitor="show hexadecimal">Hexadecimal</span>
 			</RadioItem>
 		</RadioGroup>
@@ -97,7 +96,6 @@ let leaf_elected = "Barcode"
 		<Hexadecimal_String_Field />
 		{/if}
 	</div>
-	
 	
 	{/if}
 </div>
