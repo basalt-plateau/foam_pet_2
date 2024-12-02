@@ -25,10 +25,10 @@
 		]
 	}	
 	
-	const allow = "every"
-	const allow = "zero"
+	const endorsed = "every"
+	const endorsed = "zero"
 	
-	const allow = {
+	const endorsed = {
 		"0x1": "every",
 		"0x4939": {
 			"module_1": "every",
@@ -39,7 +39,7 @@
 	<Offline_Petition 
 		use_fully_elected_petition_fields="yes"
 		fully_elected_petition_fields={ petition_fields }
-		allow={ allow }
+		endorsed={ endorsed }
 	/>
 */
 
@@ -77,7 +77,7 @@ import Adaptation_Suggestion from './6_Adaptation_Suggestion/Trinket.svelte'
 
 export let use_fully_elected_petition_fields = "no"
 export let fully_elected_petition_fields = {}
-export let allow = ""
+export let endorsed = ""
 
 let PT_Freight = false;
 $: {
@@ -109,7 +109,7 @@ let build_petition = () => {
 		`);
 
 		PT_Freight.net_path = Versies_Freight.net_path;
-		PT_Freight.allow = allow;
+		PT_Freight.endorsed = endorsed;
 		
 		if (use_fully_elected_petition_fields === "yes") {
 			PT_Freight.use_fully_elected_petition_fields = "yes"	

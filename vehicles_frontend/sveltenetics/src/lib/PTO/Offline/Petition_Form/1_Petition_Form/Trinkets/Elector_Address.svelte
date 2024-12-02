@@ -23,23 +23,40 @@ import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 */
 
 export let address_chosen = () => {}
-export let allow = ""
-console.log ({ allow });
+export let endorsed = ""
+$: {
+	let _endorsed = endorsed;
+	parse_endorsed_address ();
+}
 
-const allowed_addresses = Object.keys (allow) 
-console.log ({ allowed_addresses });
+console.log ({ endorsed });
+
+let endorsed_addresses = []
+
+const parse_endorsed_address = () => {
+	console.log ("parse_endorsed_address");
+	
+	endorsed_addresses = []
+	
+	try {
+		if (typeof endorsed === "object" && endorsed !== null) {
+			endorsed_addresses = Object.keys (endorsed) 
+		}
+	}
+	catch (imperfection) {
+		console.error (imperfection);
+	}		
+}
+
 
 
 let address = ""
 $: {
 	let _address = address;
-	if (allowed_addresses.includes (address)) {
+	if (endorsed_addresses.includes (address)) {
 		address_chosen ({ address });
 	}
 }
-
-
-
 
 
 function on_choose (event) {
@@ -92,6 +109,39 @@ const on_blur = () => {
 			width: 100%;
 		"
 	>
+		
+		
+		{#if true }
+		{#if Array.isArray (endorsed_addresses) }			
+		<select
+			placeholder=""
+			
+			style="
+				width: 100%;
+				height: 100%;
+				
+				border-width: var(--theme-border-base);
+				border-color: rgb(var(--color-surface-400));
+				
+				border-radius: 50px;
+			"
+			class="card p-3"
+		>
+			{#each endorsed_addresses as endorsed_address }
+			{#if endorsed_address.includes (address) }
+			<option 
+				on:click={ on_blur }
+				name={ endorsed_address }
+				value={ endorsed_address }
+			>{ endorsed_address }</option>
+			{/if}
+			{/each}
+		</select>
+		{/if}
+		{/if}
+			
+			
+		{#if false }
 		<input 
 			bind:value={ address }
 		
@@ -104,29 +154,31 @@ const on_blur = () => {
 			type="search" 
 			name="demo" 
 		/>
-	
+		
 		<div 
 			style={ auto_complete_style }
 			class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto" 
 			tabindex="-1"
 		>
+			
+		
+			{#if Array.isArray (endorsed_addresses) }			
 			<ListBox>
-				{#each allowed_addresses as allowed_address }
-				{#if allowed_address.includes (address) }
-				
+				{#each endorsed_addresses as endorsed_address }
+				{#if endorsed_address.includes (address) }
 				<ListBoxItem 
 					on:click={ on_blur }
 				
 					bind:group={ address } 
-					name={ allowed_address }
-					value={ allowed_address }
-				>{ allowed_address }</ListBoxItem>
-				
+					name={ endorsed_address }
+					value={ endorsed_address }
+				>{ endorsed_address }</ListBoxItem>
 				{/if}
 				{/each}
 			</ListBox>
+			{/if}
 		</div>
-	
+		{/if}
 	</div>
 </div>
 

@@ -17,8 +17,8 @@
 		Allow Every: Address::module::function
 */
 
-export function is_allowed () {
-	let allowed_everthing_addresses = [
+export function is_endorsed () {
+	let endorsed_everthing_addresses = [
 		"0x1",
 		"0x3",
 		"0x4"

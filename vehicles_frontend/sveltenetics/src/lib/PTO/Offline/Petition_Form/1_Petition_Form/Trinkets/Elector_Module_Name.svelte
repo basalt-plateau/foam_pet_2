@@ -28,18 +28,18 @@ import { retrieve_modules_for_address } from './../screenplays/retrieve_modules_
 */
 
 
-let allowed_modules = [];
-const parse_allowed_modules = () => {
-	console.log ({ address, allow });
+let endorsed_modules = [];
+const parse_endorsed_modules = () => {
+	console.log ({ address, endorsed });
 	
-	allowed_modules = "zero"
+	endorsed_modules = "zero"
 	
 	try {
-		const modules_of_address = allow [ address ];
+		const modules_of_address = endorsed [ address ];
 		console.log ({ modules_of_address }, modules_of_address === "every");
 		
 		if (modules_of_address === "every") {
-			allowed_modules = "every"
+			endorsed_modules = "every"
 			return;
 		}
 		
@@ -47,12 +47,12 @@ const parse_allowed_modules = () => {
 		console.log ({ module_names });
 		
 		if (Array.isArray (module_names)) {
-			allowed_modules = module_names
+			endorsed_modules = module_names
 			return;
 		}
 	}
-	catch (anomaly) {
-		console.error (anomaly);
+	catch (imperfection) {
+		console.error (imperfection);
 	}
 }
 
@@ -63,13 +63,13 @@ $: {
 	let _address = address;
 	console.info ({ address });
 	
-	parse_allowed_modules ();
+	parse_endorsed_modules ();
 	address_changed ();
 }
 
-export let allow = ""
+export let endorsed = ""
 $: {
-	parse_allowed_modules ();
+	parse_endorsed_modules ();
 }
 
 export let module_name_choosen = () => {}
@@ -79,7 +79,7 @@ export let module_name_choosen = () => {}
 let les_modules = []
 
 const address_changed = async () => {
-	console.log ("address changed:", { allowed_modules });
+	console.log ("address changed:", { endorsed_modules });
 	
 	les_modules = [];
 	
@@ -97,22 +97,22 @@ const address_changed = async () => {
 		return 0;
 	});
 	
-	if (allowed_modules === "every") {
+	if (endorsed_modules === "every") {
 		les_modules = _les_modules;
 		return;
 	}
 	
 	
 	
-	if (Array.isArray (allowed_modules)) {
+	if (Array.isArray (endorsed_modules)) {
 		if (Array.isArray (_les_modules)) {
-			console.log ({ _les_modules, allowed_modules });
+			console.log ({ _les_modules, endorsed_modules });
 			
 			les_modules = _les_modules.filter (le_module => {
-				// console.log ("name:", le_module.abi.name, allowed_modules.includes (le_module.abi.name));
+				// console.log ("name:", le_module.abi.name, endorsed_modules.includes (le_module.abi.name));
 				
-				if (allowed_modules.includes (le_module.abi.name)) {
-					console.log ("name:", le_module.abi.name, allowed_modules.includes (le_module.abi.name));
+				if (endorsed_modules.includes (le_module.abi.name)) {
+					console.log ("name:", le_module.abi.name, endorsed_modules.includes (le_module.abi.name));
 					return true;
 				} 
 				

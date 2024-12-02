@@ -214,9 +214,10 @@ let build_petition = () => {
 
 let address_chosen = async ({ address }) => {
 	console.log ("address_chosen:", address);
-	fonction_spot = address;
 	
+	fonction_spot = address;
 	fonction_module_name = ""
+	
 	fonction_found = "no"
 }
 let module_name_choosen = async ({ module_name }) => {
@@ -353,14 +354,14 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 			</div>
 			
 			<Elector_Address 
-				allow={ PT_Freight.allow }
+				endorsed={ PT_Freight.endorsed }
 				address_chosen={ address_chosen } 
 			/>
 			
 			<div style="height: 0.1cm" ></div>
 			
 			<Elector_Module_Name 
-				allow={ PT_Freight.allow }
+				endorsed={ PT_Freight.endorsed }
 			
 				net_path={ Versies_Freight.net_path }
 			
@@ -371,7 +372,7 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 			<div style="height: 0.1cm" ></div>
 			
 			<Elector_Fonction 
-				allow={ PT_Freight.allow }
+				endorsed={ PT_Freight.endorsed }
 			
 				net_path={ Versies_Freight.net_path }
 			

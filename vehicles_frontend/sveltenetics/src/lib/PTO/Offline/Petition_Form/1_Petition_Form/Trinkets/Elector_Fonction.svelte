@@ -21,7 +21,7 @@ let le_fonction_chosen = ""
 
 let fonction_mode = ""
 
-export let allow = "";
+export let endorsed = "";
 
 
 
@@ -32,36 +32,36 @@ export let module_name = ""
 $: {
 	let _module_name = module_name;
 	if (typeof module_name === "string" && module_name.length >= 1) {
-		parse_allowed_fonctions ();
+		parse_endorsed_fonctions ();
 		show_fonctions ();
 	}
 }
 
 
 
-let allowed_fonctions = [];
-const parse_allowed_fonctions = () => {
-	console.log ("parse_allowed_fonctions:", { address, allow });
+let endorsed_fonctions = [];
+const parse_endorsed_fonctions = () => {
+	console.log ("parse_endorsed_fonctions:", { address, endorsed });
 	
-	allowed_fonctions = "zero"
+	endorsed_fonctions = "zero"
 	
 	try {
-		const modules_of_address = allow [ address ];
+		const modules_of_address = endorsed [ address ];
 		const fonctions_of_module = modules_of_address [ module_name ];
 		
 		console.info ({ fonctions_of_module });
 		
 		if (fonctions_of_module === "every") {
-			allowed_fonctions = "every"
+			endorsed_fonctions = "every"
 			return;
 		}
 		if (Array.isArray (fonctions_of_module)) {
-			allowed_fonctions = fonctions_of_module
+			endorsed_fonctions = fonctions_of_module
 			return;
 		}
 	}
-	catch (anomaly) {
-		console.error (anomaly);
+	catch (imperfection) {
+		console.error (imperfection);
 	}
 }
 
@@ -77,15 +77,15 @@ const show_fonctions = async () => {
 		module_name
 	});
 	
-	console.info ({ _les_fonctions, allowed_fonctions });
+	console.info ({ _les_fonctions, endorsed_fonctions });
 	
-	if (allowed_fonctions === "every") {
+	if (endorsed_fonctions === "every") {
 		les_fonctions = _les_fonctions;
 		return;
 	}
 	
 	les_fonctions = _les_fonctions.filter (le_fonction => {
-		if (allowed_fonctions.includes (le_fonction.name)) {
+		if (endorsed_fonctions.includes (le_fonction.name)) {
 			return true;
 		} 
 		

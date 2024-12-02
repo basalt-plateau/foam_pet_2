@@ -26,21 +26,21 @@ import { popup } from '@skeletonlabs/skeleton';
 
 export let mod_chosen = () => {}
 
-const allowed_mods_tree = {
+const endorsed_mods_tree = {
 	"0x1": "every",
 	"0x3": "every",
 	"0x4": "every"
 };
 
-// let allowed_mods = []
-let allowed_mods = [
+// let endorsed_mods = []
+let endorsed_mods = [
 	"Vanilla"
 ]
 
 let mod_name = "";
 $: {
 	let _mod_name = mod_name;
-	if (allowed_mods.includes (mod_name)) {
+	if (endorsed_mods.includes (mod_name)) {
 		mod_chosen ({ mod_name });
 	}
 }

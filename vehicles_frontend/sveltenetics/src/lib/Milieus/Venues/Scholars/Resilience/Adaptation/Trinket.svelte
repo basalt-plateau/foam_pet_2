@@ -18,7 +18,7 @@ const allow = {
 }
 */
 
-const allow = {
+const endorsed = {
 	"0x1": {
 		"account": "every",
 		"aptos_account": [ "transfer" ]
@@ -44,7 +44,7 @@ const allow = {
 		
 	>
 		<Offline_Petition
-			allow={ allow }
+			endorsed={ endorsed }
 		/>
 		
 	</div>
