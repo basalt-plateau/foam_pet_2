@@ -34,11 +34,16 @@ $: {
 	if (typeof module_name === "string" && module_name.length >= 1) {
 		parse_endorsed_fonctions ();
 		show_fonctions ();
+		
 	}
 }
 
 
-
+/*
+	
+	This is for showing endorsed fonctions.
+	
+*/
 let endorsed_fonctions = [];
 const parse_endorsed_fonctions = () => {
 	console.log ("parse_endorsed_fonctions:", { address, endorsed });
@@ -46,6 +51,11 @@ const parse_endorsed_fonctions = () => {
 	endorsed_fonctions = "zero"
 	
 	try {
+		if (endorsed === "every") {
+			endorsed_fonctions = "every"
+			return;
+		}
+		
 		const modules_of_address = endorsed [ address ];
 		const fonctions_of_module = modules_of_address [ module_name ];
 		
@@ -61,12 +71,16 @@ const parse_endorsed_fonctions = () => {
 		}
 	}
 	catch (imperfection) {
-		console.error (imperfection);
+		console.error ("parse_endorsed_fonctions:", imperfection);
 	}
 }
 
 
-
+/*
+	
+	This is for asking for the "fonctions" for the "module".
+	
+*/
 const show_fonctions = async () => {
 	console.log ("module_name:", { module_name, address });
 		
@@ -91,9 +105,14 @@ const show_fonctions = async () => {
 		
 		return false;
 	});
+	
+	fonction_changed ();
 }
 
 
+/*
+	le_fonction_chosen
+*/
 const fonction_changed = () => {
 	le_fonction_chosen = les_fonctions [ le_fonction_index ]
 	if (le_fonction_chosen === undefined) {
@@ -229,6 +248,33 @@ function fonction_modes_shown_toggle (flavor) {
 						overflow-y: scroll;
 					"
 				>
+					{#if false }
+					<RadioGroup>
+						{#each les_fonctions as le_fonction, index }	
+						{#if (
+							(fonction_modes_shown.entry === true && le_fonction.is_entry === true) ||
+							(fonction_modes_shown.view === true && le_fonction.is_view === true)
+						)}
+						<RadioItem 
+							bind:group={ le_fonction.name } 
+							name="justify" 
+							value={ le_fonction.name }
+						>
+							{#if le_fonction.is_entry === true }
+							<span class="badge variant-soft">Entry</span>
+							{/if}
+							
+							{#if le_fonction.is_view === true }
+							<span class="badge variant-soft">View</span>
+							{/if}
+							
+							{ le_fonction.name }
+						</RadioItem>
+						{/if}
+						{/each}
+					</RadioGroup>
+					{/if}
+				
 					<ListBox>
 						{#each les_fonctions as le_fonction, index }	
 						{#if (

@@ -5,57 +5,59 @@
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 
-/*
-	Allowed Addresses:
-		Allow Every: Address::__::__
-		
-		0x1 Framework
-		
-		0x3 Legacy Token
-		0x4 Digital Assets
-
-		
-	Allowed Modules:
-		Allow Every: Address::module::___
-
-	Allowed Fonctions:
-		Allow Every: Address::module::function
-*/
-
+////
+//
+//	Exports
+//
 export let address_chosen = () => {}
 export let endorsed = ""
 $: {
 	let _endorsed = endorsed;
 	parse_endorsed_address ();
 }
+//
+////
 
-console.log ({ endorsed });
 
-let endorsed_addresses = []
-
+let endorsed_addresses = "zero"
 const parse_endorsed_address = () => {
 	console.log ("parse_endorsed_address");
 	
-	endorsed_addresses = []
+	endorsed_addresses = "zero"
 	
 	try {
 		if (typeof endorsed === "object" && endorsed !== null) {
 			endorsed_addresses = Object.keys (endorsed) 
+			return;
+		}
+		
+		if (endorsed === "every") {
+			endorsed_addresses = "every"
 		}
 	}
 	catch (imperfection) {
-		console.error (imperfection);
+		console.error ("parse_endorsed_address:", imperfection);
 	}		
 }
 
 
-
+let previous_address = ""
 let address = ""
 $: {
 	let _address = address;
-	if (endorsed_addresses.includes (address)) {
-		address_chosen ({ address });
+	
+	if (previous_address !== address) {
+		previous_address = address;
+		
+		if (endorsed_addresses.includes (address)) {
+			address_chosen ({ address });
+		}
+		else if (endorsed_addresses === "every") {
+			address_chosen ({ address });
+		}
 	}
+	
+	
 }
 
 
@@ -109,11 +111,22 @@ const on_blur = () => {
 			width: 100%;
 		"
 	>
-		
-		
 		{#if true }
-		{#if Array.isArray (endorsed_addresses) }			
+		{#if endorsed_addresses === "every" }			
+		<input 
+			bind:value={ address }
+		
+			style="
+				padding: 0.25cm;
+			"
+			class="input" 
+			
+			type="search" 
+			name="demo" 
+		/>
+		{:else if Array.isArray (endorsed_addresses) }			
 		<select
+			bind:value={ address }
 			placeholder=""
 			
 			style="
@@ -160,8 +173,6 @@ const on_blur = () => {
 			class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto" 
 			tabindex="-1"
 		>
-			
-		
 			{#if Array.isArray (endorsed_addresses) }			
 			<ListBox>
 				{#each endorsed_addresses as endorsed_address }

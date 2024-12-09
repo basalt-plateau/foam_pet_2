@@ -10,23 +10,6 @@ import { popup } from '@skeletonlabs/skeleton';
 import { retrieve_modules_for_address } from './../screenplays/retrieve_modules_for_address'
 
 
-/*
-	Allowed Addresses:
-		Allow Every: Address::__::__
-		
-		0x1 Framework
-		
-		0x3 Legacy Token
-		0x4 Digital Assets
-
-		
-	Allowed Modules:
-		Allow Every: Address::module::___
-
-	Allowed Fonctions:
-		Allow Every: Address::module::function
-*/
-
 
 let endorsed_modules = [];
 const parse_endorsed_modules = () => {
@@ -35,8 +18,15 @@ const parse_endorsed_modules = () => {
 	endorsed_modules = "zero"
 	
 	try {
+		if (endorsed === "every") {
+			endorsed_modules = "every"
+			return;
+		}
+		
 		const modules_of_address = endorsed [ address ];
 		console.log ({ modules_of_address }, modules_of_address === "every");
+		
+		
 		
 		if (modules_of_address === "every") {
 			endorsed_modules = "every"
@@ -52,7 +42,7 @@ const parse_endorsed_modules = () => {
 		}
 	}
 	catch (imperfection) {
-		console.error (imperfection);
+		console.error ("parse_endorsed_modules:", imperfection);
 	}
 }
 
@@ -188,7 +178,7 @@ $: {
 			{/each}
 			
 			{#if les_modules.length === 0 }
-			<option value="" disabled>Zero modules found</option>
+			<option value="" disabled></option>
 			{/if}
 		</select>
 	</div>

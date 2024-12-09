@@ -35,6 +35,14 @@
 			"module_2": [ "fonction_1" ]				
 		}
 	}
+	
+	const endorsed = {
+		"0x1": "every",
+		"0x4939": {
+			"module_1": "every",
+			"module_2": [ "fonction_1" ]				
+		}
+	}
 		
 	<Offline_Petition 
 		use_fully_elected_petition_fields="yes"
@@ -278,7 +286,7 @@ onDestroy (() => {
 				display: flex;
 			"
 		>
-			{#each le_buttons as le_button }
+			{#each PT_Freight.leaf_buttons as leaf_button }
 			<button
 				style="
 					margin: 0 2px;
@@ -287,13 +295,13 @@ onDestroy (() => {
 				class={(
 					[ 
 						"chip",
-						PT_Freight.leaf_numeral === le_button ? "variant-filled" : "variant-soft"	
+						PT_Freight.leaf_numeral === leaf_button ? "variant-filled" : "variant-soft"	
 					].join (" ")
 				)}
 				on:click={ 
-					PT.go_to ({ leaf_page: le_button }) 
+					PT.go_to ({ leaf_page: leaf_button }) 
 				}
-			>{ le_button }</button>
+			>{ leaf_button }</button>
 			{/each}
 		</div>
 				

@@ -28,11 +28,8 @@ let Milieus = {
 		"Theme": async () => { return await import ('./Venues/Scholars/Theme/Trinket.svelte') },
 		"Resilience": technicians_leaves
 	},
-	"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') },
 	
-	/*"Friends": {
-		"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') }
-	},*/
+	"Talents": async () => { return await import ('./Venues/Friends/Talents/Trinket.svelte') },
 	
 	"Loyals": {
 		"Hints": async () => { return await import ('./Venues/Loyals/Hints/Trinket.svelte') },

@@ -11,9 +11,9 @@ import _merge from 'lodash/merge'
 
 import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 
+import Online_Petition from './Online_Petition/Trinket.svelte'
 import Offline_Petition from '$lib/PTO/Offline/Petition_Form/Trinket.svelte'
-import Offline_Signatory from '$lib/PTO/Offline/Signatory_Form/Trinket.svelte'
-
+	
 const prepare = () => {
 	return {
 		name: "Transfer",
@@ -77,7 +77,7 @@ const on_prepare = () => {
 		return _merge ({}, freight, {
 			showing: 'yes',
 			
-			name: 'Adaptation',
+			name: 'Transaction',
 			
 			unfinished: {
 				showing: 'no',
@@ -169,18 +169,22 @@ const endorsed = {
 				gap: 0.5cm;
 			"
 		>
+			<button type="button" class="btn variant-filled"
+				on:click={ online_petition }
+			>Online Petition</button>
+			
+			<hr />
+			
 			<button 
 				type="button" 
-				class="btn btn-xl variant-filled"
+				class="btn variant-filled"
 				on:click={() => {
 					show_panel="Offline Petition"
 				}}
 			>Offline Petition</button>
-			<button type="button" class="btn btn-xl variant-filled"
-				on:click={() => {
-					show_panel="Offline Signatory"
-				}}
-			>Offline Signatory</button>
+			<button type="button" class="btn variant-filled"
+			
+			>Offline Signature</button>
 		</div>
 		{:else if show_panel === "Online Petition" }
 		<Online_Petition 
@@ -208,7 +212,7 @@ const endorsed = {
 				height: 100%;
 			"
 		>
-			<Offline_Signatory />
+			<Offline_Petition endorsed={ endorsed } />
 		</div>
 		{/if}
 		{/if}

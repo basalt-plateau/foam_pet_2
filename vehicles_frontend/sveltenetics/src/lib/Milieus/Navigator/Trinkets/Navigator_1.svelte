@@ -116,6 +116,9 @@ let friends = {
 let Amharic = {
 	Friendships: (
 		"ጓደኝነት"
+	),
+	Talents: (
+		"መክሊት"
 	)
 }
 
@@ -167,7 +170,7 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	<Milieus_Button
 		monitor="Friends"
 	
-		name={ Amharic.Friendships }
+		name={ Amharic.Talents }
 		location={[ "Talents" ]}
 		is_open_location={[ "Talents" ]}
 		

@@ -7,8 +7,16 @@ mv /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.11/EXTERNALLY-MANAGED
 
 pip install uv poetry
 
+#\
+#
+#	APT: curl, haproxy
+#	
+#
 apt update
 apt install curl haproxy -y
+#
+#/
+
 
 #\
 #

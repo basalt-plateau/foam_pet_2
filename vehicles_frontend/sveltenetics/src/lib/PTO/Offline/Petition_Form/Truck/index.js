@@ -48,6 +48,7 @@ export const make_truck = () => {
 				}
 			*/
 			leaf_numeral: 1,
+			leaf_buttons: [ 1, 2, 3, 4, 5, 6 ],
 			legend: {
 				1: "Petition Form",
 				2: "Petition Verification",
@@ -140,9 +141,6 @@ export const make_truck = () => {
 			
 			//
 			signature_hexadecimal_string: "",
-			
-			
-			
 		}
 	});
 	

@@ -4,7 +4,7 @@
 <script>
 
 
-import Offline_Petition from '$lib/PTO/Offline/Petition/Trinket.svelte'
+import Offline_Petition from '$lib/PTO/Offline/Petition_Form/Trinket.svelte'
 	
 
 </script>

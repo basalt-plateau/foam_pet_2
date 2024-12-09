@@ -1,5 +1,14 @@
 
 
+/*
+	[
+		{ "name": "address", "field": "" ],
+		[ "u64": "" ],
+		[ "address": "" ],
+		[ "address": "" ]
+	]
+*/
+
 import _get from 'lodash/get'
 
 export let retrieve_fonction_parameters = ({

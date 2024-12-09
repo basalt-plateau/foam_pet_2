@@ -21,6 +21,8 @@ export const technicians_leaves = {
 	"Net Choices with Text": async () => { return await import ('./Net_Choices_with_Text/Trinket.svelte') },		
 	"Net Choices": async () => { return await import ('./Nets_Choices/Trinket.svelte') },		
 	"Polytope": async () => { return await import ('./Polytope/Trinket.svelte') },		
+	"React Verse": async () => { return await import ('./React_Verse/Trinket.svelte') },
+
 	"Slang": async () => { return await import ('./Slang/Trinket.svelte') },
 
 	"Wallet Socket": async () => { return await import ('./Wallet_Socket/Trinket.svelte') },

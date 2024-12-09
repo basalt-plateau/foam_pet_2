@@ -17,7 +17,6 @@ let ST_Freight = false
 
 
 
-
 let leaf_elected = "Barcode"
 
 </script>
@@ -25,8 +24,6 @@ let leaf_elected = "Barcode"
 <div class="p-1">
 	<Signatory_Truck on_change={ ({ pro_freight }) => { ST_Freight = pro_freight; } } />
 	{#if typeof ST_Freight === "object"}
-
-	
 
 	<div
 		style="

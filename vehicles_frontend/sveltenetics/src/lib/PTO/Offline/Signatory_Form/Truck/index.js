@@ -84,7 +84,6 @@ export const make_truck = () => {
 			envelope_show: "",
 			//
 			
-
 			petition_signature_fiberized: "",
 			petition_signature_hexadecimal_string: "",
 			signature_field_barrier: ""
@@ -100,9 +99,20 @@ export const make_truck = () => {
 		property, 
 		value
 	}) => {
-		console.log ("monitor?");
+		console.log ("monitor:", property);
 		
-		try {}
+		try {
+			
+			/*
+				wait for petition modification
+				
+			*/
+			if (target === original_freight && property === "petition_hexadecimal_string") {
+				console.info ("petition_hexadecimal_string changed");
+				
+				
+			}
+		}
 		catch (exception) {
 			console.error ("exception", exception);
 		}
@@ -182,15 +192,7 @@ export const monitor_truck = (action) => {
 	}) => {
 		// console.log ("petition truck monitor");
 		
-		action ({
-			pro_freight, 
-			original_freight,
-			//
-			target,
-			//
-			property, 
-			value
-		});
+		action ({ pro_freight, original_freight, target, property, value });
 	})
 }
 

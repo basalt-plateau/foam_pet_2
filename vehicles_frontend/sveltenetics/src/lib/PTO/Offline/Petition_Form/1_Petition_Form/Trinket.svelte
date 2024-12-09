@@ -71,7 +71,6 @@ import Elector_Fonction_Parameters from "./Trinkets/Elector_Fonction_Parameters.
 import Elector_Fonction_Type_Parameters from "./Trinkets/Elector_Fonction_Type_Parameters.svelte"
 import Elector_Options from "./Trinkets/Elector_Options.svelte"
 
-
 //
 import { retrieve_fonction_parameters } from './screenplays/retrieve_fonction_parameters'
 import { retrieve_fonction_type_parameters } from './screenplays/retrieve_fonction_type_parameters'
@@ -94,63 +93,6 @@ let PT_Freight = false
 let Versies_Freight = false
 //
 ////
-
-
-/*
-	Example:
-		0x1::aptos_account::transfer
-*/
-
-
-/*
-	TODO:
-		* fully designated:
-			let use_fully_elected_petition_fields = "yes"
-			let fully_elected_petition_fields = {
-				mode: "entry",
-										
-				address: "0x1",
-				module_name: "aptos_account",
-				fonction_name: "transfer",
-
-				flourisher_address_hexadecimal: "",
-
-				type_parameters: [],
-				parameters: [
-					{
-						"name": "address",
-						"field": ""
-					},
-					{
-						"name": "u64",
-						"field": ""
-					}
-				]
-			}
-
-	
-		* partially designated:
-			let use_partially_elected_petition_fields = "yes"
-			PT_Freight.petition_fields = {
-				mode: "entry",
-				
-				address: "",
-				module_name: "",
-				fonction_name: "",
-				
-				flourisher_address_hexadecimal: "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5",
-				
-				type_parameters: [{
-					
-				}],
-				parameters: [{
-					
-				}]
-			}	
-
-*/
-/**/
-
 
 
 let header_size = "1.5em"
@@ -232,21 +174,27 @@ let fonction_choosen = async ({
 	
 	fonction_selected = fonction;
 	fonction_type_parameters = retrieve_fonction_type_parameters ({ fonction_selected: fonction })
-	
-	/*
-		[
-			{ "name": "address", "field": "" ],
-			[ "u64": "" ],
-			[ "address": "" ],
-			[ "address": "" ]
-		]
-	*/
 	fonction_parameters = retrieve_fonction_parameters ({ fonction_selected: fonction })
 	
 	fonction_mode = _fonction_mode;
 	fonction_found = "yes"
-	
-	console.log ({ fonction_found });
+
+	if (fonction_mode === "entry") {
+		
+	}
+	else if (fonction_mode === "view") {
+		
+	}
+	else {
+		throw new Error (`The fonction_mode "${ fonction_mode }" not found.`);
+	}
+
+	console.log ("fonction_choosen::", {
+		fonction_type_parameters,
+		fonction_parameters,
+		fonction_mode,
+		fonction_found
+	});
 
 	build_petition ();
 }
@@ -316,7 +264,6 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 		>
 			<Slang text="Function" />
 		</div>
-		
 		
 		<!-- whether to have multiple fields or __::__::__ -->
 		<div
@@ -392,6 +339,8 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 		address_of_flourisher_chosen={ address_of_flourisher_chosen }
 	/>
 	{/if}
+		
+	fonction_found: { fonction_found }	
 		
 	{#if fonction_found === "yes"}
 	<Elector_Fonction_Parameters 

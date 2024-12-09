@@ -98,6 +98,21 @@ let Amharic_Friendships = {
 	)
 }
 
+let Amharic_Talents = {
+	name: (
+		"መክሊት"
+	),
+	english: (
+		"Talents"
+	),
+	language: (
+		"Amharic"
+	),
+	pronunciation: (
+		"Keklit"
+	)
+}
+
 </script>
 
 <style>
@@ -130,7 +145,7 @@ let Amharic_Friendships = {
 				text-align: center;
 				font-size: bold;
 			"
-		>{ Amharic_Friendships.name }</header>
+		>{ Amharic_Talents.name }</header>
 
 		<div style="height: 0.25cm"></div>
 
@@ -146,13 +161,13 @@ let Amharic_Friendships = {
 					display: block;
 					text-align: center;
 				"
-			>Perhaps occassionally pronounced <b>{ Amharic_Friendships.pronunciation }</b>, </span>
+			>Perhaps occassionally pronounced <b>{ Amharic_Talents.pronunciation }</b>, </span>
 			<span
 				style="
 					display: block;
 					text-align: center;
 				"
-			><b style="font-size: 1.2em">{ Amharic_Friendships.name }</b> might be <b>{ Amharic_Friendships.language }</b> for <b>{ Amharic_Friendships.english }</b>.</span>
+			><b style="font-size: 1.2em">{ Amharic_Talents.name }</b> might be <b>{ Amharic_Talents.language }</b> for <b>{ Amharic_Talents.english }</b>.</span>
 		</div>
 		
 		<div style="height: 0.25cm"></div>

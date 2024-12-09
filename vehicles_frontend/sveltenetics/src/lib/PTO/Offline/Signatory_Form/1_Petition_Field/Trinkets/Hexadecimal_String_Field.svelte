@@ -65,8 +65,8 @@ const add_petition_hexadecimal_string = async () => {
 		});
 		ST_Freight.envelope_show = envelope_show;
 		ST_Freight.petition_aptos_object = petition_aptos_object;
-		ST_Freight.petition_hexadecimal_string = petition_hexadecimal_string;
 		
+		ST_Freight.petition_hexadecimal_string = petition_hexadecimal_string;
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_button_text = "Added"
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_can_add = "no"
 		

@@ -6,10 +6,12 @@
 
 /*
 	import Progress_Wall from '$lib/trinkets/Progress/Wall/Trinket.svelte'
-	<Progress_Wall />
+	<Progress_Wall show={ "yes" } />
 */
 
 import Eternal_1_Progress from '$lib/trinkets/Progress/Eternal_1/Trinket.svelte'
+
+let show = "yes"
 
 </script>
 
@@ -19,6 +21,7 @@ import Eternal_1_Progress from '$lib/trinkets/Progress/Eternal_1/Trinket.svelte'
 
 </style>
 
+{#if show === "yes" }
 <div
 	progress_wall
 	style="
@@ -39,3 +42,4 @@ import Eternal_1_Progress from '$lib/trinkets/Progress/Eternal_1/Trinket.svelte'
 		color={ "#000000" }
 	/>
 </div>
+{/if}
