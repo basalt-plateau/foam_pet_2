@@ -145,8 +145,8 @@ a {
 			<Panel styles={ trends.panel }>
 				<Milieus_Button
 					name={ "Net Choices with Text" }
-					location={[ "Scholars", "Resilience", "Net Choices with Text" ]}
-					is_open_location={[ "Scholars", "Resilience", "Net Choices with Text" ]}
+					location={[ "Ecology", "Resilience", "Net Choices with Text" ]}
+					is_open_location={[ "Ecology", "Resilience", "Net Choices with Text" ]}
 				/>
 			</Panel>
 		
@@ -155,8 +155,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Amount Field" }
-					location={[ "Scholars", "Resilience", "Amount Field" ]}
-					is_open_location={[ "Scholars", "Resilience", "Amount Field" ]}
+					location={[ "Ecology", "Resilience", "Amount Field" ]}
+					is_open_location={[ "Ecology", "Resilience", "Amount Field" ]}
 				/>
 			</Panel>
 			
@@ -166,8 +166,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Hone Focus" }
-					location={[ "Scholars", "Resilience", "Hone Focus" ]}
-					is_open_location={[ "Scholars", "Resilience", "Hone Focus" ]}
+					location={[ "Ecology", "Resilience", "Hone Focus" ]}
+					is_open_location={[ "Ecology", "Resilience", "Hone Focus" ]}
 				/>
 			</Panel>
 			{/if}
@@ -194,16 +194,16 @@ a {
 			>
 				<Milieus_Button
 					name={ "React Verse" }
-					location={[ "Scholars", "Resilience", "React Verse" ]}
-					is_open_location={[ "Scholars", "Resilience", "React Verse" ]}
+					location={[ "Ecology", "Resilience", "React Verse" ]}
+					is_open_location={[ "Ecology", "Resilience", "React Verse" ]}
 				/>
 			</Panel>
 		
 			<Panel styles={ trends.panel }>
 				<Milieus_Button
 					name={ "Adaptation Prebuilt" }
-					location={[ "Scholars", "Resilience", "Adaptation Prebuilt" ]}
-					is_open_location={[ "Scholars", "Resilience", "Adaptation Prebuilt" ]}
+					location={[ "Ecology", "Resilience", "Adaptation Prebuilt" ]}
+					is_open_location={[ "Ecology", "Resilience", "Adaptation Prebuilt" ]}
 				/>
 			</Panel>
 		
@@ -212,8 +212,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Adaptation" }
-					location={[ "Scholars", "Resilience", "Adaptation" ]}
-					is_open_location={[ "Scholars", "Resilience", "Adaptation" ]}
+					location={[ "Ecology", "Resilience", "Adaptation" ]}
+					is_open_location={[ "Ecology", "Resilience", "Adaptation" ]}
 				/>
 			</Panel>
 			
@@ -222,8 +222,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Wallet Socket" }
-					location={[ "Scholars", "Resilience", "Wallet Socket" ]}
-					is_open_location={[ "Scholars", "Resilience", "Wallet Socket" ]}
+					location={[ "Ecology", "Resilience", "Wallet Socket" ]}
+					is_open_location={[ "Ecology", "Resilience", "Wallet Socket" ]}
 				/>
 			</Panel>
 			
@@ -232,8 +232,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Address Qualities with Address" }
-					location={[ "Scholars", "Resilience", "Address Qualities with Address" ]}
-					is_open_location={[ "Scholars", "Resilience", "Address Qualities with Address" ]}
+					location={[ "Ecology", "Resilience", "Address Qualities with Address" ]}
+					is_open_location={[ "Ecology", "Resilience", "Address Qualities with Address" ]}
 				/>
 			</Panel>
 			
@@ -242,8 +242,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Address Qualities" }
-					location={[ "Scholars", "Resilience", "Address Qualities" ]}
-					is_open_location={[ "Scholars", "Resilience", "Address Qualities" ]}
+					location={[ "Ecology", "Resilience", "Address Qualities" ]}
+					is_open_location={[ "Ecology", "Resilience", "Address Qualities" ]}
 				/>
 			</Panel>
 			
@@ -252,8 +252,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Nets Choices" }
-					location={[ "Scholars", "Resilience", "Nets Choices" ]}
-					is_open_location={[ "Scholars", "Resilience", "Nets Choices" ]}
+					location={[ "Ecology", "Resilience", "Nets Choices" ]}
+					is_open_location={[ "Ecology", "Resilience", "Nets Choices" ]}
 				/>
 			</Panel>
 			
@@ -265,8 +265,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Consensus Transactions" }
-					location={[ "Scholars", "Resilience", "Consensus Transactions" ]}
-					is_open_location={[ "Scholars", "Resilience", "Consensus Transactions" ]}
+					location={[ "Ecology", "Resilience", "Consensus Transactions" ]}
+					is_open_location={[ "Ecology", "Resilience", "Consensus Transactions" ]}
 				/>
 			</Panel>
 			<Panel 
@@ -274,8 +274,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Polytope" }
-					location={[ "Scholars", "Resilience", "Polytope" ]}
-					is_open_location={[ "Scholars", "Resilience", "Polytope" ]}
+					location={[ "Ecology", "Resilience", "Polytope" ]}
+					is_open_location={[ "Ecology", "Resilience", "Polytope" ]}
 				/>
 			</Panel>
 			
@@ -284,8 +284,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Slang" }
-					location={[ "Scholars", "Resilience", "Slang" ]}
-					is_open_location={[ "Scholars", "Resilience", "Slang" ]}
+					location={[ "Ecology", "Resilience", "Slang" ]}
+					is_open_location={[ "Ecology", "Resilience", "Slang" ]}
 				/>
 			</Panel>
 			
@@ -294,8 +294,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Field" }
-					location={[ "Scholars", "Resilience", "Field" ]}
-					is_open_location={[ "Scholars", "Resilience", "Field" ]}
+					location={[ "Ecology", "Resilience", "Field" ]}
+					is_open_location={[ "Ecology", "Resilience", "Field" ]}
 				/>
 			</Panel>
 		</div>

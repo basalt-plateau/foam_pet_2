@@ -6,26 +6,7 @@
 
 <script>
 	
-/*
-	Friendships
-	
-	Scoreboards
-	
-	Playbook
-	
-	Tricks
 
-	Talents:
-		@ Plays
-
-	Friends_Moves:
-		@ Friends_Moves
-		@ Activities
-		@ Adventures
-		
-		@ Postures
-		@ Presences
-*/
 
 ///
 //
@@ -126,7 +107,7 @@ let Amharic_Talents = {
 </style>
 
 <svelte:head>
-	<title>Talents</title>
+	<title>{ Amharic_Talents.name }</title>
 	<meta name="description" content="Talents" />
 </svelte:head>
 
@@ -149,9 +130,8 @@ let Amharic_Talents = {
 
 		<div style="height: 0.25cm"></div>
 
-
 		<div
-			class="card p-1 variant-filled-primary"
+			class="card p-1 variant-soft-surface"
 			style="
 				width: 100%;
 			"

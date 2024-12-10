@@ -22,7 +22,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse'
 import { technicians_leaves } from './Venues/Scholars/Resilience/Leaves.js'
 	
 let Milieus = {
-	"Scholars": {
+	"Ecology": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
 		"Garden": async () => { return await import ('./Venues/Scholars/Garden/Trinket.svelte') },
 		"Theme": async () => { return await import ('./Venues/Scholars/Theme/Trinket.svelte') },
@@ -41,7 +41,8 @@ let Milieus = {
 let milieu_venue;
 
 let location = []
-let component = Milieus [ "Scholars" ] [ "Hints" ]
+// let component = Milieus [ "Ecology" ] [ "Hints" ]
+let component;
 
 let style = parse_styles ({
 	opacity: 1,
@@ -75,7 +76,7 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	}
 	else {
 		console.error ("Location was not accounted for:", { location })
-		next_component = (await Milieus [ "Scholars" ] [ "Hints" ] ()).default;
+		next_component = (await Milieus [ "Ecology" ] [ "Hints" ] ()).default;
 	}
 
 	

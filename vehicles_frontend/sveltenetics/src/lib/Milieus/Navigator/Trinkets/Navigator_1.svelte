@@ -91,6 +91,12 @@ let scholars = {
 	Sinhalese: ("")
 }
 
+let Ecology = {
+	Malayalam: (
+		"ബയോളജി"
+	)
+}
+
 let friends = {
 	
 }
@@ -159,11 +165,11 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	"
 >
 	<Milieus_Button
-		monitor="Scholars"
+		monitor="Ecology"
 		
 		name={ names.seeds }
-		location={[ "Scholars", "Hints" ]}
-		is_open_location={[ "Scholars" ]}
+		location={[ "Ecology", "Hints" ]}
+		is_open_location={[ "Ecology" ]}
 		
 		style={ buttons_styles }
 	/>

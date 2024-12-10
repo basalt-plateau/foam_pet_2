@@ -84,7 +84,7 @@ const names = {
 
 </script>
 
-{#if location [0] === "Scholars" }
+{#if location [0] === "Ecology" }
 <div
 	style=""
 >
@@ -94,8 +94,8 @@ const names = {
 	<div>
 		<Milieus_Button
 			name={ "Hints" }
-			location={[ "Scholars", "Hints" ]}
-			is_open_location={[ "Scholars", "Hints" ]}
+			location={[ "Ecology", "Hints" ]}
+			is_open_location={[ "Ecology", "Hints" ]}
 			
 			style={ buttons_styles }
 		/>
@@ -103,15 +103,15 @@ const names = {
 			monitor="Garden"
 		
 			name={ names.garden }
-			location={[ "Scholars", "Garden" ]}
-			is_open_location={[ "Scholars", "Garden" ]}
+			location={[ "Ecology", "Garden" ]}
+			is_open_location={[ "Ecology", "Garden" ]}
 			
 			style={ buttons_styles }
 		/>
 		<Milieus_Button
 			name={ "Theme" }
-			location={[ "Scholars", "Theme" ]}
-			is_open_location={[ "Scholars", "Theme" ]}
+			location={[ "Ecology", "Theme" ]}
+			is_open_location={[ "Ecology", "Theme" ]}
 			
 			style={ buttons_styles }
 		/>
@@ -120,8 +120,8 @@ const names = {
 		<Milieus_Button
 			name={ "Resilience" }
 			
-			location={[ "Scholars", "Resilience", "Leaf" ]}
-			is_open_location={[ "Scholars", "Resilience" ]}
+			location={[ "Ecology", "Resilience", "Leaf" ]}
+			is_open_location={[ "Ecology", "Resilience" ]}
 			
 			style={ buttons_styles }
 		/>

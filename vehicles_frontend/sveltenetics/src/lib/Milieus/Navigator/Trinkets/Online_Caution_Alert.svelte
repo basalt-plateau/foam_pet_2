@@ -112,8 +112,8 @@ onDestroy (() => {
 					<span>A <Slang text="Pet" /> for <Slang text="an_Offline_Machine" /> can be adopted from </span>
 					<Milieus_Button
 						name={ "Garden" }
-						location={[ "Scholars", "Garden" ]}
-						is_open_location={[ "Scholars" ]}
+						location={[ "Ecology", "Garden" ]}
+						is_open_location={[ "Ecology" ]}
 					/>
 				</p>
 			</div>

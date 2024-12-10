@@ -43,7 +43,7 @@ const monitor_local_storage = () => {}
 const Location_Bracket = {
 	find () {
 		let location_1 = [
-			"Scholars",
+			"Ecology",
 			"Hints"
 		]
 		

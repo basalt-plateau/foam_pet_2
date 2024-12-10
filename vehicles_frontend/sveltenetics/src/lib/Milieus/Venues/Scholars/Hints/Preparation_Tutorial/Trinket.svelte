@@ -41,8 +41,8 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 						
 						<Milieus_Button
 							name={ "Garden" }
-							location={[ "Scholars", "Garden" ]}
-							is_open_location={[ "Scholars", "Garden" ]}
+							location={[ "Ecology", "Garden" ]}
+							is_open_location={[ "Ecology", "Garden" ]}
 							style="display: inline-block"
 						/>
 					</div>

@@ -22,7 +22,8 @@ import { the_ledger_ask_loop_creator } from './Screenplays/is_connected'
 //
 ////
 
-
+import { create_wallet_link } from "$lib/PTO/Signatory"
+	
 
 
 let the_ledger_ask_loop;
@@ -104,6 +105,8 @@ export const lease_roomies_truck = () => {
 	}
 	
 	
+	const wallet_link = create_wallet_link ();
+	
 	trucks [1] = build_truck ({
 		freight: {
 			/*
@@ -123,6 +126,8 @@ export const lease_roomies_truck = () => {
 			//mode: "business",
 			mode,
 			
+			wallet_link,
+			
 			origin_address,
 			
 			net_path,
@@ -133,9 +138,7 @@ export const lease_roomies_truck = () => {
 			
 			commas_every,
 			
-			deep_example_1: {
-				deep_example_2: 1
-			},
+			// deep_example_1: { deep_example_2: 1 },
 			
 			
 			window_width: window.innerWidth,

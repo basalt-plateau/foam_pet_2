@@ -5,81 +5,45 @@
 
 ////
 //
-import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
-import { open_rules } from '$lib/Milieus/Venues/Scholars/Hints/Rules/open'
-//
-import Panel from '$lib/trinkets/panel/trinket.svelte'
+import Beacons from '$lib/trinkets/Hints/Beacons/Trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-import Caution from '$lib/trinkets/_Caution/Trinket.svelte'
-//
 import Offline_Signing_Hints from '$lib/trinkets/Hints/Offline_Signing/Trinket.svelte'
-import Beacons from '$lib/trinkets/Hints/Beacons/Trinket.svelte'
 //
+import { open_rules } from '$lib/Milieus/Venues/Scholars/Hints/Rules/open'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
-import Slang_Cipher from '$lib/trinkets/Slang/Cipher.svelte'
-import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
-//
-import Taxonomy from '$lib/trinkets/Taxonomy/Pet.svelte'
-import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example/Trinket.svelte'
 //
 //
 import Getting_Moving from './Getting_Moving/Trinket.svelte'
 import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
-//
-////
 import Boards from './Boards/Trinket.svelte'
 import Mural from './Mural/Trinket.svelte'
 import Pleasantries from './Trinkets/Pleasantries/Trinket.svelte'
+import Regions from './Regions/Estate.svelte'
+import Bouncy from './Bouncy/Estate.svelte'
+import AI_Caution from './AI_Caution/Estate.svelte'
+//
+////
 
 
 const modal_store = getModalStore ();
-	
-
-	
-////
-//
-const tutorial_2 = '/pictures/tutorial_2.svg';
-const machines_picture = '/pictures/machines.svg';
-const pets = '/pictures/Foam_pet.svg';
-const pet = '/pictures/Foam_Pet_0001.svg';
-const pet_2 = '/pictures/Foam_Pet_0002.svg';
-//
-////
-
 const mode = check_roomies_truck ().freight.mode;		
 
-/*
-let seeds_name = (
-	"পণ্ডিত"
-)
-*/
 
-let tamil_seeds = {
+let header_1_saying = {
 	name: (
-		"அறிஞர்கள்"
-	),
-	language: (
-		"Tamil"
-	),
-	pronunciation: (
-		"aṟiñarhal"
-	)
-}
-
-let seeds = {
-	name: (
-		"പണ്ഡിതർ"
+		"പരിസ്ഥിതി"
 	),
 	language: (
 		"Malayalam"
 	),
 	pronunciation: (
-		"paṇḍitar"
-	)
+		"Paristetry"
+	),
+	english: "Ecology"
 }
 
 const show_rules = () => {
@@ -90,7 +54,7 @@ const show_rules = () => {
 </script>
 
 <svelte:head>
-	<title>{ seeds.name }</title>
+	<title>{ header_1_saying.name }</title>
 </svelte:head>
 
 
@@ -141,20 +105,29 @@ const show_rules = () => {
 					text-align: center;
 				"
 			>
-				<span style="display: block">Perhaps occassionally pronounced as { seeds.pronunciation },</span>
-				<span style="display: block"><b style="font-size: 1.4em">{ seeds.name }</b> might be { seeds.language } for <b>scholars</b>.</span>
+				<span style="display: block">Perhaps occassionally pronounced as <b>{ header_1_saying.pronunciation }</b>,</span>
+				<span style="display: block"><b style="font-size: 1.4em">{ header_1_saying.name }</b> might be <b>{ header_1_saying.language }</b> for <b>{ header_1_saying.english }</b>.</span>
 			</p>
+
+			<div style="height: 0.5cm"></div>
+
+			<p
+				style="
+					text-align: center;
+				"
+			>The <b style="font-size: 1.4em">{ header_1_saying.name }</b> region has features that affect the local browser.</p>
 		</div>
 	</div>
 
-
+	<!-- 
+	<div style="height: 0.5cm"></div>
+	<AI_Caution />
+	-->
+	
 	<div style="height: 0.5cm"></div>
 	<Boards />
-	
 	<div style="height: 0.5cm"></div>
-
 	<Pleasantries />
-	
 	<div style="height: 0.5cm"></div>
 	
 	<div
@@ -164,12 +137,6 @@ const show_rules = () => {
 			text-align: center;
 		"
 	>		
-		<p>
-			<span>These are the rules.</span>
-		</p>
-
-		<div style="height: 0.25cm"></div>
-
 		<button
 			on:click={ show_rules }
 			type="button" 
@@ -182,144 +149,16 @@ const show_rules = () => {
 	</div>
 
 	<div style="height: 0.5cm"></div>
-
-	<div class="card p-4">
-		<header 
-			style="
-				font-size: 2em; 
-				text-align: center;
-				padding: 0.5cm 0;
-			"
-		>Bouncy</header>
-	
-		<div style="font-size: 1em; text-align: center; line-height: 2em;">
-			<p
-				
-			>
-				<span><Slang text="Pets" /> are cloudwalled wallet couriers for <Slang text="Aptos" />.</span>
-			</p> 
-			<p>
-				<a class="anchor" href="https://Aptos.dev">https://Aptos.dev</a>
-			</p>
-			<p>
-				<a class="anchor" href="https://aptosfoundation.org">https://aptosfoundation.org</a>
-			</p>
-		</div>
-	
-		<div style="height: 1cm"></div>
-	
-		<p
-			style="font-size: 1em; text-align: center; line-height: 2em;"
-		>
-			<span>A <Slang text="Publisher" /> <Slang text="Pet" /> should live on an <Slang text="Online Machine" />.</span>
-		</p> 
-		<p
-			style="font-size: 1em; text-align: center; line-height: 2em;"
-		>
-			<span><Slang text="This Domain" /> is a <Slang text="Publisher" /> <Slang text="Pet" />.</span>
-		</p> 
-	
-		<div style="height: 1cm"></div>
-	
-		<p
-			style="font-size: 1em; text-align: center; line-height: 2em;"
-		>
-			<span>A <Slang text="Signer" /> <Slang text="Pet" /> should live on an <Slang text="Offline Machine" />.</span>
-		</p>
-
-		
-		<div style="height: 1cm"></div>		
-		
-		<Offline_Signing_Example />
-	</div>
-	
+	<Bouncy />
 	<div style="height: 0.5cm"></div>
-	
 	<Getting_Moving />	
-	
 	<div style="height: 0.5cm"></div>
-	
 	<Beacons />
 	
+	<!--
 	<div style="height: 0.5cm"></div>
-	
-	<div class="card p-4">
-		<header 
-			style="
-				font-size: 2em; 
-				text-align: center;
-				padding: 0cm 0;
-			"
-		>Regions</header>
-		
-		<div style="height: 0.5cm" ></div>
-		<hr class="!border-t-2" />
-		<div style="height: 0.5cm" ></div>
-		
-		<Accordion>
-			<AccordionItem>
-				<svelte:fragment slot="summary">
-					<header 
-						style="
-							font-size: 1.5em; 
-							text-align: center;
-							padding: 0cm 0;
-						"
-					>Scholars</header>
-				</svelte:fragment>
-				<svelte:fragment slot="content">
-					<div>
-						<p
-							style="font-size: 1em; text-align: center"
-						>	
-							<span>The <b>Scholars</b> region has features that affect the local browser.</span>
-						</p>
-					</div>
-				</svelte:fragment>
-			</AccordionItem>
-			<AccordionItem>
-				<svelte:fragment slot="summary">
-					<header 
-						style="
-							font-size: 1.5em; 
-							text-align: center;
-							padding: 0cm 0;
-						"
-					>Loyals</header>
-				</svelte:fragment>
-				<svelte:fragment slot="content">
-					<div>
-						<p
-							style="font-size: 1em; text-align: center"
-						>	
-							<span>The <b>Loyals</b> region should be used on a <Slang text="Offline Machine" /></span>
-						</p>
-					</div>
-				</svelte:fragment>
-			</AccordionItem>
-			<AccordionItem>
-				<svelte:fragment slot="summary">
-					<header 
-						style="
-							font-size: 1.5em; 
-							text-align: center;
-							padding: 0cm 0;
-						"
-					>Friends</header>
-				</svelte:fragment>
-				<svelte:fragment slot="content">
-					<div>
-						<p
-							style="font-size: 1em; text-align: center"
-						>	
-							<span>The <b>Friends</b> region should be used on a <Slang text="Online Machine" /></span>
-						</p>
-					</div>
-				</svelte:fragment>
-			</AccordionItem>
-		</Accordion>
-	</div>
-
+	<Regions />
+	-->
 	
 	<div style="height: 0.5cm"></div>
 	
