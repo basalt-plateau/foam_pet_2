@@ -6,96 +6,72 @@ module ride_1::Merci_Tienda {
 	use std::vector;
 	
 	use aptos_std::table::{ Self, Table };
+
+	use aptos_framework::coin::{ Coin };
+	use aptos_framework::aptos_coin::{ AptosCoin };
 	
-	use aptos_framework::coin::{ Self, Coin, CoinStore };	
+	// use aptos_framework::coin::{ Self, Coin, CoinStore };
+	// use aptos_framework::aptos_coin::{ AptosCoin, Self };
 	
-	
-	/*
-		Mercy Sale {
-			address : address
-			mercy_for_sale: u256,
-			octas_price: u64
-		}
-		
-		APT Sale {
-			address : address
-			APT_for_sale: Coin<AptosCoin>,
-			mercy_price: u256
-		}
-		
+	/*	
 		possibly:
 			expiration
 	*/
 	struct Mercy_Sale has store {
-		address : address,
+		advertiser_spot : address,
 		mercy_for_sale: u256,
 		octas_price: u64
 	}
 	
+	struct Octas_Sale has store {
+		advertiser_spot : address,
+		APT_for_sale: Coin<AptosCoin>,
+		mercy_price: u256
+	}
+	
 	
 	/*
-		address, Mercy_Sale
-		octas_price, Mercy_Sale
+		address, 
+		Mercy_Sale
+		octas_price, 
+		Mercy_Sale
 	*/
-	struct Mercy_Sales has key {
-		addresses : Table<address, Mercy_Sale>,
-		octas_price : Table<u64, Mercy_Sale>		
+	struct Sales has key {
+		mercy_sales : vector<Mercy_Sale>,
+		octas_sales : vector<Octas_Sale>		
 	}
 	
-
-	// apt_sales : table<address, Coin<AptosCoin>, u256>
-	// aptos_coins : Coin<AptosCoin>
 	
+	// Advertise_Mercy
 	
-	public entry fun Establish_Sales (estate_flourisher : & signer)  {
-		let mercy_sales = Mercy_Sales {
-            addresses : table::new<address, Mercy_Sale>(),
-			octas_price: table::new<u64, Mercy_Sale>()
+	public entry fun Establish_Sales (mall_flourisher : & signer)  {
+		let sales = Sales {
+            mercy_sales: vector::empty<Mercy_Sale>(),
+			octas_sales: vector::empty<Octas_Sale>()
         };
 		
-		move_to (estate_flourisher, mercy_sales);
+		move_to (mall_flourisher, sales);
 	}
 	
 	
-	public entry fun List_Mercy_for_Sale (
-		vendor_flourisher : & signer,
+	public entry fun Advertise_Mercy (
+		mall_spot : address,
+		
+		advertiser_flourisher : & signer,
 		mercy_for_sale : u256,
 		octas_price : u64
-	) acquires Mercy_Sales {
-		let vendor_spot = signer::address_of (vendor_flourisher);
-		let mercy_sales = borrow_global_mut<Mercy_Sales>(vendor_spot);
+	) acquires Sales {
+		let advertiser_spot = signer::address_of (advertiser_flourisher);
+		let sales = borrow_global_mut<Sales>(mall_spot);
 		
 		let mercy_sale = Mercy_Sale {
-            address : vendor_spot,
+            advertiser_spot : advertiser_spot,
 			mercy_for_sale: mercy_for_sale,
 			octas_price : octas_price
         };
 		
-		table::add (&mut mercy_sales.addresses, vendor_spot, mercy_sale);
+		vector::push_back (&mut sales.mercy_sales, mercy_sale);
 	}
-	
-	
-	/*
-	use std::signer;
-	
-	public entry fun Buy_Mercy (
-		estate_flourisher : & signer,
-		mercy_to_buy : u256,
-		octas_price : u256
-	)  {
-		
-		
-		
-	}
-	*/
-	
-	public entry fun Sell_Mercy (
-		estate_flourisher : & signer,
-		mercy_to_sell : u256,
-		octas_price : u256
-	)  {
-		
-		
-		
-	}
+
+	public entry fun Advertise_Octas () {}
 }

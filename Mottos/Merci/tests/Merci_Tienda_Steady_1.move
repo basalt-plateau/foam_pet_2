@@ -7,14 +7,12 @@
 
 module ride_1::Merci_Tienda_Steady_1 {
 	
-	use std::string::{ String, utf8 };
-	
-	use ride_1::Merci_Bayanihan;
-	use ride_1::Merci_Tienda;
-	use ride_1::Merci_Harvest;
+	use std::string::{ String };
 	
 	#[view]
 	public fun Bayanihan () : String {
+		use ride_1::Merci_Bayanihan;
+		
 		Merci_Bayanihan::Bayanihan ()
 	}	
 	
@@ -28,20 +26,19 @@ module ride_1::Merci_Tienda_Steady_1 {
 		estate_2_flourisher : signer,
 		estate_3_flourisher : signer		
 	) {	
-		use std::debug;
+		// use std::debug;
+		// use std::string_utils;
 		use std::signer;
-		use std::string_utils;
+		use std::string::{ utf8 };
 		
 		use ride_1::Merci_Harvest;
+		use ride_1::Merci_Tienda;
 		
 		let novelist : address = Merci_Harvest::search_novelist_spot ();
 		
 		let estate_1_spot = signer::address_of (& estate_1_flourisher);
 		let estate_2_spot = signer::address_of (& estate_2_flourisher);
 		let estate_3_spot = signer::address_of (& estate_3_flourisher);
-		
-		
-		
 		
 		
 		/*

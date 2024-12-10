@@ -15,6 +15,8 @@ module ride_1::Merci_Kisiwa {
 	const Origin_kisiwa_does_not_have_enough_mercy : u64 = 1;
 	const Kisiwa_does_not_have_enough_mercy : u64 = 2;
 	
+	friend ride_1::Merci_Harvest;
+	
 	#[view]
 	public fun Bayanihan () : String {
 		Merci_Bayanihan::Bayanihan ()
@@ -33,11 +35,14 @@ module ride_1::Merci_Kisiwa {
 	}
 	
 	
-	public fun mercy_amount_from_kisiwa (le_kisiwa : & Kisiwa) : u256 {
+	public (friend) fun mercy_amount_from_kisiwa (le_kisiwa : & Kisiwa) : u256 {
 		le_kisiwa.mercy		
 	}
 	
-	public fun sub_mercy (
+	/*
+		
+	*/
+	public (friend) fun sub_mercy (
 		kisiwa : &mut Kisiwa,
 		amount : u256
 	) {
@@ -49,14 +54,14 @@ module ride_1::Merci_Kisiwa {
 		kisiwa.mercy = kisiwa.mercy - amount;
 	}
 	
-	public fun add_mercy (
+	public (friend) fun add_mercy (
 		kisiwa : &mut Kisiwa,
 		amount : u256
 	) {
 		kisiwa.mercy = kisiwa.mercy + amount;
 	}
 	
-	public fun send_mercy (
+	public (friend) fun send_mercy (
 		origin_kisiwa : &mut Kisiwa,
 		to_kisiwa : &mut Kisiwa,
 		amount : u256

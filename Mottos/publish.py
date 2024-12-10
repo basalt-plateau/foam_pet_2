@@ -7,7 +7,7 @@ import os
 #	legacy address
 #
 #
-ride = "150755a53b2fd604f5072bdf22c2f1dca1d9d730d1afaf460a3d8c8e16528c5f"
+ride = "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 
 '''
 aptos account list --query resources
@@ -29,8 +29,8 @@ to_publish = [
 
 os.system (f"cd /Metro/Mottos/Visiwa && aptos move publish --assume-yes --named-addresses ride={ ride }");
 os.system (f"cd /Metro/Mottos/Quarry && aptos move publish --assume-yes --named-addresses ride={ ride }");
-
 os.system (f"cd /Metro/Mottos/Pergola && aptos move publish --assume-yes --named-addresses ride={ ride }");
-os.system (f"cd /Metro/Mottos/Tholvi && aptos move publish --assume-yes --named-addresses ride={ ride }");
+
+# os.system (f"cd /Metro/Mottos/Tholvi && aptos move publish --assume-yes --named-addresses ride={ ride }");
 
 os.system (f"cd /Metro/Mottos/Rondovals/Rondoval && aptos move publish --assume-yes --named-addresses ride={ ride }");

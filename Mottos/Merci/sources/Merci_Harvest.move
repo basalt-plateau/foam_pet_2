@@ -19,8 +19,6 @@
 			returns "yup" if has estate
 		
 		ask_estate_mercy_amount : u64
-		
-		
 */
 module ride_1::Merci_Harvest {
 	
@@ -135,29 +133,53 @@ module ride_1::Merci_Harvest {
 		simple_map::remove (visiwa, & estate_spot);
 	}
 
+
+
+	/*
+		estate_flourisher --[ mercy_to_send ]--> to_spot
+		
+		This requires signature of the sender.
+	*/
 	public entry fun Send_Mercy (
 		estate_flourisher : & signer,
 		to_spot : address,
 		mercy_to_send : u256
-	) acquires Mercy_Harvest  {
+	) acquires Mercy_Harvest {
+		
+		/*
+			Check that the estates have 
+			joined the mercy harvest.
+		*/
 		let origin_spot = signer::address_of (estate_flourisher);
 		if (has_estate (origin_spot) != utf8 (b"yup")) { abort 89319 };
 		if (has_estate (to_spot) != utf8 (b"yup")) { abort 89320 };
 		
-		// let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
-		// let visiwa = &mut le_mercy_harvest.visiwa;
 		
+		
+		/*
+			Check that the "origin" estate has enough mercy
+			to send to the "to" estate.		
+		*/
 		let origin_mercy_amount = ask_estate_mercy_amount (origin_spot);
 		let to_mercy_amount = ask_estate_mercy_amount (to_spot);
 		if (mercy_to_send > origin_mercy_amount) {
 			abort Origin_kisiwa_does_not_have_enough_mercy
 		};
 		
+		
+		/*
+			Subtract mercy from 
+			the origin estate.
+		*/
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
 		let origin_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.visiwa, & origin_spot);
 		Merci_Kisiwa::sub_mercy (origin_kisiwa, mercy_to_send);
 		
 		
+		/*
+			Add mercy to 
+			the "to" estate.
+		*/
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
 		let to_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.visiwa, & to_spot);
 		Merci_Kisiwa::add_mercy (to_kisiwa, mercy_to_send);
