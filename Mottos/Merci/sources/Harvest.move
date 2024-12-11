@@ -9,7 +9,7 @@
 			// 	This is for send protection
 			//	so that a person can send directly.
 			//
-			attempts: []
+			presents: []
 		}
 
 */
@@ -110,24 +110,33 @@ module ride_1::Merci_Harvest {
 		let party_1_mercy_volume : u256 = ask_for_party_mercy_volume (party_1_spot);
 		
 		
-		let le_harvest = borrow_global<Harvest>(Novelist_spot);
+		let le_harvest = borrow_global_mut<Harvest>(Novelist_spot);
 		let parties = & le_harvest.parties;
-		let parties_turnout = vector::length (parties);
-		
+		let number_of_parties = vector::length (parties);
+		let presents = &mut le_harvest.presents;
+		let number_of_presents = vector::length (presents);
 		
 		let party_1_noticed = b"no";
-		for (index_1 in 0..parties_turnout) {
+		let party_1;
+		for (index_1 in 0..number_of_parties) {
 			let party = vector::borrow (parties, index_1);
 			
 			if (Merci_Parties::retrieve_spot (party) == party_1_spot) {
 				party_1_noticed = b"yup";
+				party_1 = party;
 				break;
 			}
 		};
 		
+		/*
 		if (party_1_noticed == b"yup") {
-			
+			for (index_1 in 0..number_of_presents) {
+				let present = vector::borrow_mut (presents, index_1);
+				
+				
+			};
 		};
+		*/
 		
 	}
 	

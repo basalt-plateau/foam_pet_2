@@ -2,13 +2,13 @@
 /*
 	presents
 
-	present: [
-		Tote {
+	presents: [
+		present {
 			origin_address : address,
 			mercy : u256
 		},
 		...
-		Tote {
+		present {
 			origin_address : address,
 			mercy : u256
 		}		
@@ -44,7 +44,7 @@ module ride_1::Merci_Presents {
 			mercy_volume
 		);	
 	*/
-	struct Present has store {
+	struct Present has store, drop {
 		origin_address : address,
 		mercy : u256
 	}
@@ -61,5 +61,10 @@ module ride_1::Merci_Presents {
 		}
 	}	
 
-	
+	public fun add_present (
+		presents : &mut vector<Present>,
+		present : Present
+	) {
+		vector::push_back (presents, present);
+	}
 }
