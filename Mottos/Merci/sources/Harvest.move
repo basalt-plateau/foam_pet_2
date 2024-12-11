@@ -83,10 +83,18 @@ module ride_1::Merci_Harvest {
 
 
 	
+	public entry fun join_harvest (estate_flourisher : & signer) acquires Harvest {
+		let le_harvest = borrow_global_mut<Harvest>(Novelist_spot);
+		let parties = &mut le_harvest.parties;
+		
+		let estate_spot = signer::address_of (estate_flourisher);
+		
+		let mercy : u256 = 0;
+		let le_party = Merci_Parties::organize_party (estate_spot, mercy);
+		Merci_Parties::add_a_party (parties, le_party);
+	}
 	
-
 	
-	public entry fun join_harvest () {}
 	public entry fun leave_harvest () {}
 	
 	
@@ -97,25 +105,35 @@ module ride_1::Merci_Harvest {
 		let parties_turnout = vector::length (parties);
 		
 		for (index_1 in 0..parties_turnout) {
+			let party = vector::borrow (parties, index_1);
 			
+			if (Merci_Parties::retrieve_spot (party) == estate_spot) {
+				return utf8 (b"yup")
+			}
 		};
-		
-		/*
-		let has_estate = simple_map::contains_key (parties, & estate_spot);
-		if (has_estate) {
-			return utf8 (b"yup")
-		};
-		*/
 		
 		utf8 (b"no")
 	}
 	
 	#[view]
-	public fun ask_for_party_mercy_volume (estate_spot : address) : u256 {
-		let mercy_volume : u256 = 0;
-		mercy_volume
+	public fun ask_for_party_mercy_volume (estate_spot : address) : u256 acquires Harvest {
+		let le_harvest = borrow_global<Harvest>(Novelist_spot);
+		let parties = & le_harvest.parties;
+		let parties_turnout = vector::length (parties);
+		
+		for (index_1 in 0..parties_turnout) {
+			let party = vector::borrow (parties, index_1);
+			
+			if (Merci_Parties::retrieve_spot (party) == estate_spot) {
+				return Merci_Parties::retrieve_mercy (party)
+			}
+		};
+		
+		abort 1
 	}
-
+	
+	
+	
 
 	
 	

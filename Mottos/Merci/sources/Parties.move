@@ -19,7 +19,7 @@ module ride_1::Merci_Parties {
 		);	
 	*/
 	struct Party has store, drop {
-		address : address,
+		spot : address,
 		mercy : u256
 	}
 
@@ -34,12 +34,19 @@ module ride_1::Merci_Parties {
 	/*
 		le_party = Merci_Parties::organize_party (address, mercy);
 	*/
-	public fun organize_party (address : address, mercy : u256) : Party {
+	public fun organize_party (spot : address, mercy : u256) : Party {
 		Party {
-			address : address,
+			spot : spot,
 			mercy : mercy
 		}
 	}	
+
+    public fun retrieve_spot (party: &Party) : address {
+        party.spot
+    }
+	public fun retrieve_mercy (party: &Party) : u256 {
+        party.mercy
+    }
 
 
 	/*
@@ -74,6 +81,7 @@ module ride_1::Merci_Parties {
 		
 		let party_ref = vector::borrow (parties, 0);
 		party_ref.mercy
+
 	}
 	
 

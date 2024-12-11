@@ -47,11 +47,18 @@ module ride_1::Merci_Steady_1 {
 		*/
 		let mercyverse : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
 		Merci_Harvest::establish_harvest (& estate_1_flourisher, mercyverse);
-		if (Merci_Harvest::is_party_at_harvest (estate_1_spot) != utf8 (b"yup")) { abort 89319 };
-		// if (Merci_Harvest::party_mercy_volume (estate_1_spot) != mercyverse) { abort 89320 };
+		if (Merci_Harvest::is_party_at_harvest (estate_1_spot) != utf8 (b"yup")) { abort 1 };
+		if (Merci_Harvest::ask_for_party_mercy_volume (estate_1_spot) != mercyverse) { abort 2 };
 		
 		
-		
+		/*
+			Joining:
+				Estate 2
+				Estate 3		
+		*/
+		Merci_Harvest::join_harvest (& estate_2_flourisher);
+		if (Merci_Harvest::is_party_at_harvest (estate_2_spot) != utf8 (b"yup")) { abort 89321 };
+		if (Merci_Harvest::ask_for_party_mercy_volume (estate_2_spot) != 0) { abort 89322 };
 	}
 }
 
