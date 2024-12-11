@@ -103,16 +103,33 @@ module ride_1::Merci_Harvest {
 		party 1 mercy -> party 2 presents
 	*/
 	public entry fun present_mercy (
-		estate_1_flourisher : & signer,
-		estate_spot : address
+		party_1_flourisher : & signer,
+		party_2_spot : address
 	) acquires Harvest {
-		let estate_1_spot = signer::address_of (estate_1_flourisher);	
-		let party_1_mercy_volume : u256 = ask_for_party_mercy_volume (estate_1_spot);
+		let party_1_spot = signer::address_of (party_1_flourisher);	
+		let party_1_mercy_volume : u256 = ask_for_party_mercy_volume (party_1_spot);
 		
 		
+		let le_harvest = borrow_global<Harvest>(Novelist_spot);
+		let parties = & le_harvest.parties;
+		let parties_turnout = vector::length (parties);
+		
+		
+		let party_1_noticed = b"no";
+		for (index_1 in 0..parties_turnout) {
+			let party = vector::borrow (parties, index_1);
+			
+			if (Merci_Parties::retrieve_spot (party) == party_1_spot) {
+				party_1_noticed = b"yup";
+				break;
+			}
+		};
+		
+		if (party_1_noticed == b"yup") {
+			
+		};
 		
 	}
-	
 	
 
 	
