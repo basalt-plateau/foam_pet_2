@@ -30,14 +30,15 @@
 
 module ride::Pergola_Taffoni {
 	
-	use std::debug;
+	// use std::debug;
 	use std::string::{ String, utf8 };
 	use std::signer;
-	use std::string_utils;
-	use aptos_std::table::{Self, Table};
+	// use std::string_utils;
+	use aptos_std::table::{ Self, Table};
 	
-	use aptos_framework::coin::{ Self, Coin, CoinStore };
-	use aptos_framework::aptos_coin::{ AptosCoin, Self };
+	// use aptos_framework::coin::{ Self, Coin, CoinStore };	
+	use aptos_framework::coin::{ Self, Coin };
+	use aptos_framework::aptos_coin::{ AptosCoin };
 	
 	use ride::Loft;
 	use ride::Quarry_u64;

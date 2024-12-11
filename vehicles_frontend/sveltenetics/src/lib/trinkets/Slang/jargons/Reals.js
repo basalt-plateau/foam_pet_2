@@ -4,10 +4,11 @@ const blockchain = {
 	//			
 	//	Map		
 	//	[ Dream, Story, Note ]	
+	//	Roadmap
+	//	Multiverse, song, fest, gala
 	//			
-	"blockchain": "socreboard",
-	"Blockchain": "Scoreboard",
-	
+	"blockchain": "gala",
+	"Blockchain": "Gala",
 	
 	"Block": "Turn",
 	"block": "turn",
@@ -143,15 +144,16 @@ const consensus = {
 	//	Maintenance, Leaders, Care,
 	//	Theater, Fest
 	//
+	//	Gala, Banquet, Chaperones
+	//
 	"consensus": "chaperones",
 	"Consensus": "Chaperones",
 	
 	//
+	//	Pet, Structure, Satellite, Base, Habitat, Terminal
+	//	Venue	
 	//
-	//	Pet
-	//
-	//
-	"Node": "Node"
+	"Node": "Satellite"
 }
 
 

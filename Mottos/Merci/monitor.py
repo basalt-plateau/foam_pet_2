@@ -19,10 +19,15 @@ estate_3 = {
 	"legacy address": "8F61659675B8040A55513F441DA2D6F039A2188A49F7ADA69E9C7FBD4A952C7E"
 }
 
+filter = ""
+filter = "--filter Merci_Tienda_Steady_1"
+filter = "--filter Merci_Steady_1"
+
 Merci = " ".join ([
 	"cd /Metro/Mottos/Merci",
 	"&&",
 	"aptos move test",
+	filter,
 	f"""--named-addresses 'ride_1={ estate_1 ["legacy address"] }, ride_2={ estate_2 ["legacy address"] }, ride_3={ estate_3 ["legacy address"] }'"""
 ])
 

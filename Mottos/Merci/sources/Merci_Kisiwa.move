@@ -1,4 +1,10 @@
 
+
+/*
+	This is the Kisiwa that is added to the harvest.
+	
+	
+*/
 /*
 	Establish
 	Change Mercy amount
@@ -9,6 +15,7 @@
 module ride_1::Merci_Kisiwa {
 	
 	use std::string::{ String };
+	use std::vector;
 	
 	use ride_1::Merci_Bayanihan;
 	
@@ -16,21 +23,35 @@ module ride_1::Merci_Kisiwa {
 	const Kisiwa_does_not_have_enough_mercy : u64 = 2;
 	
 	friend ride_1::Merci_Harvest;
+	friend ride_1::Merci_Tienda;
 	
 	#[view]
 	public fun Bayanihan () : String {
 		Merci_Bayanihan::Bayanihan ()
 	}	
 	
+	/*
+		Kisiwa:
+		
+			mercy:
+			
+			
+			steadies:
+				These are the Kisiwas that are allowed
+				to direct send mercy to this Kisiwa.
+		
+	*/
 	struct Kisiwa has store, drop {
-		mercy : u256
+		mercy : u256,
+		steadies : vector<address>
 	}
 	
 	public fun Establish_a_Kisiwa (
 		mercy : u256
 	) : Kisiwa {
 		Kisiwa {
-			mercy : mercy 
+			mercy : mercy,
+			steadies : vector::empty<address>()
 		}		
 	}
 	
@@ -61,17 +82,18 @@ module ride_1::Merci_Kisiwa {
 		kisiwa.mercy = kisiwa.mercy + amount;
 	}
 	
+	
+	/*
+		This might not work.
+			Kisiwa::send_mercy ()
+	*/
 	public (friend) fun send_mercy (
 		origin_kisiwa : &mut Kisiwa,
 		to_kisiwa : &mut Kisiwa,
 		amount : u256
 	) {
-		let origin_kisiwa_mercy : u256 = origin_kisiwa.mercy;
-		if (amount > origin_kisiwa_mercy) {
-			abort Origin_kisiwa_does_not_have_enough_mercy
-		};
-		
-		to_kisiwa.mercy = to_kisiwa.mercy + origin_kisiwa_mercy;
+		sub_mercy (origin_kisiwa, amount);
+		add_mercy (to_kisiwa, amount);
 	}
 
 	

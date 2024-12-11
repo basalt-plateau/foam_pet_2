@@ -21,4 +21,5 @@ play = " ".join ([
 
 print ("play: ", play)
 
-os.system (play)
+if __name__ == "__main__":
+	os.system (play)

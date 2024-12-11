@@ -9,7 +9,7 @@
 		
 */
 
-module ride::Tholvi_Earth {
+module ride::Tholvi_Planet_3 {
 	use std::string::{ String, utf8 };
 	
 	use aptos_framework::timestamp;
@@ -37,7 +37,7 @@ module ride::Tholvi_Earth {
 			1000000 * 60 * 60 * 24 = 86400000000
 	*/
 	#[view]
-	public fun A (
+	public fun microseconds_after_synodic_rotations (
 		synodic_rotations : u64
 	) : u64 {		
 		let after = 86400000000 * synodic_rotations;
@@ -51,11 +51,35 @@ module ride::Tholvi_Earth {
 		microseconds + after
 	}
 	
+	
+	/*
+		Epoch IX:
+			Tholvi_3::Epoch_IX_microseconds ()
+	*/
 	#[view]
-	public fun ask_for_microseconds () : u64 {		
-		let microseconds : u64 = timestamp::now_microseconds ();
-		microseconds
+	public fun Epoch_IX_microseconds () : u64 {		
+		timestamp::now_microseconds ()
 	}
+	
+	/*
+		Epoch IX:
+			Tholvi_3::Epoch_IX_microseconds_after_synodic_rotations (1)
+	*/
+	#[view]
+	public fun Epoch_IX_microseconds_after_synodic_rotations (
+		synodic_rotations : u64
+	) : u64 {		
+		let after = 86400000000 * synodic_rotations;
+		let microseconds : u64 = timestamp::now_microseconds ();
+		
+		let proceeds : String = Quarry_u64::can_increase (microseconds, after);
+		if (proceeds != utf8 (b"yes")) {
+			abort 57283
+		};
+		
+		microseconds + after
+	}
+
 	
 }
 
