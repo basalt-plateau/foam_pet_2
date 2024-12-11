@@ -1,14 +1,14 @@
 
 /*
-	presents
+	gifts
 
-	presents: [
-		present {
+	gifts: [
+		gift {
 			origin_address : address,
 			mercy : u256
 		},
 		...
-		present {
+		gift {
 			origin_address : address,
 			mercy : u256
 		}		
@@ -32,7 +32,7 @@
 		//
 		Tote.at_turn
 */
-module ride_1::Merci_Presents {
+module ride_1::Merci_Gifts {
 	
 	
 	use std::vector;
@@ -44,27 +44,27 @@ module ride_1::Merci_Presents {
 			mercy_volume
 		);	
 	*/
-	struct Present has store, drop {
+	struct Gift has store, drop {
 		origin_address : address,
 		mercy : u256
 	}
 	
 	
-	public fun organize_presents () : vector<Present> {
-		vector::empty<Present>()
+	public fun organize_gifts () : vector<Gift> {
+		vector::empty<Gift>()
 	}
 	
-	public fun organize_present (origin_address : address, mercy_volume : u256) : Present {
-		Present {
+	public fun organize_gift (origin_address : address, mercy_volume : u256) : Gift {
+		Gift {
 			origin_address : origin_address,
 			mercy : mercy_volume
 		}
 	}	
 
-	public fun add_present (
-		presents : &mut vector<Present>,
-		present : Present
+	public fun add_gift (
+		gifts : &mut vector<Gift>,
+		gift : Gift
 	) {
-		vector::push_back (presents, present);
+		vector::push_back (gifts, gift);
 	}
 }

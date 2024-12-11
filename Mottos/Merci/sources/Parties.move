@@ -11,7 +11,7 @@ module ride_1::Merci_Parties {
 	
 	use std::vector;
 	
-	use ride_1::Merci_Presents;
+	use ride_1::Merci_Gifts;
 	
 	/*
 		let Tote = Merci_Harbor::organize_Tote (
@@ -22,7 +22,7 @@ module ride_1::Merci_Parties {
 	struct Party has store, drop {
 		spot : address,
 		mercy : u256,
-		presents: vector<Merci_Presents::Present>
+		gifts: vector<Merci_Gifts::Gift>
 	}
 
 	/*
@@ -40,7 +40,7 @@ module ride_1::Merci_Parties {
 		Party {
 			spot: spot,
 			mercy: mercy,
-			presents: vector::empty<Merci_Presents::Present>()
+			gifts: vector::empty<Merci_Gifts::Gift>()
 		}
 	}	
 

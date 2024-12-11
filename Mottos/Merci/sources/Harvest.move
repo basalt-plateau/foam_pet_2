@@ -9,7 +9,7 @@
 			// 	This is for send protection
 			//	so that a person can send directly.
 			//
-			presents: []
+			gifts: []
 		}
 
 */
@@ -41,7 +41,7 @@ module ride_1::Merci_Harvest {
 	use ride_1::Merci_Bayanihan;
 	use ride_1::Merci_Ship;
 	use ride_1::Merci_Ship::{ Ship };
-	use ride_1::Merci_Presents;
+	use ride_1::Merci_Gifts;
 	use ride_1::Merci_Parties;
 	
 	const Novelist_spot : address = @0x150755A53B2FD604F5072BDF22C2F1DCA1D9D730D1AFAF460A3D8C8E16528C5F;
@@ -53,7 +53,7 @@ module ride_1::Merci_Harvest {
 
 	struct Harvest has key {
 		parties: vector<Merci_Parties::Party>,
-		presents: vector<Merci_Presents::Present>
+		gifts: vector<Merci_Gifts::Gift>
 	}
 	
 	public fun search_novelist_spot () : address {
@@ -71,11 +71,11 @@ module ride_1::Merci_Harvest {
 		let le_party = Merci_Parties::organize_party (estate_1_spot, mercyverse);
 		Merci_Parties::add_a_party (&mut parties, le_party);
 		
-		let presents = Merci_Presents::organize_presents ();
+		let gifts = Merci_Gifts::organize_gifts ();
 		
 		let le_mercy_harvest = Harvest { 
 			parties: parties,
-			presents: presents
+			gifts: gifts
 		};
 		
 		move_to<Harvest>(estate_flourisher, le_mercy_harvest)
@@ -100,9 +100,9 @@ module ride_1::Merci_Harvest {
 	
 	
 	/*
-		party 1 mercy -> party 2 presents
+		party 1 mercy -> party 2 gifts
 	*/
-	public entry fun present_mercy (
+	public entry fun gift_mercy (
 		party_1_flourisher : & signer,
 		party_2_spot : address
 	) acquires Harvest {
@@ -113,8 +113,8 @@ module ride_1::Merci_Harvest {
 		let le_harvest = borrow_global_mut<Harvest>(Novelist_spot);
 		let parties = & le_harvest.parties;
 		let number_of_parties = vector::length (parties);
-		let presents = &mut le_harvest.presents;
-		let number_of_presents = vector::length (presents);
+		let gifts = &mut le_harvest.gifts;
+		let number_of_gifts = vector::length (gifts);
 		
 		let party_1_noticed = b"no";
 		let party_1;
@@ -130,8 +130,8 @@ module ride_1::Merci_Harvest {
 		
 		/*
 		if (party_1_noticed == b"yup") {
-			for (index_1 in 0..number_of_presents) {
-				let present = vector::borrow_mut (presents, index_1);
+			for (index_1 in 0..number_of_gifts) {
+				let gift = vector::borrow_mut (gifts, index_1);
 				
 				
 			};

@@ -67,7 +67,7 @@ module ride_1::Merci_Steady_1 {
 		
 		/*
 			Send: 
-				Estate 1 Party -> Estate 2 Presents
+				Estate 1 Party -> Estate 2 Gifts
 		*/
 		let mercy_to_send : u256 = 1000000000000000000000000000000000000000000000000000000000000000000000000000;
 		let expected_estate_1_mercy_after_send : u256 = 9000000000000000000000000000000000000000000000000000000000000000000000000000;
