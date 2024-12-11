@@ -3,15 +3,6 @@
 	Structure:
 	
 		Harvest {
-			parties: {
-				address_1 : Ship {
-					mercy : mercy
-				},
-				address_2 : Ship
-				...
-				address_last : Ship			
-			},
-			
 			parties: [],
 			
 			//
@@ -43,6 +34,7 @@ module ride_1::Merci_Harvest {
 	
 	use std::string::{ String, utf8 };
 	use std::signer;
+	use std::vector;
 	
 	use aptos_std::simple_map::{Self, SimpleMap};
 	
@@ -50,6 +42,7 @@ module ride_1::Merci_Harvest {
 	use ride_1::Merci_Ship;
 	use ride_1::Merci_Ship::{ Ship };
 	use ride_1::Merci_Harbor;
+	use ride_1::Merci_Parties;
 	
 	const Novelist_spot : address = @0x150755A53B2FD604F5072BDF22C2F1DCA1D9D730D1AFAF460A3D8C8E16528C5F;
 	
@@ -61,7 +54,7 @@ module ride_1::Merci_Harvest {
 	}	
 
 	struct Mercy_Harvest has key {
-		parties: SimpleMap<address, Ship>,
+		parties: vector<Merci_Parties::Party>,
 		harbor: SimpleMap<address, Merci_Harbor::Tote>,
 	}
 	
@@ -78,8 +71,10 @@ module ride_1::Merci_Harvest {
 		
 		let kisiwa = Merci_Ship::Establish_a_Ship (mercyverse);
 
-		let parties = simple_map::create<address, Ship>();
-        simple_map::add (&mut parties, estate_1_spot, kisiwa);
+		// let parties = simple_map::create<address, Ship>();
+        // simple_map::add (&mut parties, estate_1_spot, kisiwa);
+		
+		let parties = Merci_Parties::organize_parties ();
 		
 		let le_mercy_harvest = Mercy_Harvest { 
 			parties : parties,

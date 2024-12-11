@@ -2,10 +2,11 @@
 
 
 /*
-	parties: []
+	parties: vector::empty<Party>()
+	parties: vector<Merci_Parties::Party>
 */
 
-module ride_1::Merci_Venue {
+module ride_1::Merci_Parties {
 	
 	
 	use std::vector;
@@ -26,20 +27,27 @@ module ride_1::Merci_Venue {
 		parties: vector<Party>
 	}
 	
-	public fun organize_parties () : Harbor {
-		Venue {
-			parties: vector::empty<Party>()
-		}
+	/*
+		Merci_Venue::organize_parties ();
+	*/
+	public fun organize_parties () : vector<Party> {
+		vector::empty<Party>()
 	}
-	
+
 	public fun organize_party (
 		address : address, 
 		mercy : u256
-	) : Tote {
+	) : Party {
 		Party {
 			address : address,
 			mercy : mercy
 		}
 	}	
+	
+	public fun add_a_party (
+		
+	) {
+		
+	}
 
 }
