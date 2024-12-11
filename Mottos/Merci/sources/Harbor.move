@@ -1,20 +1,12 @@
 
 /*
 	harbor: [
-		Shipment {
+		Tote {
 			origin_address : address,
 			mercy : u256
 		},
-		Shipment {
-			origin_address : address,
-			mercy : u256
-		},
-		Shipment {
-			origin_address : address,
-			mercy : u256
-		}
 		...
-		Shipment {
+		Tote {
 			origin_address : address,
 			mercy : u256
 		}		
@@ -31,7 +23,7 @@
 		//  the turn (block) that the shipment 
 		// 	was added to the harbor
 		//
-		Shipment.at_turn
+		Tote.at_turn
 */
 module ride_1::Merci_Harbor {
 	
@@ -45,23 +37,23 @@ module ride_1::Merci_Harbor {
 			mercy_volume
 		);	
 	*/
-	struct Shipment has store {
+	struct Tote has store {
 		origin_address : address,
 		mercy : u256
 	}
 	
 	struct Harbor has store {
-		shipments: vector<Shipment>
+		shipments: vector<Tote>
 	}
 	
 	public fun organize_harbor () : Harbor {
 		Harbor {
-			shipments: vector::empty<Shipment>()
+			shipments: vector::empty<Tote>()
 		}
 	}
 	
-	public fun organize_shipment (origin_address : address, mercy_volume : u256) : Shipment {
-		Shipment {
+	public fun organize_shipment (origin_address : address, mercy_volume : u256) : Tote {
+		Tote {
 			origin_address : origin_address,
 			mercy : mercy_volume
 		}

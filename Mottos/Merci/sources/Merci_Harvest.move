@@ -3,40 +3,22 @@
 	Structure:
 	
 		Harvest {
-			visiwa: {
-				address_1 : Kisiwa {
+			parties: {
+				address_1 : Ship {
 					mercy : mercy
 				},
-				address_2 : Kisiwa
-				address_3 : Kisiwa
-				address_4 : Kisiwa				
+				address_2 : Ship
 				...
-				address_last : Kisiwa			
+				address_last : Ship			
 			},
+			
+			parties: [],
 			
 			//
 			// 	This is for send protection
 			//	so that a person can send directly.
 			//
-			harbor: [
-				Shipment {
-					origin_address : address,
-					mercy : u256
-				},
-				Shipment {
-					origin_address : address,
-					mercy : u256
-				},
-				Shipment {
-					origin_address : address,
-					mercy : u256
-				}
-				...
-				Shipment {
-					origin_address : address,
-					mercy : u256
-				}		
-			}
+			harbor: []
 		}
 
 */
@@ -65,8 +47,8 @@ module ride_1::Merci_Harvest {
 	use aptos_std::simple_map::{Self, SimpleMap};
 	
 	use ride_1::Merci_Bayanihan;
-	use ride_1::Merci_Kisiwa;
-	use ride_1::Merci_Kisiwa::{ Kisiwa };
+	use ride_1::Merci_Ship;
+	use ride_1::Merci_Ship::{ Ship };
 	use ride_1::Merci_Harbor;
 	
 	const Novelist_spot : address = @0x150755A53B2FD604F5072BDF22C2F1DCA1D9D730D1AFAF460A3D8C8E16528C5F;
@@ -77,25 +59,10 @@ module ride_1::Merci_Harvest {
 	public fun Bayanihan () : String {
 		Merci_Bayanihan::Bayanihan ()
 	}	
-	
-	
-	/*
-		let shipment = Shipment {
-			origin_address : origin_address,
-			mercy : 0
-		}	
-	
-	
-	struct Shipment has store {
-		origin_address : address,
-		mercy : u256
-	}
-	*/
-	
 
 	struct Mercy_Harvest has key {
-		visiwa: SimpleMap<address, Kisiwa>,
-		harbor: SimpleMap<address, Merci_Harbor::Shipment>,
+		parties: SimpleMap<address, Ship>,
+		harbor: SimpleMap<address, Merci_Harbor::Tote>,
 	}
 	
 	public fun search_novelist_spot () : address {
@@ -109,14 +76,14 @@ module ride_1::Merci_Harvest {
 		let estate_1_spot = signer::address_of (estate_flourisher);
 		if (estate_1_spot != Novelist_spot) { abort 9502 };
 		
-		let kisiwa = Merci_Kisiwa::Establish_a_Kisiwa (mercyverse);
+		let kisiwa = Merci_Ship::Establish_a_Ship (mercyverse);
 
-		let visiwa = simple_map::create<address, Kisiwa>();
-        simple_map::add (&mut visiwa, estate_1_spot, kisiwa);
+		let parties = simple_map::create<address, Ship>();
+        simple_map::add (&mut parties, estate_1_spot, kisiwa);
 		
 		let le_mercy_harvest = Mercy_Harvest { 
-			visiwa : visiwa,
-			harbor : simple_map::create<address, Merci_Harbor::Shipment>()
+			parties : parties,
+			harbor : simple_map::create<address, Merci_Harbor::Tote>()
 		};
 		
 		move_to<Mercy_Harvest>(estate_flourisher, le_mercy_harvest)
@@ -125,9 +92,9 @@ module ride_1::Merci_Harvest {
 	#[view]
 	public fun has_estate (estate_spot : address) : String acquires Mercy_Harvest {
 		let le_mercy_harvest = borrow_global<Mercy_Harvest>(Novelist_spot);
-		let visiwa = & le_mercy_harvest.visiwa;
+		let parties = & le_mercy_harvest.parties;
 		
-		let has_estate = simple_map::contains_key (visiwa, & estate_spot);
+		let has_estate = simple_map::contains_key (parties, & estate_spot);
 		if (has_estate) {
 			return utf8 (b"yup")
 		};
@@ -138,11 +105,11 @@ module ride_1::Merci_Harvest {
 	#[view]
 	public fun ask_estate_mercy_amount (estate_spot : address) : u256 acquires Mercy_Harvest {
 		let le_mercy_harvest = borrow_global<Mercy_Harvest>(Novelist_spot);
-		let visiwa = & le_mercy_harvest.visiwa;
+		let parties = & le_mercy_harvest.parties;
 		
-		let kisiwa = simple_map::borrow (visiwa, & estate_spot);
+		let kisiwa = simple_map::borrow (parties, & estate_spot);
 
-		Merci_Kisiwa::mercy_amount_from_kisiwa (kisiwa)
+		Merci_Ship::mercy_amount_from_kisiwa (kisiwa)
 	}
 	
 
@@ -154,12 +121,12 @@ module ride_1::Merci_Harvest {
 		if (has_estate (estate_spot) == utf8 (b"yup")) { abort 89319 };
 		
 		let mercy : u256 = 0;
-		let le_kisiwa = Merci_Kisiwa::Establish_a_Kisiwa (mercy);
+		let le_kisiwa = Merci_Ship::Establish_a_Ship (mercy);
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
 		
-		let visiwa = &mut le_mercy_harvest.visiwa;
+		let parties = &mut le_mercy_harvest.parties;
 		
-		simple_map::add (visiwa, estate_spot, le_kisiwa);
+		simple_map::add (parties, estate_spot, le_kisiwa);
 	}
 	
 	public entry fun Leave_the_Mercy_Harvest (estate_flourisher : & signer) acquires Mercy_Harvest  {
@@ -167,16 +134,16 @@ module ride_1::Merci_Harvest {
 		if (has_estate (estate_spot) != utf8 (b"yup")) { abort 89319 };
 		
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
-		let visiwa = &mut le_mercy_harvest.visiwa;
+		let parties = &mut le_mercy_harvest.parties;
 		
-		simple_map::remove (visiwa, & estate_spot);
+		simple_map::remove (parties, & estate_spot);
 	}
 
 
 	/*
 	public (friend) fun send_mercy_to_harbor (
-		from_kisiwa : &mut Kisiwa,
-		to_harbor : &mut Kisiwa,
+		from_kisiwa : &mut Ship,
+		to_harbor : &mut Ship,
 		amount : u256
 	) {
 		//
@@ -243,8 +210,8 @@ module ride_1::Merci_Harvest {
 			the origin estate.
 		*/
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
-		let origin_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.visiwa, & origin_spot);
-		Merci_Kisiwa::sub_mercy (origin_kisiwa, mercy_to_send);
+		let origin_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.parties, & origin_spot);
+		Merci_Ship::sub_mercy (origin_kisiwa, mercy_to_send);
 		
 		
 		/*
@@ -252,8 +219,8 @@ module ride_1::Merci_Harvest {
 			the "to" estate.
 		*/
 		let le_mercy_harvest = borrow_global_mut<Mercy_Harvest>(Novelist_spot);
-		let to_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.visiwa, & to_spot);
-		Merci_Kisiwa::add_mercy (to_kisiwa, mercy_to_send);
+		let to_kisiwa = simple_map::borrow_mut (&mut le_mercy_harvest.parties, & to_spot);
+		Merci_Ship::add_mercy (to_kisiwa, mercy_to_send);
 		
 		
 		/*
@@ -261,7 +228,7 @@ module ride_1::Merci_Harvest {
 			the "to" estate harbor.
 			
 			harbor: {
-				address_1 : Shipment {
+				address_1 : Tote {
 					origin_address : address,
 					mercy : u256
 				}

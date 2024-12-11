@@ -45,19 +45,6 @@ module ride_1::Merci_Steady_1 {
 			Establishing:
 				Estate 1		
 		*/
-		/*
-			1.157 * 10^76
-
-			76: 10,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000
-				10000000000000000000000000000000000000000000000000000000000000000000000000000
-
-			75: 1,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000
-		
-			50: 1,00000,00000,00000,00000,00000,00000,00000,00000,00000,00000
-		
-			25: 1,00000,00000,00000,00000,00000		
-				10000000000000000000000000	
-		*/
 		let mercyverse : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
 		Merci_Harvest::Establish_the_Mercy_Harvest (& estate_1_flourisher, mercyverse);
 		if (Merci_Harvest::has_estate (estate_1_spot) != utf8 (b"yup")) { abort 89319 };
@@ -92,6 +79,13 @@ module ride_1::Merci_Steady_1 {
 		if (Merci_Harvest::ask_estate_mercy_amount (estate_2_spot) != mercy_to_send) { abort 89323 };
 		if (Merci_Harvest::ask_estate_mercy_amount (estate_1_spot) != expected_estate_1_mercy_after_send) { abort 89324 };
 
+
+		/*
+			Send to harbor:
+				Estate 1 -> Estate 2 Harbor
+		*/
+		let mercy_to_send : u256 = 1000000000000000000000000000000000000000000000000000000000000000000000000000;
+		
 
 		/*
 			Leave:

@@ -27,6 +27,7 @@ Merci = " ".join ([
 	"cd /Metro/Mottos/Merci",
 	"&&",
 	"aptos move test",
+	"--ignore-compile-warnings",
 	filter,
 	f"""--named-addresses 'ride_1={ estate_1 ["legacy address"] }, ride_2={ estate_2 ["legacy address"] }, ride_3={ estate_3 ["legacy address"] }'"""
 ])
