@@ -81,7 +81,6 @@ module ride_1::Merci_Harvest {
 		move_to<Harvest>(estate_flourisher, le_mercy_harvest)
 	}
 
-
 	
 	public entry fun join_harvest (estate_flourisher : & signer) acquires Harvest {
 		let le_harvest = borrow_global_mut<Harvest>(Novelist_spot);
@@ -96,6 +95,26 @@ module ride_1::Merci_Harvest {
 	
 	
 	public entry fun leave_harvest () {}
+	
+	
+	
+	
+	/*
+		party 1 mercy -> party 2 presents
+	*/
+	public entry fun present_mercy (
+		estate_1_flourisher : & signer,
+		estate_spot : address
+	) acquires Harvest {
+		let estate_1_spot = signer::address_of (estate_1_flourisher);	
+		let party_1_mercy_volume : u256 = ask_for_party_mercy_volume (estate_1_spot);
+		
+		
+		
+	}
+	
+	
+
 	
 	
 	#[view]
