@@ -30,7 +30,15 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 		"
 		class="card p-4 variant-soft-surface"
 	>
-		<img src={ pets } alt="Machines" />
+		<img 
+			src={ pets } 
+			alt="pets"
+			
+			style="
+				border-radius: 14px;
+				border: 4px solid yellow;
+			"
+		/>
 	</div>
 
 	<div style="height: 0.25cm" />
