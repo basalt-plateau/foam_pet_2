@@ -36,7 +36,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 			
 			style="
 				border-radius: 14px;
-				border: 4px solid yellow;
+				border: 4px solid rgba(var(--color-primary-500));
 			"
 		/>
 	</div>
