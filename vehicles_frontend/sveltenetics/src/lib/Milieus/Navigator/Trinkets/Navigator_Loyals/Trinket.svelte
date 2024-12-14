@@ -77,6 +77,25 @@ const build = () => {
 			පැතිරීම
 */
 
+/*
+	Harvests:
+		သီးနှံမျာ
+*/
+
+const Harvests = {
+	Greek: (
+		"θερισμός"
+	)
+}
+
+const Flourishes = {
+	Burmese: (
+		"ဖွံ့ဖြိုးတိုးတက်သည်"
+	)
+};
+
+
+
 </script>
 
 
@@ -100,20 +119,34 @@ const build = () => {
 		style={ buttons_styles }
 	/>
 	<Milieus_Button
-		name={ "Accounts" }
+		name={ Harvests.Greek }
 		location={[ "Loyals", "Accounts" ]}
 		is_open_location={[ "Loyals", "Accounts" ]}
 		
 		style={ buttons_styles }
 	/>
+	
 	<Milieus_Button
-		name={ "Signatures" }
+		name={ Flourishes.Burmese }
+		
+		location={[ "Loyals", "Signatures" ]}
+		is_open_location={[ "Loyals", "Signatures" ]}
+		
+		style={ buttons_styles }
+	/>
+	
+	<!--
+	<Milieus_Button
+		name={ Flourishes.Burmese }
+		
 		location={[ "Loyals", "Signatures" ]}
 		is_open_location={[ "Loyals", "Signatures" ]}
 		component={ Flourishes_Component }
 		
 		style={ buttons_styles }
 	/>
+	-->
+	
 	{/if}
 </div>
 {/if}
