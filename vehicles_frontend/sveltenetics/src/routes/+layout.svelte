@@ -42,6 +42,8 @@ import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck
 
 
 
+import Cow from "$lib/trinkets/Cow/Trinket.svelte"
+
 
 ///
 //
@@ -187,6 +189,8 @@ beforeUpdate (async () => {
 				width: 100%;
 			"
 		>
+			<Cow />
+		
 			<Navigator_Foundation />	
 		</div>
 		

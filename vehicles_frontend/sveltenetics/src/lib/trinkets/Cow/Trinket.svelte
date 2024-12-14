@@ -1,0 +1,129 @@
+
+
+<script>
+
+import { fade } from 'svelte/transition';
+
+const Cow = '/pictures/Cow.svg';
+
+let show_dialogue = "no"
+let chat_timeout;
+
+let cow_clicked = () => {
+	console.log ("cow_clicked");
+	show_dialogue = "yes"
+	
+	clearTimeout (chat_timeout);
+	chat_timeout = setTimeout (() => {
+		show_dialogue = "no"
+	}, 5000);
+}
+
+
+</script>
+
+
+<style>
+
+
+</style>
+
+
+
+<div
+	style="
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		
+		width: 100%;
+
+		border-radius: 50%;
+		
+		cursor: pointer;
+	"
+>
+	{#if show_dialogue === "yes" }
+	<div
+		transition:fade
+		style="
+			position: absolute;
+			bottom: 80px;
+			right: 10px;
+
+			box-sizing: border-box;
+			height: 3cm;
+			width: 7cm;
+			padding: 0.25cm;
+
+			// background: rgba(var(--color-primary-500));
+			// border: 4px solid rgba(var(--color-primary-100));
+			
+			border-radius: 15px;
+			
+			cursor: pointer;
+			
+			overflow-y: scroll;
+		"
+	>
+		<div
+			style="
+				position: relative;
+				
+				background: rgba(var(--color-primary-500));
+				border: 4px solid rgba(var(--color-primary-100));
+				border-radius: 15px;
+				
+				padding: 0.25cm;
+			"
+		>
+			Moooooooooo
+		</div>
+	</div>
+	{/if}
+
+	<button
+		on:click={ cow_clicked }
+		style="
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			
+			height: 3cm;
+			width: 3cm;
+
+			background: rgba(var(--color-primary-500));
+			border: 4px solid rgba(var(--color-primary-100));
+			
+			border-radius: 50%;
+			
+			cursor: pointer;
+		"
+	>
+		<div
+			style="
+				position: relative;
+				top: 0%;
+				left: 0%;
+				
+				height: 100%;
+				width: 100%;
+
+				border-radius: 50%;
+				
+				font-size: 2em;
+				
+				overflow-y: hidden;
+			"
+		>
+			<img 
+				src={ Cow } 
+				alt="cow"
+				
+				style="
+					
+				"
+			/>
+		</div>
+	</button>
+</div>
