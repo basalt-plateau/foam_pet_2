@@ -48,6 +48,21 @@ const modify_keys_count = () => {
 	account_variety = event.target.value;
 }
 
+
+
+let header_1_saying = {
+	name: (
+		"θερισμός"
+	),
+	language: (
+		"Greek"
+	),
+	pronunciation: (
+		"theh reez mohs"
+	),
+	english: "Harvests"
+}
+
 </script>
 
 <style>
@@ -62,6 +77,69 @@ const modify_keys_count = () => {
 
 <Leaf>
 <main addresses monitor="accounts">
+	<div class="card p-4">
+		<div style="height: 1cm" />
+
+		<header
+			style="{parse_styles ({
+				'display': 'flex',
+				'text-align': 'center',
+				'font-size': '2em',
+				'justify-content': 'center'
+			})}"
+		>
+			<Slang text="Accounts" /> 
+		</header>
+		
+		<div style="height: 1cm"></div>
+
+		<div
+			class="card p-1 variant-soft-surface"
+			style="
+				width: 100%;
+			"
+		>
+			<span
+				style="
+					display: block;
+					text-align: center;
+				"
+			>Perhaps occassionally pronounced <b>{ header_1_saying.pronunciation }</b>, </span>
+			<span
+				style="
+					display: block;
+					text-align: center;
+				"
+			><b style="font-size: 1.2em">{ header_1_saying.name }</b> might be <b>{ header_1_saying.language }</b> for <b>{ header_1_saying.english }</b>.</span>
+		</div>
+
+		<div style="height: 0.5cm"></div>
+	</div>
+	
+	<div style="height: 0.5cm" />
+	
+	<div class="card p-4">
+		<div style="height: 1cm" />
+		
+		<p
+			style="
+				text-align: center;
+			"
+		><Slang text="Accounts" /> each have 1 <Slang text="Private Key" /> that has 1 or more <Slang text="Addresses" />.</p>
+		
+		<div style="height: 0.5cm" />
+		
+		<p
+			style="
+				text-align: center;
+			"
+		><Slang text="A_Private_Key" /> is necessary to act as <Slang text="an_Address" />.</p>
+
+		<div style="height: 0.5cm" />	
+	</div>
+
+	<div style="height: 0.5cm" />
+
 	<Atrium />
 	
 	<div style="height: 0.5cm"></div>
@@ -77,7 +155,7 @@ const modify_keys_count = () => {
 			
 			><Slang text="Account" /> Chooser</header>
 		</div>
-
+		
 		<div style="height: 0.4cm"></div>
 
 		<div class="card variant-soft-primary p-4">

@@ -15,6 +15,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 //
 //
+import { parse_styles } from '$lib/trinkets/styles/parse.js';
 
 //
 ////
@@ -69,6 +70,19 @@ var pet_language = {
 	language: "foam pet"
 }
 
+const header_saying_2 = {
+	name: (
+		"အညွှန်းများ"
+	),
+	language: (
+		"Burmese"
+	),
+	pronunciation: (
+		""
+	),
+	english: "Hints"
+}
+
 
 let tabSet = 0
 
@@ -104,11 +118,11 @@ let tabSet = 0
 				<Loyals />
 			</div>
 		</header>
-
+		
 		<div style="height: 0.5cm"></div>
 
 		<div
-			class="card p-2 variant-filled-primary"
+			class="card p-2 variant-soft-surface"
 			style="
 				width: 100%;
 			"
@@ -157,7 +171,32 @@ let tabSet = 0
 		</div>
 	</div>
 
+	<div style="height: 0.2cm"></div>
 
+	
+	<div class="card p-4">
+
+		<div
+			class="card p-1 variant-soft-surface"
+			style="
+				width: 100%;
+			"
+		>
+			<span
+				style="
+					display: block;
+					text-align: center;
+				"
+			>Perhaps occassionally pronounced <b>{ header_saying_2.pronunciation }</b>, </span>
+			<span
+				style="
+					display: block;
+					text-align: center;
+				"
+			><b style="font-size: 1.2em">{ header_saying_2.name }</b> might be <b>{ header_saying_2.language }</b> for <b>{ header_saying_2.english }</b>.</span>
+		</div>
+
+	</div>
 
 	<div 
 		style="

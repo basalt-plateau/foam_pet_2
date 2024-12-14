@@ -91,9 +91,16 @@ let scholars = {
 	Sinhalese: ("")
 }
 
+// Environment
+/*
+	പരിസ്ഥിതി
+*/
 let Ecology = {
 	Malayalam: (
-		"ബയോളജി"
+		"പരിസ്ഥിതി"
+	),
+	Tamil: (
+		"சுற்றுச்சூழல்"
 	)
 }
 
@@ -167,7 +174,7 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	<Milieus_Button
 		monitor="Ecology"
 		
-		name={ names.seeds }
+		name={ Ecology.Malayalam }
 		location={[ "Ecology", "Hints" ]}
 		is_open_location={[ "Ecology" ]}
 		

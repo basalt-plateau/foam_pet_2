@@ -89,11 +89,17 @@ const Harvests = {
 }
 
 const Flourishes = {
-	Burmese: (
-		"ဖွံ့ဖြိုးတိုးတက်သည်"
-	)
+	English: (
+		"Flourishes"
+	),
+	// Burmese: ()
 };
 
+const Hints = {
+	Burmese: (
+		"အညွှန်းများ"
+	)
+}
 
 
 </script>
@@ -112,7 +118,7 @@ const Flourishes = {
 
 	{#if seeds_trucks_prepared === "yes"}
 	<Milieus_Button
-		name={ "Hints" }
+		name={ Hints.Burmese }
 		location={[ "Loyals", "Hints" ]}
 		is_open_location={[ "Loyals", "Hints" ]}
 		
@@ -127,7 +133,7 @@ const Flourishes = {
 	/>
 	
 	<Milieus_Button
-		name={ Flourishes.Burmese }
+		name={ Flourishes.English }
 		
 		location={[ "Loyals", "Signatures" ]}
 		is_open_location={[ "Loyals", "Signatures" ]}
