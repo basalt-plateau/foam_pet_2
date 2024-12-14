@@ -49,7 +49,7 @@ const modify_keys_count = () => {
 }
 
 
-
+/*
 let header_1_saying = {
 	name: (
 		"θερισμός"
@@ -62,6 +62,21 @@ let header_1_saying = {
 	),
 	english: "Harvests"
 }
+*/
+
+let header_1_saying = {
+	name: (
+		"קְצִיר"
+	),
+	language: (
+		"Hebrew"
+	),
+	pronunciation: (
+		"katsir"
+	),
+	english: "Harvest"
+}
+
 
 </script>
 
@@ -84,11 +99,11 @@ let header_1_saying = {
 			style="{parse_styles ({
 				'display': 'flex',
 				'text-align': 'center',
-				'font-size': '2em',
+				'font-size': '3em',
 				'justify-content': 'center'
 			})}"
 		>
-			<Slang text="Accounts" /> 
+			{ header_1_saying.name }
 		</header>
 		
 		<div style="height: 1cm"></div>
@@ -117,6 +132,8 @@ let header_1_saying = {
 	</div>
 	
 	<div style="height: 0.5cm" />
+	
+	
 	
 	<div class="card p-4">
 		<div style="height: 1cm" />

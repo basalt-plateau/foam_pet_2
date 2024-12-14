@@ -85,6 +85,9 @@ const build = () => {
 const Harvests = {
 	Greek: (
 		"θερισμός"
+	),
+	Hebrew: (
+		"קְצִיר"
 	)
 }
 
@@ -125,7 +128,7 @@ const Hints = {
 		style={ buttons_styles }
 	/>
 	<Milieus_Button
-		name={ Harvests.Greek }
+		name={ Harvests.Hebrew }
 		location={[ "Loyals", "Accounts" ]}
 		is_open_location={[ "Loyals", "Accounts" ]}
 		

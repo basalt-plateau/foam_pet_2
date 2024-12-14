@@ -78,7 +78,7 @@ const header_saying_2 = {
 		"Burmese"
 	),
 	pronunciation: (
-		""
+		"a-nyun-myar"
 	),
 	english: "Hints"
 }
@@ -187,7 +187,7 @@ let tabSet = 0
 					display: block;
 					text-align: center;
 				"
-			>Perhaps occassionally pronounced <b>{ header_saying_2.pronunciation }</b>, </span>
+			>Perhaps once spoken as <b>{ header_saying_2.pronunciation }</b>, </span>
 			<span
 				style="
 					display: block;
@@ -195,7 +195,6 @@ let tabSet = 0
 				"
 			><b style="font-size: 1.2em">{ header_saying_2.name }</b> might be <b>{ header_saying_2.language }</b> for <b>{ header_saying_2.english }</b>.</span>
 		</div>
-
 	</div>
 
 	<div 

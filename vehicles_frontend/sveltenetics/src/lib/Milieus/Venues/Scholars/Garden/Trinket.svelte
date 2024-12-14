@@ -86,7 +86,7 @@ a {
 		<div style="height: 0.5cm"></div>
 		<header 
 			style="
-				font-size: 2em; 
+				font-size: 3em; 
 				text-align: center;
 			"
 		>{ Cherokee_Garden.name }</header>

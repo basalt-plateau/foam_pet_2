@@ -136,12 +136,14 @@ a {
 				flex-direction: column;
 			"
 		>
+			<div style="height: 0.5cm"></div>
+
 			<header
 				style="
-					font-size: 1.4em;
+					font-size: 3em;
 					line-height: 100%;
 				"
-			>Theme</header>
+			>{ header_1_saying.name }</header>
 
 			<div style="height: 0.5cm"></div>
 
