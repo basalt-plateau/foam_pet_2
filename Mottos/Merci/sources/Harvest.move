@@ -52,15 +52,14 @@ module ride_1::Merci_Harvest {
 	}	
 
 
-	struct Harvest has key {
+	struct Harvest has key, drop {
 		parties: vector<Merci_Parties::Party>,
 		gifts: vector<Merci_Gifts::Gift>		
 	}
 	
 	public fun is_novestlist (estate_flourisher : & signer) : String {
 		let estate_spot = signer::address_of (estate_flourisher);
-		let novelist_spot : address = @0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd;
-		if (estate_spot == novelist_spot) {
+		if (estate_spot == search_novelist_spot ()) {
 			return utf8 (b"yeah")
 		};
 		
@@ -72,6 +71,25 @@ module ride_1::Merci_Harvest {
 		// const Novelist_Spot : address = @0x150755A53B2FD604F5072BDF22C2F1DCA1D9D730D1AFAF460A3D8C8E16528C5F;
 		let novelist_spot : address = @0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd;
 		novelist_spot
+	}
+	
+	public entry fun destroy_harvest (estate_flourisher : & signer) acquires Harvest {
+		let estate_1_spot = signer::address_of (estate_flourisher);
+		// let harvest_ref = borrow_global<Harvest>(estate_1_spot);
+		
+		
+		move_from<Harvest>(estate_1_spot);
+		
+		
+		// let Harvest { parties: _, gifts: _ } = * harvest;
+		
+		/*
+		let parties = & harvest_ref.parties;
+        let gifts = & harvest_ref.gifts;
+        drop (harvest_ref);
+		*/
+		
+		// let Harvest { parties: _, gifts: _ } = *harvest_ref;
 	}
 	
 	

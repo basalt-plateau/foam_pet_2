@@ -53,7 +53,6 @@ aptos move view \
 	#[view]
 	public fun is_novestlist (estate_address : address) : String acquires Estate {
 		let le_estate = borrow_global<Estate>(estate_address);
-		
 		if (le_estate.address == search_novelist_spot ()) {
 			return utf8 (b"yeah")
 		};
