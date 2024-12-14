@@ -43,23 +43,21 @@ console.log ({ organized })
 </script>
 
 
-<div>
-	<div class="table-container">
-		<table class="table table-hover">
-			<thead>
+<div class="table-container text-token">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th style="width: 50%">Original</th>
+				<th style="width: 50%">Slang</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each Object.entries (organized) as [ saying, equivalent ]}
 				<tr>
-					<th style="width: 50%">Original</th>
-					<th style="width: 50%">Slang</th>
+					<td>{ saying }</td>
+					<td>{ equivalent }</td>
 				</tr>
-			</thead>
-			<tbody>
-				{#each Object.entries (organized) as [ saying, equivalent ]}
-					<tr>
-						<td>{ saying }</td>
-						<td>{ equivalent }</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
+			{/each}
+		</tbody>
+	</table>
 </div>

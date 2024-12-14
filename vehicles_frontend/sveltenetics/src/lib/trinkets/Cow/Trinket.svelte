@@ -67,6 +67,7 @@ let cow_clicked = () => {
 		"
 	>
 		<div
+			class="card p-4 variant-filled-primary"
 			style="
 				position: relative;
 				
@@ -74,10 +75,12 @@ let cow_clicked = () => {
 				border: 4px solid rgba(var(--color-primary-100));
 				border-radius: 15px;
 				
+				
 				padding: 0.25cm;
 			"
 		>
 			Moooooooooo
+			
 		</div>
 	</div>
 	{/if}

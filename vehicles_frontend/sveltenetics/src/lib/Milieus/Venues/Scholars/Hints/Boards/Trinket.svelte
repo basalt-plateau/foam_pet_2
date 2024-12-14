@@ -68,7 +68,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 			class="card p-4 variant-soft-surface"
 		>
 			<p
-				style="text-align: center; font-size: 1em;"
+				style="text-align: center; font-size: 1.5em; font-weight: bold;"
 			>Signatory</p>
 		</div>
 		
@@ -81,7 +81,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 			class="card p-4 variant-soft-surface"
 		>
 			<p
-				style="text-align: center;"
+				style="text-align: center; font-size: 1.5em; font-weight: bold;"
 			>Publicist</p>
 		</div>
 	</div>
