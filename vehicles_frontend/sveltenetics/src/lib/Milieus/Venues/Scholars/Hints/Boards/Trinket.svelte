@@ -50,7 +50,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 				text-align: center;
 			"
 		>	
-			Cloudwalled Wallet Logistics Duo for <Slang text="Aptos" />
+			Supermassive Reservoir Wallet Logistics Duo for <Slang text="Aptos" />
 		</p>
 	</div>
 

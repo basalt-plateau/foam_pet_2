@@ -30,6 +30,8 @@ module ride_1::Merci_Steady_1 {
 		use std::string::{ utf8 };
 		
 		use ride_1::Merci_Harvest;
+		use ride_1::Merci_Gifts;
+		use ride_1::Merci_Parties;
 		
 		let novelist : address = Merci_Harvest::search_novelist_spot ();
 		
@@ -61,8 +63,8 @@ module ride_1::Merci_Steady_1 {
 		if (Merci_Harvest::ask_for_party_mercy_volume (estate_2_spot) != 0) { abort 4 };
 		
 		Merci_Harvest::join_harvest (& estate_3_flourisher);
-		if (Merci_Harvest::is_party_at_harvest (estate_3_spot) != utf8 (b"yup")) { abort 3 };
-		if (Merci_Harvest::ask_for_party_mercy_volume (estate_3_spot) != 0) { abort 4 };
+		if (Merci_Harvest::is_party_at_harvest (estate_3_spot) != utf8 (b"yup")) { abort 5 };
+		if (Merci_Harvest::ask_for_party_mercy_volume (estate_3_spot) != 0) { abort 6 };
 		
 		
 		/*
@@ -71,6 +73,16 @@ module ride_1::Merci_Steady_1 {
 		*/
 		let mercy_to_send : u256 = 1000000000000000000000000000000000000000000000000000000000000000000000000000;
 		let expected_estate_1_mercy_after_send : u256 = 9000000000000000000000000000000000000000000000000000000000000000000000000000;
+		Merci_Harvest::gift_mercy (& estate_1_flourisher, estate_2_spot, mercy_to_send);
+		if (Merci_Harvest::gifts_count () != 1) {
+			abort 7;
+		}
+		
+
+		/*
+			Check gifts for Estate 2
+		*/
+		
 	}
 }
 
