@@ -106,6 +106,17 @@ const Theme = {
 	)
 }
 
+/*
+	Hints:
+		Petroglyphs
+*/
+
+const Petroglyphs = {
+	Emoji: (
+		"🦖"
+	)
+}
+
 
 </script>
 
@@ -118,7 +129,7 @@ const Theme = {
 	{#if seeds_trucks_prepared === "yes"}
 	<div>
 		<Milieus_Button
-			name={ "Hints" }
+			name={ Petroglyphs.Emoji }
 			location={[ "Ecology", "Hints" ]}
 			is_open_location={[ "Ecology", "Hints" ]}
 			
