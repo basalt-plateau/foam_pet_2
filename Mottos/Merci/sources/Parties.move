@@ -53,40 +53,36 @@ module ride_1::Merci_Parties {
         party.spot
     }
 	
-	/*
-		let mercy_amount : u256 = Merci_Parties::retrieve_mercy (& party);
-	*/
-	public fun retrieve_mercy (party: & Party) : u256 {
-        party.mercy
-    }
+	
 
 
+	/* join + leave */
 	/*
 		Fonctions:
-			leave_le_parties
-	
-		add a party:
-			similar: join
-			
-	
-		Merci_Parties::add_a_party (parties, party);
-		
-		
-		Merci_Parties::leave_parties__given_address (parties, party_address);
+			petition_to_leave_les_parties
+			ask_to_join_les_parties		
 	*/
-	public fun add_a_party (
+	public fun ask_to_join_les_parties (
 		parties : &mut vector<Party>,
 		party : Party
 	) {
+		/*
+			Merci_Parties::add_a_party (parties, party);
+		
+		*/
+		
 		vector::push_back (parties, party);
 	}
-	public fun leave_le_parties (
+	public fun petition_to_leave_les_parties (
 		parties : &mut vector<Party>,
 		spot : address
 	) {
+		/*
+			Merci_Parties::petition_to_leave_les_parties (parties, party_address);
+		
+		*/
+		
 		let le_party = search_for_flexible_party (parties, spot);
-		
-		
 	}
 	
 	
@@ -96,18 +92,8 @@ module ride_1::Merci_Parties {
 		parties_turnout
 	}
 	
-	public fun attempt_deduct_mercy (
-		parties : &mut vector<Party>,
-		party_spot : address,
-		mercy_to_deduct : u256
-	) {
-		let le_party : &mut Party = search_for_flexible_party (parties, party_spot);
-		if (le_party.mercy < mercy_to_deduct) {
-			abort 2;
-		};
-		
-		le_party.mercy = le_party.mercy - mercy_to_deduct;
-	}
+	
+	
 	
 	/*
 		let le_party : &mut Merci_Parties::Party = Merci_Parties::search_for_flexible_party (parties, party_spot);
@@ -130,25 +116,38 @@ module ride_1::Merci_Parties {
 	}
 
 
-
 	/*
-		Merci_Parties::ask_for_party (parties, party);
-	*/
-	public fun ask_for_party_mercy_volume (
-		parties : & vector<Party>,
-		party : Party
-	) : u256 {
-		// let parties_turnout = vector::length (& parties);
-		let parties_turnout = vector::length (parties);
-		
-		// for (index_1 in 0..parties_turnout) {};
-		
-		
-		let party_ref = vector::borrow (parties, 0);
-		party_ref.mercy
-
-	}
+		 __  __                          
+		|  \/  |  ___  _ __   ___  _   _ 
+		| |\/| | / _ \| '__| / __|| | | |
+		| |  | ||  __/| |   | (__ | |_| |
+		|_|  |_| \___||_|    \___| \__, |
+								   |___/ 	
 	
+		Fonctions:
+			ask_to_deduct_mercy
+			ask_for_le_amount_of_mercy_that_a_party_has
+	*/
+	public fun ask_to_deduct_mercy (
+		parties : &mut vector<Party>,
+		party_spot : address,
+		mercy_to_deduct : u256
+	) {
+		let le_party : &mut Party = search_for_flexible_party (parties, party_spot);
+		if (le_party.mercy < mercy_to_deduct) {
+			abort 2;
+		};
+		
+		le_party.mercy = le_party.mercy - mercy_to_deduct;
+	}
+	public fun ask_for_le_amount_of_mercy_that_a_party_has (party: & Party) : u256 {
+		/*
+			let mercy_amount : u256 = Merci_Parties::retrieve_mercy (& party);
+		
+		*/
+		
+        party.mercy
+    }
 	
 	/*
 		Merci_Parties::send_a_gift (parties, from_spot, to_party);

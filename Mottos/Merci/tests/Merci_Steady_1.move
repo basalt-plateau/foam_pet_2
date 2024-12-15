@@ -50,7 +50,7 @@ module ride_1::Merci_Steady_1 {
 		let mercyverse : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
 		Merci_Harvest::ask_to_establish_harvest (& estate_1_flourisher, mercyverse);
 		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_1_spot) != utf8 (b"yup")) { abort 1 };
-		if (Merci_Harvest::ask_for_mercy_volume_of_a_party (estate_1_spot) != mercyverse) { abort 2 };
+		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_1_spot) != mercyverse) { abort 2 };
 		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7; };
 		
 		/*
@@ -60,12 +60,12 @@ module ride_1::Merci_Steady_1 {
 		*/
 		Merci_Harvest::ask_to_join_harvest (& estate_2_flourisher);
 		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_2_spot) != utf8 (b"yup")) { abort 3 };
-		if (Merci_Harvest::ask_for_mercy_volume_of_a_party (estate_2_spot) != 0) { abort 4 };
+		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_2_spot) != 0) { abort 4 };
 		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7; };
 		
 		Merci_Harvest::ask_to_join_harvest (& estate_3_flourisher);
 		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_3_spot) != utf8 (b"yup")) { abort 5 };
-		if (Merci_Harvest::ask_for_mercy_volume_of_a_party (estate_3_spot) != 0) { abort 6 };
+		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_3_spot) != 0) { abort 6 };
 		if (Merci_Harvest::ask_for_party_count () != 3) { abort 7; };
 		
 		
@@ -74,7 +74,7 @@ module ride_1::Merci_Steady_1 {
 				Estate 2
 				Estate 3
 		*/
-		Merci_Harvest::leave_harvest (& estate_2_flourisher);
+		Merci_Harvest::petition_to_leave_harvest (& estate_2_flourisher);
 		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7; };
 		
 		/*

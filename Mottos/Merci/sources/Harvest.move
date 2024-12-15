@@ -91,6 +91,8 @@ module ride_1::Merci_Harvest {
 		novelist_spot
 	}
 	
+	
+	
 	/* Establish (+ Destroy) */
 	/*
 		 _____       _           _      _  _       _               ____              _                       
@@ -113,7 +115,7 @@ module ride_1::Merci_Harvest {
 
 		let parties = Merci_Parties::organize_parties ();
 		let le_party = Merci_Parties::organize_party (estate_1_spot, mercyverse);
-		Merci_Parties::add_a_party (&mut parties, le_party);
+		Merci_Parties::ask_to_join_les_parties (&mut parties, le_party);
 		
 		let gifts = Merci_Gifts::organize_gifts ();
 		
@@ -128,8 +130,6 @@ module ride_1::Merci_Harvest {
 		let estate_1_spot = signer::address_of (estate_flourisher);
 		move_from<Harvest>(estate_1_spot);
 	}
-
-
 
 
 	
@@ -174,7 +174,6 @@ module ride_1::Merci_Harvest {
 	) acquires Harvest {
 		/*
 			Merci_Harvest::gift_mercy ()
-		
 			party 1 mercy -> party 2 gifts
 		*/
 		
@@ -185,7 +184,7 @@ module ride_1::Merci_Harvest {
 		let party_1_spot = signer::address_of (party_1_flourisher);	
 		
 		/*
-		let party_1_mercy_volume : u256 = ask_for_party_mercy_volume (party_1_spot);
+		let party_1_mercy_volume : u256 = ask_for_le_amount_of_mercy_that_a_party_has (party_1_spot);
 		if (party_1_mercy_volume < mercy_to_send) {
 			abort 2;
 		};
@@ -201,7 +200,7 @@ module ride_1::Merci_Harvest {
 		/*
 			attempt deduct from party_1
 		*/
-		Merci_Parties::attempt_deduct_mercy (parties, party_1_spot, mercy_to_send);
+		Merci_Parties::ask_to_deduct_mercy (parties, party_1_spot, mercy_to_send);
 		
 		/*
 			attempt add mercy to gifts
@@ -221,11 +220,12 @@ module ride_1::Merci_Harvest {
 	
 		Fonctions:
 			ask_to_join_harvest
-			leave_harvest
+			petition_to_leave_harvest
 		
 			ask_if_a_party_joined_the_harvest
 			ask_for_party_count
-			ask_for_mercy_volume_of_a_party
+			
+			ask_for_le_amount_of_mercy_that_a_party_has
 	*/
 	public entry fun ask_to_join_harvest (estate_flourisher : & signer) acquires Harvest {
 		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
@@ -235,15 +235,15 @@ module ride_1::Merci_Harvest {
 		
 		let mercy : u256 = 0;
 		let le_party = Merci_Parties::organize_party (estate_spot, mercy);
-		Merci_Parties::add_a_party (parties, le_party);
+		Merci_Parties::ask_to_join_les_parties (parties, le_party);
 	}
-	public entry fun leave_harvest (estate_flourisher : & signer) acquires Harvest {
+	public entry fun petition_to_leave_harvest (estate_flourisher : & signer) acquires Harvest {
 		let estate_spot = signer::address_of (estate_flourisher);
 		
 		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
 		let parties = &mut le_harvest.parties;
 		
-		Merci_Parties::leave_le_parties (parties, estate_spot);
+		Merci_Parties::petition_to_leave_les_parties (parties, estate_spot);
 	}
 	#[view]
 	public fun ask_if_a_party_joined_the_harvest (estate_spot : address) : String acquires Harvest {
@@ -268,7 +268,7 @@ module ride_1::Merci_Harvest {
 		vector::length (& borrow_global<Harvest>(ask_for_address_of_novelist ()).parties)
 	}	
 	#[view]
-	public fun ask_for_mercy_volume_of_a_party (estate_spot : address) : u256 acquires Harvest {
+	public fun ask_for_le_amount_of_mercy_that_a_party_has (estate_spot : address) : u256 acquires Harvest {
 		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
 		let parties = & le_harvest.parties;
 		let parties_turnout = vector::length (parties);
@@ -277,7 +277,7 @@ module ride_1::Merci_Harvest {
 			let party = vector::borrow (parties, index_1);
 			
 			if (Merci_Parties::retrieve_spot (party) == estate_spot) {
-				return Merci_Parties::retrieve_mercy (party)
+				return Merci_Parties::ask_for_le_amount_of_mercy_that_a_party_has (party)
 			}
 		};
 		
