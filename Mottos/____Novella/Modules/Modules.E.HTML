@@ -1,0 +1,76 @@
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/xml/xml.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/themes/prism-coy.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<pre>
+
+	<header>Modules</header>
+	
+		https://aptos.dev/en/build/smart-contracts/reference?page=aptos-framework%2Fdoc%2Fobject_code_deployment.md
+		https://aptos.dev/en/build/smart-contracts/reference?page=aptos-framework%2Fdoc%2Fcode.md
+
+		0x1::code::PackageRegistry
+			
+			request_publish
+
+
+	<header>Entry Fonctions</header>
+	<pre><code class="language-js" style="max-height: 400px" id="CodeMirror1">
+		<script>
+
+document.querySelectorAll ('#CodeMirror1')[0].textContent = (`
+
+public entry fun publish_package_txn (
+	owner: &signer, 
+	metadata_serialized: vector<u8>, 
+	code: vector<vector<u8>>
+) acquires PackageRegistry {
+	publish_package(owner, util::from_bytes<PackageMetadata>(metadata_serialized), code)
+
+}
+
+`);
+
+		</script>	
+	</code></pre>
+	
+
+	
+	<pre><code style="max-height: 400px" id="publish_package_txn">
+		
+	
+	</code></pre>
+
+	<header>Modifications</header>
+	
+		
+
+
+	<header>Asks</header>
+	
+		* Unpublish:
+			similar: [ "void" ]
+		
+			* if type is can unpublish...
+				0x1::code::PackageRegistry
+			
+			Examples:
+				1.
+					A contract that splits APT into two accounts.
+				
+					If "unpublished" then the petition would be rejected due 
+					to fonction invokation failure.
+
+</pre>
+
+
+
+
