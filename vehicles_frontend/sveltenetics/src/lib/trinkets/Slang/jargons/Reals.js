@@ -174,6 +174,8 @@ const leaves = {
 	)
 }
 
+const vernacular = {}
+
 export const Reals = {
 	// "Pet": "Orbital Covergence Softwhere",	
 	// "Pet": "Aptos Softwhere",	

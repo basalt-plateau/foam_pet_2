@@ -52,7 +52,7 @@ export let join_mercy_harvest__sign = () => {}
 				text-align: center;
 			"
 		>
-			<button type="button" class="btn variant-filled">Establish the Mercy Harvest</button>
+			<button type="button" class="btn variant-filled">Establish</button>
 		</div>
 		
 		<div
@@ -69,46 +69,17 @@ export let join_mercy_harvest__sign = () => {}
 					width: 100%;
 					text-align: center;
 				"
-			>
-				<header
-					style="
-						font-size: 2em;
-					"
-				>Join</header>
-			
+			>			
 				<button 
 					type="button" 
 					class="btn variant-filled"
 					on:click={ join_mercy_harvest__petition }
-				>Petition</button>
-				
+				>Join</button>
+
 				<button 
 					type="button" 
 					class="btn variant-filled"
-					on:click={ join_mercy_harvest__sign }
-				>Sign</button>
-			</div>
-			<div class="card p-4"
-				style="
-					width: 100%;
-					text-align: center;
-				"
-			>
-				<header
-					style="
-						font-size: 2em;
-					"
-				>Leave</header>
-			
-				<button 
-					type="button" 
-					class="btn variant-filled"
-				>Petition</button>
-				
-				<button 
-					type="button" 
-					class="btn variant-filled"
-				>Sign</button>
+				>Leave</button>
 			</div>
 		</div>
 		
@@ -130,43 +101,15 @@ export let join_mercy_harvest__sign = () => {}
 					text-align: center;
 				"
 			>
-				<header
-					style="
-						font-size: 2em;
-					"
-				>Send</header>
-			
 				<button 
 					type="button" 
 					class="btn variant-filled"
-				>Petition</button>
+				>Send</button>
 				
 				<button 
 					type="button" 
 					class="btn variant-filled"
-				>Sign</button>
-			</div>
-			<div class="card p-4"
-				style="
-					width: 100%;
-					text-align: center;
-				"
-			>
-				<header
-					style="
-						font-size: 2em;
-					"
-				>Receive</header>
-			
-				<button 
-					type="button" 
-					class="btn variant-filled"
-				>Petition</button>
-				
-				<button 
-					type="button" 
-					class="btn variant-filled"
-				>Sign</button>
+				>Receive</button>
 			</div>
 		</div>
 		

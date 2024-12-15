@@ -9,7 +9,7 @@
 
 import os
 
-ride = "5696D99D91541608C3F7B094E7F511A863C11BAC3266933DC6E1B4F56B0A4B0F"
+ride = "B3DB3F4532C2995803BD9FC3783C2A226BD3D79BADF26D2EF04C714319C6F160"
 
 os.system (
 	f"cd /Metro/Mottos/Merci && aptos move publish --assume-yes --named-addresses ride_1={ ride }"

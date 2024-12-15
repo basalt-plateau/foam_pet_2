@@ -33,7 +33,7 @@ module ride_1::Merci_Steady_1 {
 		use ride_1::Merci_Gifts;
 		use ride_1::Merci_Parties;
 		
-		let novelist : address = Merci_Harvest::search_novelist_spot ();
+		let novelist : address = Merci_Harvest::ask_for_address_of_novelist ();
 		
 		let estate_1_spot = signer::address_of (& estate_1_flourisher);
 		let estate_2_spot = signer::address_of (& estate_2_flourisher);
@@ -48,24 +48,34 @@ module ride_1::Merci_Steady_1 {
 				Estate 1		
 		*/
 		let mercyverse : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
-		Merci_Harvest::establish_harvest (& estate_1_flourisher, mercyverse);
-		if (Merci_Harvest::is_party_at_harvest (estate_1_spot) != utf8 (b"yup")) { abort 1 };
-		if (Merci_Harvest::ask_for_party_mercy_volume (estate_1_spot) != mercyverse) { abort 2 };
-		
+		Merci_Harvest::ask_to_establish_harvest (& estate_1_flourisher, mercyverse);
+		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_1_spot) != utf8 (b"yup")) { abort 1 };
+		if (Merci_Harvest::ask_for_mercy_volume_of_a_party (estate_1_spot) != mercyverse) { abort 2 };
+		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7; };
 		
 		/*
 			Joining:
 				Estate 2
 				Estate 3		
 		*/
-		Merci_Harvest::join_harvest (& estate_2_flourisher);
-		if (Merci_Harvest::is_party_at_harvest (estate_2_spot) != utf8 (b"yup")) { abort 3 };
-		if (Merci_Harvest::ask_for_party_mercy_volume (estate_2_spot) != 0) { abort 4 };
+		Merci_Harvest::ask_to_join_harvest (& estate_2_flourisher);
+		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_2_spot) != utf8 (b"yup")) { abort 3 };
+		if (Merci_Harvest::ask_for_mercy_volume_of_a_party (estate_2_spot) != 0) { abort 4 };
+		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7; };
 		
-		Merci_Harvest::join_harvest (& estate_3_flourisher);
-		if (Merci_Harvest::is_party_at_harvest (estate_3_spot) != utf8 (b"yup")) { abort 5 };
-		if (Merci_Harvest::ask_for_party_mercy_volume (estate_3_spot) != 0) { abort 6 };
+		Merci_Harvest::ask_to_join_harvest (& estate_3_flourisher);
+		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_3_spot) != utf8 (b"yup")) { abort 5 };
+		if (Merci_Harvest::ask_for_mercy_volume_of_a_party (estate_3_spot) != 0) { abort 6 };
+		if (Merci_Harvest::ask_for_party_count () != 3) { abort 7; };
 		
+		
+		/*
+			Leaving:
+				Estate 2
+				Estate 3
+		*/
+		Merci_Harvest::leave_harvest (& estate_2_flourisher);
+		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7; };
 		
 		/*
 			Send: 
@@ -73,15 +83,14 @@ module ride_1::Merci_Steady_1 {
 		*/
 		let mercy_to_send : u256 = 1000000000000000000000000000000000000000000000000000000000000000000000000000;
 		let expected_estate_1_mercy_after_send : u256 = 9000000000000000000000000000000000000000000000000000000000000000000000000000;
-		Merci_Harvest::gift_mercy (& estate_1_flourisher, estate_2_spot, mercy_to_send);
-		if (Merci_Harvest::gifts_count () != 1) {
-			abort 7;
-		}
+		Merci_Harvest::ask_to_add_a_gift_to_gifts (& estate_1_flourisher, estate_2_spot, mercy_to_send);
+		if (Merci_Harvest::ask_for_the_gifts_count () != 1) { abort 7; }
 		
 
 		/*
-			Check gifts for Estate 2
+			Search gifts count for Estate 2
 		*/
+		
 		
 	}
 }

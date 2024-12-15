@@ -49,7 +49,6 @@ const modify_keys_count = () => {
 }
 
 
-/*
 let header_1_saying = {
 	name: (
 		"θερισμός"
@@ -62,8 +61,8 @@ let header_1_saying = {
 	),
 	english: "Harvests"
 }
-*/
 
+/*
 let header_1_saying = {
 	name: (
 		"קְצִיר"
@@ -76,6 +75,7 @@ let header_1_saying = {
 	),
 	english: "Harvest"
 }
+*/
 
 
 </script>

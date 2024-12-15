@@ -14,8 +14,6 @@ module ride_1::Merci_Tienda {
 	// use aptos_framework::coin::{ Self, Coin, CoinStore };
 	// use aptos_framework::aptos_coin::{ AptosCoin, Self };
 	
-	
-	use ride_1::Merci_Ship;
  
 	
 	/*	

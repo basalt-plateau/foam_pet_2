@@ -62,7 +62,17 @@ module ride_1::Merci_Parties {
 
 
 	/*
+		Fonctions:
+			leave_le_parties
+	
+		add a party:
+			similar: join
+			
+	
 		Merci_Parties::add_a_party (parties, party);
+		
+		
+		Merci_Parties::leave_parties__given_address (parties, party_address);
 	*/
 	public fun add_a_party (
 		parties : &mut vector<Party>,
@@ -70,6 +80,16 @@ module ride_1::Merci_Parties {
 	) {
 		vector::push_back (parties, party);
 	}
+	public fun leave_le_parties (
+		parties : &mut vector<Party>,
+		spot : address
+	) {
+		let le_party = search_for_flexible_party (parties, spot);
+		
+		
+	}
+	
+	
 	
 	public fun parties_turnout (parties : &mut vector<Party>) : u64 {
 		let parties_turnout = vector::length (parties);
