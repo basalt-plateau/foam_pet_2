@@ -154,6 +154,7 @@ module ride_1::Merci_Harvest {
 			ask_to_show_every_gift
 			
 			ask_to_reject_gift
+			ask_to_accept_gift
 	*/
 	public fun ask_for_the_gifts_count () : u64 acquires Harvest {
 		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
@@ -246,7 +247,7 @@ module ride_1::Merci_Harvest {
 				// remove index_1
 				vector::remove (&mut le_harvest.gifts, index_1);
 			
-				// todo: return to origin_address (sender)
+				// return to origin_address (sender)
 				Merci_Parties::ask_to_add_mercy_to_party (
 					&mut le_harvest.parties,
 					origin_address,
@@ -267,10 +268,17 @@ module ride_1::Merci_Harvest {
 			let le_gift = vector::borrow (& le_harvest.gifts, index_1);
 			
 			if (Merci_Gifts::ask_if_is_equivalent (le_gift, origin_address, to_address, mercy_volume)) {
+				let amount_of_mercy_in_gift = Merci_Gifts::ask_for_amount_of_mercy_of_gift (le_gift);				
+				
 				// remove index_1
 				vector::remove (&mut le_harvest.gifts, index_1);
 				
-				
+				// send to to_address (sender)
+				Merci_Parties::ask_to_add_mercy_to_party (
+					&mut le_harvest.parties,
+					to_address,
+					amount_of_mercy_in_gift
+				)
 			}
 		}
 	}

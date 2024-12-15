@@ -84,6 +84,7 @@ module ride_1::Merci_Steady_3 {
 		let expected_estate_1_mercy_after_send : u256 = 9000000000000000000000000000000000000000000000000000000000000000000000000000;
 		Merci_Harvest::ask_to_add_a_gift_to_gifts (& estate_1_flourisher, estate_2_spot, mercy_to_send);
 		if (Merci_Harvest::ask_for_the_gifts_count () != 1) { abort 7 };
+		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_1_spot) != expected_estate_1_mercy_after_send) { abort 6 };
 		
 		/*
 			Show the gifts.
@@ -92,10 +93,20 @@ module ride_1::Merci_Steady_3 {
 		
 		
 		/*
-			Gift Acceptance from:
-				Estate 2				
+			Gift Acceptance:
+				Gifts, from Estate 1 -> Estate 2 			
 		*/
-
+		let gift_acceptance_origin_address = estate_1_spot;
+		let gift_acceptance_to_address = estate_2_spot;
+		let gift_acceptance_mercy_volume = mercy_to_send;		
+		Merci_Harvest::ask_to_accept_gift (
+			gift_acceptance_origin_address, 
+			gift_acceptance_to_address, 
+			gift_acceptance_mercy_volume
+		);
+		if (Merci_Harvest::ask_for_the_gifts_count () != 0) { abort 7 };
+		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_2_spot) != mercy_to_send) { abort 6 };
+		
 	}
 }
 

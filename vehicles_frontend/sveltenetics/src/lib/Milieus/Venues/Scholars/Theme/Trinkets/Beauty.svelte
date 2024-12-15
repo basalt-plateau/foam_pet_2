@@ -173,13 +173,14 @@ $: {
 			gap: 8px;
 		"
 	>
-		<div>Nocturnal</div>
+		<div>Hyptothetical Physics</div>
+		<!-- Nocturnal -->
 
 		<!-- <LightSwitch /> -->
-		
 		<SlideToggle name="slide" bind:checked={ visibility } on:change={ change_visibility } />
 		
-		<div>Diurnal</div>
+		<div>Voltaics</div>
+		<!-- Diurnal -->
 	</div>
 	
 	<div style="height: 0.2cm"></div>

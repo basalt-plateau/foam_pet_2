@@ -44,13 +44,59 @@ public entry fun publish_package_txn (
 	
 
 	
-	<pre><code style="max-height: 400px" id="publish_package_txn">
-		
-	
+	<pre><code class="language-js">
+{
+	"packages": [
+		{
+			"deps": [
+				{
+					"account": "0x1",
+					"package_name": "AptosFramework"
+				},
+				{
+					"account": "0x1",
+					"package_name": "AptosStdlib"
+				},
+				{
+					"account": "0x1",
+					"package_name": "MoveStdlib"
+				}
+			],
+			"extension": {
+				"vec": []
+			},
+			"manifest": "0x1f8b08000000000002ff9d8d310ec2300c45779fa2ca4e5b0ec0c0c2c684c45255c82406a2b6716587f6fa2455410c4c78b29ff5fe076846b41ddea985800315bbc29cbdfa190d4c24ea3964b42debb23680cff860d1449a16a041e78454495b10ef16f7621277346dbe7e0b1929380ad69396fb31b21e24b5cd2c5d0b3d5becb35c1d290a5798ff1bcb42eb3af044d5ed2dacf0739be267c129bade5fff4dd7c5ced1695ef888f4c625010000",
+			"modules": [
+				{
+					"extension": {
+					"vec": []
+				},
+					"name": "Loft",
+					"source": "0x1f8b08000000000002ff95934b4f02311080cfedaf9868a2688c6f1e29e24d4e9898e84d8d2974161a76b79bb60bd910febbb3b03c6411dd9ea6ed375fa72fce39bf3ae7ec6da41d4446a521024538419b99184f1d8cb5d35309de70268300071e46669acf831f6106ce4012a27478c9397b96631d0f8b144780f4202de624674e4608c682d2a4b118d3548ee8f51214c93024b9bae48cb3a75819eb50413f839ec964085d232378410f5dab31568e9f5f51f945d5562b14a267020fb33c3d7508ce2b219cb754941033785d441790faa005f3f61633a17d19dbcef38edf271aa79f1ca825693fd40308d298f63f44da868dd139a89d81286cf9622ca49a968aafeb1b9a5ac60f69eb113ad03ffac7e17ec447ed1dd16d5974f802f638eeca8e9c626c87bb2f7307ee72afa25e5654b9f1bdcec66fe5130945dbe69b65feef57b438b41f0bbb5dcdb223044689cf1663b5b33c6b352e93844c503b89d2b5e362f3222ab0b715d8bb0aec7d05b65e816d54609bc416e79c583340546ef38d3acb5f592bb216da15c5d99ccfe9a77f03408f44d9ad040000",
+					"source_map": "0x"
+				}
+			],
+			"name": "Visiwa",
+			"source_digest": "0DE49C835E67FCF1C0218B66CE0288E73844688930AF33A76083635236934268",
+			"upgrade_number": "2",
+			"upgrade_policy": {
+				"policy": 1
+			}
+		}
+	]
+}
 	</code></pre>
 
-	<header>Modifications</header>
-	
+	<header>Upgrade Policy</header>
+		
+		policy 0: arbitrary
+		
+		
+		policy 1: compatible (mutable)
+			
+		
+		policy 2: immutable
+		
 		
 
 
