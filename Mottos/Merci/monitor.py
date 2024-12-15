@@ -21,7 +21,7 @@ estate_3 = {
 
 filter = ""
 filter = "--filter Merci_Tienda_Steady_1"
-filter = "--filter Merci_Steady_1"
+filter = "--filter Merci_Steady_2"
 
 Merci = " ".join ([
 	"cd /Metro/Mottos/Merci",

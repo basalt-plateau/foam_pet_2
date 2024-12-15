@@ -7,10 +7,7 @@ module ride_1::Merci_Sketches {
 	use std::vector;
 	use std::signer;
 	
-	struct Data has copy, drop {
-        value: u64,
-        message: String
-    }
+	
 	
 	
 
@@ -18,6 +15,10 @@ module ride_1::Merci_Sketches {
 aptos move view \
 --function-id 0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Merci_Sketches::return_bracket
 	*/
+	struct Data has copy, drop {
+        value: u64,
+        message: String
+    }
 	#[view]
 	public fun return_bracket () : vector<Data> {
 		let data_vec = vector::empty<Data>();
@@ -31,6 +32,7 @@ aptos move view \
         data_vec
 	}
 	
+
 	
 	struct Estate has key {
         address: address

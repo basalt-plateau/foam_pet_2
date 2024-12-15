@@ -5,6 +5,12 @@
 
 	<header>Struct</header>
 	
+		struct GlobalStorage {
+			resources: Map<(address, ResourceType), ResourceValue>
+			modules: Map<(address, ModuleName), ModuleBytecode>
+		}
+
+	
 		abilities:
 			key: 
 				can save in global storage

@@ -4,9 +4,6 @@ module ride_1::Merci_Tienda {
 	
 	use std::signer;
 	use std::vector;
-	use std::string::{ String };
-	
-	use aptos_std::table::{ Self, Table };
 
 	use aptos_framework::coin::{ Coin };
 	use aptos_framework::aptos_coin::{ AptosCoin };
@@ -20,11 +17,14 @@ module ride_1::Merci_Tienda {
 		possibly:
 			expiration
 	*/
-	struct Mercy_Advertisement has store, drop {
+	struct Advertisement_for_Mercy has store, drop {
 		advertiser_spot : address,
 		mercy_for_sale: u256,
 		octas_price: u64
 	}
+	
+	
+	
 	
 	struct Octas_Advertisement has store {
 		advertiser_spot : address,
@@ -35,12 +35,12 @@ module ride_1::Merci_Tienda {
 	
 	/*
 		address, 
-		Mercy_Advertisement
+		Advertisement_for_Mercy
 		octas_price, 
-		Mercy_Advertisement
+		Advertisement_for_Mercy
 	*/
 	struct Mall has key {
-		mercy_advertisements : vector<Mercy_Advertisement>,
+		mercy_advertisements : vector<Advertisement_for_Mercy>,
 		octas_advertisements : vector<Octas_Advertisement>		
 	}
 	
@@ -50,7 +50,7 @@ module ride_1::Merci_Tienda {
 	
 	public entry fun Establish_Mall (mall_flourisher : & signer)  {
 		let mall_1 = Mall {
-            mercy_advertisements: vector::empty<Mercy_Advertisement>(),
+            mercy_advertisements: vector::empty<Advertisement_for_Mercy>(),
 			octas_advertisements: vector::empty<Octas_Advertisement>()
         };
 		
@@ -68,7 +68,7 @@ module ride_1::Merci_Tienda {
 		let advertiser_spot = signer::address_of (advertiser_flourisher);
 		let sales = borrow_global_mut<Mall>(mall_spot);
 		
-		let mercy_advert = Mercy_Advertisement {
+		let mercy_advert = Advertisement_for_Mercy {
             advertiser_spot : advertiser_spot,
 			mercy_for_sale: mercy_for_sale,
 			octas_price : octas_price

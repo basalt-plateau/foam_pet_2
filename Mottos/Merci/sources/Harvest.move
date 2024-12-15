@@ -23,16 +23,12 @@
 		Send_Mercy
 		Receive_Mercy
 			(Obtain)
-			
-	Scouting:
-		has_estate : String
-			returns "yup" if has estate
-		
-		ask_estate_mercy_amount : u64
 */
 module ride_1::Merci_Harvest {
-	
+
+	use std::debug;
 	use std::string::{ String, utf8 };
+	use std::string_utils;	
 	use std::signer;
 	use std::vector;
 	
@@ -52,7 +48,13 @@ module ride_1::Merci_Harvest {
 		parties: vector<Merci_Parties::Party>,
 		gifts: vector<Merci_Gifts::Gift>		
 	}
-	
+
+	struct Gift_Rejection_Form {
+		origin_address : address,
+		to_address : address,
+		mercy : u256
+	}
+
 	/*
 		 _   _                      _  _       _   
 		| \ | |  ___  __   __  ___ | |(_) ___ | |_ 
@@ -104,7 +106,9 @@ module ride_1::Merci_Harvest {
 	
 		Fonctions:
 			ask_to_establish_harvest
+			
 			ask_to_destroy_harvest
+				Merci_Harvest::ask_to_destroy_harvest (estate_flourisher);
 	*/
 	public entry fun ask_to_establish_harvest (
 		estate_flourisher : & signer,
@@ -146,6 +150,10 @@ module ride_1::Merci_Harvest {
 			ask_for_the_gifts_count
 			ask_what_gifts_a_party_can_accept
 			ask_to_add_a_gift_to_gifts
+			
+			ask_to_show_every_gift
+			
+			ask_to_reject_gift
 	*/
 	public fun ask_for_the_gifts_count () : u64 acquires Harvest {
 		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
@@ -192,22 +200,80 @@ module ride_1::Merci_Harvest {
 		
 		
 		/*
-			This checks if party_2 has joined the harvest.
-			
+			Path:
+				* Checks if party_2 has joined the harvest.
+				* Attempt deduct from party_1
+				* Attempt add mercy to gifts
 		*/
-		let party_2 : &mut Merci_Parties::Party = Merci_Parties::search_for_flexible_party (parties, party_2_spot);
-		
-		/*
-			attempt deduct from party_1
-		*/
+		let party_2 : &mut Merci_Parties::Party = Merci_Parties::ask_for_one_flexible_party (parties, party_2_spot);
 		Merci_Parties::ask_to_deduct_mercy (parties, party_1_spot, mercy_to_send);
-		
-		/*
-			attempt add mercy to gifts
-		*/
-		Merci_Gifts::add_a_gift (gifts, party_1_spot, party_2_spot, mercy_to_send);
+		Merci_Gifts::ask_to_add_a_gift_to_gifts (gifts, party_1_spot, party_2_spot, mercy_to_send);		
 	}
-	
+	public fun ask_to_show_every_gift () acquires Harvest {
+		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
+		let number_of_gifts = vector::length (& le_harvest.gifts);
+		
+		for (index_1 in 0..number_of_gifts) {
+			let le_gift = vector::borrow (& le_harvest.gifts, index_1);
+			
+			debug::print (& string_utils::format1 (
+				& b"gift index: [{}]", 
+				index_1
+			));
+			
+			Merci_Gifts::ask_to_show_gift (le_gift);
+		};	
+
+		debug::print (& string_utils::format1 (
+			& b"\n  number_of_gifts: [{}] \n", 
+			number_of_gifts
+		))
+	}
+	public fun ask_to_reject_gift (
+		origin_address : address, 
+		to_address : address, 
+		mercy_volume : u256
+	) acquires Harvest {
+		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
+		let number_of_gifts = vector::length (& le_harvest.gifts);
+		
+		for (index_1 in 0..number_of_gifts) {
+			let le_gift = vector::borrow (& le_harvest.gifts, index_1);
+			
+			if (Merci_Gifts::ask_if_is_equivalent (le_gift, origin_address, to_address, mercy_volume)) {
+				let amount_of_mercy_in_gift = Merci_Gifts::ask_for_amount_of_mercy_of_gift (le_gift);
+				
+				// remove index_1
+				vector::remove (&mut le_harvest.gifts, index_1);
+			
+				// todo: return to origin_address (sender)
+				Merci_Parties::ask_to_add_mercy_to_party (
+					&mut le_harvest.parties,
+					origin_address,
+					amount_of_mercy_in_gift
+				)
+			}
+		}
+	}
+	public fun ask_to_accept_gift (
+		origin_address : address, 
+		to_address : address, 
+		mercy_volume : u256
+	) acquires Harvest {
+		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
+		let number_of_gifts = vector::length (& le_harvest.gifts);
+		
+		for (index_1 in 0..number_of_gifts) {
+			let le_gift = vector::borrow (& le_harvest.gifts, index_1);
+			
+			if (Merci_Gifts::ask_if_is_equivalent (le_gift, origin_address, to_address, mercy_volume)) {
+				// remove index_1
+				vector::remove (&mut le_harvest.gifts, index_1);
+				
+				
+			}
+		}
+	}
 
 	
 	/*

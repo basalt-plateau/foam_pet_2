@@ -1,11 +1,19 @@
 
+
+
 /*
 	https://aptos.dev/en/build/smart-contracts/move-reference?page=aptos-stdlib%2Fdoc%2Fsimple_map.md#@Specification_1_add
 */
 
-module ride_1::Merci_Steady_1 {
+
+/*
+	* send a gift
+	* accept a gift
+*/
+module ride_1::Merci_Steady_3 {
 	
 	use std::string::{ String };
+	
 	
 	#[view]
 	public fun Bayanihan () : String {
@@ -50,7 +58,7 @@ module ride_1::Merci_Steady_1 {
 		Merci_Harvest::ask_to_establish_harvest (& estate_1_flourisher, mercyverse);
 		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_1_spot) != utf8 (b"yup")) { abort 1 };
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_1_spot) != mercyverse) { abort 2 };
-		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7 };
+		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7; };
 		
 		/*
 			Joining:
@@ -69,22 +77,28 @@ module ride_1::Merci_Steady_1 {
 		
 		
 		/*
-			Leaving:
-				Estate 2
-				Estate 3
+			Send: 
+				Estate 1 Party -> Estate 2 Gifts
 		*/
-		Merci_Harvest::petition_to_leave_harvest (& estate_2_flourisher);
-		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7 };
-		
-		Merci_Harvest::petition_to_leave_harvest (& estate_3_flourisher);
-		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7 };
+		let mercy_to_send : u256 = 1000000000000000000000000000000000000000000000000000000000000000000000000000;
+		let expected_estate_1_mercy_after_send : u256 = 9000000000000000000000000000000000000000000000000000000000000000000000000000;
+		Merci_Harvest::ask_to_add_a_gift_to_gifts (& estate_1_flourisher, estate_2_spot, mercy_to_send);
+		if (Merci_Harvest::ask_for_the_gifts_count () != 1) { abort 7 };
 		
 		/*
-			Destroy Harvest
+			Show the gifts.
 		*/
-		Merci_Harvest::ask_to_destroy_harvest (& estate_1_flourisher);
+		Merci_Harvest::ask_to_show_every_gift ();
 		
+		
+		/*
+			Gift Acceptance from:
+				Estate 2				
+		*/
+
 	}
 }
+
+
 
 

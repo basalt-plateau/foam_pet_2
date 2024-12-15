@@ -18,7 +18,7 @@ module ride_1::Merci_Parties {
 	
 	use std::vector;
 	
-	use ride_1::Merci_Gifts;
+	// use ride_1::Merci_Gifts;
 	
 	/*
 		let Tote = Merci_Harbor::organize_Tote (
@@ -55,12 +55,14 @@ module ride_1::Merci_Parties {
 	
 	
 
-
-	/* join + leave */
 	/*
 		Fonctions:
+			ask_to_join_les_parties
 			petition_to_leave_les_parties
-			ask_to_join_les_parties		
+					
+			parties_turnout
+			ask_for_one_flexible_party
+			ask_for_le_index_of_one_flexible_party
 	*/
 	public fun ask_to_join_les_parties (
 		parties : &mut vector<Party>,
@@ -82,26 +84,22 @@ module ride_1::Merci_Parties {
 		
 		*/
 		
-		let le_party = search_for_flexible_party (parties, spot);
+		let index_of_le_party = ask_for_le_index_of_one_flexible_party (parties, spot);
+		vector::remove (parties, index_of_le_party);		
 	}
-	
-	
-	
 	public fun parties_turnout (parties : &mut vector<Party>) : u64 {
 		let parties_turnout = vector::length (parties);
 		parties_turnout
 	}
-	
-	
-	
-	
-	/*
-		let le_party : &mut Merci_Parties::Party = Merci_Parties::search_for_flexible_party (parties, party_spot);
-	*/
-	public fun search_for_flexible_party (
+	public fun ask_for_one_flexible_party (
 		parties : &mut vector<Party>,
 		party_spot : address
 	) : &mut Party {
+		/*
+			let le_party : &mut Merci_Parties::Party = Merci_Parties::ask_for_one_flexible_party (parties, party_spot);
+		
+		*/
+		
 		let number_of_parties = vector::length (parties);
 		
 		for (index_1 in 0..number_of_parties) {
@@ -109,6 +107,27 @@ module ride_1::Merci_Parties {
 			
 			if (retrieve_spot (le_party) == party_spot) {
 				return le_party
+			}
+		};	
+		
+		abort 1
+	}
+	public fun ask_for_le_index_of_one_flexible_party (
+		parties : &mut vector<Party>,
+		party_spot : address
+	) : u64 {
+		/*
+			let le_party : &mut Merci_Parties::Party = Merci_Parties::ask_for_one_flexible_party (parties, party_spot);
+		
+		*/
+		
+		let number_of_parties = vector::length (parties);
+		
+		for (index_1 in 0..number_of_parties) {
+			let le_party = vector::borrow_mut (parties, index_1);
+			
+			if (retrieve_spot (le_party) == party_spot) {
+				return index_1
 			}
 		};	
 		
@@ -126,6 +145,7 @@ module ride_1::Merci_Parties {
 	
 		Fonctions:
 			ask_to_deduct_mercy
+			ask_to_add_mercy_to_party
 			ask_for_le_amount_of_mercy_that_a_party_has
 	*/
 	public fun ask_to_deduct_mercy (
@@ -133,12 +153,20 @@ module ride_1::Merci_Parties {
 		party_spot : address,
 		mercy_to_deduct : u256
 	) {
-		let le_party : &mut Party = search_for_flexible_party (parties, party_spot);
+		let le_party : &mut Party = ask_for_one_flexible_party (parties, party_spot);
 		if (le_party.mercy < mercy_to_deduct) {
-			abort 2;
+			abort 2
 		};
 		
 		le_party.mercy = le_party.mercy - mercy_to_deduct;
+	}
+	public fun ask_to_add_mercy_to_party (
+		parties : &mut vector<Party>,
+		party_spot : address,
+		mercy_to_add : u256
+	) {
+		let le_party : &mut Party = ask_for_one_flexible_party (parties, party_spot);
+		le_party.mercy = le_party.mercy + mercy_to_add;
 	}
 	public fun ask_for_le_amount_of_mercy_that_a_party_has (party: & Party) : u256 {
 		/*
@@ -148,17 +176,4 @@ module ride_1::Merci_Parties {
 		
         party.mercy
     }
-	
-	/*
-		Merci_Parties::send_a_gift (parties, from_spot, to_party);
-	*/
-	public fun send_a_gift (
-		parties : & vector<Party>,
-		from_spot : address,
-		to_party : &mut Party
-	) : u256 {
-		let return_this : u256 = 0;
-		
-		return_this
-	}
 }

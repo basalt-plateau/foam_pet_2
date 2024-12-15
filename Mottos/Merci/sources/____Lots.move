@@ -6,7 +6,7 @@
 module ride_1::Lots {
 	
 	use std::string::{ utf8, String };
-	use std::vector;
+	// use std::vector;
 	use std::signer;
 	
 
@@ -23,15 +23,11 @@ module ride_1::Lots {
 	
 	#[view]
 	public fun is_novestlist (estate_address : address) : String {
-		/*
 		if (estate_address == novelist ()) {
 			return utf8 (b"yeah")
 		};
 		
 		utf8 (b"no")
-		*/
-		
-		utf8 (b"yeah")
 	}
 	
 
