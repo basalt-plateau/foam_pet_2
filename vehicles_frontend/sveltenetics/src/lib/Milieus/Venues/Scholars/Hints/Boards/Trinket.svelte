@@ -45,17 +45,18 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 
 	<div class="card p-4 variant-soft-surface">
 		<!-- Supermassive Reservoir -->
+		<!-- Supermassive Pupil that can send the speed of light through fonction frontiers. -->
 	
 		<p
 			style="
 				margin: 0 auto;
 				width: 100%;
-				max-width: 600px;
+				max-width: 700px;
 				text-align: center;
+				font-size: 1.2em;
 			"
 		>	
-			Supermassive Pupil Wallet Logistics Duo for <Slang text="Aptos" />
-			that can send the speed of light through fonction frontiers.
+			Supermassive Reservoir Wallet Logistics Duo for <Slang text="Aptos" />
 		</p>
 	</div>
 

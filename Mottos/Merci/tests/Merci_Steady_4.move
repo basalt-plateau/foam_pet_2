@@ -29,13 +29,31 @@ module ride_1::Merci_Steady_4 {
 		use aptos_framework::coin::{ Self, Coin };
 		use aptos_framework::timestamp;
 		
+		/*
+			public fun initialize<CoinType>(
+				account: &signer, 
+				name: string::String, 
+				symbol: string::String, 
+				decimals: u8, 
+				monitor_supply: bool
+			): (
+				coin::BurnCapability<CoinType>, 
+				coin::FreezeCapability<CoinType>, 
+				coin::MintCapability<CoinType>
+			)
+		*/
+		let decimals : u8 = 8;
+		let monitor_supply : bool = false;
 		let (burn_cap, freeze_cap, mint_cap) = coin::initialize<AptosCoin>(
             aptos_framework_flourisher,
-            string::utf8 (b"TC"),
-            string::utf8 (b"TC"),
-            8,
-            false
+            string::utf8 (b"AptosCoin_Vow"),
+            string::utf8 (b"ACV"),
+            decimals,
+            monitor_supply
         );
+		
+		// let coins = coin::mint<AptosCoin>(10000, &mint_cap);
+        // coin::deposit (estate_1_spot, coins);
 		
 		(burn_cap, freeze_cap, mint_cap)
 	}
@@ -90,18 +108,13 @@ module ride_1::Merci_Steady_4 {
 		debug::print (& string_utils::format1 (& b"estate_1_spot: {}", estate_1_spot));
 		debug::print (& string_utils::format1 (& b"equal: {}", estate_1_spot == novelist));
 		
-		
 		/*
 			Origin
 
 		*/
 		let (burn_cap, freeze_cap, mint_cap) = origin (aptos_framework_flourisher);
 		
-        account::create_account_for_test (estate_1_spot);
-        coin::register<AptosCoin>(& estate_1_flourisher);
-		
-		account::create_account_for_test (estate_2_spot);
-		coin::register<AptosCoin>(& estate_2_flourisher);
+
 		
 		
 		/*
@@ -109,12 +122,16 @@ module ride_1::Merci_Steady_4 {
 				Estate 1	
 				
 			Guarantee:
+				* Estate AptosCoin Balance
 				* Estate 1 joined harvest
 				* Estate 1 mercy amount is correct
 				* Parties count = 1
 		*/
 		let mercyverse : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
 		Merci_Harvest::ask_to_establish_harvest (& estate_1_flourisher, mercyverse);
+		account::create_account_for_test (estate_1_spot);
+        coin::register<AptosCoin>(& estate_1_flourisher);
+		if (coin::balance<AptosCoin>(estate_1_spot) != 0) { abort 89389 };
 		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_1_spot) != utf8 (b"yup")) { abort 1 };
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_1_spot) != mercyverse) { abort 2 };
 		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7 };
@@ -122,17 +139,44 @@ module ride_1::Merci_Steady_4 {
 		/*
 			Joining:
 				Estate 2
-				Estate 3		
+				
+			Guarantee:
+				* Estate AptosCoin Balance
 		*/
 		Merci_Harvest::ask_to_join_harvest (& estate_2_flourisher);
+		account::create_account_for_test (estate_2_spot);
+		coin::register<AptosCoin>(& estate_2_flourisher);
 		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_2_spot) != utf8 (b"yup")) { abort 3 };
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_2_spot) != 0) { abort 4 };
 		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7 };
+		if (coin::balance<AptosCoin>(estate_2_spot) != 0) { abort 89389 };
 		
+		/*
+			Joining:
+				Estate 3	
+				
+			Guarantee:
+				* Estate AptosCoin Balance
+		*/
 		Merci_Harvest::ask_to_join_harvest (& estate_3_flourisher);
 		if (Merci_Harvest::ask_if_a_party_joined_the_harvest (estate_3_spot) != utf8 (b"yup")) { abort 5 };
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_3_spot) != 0) { abort 6 };
 		if (Merci_Harvest::ask_for_party_count () != 3) { abort 7 };
+		
+		
+		/*
+			Mint AptosCoin
+		*/
+		let coins = coin::mint<AptosCoin>(10000, &mint_cap);
+        
+		
+		/*
+			
+		*/
+		coin::deposit (estate_1_spot, coins);
+		if (coin::balance<AptosCoin>(estate_1_spot) != 10000) { abort 89389 };
+		if (coin::balance<AptosCoin>(estate_2_spot) != 0) { abort 89389 };
+		if (coin::balance<AptosCoin>(estate_3_spot) != 0) { abort 89389 };
 		
 		
 		/*
