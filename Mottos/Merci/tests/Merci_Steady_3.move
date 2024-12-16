@@ -36,11 +36,12 @@ module ride_1::Merci_Steady_3 {
 		use std::string_utils;
 		use std::string::{ utf8 };
 		
+		use ride_1::Merci_Novelist;
 		use ride_1::Merci_Harvest;
 		use ride_1::Merci_Gifts;
 		use ride_1::Merci_Parties;
 		
-		let novelist : address = Merci_Harvest::ask_for_address_of_novelist ();
+		let novelist : address = Merci_Novelist::ask_for_address_of_novelist ();
 		
 		let estate_1_spot = signer::address_of (& estate_1_flourisher);
 		let estate_2_spot = signer::address_of (& estate_2_flourisher);
@@ -86,6 +87,7 @@ module ride_1::Merci_Steady_3 {
 		if (Merci_Harvest::ask_for_the_gifts_count () != 1) { abort 7 };
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_1_spot) != expected_estate_1_mercy_after_send) { abort 6 };
 		
+		
 		/*
 			Show the gifts.
 		*/
@@ -106,7 +108,6 @@ module ride_1::Merci_Steady_3 {
 		);
 		if (Merci_Harvest::ask_for_the_gifts_count () != 0) { abort 7 };
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_2_spot) != mercy_to_send) { abort 6 };
-		
 	}
 }
 

@@ -3,7 +3,7 @@
 	https://aptos.dev/en/build/smart-contracts/move-reference?page=aptos-stdlib%2Fdoc%2Fsimple_map.md#@Specification_1_add
 */
 
-module ride_1::Merci_Steady_1 {
+module ride_1::Merci_Steady_4 {
 	
 	use std::string::{ String };
 	
@@ -13,12 +13,53 @@ module ride_1::Merci_Steady_1 {
 		Merci_Bayanihan::Bayanihan ()
 	}	
 	
+	use aptos_framework::coin;
+	use aptos_framework::aptos_coin::AptosCoin;
 	#[test (
+		aptos_framework_flourisher = @0x1 
+	)]
+	fun origin (aptos_framework_flourisher: & signer) : (
+		coin::BurnCapability<AptosCoin>,
+		coin::FreezeCapability<AptosCoin>,
+		coin::MintCapability<AptosCoin>		
+	) {
+		use std::string;
+
+		use aptos_framework::aptos_coin::AptosCoin;
+		use aptos_framework::coin::{ Self, Coin };
+		use aptos_framework::timestamp;
+		
+		let (burn_cap, freeze_cap, mint_cap) = coin::initialize<AptosCoin>(
+            aptos_framework_flourisher,
+            string::utf8 (b"TC"),
+            string::utf8 (b"TC"),
+            8,
+            false
+        );
+		
+		(burn_cap, freeze_cap, mint_cap)
+	}
+	
+	/*
+	fun end () {
+		coin::destroy_mint_cap (mint_cap);
+        coin::destroy_freeze_cap (freeze_cap);
+		coin::destroy_burn_cap (burn_cap);
+	}
+	*/
+	
+
+	
+	#[test (
+		aptos_framework_flourisher = @0x1, 
+	
 		estate_1_flourisher = @ride_1, 
 		estate_2_flourisher = @ride_2,
 		estate_3_flourisher = @ride_3		
 	)]
     public fun novel_1_establish_join_send_leave (
+		aptos_framework_flourisher: & signer,
+	
 		estate_1_flourisher : signer,
 		estate_2_flourisher : signer,
 		estate_3_flourisher : signer		
@@ -27,7 +68,14 @@ module ride_1::Merci_Steady_1 {
 		use std::signer;
 		use std::string_utils;
 		use std::string::{ utf8 };
-		
+		use std::string;
+
+		use aptos_framework::account;
+		use aptos_framework::aptos_account;
+		use aptos_framework::aptos_coin::AptosCoin;
+		use aptos_framework::coin::{ Self, Coin };
+		use aptos_framework::timestamp;
+
 		use ride_1::Merci_Novelist;
 		use ride_1::Merci_Harvest;
 		use ride_1::Merci_Gifts;
@@ -44,8 +92,26 @@ module ride_1::Merci_Steady_1 {
 		
 		
 		/*
+			Origin
+
+		*/
+		let (burn_cap, freeze_cap, mint_cap) = origin (aptos_framework_flourisher);
+		
+        account::create_account_for_test (estate_1_spot);
+        coin::register<AptosCoin>(& estate_1_flourisher);
+		
+		account::create_account_for_test (estate_2_spot);
+		coin::register<AptosCoin>(& estate_2_flourisher);
+		
+		
+		/*
 			Establishing:
-				Estate 1		
+				Estate 1	
+				
+			Guarantee:
+				* Estate 1 joined harvest
+				* Estate 1 mercy amount is correct
+				* Parties count = 1
 		*/
 		let mercyverse : u256 = 10000000000000000000000000000000000000000000000000000000000000000000000000000;
 		Merci_Harvest::ask_to_establish_harvest (& estate_1_flourisher, mercyverse);
@@ -70,21 +136,15 @@ module ride_1::Merci_Steady_1 {
 		
 		
 		/*
-			Leaving:
-				Estate 2
-				Estate 3
+			
+		
+		
 		*/
-		Merci_Harvest::petition_to_leave_harvest (& estate_2_flourisher);
-		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7 };
+		coin::destroy_mint_cap (mint_cap);
+        coin::destroy_freeze_cap (freeze_cap);
+		coin::destroy_burn_cap (burn_cap);
 		
-		Merci_Harvest::petition_to_leave_harvest (& estate_3_flourisher);
-		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7 };
-		
-		/*
-			Destroy Harvest
-		*/
-		Merci_Harvest::ask_to_destroy_harvest (& estate_1_flourisher);
-		
+		// burn_cap
 	}
 }
 

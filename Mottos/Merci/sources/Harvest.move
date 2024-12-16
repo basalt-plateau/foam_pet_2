@@ -1,29 +1,6 @@
 
-/*
-	Structure:
-	
-		Harvest {
-			parties: [],
-			
-			//
-			// 	This is for send protection
-			//	so that a person can send directly.
-			//
-			gifts: []
-		}
 
-*/
-/*
-	Entry:
-		Establish_the_Mercy_Harvest
-		
-		Join_the_Mercy_Harvest
-		Leave_the_Mercy_Harvest
-	
-		Send_Mercy
-		Receive_Mercy
-			(Obtain)
-*/
+
 module ride_1::Merci_Harvest {
 
 	use std::debug;
@@ -32,14 +9,15 @@ module ride_1::Merci_Harvest {
 	use std::signer;
 	use std::vector;
 	
-	use ride_1::Merci_Bayanihan;
+	use ride_1::Merci_Novelist;
+	
 	use ride_1::Merci_Gifts;
 	use ride_1::Merci_Parties;
 	
 	
-	
 	#[view]
 	public fun Bayanihan () : String {
+		use ride_1::Merci_Bayanihan;
 		Merci_Bayanihan::Bayanihan ()
 	}	
 
@@ -55,44 +33,7 @@ module ride_1::Merci_Harvest {
 		mercy : u256
 	}
 
-	/*
-		 _   _                      _  _       _   
-		| \ | |  ___  __   __  ___ | |(_) ___ | |_ 
-		|  \| | / _ \ \ \ / / / _ \| || |/ __|| __|
-		| |\  || (_) | \ V / |  __/| || |\__ \| |_ 
-		|_| \_| \___/   \_/   \___||_||_||___/ \__|
-												   
-	
-		Fonctions:
-			ask_if_signer_is_novelist
-			ask_if_address_is_novelist
-			ask_for_address_of_novelist
-	*/
-	public fun ask_if_signer_is_novelist (estate_flourisher : & signer) : String {
-		let estate_spot = signer::address_of (estate_flourisher);
-		if (estate_spot == ask_for_address_of_novelist ()) {
-			return utf8 (b"yeah")
-		};
-		
-		utf8 (b"no")
-	}
-	public fun ask_if_address_is_novelist (estate_address : address) : String {
-		/*
-			if (ask_if_address_is_novelist (estate_1_spot) != utf8 (b"yeah")) { abort 9502 };
-		*/
-		
-		if (estate_address == ask_for_address_of_novelist ()) {
-			return utf8 (b"yeah")
-		};
-		
-		utf8 (b"no")
-	}
-	#[view]
-	public fun ask_for_address_of_novelist () : address {
-		let novelist_spot : address = @0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd;
-		novelist_spot
-	}
-	
+
 	
 	
 	/* Establish (+ Destroy) */
@@ -115,7 +56,7 @@ module ride_1::Merci_Harvest {
 		mercyverse : u256
 	) {
 		let estate_1_spot = signer::address_of (estate_flourisher);
-		if (ask_if_address_is_novelist (estate_1_spot) != utf8 (b"yeah")) { abort 9502 };
+		if (Merci_Novelist::ask_if_address_is_novelist (estate_1_spot) != utf8 (b"yeah")) { abort 9502 };
 
 		let parties = Merci_Parties::organize_parties ();
 		let le_party = Merci_Parties::organize_party (estate_1_spot, mercyverse);
@@ -157,12 +98,12 @@ module ride_1::Merci_Harvest {
 			ask_to_accept_gift
 	*/
 	public fun ask_for_the_gifts_count () : u64 acquires Harvest {
-		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		vector::length (& le_harvest.gifts)
 	}
 	#[view]
 	public fun ask_what_gifts_a_party_can_accept () : vector<Merci_Gifts::Gift> acquires Harvest {
-		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
         let gifts_bracket = vector::empty<Merci_Gifts::Gift>();
 
         let gifts_count = vector::length (& le_harvest.gifts);
@@ -186,7 +127,7 @@ module ride_1::Merci_Harvest {
 			party 1 mercy -> party 2 gifts
 		*/
 		
-		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global_mut<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let parties = &mut le_harvest.parties;
 		let gifts = &mut le_harvest.gifts;
 		
@@ -211,7 +152,7 @@ module ride_1::Merci_Harvest {
 		Merci_Gifts::ask_to_add_a_gift_to_gifts (gifts, party_1_spot, party_2_spot, mercy_to_send);		
 	}
 	public fun ask_to_show_every_gift () acquires Harvest {
-		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let number_of_gifts = vector::length (& le_harvest.gifts);
 		
 		for (index_1 in 0..number_of_gifts) {
@@ -235,7 +176,7 @@ module ride_1::Merci_Harvest {
 		to_address : address, 
 		mercy_volume : u256
 	) acquires Harvest {
-		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global_mut<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let number_of_gifts = vector::length (& le_harvest.gifts);
 		
 		for (index_1 in 0..number_of_gifts) {
@@ -261,7 +202,7 @@ module ride_1::Merci_Harvest {
 		to_address : address, 
 		mercy_volume : u256
 	) acquires Harvest {
-		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global_mut<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let number_of_gifts = vector::length (& le_harvest.gifts);
 		
 		for (index_1 in 0..number_of_gifts) {
@@ -302,7 +243,7 @@ module ride_1::Merci_Harvest {
 			ask_for_le_amount_of_mercy_that_a_party_has
 	*/
 	public entry fun ask_to_join_harvest (estate_flourisher : & signer) acquires Harvest {
-		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global_mut<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let parties = &mut le_harvest.parties;
 		
 		let estate_spot = signer::address_of (estate_flourisher);
@@ -314,14 +255,14 @@ module ride_1::Merci_Harvest {
 	public entry fun petition_to_leave_harvest (estate_flourisher : & signer) acquires Harvest {
 		let estate_spot = signer::address_of (estate_flourisher);
 		
-		let le_harvest = borrow_global_mut<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global_mut<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let parties = &mut le_harvest.parties;
 		
 		Merci_Parties::petition_to_leave_les_parties (parties, estate_spot);
 	}
 	#[view]
 	public fun ask_if_a_party_joined_the_harvest (estate_spot : address) : String acquires Harvest {
-		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let parties = & le_harvest.parties;
 		let parties_turnout = vector::length (parties);
 		
@@ -339,11 +280,11 @@ module ride_1::Merci_Harvest {
 			let party_count : u64 = Merci_Harvest::ask_for_party_count ()
 		*/
 		
-		vector::length (& borrow_global<Harvest>(ask_for_address_of_novelist ()).parties)
+		vector::length (& borrow_global<Harvest>(Merci_Novelist::ask_for_address_of_novelist ()).parties)
 	}	
 	#[view]
 	public fun ask_for_le_amount_of_mercy_that_a_party_has (estate_spot : address) : u256 acquires Harvest {
-		let le_harvest = borrow_global<Harvest>(ask_for_address_of_novelist ());
+		let le_harvest = borrow_global<Harvest>(Merci_Novelist::ask_for_address_of_novelist ());
 		let parties = & le_harvest.parties;
 		let parties_turnout = vector::length (parties);
 		

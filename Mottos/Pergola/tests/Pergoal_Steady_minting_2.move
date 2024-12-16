@@ -146,8 +146,7 @@ module ride::Pergola_Steady_minting_2 {
 		
         coin::destroy_mint_cap (mint_cap);
         coin::destroy_freeze_cap (freeze_cap);
-
-
+		
 		burn_cap
     }
 
