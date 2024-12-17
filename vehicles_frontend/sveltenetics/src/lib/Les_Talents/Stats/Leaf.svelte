@@ -129,7 +129,7 @@ const conicStops = [
 		</div>
 		
 		<div style="width: 10px"></div>
-		<span>Health</span>
+		<span>Tenacity</span>
 		<div style="width: 10px"></div>
 	</header> 
 	

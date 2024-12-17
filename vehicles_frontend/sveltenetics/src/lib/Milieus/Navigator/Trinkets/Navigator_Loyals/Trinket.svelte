@@ -62,56 +62,8 @@ const build = () => {
 	}
 }
 
-/*
-	Flourishes [ Caligraphy, Ornaments ]:
-		Burmese:
-			ဖွံ့ဖြိုးတိုးတက်သည်
-	
-		Persian:
-			𐎲𐎼𐎺𐎱𐎾
-			
-		Greek:
-			Ακμάζει
-		
-		Sinhala:
-			පැතිරීම
-*/
 
-/*
-	Harvests:
-		သီးနှံမျာ
-
-		Ceramics:
-*/
-
-const Harvests = {
-	Greek: (
-		"θερισμός"
-	),
-	Berber: (
-		"ⵉⵖⵔⵓⵙ"
-	),
-	Hebrew: (
-		"קְצִיר"
-	),
-	Ogham: ("ᚉᚑᚏ"),
-	Ruinic: (
-		"ᚼᚨᚢᛋᛏ"
-	)
-}
-
-const Flourishes = {
-	English: (
-		"Flourishes"
-	),
-	// Burmese: ()
-};
-
-const Hints = {
-	Burmese: (
-		"အညွှန်းများ"
-	)
-}
+import { Harvests, Flourishes, Hints } from './Trinket'
 
 
 </script>
@@ -137,7 +89,7 @@ const Hints = {
 		style={ buttons_styles }
 	/>
 	<Milieus_Button
-		name={ Harvests.Greek }
+		name={ Harvests.Hebrew }
 		
 		location={[ "Loyals", "Accounts" ]}
 		is_open_location={[ "Loyals", "Accounts" ]}

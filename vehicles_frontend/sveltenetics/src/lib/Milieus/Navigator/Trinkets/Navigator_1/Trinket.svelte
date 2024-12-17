@@ -59,94 +59,7 @@ const build = () => {
 	}
 }
 
-/*
-	Tamil, Malayalam, Kannada, Telugu
-	
-	Armenian, Georgian,
-	
-	Lao
-	
-	Ladakhi
-*/
-
-// Sri Lanka
-let scholars = {
-	Tamil: (
-		"அறிஞர்கள்"
-	),
-	Malayalam: (
-		"പണ്ഡിതർ"
-	),
-	Kannada: (
-		"ಜ್ಞಾನಿಗಳು"
-	),
-	Telugu: (
-		"పండితులు"
-	),
-	
-	Odia: (
-		"ବିଦ୍ୱାନ"
-	),
-	
-	Sinhalese: ("")
-}
-
-// Environment
-/*
-	പരിസ്ഥിതി
-*/
-let Ecology = {
-	Malayalam: (
-		"പരിസ്ഥിതി"
-	),
-	Tamil: (
-		"சுற்றுச்சூழல்"
-	)
-}
-
-let friends = {
-	
-}
-
-/*
-	Possibilities:
-		Talents, Tricks, Opportunities
-	
-
-	Languages:
-		Tifinagh:
-			
-		
-		N'Ko:
-			
-		
-		Amharic, Ge'ez, Tigrinya, Tigre
-		
-		
-		Syriac
-*/
-
-let Amharic = {
-	Friendships: (
-		"ጓደኝነት"
-	),
-	Talents: (
-		"መክሊት"
-	)
-}
-
-
-
-// "ᎤᏓᏅᏙᏗ"
-let names = {
-	seeds: scholars.Malayalam,
-	friends: (
-		"ጓደኛዎች"
-	),
-	loyals: (
-		"ᐊᔭᖅ"
-	)	
-}
+import { Amharic, Ecology } from './Trinket'
 
 let loyals_name_2 = '/pictures/loyals.svg';
 
@@ -203,4 +116,13 @@ let loyals_name_2 = '/pictures/loyals.svg';
 		
 		style={ buttons_styles }
 	/>
+	
+	{#if mode === "nurture" }
+	<button 
+		type="button" 
+		class={
+			`navigator-button btn`
+		}
+	>Connect Wallet</button>
+	{/if}
 </div>
