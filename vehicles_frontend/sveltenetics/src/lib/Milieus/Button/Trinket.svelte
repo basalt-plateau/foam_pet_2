@@ -6,6 +6,8 @@
 	import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 
 	<Milieus_Button
+		monitor={ "Talents" }
+	
 		name={ "Talents" }
 		location={[ "Friends", "Talents" ]}
 		is_open_location={[ "Friends" ]}

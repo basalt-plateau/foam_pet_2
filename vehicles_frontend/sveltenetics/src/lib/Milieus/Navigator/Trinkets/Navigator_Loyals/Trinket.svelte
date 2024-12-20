@@ -82,6 +82,8 @@ import { Harvests, Flourishes, Hints } from './Trinket'
 
 	{#if seeds_trucks_prepared === "yes"}
 	<Milieus_Button
+		monitor="Hints"
+	
 		name={ Hints.Burmese }
 		location={[ "Loyals", "Hints" ]}
 		is_open_location={[ "Loyals", "Hints" ]}
@@ -89,7 +91,9 @@ import { Harvests, Flourishes, Hints } from './Trinket'
 		style={ buttons_styles }
 	/>
 	<Milieus_Button
-		name={ Harvests.Hebrew }
+		monitor="Accounts"
+	
+		name={ Harvests.Ogham }
 		
 		location={[ "Loyals", "Accounts" ]}
 		is_open_location={[ "Loyals", "Accounts" ]}
@@ -98,6 +102,8 @@ import { Harvests, Flourishes, Hints } from './Trinket'
 	/>
 	
 	<Milieus_Button
+		monitor="Signatures"
+	
 		name={ Flourishes.English }
 		
 		location={[ "Loyals", "Signatures" ]}

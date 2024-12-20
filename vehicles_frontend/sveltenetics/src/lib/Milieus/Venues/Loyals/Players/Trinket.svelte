@@ -61,7 +61,6 @@ let header_1_saying = {
 	),
 	english: "Harvests"
 }
-*/
 
 let header_1_saying = {
 	name: (
@@ -74,6 +73,24 @@ let header_1_saying = {
 		"katsir"
 	),
 	english: "Harvest"
+}
+*/
+
+
+/*
+	Harvest, or stack of grain
+*/
+let header_1_saying = {
+	name: (
+		"ᚉᚏᚒᚐᚌ"
+	),
+	language: (
+		"Ogham"
+	),
+	pronunciation: (
+		"Cruach"
+	),
+	english: "Harvests"
 }
 
 

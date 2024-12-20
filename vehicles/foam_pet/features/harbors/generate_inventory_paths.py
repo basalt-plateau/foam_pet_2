@@ -35,6 +35,8 @@ translations = {
 	"svg": "image/svg+xml",
 	
 	
+	"ttf": "font/ttf",
+
 	"txt": "text/plain",
 	"woff": "font/woff",
 	"woff2": "font/woff2"
@@ -47,6 +49,8 @@ def generate_inventory_paths (directory):
 	
 	inventory_partials = {}
 	for inventory_path in inventory:
+		print ("asset_path:", inventory_path);
+	
 		if (os.path.isfile (inventory_path)):
 			FP = open (inventory_path, "rb")
 			content = FP.read () 

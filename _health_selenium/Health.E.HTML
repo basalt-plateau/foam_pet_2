@@ -41,10 +41,32 @@
 		#		URL, etc.
 		#
 		
+		
+		#
+		#
+		#	Start the ventures
+		#
+		#
+		foam_pet_1 demux_hap build_unverified_certificates
+		foam_pet_1 ventures refresh
+		
+		#
+		#
+		#
+		#
+		#
+		
+		
 		. build_1.sh
 		python3 regions/health.proc.py run --pattern ".Se.py"
 		python3 regions/health.proc.py run --pattern ".Se.2.py"
 
+		
+		#
+		#
+		#	These are for move contract guarantees.. this doesn't work.
+		#
+		#
 		(cd /Metro/_health_selenium && python3 regions/health.proc.py run-mottos --pattern ".Se.move.py")
 
 	

@@ -20,11 +20,8 @@ const visiwas = {
 
 
 
-
-
-
 */
-
+import Multiverse from './Multiverse/Trinket.svelte';
 
 ///
 //
@@ -177,23 +174,18 @@ let isOpen = false;
 				width: 100%;
 				
 				padding: 1cm;
-				
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				
-				flex-direction: column;
-				
-				gap: 0.5cm;
 			"
 		>
 			<header
 				style="
 					font-size: 3em;
+					text-align: center;
 				"
-			>Venues</header>
+			>Multiverse</header>
 		
-		
+			<div>
+				<Multiverse />
+			</div>
 		</div>
 		{/if}
 		{/if}

@@ -11,7 +11,7 @@
 	
 	<main>	
 		<article>	
-			<header>stop docker containers</header>
+			<header>perhaps: stop docker containers</header>
 			<code>
 				docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 			</code>
@@ -22,9 +22,6 @@
 			<code>
 				docker stop foam_pet && docker rm foam_pet
 				docker run --name foam_pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
-				docker run --name foam_pet -v .:/Metro -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
-				docker run --name foam_pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it jumps:v2.1.0 bash
-				
 				. /Metro/_plays/board/build_1.sh
 			</code>	
 				

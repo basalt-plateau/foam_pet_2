@@ -128,8 +128,10 @@ const conicStops = [
 			<Radial_Progress />
 		</div>
 		
+		<!-- Pep, Health, Stability, Condition -->
+		
 		<div style="width: 10px"></div>
-		<span>Tenacity</span>
+		<span>Condition</span>
 		<div style="width: 10px"></div>
 	</header> 
 	

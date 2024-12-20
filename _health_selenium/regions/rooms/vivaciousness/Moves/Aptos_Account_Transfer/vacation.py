@@ -51,7 +51,6 @@ from vivaciousness.health_regions.connect import connect_to_driver
 from vivaciousness.procedures.Faucet.Give import give_Octas_from_faucet
 from vivaciousness.procedures.loop import loop
 from vivaciousness.regions.Seeds.Features.change_net import change_net
-from vivaciousness.Milieus.navigate import Milieus_Navigate
 #
 from vivaciousness.memo import proceed_through_memo
 #

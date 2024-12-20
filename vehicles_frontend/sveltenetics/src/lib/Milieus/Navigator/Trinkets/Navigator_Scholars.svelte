@@ -129,6 +129,8 @@ const Petroglyphs = {
 	{#if seeds_trucks_prepared === "yes"}
 	<div>
 		<Milieus_Button
+			monitor="Hints"
+		
 			name={ Petroglyphs.Emoji }
 			location={[ "Ecology", "Hints" ]}
 			is_open_location={[ "Ecology", "Hints" ]}
@@ -145,6 +147,8 @@ const Petroglyphs = {
 			style={ buttons_styles }
 		/>
 		<Milieus_Button
+			monitor="Theme"
+		
 			name={ Theme.Hakka }
 			
 			location={[ "Ecology", "Theme" ]}
@@ -155,6 +159,8 @@ const Petroglyphs = {
 		
 		{#if mode === "nurture" }
 		<Milieus_Button
+			monitor="Resilience"
+		
 			name={ "Resilience" }
 			
 			location={[ "Ecology", "Resilience", "Leaf" ]}

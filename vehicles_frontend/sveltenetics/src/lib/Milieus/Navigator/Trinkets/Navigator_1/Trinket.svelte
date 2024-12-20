@@ -85,7 +85,7 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	"
 >
 	<Milieus_Button
-		monitor="Ecology"
+		monitor="Scholars"
 		
 		name={ Ecology.Malayalam }
 		location={[ "Ecology", "Hints" ]}
@@ -94,7 +94,7 @@ let loyals_name_2 = '/pictures/loyals.svg';
 		style={ buttons_styles }
 	/>
 	<Milieus_Button
-		monitor="Friends"
+		monitor="Talents"
 	
 		name={ Amharic.Talents }
 		location={[ "Talents" ]}

@@ -41,7 +41,7 @@ def built_build ():
 	return [ open_browser, URL, has_memo ]
 
 def retrieve_plays ():
-	[ open_browser, URL, has_memo ] = flask_build ();
+	[ open_browser, URL, has_memo ] = dev_build ();
 	
 	return {
 		#

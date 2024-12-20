@@ -36,9 +36,12 @@ export const Harvests = {
 	Hebrew: (
 		"קְצִיר"
 	),
-	Ogham: ("ᚉᚑᚏ"),
+	Ogham: ("ᚉᚏᚒᚐᚌ"),
 	Ruinic: (
 		"ᚼᚨᚢᛋᛏ"
+	),
+	Aramaic: (
+		"ܩܒܝܠܬ̈ܐ"
 	)
 }
 

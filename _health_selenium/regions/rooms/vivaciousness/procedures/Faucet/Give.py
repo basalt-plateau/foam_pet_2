@@ -54,7 +54,7 @@ def give_Octas_from_faucet (packet):
 	
 	
 	Milieus_Navigate ({
-		"location": [ "Friends", "Talents" ],
+		"location": [ "Talents" ],
 		"driver": driver_1
 	});
 	
@@ -64,7 +64,7 @@ def give_Octas_from_faucet (packet):
 		def find_the_button ():
 			elements ["faucet_button"] = driver_1.find_element (
 				By.CSS_SELECTOR, 
-				"[quests_address] button[faucet]"
+				"[monitor='talents_list_nurture'] [monitor='faucet']"
 			)
 			
 		loop (find_the_button)

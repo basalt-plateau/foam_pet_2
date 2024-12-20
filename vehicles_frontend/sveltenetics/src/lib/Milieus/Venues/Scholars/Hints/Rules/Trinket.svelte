@@ -35,7 +35,10 @@ import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 import Originals from './Trinkets/Originals.svelte'
+import Other from './Trinkets/Other.svelte'
 
+// import Bayanihan from "$lib/Les_Talents/Bayanihan/Portico/Trinket.svelte"
+	
 
 const alert_success_note = "The bits were received successfully."
 let received_bits = "";
@@ -168,7 +171,8 @@ let clones_show = "Index"
 		>
 			<RadioGroup>
 				<RadioItem bind:group={ show } name="justify" value={ "Originals" }>Originals</RadioItem>	
-				<RadioItem bind:group={ show } name="justify" value={ "Topics" }>Topics</RadioItem>	
+				<RadioItem bind:group={ show } name="justify" value={ "Topics" }>Crust</RadioItem>	
+				<RadioItem bind:group={ show } name="justify" value={ "Other" }>Other</RadioItem>	
 				<RadioItem bind:group={ show } name="justify" value={ "Estates" }>Estates</RadioItem>
 			</RadioGroup>
 		</div>
@@ -185,6 +189,10 @@ let clones_show = "Index"
 			<Originals 
 				rules_originals_link={ rules_originals_link }
 			/>
+			{/if}
+			
+			{#if show === "Other" }
+			<Other />
 			{/if}
 		
 			{#if show === "Estates" }
@@ -238,7 +246,7 @@ let clones_show = "Index"
 						style="
 							font-size: 2em;
 						"
-					>Topics</header>
+					>Crust</header>
 					
 					<div style="height: 0.5cm"></div>
 					

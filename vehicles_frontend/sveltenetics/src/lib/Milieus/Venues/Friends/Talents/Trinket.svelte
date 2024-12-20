@@ -170,6 +170,9 @@ let Amharic_Talents = {
 
 	<section
 		quests_address
+		
+		monitor="talents_list"		
+		
 		style={ parse_styles ({
 			position: 'relative',
 			display: 'grid',
@@ -281,6 +284,8 @@ let Amharic_Talents = {
 	
 	{#if mode === "nurture" }
 	<section
+		monitor="talents_list_nurture"
+	
 		style={ parse_styles ({
 			position: 'relative',
 			display: 'grid',
@@ -295,6 +300,7 @@ let Amharic_Talents = {
 			<div class="relative inline-block">
 				<button 
 					faucet
+					monitor="faucet"
 					
 					on:click={ open_faucet }
 					type="button" 

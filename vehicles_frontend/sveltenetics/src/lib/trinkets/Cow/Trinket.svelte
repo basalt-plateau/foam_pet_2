@@ -3,6 +3,11 @@
 <script>
 
 import { fade } from 'svelte/transition';
+import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
+
+
+
+let sound_gem = ""
 
 const Cow = '/pictures/Cow.svg';
 
@@ -12,6 +17,7 @@ let chat_timeout;
 let cow_clicked = () => {
 	console.log ("cow_clicked");
 	show_dialogue = "yes"
+	sound_gem.playa ();
 	
 	clearTimeout (chat_timeout);
 	chat_timeout = setTimeout (() => {
@@ -43,6 +49,11 @@ let cow_clicked = () => {
 		cursor: pointer;
 	"
 >
+	<Sound_Gem 
+		bind:this={ sound_gem }
+		source="/sonors/Beep/Beep.ogg"
+	/>
+
 	{#if show_dialogue === "yes" }
 	<div
 		transition:fade
@@ -79,8 +90,7 @@ let cow_clicked = () => {
 				padding: 0.25cm;
 			"
 		>
-			Moooooooooo
-			
+			Oynk
 		</div>
 	</div>
 	{/if}
