@@ -1,7 +1,0 @@
-
-
-/*
-	wallet
-	wallets
-	setWallet(wallet)
-*/

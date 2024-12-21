@@ -2,10 +2,10 @@
 
 <script>
 
+import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+const modal_store = getModalStore ();
 
 
-
-export let modal_store;
 
 let open = async () => {
 	modal_store.trigger ({

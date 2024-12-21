@@ -49,6 +49,8 @@ body {
 	/* font-family: serif;  */
 	
 	font-family: 'Courier New', 'DejaVu Sans Mono', monospace;
+	
+	box-sizing: border-box;
 }
 
 header {

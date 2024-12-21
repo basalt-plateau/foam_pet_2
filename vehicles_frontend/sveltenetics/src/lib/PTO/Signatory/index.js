@@ -5,7 +5,7 @@
 
 /*
 	import { create_wallet_link } from "$lib/PTO/Signatory"
-	const wallet_link = create_wallet_link ();
+	const { wallet_link } = create_wallet_link ();
 */
 
 /*
@@ -32,6 +32,12 @@ const wallet_link = new WalletCore (
 */
 	
 import { WalletCore } from "@aptos-labs/wallet-adapter-core";
+import * as Truck_1 from './_Truck/index.js'
+
+
+const Signatory = () => {
+	
+}
 
 export const create_wallet_link = () => {
 	const plugins = []
@@ -40,6 +46,8 @@ export const create_wallet_link = () => {
 	const dappConfig = {}
 	const disableTelemetry = []
 
+	Truck_1.make ()
+
 	const wallet_link = new WalletCore (
 		plugins,
 		optInWallets,
@@ -47,5 +55,10 @@ export const create_wallet_link = () => {
 		disableTelemetry
 	);
 	
-	return wallet_link
+	const signatory = Signatory ();
+	
+	return {
+		wallet_link,
+		signatory
+	};
 }

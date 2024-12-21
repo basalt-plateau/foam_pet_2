@@ -41,6 +41,9 @@ importers:
       '@sveltejs/adapter-static':
         specifier: ^3.0.2
         version: 3.0.5(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)))
+      '@visiwa/trucks':
+        specifier: ^1.5.0
+        version: 1.5.0
       '@zxing/browser':
         specifier: 0.1.5
         version: 0.1.5(@zxing/library@0.21.2)
@@ -92,6 +95,9 @@ importers:
       pako:
         specifier: ^2.1.0
         version: 2.1.0
+      procedures:
+        specifier: ^4.0.0
+        version: 4.0.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1210,6 +1216,9 @@ packages:
     resolution: {integrity: sha512-Z2kq/hSv1RC3PYAaoXOGB0PEWXCVsgYtdnuFXR/8Tp0Yj2Wdeq906/s411/sqMUvXIaIhm2O9WaDfe0ISoV0sg==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
+
+  '@visiwa/trucks@1.5.0':
+    resolution: {integrity: sha512-JwPkteJoeiMm51HkBH/ojt7qRwkuraOc+fR3OXifXdKgSZl+rgzEyUShptZqc0cHd7AMyXZAhC/tiSMeS6uaSQ==}
 
   '@vitest/expect@1.6.0':
     resolution: {integrity: sha512-ixEvFVQjycy/oNgHjqsL6AZCDduC+tflRluaHIzKIsdbzkLn2U/iBnVeJwB6HsIjQBdfMR8Z0tRxKUsvFJEeWQ==}
@@ -2497,6 +2506,9 @@ packages:
   pretty-format@29.7.0:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+
+  procedures@4.0.0:
+    resolution: {integrity: sha512-uWkEZRjm7zU+HsgCPrNxWy3fYmYH+js2YgPg0fYhyxnoBfcjqdOG1n/6mLQlPTbdzpH4u7afVWxwB9T74DCLjw==}
 
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -4367,6 +4379,10 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
+  '@visiwa/trucks@1.5.0':
+    dependencies:
+      lodash: 4.17.21
+
   '@vitest/expect@1.6.0':
     dependencies:
       '@vitest/spy': 1.6.0
@@ -5635,6 +5651,10 @@ snapshots:
       '@jest/schemas': 29.6.3
       ansi-styles: 5.2.0
       react-is: 18.3.1
+
+  procedures@4.0.0:
+    dependencies:
+      lodash: 4.17.21
 
   process-nextick-args@2.0.1: {}
 

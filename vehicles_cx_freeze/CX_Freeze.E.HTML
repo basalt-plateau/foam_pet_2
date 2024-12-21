@@ -3,87 +3,54 @@
 
 	<header>CX Freeze</header>
 
-	_distributions:
-		v7_0_0_0
-			Foam_Pet.linux-x86_64.v7_0_0_0.zip
-			Foam_Pet.linux-x86_64.v7_0_0_0
-				clap
-				foam_pet
-				frozen_application_license.txt
-				Leaflet.HTML
-				Rules.v7_0_0_0.HTML
-			
-			Foam_Pet.linux-x86_64.v7_0_0.0.Rules.zip
-			Foam_Pet.linux-x86_64.v7_0_0.0.Rules
-				Rules.v7_0_0_0.HTML
+	<header></header>
+		_distributions:
+			v7_0_0_0
+				Foam_Pet.linux-x86_64.v7_0_0_0.zip
+				Foam_Pet.linux-x86_64.v7_0_0_0
+					clap
+					foam_pet
+					frozen_application_license.txt
+					Leaflet.HTML
+					Rules.v7_0_0_0.HTML
+				
+				Foam_Pet.linux-x86_64.v7_0_0.0.Rules.zip
+				Foam_Pet.linux-x86_64.v7_0_0.0.Rules
+					Rules.v7_0_0_0.HTML
 	
-	#
-	#	perhaps..
-	#		https://cx-freeze.readthedocs.io/en/stable/setup_script.html
-	#
-	#			(cd /Metro/vehicles_frontend/sveltenetics && pnpm build_frontend)
-	#
-	#
+	<header></header>
+		#
+		#	perhaps..
+		#		https://cx-freeze.readthedocs.io/en/stable/setup_script.html
+		#
+		#			(cd /Metro/vehicles_frontend/sveltenetics && pnpm build_frontend)
+		#
+		#
+
+
+	<header></header>
+
+		#
+		#
+		#	change the "version" in setup.py
+		#
+		#
+		rm -rf /Metro/build && cd /Metro && python setup.py build
+		(cd /Metro/vehicles_cx_freeze && python3 create.py)
 
 
 
-	#
-	#
-	#	change the details of the setup.py
-	#
-	#
-	mkdir /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0
-	rm -rf /Metro/build && cd /Metro && python setup.py build
+		# /Metro/build/Foam_Pet_7_0_0.0.linux-x86_64/foam_pet harbor on
+		/Metro/vehicles_cx_freeze/_distributions/v8_0_0_0/Foam_Pet.linux-x86_64.v8_0_0_0/clap
 
-	#
-	#
-	#	Add Assets to the distribution
-	#
-	#
-	cp /Metro/vehicles_cx_freeze/assets/Rules.E.HTML /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0/Rules.v7_0_0_0.HTML
-	cp /Metro/vehicles_cx_freeze/assets/Leaflet.E.HTML /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0/Leaflet.HTML
-
-	
-	#
-	#
-	#	Prep the rules
-	#
-	#
-	mkdir /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0.Rules
-	cp -R /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0/lib/foam_pet/Rules /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0.Rules/Rules_PyPI_foam_pet
-	cp /Metro/vehicles_cx_freeze/assets/Rules.E.HTML /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0.Rules/Rules.E.HTML
-	cp /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0/frozen_application_license.txt /Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0.Rules/frozen_application_license.txt
-
-	#
-	#
-	#	zip
-	#
-	#
-	chmod -R 777 /Metro
-	(cd _distributions/v7_0_0_0 && zip -r "Foam_Pet.linux-x86_64.v7_0_0_0.zip" "Foam_Pet.linux-x86_64.v7_0_0_0")
-	(cd _distributions/v7_0_0_0 && zip -r "Foam_Pet.linux-x86_64.v7_0_0_0.Rules.zip" "Foam_Pet.linux-x86_64.v7_0_0_0.Rules")
-	
-
-	#
-	#
-	#	Change:
-	#		./lib/foam_pet/Rules/Rules.E.HTML
-	#		./Rules_PyPI_foam_pet/Rules.E.HTML
-	#
-	#
-	chmod -R 777 /Metro
-
-	# /Metro/build/Foam_Pet_7_0_0.0.linux-x86_64/foam_pet harbor on
-	/Metro/vehicles_cx_freeze/_distributions/v7_0_0_0/Foam_Pet.linux-x86_64.v7_0_0_0/clap
-
-	#
-	#	Selenium check
-	#	
-	#
+		#
+		#	Selenium check
+		#	
+		#
 
 
-	
-	
+		
+		
 	
 
 

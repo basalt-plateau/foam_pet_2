@@ -7,5 +7,5 @@
 
 ```
 import Talent from '$lib/Les_Talents/__Template/Portico.svelte'
-<Talent />
+<Talent { modal_store } />
 ```

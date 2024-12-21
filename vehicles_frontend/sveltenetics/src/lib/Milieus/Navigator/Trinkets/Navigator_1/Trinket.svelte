@@ -14,6 +14,9 @@ import { parse_styles } from '$lib/trinkets/styles/parse'
 //
 //
 	
+import Wallet_Portico from "$lib/Les_Talents/_Wallet/Portico/Trinket.svelte"
+		
+	
 let mode = check_roomies_truck ().freight.mode;
 let window_width = check_roomies_truck ().freight.window_width;
 
@@ -118,11 +121,6 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	/>
 	
 	{#if mode === "nurture" }
-	<button 
-		type="button" 
-		class={
-			`navigator-button btn`
-		}
-	>Connect Wallet</button>
+	<Wallet_Portico />
 	{/if}
 </div>

@@ -11,16 +11,15 @@ plays = retrieve_plays ();
 },
 "'''
 
+
+#
+#
+#	Development
+#
+#
 def flask_build ():
 	open_browser = "yes"
 	URL = "http://172.17.0.2:2300"
-	has_memo = "yes"
-	
-	return [ open_browser, URL, has_memo ]
-
-def online_build ():
-	open_browser = "yes"
-	URL = "https://foam.pet"
 	has_memo = "yes"
 	
 	return [ open_browser, URL, has_memo ]
@@ -39,9 +38,31 @@ def sanic_build ():
 	has_memo = "yes"
 	
 	return [ open_browser, URL, has_memo ]
+	
+
+#
+#
+#	Public
+#
+#
+def VM_build ():
+	open_browser = "yes"
+	URL = "https://45.63.57.134"
+	has_memo = "yes"
+	
+	return [ open_browser, URL, has_memo ]
+
+def online_build ():
+	open_browser = "yes"
+	URL = "https://foam.pet"
+	has_memo = "yes"
+	
+	return [ open_browser, URL, has_memo ]
+
+
 
 def retrieve_plays ():
-	[ open_browser, URL, has_memo ] = sanic_build ();
+	[ open_browser, URL, has_memo ] = VM_build ();
 	
 	return {
 		#
