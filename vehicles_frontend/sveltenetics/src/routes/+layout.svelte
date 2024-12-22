@@ -39,7 +39,9 @@ import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck
 //
 //\
 //\\
-
+import { make_the_flourisher, destroy_the_flourisher } from "$lib/PTO/Flourisher"
+	
+	
 
 
 import Cow from "$lib/trinkets/Cow/Trinket.svelte"
@@ -62,6 +64,8 @@ const drawerStore = getDrawerStore ();
 let roomies_truck_leased = "no"
 let Milieus_truck_leased = "no"
 
+
+let trucks_prepared = "no"
 onMount (async () => {
 	autoModeWatcher ();
 	setInitialClassState ()
@@ -71,11 +75,15 @@ onMount (async () => {
 	//	Trucks
 	//
 	//
+	make_the_flourisher ();
+	//	
 	lease_roomies_truck ()
 	roomies_truck_leased = "yes"
 
 	lease_Milieus_truck ()
 	Milieus_truck_leased = "yes"
+	
+	trucks_prepared = "yes"
 	//
 	////
 
@@ -96,6 +104,10 @@ onDestroy (async () => {
 	
 	give_back_Milieus_truck ()
 	Milieus_truck_leased = "no"
+	
+	destroy_the_flourisher ();
+	
+	trucks_prepared = "no"
 })
 
 
@@ -131,8 +143,7 @@ beforeUpdate (async () => {
 >	
 	{#if 
 		built === "yes" && 
-		roomies_truck_leased === "yes" &&
-		Milieus_truck_leased === "yes"
+		trucks_prepared === "yes"
 	}
 	<div
 		in:fade={{ duration: 500 }} 

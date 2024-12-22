@@ -8,7 +8,7 @@
 
 ///
 //
-import { onMount } from "svelte"
+import { onMount, onDestroy } from "svelte"
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 import _merge from 'lodash/merge'
@@ -17,13 +17,15 @@ import _merge from 'lodash/merge'
 import { has_field } from 'procedures/object/has_field'
 //
 //
-import { create_wallet_link } from "$lib/PTO/Signatory"
-//
 //
 import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
 //
 //
 ///
+
+import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/PTO/Flourisher"
+	
+	
 
 
 let polytope_modal;
@@ -60,11 +62,6 @@ const on_prepare = () => {
 	polytope_established = "yup"
 }
 
-const allowed_wallets = {
-	"Nightly": "",
-	"Petra": "",
-	"Pontem Wallet": ""
-}
 
 let is_connected = "perhaps"
 let wallets_show = []
@@ -72,55 +69,90 @@ let wallets_show = []
 	isAIP62Standard
 	isSignTransactionV1_1
 */
-/*
-	0: "name"
-	1: "url"
-	2: "icon"
-	3: "provider"
-	4: "connect"
-	​
-	5: "disconnect"
-	​
-	6: "network"
-	​
-	7: "account"
-	​
-	8: "signAndSubmitTransaction"
-	​
-	9: "signMessage"
-	​
-	10: "onAccountChange"
-	​
-	11: "onNetworkChange"
-	​
-	12: "signTransaction"
-	​
-	13: "openInMobileApp"
-	​
-	14: "changeNetwork"
-	​
-	15: "readyState"
-	​
-	16: "isAIP62Standard"
-	​
-	17: "isSignTransactionV1_1"
-*/
+
 
 let le_wallet_link = "";
 let le_signatory = ""
 let mounted = "no"
-onMount (() => {
-	const { wallet_link, signatory } = create_wallet_link ();
+
+
+let flourisher_monitor = ""
+let flourisher_freight = ""
+onMount (async () => {
+	flourisher_freight = ask_for_flourisher_freight ();
+	flourisher_monitor = ask_for_flourisher_monitor (async ({
+		original_freight,
+		pro_freight, 
+		//
+		target,
+		//
+		property, 
+		value
+	}) => {
+		flourisher_freight = pro_freight;
+	});
+	
+	
+	/*
+	
+	const { wallet_link, signatory } = await create_wallet_link ();
 	le_wallet_link = wallet_link;
 	le_signatory = signatory;
 	
 	console.info ({ wallet_link });	
 	is_connected = le_wallet_link.isConnected () ? "yup" : "no";
 	
-	wallets_show = le_wallet_link._all_wallets;
+	wallets_show = signatory.wallets_list;
+	
+	wallets_show.forEach (wallet => {
+		console.log ({ 
+			name: wallet.name, 
+			readyState: wallet.readyState,
+			wallet 
+		});
+	});
+	*/
 	
 	mounted = "yup"
 });
+
+const obtain_wallet = ({ wallet }) => {
+	console.log ("obtain_wallet:", { wallet });
+	window.open (wallet.url, '_blank');
+}
+
+
+const connect_wallet = async ({ wallet }) => {
+	const wallet_name = wallet.name;
+	
+	console.log ("connect_wallet:", { wallet });
+	
+	//
+	//	connect with wallet_link
+	//
+	//
+	await le_wallet_link.connect (wallet_name);
+	
+	
+	console.log ("wallet name:", wallet_name);
+	
+	const proceeds = await le_wallet_link.connect (wallet_name);
+	
+	
+	console.log ({ proceeds });
+	is_connected = le_wallet_link.isConnected () ? "yup" : "no";
+	console.log ({ is_connected });
+	
+	
+	//	Add to localStorage
+	//
+	localStorage.setItem ("AptosWalletName", wallet_name);
+}
+
+
+onDestroy (() => {
+	flourisher_monitor.stop ()
+})
 
 </script>
 
@@ -201,8 +233,7 @@ onMount (() => {
 					"
 					class="card p-2"
 				>
-					{#each wallets_show as wallet}
-					{#if has_field (allowed_wallets, wallet.name) }
+					{#each flourisher_freight.wallets_list as wallet}
 					<div
 						style="
 							display: flex;
@@ -241,31 +272,49 @@ onMount (() => {
 							/>
 							<p>{ wallet.name }</p>
 						</div>
-						<span class="badge variant-soft-primary">{ wallet.readyState }</span>
 						
-						{#if wallet.isSignTransactionV1_1 }
+						{#if true }
+						<span class="badge variant-soft-primary">{ wallet.readyState }</span>
+						{/if}
+						
+						{#if false && wallet.isSignTransactionV1_1 }
 						<span class="badge variant-soft-primary">Is Sign TransactionV1_1</span>
 						{/if}
 						
 						{#if wallet.isAIP62Standard }
 						<span class="badge variant-soft-primary">AIP 62 Standard</span>
 						{/if}
-						
-						{#if wallet.readyState === "NotDetected" }
+
+
+						<button 
+							type="button" 
+							class="btn btn-sm variant-filled"
+							on:click={() => {
+								connect_wallet ({ wallet });
+							}}
+						>Connect</button>	
+
 						<div>
+							{#if wallet.readyState === "Installed" }
 							<button 
 								type="button" 
 								class="btn btn-sm variant-filled"
 								on:click={() => {
-									
+									connect_wallet ({ wallet });
 								}}
-							>connect</button>						
+							>Connect</button>						
+							
+							{:else if wallet.readyState === "NotDetected" }
+							<button 
+								type="button" 
+								class="btn btn-sm variant-filled"
+								on:click={() => {
+									obtain_wallet ({ wallet });
+								}}
+							>Obtain</button>
+							{/if}
 						</div>
-						{:else if wallet.readyState === "NotDetected." }
-						
-						{/if}
 					</div>
-					{/if}
 					{/each}
 				</div>	
 			</div>			
