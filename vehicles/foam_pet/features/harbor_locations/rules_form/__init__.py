@@ -66,7 +66,15 @@ def send_rules_sanique (sanic_response):
 def rules_form (packet):
 	return """
 <html>
-<head></head>
+<head>
+	<style>
+		p {
+			padding: 5px 0;
+			margin: 0;
+		}
+	
+	</style>
+</head>
 <body
 	style="
 		display: flex;
@@ -74,8 +82,9 @@ def rules_form (packet):
 		align-content: center;
 		flex-direction: column;
 	
+		box-sizing: border-box;
 		margin: 0;
-		padding: 0;
+		padding: 1cm;
 		
 		height: 100vh;
 		width: 100vw;
@@ -89,46 +98,88 @@ def rules_form (packet):
 		monitor="memo"
 		style="
 			margin: 0 auto;
-			max-width: 20cm;
-			height: fit-content;
-			
-			padding: 1cm;
-			border-radius: 0.25cm;
-			
-			background: #FFF;
-			border: 2px solid #000;
+			max-width: 15cm;
 		"
-	>
-		<header
+	>	
+		<div
 			style="
-				font-size: 1.4em;
-				text-align: center;
-			"
-		>Memo</header>
-		
-		<header
-			style="
-				font-size: 1.2em;
-				text-align: center;
+				height: fit-content;
+				width: 100%;
+				
+				padding: 1cm;
+				border-radius: 0.25cm;
+				
+				background: #FFF;
+				border: 2px solid #000;
 			"
 		>
-			<span>Domain: </span>
-			<span id="domain"></span>
-		</header>
-		
-		<div style="height: 1cm"></div>
-		
-		<p>This domain requires:</p>		
-		<ul>
-			<li>links to sub domains</li>
-			<li>links to other domains</li>
-			<li>saving packets in the browser</li>
-		</ul>
+			<header
+				style="
+					font-size: 1.4em;
+					text-align: center;
+				"
+			>Memo</header>
+			
+			<header
+				style="
+					font-size: 1.2em;
+					text-align: center;
+				"
+			>
+				<span>Domain: </span>
+				<span id="domain"></span>
+			</header>
+			
+			<div style="height: 1cm"></div>
+			
+			<div>
+				<header
+					style="
+						font-weight: bold;
+						font-size: 1.3em;
+					"
+				>This domain requires:</header>		
+				<ul>
+					<li>links to sub domains</li>
+					<li>links to other domains</li>
+					<li>saving envelopes in the browser</li>
+				</ul>
+			</div>
+			
+			<div style="height: 0.5cm"></div>
+			
+			<div
+				style="
+					line-height: 100%;
+				"
+			>
+				<header
+					style="
+						font-weight: bold;
+						font-size: 1.3em;
+						padding-bottom: 0.5cm;
+					"
+				>Appropriateness:</header>		
+				<p>This domain is intended to be appropriate for any audience.</p>
+				<p>Interaction are limited to approved places on the Aptos web.</p>
+			</div>
+		</div>
 
 		<div style="height: 1cm"></div>
 		
 		<div
-			style="text-align: right;"
+			style="
+				text-align: right;
+				
+				height: fit-content;
+				width: 100%;
+				
+				padding: 1cm;
+				border-radius: 0.25cm;
+				
+				background: #FFF;
+				border: 2px solid #000;
+			"
 		>
 			<button 
 				monitor="proceed button"

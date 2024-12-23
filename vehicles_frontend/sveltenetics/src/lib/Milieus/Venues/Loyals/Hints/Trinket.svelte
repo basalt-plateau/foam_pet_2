@@ -110,13 +110,14 @@ let tabSet = 0
 				font-size: bold;
 			"
 		>
-			<div
+			<span
 				style="
+					display: inline-block;
 					transform: scale(2.5)
 				"
 			>
 				<Loyals />
-			</div>
+			</span>
 		</header>
 		
 		<div style="height: 0.5cm"></div>

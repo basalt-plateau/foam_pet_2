@@ -6,7 +6,7 @@
 
 
 
-///
+////
 //
 import { onMount, onDestroy } from "svelte"
 import { Autocomplete } from '@skeletonlabs/skeleton';
@@ -17,15 +17,14 @@ import _merge from 'lodash/merge'
 import { has_field } from 'procedures/object/has_field'
 //
 //
+import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/Singles/Flourisher"
+//
 //
 import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
 //
 //
-///
+////
 
-import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/PTO/Flourisher"
-	
-	
 
 
 let polytope_modal;
@@ -77,9 +76,9 @@ let mounted = "no"
 
 
 let flourisher_monitor = ""
-let flourisher_freight = ""
+let flourisher = ""
 onMount (async () => {
-	flourisher_freight = ask_for_flourisher_freight ();
+	flourisher = ask_for_flourisher_freight ();
 	flourisher_monitor = ask_for_flourisher_monitor (async ({
 		original_freight,
 		pro_freight, 
@@ -89,29 +88,8 @@ onMount (async () => {
 		property, 
 		value
 	}) => {
-		flourisher_freight = pro_freight;
+		flourisher = pro_freight;
 	});
-	
-	
-	/*
-	
-	const { wallet_link, signatory } = await create_wallet_link ();
-	le_wallet_link = wallet_link;
-	le_signatory = signatory;
-	
-	console.info ({ wallet_link });	
-	is_connected = le_wallet_link.isConnected () ? "yup" : "no";
-	
-	wallets_show = signatory.wallets_list;
-	
-	wallets_show.forEach (wallet => {
-		console.log ({ 
-			name: wallet.name, 
-			readyState: wallet.readyState,
-			wallet 
-		});
-	});
-	*/
 	
 	mounted = "yup"
 });
@@ -120,35 +98,6 @@ const obtain_wallet = ({ wallet }) => {
 	console.log ("obtain_wallet:", { wallet });
 	window.open (wallet.url, '_blank');
 }
-
-
-const connect_wallet = async ({ wallet }) => {
-	const wallet_name = wallet.name;
-	
-	console.log ("connect_wallet:", { wallet });
-	
-	//
-	//	connect with wallet_link
-	//
-	//
-	await le_wallet_link.connect (wallet_name);
-	
-	
-	console.log ("wallet name:", wallet_name);
-	
-	const proceeds = await le_wallet_link.connect (wallet_name);
-	
-	
-	console.log ({ proceeds });
-	is_connected = le_wallet_link.isConnected () ? "yup" : "no";
-	console.log ({ is_connected });
-	
-	
-	//	Add to localStorage
-	//
-	localStorage.setItem ("AptosWalletName", wallet_name);
-}
-
 
 onDestroy (() => {
 	flourisher_monitor.stop ()
@@ -192,11 +141,10 @@ onDestroy (() => {
 					font-size: 3em;
 				"
 			>Connet Wallet</header>
-		
 			
 			<span class="badge variant-filled">
 				<span class="badge variant-filled">Connected:</span>
-				<span class="badge variant-filled-primary">{ is_connected }</span>
+				<span class="badge variant-filled-primary">{ flourisher.wallet_is_connected }</span>
 			</span>
 			
 			<div 
@@ -233,7 +181,7 @@ onDestroy (() => {
 					"
 					class="card p-2"
 				>
-					{#each flourisher_freight.wallets_list as wallet}
+					{#each flourisher.wallets_list as wallet}
 					<div
 						style="
 							display: flex;
@@ -290,7 +238,8 @@ onDestroy (() => {
 							type="button" 
 							class="btn btn-sm variant-filled"
 							on:click={() => {
-								connect_wallet ({ wallet });
+								flourisher.connect ({ wallet });
+								
 							}}
 						>Connect</button>	
 
@@ -300,7 +249,7 @@ onDestroy (() => {
 								type="button" 
 								class="btn btn-sm variant-filled"
 								on:click={() => {
-									connect_wallet ({ wallet });
+									flourisher.connect ({ wallet });
 								}}
 							>Connect</button>						
 							

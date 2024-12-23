@@ -131,7 +131,7 @@ const conicStops = [
 		<!-- Pep, Health, Stability, Condition -->
 		
 		<div style="width: 10px"></div>
-		<span>Condition</span>
+		<span>Status</span>
 		<div style="width: 10px"></div>
 	</header> 
 	

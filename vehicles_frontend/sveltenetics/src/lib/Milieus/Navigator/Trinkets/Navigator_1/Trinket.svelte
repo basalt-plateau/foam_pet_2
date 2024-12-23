@@ -7,14 +7,19 @@
 import { onMount, onDestroy } from 'svelte'
 //
 //
-import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
+//
 import Loyals from '$lib/Letters/Loyals.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
+import Wallet_Door from "$lib/Les_Talents/_Wallet/Door/Trinket.svelte"
+//
+import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
+import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
 //
-	
-import Wallet_Portico from "$lib/Les_Talents/_Wallet/Portico/Trinket.svelte"
+import { Amharic, Ecology } from './Trinket'
+//
+//
 		
 	
 let mode = check_roomies_truck ().freight.mode;
@@ -24,8 +29,7 @@ let Scholars_Trucks_Prepared = "no"
 let Scholars_Trucks_Monitor;
 let Scholars_Trucks_Freight;
 onMount (async () => {
-	const Truck = check_roomies_truck ()
-	Scholars_Trucks_Freight = Truck.freight; 
+	Scholars_Trucks_Freight = check_roomies_truck ().freight;
 	
 	Scholars_Trucks_Monitor = monitor_roomies_truck ((_freight) => {
 		Scholars_Trucks_Freight = _freight;
@@ -41,7 +45,12 @@ onDestroy (() => {
 	Scholars_Trucks_Monitor.stop ()
 }); 
 
-
+let Milieus_Freight = false;
+$: {
+	let _ = Milieus_Freight;
+	
+}
+	
 
 let buttons_styles = ""
 let loyals_button_styles = {}
@@ -62,19 +71,10 @@ const build = () => {
 	}
 }
 
-import { Amharic, Ecology } from './Trinket'
 
-let loyals_name_2 = '/pictures/loyals.svg';
 
-/*
-	<img 
-		style="
-			height: 1.4cm;
-		"
-		src={ pet } 
-		alt="pet" 
-	/>
-*/
+
+
 
 </script>
 
@@ -87,10 +87,12 @@ let loyals_name_2 = '/pictures/loyals.svg';
 		font-size: 1.3em;
 	"
 >
+	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
+	{#if typeof Milieus_Freight === "object"}
 	<Milieus_Button
 		monitor="Scholars"
 		
-		name={ Ecology.Malayalam }
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Ecology.Malayalam : "Ecology" }
 		location={[ "Ecology", "Hints" ]}
 		is_open_location={[ "Ecology" ]}
 		
@@ -99,7 +101,7 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	<Milieus_Button
 		monitor="Talents"
 	
-		name={ Amharic.Talents }
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Amharic.Talents : "Talents" }
 		location={[ "Talents" ]}
 		is_open_location={[ "Talents" ]}
 		
@@ -121,6 +123,8 @@ let loyals_name_2 = '/pictures/loyals.svg';
 	/>
 	
 	{#if mode === "nurture" }
-	<Wallet_Portico />
+	<Wallet_Door />
+	{/if}
+	
 	{/if}
 </div>

@@ -116,21 +116,21 @@ const account = {
 	//	Ink, Tat, Impression
 	//	Story, Boast, Flourish, Proposal, Πρόταση
 	//
-	"signature": "flourish",
-	"A_signature": "A flourish",
-	"a_signature": "a flourish",
-	"Signature": "Flourish",
-	"Signatures": "Flourishes",
+	"signature": "proposal",
+	"A_signature": "A proposal",
+	"a_signature": "a proposal",
+	"Signature": "Proposal",
+	"Signatures": "Proposals",
 	//
-	"Sign": "Flourish",
+	"Sign": "Propose",
 	//
-	"Signer": "Flourisher",		
+	"Signer": "Proposer",		
 	//
-	"Signing": "Flourishing",
-	"signing": "flourishing",	
+	"Signing": "Proposing",
+	"signing": "proposing",	
 	//
-	"Signed": "Flourished",
-	"signed": "Flourished",
+	"Signed": "Proposed",
+	"signed": "proposed",
 	//
 	////
 	
@@ -175,7 +175,7 @@ const leaves = {
 }
 
 
-export const Reals = {
+export const Centaurus = {
 	// "Pet": "Orbital Covergence Softwhere",	
 	// "Pet": "Aptos Softwhere",	
 

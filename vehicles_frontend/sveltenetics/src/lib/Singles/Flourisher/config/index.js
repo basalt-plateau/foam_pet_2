@@ -9,7 +9,7 @@ import {
 } from '@manahippo/aptos-wallet-adapter';
 //
 //
-import { create_wallet_template } from "$lib/PTO/Flourisher/Wallets/_template.js"
+import { create_wallet_template } from "$lib/Singles/Flourisher/Wallets/_template.js"
 
 
 export const ask_for_the_config = () => {

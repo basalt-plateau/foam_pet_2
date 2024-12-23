@@ -2,6 +2,8 @@
 
 
 
+
+
 /*
 	This needs to be built.
 */
@@ -18,10 +20,11 @@
 import * as AptosSDK from "@aptos-labs/ts-sdk";
 //
 //
+import { build_truck } from '@visiwa/trucks'
+//
+//
 import { has_field } from '$lib/taverns/procedures/object/has_field'
 //
-//
-import { build_truck } from '$lib/trucks'
 import { parse_styles } from '$lib/trinkets/styles/parse'
 //
 //
@@ -90,11 +93,29 @@ export const lease_Milieus_truck = () => {
 	let location = Location_Bracket.find ()
 	
 	
+	let nav_linguistics = "yes"
+	
+
 	// console.log ("Leasing Milieus Truck:", location [0], location [1])
 	
 	trucks [1] = build_truck ({
 		freight: {
-			location
+			location,
+			
+			nav_linguistics,
+			linguistics: {
+				"Ecology": (
+					"പരിസ്ഥിതി"
+				),	
+				"Talents": "መክሊት",
+				"Loyals": "",
+				"Hints": (
+					"အညွှန်းများ"
+				),
+				// 🦖
+				
+				"Garden": ("")
+			}
 		}
 	});
 	

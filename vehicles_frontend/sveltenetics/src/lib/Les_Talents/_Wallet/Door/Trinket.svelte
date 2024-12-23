@@ -7,7 +7,20 @@
 	import Wallet_Portico from "$lib/Les_Talents/_Wallet/Portico/Trinket.svelte"
 	<Wallet_Portico />
 */
+
+//
+//
+import { onMount, onDestroy } from 'svelte'
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+//
+//
+import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/Singles/Flourisher"
+//
+//
+	
+	
+
+
 const modal_store = getModalStore ();
 
 let open = async () => {
@@ -23,12 +36,34 @@ let open = async () => {
 	});
 }
 
+let mounted = "no"
+let flourisher = ""
+let flourisher_monitor = ""
+onMount (() => {
+	flourisher = ask_for_flourisher_freight ();
+	flourisher_monitor = ask_for_flourisher_monitor (async ({
+		original_freight,
+		pro_freight, 
+		//
+		target,
+		//
+		property, 
+		value
+	}) => {
+		flourisher = pro_freight;
+	});
+	mounted = "yes"
+});
+onDestroy (() => {
+	flourisher_monitor.stop ()
+});
 
 
 
 </script>
 
 
+{#if mounted === "yes" }
 <button 
 	monitor="glyph for adaptation"
 	
@@ -47,5 +82,10 @@ let open = async () => {
 		box-shadow: 0 0 0px 2px rgb(var(--color-surface-500));
 	"
 >
+	{#if flourisher.wallet_is_connected === "yes" }
+	<p>Account</p>
+	{:else}
 	<p>Connect Wallet</p>
+	{/if}
 </button>
+{/if}

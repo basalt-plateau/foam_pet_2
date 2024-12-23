@@ -1,6 +1,6 @@
 
 /*
-	import { create_wallet_template } from "$lib/PTO/Flourisher/Wallets/_template.js"
+	import { create_wallet_template } from "$lib/Singles/Flourisher/Wallets/_template.js"
 	create_wallet_template ()
 */
 

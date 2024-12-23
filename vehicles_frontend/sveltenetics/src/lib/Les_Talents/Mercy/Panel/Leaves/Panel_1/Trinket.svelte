@@ -72,9 +72,40 @@ export let join_mercy_harvest__sign = () => {}
 			>			
 				<button 
 					type="button" 
-					class="btn variant-filled"
 					on:click={ join_mercy_harvest__petition }
-				>Join</button>
+
+					style="
+						padding: 0.25cm;
+					"
+					class="btn variant-filled"
+				>
+					<span>Annex 1 Membership Pass</span>
+
+					<span 
+						style="
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						"
+						class="badge variant-filled-primary"
+					>
+						<img 
+							src="/_Licensed/Aptos/aptos.png" 
+							style="
+								width: 0.75cm;
+								height: 0.75cm;								
+							"
+						/>
+						<span
+							style="
+								font-size: 2em;		
+								transform: translateY(2px);
+							"
+						>1</span>
+					</span>
+					
+					
+				</button>
 
 				<button 
 					type="button" 

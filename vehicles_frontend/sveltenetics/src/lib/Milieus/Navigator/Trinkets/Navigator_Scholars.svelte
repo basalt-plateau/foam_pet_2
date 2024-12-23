@@ -9,6 +9,11 @@ import { check_Milieus_truck, monitor_Milieus_truck } from '$lib/Milieus/Truck'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
 
+import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
+let Milieus_Freight = false;
+	
+	
+
 let mode = check_roomies_truck ().freight.mode;;
 let location = [ "", "" ];
 
@@ -125,13 +130,16 @@ const Petroglyphs = {
 	style=""
 >
 	<Seeds_Trucks on_change={ on_seeds_truck_change } />
+	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 
-	{#if seeds_trucks_prepared === "yes"}
+
+	{#if seeds_trucks_prepared === "yes" && typeof Milieus_Freight === "object" }
 	<div>
 		<Milieus_Button
 			monitor="Hints"
 		
-			name={ Petroglyphs.Emoji }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Petroglyphs.Emoji : "Hints" }
+			
 			location={[ "Ecology", "Hints" ]}
 			is_open_location={[ "Ecology", "Hints" ]}
 			
@@ -139,8 +147,9 @@ const Petroglyphs = {
 		/>
 		<Milieus_Button
 			monitor="Garden"
-		
-			name={ names.garden }
+			
+			name={ Milieus_Freight.nav_linguistics === "yes" ? names.garden : "Garden" }
+			
 			location={[ "Ecology", "Garden" ]}
 			is_open_location={[ "Ecology", "Garden" ]}
 			
@@ -149,8 +158,7 @@ const Petroglyphs = {
 		<Milieus_Button
 			monitor="Theme"
 		
-			name={ Theme.Hakka }
-			
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Theme.Hakka : "Theme" }
 			location={[ "Ecology", "Theme" ]}
 			is_open_location={[ "Ecology", "Theme" ]}
 			

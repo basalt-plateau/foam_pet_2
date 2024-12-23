@@ -13,8 +13,7 @@
 	import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 	let Milieus_Freight = false;
 	
-	
-	<Milieus_Trucks on_change={ ({ freight }) => { Milieus_Freight = freight;  } }/>
+	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	{#if typeof Milieus_Freight === "object"}
 		
 	{/if}

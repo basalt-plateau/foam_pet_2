@@ -13,7 +13,6 @@ import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Offline_Signing_Hints from '$lib/trinkets/Hints/Offline_Signing/Trinket.svelte'
 //
-import { open_rules } from '$lib/Milieus/Venues/Scholars/Hints/Rules/open'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
 //
@@ -25,6 +24,7 @@ import Pleasantries from './Trinkets/Pleasantries/Trinket.svelte'
 import Regions from './Regions/Estate.svelte'
 import Bouncy from './Bouncy/Estate.svelte'
 import AI_Caution from './AI_Caution/Estate.svelte'
+import { open_rules } from './Rules/open'
 //
 ////
 

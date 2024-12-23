@@ -39,7 +39,7 @@ import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck
 //
 //\
 //\\
-import { make_the_flourisher, destroy_the_flourisher } from "$lib/PTO/Flourisher"
+import { make_the_flourisher, destroy_the_flourisher } from "$lib/Singles/Flourisher"
 	
 	
 
@@ -61,8 +61,6 @@ initializeStores ();
 
 const drawerStore = getDrawerStore ();
 
-let roomies_truck_leased = "no"
-let Milieus_truck_leased = "no"
 
 
 let trucks_prepared = "no"
@@ -76,13 +74,8 @@ onMount (async () => {
 	//
 	//
 	make_the_flourisher ();
-	//	
 	lease_roomies_truck ()
-	roomies_truck_leased = "yes"
-
 	lease_Milieus_truck ()
-	Milieus_truck_leased = "yes"
-	
 	trucks_prepared = "yes"
 	//
 	////
@@ -99,12 +92,12 @@ onMount (async () => {
 })
 
 onDestroy (async () => {
+	//
+	//
+	//	Trucks
+	//
 	give_back_roomies_truck ()
-	roomies_truck_leased = "no"
-	
 	give_back_Milieus_truck ()
-	Milieus_truck_leased = "no"
-	
 	destroy_the_flourisher ();
 	
 	trucks_prepared = "no"

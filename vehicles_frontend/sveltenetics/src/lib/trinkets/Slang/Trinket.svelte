@@ -54,7 +54,8 @@ import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
 //
 import { nocturnalize } from './screenplays/nocturnalize'
 import { American_1 } from './jargons/American_1'
-import { Reals } from './jargons/Reals'
+// import { Reals } from './jargons/Reals'
+import { Centaurus } from './jargons/Centaurus'
 //
 ////
 
@@ -64,7 +65,7 @@ const legend = {
 	"Francais": {},
 	"Spanish": {},
 	
-	"English": Reals,
+	"English": Centaurus,
 }
 
 // let legendary = legend [ language ] [ text ]
