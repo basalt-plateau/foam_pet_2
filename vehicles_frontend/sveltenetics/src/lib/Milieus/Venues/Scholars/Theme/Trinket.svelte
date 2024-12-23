@@ -88,18 +88,6 @@ onMount (() => {
 });
 
 
-let header_1_saying = {
-	name: (
-		"主题"
-	),
-	language: (
-		"Hokkien"
-	),
-	pronunciation: (
-		"Chuti"
-	),
-	english: "Theme"
-}
 
 </script>
 
@@ -117,8 +105,8 @@ a {
 </style>
 
 <svelte:head>
-	<title>Features</title>
-	<meta name="description" content="Features" />
+	<title>Theme</title>
+	<meta name="description" content="Theme" />
 </svelte:head>
 
 <Leaf>
@@ -143,27 +131,9 @@ a {
 					font-size: 3em;
 					line-height: 100%;
 				"
-			>{ header_1_saying.name }</header>
+			>Theme</header>
 
 			<div style="height: 0.5cm"></div>
-
-			<div
-				class="card p-4 variant-soft-surface"
-				
-				style="
-					width: 100%;
-					font-size: 1.2em;
-				"
-			>
-				<p
-					style="
-						text-align: center;
-					"
-				>
-					<span style="display: block">Perhaps occassionally pronounced as <b>{ header_1_saying.pronunciation }</b>,</span>
-					<span style="display: block"><b style="font-size: 1.4em">{ header_1_saying.name }</b> might be <b>{ header_1_saying.language }</b> for <b>{ header_1_saying.english }</b>.</span>
-				</p>
-			</div>
 		</div>
 		
 		<div style="height: 0.2cm"></div>

@@ -42,6 +42,8 @@ import Mercy_Portico from '$lib/Les_Talents/Mercy/Portico/Trinket.svelte'
 import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 
+import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
+
 
 
 const modal_store = getModalStore ();
@@ -56,7 +58,22 @@ const {
 	modal_store
 });
 
-
+const open_consideration_modal = async () => {
+	console.log ('open_consideration_modal')
+	
+	modal_store.trigger ({
+		type: 'component',
+		
+		backdropClasses: '!p-0',
+		
+		component: {
+			ref: APT_Entrust_Mode_1_Loyals_Panel,
+			props: { 
+				modal_store
+			}
+		}
+	});
+}
 
 const mode = check_roomies_truck ().freight.mode;
 
@@ -84,6 +101,8 @@ const mode = check_roomies_truck ().freight.mode;
 	<div
 		class="card p-4"
 		style="
+			position: relative;
+		
 			padding: 1cm;
 			width: 100%;
 		"
@@ -102,8 +121,16 @@ const mode = check_roomies_truck ().freight.mode;
 			style="
 				text-align: center;
 				font-size: 1.2em;
+				
+				margin: 0 auto;
+				max-width: 600px;
+				width: 100%;
+				
+				line-height: 200%;
 			"
-		>These require a connection to <Slang text="Aptos" />.</p>
+		>These are various moves that a <Slang text="Pet" /> can perform while connected to <Slang text="Aptos" />.</p>
+		
+		<div style="height: 0.25cm"></div>
 	</div>
 	
 	<div style="height: 0.3cm"></div>
@@ -129,7 +156,17 @@ const mode = check_roomies_truck ().freight.mode;
 			'padding-bottom': '1cm'
 		}) }
 	>
-		<Panel styles={ trends.panel }>		
+		<Panel styles={ trends.panel }>	
+			<p
+				style="font-size: 1.3em"
+			>
+				<span>APT Entrust</span>
+			</p>
+
+			<div style="height: 0.1cm"></div>
+
+			<p>This requires a <Slang text="foam_pet_wallet" />.</p>
+		
 			<div class="relative inline-block">
 				<button 
 					aptos_account_transfer
@@ -148,33 +185,26 @@ const mode = check_roomies_truck ().freight.mode;
 						align-items: center;
 					"
 				>
-					<p>APT Entrust</p>
+					<p>Petition</p>
 				</button>
 			</div>
-
-			<div style="height: 12px" />
-
-			<span 
-				open_transaction_modal
-				class="badge variant-filled-surface"
-				style="margin: 0;"
-			>Mode 1</span>
-
-			<!-- 
 			
-			<div style="height: 12px" />
-
-			<span class="badge variant-soft"
-				style="
-					position: relative;
-					font-size: 1.2em;
-				"
-			>
-				<span>Function</span>
-				<span class="badge variant-filled-surface">0x1::aptos_account::transfer</span>
-			</span> 
-			
-			-->
+			<div class="relative inline-block">
+				<button 
+					monitor="give"
+					
+					on:click={ open_consideration_modal }
+					type="button" 
+					
+					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
+					style="
+						font-size: 1.3em;
+						padding: 12px 36px;
+						margin-top: 10px
+					"
+				>Consent</button>
+			</div>
+			<div style="height: 0.5cm"></div>
 		</Panel>
 		
 		<Panel styles={ trends.panel }>		

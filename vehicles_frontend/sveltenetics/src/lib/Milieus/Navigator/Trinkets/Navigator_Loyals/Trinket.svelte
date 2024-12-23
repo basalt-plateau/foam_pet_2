@@ -14,6 +14,7 @@ import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
 //
 import Flourishes_Component from './Signatures.svelte'
+import { Harvests, Consent, Hints } from './Trinket.js'
 //
 //
 
@@ -63,7 +64,6 @@ const build = () => {
 }
 
 
-import { Harvests, Consent, Hints } from './Trinket'
 
 
 </script>
@@ -80,11 +80,31 @@ import { Harvests, Consent, Hints } from './Trinket'
 		on_change={ on_seeds_truck_change } 
 	/>
 
+	<Milieus_Button
+		monitor="Wallets Foam Pet Wallet"
+	
+		name={ "Foam Pet Wallet" }
+		location={[ "Loyals", "Foam Pet Wallet" ]}
+		is_open_location={[ "Loyals", "Foam Pet Wallet" ]}
+		
+		style={ buttons_styles }
+	/>
+	
+	<Milieus_Button
+		monitor="Wallets Connect"
+	
+		name={ "Connect" }
+		location={[ "Loyals", "Connect" ]}
+		is_open_location={[ "Loyals", "Connect" ]}
+		
+		style={ buttons_styles }
+	/>
+
 	{#if seeds_trucks_prepared === "yes"}
 	<Milieus_Button
 		monitor="Hints"
 	
-		name={ Hints.Burmese }
+		name={ "Hints" }
 		location={[ "Loyals", "Hints" ]}
 		is_open_location={[ "Loyals", "Hints" ]}
 		
@@ -93,7 +113,7 @@ import { Harvests, Consent, Hints } from './Trinket'
 	<Milieus_Button
 		monitor="Accounts"
 	
-		name={ Harvests.Ogham }
+		name={ "Harvests" }
 		
 		location={[ "Loyals", "Accounts" ]}
 		is_open_location={[ "Loyals", "Accounts" ]}
@@ -104,7 +124,7 @@ import { Harvests, Consent, Hints } from './Trinket'
 	<Milieus_Button
 		monitor="Signatures"
 	
-		name={ Consent.Mongolian }
+		name={ "Consent" }
 		
 		location={[ "Loyals", "Signatures" ]}
 		is_open_location={[ "Loyals", "Signatures" ]}

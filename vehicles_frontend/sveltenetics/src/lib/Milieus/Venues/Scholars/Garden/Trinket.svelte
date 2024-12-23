@@ -29,36 +29,7 @@ import Installation_with_Linux from './Linux/Trinket.svelte'
 //
 ///
 
-let Cherokee_Friends = {
-	name: (
-		"ᎩᎦᎨᎢᎦᎯ"
-	),
-	language: (
-		"Cherokee"
-	),
-	pronunciation: (
-		"Gigageiha"
-	)
-}
 
-/*
-	https://language.cherokee.org/media/vdiic5hr/2024consortium.pdf
-	https://www.cherokeedictionary.net/
-*/
-let Cherokee_Garden = {
-	name: (
-		"ᎠᏫᏒᏅ"
-	),
-	language: (
-		"Cherokee"
-	),
-	pronunciation: (
-		"awisvnv"
-	),
-	english: (
-		"Garden"
-	)
-}
 </script>
 
 <style>
@@ -89,36 +60,16 @@ a {
 				font-size: 3em; 
 				text-align: center;
 			"
-		>{ Cherokee_Garden.name }</header>
-		<div style="height: 0.5cm"></div>
-		
-		
-		<div
-			class="card p-1 variant-soft-surface"
-			style="
-				width: 100%;
-			"
-		>
-			<p
-				style="
-					text-align: center;
-				"
-			><b>{ Cherokee_Garden.name }</b>, perhaps occassionally pronounced <b>{ Cherokee_Garden.pronunciation }</b>,</p>
-			<p
-				style="
-					text-align: center;
-				"
-			>might be the <b>{ Cherokee_Garden.language }</b> sound for <b>{ Cherokee_Garden.english }</b>.</p>
-		</div>
-		
-		<div style="height: 0.5cm"></div>
-		
+		>Garden</header>
+
 		<p
 			style="
 				text-align: center;
+				width: 500px;
+				text-align: center;
+				margin: 0 auto;
 			"
-		>A <Slang text="Pet" /> can be adopted from these.</p>
-		
+		>The entire domain <Slang text="this_domain" /> can be adopted (downloaded) and run as a Linux dapp.</p>
 		
 		<div style="height: 0.5cm"></div>
 	</div>

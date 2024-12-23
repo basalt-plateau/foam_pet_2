@@ -102,21 +102,7 @@ let jargon = "Centaurus A";
 			justify-content: center;
 		"
 		class="card p-2"
-	>
-		<div
-			class="card p-2 variant-soft-surface"
-			style="
-				padding: 0.2cm 1cm;
-			"
-		>
-			<header
-				style="
-					font-size: 1.4em;
-					line-height: 100%;
-				"
-			>Jargon</header>
-		</div>
-	
+	>	
 		<p
 			style="
 				padding: 0.1cm 0.4cm;
@@ -130,8 +116,9 @@ let jargon = "Centaurus A";
 		>on</p>
 	</div>
 
-	<div style="height: 0.5cm"></div>
 
+	{#if false}
+	<div style="height: 0.5cm"></div>
 	<div
 		style="
 			display: flex;
@@ -166,6 +153,7 @@ let jargon = "Centaurus A";
 			"
 		>on</p>
 	</div>
+	{/if}
 
 	<div style="height: 0.5cm"></div>
 

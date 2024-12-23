@@ -6,6 +6,15 @@
 		const slang = Slangify ({ text: "signature" });
 */
 
+/*
+	perhaps: 
+		apply multiple: 
+			signature -> consent -> Зөвшөөрөл
+			
+		jargon: signature -> consent
+		poly:   consent   -> Зөвшөөрөл
+*/
+
 import { Centaurus_A } from './jargons/Centaurus_A/index.js'
 import { nocturnalize } from './screenplays/nocturnalize'
 

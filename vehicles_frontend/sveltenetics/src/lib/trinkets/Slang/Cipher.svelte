@@ -14,14 +14,19 @@
 
 */
 
-import { has_field } from '$lib/taverns/procedures/object/has_field'
+////
+//
 import { onMount } from 'svelte'
 import nlp from 'compromise/one'
+//
+//
+import { has_field } from '$lib/taverns/procedures/object/has_field'
+//
+//
 import { nocturnalize } from './screenplays/nocturnalize'
-
-import { American_1 } from './jargons/American_1'
-import { Reals } from './jargons/Reals'
-
+import { Centaurus_A } from './jargons/Centaurus_A/index.js'
+//
+////
 
 const organize_slang = (bracket) => {
 	const sorted_by_keys = Object.keys (bracket).sort((a, b) => {
@@ -36,9 +41,7 @@ const organize_slang = (bracket) => {
 	return organized
 }
 
-const organized = organize_slang (Reals)
-
-console.log ({ organized })
+const organized = organize_slang (Centaurus_A)
 
 </script>
 

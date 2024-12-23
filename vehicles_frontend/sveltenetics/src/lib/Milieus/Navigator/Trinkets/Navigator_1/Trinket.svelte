@@ -107,7 +107,21 @@ const build = () => {
 		
 		style={ buttons_styles }
 	/>
+	<Milieus_Button
+		monitor="Loyals"
 	
+		name="Wallets"
+		location={[ "Loyals", "Hints" ]}
+		is_open_location={[ "Loyals" ]}
+		
+		component_props={{
+			style: loyals_button_styles
+		}}
+		
+		style={ buttons_styles }
+	/>
+	
+	{#if false }
 	<Milieus_Button
 		monitor="Loyals"
 	
@@ -121,6 +135,8 @@ const build = () => {
 		
 		style={ buttons_styles }
 	/>
+	{/if}
+	
 	
 	{#if mode === "nurture" }
 	<Wallet_Door />

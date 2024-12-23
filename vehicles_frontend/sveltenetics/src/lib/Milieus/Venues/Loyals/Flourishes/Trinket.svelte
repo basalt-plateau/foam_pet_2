@@ -28,8 +28,6 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Offline_Signing_Hints from './Offline_Signing/Trinket.svelte'
 //
 ////
-
-import { Slangify } from "$lib/trinkets/Slang"
 		
 
 const trends = {
@@ -77,29 +75,15 @@ let scanning = "yes"
 let private_key_hexadecimal_string = ""
 
 
-let header_1_saying = {
-	name: (
-		"Зөвшөөрөл"
-	),
-	language: (
-		"Mongolian"
-	),
-	pronunciation: (
-		"Zövshöörel"
-	),
-	english: "Consent"
-}
-
 
 let reader;
 onMount (() => {
-	console.info (Slangify ({ text: "signature" }))
 })
 
 </script>
 
 <svelte:head>
-	<title>{ Slangify ({ text: "Signature" }) }</title>
+	<title>Consent</title>
 </svelte:head>
 
 <Leaf>
@@ -118,38 +102,28 @@ onMount (() => {
 			><Slang text="Signature" /></header>
 
 			<div style="height: 1cm"></div>
-
-			<div
-				class="card p-1 variant-soft-surface"
-				style="
-					width: 100%;
-				"
-			>
-				<span
-					style="
-						display: block;
-						text-align: center;
-					"
-				>Perhaps occassionally pronounced <b>{ header_1_saying.pronunciation }</b>, </span>
-				<span
-					style="
-						display: block;
-						text-align: center;
-					"
-				><b style="font-size: 1.2em">{ header_1_saying.name }</b> might be <b>{ header_1_saying.language }</b> for <b>{ header_1_saying.english }</b>.</span>
-			</div>
-			
-			
-			<div style="height: 1cm"></div>
 			
 			<p
 				style="
 					text-align: center;
 					max-width: 500px;
 					margin: 0 auto;
+					
+					line-height: 250%;
 				"
 			>A unique form of <Slang text="signature" /> is necessary for each <Slang text="petition" /> + <Slang text="private key" /> combination.</p>
+			
+			<div style="height: 1cm"></div>					
+		</div>
 
+		<div style="height: 0.5cm"></div>
+
+		<div 
+			style="
+				text-align: center;
+			"
+			class="card p-4"
+		>
 			<div style="height: 1cm"></div>
 
 			<p><Slang text="petition" /> + <Slang text="sender" /> <Slang text="private key" /> -> <Slang text="sender" /> <Slang text="signature" /> </p>
@@ -161,7 +135,7 @@ onMount (() => {
 			<div style="height: 1cm"></div>		
 		</div>
 		
-		<div style="height: 1cm"></div>
+		<div style="height: 0.5cm"></div>
 		
 		<Offline_Signing_Hints />
 		

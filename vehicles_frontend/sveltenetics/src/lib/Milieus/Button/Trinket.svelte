@@ -175,11 +175,7 @@ let untapped = "variant-filled-primary"
 	{#if typeof component === "function" }
 	<svelte:component this={ component } {...component_props} />
 	{:else}
-	<Slang 
-		text={ name } 
-		reveal={ "no" }
-		badge={ "no" }
-	/>
+	{ name }	
 	{/if}
 </button>
 {/if}

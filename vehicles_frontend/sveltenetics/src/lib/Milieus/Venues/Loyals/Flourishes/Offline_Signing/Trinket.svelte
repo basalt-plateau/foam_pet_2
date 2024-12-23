@@ -19,7 +19,7 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 
 
 <div class="card p-4">
-	<div class="card p-1 variant-filled-primary">
+	<div class="card p-1 variant-filled-soft">
 		<Accordion>
 			<AccordionItem>
 				<svelte:fragment slot="summary">
