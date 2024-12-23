@@ -25,9 +25,12 @@ import Panel from '$lib/trinkets/panel/trinket.svelte'
 import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-import Offline_Signing_Hints from '$lib/trinkets/Hints/Offline_Signing/Trinket.svelte'
+import Offline_Signing_Hints from './Offline_Signing/Trinket.svelte'
 //
 ////
+
+import { Slangify } from "$lib/trinkets/Slang"
+		
 
 const trends = {
 	article: parse_styles ({
@@ -74,19 +77,90 @@ let scanning = "yes"
 let private_key_hexadecimal_string = ""
 
 
+let header_1_saying = {
+	name: (
+		"Зөвшөөрөл"
+	),
+	language: (
+		"Mongolian"
+	),
+	pronunciation: (
+		"Zövshöörel"
+	),
+	english: "Consent"
+}
+
+
 let reader;
 onMount (() => {
-
+	console.info (Slangify ({ text: "signature" }))
 })
 
 </script>
 
 <svelte:head>
-	<title>Flourishes</title>
+	<title>{ Slangify ({ text: "Signature" }) }</title>
 </svelte:head>
 
 <Leaf>
 	<div monitor="signatures leaf">
+		<div 
+			style="
+				text-align: center;
+			"
+			class="card p-4"
+		>
+			<div style="height: 1cm"></div>
+		
+			<header
+				style="font-size: 2.5em; 
+				text-align: center"
+			><Slang text="Signature" /></header>
+
+			<div style="height: 1cm"></div>
+
+			<div
+				class="card p-1 variant-soft-surface"
+				style="
+					width: 100%;
+				"
+			>
+				<span
+					style="
+						display: block;
+						text-align: center;
+					"
+				>Perhaps occassionally pronounced <b>{ header_1_saying.pronunciation }</b>, </span>
+				<span
+					style="
+						display: block;
+						text-align: center;
+					"
+				><b style="font-size: 1.2em">{ header_1_saying.name }</b> might be <b>{ header_1_saying.language }</b> for <b>{ header_1_saying.english }</b>.</span>
+			</div>
+			
+			
+			<div style="height: 1cm"></div>
+			
+			<p
+				style="
+					text-align: center;
+					max-width: 500px;
+					margin: 0 auto;
+				"
+			>A unique form of <Slang text="signature" /> is necessary for each <Slang text="petition" /> + <Slang text="private key" /> combination.</p>
+
+			<div style="height: 1cm"></div>
+
+			<p><Slang text="petition" /> + <Slang text="sender" /> <Slang text="private key" /> -> <Slang text="sender" /> <Slang text="signature" /> </p>
+			
+			<div style="height: 0.5cm"></div>
+			
+			<p><Slang text="petition" /> + <Slang text="sender" /> <Slang text="signature" /> + <Slang text="signature" /> from each <Slang text="validator" /> -> <Slang text="blockchain transaction" /></p>
+		
+			<div style="height: 1cm"></div>		
+		</div>
+		
 		<div style="height: 1cm"></div>
 		
 		<Offline_Signing_Hints />
@@ -129,7 +203,7 @@ onMount (() => {
 				</div>
 				<div style="height: 10px"></div>
 				<article style="{ trends.article }">
-					<p style="text-align: center">This is for signing for an "APT Entrust".</p>
+					<p style="text-align: center">This is for <Slang text="signing" /> for an "APT Entrust".</p>
 				</article>
 				<div style="height: 0.5cm"></div>
 			</Panel>

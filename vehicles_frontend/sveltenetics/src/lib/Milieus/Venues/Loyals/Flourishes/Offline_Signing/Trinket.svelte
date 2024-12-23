@@ -19,14 +19,6 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 
 
 <div class="card p-4">
-	<div style="height: 1cm"></div>
-	
-	<header
-		style="font-size: 2.5em; text-align: center"
-	><Slang text="Signatures" /></header>
-
-	<div style="height: 1cm"></div>
-	
 	<div class="card p-1 variant-filled-primary">
 		<Accordion>
 			<AccordionItem>

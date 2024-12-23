@@ -60,39 +60,7 @@ const {
 
 const mode = check_roomies_truck ().freight.mode;
 
-let friends_name = "ጓደኛዎች"
-let friends_language = "Amharic"
-let friends_pronunciation = "gwadenyawotch"
 
-let Amharic_Friendships = {
-	name: (
-		"ጓደኝነት"
-	),
-	english: (
-		"Friendships"
-	),
-	language: (
-		"Amharic"
-	),
-	pronunciation: (
-		"Gwadenyanet"
-	)
-}
-
-let Amharic_Talents = {
-	name: (
-		"መክሊት"
-	),
-	english: (
-		"Talents"
-	),
-	language: (
-		"Amharic"
-	),
-	pronunciation: (
-		"Keklit"
-	)
-}
 
 </script>
 
@@ -107,7 +75,7 @@ let Amharic_Talents = {
 </style>
 
 <svelte:head>
-	<title>{ Amharic_Talents.name }</title>
+	<title>Talents</title>
 	<meta name="description" content="Talents" />
 </svelte:head>
 
@@ -126,30 +94,8 @@ let Amharic_Talents = {
 				text-align: center;
 				font-size: bold;
 			"
-		>{ Amharic_Talents.name }</header>
+		>Talents</header>
 
-		<div style="height: 0.25cm"></div>
-
-		<div
-			class="card p-1 variant-soft-surface"
-			style="
-				width: 100%;
-			"
-		>
-			<span
-				style="
-					display: block;
-					text-align: center;
-				"
-			>Perhaps occassionally pronounced <b>{ Amharic_Talents.pronunciation }</b>, </span>
-			<span
-				style="
-					display: block;
-					text-align: center;
-				"
-			><b style="font-size: 1.2em">{ Amharic_Talents.name }</b> might be <b>{ Amharic_Talents.language }</b> for <b>{ Amharic_Talents.english }</b>.</span>
-		</div>
-		
 		<div style="height: 0.25cm"></div>
 		
 		<p

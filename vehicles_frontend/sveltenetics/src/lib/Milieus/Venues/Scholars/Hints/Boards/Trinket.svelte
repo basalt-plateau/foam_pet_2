@@ -56,7 +56,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 				font-size: 1.2em;
 			"
 		>	
-			Supermassive Reservoir Wallet Logistics Duo for <Slang text="Aptos" />
+			Gargantuan Reservoir Wallet Logistics Duo for <Slang text="Aptos" />
 		</p>
 	</div>
 

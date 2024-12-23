@@ -1,7 +1,44 @@
 
 
 
+/*
 
+	const text = "This is a consensus."
+	const legend_language = {
+		"consensus": "Group",
+		"Consensus": "Group",
+		
+		"blockchain": "Map",
+		"Blockchain": "Map",
+		
+		"signature": "Signature",
+		"Signature": "Signature",		
+		
+		"transaction": "Story",
+		"Transaction": "Story",
+		
+		"private key": "private key",
+		"Private Key": "Private Key",
+		
+		"public key": "public key",
+		"Public Key": "Public Key"	,
+		
+		"Machine": "Beacon",
+		"Online Machine": "Howl Beacon",
+		"Offline Machine": "Keys Beacon"
+	};
+		
+	const built = nocturnalize ({ 
+		legend_language, 
+		text 
+	});
+
+
+
+
+
+
+*/
 
 
 import { has_field } from '$lib/taverns/procedures/object/has_field'

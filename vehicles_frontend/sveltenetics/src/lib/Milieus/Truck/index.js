@@ -1,18 +1,58 @@
 
 
 
-
-
-
 /*
-	This needs to be built.
+	import { onMount, onDestroy } from 'svelte'
+	import * as Milieus_Truck from '$lib/Milieus/Truck/index.js'
+
+	let Milieus_Truck_Monitor;
+	let Milieus_Truck_Freight = Milieus_Truck.retrieve ().pro_freight
+	onMount (async () => {
+		Milieus_Truck_Monitor = Milieus_Truck.monitor (async ({ pro_freight }) => {
+			Milieus_Truck_Freight = pro_freight
+		});
+	});
+
+	onDestroy (() => {
+		Milieus_Truck_Monitor.stop ()
+	}); 
 */
 
-
 /*
-	import {} from '$lib/Milieus/Truck'
-*/
+	import { onMount, onDestroy } from 'svelte'
+	import * as Milieus_Truck from '$lib/Milieus/Truck/index.js'
 
+	let Milieus_Truck_Monitor;
+	let Milieus_Truck_Freight;
+	onMount (async () => {
+		Milieus_Truck_Freight = Milieus_Truck.retrieve ().pro_freight; 
+		
+		Milieus_Truck_Monitor = Milieus_Truck.monitor (async ({
+			original_freight,
+			pro_freight, 
+			//
+			target,
+			//
+			property, 
+			value
+		}) => {
+			try {
+				// watch for changes to leaf_name
+				if (target === original_freight && property === "leaf_name") {
+					console.info ("leaf name changed");
+					
+				}
+			}
+			catch (imperfection) {
+				console.error (imperfection);
+			}
+		});
+	});
+
+	onDestroy (() => {
+		Milieus_Truck_Monitor.stop ()
+	}); 
+*/
 
 
 ////
@@ -29,8 +69,6 @@ import { parse_styles } from '$lib/trinkets/styles/parse'
 //
 //
 ////
-
-
 
 
 const trucks = {}
@@ -89,11 +127,46 @@ const intercept = () => {
 	}
 }
 
+
+/*
+	Ecology:
+		Hints:
+		Garden:
+		Theme:
+		Resilience:
+	
+	Talents:
+		
+	
+	Wallets (Loyalty):
+		Offline:
+			Hints:
+			Harvest:
+			Consent:			
+		
+		Online:
+			
+*/
+/*
+	let header_1_saying = {
+		name: (
+			"പരിസ്ഥിതി"
+		),
+		language: (
+			"Malayalam"
+		),
+		pronunciation: (
+			"Paristetry"
+		),
+		english: "Ecology"
+	}
+
+*/
 export const lease_Milieus_truck = () => {
 	let location = Location_Bracket.find ()
 	
 	
-	let nav_linguistics = "yes"
+	let nav_linguistics = "no"
 	
 
 	// console.log ("Leasing Milieus Truck:", location [0], location [1])
@@ -103,10 +176,28 @@ export const lease_Milieus_truck = () => {
 			location,
 			
 			nav_linguistics,
+			
+			// _get ( , [ "linguistics", "Ecology", "name" ], "")
+			
+			linguistic_assistance: {
+				"Ecology": {
+					"Malayalam": {
+						name: (
+							"പരിസ്ഥിതി"
+						),
+						pronunciation: (
+							"Paristetry"
+						)
+					}
+				},
+				
+				
+			},
+			
 			linguistics: {
-				"Ecology": (
-					"പരിസ്ഥിതി"
-				),	
+				"Ecology": "പരിസ്ഥിതി",
+				
+
 				"Talents": "መክሊት",
 				"Loyals": "",
 				"Hints": (

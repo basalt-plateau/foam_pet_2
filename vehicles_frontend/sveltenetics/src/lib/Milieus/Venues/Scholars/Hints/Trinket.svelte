@@ -6,21 +6,22 @@
 ////
 //
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+import _get from 'lodash/get'
 //
 //
 import Beacons from '$lib/trinkets/Hints/Beacons/Trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-import Offline_Signing_Hints from '$lib/trinkets/Hints/Offline_Signing/Trinket.svelte'
 //
 import { check_roomies_truck } from '$lib/Versies/Trucks'
+import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 //
 //
 import Getting_Moving from './Getting_Moving/Trinket.svelte'
 import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
 import Boards from './Boards/Trinket.svelte'
 import Mural from './Mural/Trinket.svelte'
-import Pleasantries from './Trinkets/Pleasantries/Trinket.svelte'
+import Pleasantries from './Pleasantries/Trinket.svelte'
 import Regions from './Regions/Estate.svelte'
 import Bouncy from './Bouncy/Estate.svelte'
 import AI_Caution from './AI_Caution/Estate.svelte'
@@ -32,6 +33,7 @@ import { open_rules } from './Rules/open'
 const modal_store = getModalStore ();
 const mode = check_roomies_truck ().freight.mode;		
 
+let Milieus_Freight = false;
 
 let header_1_saying = {
 	name: (
@@ -54,7 +56,7 @@ const show_rules = () => {
 </script>
 
 <svelte:head>
-	<title>{ header_1_saying.name }</title>
+	<title>Ecology</title>
 </svelte:head>
 
 
@@ -73,9 +75,13 @@ const show_rules = () => {
 
 
 <Leaf>
+	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
+	{#if typeof Milieus_Freight === "object"}
+	
 	<div
 		class="card p-4"
 		style="
+			display: none;
 			width: 100%;
 		"
 	>
@@ -91,31 +97,10 @@ const show_rules = () => {
 				style="
 					text-align: center;
 				"
-			>
-				<span style="display: block">Perhaps occassionally pronounced as <b>{ header_1_saying.pronunciation }</b>,</span>
-				<span style="display: block"><b style="font-size: 1.4em">{ header_1_saying.name }</b> might be <b>{ header_1_saying.language }</b> for <b>{ header_1_saying.english }</b>.</span>
-			</p>
-		</div>
-
-		<div style="height: 0.5cm"></div>
-
-
-		<div
-			class="card p-4 variant-soft-surface"
-			
-			style="
-				width: 100%;
-				font-size: 1.2em;
-			"
-		>
-			<p
-				style="
-					text-align: center;
-				"
-			>The <b style="font-size: 1.4em">{ header_1_saying.name }</b> region has features that affect the local browser.</p>
+			>The <b style="font-size: 1.4em">Ecology</b> region has features that affect the local browser.</p>
 		</div>
 	</div>
-
+	
 	<div style="height: 0.5cm"></div>
 
 	<div
@@ -138,6 +123,7 @@ const show_rules = () => {
 		>Foam Pet</header>
 	</div>
 
+	
 
 	<!-- 
 	<div style="height: 0.5cm"></div>
@@ -213,5 +199,6 @@ const show_rules = () => {
 	</div>
 	
 	<div style="height: 5cm"></div>
+	{/if}
 </Leaf>
 

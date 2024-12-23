@@ -49,7 +49,6 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 
 
 
-
 </script>
 
 

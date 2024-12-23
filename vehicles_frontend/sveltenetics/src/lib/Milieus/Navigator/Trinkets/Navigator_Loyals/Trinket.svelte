@@ -63,7 +63,7 @@ const build = () => {
 }
 
 
-import { Harvests, Flourishes, Hints } from './Trinket'
+import { Harvests, Consent, Hints } from './Trinket'
 
 
 </script>
@@ -104,7 +104,7 @@ import { Harvests, Flourishes, Hints } from './Trinket'
 	<Milieus_Button
 		monitor="Signatures"
 	
-		name={ Flourishes.English }
+		name={ Consent.Mongolian }
 		
 		location={[ "Loyals", "Signatures" ]}
 		is_open_location={[ "Loyals", "Signatures" ]}

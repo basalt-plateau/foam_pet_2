@@ -160,7 +160,7 @@ def rules_form (packet):
 						padding-bottom: 0.5cm;
 					"
 				>Appropriateness:</header>		
-				<p>This domain is intended to be appropriate for any audience.</p>
+				<p>This domain is intended to be appropriate for most audiences.</p>
 				<p>Interaction are limited to approved places on the Aptos web.</p>
 			</div>
 		</div>

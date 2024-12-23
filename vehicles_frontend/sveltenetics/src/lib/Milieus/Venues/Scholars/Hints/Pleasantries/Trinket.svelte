@@ -29,7 +29,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 		>
 			<span>Striving to amplify friendliness,</span> 
 			<br />
-			<span>literature with <b>slang</b> can be found throughout.</span>
+			<span>literature with <b>jargon</b> can be found throughout.</span>
 		</p>
 		
 		<div style="height: 0.25cm"></div>
@@ -39,7 +39,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 				text-align: center;
 			"
 		>
-			<span>The slang cipher can be turned off at</span>
+			<span>The ambassador mode jargon cipher can be turned off at</span>
 			<Milieus_Button
 				name={ "Theme" }
 				location={[ "Ecology", "Theme" ]}

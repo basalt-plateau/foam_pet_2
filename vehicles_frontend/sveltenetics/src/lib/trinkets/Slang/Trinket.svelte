@@ -55,7 +55,7 @@ import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
 import { nocturnalize } from './screenplays/nocturnalize'
 import { American_1 } from './jargons/American_1'
 // import { Reals } from './jargons/Reals'
-import { Centaurus } from './jargons/Centaurus'
+import { Centaurus_A } from './jargons/Centaurus_A/index.js'
 //
 ////
 
@@ -65,7 +65,7 @@ const legend = {
 	"Francais": {},
 	"Spanish": {},
 	
-	"English": Centaurus,
+	"English": Centaurus_A
 }
 
 // let legendary = legend [ language ] [ text ]
@@ -90,8 +90,6 @@ let actual_styles = ``;
 
 let use_slang;
 const build = () => {
-	
-	
 	try {
 		if (Seeds_Trucks_Freight && has_field (Seeds_Trucks_Freight, "use_slang")) {
 			if (use_slang !== Seeds_Trucks_Freight.use_slang) {

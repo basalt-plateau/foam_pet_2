@@ -11,6 +11,7 @@
 import { onMount, onDestroy } from 'svelte'
 import { SlideToggle } from '@skeletonlabs/skeleton';
 import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
 //
 import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
@@ -20,11 +21,7 @@ import Slang_Cipher from '$lib/trinkets/Slang/Cipher.svelte'
 
 let use_slang_boolean;
 $: {
-	// if toggle changes
-	
 	let _use_slang_boolean = use_slang_boolean;
-	
-	console.log ("modify:", { Seeds_Trucks_Freight, use_slang_boolean });
 	
 	if (Seeds_Trucks_Freight) {
 		if (use_slang_boolean === true) {
@@ -36,8 +33,6 @@ $: {
 	}
 }
 const modify = () => {
-	console.log ("modify:", { Seeds_Trucks_Freight, use_slang_boolean });
-	
 	if (Seeds_Trucks_Freight) {
 		if (Seeds_Trucks_Freight.use_slang === "yes") {
 			use_slang_boolean = true;
@@ -70,6 +65,8 @@ onDestroy (() => {
 	Seeds_Trucks_Monitor.stop ()
 }); 
 
+let jargon = "Centaurus A";
+
 </script>
 
 
@@ -95,7 +92,7 @@ onDestroy (() => {
 				font-size: 1.4em;
 				line-height: 100%;
 			"
-		>Slang</header>
+		>Ambassador Mode</header>
 	</div>
 
 	<div
@@ -103,10 +100,23 @@ onDestroy (() => {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			
-			padding: 0.1cm 0.25cm;
 		"
+		class="card p-2"
 	>
+		<div
+			class="card p-2 variant-soft-surface"
+			style="
+				padding: 0.2cm 1cm;
+			"
+		>
+			<header
+				style="
+					font-size: 1.4em;
+					line-height: 100%;
+				"
+			>Jargon</header>
+		</div>
+	
 		<p
 			style="
 				padding: 0.1cm 0.4cm;
@@ -118,6 +128,65 @@ onDestroy (() => {
 				padding: 0.1cm 0.4cm;
 			"
 		>on</p>
+	</div>
+
+	<div style="height: 0.5cm"></div>
+
+	<div
+		style="
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		"
+		class="card p-2"
+	>
+		<div
+			class="card p-2 variant-soft-surface"
+			style="
+				padding: 0.2cm 1cm;
+			"
+		>
+			<header
+				style="
+					font-size: 1.4em;
+					line-height: 100%;
+				"
+			>Multilinguistic</header>
+		</div>
+	
+		<p
+			style="
+				padding: 0.1cm 0.4cm;
+			"
+		>off</p>
+		<SlideToggle name="slide" bind:checked={ use_slang_boolean } />
+		<p
+			style="
+				padding: 0.1cm 0.4cm;
+			"
+		>on</p>
+	</div>
+
+	<div style="height: 0.5cm"></div>
+
+	<div 
+		style="
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			
+			gap: 10px;
+		"
+		class="card p-2"
+	>
+		<header>Jargon</header>
+		<RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
+			<RadioItem 
+				bind:group={jargon} 
+				name="justify" 
+				value={ "Centaurus A" }
+			>Centaurus A</RadioItem>
+		</RadioGroup>
 	</div>
 	
 	<div style="height: 0.5cm"></div>

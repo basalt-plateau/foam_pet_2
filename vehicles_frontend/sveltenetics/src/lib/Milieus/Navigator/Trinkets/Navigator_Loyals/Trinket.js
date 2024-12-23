@@ -45,9 +45,16 @@ export const Harvests = {
 	)
 }
 
+export const Consent = {
+	Mongolian: (
+		"Зөвшөөрөл"
+	),
+	// Burmese: ()
+};
+
 export const Flourishes = {
 	English: (
-		"Flourishes"
+		"Yups"
 	),
 	// Burmese: ()
 };
