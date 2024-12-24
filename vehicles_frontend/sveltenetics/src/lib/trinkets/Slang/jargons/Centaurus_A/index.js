@@ -10,25 +10,13 @@ import { wallet } from './_wallet'
 import { web } from './_web'
 //
 
+import { le_label } from './_le_label'
 
 export const Centaurus_A = {
-	// "Pet": "Orbital Covergence Softwhere",	
-	// "Pet": "Aptos Softwhere",	
+	
 
-	"this_domain": "https://Foam.Pet",
-	"This Domain": "https://Foam.Pet",
-	
-	"the_pypi_module": "foam_pet",
 
-	"label": "foam pet",
-	"labels": "foam pets",		
-	"Pet": "Foam Pet",	
-	"pet": "foam pet",		
-	"Pets": "Foam Pets",	
 	
-	
-	
-	"Aptos": "Aptos",
 	
 	...account,
 	...blockchain,
@@ -38,5 +26,7 @@ export const Centaurus_A = {
 	...move,
 	
 	...wallet,
-	...web	
+	...web,
+	
+	...le_label
 }

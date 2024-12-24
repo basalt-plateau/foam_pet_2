@@ -9,7 +9,6 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 import _get from 'lodash/get'
 //
 //
-import Beacons from '$lib/trinkets/Hints/Beacons/Trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
@@ -23,7 +22,6 @@ import Boards from './Boards/Trinket.svelte'
 import Mural from './Mural/Trinket.svelte'
 import Pleasantries from './Pleasantries/Trinket.svelte'
 import Regions from './Regions/Estate.svelte'
-import Bouncy from './Bouncy/Estate.svelte'
 import AI_Caution from './AI_Caution/Estate.svelte'
 import { open_rules } from './Rules/open'
 //
@@ -143,11 +141,7 @@ const show_rules = () => {
 	
 
 	<div style="height: 0.5cm"></div>
-	<Bouncy />
-	<div style="height: 0.5cm"></div>
 	<Getting_Moving />	
-	<div style="height: 0.5cm"></div>
-	<Beacons />
 	
 	<!--
 	<div style="height: 0.5cm"></div>

@@ -116,12 +116,6 @@ const Theme = {
 		Petroglyphs
 */
 
-const Petroglyphs = {
-	Emoji: (
-		"🦖"
-	)
-}
-
 
 </script>
 

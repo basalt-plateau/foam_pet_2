@@ -6,8 +6,15 @@
 
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 
-export let join_mercy_harvest__petition = () => {}
 export let join_mercy_harvest__sign = () => {}
+
+
+let join_mercy_harvest__petition = () => {
+	console.info ("join_mercy_harvest__petition");
+
+	// sign and submit petition 
+	// with wallet tunnel
+}
 
 
 </script>
@@ -64,22 +71,23 @@ export let join_mercy_harvest__sign = () => {}
 				text-align: center;
 			"
 		>
-			<div class="card p-4"
+			<div 
 				style="
 					width: 100%;
 					text-align: center;
 				"
+				class="card p-4"
 			>			
 				<button 
 					type="button" 
 					on:click={ join_mercy_harvest__petition }
 
 					style="
-						padding: 0.25cm;
+						padding: 0.25cm 0.5cm;
 					"
 					class="btn variant-filled"
 				>
-					<span>Annex 1 Membership Pass</span>
+					<span>Buy 1 Membership Pass</span>
 
 					<span 
 						style="
