@@ -3,10 +3,7 @@
 
 <script>
 
-import Loyals from '$lib/Letters/Loyals.svelte'
-
-
-
+// import Loyals from '$lib/Letters/Loyals.svelte'
 
 
 </script>
@@ -46,7 +43,7 @@ import Loyals from '$lib/Letters/Loyals.svelte'
 					padding-right: .25em;
 				"
 			>
-				<Loyals />
+				<!-- <Loyals /> -->
 			</div>
 			<div
 				style="

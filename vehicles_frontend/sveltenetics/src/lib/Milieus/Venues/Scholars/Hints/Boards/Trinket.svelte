@@ -74,6 +74,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 				<img 
 					src="/_Licensed/Aptos/aptos.png" 
 					style="
+						display: none;
 						width: 0.75cm;
 						height: 0.75cm;								
 					"

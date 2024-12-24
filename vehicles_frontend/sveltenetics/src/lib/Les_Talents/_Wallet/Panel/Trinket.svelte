@@ -22,10 +22,12 @@ import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/Sin
 //
 import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
 //
-//
 ////
 
-
+import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
+import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+import Foam_Pet_Backpack from "$lib/Foam_Pet_Backpack/Trinket.svelte"
+	
 
 let polytope_modal;
 const prepare = () => {
@@ -45,7 +47,12 @@ const on_prepare = () => {
 		return _merge ({}, freight, {
 			showing: 'yes',
 			
-			name: 'Connet Wallet',
+			/*
+				Wallet..
+					Event Horizon
+					Frontier
+			*/
+			name: 'Event Horizon',
 			
 			unfinished: {
 				showing: 'no',
@@ -72,36 +79,19 @@ let wallets_show = []
 
 let le_wallet_link = "";
 let le_signatory = ""
-let mounted = "no"
 
-
-let flourisher_monitor = ""
-let flourisher = ""
-onMount (async () => {
-	flourisher = ask_for_flourisher_freight ();
-	flourisher_monitor = ask_for_flourisher_monitor (async ({
-		original_freight,
-		pro_freight, 
-		//
-		target,
-		//
-		property, 
-		value
-	}) => {
-		flourisher = pro_freight;
-	});
-	
-	mounted = "yup"
-});
 
 const obtain_wallet = ({ wallet }) => {
 	console.log ("obtain_wallet:", { wallet });
 	window.open (wallet.url, '_blank');
 }
 
-onDestroy (() => {
-	flourisher_monitor.stop ()
-})
+let mounted = "no"
+onMount (async () => {
+	mounted = "yup"
+});
+
+let leaf = "Extensions"
 
 </script>
 
@@ -115,8 +105,6 @@ onDestroy (() => {
 		style="
 			height: 100%;
 			width: 100%;
-
-			
 		"
 	>
 		{#if polytope_established === "yup" && mounted === "yup" }
@@ -124,7 +112,7 @@ onDestroy (() => {
 			style="
 				width: 100%;
 				
-				padding: 1cm 1cm 5cm;
+				padding: 0.25cm;
 				
 				display: flex;
 				justify-content: center;
@@ -132,141 +120,29 @@ onDestroy (() => {
 				
 				flex-direction: column;
 				
-				gap: 0.5cm;
+				gap: 0.25cm;
 			"
 		>
-			<header
-				style="
-					
-					font-size: 3em;
-				"
-			>Connet Wallet</header>
-			
-			<span class="badge variant-filled">
-				<span class="badge variant-filled">Connected:</span>
-				<span class="badge variant-filled-primary">{ flourisher.wallet_is_connected }</span>
-			</span>
-			
-			<div 
-				style="
-					width: 100%;
-					height: 400px;
-					
-					display: flex;
-					gap: 10px;
-					flex-direction: column;
-				"
-				class="card p-2"
-			>
-				
-				<div 
-					style="
-						width: 100%;
-						text-align: center;
-					"
-					class="card p-2 variant-soft-primary"
-				>
-					<header>Wallet Options</header>
-				</div>
-				
-				<div 
-					style="
-						width: 100%;
-						height: 400px;
-						
-						display: flex;
-						flex-direction: column;
-						align-items: center;
-						gap: 10px;
-					"
-					class="card p-2"
-				>
-					{#each flourisher.wallets_list as wallet}
-					<div
-						style="
-							display: flex;
-							flex-direction: row;
-							align-items: center;
-							justify-content: space-between;
-							gap: 10px;
-							
-							width: 100%;
-						"
-						class="card p-2"
-					>
-						<div
-							style="
-								display: flex;
-								flex-direction: row;
-								align-items: center;
-								justify-content: left;
-								gap: 10px;
-								
-								width: 100%;
-							"
-						>
-							<img 
-								src={ wallet.icon } 
-								style="
-									height: 0.75cm;
-									width: 0.75cm;
-									
-									display: flex;
-									flex-direction: row;
-									align-items: center;
-									justify-content: space-between;
-									gap: 10px;
-								"
-							/>
-							<p>{ wallet.name }</p>
-						</div>
-						
-						{#if true }
-						<span class="badge variant-soft-primary">{ wallet.readyState }</span>
-						{/if}
-						
-						{#if false && wallet.isSignTransactionV1_1 }
-						<span class="badge variant-soft-primary">Is Sign TransactionV1_1</span>
-						{/if}
-						
-						{#if wallet.isAIP62Standard }
-						<span class="badge variant-soft-primary">AIP 62 Standard</span>
-						{/if}
-
-
-						<button 
-							type="button" 
-							class="btn btn-sm variant-filled"
-							on:click={() => {
-								flourisher.connect ({ wallet });
-								
-							}}
-						>Connect</button>	
-
-						<div>
-							{#if wallet.readyState === "Installed" }
-							<button 
-								type="button" 
-								class="btn btn-sm variant-filled"
-								on:click={() => {
-									flourisher.connect ({ wallet });
-								}}
-							>Connect</button>						
-							
-							{:else if wallet.readyState === "NotDetected" }
-							<button 
-								type="button" 
-								class="btn btn-sm variant-filled"
-								on:click={() => {
-									obtain_wallet ({ wallet });
-								}}
-							>Obtain</button>
-							{/if}
-						</div>
-					</div>
-					{/each}
-				</div>	
-			</div>			
+			<div>
+				<RadioGroup>
+					<RadioItem 
+						bind:group={leaf} 
+						name="justify" 
+						value={ "Extensions" }
+					>Extensions</RadioItem>
+					<RadioItem 
+						bind:group={leaf} 
+						name="justify" 
+						value={ "Foam Pet Backpack" }
+					>Foam Pet Backpack</RadioItem>
+				</RadioGroup>
+			</div>
+		
+			{#if leaf === "Extensions" }
+			<Extension_Wallets />
+			{:else if leaf === "Foam Pet Backpack" }
+			<Foam_Pet_Backpack />
+			{/if}
 		</div>
 		{/if}
 	</div>

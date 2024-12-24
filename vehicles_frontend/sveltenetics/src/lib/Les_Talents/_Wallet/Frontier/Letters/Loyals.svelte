@@ -12,6 +12,22 @@
 	/>
 */
 
+/*
+	<Milieus_Button
+		monitor="Loyals"
+	
+		location={[ "Loyals", "Hints" ]}
+		is_open_location={[ "Loyals" ]}
+		
+		component={ Loyals }
+		component_props={{
+			style: loyals_button_styles
+		}}
+		
+		style={ buttons_styles }
+	/>
+*/
+
 import { parse_styles } from '$lib/trinkets/styles/parse'
 
 export let style = ``

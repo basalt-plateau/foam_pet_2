@@ -24,6 +24,23 @@
 	/>
 */
 
+/*
+	<Milieus_Button
+		monitor="Loyals"
+	
+		location={[ "Loyals", "Hints" ]}
+		is_open_location={[ "Loyals" ]}
+		
+		component={ Loyals }
+		component_props={{
+			style: loyals_button_styles
+		}}
+		
+		style={ buttons_styles }
+	/>
+*/
+
+
 import { onMount, onDestroy } from 'svelte'
 import { check_Milieus_truck, monitor_Milieus_truck } from '$lib/Milieus/Truck'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'

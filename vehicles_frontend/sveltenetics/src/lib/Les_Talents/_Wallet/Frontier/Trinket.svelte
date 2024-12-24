@@ -18,7 +18,7 @@ import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/Sin
 //
 //
 	
-	
+import Loyals from "$lib/Les_Talents/_Wallet/Frontier/Letters/Loyals.svelte"
 
 
 const modal_store = getModalStore ();
@@ -85,7 +85,12 @@ onDestroy (() => {
 	{#if flourisher.wallet_is_connected === "yes" }
 	<p>Account</p>
 	{:else}
-	<p>Connect</p>
+	<Loyals 
+		style={{
+			width: "50px",
+			height: "28px"
+		}}
+	/>
 	{/if}
 </button>
 {/if}

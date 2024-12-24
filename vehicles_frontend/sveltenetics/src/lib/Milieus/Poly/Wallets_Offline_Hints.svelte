@@ -2,7 +2,6 @@
 
 <script>
 
-import Loyals from '$lib/Letters/Loyals.svelte'
 
 
 /*

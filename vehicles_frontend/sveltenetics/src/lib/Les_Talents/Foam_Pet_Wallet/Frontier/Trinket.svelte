@@ -23,8 +23,6 @@ let open = async () => {
 	});
 }
 
-
-
 </script>
 
 
