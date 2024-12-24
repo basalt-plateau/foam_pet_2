@@ -2,6 +2,14 @@
 
 <script>
 
+/*
+	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Trinket.svelte"
+*/
+
+/*
+	Frontier, Event Horizon
+*/
+
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 const modal_store = getModalStore ();
 

@@ -1,5 +1,6 @@
 
 
+
 <script>
 
 //
@@ -8,18 +9,14 @@ import { onMount, onDestroy } from 'svelte'
 //
 //
 import { check_Milieus_truck, monitor_Milieus_truck } from '$lib/Milieus/Truck'
-import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
-import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
+import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
+import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
 //
-import Flourishes_Component from './Signatures.svelte'
-import { Harvests, Consent, Hints } from './Trinket.js'
 //
-//
-
 import Foam_Pet_Wallet_Frontier from "$lib/Les_Talents/Foam_Pet_Wallet/Frontier/Trinket.svelte"
-import Wallet_Frontier from "$lib/Les_Talents/_Wallet/Frontier/Trinket.svelte"
+	
 
 let mode = check_Milieus_truck ().freight.mode;
 let location = check_Milieus_truck ().freight.location;
@@ -79,16 +76,30 @@ const build = () => {
 		gap: 0.2cm;
 	"
 >
-	<Seeds_Trucks 
-		on_change={ on_seeds_truck_change } 
-	/>
+	<Seeds_Trucks  on_change={ on_seeds_truck_change }  />
+
 	{#if seeds_trucks_prepared === "yes"}
+	<Milieus_Button
+		monitor="Wallets Foam Pet Wallet"
+	
+		name={ "Foam Pet Wallet" }
+		location={[ "Loyals", "Foam Pet Wallet" ]}
+		is_open_location={[ "Loyals", "Foam Pet Wallet" ]}
+		
+		style={ buttons_styles }
+	/>
 	
 	<Foam_Pet_Wallet_Frontier />
-	{#if seeds_freight.mode === "nurture" }
-	<Wallet_Frontier />
-	{/if}
 	
+	<Milieus_Button
+		monitor="Wallets Connect"
+	
+		name={ "Connect" }
+		location={[ "Loyals", "Connect" ]}
+		is_open_location={[ "Loyals", "Connect" ]}
+		
+		style={ buttons_styles }
+	/>
 	{/if}
 </div>
 {/if}

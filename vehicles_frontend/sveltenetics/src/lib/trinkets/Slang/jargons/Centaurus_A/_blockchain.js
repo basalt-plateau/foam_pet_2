@@ -19,6 +19,8 @@ export const blockchain = {
 	//	concept, motion, strategy
 	//	invitation,
 	//
+	// "signed_transaction_petition": "consented to petition",
+	
 	"transaction_petition": "petition",
 	"transaction petition": "petition",
 	

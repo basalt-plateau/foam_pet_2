@@ -11,18 +11,17 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 </script>
 
 <div class="card p-4">
-	<header 
-		style="
-			font-size: 2em; 
-			text-align: center;
-			padding: 0.5cm 0;
-		"
-	>Bouncy</header>
+	<div class="card p-4 variant-soft-primary">
+		<header 
+			style="
+				font-size: 2em; 
+				text-align: center;
+			"
+		>Offline Signing</header>
+	</div>
 
 	<div style="font-size: 1em; text-align: center; line-height: 2em;">
-		<p
-			
-		>
+		<p>
 			<span><Slang text="Pets" /> are cloudwalled wallet couriers for <Slang text="Aptos" />.</span>
 		</p> 
 		<p>

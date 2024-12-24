@@ -166,7 +166,7 @@ export const lease_Milieus_truck = () => {
 	let location = Location_Bracket.find ()
 	
 	
-	let nav_linguistics = "no"
+	let nav_linguistics = "yes"
 	
 
 	// console.log ("Leasing Milieus Truck:", location [0], location [1])
@@ -196,16 +196,17 @@ export const lease_Milieus_truck = () => {
 			
 			linguistics: {
 				"Ecology": "പരിസ്ഥിതി",
-				
-
 				"Talents": "መክሊት",
-				"Loyals": "",
-				"Hints": (
-					"အညွှန်းများ"
-				),
-				// 🦖
 				
-				"Garden": ("")
+				"Hints": "🦖",
+				"Garden": "ᎠᏫᏒᏅ",
+				"Theme": "θέμα",
+				"Resilience": "韌性",
+				
+				// "Wallets": "",
+				// "Loyals": "",
+				// "Hints": ("အညွှန်းများ"),
+				// 🦖
 			}
 		}
 	});

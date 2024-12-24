@@ -1,8 +1,21 @@
 
-
+/*
+	[Consensus]:
+		[Node]:
+			[Validator]:
+				[Validator Address]:
+*/
 
 
 export const consensus = {
+	
+	//
+	//	Pet, Structure, Satellite, 
+	//	Base, Habitat, Terminal
+	//	Venue	
+	//
+	"Node": "Satellite",
+	
 	//
 	//	Maintenance, Leaders, Care,
 	//	Theater, Fest
@@ -13,18 +26,14 @@ export const consensus = {
 	//
 	//	Pono - Hawaiian about group decision making
 	//
-	"consensus": "fest",
-	"Consensus": "Fest",
+	"consensus": "consensus",
+	"Consensus": "Consensus",
 	
-	"validator": "chaperone",
-	"validators": "chaperones",
-	"Validator": "Chaperone",
-	"Validators": "Chaperones",
+	/*
+		Chaperones, Bouncers
+	*/
+	"consensus_validator": "bouncer",
+	"Consensus_validators": "Bouncers"
 	
-	//
-	//	Pet, Structure, Satellite, Base, Habitat, Terminal
-	//	Venue	
-	//
-	"Node": "Satellite"
 }
 

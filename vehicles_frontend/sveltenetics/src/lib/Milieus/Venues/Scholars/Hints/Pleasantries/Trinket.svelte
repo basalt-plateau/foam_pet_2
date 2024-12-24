@@ -39,7 +39,9 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 				text-align: center;
 			"
 		>
-			<span>The ambassador mode jargon cipher can be turned off at</span>
+			<!-- ambassador mode -->
+		
+			<span>The jargon cipher can be turned off at</span>
 			<Milieus_Button
 				name={ "Theme" }
 				location={[ "Ecology", "Theme" ]}

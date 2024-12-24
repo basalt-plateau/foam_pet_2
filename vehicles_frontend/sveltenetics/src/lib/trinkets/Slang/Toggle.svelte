@@ -92,7 +92,7 @@ let jargon = "Centaurus A";
 				font-size: 1.4em;
 				line-height: 100%;
 			"
-		>Ambassador Mode</header>
+		>Jargon Mode</header>
 	</div>
 
 	<div
@@ -167,7 +167,7 @@ let jargon = "Centaurus A";
 		"
 		class="card p-2"
 	>
-		<header>Jargon</header>
+		<header>Jargon Type</header>
 		<RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
 			<RadioItem 
 				bind:group={jargon} 

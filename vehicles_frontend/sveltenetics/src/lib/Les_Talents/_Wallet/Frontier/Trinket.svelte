@@ -4,8 +4,8 @@
 
 
 /*
-	import Wallet_Portico from "$lib/Les_Talents/_Wallet/Portico/Trinket.svelte"
-	<Wallet_Portico />
+	import Wallet_Frontier from "$lib/Les_Talents/_Wallet/Frontier/Trinket.svelte"
+	<Wallet_Frontier />
 */
 
 //
@@ -72,20 +72,20 @@ onDestroy (() => {
 	class="btn bg-gradient-to-br variant-gradient-primary-secondary"
 	style="
 		font-size: 1em;
-		padding: 5px 12px;
+		padding: 6px 34px;
 		
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		
-		box-shadow: 0 0 0px 2px rgb(var(--color-surface-500));
+		// box-shadow: 0 0 0px 2px rgb(var(--color-surface-500));
 	"
 >
 	{#if flourisher.wallet_is_connected === "yes" }
 	<p>Account</p>
 	{:else}
-	<p>Connect Wallet</p>
+	<p>Connect</p>
 	{/if}
 </button>
 {/if}

@@ -11,7 +11,6 @@ import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
 //
 import Loyals from '$lib/Letters/Loyals.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
-import Wallet_Door from "$lib/Les_Talents/_Wallet/Door/Trinket.svelte"
 //
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
@@ -92,7 +91,7 @@ const build = () => {
 	<Milieus_Button
 		monitor="Scholars"
 		
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Ecology.Malayalam : "Ecology" }
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Ecology"] : "Ecology" }
 		location={[ "Ecology", "Hints" ]}
 		is_open_location={[ "Ecology" ]}
 		
@@ -101,7 +100,7 @@ const build = () => {
 	<Milieus_Button
 		monitor="Talents"
 	
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Amharic.Talents : "Talents" }
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Talents"] : "Talents" }
 		location={[ "Talents" ]}
 		is_open_location={[ "Talents" ]}
 		
@@ -110,7 +109,7 @@ const build = () => {
 	<Milieus_Button
 		monitor="Loyals"
 	
-		name="Wallets"
+		name="Wallet"
 		location={[ "Loyals", "Hints" ]}
 		is_open_location={[ "Loyals" ]}
 		
@@ -138,9 +137,7 @@ const build = () => {
 	{/if}
 	
 	
-	{#if mode === "nurture" }
-	<Wallet_Door />
-	{/if}
+	
 	
 	{/if}
 </div>

@@ -138,7 +138,7 @@ const Petroglyphs = {
 		<Milieus_Button
 			monitor="Hints"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Petroglyphs.Emoji : "Hints" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Hints"] : "Hints" }
 			
 			location={[ "Ecology", "Hints" ]}
 			is_open_location={[ "Ecology", "Hints" ]}
@@ -148,7 +148,7 @@ const Petroglyphs = {
 		<Milieus_Button
 			monitor="Garden"
 			
-			name={ Milieus_Freight.nav_linguistics === "yes" ? names.garden : "Garden" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Garden"] : "Garden" }
 			
 			location={[ "Ecology", "Garden" ]}
 			is_open_location={[ "Ecology", "Garden" ]}
@@ -158,7 +158,7 @@ const Petroglyphs = {
 		<Milieus_Button
 			monitor="Theme"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Theme.Hakka : "Theme" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Theme"] : "Theme" }
 			location={[ "Ecology", "Theme" ]}
 			is_open_location={[ "Ecology", "Theme" ]}
 			
@@ -169,8 +169,7 @@ const Petroglyphs = {
 		<Milieus_Button
 			monitor="Resilience"
 		
-			name={ "Resilience" }
-			
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Resilience"] : "Resilience" }
 			location={[ "Ecology", "Resilience", "Leaf" ]}
 			is_open_location={[ "Ecology", "Resilience" ]}
 			

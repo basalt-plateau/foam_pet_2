@@ -25,6 +25,7 @@ import Navigator_1 from './Trinkets/Navigator_1/Trinket.svelte'
 import Navigator_Scholars from './Trinkets/Navigator_Scholars.svelte'
 import Navigator_Friends from './Trinkets/Navigator_Friends.svelte'
 import Navigator_Loyals from './Trinkets/Navigator_Loyals/Trinket.svelte'
+import Navigator_Wallets from './Trinkets/Navigator_Wallets/Trinket.svelte'
 //
 ////
 

@@ -35,18 +35,6 @@ const mode = check_roomies_truck ().freight.mode;
 
 let Milieus_Freight = false;
 
-let header_1_saying = {
-	name: (
-		"പരിസ്ഥിതി"
-	),
-	language: (
-		"Malayalam"
-	),
-	pronunciation: (
-		"Paristetry"
-	),
-	english: "Ecology"
-}
 
 const show_rules = () => {
 	open_rules ({ modal_store });
@@ -123,15 +111,6 @@ const show_rules = () => {
 		>Foam Pet</header>
 	</div>
 
-	
-
-	<!-- 
-	<div style="height: 0.5cm"></div>
-	<AI_Caution />
-	-->
-	
-	<div style="height: 0.5cm"></div>
-	<Boards />
 	<div style="height: 0.5cm"></div>
 	<Pleasantries />
 	<div style="height: 0.5cm"></div>
@@ -153,6 +132,15 @@ const show_rules = () => {
 			class="btn btn-lg btn bg-gradient-to-br variant-gradient-primary-secondary"
 		>Bayanihan</button>
 	</div>
+
+	<!-- 
+	<div style="height: 0.5cm"></div>
+	<AI_Caution />
+	-->
+	
+	<div style="height: 0.5cm"></div>
+	<Boards />
+	
 
 	<div style="height: 0.5cm"></div>
 	<Bouncy />

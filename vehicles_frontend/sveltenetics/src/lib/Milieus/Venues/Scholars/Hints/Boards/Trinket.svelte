@@ -46,18 +46,41 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 	<div class="card p-4 variant-soft-surface">
 		<!-- Supermassive Reservoir -->
 		<!-- Supermassive Pupil that can send the speed of light through fonction frontiers. -->
+		<!-- Gargantuan Reservoir Wallet Logistics Duo for -->
 	
-		<p
+		<div
 			style="
 				margin: 0 auto;
 				width: 100%;
 				max-width: 700px;
 				text-align: center;
 				font-size: 1.2em;
+				
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				
+				gap: 10px;
 			"
 		>	
-			Gargantuan Reservoir Wallet Logistics Duo for <Slang text="Aptos" />
-		</p>
+			<p>Pets for </p>
+			
+			<div
+				style="
+					display: flex;
+					align-items: center;
+				"
+			>
+				<img 
+					src="/_Licensed/Aptos/aptos.png" 
+					style="
+						width: 0.75cm;
+						height: 0.75cm;								
+					"
+				/>
+				<Slang text="Aptos" />
+			</div>
+		</div>
 	</div>
 
 	<div style="height: 0.25cm" />
@@ -66,35 +89,90 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 		style="
 			display: flex;
 			justify-content: center;
-			flex-direction: row;
+			flex-direction: column;
 		"
+		class="card p-4 variant-soft-surface"
 	>
 		<div 
-			style="width: 50%"
+			style="width: 100%"
 			class="card p-4 variant-soft-surface"
 		>
-			<p
-				style="text-align: center; font-size: 1.5em; font-weight: bold;"
-			>Signatory</p>
+			<header
+				style="
+					text-align: center;
+					font-size: 1.5em;
+					font-weight: bold;
+				"
+			>Lobbying</header>
 		</div>
 		
-		<div 
-			style="width: 1%"
-		></div>
+		<div style="height: 0.25cm"></div>
 		
-		<div 
-			style="width: 50%"
-			class="card p-4 variant-soft-surface"
+		<div
+			style="
+				display: flex;
+				justify-content: center;
+				flex-direction: row;
+			"
 		>
-			<p
-				style="text-align: center; font-size: 1.5em; font-weight: bold;"
-			>Publicist</p>
+			<div 
+				style="width: 50%"
+				class="card p-4 variant-soft-surface"
+			>
+				<p
+					style="text-align: center; font-size: 1.5em; font-weight: bold;"
+				>
+					<Slang text="Wallet" />
+				</p>
+				
+				<div style="height: 0.25cm" />
+				<hr class="!border-t-2" />
+				<div style="height: 0.25cm" />
+				
+				<p
+					style="
+						text-align: center;
+						line-height: 200%;
+					"
+				>
+					Each <Slang text="transaction_petition" /> requires a unique form of <Slang text="signature" /> from the <Slang text="Wallet" />.
+				</p>
+			</div>
+			
+			<div 
+				style="width: 1%"
+			></div>
+			
+			<div 
+				style="width: 50%"
+				class="card p-4 variant-soft-surface"
+			>
+				<p
+					style="text-align: center; font-size: 1.5em; font-weight: bold;"
+				>
+					<Slang text="Sender" />
+				</p>
+				
+				<div style="height: 0.25cm" />
+				<hr class="!border-t-2" />
+				<div style="height: 0.25cm" />
+				
+				<p
+					style="
+						text-align: center;
+						line-height: 200%;
+					"
+				>
+					Once <Slang text="signature" /> is received from the <Slang text="Signatory" />, <Slang text="a_sender" /> can suggest the <Slang text="transaction_petition" /> + <Slang text="signature" /> to the <Slang text="Consensus" />.
+				</p>
+			</div>
 		</div>
 	</div>
 
 	<div style="height: 0.25cm" />
 
 
+	{#if false }
 	<div 
 		style="
 			display: flex;
@@ -141,6 +219,7 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 			</p>
 		</div>
 	</div>
+	{/if}
 </div>
 
 

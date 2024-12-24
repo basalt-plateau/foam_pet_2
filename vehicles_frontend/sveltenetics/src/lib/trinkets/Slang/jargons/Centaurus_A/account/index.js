@@ -1,13 +1,94 @@
 
+/*
+	Keep to friend frequency levels.
+*/
+
+/*	
+	[Lobby]:
+		[Publicist]: Lobbyist
+			nominator
+	
+			[Public Key]:
+			[Address]:
+			
+			
+		[Consent Provider]: 
+			[Private Key]:
+*/
+
+/*
+	Validator:
+		active:
+			lobby: can provide consent for the initation of a proposal
+			votes: can vote on active proposals
+	
+		passive:
+			transations: can provide consent for the initation of a proposal
+*/
 
 export const account = {
 	
+	/*
+		Account = 
+	*/
+	
+	
+	/*	
+		Online Pet:		
+			Signatory: 
+				Elliptic networks rely on consent being provided as a signature.
+				A greater form is consent is an "original suggestion" with a signature from the author.
+		
+				* Private Elliptic Key Holder
+		
+							
+			
+			lobbyist
+			participant, player, party
+					
+			This is a type of account.
+		
+			validator, verifier, prover, establisher,
+			approver
+		
+			validator - perhaps implies that could be a yup or a nup.
+			
+			gatekeeper
+			guard
+			
+			Moderator, Chaperone, Evaluator
+			
+			Decider, Elector, Voter, Arbiter,
+			Jurist, Chooser
+			
+			Picker, Endorser
+			
+			Consenter
+			
+			The person in charge
+			
+			initiator
+	*/
+	"signatory": "signatory",
+	"signatories": "signatories",
+	"Signatory": "Signatory",
+	"Signatories": "Signatories",
+	
+	////
 	//
-	//	participant
+	//	participant, publicist,
+	//	Lobbyist, messenger, courier
 	//
 	//
-	"Sender": "Sender",
-	"sender": "sender",
+	"a_sender": "a courier",
+	"A_sender": "A courier",	
+	"sender": "courier",
+	"Sender": "Courier",
+	//
+	// vintage
+	"publisher": "courier",
+	"Publisher": "Courier",
+	////
 	
 	//
 	//	Players, Vehicles, Exosuit
@@ -21,6 +102,8 @@ export const account = {
 	//
 	//	Key, Combination, Groove,
 	//	Frequency, Vibe,
+	//
+	//	Harvest = Lobbyist + Validator
 	//
 	"Account": "Harvest",
 	"Accounts": "Harvests",
@@ -128,7 +211,5 @@ export const account = {
 	//
 	////
 	
-	// publicist
-	"publisher": "publisher",
-	"Publisher": "Publisher"	
+	
 }
