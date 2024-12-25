@@ -7,6 +7,10 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 
+/*
+	Activities
+	Options
+*/
 
 /*
 	1. (Tough) Adoption.
@@ -18,33 +22,36 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 
 
 <div class="card p-4">
-	<header
-		style="
-			font-size: 1.5em;
-			text-align: center;
-		"
-	>Getting Moving</header>
+	<div class="card p-4 variant-soft-surface">
+		<header
+			style="
+				font-size: 1.5em;
+				text-align: center;
+			"
+		>Activities</header>
+	</div>
 
-	<div style="height: 0.5cm" />
+	<div style="height: 0.25cm" />
 
-	<div class="card p-2 variant-filled-primary">
+	<div class="card p-2 variant-soft-surface">
+	<div class="card p-2">
 		<Accordion>
 			<AccordionItem>
 				<svelte:fragment slot="summary">
 					<div
 						style="
-							text-align: center;
+							text-align: left;
 							font-size: 1.5em;
 						"
 					>
-						<p>1. Adoption</p>
+						<p>Friendships</p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
 					<div style="height: 0.5cm"></div>
 				
 					<div style="text-align: center;">
-						<span>A <Slang text="Pet" /> can be adopted from </span>
+						<span><Slang text="Pets" /> can be found around the </span>
 						
 						<Milieus_Button
 							name={ "Garden" }
@@ -62,32 +69,22 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 	
 	<div style="height: 0.5cm" />
 	
-	<div class="card p-2 variant-filled-primary">
+	<div class="card p-2">
 		<Accordion>
 			<AccordionItem>
 				<svelte:fragment slot="summary">
 					<div
 						style="
-							text-align: center;
+							text-align: left;
 							font-size: 1.5em;
 						"
 					>
-						<p>2. Choose <Slang text="an_Account" /></p>
+						<p>Choose <Slang text="an_Account" /></p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
 					<p style="text-align: center;">
 						<span><Slang text="Accounts" /> are necessary for interacting with <Slang text="Aptos" />.</span>
-					</p>
-					
-					<p style="text-align: center;">
-						<span><Slang text="An_Account" /> can be found at</span>
-						<Milieus_Button
-							name={ "Accounts" }
-							location={[ "Loyals", "Accounts" ]}
-							is_open_location={[ "Loyals", "Accounts" ]}
-							style="display: inline-block"
-						/>
 					</p>
 				</svelte:fragment>
 			</AccordionItem>
@@ -96,41 +93,34 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 	
 	<div style="height: 0.5cm" />
 	
-	<div class="card p-2 variant-filled-primary">
+	<div class="card p-2">
 		<Accordion>
 			<AccordionItem>
 				<svelte:fragment slot="summary">
 					<div
 						style="
-							text-align: center;
+							text-align: left;
 							font-size: 1.5em;
 						"
 					>
-						<p>3. Go on a Vacation</p>
+						<p>Talents</p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
 					<p style="text-align: center;">
-						<span>Talents can be found at</span>
+
+						<span>If asked politely, A <Slang text="Pet" /> might perform one of these</span>
+				
 						<Milieus_Button
 							name={ "Talents" }
-							location={[ "Friends", "Talents" ]}
-							is_open_location={[ "Friends", "Talents" ]}
-							style="display: inline-block"
-						/>
-					</p>
-					
-					<p style="text-align: center;">
-						<span>To allow a vacation, the vacation <Slang text="Petition" /> needs to be <Slang text="signed" /> for at</span>
-						<Milieus_Button
-							name={ "Signatures" }
-							location={[ "Loyals", "Signatures" ]}
-							is_open_location={[ "Loyals", "Signatures" ]}
+							location={[ "Talents" ]}
+							is_open_location={[ "Talents" ]}
 							style="display: inline-block"
 						/>
 					</p>
 				</svelte:fragment>
 			</AccordionItem>
 		</Accordion>
+	</div>
 	</div>
 </div>

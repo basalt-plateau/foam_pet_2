@@ -14,6 +14,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 //
 ////
 
+import Boards from './Boards.svelte'
 import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example/Trinket.svelte'
 
 
@@ -128,6 +129,13 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 			</div>
 		</div>
 
-		<div style="height: 5cm"></div>
 	</div>
+	
+	<div style="height: 0.5cm"></div>
+
+	
+	<Boards />
+	
+	<div style="height: 5cm"></div>
+	
 </Leaf>

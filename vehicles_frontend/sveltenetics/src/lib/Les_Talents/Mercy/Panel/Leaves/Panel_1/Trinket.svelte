@@ -83,7 +83,7 @@ let join_mercy_harvest__petition = () => {
 					on:click={ join_mercy_harvest__petition }
 
 					style="
-						padding: 0.25cm 0.5cm;
+						padding: 0.2cm 0.25cm 0.2cm 0.5cm;
 					"
 					class="btn variant-filled"
 				>

@@ -13,18 +13,6 @@ const visiwas = {
 }
 
 
-/*
-	Establish Tivaevae:
-		Rondoval_Tivaevae::B (& estate_1_signer, thermoplastic_sheets_to_add);
-
-
-
-
-
-
-
-*/
-
 
 ///
 //

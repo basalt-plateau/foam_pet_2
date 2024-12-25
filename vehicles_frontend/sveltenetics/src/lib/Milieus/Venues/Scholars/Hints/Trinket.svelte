@@ -95,20 +95,39 @@ const show_rules = () => {
 			width: 100%;
 		"
 	>
-		<header 
+		<div
 			style="
-				font-weight: bold;
-				font-family: sans-serif;
-				font-size: 10vw; 
-				
-				text-align: center;
-				
-				font-family: 'Rubik Vinyl', sans-serif;
+				display: flex;
+				border-radius: 4px;
+				justify-content: center;
 			"
-			class="gradient-heading"
-		>Foam Pet</header>
+			class="card p-4 variant-soft-surface"
+		>
+			<header 
+				style="
+					font-weight: bold;
+					font-family: sans-serif;
+					font-size: 10vw; 
+					
+					text-align: center;
+					
+					font-family: 'Rubik Vinyl', sans-serif;
+				"
+				class="gradient-heading"
+			>Foam Pet</header>
+		</div>
 	</div>
 
+	
+
+	<!-- 
+	<div style="height: 0.5cm"></div>
+	<AI_Caution />
+	-->
+	
+	<div style="height: 0.5cm"></div>
+	<Boards />
+	
 	<div style="height: 0.5cm"></div>
 	<Pleasantries />
 	<div style="height: 0.5cm"></div>
@@ -120,25 +139,24 @@ const show_rules = () => {
 			text-align: center;
 		"
 	>		
-		<button
-			on:click={ show_rules }
-			type="button" 
-			
+		<div
+			class="card p-4 variant-soft-surface"
 			style="
-				padding: 0.25cm 1.5cm;
+				margin: 0 auto;
+				text-align: center;
 			"
-			class="btn btn-lg btn bg-gradient-to-br variant-gradient-primary-secondary"
-		>Bayanihan</button>
+		>	
+			<button
+				on:click={ show_rules }
+				type="button" 
+				
+				style="
+					padding: 0.25cm 1.5cm;
+				"
+				class="btn btn-lg btn bg-gradient-to-br variant-gradient-primary-secondary"
+			>Bayanihan</button>
+		</div>
 	</div>
-
-	<!-- 
-	<div style="height: 0.5cm"></div>
-	<AI_Caution />
-	-->
-	
-	<div style="height: 0.5cm"></div>
-	<Boards />
-	
 
 	<div style="height: 0.5cm"></div>
 	<Getting_Moving />	
