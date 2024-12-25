@@ -6,7 +6,10 @@
 
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 
-export let join_mercy_harvest__sign = () => {}
+import { onMount, onDestroy } from 'svelte'
+
+
+let join_mercy_harvest__sign = () => {}
 
 
 let join_mercy_harvest__petition = () => {
@@ -15,6 +18,8 @@ let join_mercy_harvest__petition = () => {
 	// sign and submit petition 
 	// with wallet tunnel
 }
+
+
 
 
 </script>

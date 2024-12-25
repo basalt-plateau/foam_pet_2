@@ -109,38 +109,5 @@ const build = () => {
 	/>
 	
 	<Wallet_Frontier />	
-	
-	{#if false }
-	<Milieus_Button
-		monitor="Loyals"
-	
-		name="Wallet"
-		location={[ "Loyals", "Hints" ]}
-		is_open_location={[ "Loyals" ]}
-		
-		component_props={{
-			style: loyals_button_styles
-		}}
-		
-		style={ buttons_styles }
-	/>
-	<Milieus_Button
-		monitor="Loyals"
-	
-		location={[ "Loyals", "Hints" ]}
-		is_open_location={[ "Loyals" ]}
-		
-		component={ Loyals }
-		component_props={{
-			style: loyals_button_styles
-		}}
-		
-		style={ buttons_styles }
-	/>
-	{/if}
-	
-	
-	
-	
 	{/if}
 </div>

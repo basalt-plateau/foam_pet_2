@@ -2,15 +2,23 @@
 
 <script>
 
-import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 
+////
+//
 import { onMount, onDestroy } from 'svelte'
+//
+//
 import { check_Milieus_truck, monitor_Milieus_truck } from '$lib/Milieus/Truck'
+import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
-
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
+//
+////
+
+
 let Milieus_Freight = false;
+
 	
 	
 
@@ -158,8 +166,6 @@ const Theme = {
 			
 			style={ buttons_styles }
 		/>
-		
-		{#if mode === "nurture" }
 		<Milieus_Button
 			monitor="Resilience"
 		
@@ -169,7 +175,6 @@ const Theme = {
 			
 			style={ buttons_styles }
 		/>
-		{/if}
 	</div>
 	{/if}
 </div>

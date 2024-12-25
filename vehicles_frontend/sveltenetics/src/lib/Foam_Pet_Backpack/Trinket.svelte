@@ -2,6 +2,9 @@
 
 <script>
 
+/*
+	The goal is that this becomes an extension.
+*/
 
 /*
 	import Foam_Pet_Backpack from "$lib/Foam_Pet_Backpack/Trinket.svelte"

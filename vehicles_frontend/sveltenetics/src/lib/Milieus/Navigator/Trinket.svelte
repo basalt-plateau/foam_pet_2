@@ -24,8 +24,6 @@ import Online_Caution_Alert from './Trinkets/Online_Caution_Alert.svelte'
 import Navigator_1 from './Trinkets/Navigator_1/Trinket.svelte'
 import Navigator_Scholars from './Trinkets/Navigator_Scholars.svelte'
 import Navigator_Friends from './Trinkets/Navigator_Friends.svelte'
-import Navigator_Loyals from './Trinkets/Navigator_Loyals/Trinket.svelte'
-import Navigator_Wallets from './Trinkets/Navigator_Wallets/Trinket.svelte'
 //
 ////
 
@@ -93,7 +91,6 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 			>
 				<Navigator_Scholars />
 				<Navigator_Friends />
-				<Navigator_Loyals />
 			</div>
 		</nav>
 		
