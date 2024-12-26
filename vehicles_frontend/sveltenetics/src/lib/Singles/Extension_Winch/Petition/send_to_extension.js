@@ -9,11 +9,11 @@
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 
-import * as Flourisher from "$lib/Singles/Flourisher"		
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 	
 
 export const send_to_extension = async ({ petition }) => {
-	let flourisher_freight = Flourisher.freight ();
+	let flourisher_freight = Extension_Winch.freight ();
 	
 	const wallet = flourisher_freight.wallet_core._wallet;
 	

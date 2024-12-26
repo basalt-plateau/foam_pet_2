@@ -1,7 +1,7 @@
 
 /*
-	import { create_wallet_template } from "$lib/Singles/Flourisher/Wallets/_template.js"
-	create_wallet_template ()
+	import { connect_Rise_Wallet } from "$lib/Singles/Extension_Winch/Wallets/_template.js"
+	connect_Rise_Wallet ()
 */
 
 
@@ -9,7 +9,9 @@
 	from tests:
 	https://github.com/aptos-labs/aptos-wallet-adapter/blob/6da7c3874dfa72388fa2582c4712c1ce23818058/packages/wallet-adapter-core/src/__tests__/WalletCore.test.ts
 */
-export const create_wallet_template = () => {
+export const connect_Rise_Wallet = () => {
+	const rise = window.rise;
+	
 	const signMessageResponseMock = {
 		fullMessage: "",
 		message: "message",
@@ -20,7 +22,7 @@ export const create_wallet_template = () => {
 
 	const mockSignMessagePayload = {
 		message: "my-message",
-		nonce: Date.now().toString(),
+		nonce: Date.now ().toString ()
 	};
 	
 	/*
@@ -44,19 +46,24 @@ export const create_wallet_template = () => {
 	);
 	*/
 	
-	const walletMock = {
-		name: "wallet-name",
+	const Rise_Wallet = {
+		name: "Rise",
 		url: "my-url",
 		icon: `data:image/png;base64,uri`,
 		provider: {},
 		connect: async () => {
+			console.log ("connecting to rise");
+			await rise.connect ();
 			console.log ("connected!");
 		},
 		disconnect: async () => {
 			console.log ("disconnect!");
+			rise.disconnect ();
 		},
 		network: async () => {
 			console.log ("network!");
+			
+			
 		},
 		signAndSubmitTransaction: async () => {
 			console.log ("signAndSubmitTransaction!");
@@ -74,7 +81,7 @@ export const create_wallet_template = () => {
 		}
 	};
 
-	return walletMock;
+	return Rise_Wallet;
 }
 
 

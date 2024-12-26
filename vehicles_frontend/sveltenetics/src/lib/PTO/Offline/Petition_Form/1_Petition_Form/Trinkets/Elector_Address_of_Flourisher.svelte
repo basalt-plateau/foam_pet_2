@@ -3,7 +3,7 @@
 
 
 /*
-	<Obtainer_Address_of_Flourisher 
+	<Obtainer_Address_of_Extension_Winch 
 		address_of_flourisher_chosen={ address_of_flourisher_chosen }
 	/>
 */

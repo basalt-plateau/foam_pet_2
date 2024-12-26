@@ -13,7 +13,7 @@ import _merge from 'lodash/merge'
 import { has_field } from 'procedures/object/has_field'
 //
 //
-import * as Flourisher from "$lib/Singles/Flourisher"
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 //
 import Wallet_Plugs from "./Wallet_Plugs/Trinket.svelte"
@@ -25,8 +25,8 @@ let mounted = "no"
 let flourisher_monitor = ""
 let flourisher_freight = ""
 onMount (async () => {
-	flourisher_freight = Flourisher.freight ();
-	flourisher_monitor = Flourisher.monitor (async ({
+	flourisher_freight = Extension_Winch.freight ();
+	flourisher_monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -50,25 +50,7 @@ onDestroy (() => {
 
 {#if mounted === "yup" }
 <div>
-	<div class="card p-2">
-		<header
-			style="
-				font-size: 2em;
-				text-align: center;
-			"
-		>Extension Wallets</header>
-		
-		<span class="badge variant-filled">
-			<span class="badge variant-filled">Connected:</span>
-			<span class="badge variant-filled-primary">{ flourisher_freight.wallet_is_connected }</span>
-		</span>
-	</div>
-	
-	<div 
-		style="
-			height: 0.5cm;
-		" 
-	/>
+	<div  style="height: 0.5cm;" />
 	
 	{#if flourisher_freight.wallet_is_connected === "yes" }
 	<Connected />

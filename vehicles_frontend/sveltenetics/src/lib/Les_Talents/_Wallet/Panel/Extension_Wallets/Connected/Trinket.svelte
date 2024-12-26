@@ -7,7 +7,7 @@
 
 
 import { onMount, onDestroy } from "svelte"
-import * as Flourisher from "$lib/Singles/Flourisher"		
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 
 import _get from 'lodash/get'
 
@@ -45,10 +45,10 @@ const disconnect = () => {
 	flourisher_freight.wallet_core.disconnect ();
 }
 
-let flourisher_freight = Flourisher.freight ();
+let flourisher_freight = Extension_Winch.freight ();
 let flourisher_monitor;
 onMount (async () => {
-	flourisher_monitor = Flourisher.monitor (async ({
+	flourisher_monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//

@@ -14,7 +14,7 @@ import { onMount, onDestroy } from 'svelte'
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
-import * as Flourisher from "$lib/Singles/Flourisher"		
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 //
 //
 	
@@ -40,8 +40,8 @@ let mounted = "no"
 let flourisher_freight = ""
 let flourisher_monitor = ""
 onMount (() => {
-	flourisher_freight = Flourisher.freight ();
-	flourisher_monitor = Flourisher.monitor (async ({
+	flourisher_freight = Extension_Winch.freight ();
+	flourisher_monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//

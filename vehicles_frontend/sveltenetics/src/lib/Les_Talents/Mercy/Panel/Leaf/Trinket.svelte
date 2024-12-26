@@ -6,7 +6,7 @@
 
 import { onMount, onDestroy } from 'svelte'
 import * as Mercy_Truck from '$lib/Les_Talents/Mercy/Panel/_Truck/index.js'
-import * as Flourisher from "$lib/Singles/Flourisher"
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 
 import Mercy_Sailboat from '$lib/Les_Talents/Mercy/Panel/_Truck/Sailboat.svelte'
 
@@ -60,12 +60,12 @@ let establish = async () => {
 	console.info ("establish", MS_Freight.address_establish);
 	
 	console.log ("flourisher_freight:", { flourisher_freight });
-	console.log ("wallet:", Flourisher.wallet)
+	console.log ("wallet:", Extension_Winch.wallet)
 	
 	const wallet = flourisher_freight.wallet_core._wallet;
 	console.log ("wallet:", wallet)
 	
-	// Flourisher.wallet
+	// Extension_Winch.wallet
 	
 	let mercyverse = "10000000000000000000000000000000000000000000000000000000000000000000000000000";
 	
@@ -135,10 +135,10 @@ let establish = async () => {
 	}
 }
 
-let flourisher_freight = Flourisher.freight ();
+let flourisher_freight = Extension_Winch.freight ();
 let flourisher_monitor;
 onMount (async () => {
-	flourisher_monitor = Flourisher.monitor (async ({
+	flourisher_monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//

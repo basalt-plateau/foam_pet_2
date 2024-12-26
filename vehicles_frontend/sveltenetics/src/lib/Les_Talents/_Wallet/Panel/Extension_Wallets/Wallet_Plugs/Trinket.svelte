@@ -6,7 +6,7 @@
 import { onMount, onDestroy } from "svelte"
 //
 //
-import * as Flourisher from "$lib/Singles/Flourisher"
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 
 const obtain_wallet = ({ wallet }) => {
@@ -14,10 +14,10 @@ const obtain_wallet = ({ wallet }) => {
 	window.open (wallet.url, '_blank');
 }
 
-let flourisher_freight = Flourisher.freight ();
+let flourisher_freight = Extension_Winch.freight ();
 let flourisher_monitor;
 onMount (async () => {
-	flourisher_monitor = Flourisher.monitor (async ({
+	flourisher_monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -44,7 +44,6 @@ onDestroy (async () => {
 		gap: 10px;
 		flex-direction: column;
 	"
-	class="card p-2"
 >
 	
 	<div 
@@ -67,7 +66,7 @@ onDestroy (async () => {
 			align-items: center;
 			gap: 10px;
 		"
-		class="card p-2"
+		class="card p-2 variant-filled-primary"
 	>
 		{#each flourisher_freight.wallets_list as wallet}
 		<div
@@ -121,23 +120,12 @@ onDestroy (async () => {
 			<span class="badge variant-soft-primary">AIP 62 Standard</span>
 			{/if}
 
-			<button 
-				type="button" 
-				class="btn btn-sm variant-filled"
-				on:click={() => {
-					flourisher_freight.wallet = wallet;
-					flourisher_freight.connect ({ wallet });
-					
-				}}
-			>Connect</button>	
-
 			<div>
 				{#if wallet.readyState === "Installed" }
 				<button 
 					type="button" 
 					class="btn btn-sm variant-filled"
 					on:click={() => {
-						flourisher_freight.wallet = wallet;	
 						flourisher_freight.connect ({ wallet });
 					}}
 				>Connect</button>						

@@ -2,19 +2,19 @@
 
 
 /*
-	import { make_the_flourisher, destroy_the_flourisher } from "$lib/Singles/Flourisher"
+	import { make_the_flourisher, destroy_the_flourisher } from "$lib/Singles/Extension_Winch"
 	make_the_flourisher ();
 	destroy_the_flourisher ();
 */
 
 /*
 	import { onMount, onDestroy } from "svelte"
-	import * as Flourisher from "$lib/Singles/Flourisher"		
+	import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 	
-	let flourisher_freight = Flourisher.freight ();
+	let flourisher_freight = Extension_Winch.freight ();
 	let flourisher_monitor;
 	onMount (async () => {
-		flourisher_monitor = Flourisher.monitor (async ({
+		flourisher_monitor = Extension_Winch.monitor (async ({
 			original_freight,
 			pro_freight, 
 			//

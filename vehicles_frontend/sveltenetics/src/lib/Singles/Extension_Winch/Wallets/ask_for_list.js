@@ -2,7 +2,7 @@
 
 
 /*
-	import { ask_for_wallets_list } from "$lib/Singles/Flourisher/Wallets/ask_for_list.js"
+	import { ask_for_wallets_list } from "$lib/Singles/Extension_Winch/Wallets/ask_for_list.js"
 	const wallets_list = ask_for_wallets_list ();
 */
 

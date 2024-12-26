@@ -39,7 +39,7 @@ import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck
 //
 //\
 //\\
-import * as Flourisher from "$lib/Singles/Flourisher"
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 	
 	
 
@@ -73,7 +73,7 @@ onMount (async () => {
 	//	Trucks
 	//
 	//
-	Flourisher.make ();
+	Extension_Winch.make ();
 	lease_roomies_truck ()
 	lease_Milieus_truck ()
 	trucks_prepared = "yes"
@@ -98,7 +98,7 @@ onDestroy (async () => {
 	//
 	give_back_roomies_truck ()
 	give_back_Milieus_truck ()
-	Flourisher.destroy ();
+	Extension_Winch.destroy ();
 	
 	trucks_prepared = "no"
 })

@@ -12,7 +12,7 @@
 
 
 import { loop } from '$lib/taverns/loop'
-import * as Flourisher from "$lib/Singles/Flourisher"		
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 	
 let ledger_ask_count = 0;
 
@@ -26,7 +26,7 @@ export const is_wallet_connected_ask_loop = () => {
 			let flourisher_freight;
 			
 			try {
-				flourisher_freight = Flourisher.freight ();
+				flourisher_freight = Extension_Winch.freight ();
 				wallet_core = flourisher_freight.wallet_core;			
 			}
 			catch (imperfection) {
