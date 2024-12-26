@@ -2,7 +2,7 @@
 
 /*
 	import { onMount, onDestroy } from 'svelte'
-	import * as Mercy_Truck from '$lib/Les_Talents/Mercy/_Truck/index.js'
+	import * as Mercy_Truck from '$lib/Les_Talents/Mercy/Panel/_Truck/index.js'
 
 	onMount (async () => {	
 		Mercy_Truck.make ()

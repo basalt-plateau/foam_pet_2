@@ -7,7 +7,9 @@
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 
 import { onMount, onDestroy } from 'svelte'
+import * as Mercy_Truck from '$lib/Les_Talents/Mercy/Panel/_Truck/index.js'
 
+	
 
 let join_mercy_harvest__sign = () => {}
 
@@ -19,7 +21,12 @@ let join_mercy_harvest__petition = () => {
 	// with wallet tunnel
 }
 
-
+onMount (async () => {	
+	Mercy_Truck.make ()
+});
+onDestroy (() => {
+	Mercy_Truck.destroy ()
+});
 
 
 </script>

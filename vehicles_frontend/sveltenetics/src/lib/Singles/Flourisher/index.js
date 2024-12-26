@@ -2,27 +2,34 @@
 
 
 /*
-	import { make_the_flourisher, destroy_the_flourisher } from "$lib/Singles/Flourisher.js"
+	import { make_the_flourisher, destroy_the_flourisher } from "$lib/Singles/Flourisher"
 	make_the_flourisher ();
 	destroy_the_flourisher ();
 */
 
 /*
-	import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/Singles/Flourisher.js"
+	import { onMount, onDestroy } from "svelte"
+	import * as Flourisher from "$lib/Singles/Flourisher"		
+
 	
-	const flourisher = ask_for_flourisher_freight ();
-	let flourisher_monitor = ask_for_flourisher_monitor (async ({
-		original_freight,
-		pro_freight, 
-		//
-		target,
-		//
-		property, 
-		value
-	}) => {
-		flourisher = pro_freight;
+	let flourisher_freight = Flourisher.freight ();
+	let flourisher_monitor;
+	onMount (async () => {
+		let flourisher_monitor = Flourisher.monitor (async ({
+			original_freight,
+			pro_freight, 
+			//
+			target,
+			//
+			property, 
+			value
+		}) => {
+			flourisher_freight = pro_freight;
+		});
 	});
-	flourisher_monitor.stop ()
+	onDestroy (async () => {
+		flourisher_monitor.stop ()
+	});
 */
 
 
@@ -51,7 +58,7 @@ let the_is_wallet_connected_ask_loop = ""
 	This adds a truck to the trucks object as trucks [1] = ...
 	Such, the truck can then be deleted with the "destroy" method.
 */
-export const make_the_flourisher = () => {
+export const make = () => {
 	const network = "";
 	
 	const { plugins, opt_in_wallets } = ask_for_the_config ();
@@ -162,12 +169,12 @@ export const make_the_flourisher = () => {
 	return trucks [1];	
 }
 
-export const destroy_the_flourisher = () => {
+export const destroy = () => {
 	the_is_wallet_connected_ask_loop.stop ();
 	delete trucks [1];
 }
 
-export const ask_for_flourisher_freight = () => {
+export const freight = () => {
 	return trucks [1].freight;
 }
 
@@ -186,6 +193,6 @@ export const retrieve = () => {
 	let flourisher_monitor = ask_for_flourisher_monitor ();
 	flourisher_monitor.stop ()
 */
-export const ask_for_flourisher_monitor = (action) => {	
+export const monitor = (action) => {	
 	return trucks [1].monitor (envelope => { action (envelope); });
 }

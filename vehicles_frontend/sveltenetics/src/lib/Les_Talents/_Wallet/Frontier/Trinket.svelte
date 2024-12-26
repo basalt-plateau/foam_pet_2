@@ -14,7 +14,7 @@ import { onMount, onDestroy } from 'svelte'
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
-import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/Singles/Flourisher"
+import * as Flourisher from "$lib/Singles/Flourisher"		
 //
 //
 	
@@ -37,11 +37,11 @@ let open = async () => {
 }
 
 let mounted = "no"
-let flourisher = ""
+let flourisher_freight = ""
 let flourisher_monitor = ""
 onMount (() => {
-	flourisher = ask_for_flourisher_freight ();
-	flourisher_monitor = ask_for_flourisher_monitor (async ({
+	flourisher_freight = Flourisher.freight ();
+	flourisher_monitor = Flourisher.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -50,7 +50,7 @@ onMount (() => {
 		property, 
 		value
 	}) => {
-		flourisher = pro_freight;
+		flourisher_freight = pro_freight;
 	});
 	mounted = "yes"
 });
@@ -82,7 +82,7 @@ onDestroy (() => {
 		// box-shadow: 0 0 0px 2px rgb(var(--color-surface-500));
 	"
 >
-	{#if flourisher.wallet_is_connected === "yes" }
+	{#if flourisher_freight.wallet_is_connected === "yes" }
 	<p>Account</p>
 	{:else}
 	<Loyals 
