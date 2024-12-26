@@ -13,6 +13,20 @@
 */
 
 /*
+	import { onMount, onDestroy } from 'svelte'
+	import * as Mercy_Truck from '$lib/Les_Talents/Mercy/Panel/_Truck/index.js'
+
+	let MT_Freight = Mercy_Truck.freight ();
+
+	onMount (async () => {	
+		Mercy_Truck.make ()
+	});
+	onDestroy (() => {
+		Mercy_Truck.destroy ()
+	});
+*/
+
+/*
 	https://www.npmjs.com/package/@visiwa/trucks
 */
 
@@ -29,13 +43,16 @@ const trucks = {}
 */
 export const make = () => {
 	
+	const address = "28D60F289107022874C501305595A226D77F6CF4F24BC94EB07C5899D0B4DCA3";
+	
 	/*
 		Freight is the "state" or the object that is
 		is monitored.
 	*/
 	trucks [1] = build_truck ({
 		freight: {
-			
+			address,
+			address_establish: address + "::Merci_Harvest::establish_harvest"
 		}
 	});
 	

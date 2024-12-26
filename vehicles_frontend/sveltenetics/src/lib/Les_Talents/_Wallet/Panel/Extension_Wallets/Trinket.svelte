@@ -13,17 +13,20 @@ import _merge from 'lodash/merge'
 import { has_field } from 'procedures/object/has_field'
 //
 //
-import * as Flourisher from "$lib/Singles/Flourisher.js"
+import * as Flourisher from "$lib/Singles/Flourisher"
+//
+//
+import Wallet_Plugs from "./Wallet_Plugs/Trinket.svelte"
+import Connected from "./Connected/Trinket.svelte"
 //
 
-import Wallet_Plugs from "./Wallet_Plugs/Trinket.svelte"
 
 let mounted = "no"
 let flourisher_monitor = ""
 let flourisher_freight = ""
 onMount (async () => {
 	flourisher_freight = Flourisher.freight ();
-	flourisher_monitor = ask_for_flourisher_monitor (async ({
+	flourisher_monitor = Flourisher.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -67,6 +70,10 @@ onDestroy (() => {
 		" 
 	/>
 	
+	{#if flourisher_freight.wallet_is_connected === "yes" }
+	<Connected />
+	{:else}
 	<Wallet_Plugs />
+	{/if}
 </div>
 {/if}

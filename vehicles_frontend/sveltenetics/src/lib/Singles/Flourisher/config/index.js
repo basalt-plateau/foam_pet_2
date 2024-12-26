@@ -11,6 +11,10 @@ import {
 //
 import { create_wallet_template } from "$lib/Singles/Flourisher/Wallets/_template.js"
 
+import { ask_for_opt_in_wallets } from "./opt_in_wallets/index.js"
+
+
+
 
 export const ask_for_the_config = () => {
 	const dappConfig = {}
@@ -30,20 +34,12 @@ export const ask_for_the_config = () => {
 		]
 	}
 
-	const ask_for_opt_in_wallets = () => {
-		const rise_wallet = new RiseWalletAdapter ();
-		
-		return ["Continue with Google","Petra","Nightly","Pontem Wallet", "Mizu Wallet"];
-		
-		return [
-			// rise_wallet
-		]
-	}
-	
+
 	return {
-		dappConfig,
-		disableTelemetry,
 		plugins: ask_for_plugins (),
-		opt_in_wallets: ask_for_opt_in_wallets ()
+		opt_in_wallets: ask_for_opt_in_wallets (),
+		
+		dappConfig,
+		disableTelemetry
 	}
 }

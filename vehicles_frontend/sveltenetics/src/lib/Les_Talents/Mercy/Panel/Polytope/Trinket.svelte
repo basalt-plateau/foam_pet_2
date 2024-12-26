@@ -35,18 +35,6 @@ $: freight = {
 	}
 }
 
-export let on_change = () => {};
-export let on_prepare;
-export const advance = (action) => {
-	// @ advance, promote, evolve, adapt
-	// @ promote
-	// @ progress
-	// @ habilitate
-	
-	const _freight = action ({ freight })
-	freight = _freight;
-}
-
 
 const close_the_waiting_modal = () => {
 	console.info ('close_the_waiting_modal')
@@ -55,9 +43,7 @@ const close_the_waiting_modal = () => {
 
 
 
-onMount (() => {
-	on_prepare ()
-})
+onMount (() => {})
 
 let wait_color = document.documentElement.classList.contains ("dark") ? "#000000" : "#FFFFFF";
 

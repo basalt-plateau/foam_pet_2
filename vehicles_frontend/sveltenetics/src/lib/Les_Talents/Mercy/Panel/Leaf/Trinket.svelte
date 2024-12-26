@@ -4,29 +4,158 @@
 
 <script>
 
-import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
-
 import { onMount, onDestroy } from 'svelte'
 import * as Mercy_Truck from '$lib/Les_Talents/Mercy/Panel/_Truck/index.js'
+import * as Flourisher from "$lib/Singles/Flourisher"
 
+import Mercy_Sailboat from '$lib/Les_Talents/Mercy/Panel/_Truck/Sailboat.svelte'
+
+import * as Aptos_SDK from "@aptos-labs/ts-sdk";
+import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+
+const build_transaction = async () => {
+	const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
+		fullnode: net_path,
+		network: Aptos_SDK.Network.CUSTOM
+		// client: { provider: custom_client }
+	}));
+
+	const from_address = Aptos_SDK.AccountAddress.from (
+		Uint8Array_from_string (from_address_hexadecimal_string)
+	);
+	const to_address = Aptos_SDK.AccountAddress.from (
+		Uint8Array_from_string (to_address_hexadecimal_string)
+	);
+
+	const the_function = "0x1::aptos_account::transfer"
+	const sender = from_address;
+	const functionArguments = [
+		to_address,
+		amount
+	]
 	
-
-let join_mercy_harvest__sign = () => {}
-
-
-let join_mercy_harvest__petition = () => {
-	console.info ("join_mercy_harvest__petition");
-
-	// sign and submit petition 
-	// with wallet tunnel
+	const TP_AO = await aptos.transaction.build.simple ({
+		sender: Aptos_SDK.AccountAddress.from (
+			Uint8Array_from_string (from_address_hexadecimal_string)
+		),
+		data: {
+			function: "0x1::aptos_account::transfer",
+			typeArguments: [],
+			functionArguments: [
+				Aptos_SDK.AccountAddress.from (
+					Uint8Array_from_string (to_address_hexadecimal_string)
+				),
+				amount
+			]
+		}
+	});
 }
 
-onMount (async () => {	
-	Mercy_Truck.make ()
+let MS_Freight = false
+let join = () => {
+	console.info ("join");
+	
+}
+let establish = async () => {
+	console.info ("establish", MS_Freight.address_establish);
+	
+	console.log ("flourisher_freight:", { flourisher_freight });
+	console.log ("wallet:", Flourisher.wallet)
+	
+	const wallet = flourisher_freight.wallet_core._wallet;
+	console.log ("wallet:", wallet)
+	
+	// Flourisher.wallet
+	
+	let mercyverse = "10000000000000000000000000000000000000000000000000000000000000000000000000000";
+	
+	flourisher_freight.send_to_extension ({ petition: {} });
+	return;
+	
+	
+
+	/*
+		signAndSubmitTransaction:
+		https://github.com/aptos-labs/aptos-wallet-adapter/blob/main/packages/wallet-adapter-core/src/AIP62StandardWallets/WalletStandard.ts#L59C9-L59C33
+	*/
+	try {
+		/*
+		const result = await wallet.signAndSubmitTransaction ({
+			function: "896E4313770A409F4528C410336D9B324E33AD1CA1A24032A7CC36F1AEED58E5::Merci_Harvest::do_nothing",
+			type_arguments: [],
+			arguments: []
+		});
+		*/
+		/*
+		const tx = {
+			sender: account,
+			data: {
+				function: "0x1::aptos_account::transfer",
+				functionArguments: [ 
+					"896E4313770A409F4528C410336D9B324E33AD1CA1A24032A7CC36F1AEED58E5", 
+					1
+				]
+			}
+		};
+		*/
+		const origin_address = (await wallet.account ()).substring (2);
+		console.log ({ origin_address });
+		
+		const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
+			fullnode: "https://api.devnet.aptoslabs.com/v1",
+			network: Aptos_SDK.Network.CUSTOM
+		}));
+		
+		// const origin_address = "896E4313770A409F4528C410336D9B324E33AD1CA1A24032A7CC36F1AEED58E5"
+		const to_address = "896E4313770A409F4528C410336D9B324E33AD1CA1A24032A7CC36F1AEED58E6"
+		
+		
+		const tx = await aptos.transaction.build.simple ({
+			sender: Aptos_SDK.AccountAddress.from (
+				Uint8Array_from_string (origin_address)
+			),
+			data: {
+				function: "0x1::aptos_account::transfer",
+				typeArguments: [],
+				functionArguments: [
+					Aptos_SDK.AccountAddress.from (
+						Uint8Array_from_string (to_address)
+					),
+					"100000"
+				]
+			}
+		});
+		
+		console.log ({ tx });
+		
+		await wallet.signAndSubmitTransaction (tx);
+	} 
+	catch (imperfection) {
+		console.log (imperfection);
+	}
+}
+
+let flourisher_freight = Flourisher.freight ();
+let flourisher_monitor;
+onMount (async () => {
+	flourisher_monitor = Flourisher.monitor (async ({
+		original_freight,
+		pro_freight, 
+		//
+		target,
+		//
+		property, 
+		value
+	}) => {
+		flourisher_freight = pro_freight;
+	});
 });
-onDestroy (() => {
-	Mercy_Truck.destroy ()
+onDestroy (async () => {
+	flourisher_monitor.stop ()
 });
+
+
+
 
 
 </script>
@@ -39,6 +168,8 @@ onDestroy (() => {
 		max-width: 28cm;
 	"
 >
+	<Mercy_Sailboat on_change={ ({ pro_freight }) => { MS_Freight = pro_freight; } } />
+	{#if typeof MS_Freight === "object"}
 	<div
 		style="
 			box-sizing: border-box;
@@ -71,7 +202,11 @@ onDestroy (() => {
 				text-align: center;
 			"
 		>
-			<button type="button" class="btn variant-filled">Establish</button>
+			<button 
+				on:click={ establish }
+				type="button" 
+				class="btn variant-filled"
+			>Establish</button>
 		</div>
 		
 		<div
@@ -92,7 +227,7 @@ onDestroy (() => {
 			>			
 				<button 
 					type="button" 
-					on:click={ join_mercy_harvest__petition }
+					on:click={ join }
 
 					style="
 						padding: 0.2cm 0.25cm 0.2cm 0.5cm;
@@ -198,7 +333,7 @@ onDestroy (() => {
 		</div>
 		
 		
-		
 	</div>
+	{/if}
 </div>
 

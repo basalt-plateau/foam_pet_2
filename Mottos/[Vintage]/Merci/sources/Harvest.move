@@ -34,7 +34,7 @@ module ride_1::Merci_Harvest {
 	}
 
 
-	public entry fun do_nothing (estate_flourisher : & signer) {}
+	
 	
 	/* Establish (+ Destroy) */
 	/*

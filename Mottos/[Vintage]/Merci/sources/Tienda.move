@@ -17,7 +17,7 @@ module ride_1::Merci_Tienda {
 		possibly:
 			expiration
 	*/
-	struct Advertisement_for_Volition has store, drop {
+	struct Advertisement_for_Mercy has store, drop {
 		advertiser_spot : address,
 		mercy_for_sale: u256,
 		octas_price: u64
@@ -35,22 +35,22 @@ module ride_1::Merci_Tienda {
 	
 	/*
 		address, 
-		Advertisement_for_Volition
+		Advertisement_for_Mercy
 		octas_price, 
-		Advertisement_for_Volition
+		Advertisement_for_Mercy
 	*/
 	struct Mall has key {
-		mercy_advertisements : vector<Advertisement_for_Volition>,
+		mercy_advertisements : vector<Advertisement_for_Mercy>,
 		octas_advertisements : vector<Octas_Advertisement>		
 	}
 	
 
 	
-	// Advertise_Volition
+	// Advertise_Mercy
 	
 	public entry fun Establish_Mall (mall_flourisher : & signer)  {
 		let mall_1 = Mall {
-            mercy_advertisements: vector::empty<Advertisement_for_Volition>(),
+            mercy_advertisements: vector::empty<Advertisement_for_Mercy>(),
 			octas_advertisements: vector::empty<Octas_Advertisement>()
         };
 		
@@ -58,7 +58,7 @@ module ride_1::Merci_Tienda {
 	}
 	
 	
-	public entry fun Advertise_Volition (
+	public entry fun Advertise_Mercy (
 		mall_spot : address,
 		
 		advertiser_flourisher : & signer,
@@ -68,7 +68,7 @@ module ride_1::Merci_Tienda {
 		let advertiser_spot = signer::address_of (advertiser_flourisher);
 		let sales = borrow_global_mut<Mall>(mall_spot);
 		
-		let mercy_advert = Advertisement_for_Volition {
+		let mercy_advert = Advertisement_for_Mercy {
             advertiser_spot : advertiser_spot,
 			mercy_for_sale: mercy_for_sale,
 			octas_price : octas_price
@@ -105,7 +105,7 @@ module ride_1::Merci_Tienda {
 	
 
 	
-	public entry fun Obtain_Volition (
+	public entry fun Obtain_Mercy (
 		obtainer : & signer,	
 	
 		mall_spot : address,
@@ -133,7 +133,7 @@ module ride_1::Merci_Tienda {
 								* Withdraw octas from obtainer.
 								* Deposit octas to advertiser.
 						*/
-						// Merci_Harvest::Send_Volition (& estate_1_flourisher, estate_2_spot, mercy_to_send);
+						// Merci_Harvest::Send_Mercy (& estate_1_flourisher, estate_2_spot, mercy_to_send);
 						
 
 						/*

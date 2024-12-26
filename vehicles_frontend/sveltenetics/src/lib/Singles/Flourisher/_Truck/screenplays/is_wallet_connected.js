@@ -21,11 +21,22 @@ export const is_wallet_connected_ask_loop = () => {
 		wait: 1000,
 		wait_for_response: "yes",
 		action: async () => {
+			
+			let wallet_core;
+			let flourisher_freight;
+			
 			try {
-				const flourisher_freight = Flourisher.freight ();
-				const { wallet_core } = flourisher_freight;
-				const is_connected = wallet_core.isConnected ();
-				flourisher_freight.wallet_is_connected = is_connected ? "yes" : "no";
+				flourisher_freight = Flourisher.freight ();
+				wallet_core = flourisher_freight.wallet_core;			
+			}
+			catch (imperfection) {
+				console.error (imperfection);
+				return;
+			}
+			
+			try {
+				flourisher_freight.wallet_is_connected = wallet_core.isConnected () ? "yes" : "no";
+				
 			}
 			catch (imperfection) {
 				console.info (imperfection);

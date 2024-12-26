@@ -3,51 +3,43 @@
 <script>
 
 
-const address_builder = ""
 
-
-
-
-///
+////
 //
+import { onMount, onDestroy } from 'svelte'
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 import _merge from 'lodash/merge'
 //
 //
-import Polytope from './Polytope/Trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 //
+//
+import Polytope from './Polytope/Trinket.svelte'
 import Panel_1 from './Leaf/Trinket.svelte'
 //
-///
+////
+
+
+import * as Mercy_Truck from '$lib/Les_Talents/Mercy/Panel/_Truck/index.js'
 
 
 
 let polytope_modal;
 
 
-
 const on_modal_change = () => {}
+const on_prepare = () => { }
 
-
-
-
-let on_back = []
-
-const open_a_panel = ({ panel_name }) => {
-	show_panel = panel_name
-}
-
-
-
-let polytope_freight = {}
 let prepared = "no"
-const on_prepare = () => {
+onMount (async () => {	
+	Mercy_Truck.make ()
 	prepared = "yes"
-}
-
-let isOpen = false;
+});
+onDestroy (() => {
+	Mercy_Truck.destroy ()
+	prepared = "no"
+});
 
 </script>
 
@@ -55,7 +47,6 @@ let isOpen = false;
 <Polytope 
 	bind:this={ polytope_modal }
 	on_change={ on_modal_change }
-	on_prepare={ on_prepare }
 >
 	<div slot="leaves"
 		style="

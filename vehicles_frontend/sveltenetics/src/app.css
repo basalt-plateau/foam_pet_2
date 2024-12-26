@@ -105,9 +105,45 @@ header {
 	scrollbar-width: auto;
 	/* scrollbar-color: #222 #222; */
 }
+
+
+
+/* Style the scrollbar itself */
 ::-webkit-scrollbar {
-	/*  width: 12px; */
+	width: 12px;  /* Horizontal Scrollbar width */
+	height: 12px; /* Vertical Scrollbar height */
 }
+
+/* Style the track (the background area where the thumb moves) */
+::-webkit-scrollbar-track {
+	background-color: #f1f1f1;
+	border-radius: 10px;
+}
+
+/* Style the draggable part (the thumb) */
+::-webkit-scrollbar-thumb {
+	background-color: #888;
+	border-radius: 10px;
+	border: 3px solid #f1f1f1;  /* Optional: adds a border around the thumb */
+}
+
+/* Hover effect for the thumb */
+::-webkit-scrollbar-thumb:hover {
+	background-color: #555;
+}
+
+/* Optional: style the scrollbar button (top/bottom arrows) */
+::-webkit-scrollbar-button {
+  background-color: #ccc;
+}
+
+/* Optional: style the corner where both scrollbars meet */
+::-webkit-scrollbar-corner {
+  background-color: #f1f1f1;
+}
+
+
+
 
 body-2 {
 	min-height: 100vh;

@@ -1,13 +1,23 @@
 
 
 <script>
+
+//
 import { onMount, onDestroy } from "svelte"
-import * as Flourisher from "$lib/Singles/Flourisher.js"
+//
+//
+import * as Flourisher from "$lib/Singles/Flourisher"
+//
+
+const obtain_wallet = ({ wallet }) => {
+	console.log ("obtain_wallet:", { wallet });
+	window.open (wallet.url, '_blank');
+}
 
 let flourisher_freight = Flourisher.freight ();
 let flourisher_monitor;
 onMount (async () => {
-	let flourisher_monitor = Flourisher.monitor (async ({
+	flourisher_monitor = Flourisher.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -59,7 +69,7 @@ onDestroy (async () => {
 		"
 		class="card p-2"
 	>
-		{#each flourisher.wallets_list as wallet}
+		{#each flourisher_freight.wallets_list as wallet}
 		<div
 			style="
 				display: flex;
@@ -111,12 +121,12 @@ onDestroy (async () => {
 			<span class="badge variant-soft-primary">AIP 62 Standard</span>
 			{/if}
 
-
 			<button 
 				type="button" 
 				class="btn btn-sm variant-filled"
 				on:click={() => {
-					flourisher.connect ({ wallet });
+					flourisher_freight.wallet = wallet;
+					flourisher_freight.connect ({ wallet });
 					
 				}}
 			>Connect</button>	
@@ -127,7 +137,8 @@ onDestroy (async () => {
 					type="button" 
 					class="btn btn-sm variant-filled"
 					on:click={() => {
-						flourisher.connect ({ wallet });
+						flourisher_freight.wallet = wallet;	
+						flourisher_freight.connect ({ wallet });
 					}}
 				>Connect</button>						
 				

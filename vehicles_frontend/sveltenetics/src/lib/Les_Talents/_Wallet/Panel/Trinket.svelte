@@ -17,7 +17,7 @@ import _merge from 'lodash/merge'
 import { has_field } from 'procedures/object/has_field'
 //
 //
-import { ask_for_flourisher_freight, ask_for_flourisher_monitor } from "$lib/Singles/Flourisher"
+import * as Flourisher from "$lib/Singles/Flourisher"
 //
 //
 import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'

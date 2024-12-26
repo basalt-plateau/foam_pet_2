@@ -10,12 +10,11 @@
 /*
 	import { onMount, onDestroy } from "svelte"
 	import * as Flourisher from "$lib/Singles/Flourisher"		
-
 	
 	let flourisher_freight = Flourisher.freight ();
 	let flourisher_monitor;
 	onMount (async () => {
-		let flourisher_monitor = Flourisher.monitor (async ({
+		flourisher_monitor = Flourisher.monitor (async ({
 			original_freight,
 			pro_freight, 
 			//
@@ -41,12 +40,11 @@ import { WalletCore } from "@aptos-labs/wallet-adapter-core";
 import { build_truck } from '@visiwa/trucks'
 //
 //
-import { ask_for_wallets_list } from "$lib/Singles/Flourisher/Wallets/ask_for_list.js"
-//
-//
+import { ask_for_wallets_list } from "./Wallets/ask_for_list.js"
 import { is_wallet_connected_ask_loop } from './_Truck/screenplays/is_wallet_connected'
 import { ask_for_the_config } from "./config"
 //
+import { send_to_extension } from './Petition/send_to_extension.js'
 //
 
 
@@ -64,17 +62,17 @@ export const make = () => {
 	const { plugins, opt_in_wallets } = ask_for_the_config ();
 	console.log ({ plugins, opt_in_wallets })
 	
-	// const flourisher = await Flourisher ();
-	// const wallet_connected_ask_loop = is_wallet_connected_ask_loop ();
-	// wallet_connected_ask_loop.play ();
-	
 	const wallet_core = new WalletCore (
 		plugins,
 		opt_in_wallets
 		// dappConfig,
 		// disableTelemetry
 	);
+	
 	const wallets_list = ask_for_wallets_list ({ wallet_link: wallet_core });
+	
+	
+	
 	const wallet_is_connected = wallet_core.isConnected () ? "yes" : "no";
 	
 	const AptosWalletName = localStorage.getItem ("AptosWalletName");
@@ -98,6 +96,18 @@ export const make = () => {
 			
 			wallet_is_connected,
 			
+			
+			/*
+				suggest ({
+					
+				});
+			*/
+			send_to_extension,
+			
+			/*
+				flourisher_freight.wallet = wallet;
+				flourisher_freight.connect ({ wallet });
+			*/
 			connect: async ({ wallet }) => {
 				const wallet_name = wallet.name;
 				console.log ("connect_wallet:", { wallet });
@@ -124,6 +134,7 @@ export const make = () => {
 				//
 				localStorage.setItem ("AptosWalletName", wallet_name);
 				
+				// trucks [1].freight.wallet = wallet;
 			}
 		}
 	});
