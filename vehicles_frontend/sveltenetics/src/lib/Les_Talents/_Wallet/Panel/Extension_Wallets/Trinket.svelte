@@ -50,9 +50,7 @@ onDestroy (() => {
 
 {#if mounted === "yup" }
 <div>
-	<div  style="height: 0.5cm;" />
-	
-	bridge_is_connected: { flourisher_freight.bridge_is_connected }
+	<div style="height: 0.5cm;" />
 	
 	{#if flourisher_freight.bridge_is_connected === "yes" }
 	<Connected />

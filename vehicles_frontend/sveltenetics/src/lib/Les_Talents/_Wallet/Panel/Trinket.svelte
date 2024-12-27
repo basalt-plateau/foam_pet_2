@@ -52,7 +52,7 @@ const on_prepare = () => {
 					Event Horizon
 					Frontier
 			*/
-			name: 'Event Horizon',
+			name: 'Wallet Bridge',
 			
 			unfinished: {
 				showing: 'no',

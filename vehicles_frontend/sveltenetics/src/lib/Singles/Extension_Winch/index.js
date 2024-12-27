@@ -72,15 +72,21 @@ export const make = async () => {
 		typeof extension_winch_connected === "string" && 
 		extension_winch_connected.length >= 1
 	) {
-		const wallet = wallets_list.find (w => {
-			return w.name === extension_winch_connected
-		});
-		
-		await wallet.connect ();
-		bridge_is_connected = "yes"
-		window.wallet_bridge = wallet;
-		
-		bridge = wallet;
+		try {
+			const wallet = wallets_list.find (w => {
+				return w.name === extension_winch_connected
+			});
+			
+			await wallet.connect ();
+			bridge_is_connected = "yes"
+			window.wallet_bridge = wallet;
+			
+			bridge = wallet;
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+			localStorage.removeItem ("extension winch connected");
+		}
 	}
 	
 	
@@ -108,6 +114,7 @@ export const make = async () => {
 				console.log ("disconnect");
 				
 				if (trucks [1].freight.bridge_is_connected === "yes") {
+					await trucks [1].freight.bridge.disconnect ();
 					trucks [1].freight.bridge = null;
 					trucks [1].freight.bridge_is_connected = "no"
 					localStorage.removeItem ("extension winch connected");

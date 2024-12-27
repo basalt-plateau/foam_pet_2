@@ -64,12 +64,25 @@ export const build_Rise_bridge = () => {
 		},
 		
 		async connect () {
+			const bridge = this;
+			
 			await rise.connect ();
 			await this.status ();
 			
+			rise.onAccountChange (function () {
+				console.log ("onAccountChange:", arguments);
+				bridge.status ();
+			});
+			rise.onNetworkChange (network => {
+				console.log ("onNetworkChange:", arguments);
+				this.status ();
+			});
+			
 			console.log ("Rise:", this);
 		},
-		disconnect () {},
+		async disconnect () {
+			rise.removeAllListeners ();
+		},
 		
 		monitor_account () {},
 		monitor_network () {}
