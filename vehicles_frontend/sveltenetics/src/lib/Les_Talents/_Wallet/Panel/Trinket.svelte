@@ -71,10 +71,7 @@ const on_prepare = () => {
 
 let is_connected = "perhaps"
 let wallets_show = []
-/*
-	isAIP62Standard
-	isSignTransactionV1_1
-*/
+
 
 
 let le_wallet_link = "";

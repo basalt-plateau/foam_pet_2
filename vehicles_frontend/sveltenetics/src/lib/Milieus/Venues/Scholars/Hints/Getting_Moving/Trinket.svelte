@@ -44,7 +44,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 							font-size: 1.5em;
 						"
 					>
-						<p>Friendships</p>
+						<p>Friendships with <Slang text="Pets" /></p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">

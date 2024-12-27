@@ -3,9 +3,9 @@
 <script>
 
 
+
+
 // getAccount ();
-
-
 import { onMount, onDestroy } from "svelte"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 
@@ -19,30 +19,31 @@ let wallet_name;
 let wallet_icon;
 //
 let network_name;
-let network_URL;
+let network_address;
 let network_chain_id;
 const establish_vars = () => {
 	try {
-		const wallet_core = flourisher_freight.wallet_core;
+		const bridge = flourisher_freight.bridge;
+		console.log ({ bridge, flourisher_freight });
 		
-		const account = wallet_core.account;
+		const account = bridge.account;
 		account_address = account.address;
-		account_public_key = account.publicKey;
+		account_public_key = account.public_key;
 		
-		wallet_name = wallet_core.wallet.name;
-		wallet_icon = wallet_core.wallet.icon;
+		wallet_name = bridge.name;
+		wallet_icon = bridge.icon;
 		
-		network_name = wallet_core.network.name;
-		network_URL = wallet_core.network.url;
-		network_chain_id = wallet_core.network.chainId;		
+		network_name = bridge.network.name;
+		network_address = bridge.network.address;
+		network_chain_id = bridge.network.chain_id;		
 	}
 	catch (imperfection) {
-		console.error (imperfection);
+		console.info (imperfection.message);
 	}	
 }
 
 const disconnect = () => {
-	flourisher_freight.wallet_core.disconnect ();
+	flourisher_freight.disconnect ();
 }
 
 let flourisher_freight = Extension_Winch.freight ();
@@ -80,16 +81,14 @@ console.info ({ wallet_core });
 	"
 >
 	<div class="card p-4">
-		<button type="button" class="btn variant-filled"
-		
+		<button 
+			type="button" 
+			class="btn variant-filled"
 			on:click={ disconnect }
 		>Disconnect</button>
 	</div>
 	
 	<div class="card p-4">
-		
-		
-		
 		<div
 			style="
 				display: flex;
@@ -126,10 +125,9 @@ console.info ({ wallet_core });
 	</div>
 
 	
-	
 	<div class="card p-4">
 		<div>network name: { network_name }</div>
-		<div>network URL: { network_URL }</div>
+		<div>network address: { network_address }</div>
 		<div>network chain id: { network_chain_id }</div>
 		
 	</div>

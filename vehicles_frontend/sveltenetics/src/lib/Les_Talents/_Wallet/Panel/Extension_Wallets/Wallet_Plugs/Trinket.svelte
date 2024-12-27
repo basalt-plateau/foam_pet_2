@@ -78,6 +78,7 @@ onDestroy (async () => {
 				gap: 10px;
 				
 				width: 100%;
+				min-width: 200px;
 			"
 			class="card p-2"
 		>
@@ -92,6 +93,7 @@ onDestroy (async () => {
 					width: 100%;
 				"
 			>
+				{#if wallet.icon.length >= 1}
 				<img 
 					src={ wallet.icon } 
 					style="
@@ -105,23 +107,13 @@ onDestroy (async () => {
 						gap: 10px;
 					"
 				/>
+				{/if}
 				<p>{ wallet.name }</p>
 			</div>
-			
-			{#if true }
-			<span class="badge variant-soft-primary">{ wallet.readyState }</span>
-			{/if}
-			
-			{#if false && wallet.isSignTransactionV1_1 }
-			<span class="badge variant-soft-primary">Is Sign TransactionV1_1</span>
-			{/if}
-			
-			{#if wallet.isAIP62Standard }
-			<span class="badge variant-soft-primary">AIP 62 Standard</span>
-			{/if}
+
 
 			<div>
-				{#if wallet.readyState === "Installed" }
+				{#if wallet.installed === "yes" }
 				<button 
 					type="button" 
 					class="btn btn-sm variant-filled"
@@ -130,7 +122,7 @@ onDestroy (async () => {
 					}}
 				>Connect</button>						
 				
-				{:else if wallet.readyState === "NotDetected" }
+				{:else if wallet.installed === "no" }
 				<button 
 					type="button" 
 					class="btn btn-sm variant-filled"

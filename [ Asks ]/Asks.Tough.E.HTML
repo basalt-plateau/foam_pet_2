@@ -7,6 +7,16 @@
 
 	<header>Tough Asks</headers>
 
+		* Deletable Modules: 
+			* Immutable and Mutable modules can't call "Deleteable" modules.
+			* Delete -> deleting every resource created with the module. 
+
+
+		* Free Sign Up:
+			* Account sign up entry that doesn't require gas (DDoS prevention required).
+			* After 1 week the accounts without APT can be consciously or passively deleted.	
+
+
 		* Sign for a Move build offline
 			* https://aptos.dev/en/build/smart-contracts/move-reference?page=aptos-framework%2Fdoc%2Fcode.md#0x1_code_publish_package
 				* public fun publish_package (
@@ -26,6 +36,6 @@
 			* sign up for free (after 10 days of zero transactions, the account is deleted)
 			* sends to the address go to an escrow table
 				* escrow table sends are returned to sender after 10 days
-
+		
 
 </pre>

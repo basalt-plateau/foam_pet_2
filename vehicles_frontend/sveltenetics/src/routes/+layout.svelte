@@ -73,7 +73,7 @@ onMount (async () => {
 	//	Trucks
 	//
 	//
-	Extension_Winch.make ();
+	await Extension_Winch.make ();
 	lease_roomies_truck ()
 	lease_Milieus_truck ()
 	trucks_prepared = "yes"

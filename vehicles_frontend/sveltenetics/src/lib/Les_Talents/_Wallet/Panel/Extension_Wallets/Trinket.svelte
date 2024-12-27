@@ -52,7 +52,9 @@ onDestroy (() => {
 <div>
 	<div  style="height: 0.5cm;" />
 	
-	{#if flourisher_freight.wallet_is_connected === "yes" }
+	bridge_is_connected: { flourisher_freight.bridge_is_connected }
+	
+	{#if flourisher_freight.bridge_is_connected === "yes" }
 	<Connected />
 	{:else}
 	<Wallet_Plugs />

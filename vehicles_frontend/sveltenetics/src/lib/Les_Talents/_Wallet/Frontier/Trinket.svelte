@@ -15,10 +15,10 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+import Loyals from "$lib/Les_Talents/_Wallet/Frontier/Letters/Loyals.svelte"
 //
 //
 	
-import Loyals from "$lib/Les_Talents/_Wallet/Frontier/Letters/Loyals.svelte"
 
 
 const modal_store = getModalStore ();
@@ -59,6 +59,19 @@ onDestroy (() => {
 });
 
 
+const wallet_address = () => {
+	try {
+		let address = flourisher_freight.bridge.account.address;
+		if (address.substring (0,2) === "0x") {
+			address = address.substring (2);
+			address = address.toUpperCase ();
+			return address.substring (0,3) + ".." + address.substring (address.length - 3);
+		}
+	}
+	catch (imperfection) {}
+
+	return "";
+}
 
 </script>
 
@@ -82,8 +95,8 @@ onDestroy (() => {
 		// box-shadow: 0 0 0px 2px rgb(var(--color-surface-500));
 	"
 >
-	{#if flourisher_freight.wallet_is_connected === "yes" }
-	<p>Account</p>
+	{#if flourisher_freight.bridge_is_connected === "yes" }
+	{ wallet_address () }
 	{:else}
 	<Loyals 
 		style={{

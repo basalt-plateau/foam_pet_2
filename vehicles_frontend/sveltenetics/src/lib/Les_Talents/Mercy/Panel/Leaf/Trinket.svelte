@@ -13,6 +13,9 @@ import Mercy_Sailboat from '$lib/Les_Talents/Mercy/Panel/_Truck/Sailboat.svelte'
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 
+import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
+	
+
 const build_transaction = async () => {
 	const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
 		fullnode: net_path,
@@ -225,47 +228,17 @@ onDestroy (async () => {
 				"
 				class="card p-4"
 			>			
-				<button 
-					type="button" 
-					on:click={ join }
-
-					style="
-						padding: 0.2cm 0.25cm 0.2cm 0.5cm;
-					"
-					class="btn variant-filled"
-				>
-					<span>Buy 1 Membership Pass</span>
-
-					<span 
-						style="
-							display: flex;
-							justify-content: center;
-							align-items: center;
-						"
-						class="badge variant-filled-primary"
-					>
-						<img 
-							src="/_Licensed/Aptos/aptos.png" 
-							style="
-								width: 0.75cm;
-								height: 0.75cm;								
-							"
-						/>
-						<span
-							style="
-								font-size: 2em;		
-								transform: translateY(2px);
-							"
-						>1</span>
-					</span>
-					
-					
-				</button>
-
-				<button 
-					type="button" 
-					class="btn variant-filled"
-				>Leave</button>
+				<Petition_APT_Button
+					button_text="Buy 1 Membership Pass"
+					APT="0"
+					clicked={ join }
+				/>
+				
+				<Petition_APT_Button
+					button_text="Leave"
+					APT="0"
+					clicked={ join }
+				/>
 			</div>
 		</div>
 		

@@ -56,31 +56,32 @@ let the_is_wallet_connected_ask_loop = ""
 	This adds a truck to the trucks object as trucks [1] = ...
 	Such, the truck can then be deleted with the "destroy" method.
 */
-export const make = () => {
-	const network = "";
-	
-	const { plugins, opt_in_wallets } = ask_for_the_config ();
-	console.log ({ plugins, opt_in_wallets })
-	
-	const wallet_core = new WalletCore (
-		plugins,
-		opt_in_wallets
-		// dappConfig,
-		// disableTelemetry
-	);
-	
+export const make = async () => {
+	const { wallet_core } = ask_for_the_config ();
 	const wallets_list = ask_for_wallets_list ({ wallet_link: wallet_core });
 	
 	
-	
-	const wallet_is_connected = wallet_core.isConnected () ? "yes" : "no";
-	
-	const AptosWalletName = localStorage.getItem ("AptosWalletName");
-	if (AptosWalletName && wallet_is_connected !== "yes") {
-		wallet_core.connect (AptosWalletName);
+	/*
+		asks:
+			* connected to choosen wallet bridge in the background	
+	*/
+	let bridge = null;
+	let bridge_is_connected = "no"
+	const extension_winch_connected = localStorage.getItem ("extension winch connected");
+	if (
+		typeof extension_winch_connected === "string" && 
+		extension_winch_connected.length >= 1
+	) {
+		const wallet = wallets_list.find (w => {
+			return w.name === extension_winch_connected
+		});
+		
+		await wallet.connect ();
+		bridge_is_connected = "yes"
+		window.wallet_bridge = wallet;
+		
+		bridge = wallet;
 	}
-	
-	console.info ({ wallet_core });
 	
 	
 	/*
@@ -89,53 +90,36 @@ export const make = () => {
 	*/
 	trucks [1] = build_truck ({
 		freight: {
-			network,
-			
 			wallet_core,
 			wallets_list,
 			
-			wallet_is_connected,
+			bridge,
+			bridge_is_connected,
 			
+			connect: async ({ wallet }) => {	
+				console.log ("extension winch connect", { wallet });
+		
+				await wallet.connect ();
+				trucks [1].freight.bridge = wallet;
+				trucks [1].freight.bridge_is_connected = "yes"
+				localStorage.setItem ("extension winch connected", wallet.name);
+			},
+			disconnect: async () => {
+				console.log ("disconnect");
+				
+				if (trucks [1].freight.bridge_is_connected === "yes") {
+					trucks [1].freight.bridge = null;
+					trucks [1].freight.bridge_is_connected = "no"
+					localStorage.removeItem ("extension winch connected");
+					return;
+				}
+				
+				console.error ("There doesn't seem to be a wallet bridge connected.");				
+			},
 			
-			/*
-				suggest ({
-					
-				});
-			*/
+			//
+			// vintage
 			send_to_extension,
-			
-			/*
-				flourisher_freight.wallet = wallet;
-				flourisher_freight.connect ({ wallet });
-			*/
-			connect: async ({ wallet }) => {
-				const wallet_name = wallet.name;
-				console.log ("connect_wallet:", { wallet });
-				console.log ("wallet name:", wallet_name);
-				
-				//
-				//	connect with wallet_link
-				//
-				//
-				console.info ({ wallet_core });				
-				const proceeds = await wallet_core.connect (wallet_name);
-				console.log ({ proceeds });
-				
-				
-				//
-				//	check if is connected..
-				//
-				//
-				const is_connected = wallet_core.isConnected () ? "yup" : "no";
-				console.log ({ is_connected });
-				
-				
-				//	Add to localStorage
-				//
-				localStorage.setItem ("AptosWalletName", wallet_name);
-				
-				// trucks [1].freight.wallet = wallet;
-			}
 		}
 	});
 	

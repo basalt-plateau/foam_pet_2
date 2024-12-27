@@ -9,17 +9,14 @@ import { onMount, onDestroy } from 'svelte'
 //
 import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
 //
-// import Loyals from '$lib/Letters/Loyals.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
+import Wallet_Frontier from "$lib/Les_Talents/_Wallet/Frontier/Trinket.svelte"
 //
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
 //
-import { Amharic, Ecology } from './Trinket'
-//
-//
-import Wallet_Frontier from "$lib/Les_Talents/_Wallet/Frontier/Trinket.svelte"
+
 	
 	
 let mode = check_roomies_truck ().freight.mode;

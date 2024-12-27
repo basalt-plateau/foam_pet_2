@@ -44,29 +44,33 @@ const allowed_wallets = {
 	"Rise": ""
 }
 
+
+import { build_Rise_bridge } from './Rise_Bridge/index.js'
+import { build_Petra_bridge } from './Petra_Bridge/index.js'
+
+
+/*
+	perhaps:
+		assertions for bridges
+*/
 export const ask_for_wallets_list = ({ wallet_link }) => {
-	const isRiseInstalled = window.rise && window.rise.isRise;
-	console.log ({ isRiseInstalled });
+	const rise_bridge = build_Rise_bridge ();
+	const petra_bridge = build_Petra_bridge ();
+
+	console.log ({ rise_bridge });
 	
-	const getProvider = () => {
-		if ('rise' in window) {
-			const provider = window.rise;
-			if (provider.isRise) {
-				return provider;
-			}
-		}
-		
-		// window.open('https://risewallet.io', '_blank');
-	};
-	
-	const rise_is_installed = "rise" in window;
-	 
+	return [
+		rise_bridge,
+		petra_bridge
+	]
+}
+
+export const ask_for_wallets_list_v1 = ({ wallet_link }) => {
 	let wallets_list = [ ...wallet_link.wallets ];
-	if (rise_is_installed) {
-		wallets_list.push (connect_Rise_Wallet ())
-	}
-	
+
 	wallets_list = wallets_list.filter (_wallet => {
+		console.log ({ _wallet });
+		
 		if (has_field (allowed_wallets, _wallet.name)) {
 			return true;
 		}
