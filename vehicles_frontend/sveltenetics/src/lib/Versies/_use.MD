@@ -5,6 +5,12 @@
 */
 
 
+/*
+	import { check_roomies_truck } from '$lib/Versies/Trucks'
+	check_roomies_truck ().freight.net_path = ""
+	check_roomies_truck ().freight.net_name = ""
+*/
+
 
 /*	
 import { onMount, onDestroy } from 'svelte'

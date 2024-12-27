@@ -118,7 +118,7 @@ onDestroy (async () => {
 					type="button" 
 					class="btn btn-sm variant-filled"
 					on:click={() => {
-						flourisher_freight.connect ({ wallet });
+						flourisher_freight.connect ({ wallet_name: wallet.name });
 					}}
 				>Connect</button>						
 				

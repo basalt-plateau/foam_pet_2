@@ -21,22 +21,7 @@ export const build_Rise_bridge = () => {
 	const rise = window.rise;
 
 	// 	const Rise_Bridge = Object.create ({
-	const Rise_Bridge = Object.create ({
-		network: {
-			name: "",
-			address: "",
-			chain_id: ""
-		},
-		account: {
-			address: "",
-			public_key: ""
-		},
-		
-		changes: 0,
-		fonction () {
-			this.changes++;
-		},
-		
+	const Rise_Bridge = {
 		build () {
 			this.name = "Rise"
 			this.icon = ""	
@@ -50,7 +35,6 @@ export const build_Rise_bridge = () => {
 			
 			this.installed = this.is_installed ();
 			this.connected = this.is_connected ();
-			this.changes++;
 
 			const account = await rise.account ();
 			this.account = {
@@ -59,20 +43,11 @@ export const build_Rise_bridge = () => {
 			};
 			
 			const network = await rise.network ();
-			/*
 			this.network = {
 				name: network.name,
 				address: network.api,
 				chain_id: network.chainId
 			};
-			*/
-			
-			this.network.name = network.name;
-			this.network.address = network.api;
-			this.network.chain_id = network.chainId;
-			
-			
-			console.log ('status changed:', this);
 		},
 		is_installed () {
 			try {
@@ -95,7 +70,7 @@ export const build_Rise_bridge = () => {
 			return "no";
 		},
 		
-		async connect ({ freight }) {
+		async connect () {
 			/*
 			if (this.is_connected () !== "yes") {
 				console.info ("Rise is already connected.");
@@ -111,29 +86,26 @@ export const build_Rise_bridge = () => {
 			await rise.connect ();
 			await this.status ();
 			
-			rise.onAccountChange (account => {
-				console.log ("onAccountChange:", { account });
-				this.status ();
+			rise.onAccountChange (function () {
+				console.log ("onAccountChange:", arguments);
+				bridge.status ();
 			});
 			rise.onNetworkChange (network => {
-				console.log ("onNetworkChange inside:", { network });
-				this.status ();
-				
-				freight.bridge.status ();
+				console.log ("onNetworkChange:", { network });
+				bridge.status ();
 			});
 			
 			console.log ("Rise:", this);
-			
-			return this;
 		},
 		async disconnect () {
 			rise.removeAllListeners ();
-		}
-	});
+		},
+		
+		monitor_account () {},
+		monitor_network () {}
+	};
 	Rise_Bridge.build ();
-	
 
-
-	return { rise_bridge: Rise_Bridge };
+	return Rise_Bridge;
 }
 

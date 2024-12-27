@@ -23,6 +23,8 @@ let network_address;
 let network_chain_id;
 const establish_vars = () => {
 	try {
+		console.info ("establish_vars connected");
+		
 		const bridge = flourisher_freight.bridge;
 		console.log ({ bridge, flourisher_freight });
 		
@@ -67,9 +69,6 @@ onMount (async () => {
 onDestroy (async () => {
 	flourisher_monitor.stop ()
 });
-
-let wallet_core = flourisher_freight.wallet_core;
-console.info ({ wallet_core });
 
 </script>
 

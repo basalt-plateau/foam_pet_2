@@ -40,6 +40,7 @@ import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck
 //\
 //\\
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
+import * as Tesseract_Rise from "$lib/Singles/Tesseract_Rise"
 	
 	
 
@@ -71,9 +72,13 @@ onMount (async () => {
 	////
 	//
 	//	Trucks
-	//
+	//		The versies (roomies) truck is subscribed
+	//		to the extension winch.
 	//
 	await Extension_Winch.make ();
+	// await Tesseract_Rise.make ();
+		
+	
 	lease_roomies_truck ()
 	lease_Milieus_truck ()
 	trucks_prepared = "yes"
@@ -99,6 +104,7 @@ onDestroy (async () => {
 	give_back_roomies_truck ()
 	give_back_Milieus_truck ()
 	Extension_Winch.destroy ();
+	// Tesseract_Rise.destroy ();
 	
 	trucks_prepared = "no"
 })

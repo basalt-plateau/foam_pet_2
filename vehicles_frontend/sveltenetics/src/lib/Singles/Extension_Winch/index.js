@@ -34,15 +34,12 @@
 
 //
 //
-import { WalletCore } from "@aptos-labs/wallet-adapter-core";
-//
 //
 import { build_truck } from '@visiwa/trucks'
 //
 //
 import { ask_for_wallets_list } from "./Wallets/ask_for_list.js"
 import { is_wallet_connected_ask_loop } from './_Truck/screenplays/is_wallet_connected'
-import { ask_for_the_config } from "./config"
 //
 import { send_to_extension } from './Petition/send_to_extension.js'
 //
@@ -51,15 +48,10 @@ import { send_to_extension } from './Petition/send_to_extension.js'
 const trucks = {}
 	
 let the_is_wallet_connected_ask_loop = ""	
-	
-/*
-	This adds a truck to the trucks object as trucks [1] = ...
-	Such, the truck can then be deleted with the "destroy" method.
-*/
-export const make = async () => {
-	const { wallet_core } = ask_for_the_config ();
-	const wallets_list = ask_for_wallets_list ({ wallet_link: wallet_core });
-	
+
+
+const prepare_the_bridge = async ({ freight }) => {
+	const wallets_list = ask_for_wallets_list ({ EW_Freight: freight });
 	
 	/*
 		asks:
@@ -77,11 +69,12 @@ export const make = async () => {
 				return w.name === extension_winch_connected
 			});
 			
-			await wallet.connect ();
-			bridge_is_connected = "yes"
-			window.wallet_bridge = wallet;
+			await wallet.connect ({ freight });
 			
 			bridge = wallet;
+			bridge_is_connected = "yes"		
+			
+			window.wallet_bridge = wallet;
 		}
 		catch (imperfection) {
 			console.error (imperfection);
@@ -89,6 +82,86 @@ export const make = async () => {
 		}
 	}
 	
+	return { bridge, bridge_is_connected, wallets_list };
+}
+
+/*
+	This adds a truck to the trucks object as trucks [1] = ...
+	Such, the truck can then be deleted with the "destroy" method.
+*/
+export const make = async () => {
+	const rise = window.rise;
+	
+	
+	const rise_bridge = {
+		name: "Rise",
+		icon: "",
+		installed: "yes",
+		network: {
+			name: "",
+			address: "",
+			chain_id: ""
+		},
+		account: {
+			address: "",
+			public_key: ""
+		},	
+		async status () {
+			const this_bridge = trucks [1].freight.bridge;
+			
+			this_bridge.installed = this.is_installed ();
+			this_bridge.connected = this.is_connected ();
+
+			const account = await rise.account ();
+			this_bridge.account.address = account.address;
+			this_bridge.account.public_key = account.publicKey;
+			
+			const network = await rise.network ();
+			this_bridge.network.name = network.name;
+			this_bridge.network.address = network.api;
+			this_bridge.network.chain_id = network.chainId;
+		},
+		is_installed () {
+			try {
+				if (rise.isRise === true) {
+					return "yes";
+				}
+			}
+			catch (imperfection) {}
+			return "no";
+		},
+		is_connected () {
+			const this_bridge = trucks [1].freight.bridge;
+			if (this_bridge.is_installed () !== "yes") { return "no" }
+			
+			try {
+				if (rise.isConnected () === true) {
+					return "yes";
+				}
+			}
+			catch (imperfection) {}
+			return "no";
+		},
+		async connect () {
+			const this_bridge = trucks [1].freight.bridge;
+
+			
+			await rise.connect ();
+			await this_bridge.status ();
+			
+			rise.onAccountChange (account => {
+				console.log ("onAccountChange bridges:", { account });
+				this_bridge.status ();
+			});
+			rise.onNetworkChange (network => {
+				console.log ("onNetworkChange bridges:", { network });
+				this_bridge.status ();
+			});
+		},
+		disconnect () {
+			rise.removeAllListeners ();
+		}
+	}
 	
 	/*
 		Freight is the "state" or the object that is
@@ -96,19 +169,57 @@ export const make = async () => {
 	*/
 	trucks [1] = build_truck ({
 		freight: {
-			wallet_core,
-			wallets_list,
+			wallets_list: [ rise_bridge ],
+			bridge: null,
+			bridge_is_connected: "no",
 			
-			bridge,
-			bridge_is_connected,
-			
-			connect: async ({ wallet }) => {	
-				console.log ("extension winch connect", { wallet });
+			/*
+				This is meant to be called after
+				build_truck is called.
+			*/
+			async check_for_local_storage_connection () {
+				const freight = trucks [1].freight;
+				
+				const extension_winch_connected = localStorage.getItem ("extension winch connected");
+				if (
+					typeof extension_winch_connected === "string" && 
+					extension_winch_connected.length >= 1
+				) {
+					try {
+						const wallet = freight.wallets_list.find (w => {
+							return w.name === extension_winch_connected
+						});
+						
+						
+						freight.bridge = wallet;
+						await wallet.connect ({ freight });
+						
+						freight.bridge_is_connected = "yes"		
+						
+						
+						
+						// window.wallet_bridge = wallet;
+						return;
+					}
+					catch (imperfection) {
+						console.error (imperfection);
+					}
+					
+					localStorage.removeItem ("extension winch connected");
+				}
+				
+			},
+
+			connect: async ({ wallet_name }) => {	
+				console.log ("extension winch connect", { wallet_name });
 		
-				await wallet.connect ();
-				trucks [1].freight.bridge = wallet;
+				trucks [1].freight.bridge = trucks [1].freight.wallets_list.find (w => {
+					return w.name === wallet_name
+				});
+		
+				await trucks [1].freight.bridge.connect ();
 				trucks [1].freight.bridge_is_connected = "yes"
-				localStorage.setItem ("extension winch connected", wallet.name);
+				localStorage.setItem ("extension winch connected", trucks [1].freight.bridge.name);
 			},
 			disconnect: async () => {
 				console.log ("disconnect");
@@ -130,7 +241,43 @@ export const make = async () => {
 		}
 	});
 	
+	/*
+	const { bridge, bridge_is_connected, wallets_list } = await prepare_the_bridge ({ freight: trucks [1].freight });
+	trucks [1].freight.bridge = bridge;
+	trucks [1].freight.bridge_is_connected = bridge_is_connected;
+	trucks [1].freight.wallets_list = wallets_list;
+	*/
 	
+	
+	trucks [1].freight.check_for_local_storage_connection ();
+	
+	window.extension_winch = trucks [1].freight;
+
+	
+
+	/*
+	setTimeout (() => {
+		trucks [1].freight.bridge_2	= null;
+		trucks [1].freight.bridge_2	= Object.create ({
+			network: {
+				name: "mainnet"
+			},
+			fonction () {
+				console.log ("bridge_2 fonction");
+				this.network.name = "another net.."
+			}
+		});
+	}, 3000)
+	*/
+	
+	setTimeout (() => {
+		console.log ("calling bridge fonction", trucks [1].freight.bridge);
+		// trucks [1].freight.bridge_2.network.name = "network name......"
+		// trucks [1].freight.bridge_2.fonction ();
+		// trucks [1].freight.bridge.status ();
+		
+		// trucks [1].freight.wallets_list.push ({ wallet: ".." })		
+	}, 5000)
 	
 	/*
 		Changes to the freight can be monitored here:
@@ -158,7 +305,7 @@ export const make = async () => {
 		value
 	}) => {
 		try {
-
+			console.info ("😃 extension winch changed", { original_freight, property, value })
 		}
 		catch (imperfection) {
 			console.error (imperfection);
