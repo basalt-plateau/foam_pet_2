@@ -31,6 +31,15 @@ import Consent_Leaf from './Consent/Trinket.svelte'
 
 let leaf = "Hints";
 
+let text = {
+	Hints: (
+		"အညွှန်းများ"
+	),
+	Consent: (
+		"зөвшөөрөл"
+	)
+}
+
 </script>
 
 
@@ -65,9 +74,9 @@ let leaf = "Hints";
 	>
 		<div>
 			<RadioGroup>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Hints" }>Hints</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>Harvests</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>Consent</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Hints" }>{ text.Hints }</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>ᚉᚏᚒᚐᚌ</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>{ text.Consent }</RadioItem>
 			</RadioGroup>
 		</div>
 	</div>
