@@ -27,7 +27,12 @@ import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
 import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 import Foam_Pet_Backpack from "$lib/Foam_Pet_Backpack/Trinket.svelte"
-	
+
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+let Extension_Winch_Freight = false
+
+
+
 
 let polytope_modal;
 const prepare = () => {
@@ -104,6 +109,8 @@ let leaf = "Extensions"
 			width: 100%;
 		"
 	>
+		<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
+		{#if typeof Extension_Winch_Freight === "object"}	
 		{#if polytope_established === "yup" && mounted === "yup" }
 		<div
 			style="
@@ -141,6 +148,7 @@ let leaf = "Extensions"
 			<Foam_Pet_Backpack />
 			{/if}
 		</div>
+		{/if}
 		{/if}
 	</div>
 	
