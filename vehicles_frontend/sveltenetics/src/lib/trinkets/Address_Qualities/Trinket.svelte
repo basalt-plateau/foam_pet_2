@@ -121,23 +121,6 @@ const send_on_change = () => {
 }
 
 
-/*
-<ProgressBar 
-	value={undefined} 
-	animIndeterminate="anim-progress-bar"
-	class="h-1"
-	meter="bg-secondary-500"
-/>
-
-{#if false}
-<ProgressRadial 
-	value={undefined} 
-	width="w-8"
-/>
-{/if}
-*/
-
-
 
 const show = {
 	exception ({ exception }) {

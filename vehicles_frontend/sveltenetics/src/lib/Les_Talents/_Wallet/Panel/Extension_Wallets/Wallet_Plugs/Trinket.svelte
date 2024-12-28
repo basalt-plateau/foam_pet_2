@@ -9,6 +9,8 @@ import { onMount, onDestroy } from "svelte"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 
+
+
 const obtain_wallet = ({ wallet }) => {
 	console.log ("obtain_wallet:", { wallet });
 	window.open (wallet.url, '_blank');

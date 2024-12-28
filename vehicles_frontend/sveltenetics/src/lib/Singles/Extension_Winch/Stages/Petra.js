@@ -1,9 +1,18 @@
 
-
-
-
-export const Petra_bridge_creator = ({ freight }) => {
+/*
+	window.petra
+		prototype
+			prototype
+				isConnected
+*/
+export const Petra_stage_creator = ({ freight }) => {
 	const Petra = window.petra;
+	
+	const _stage = () => {
+		return freight.wallets_list.find (w => {
+			return w.name === "Petra"
+		});
+	}
 	
 	return {
 		name: "Petra",
@@ -18,36 +27,61 @@ export const Petra_bridge_creator = ({ freight }) => {
 			address: "",
 			public_key: ""
 		},	
-		async status () {
-			const this_bridge = freight.bridge;
+		async reset () {
+			const stage = _stage ();
+					
+			stage.account.address = "";
+			stage.account.public_key = "";
 			
-			this_bridge.installed = this_bridge.is_installed ();
-			this_bridge.connected = this_bridge.is_connected ();
-
-			const account = await rise.account ();
-			this_bridge.account.address = account.address;
-			this_bridge.account.public_key = account.publicKey;
-			
-			const network = await rise.network ();
-			this_bridge.network.name = network.name;
-			this_bridge.network.address = network.api;
-			this_bridge.network.chain_id = network.chainId;
+			stage.network.name = "";
+			stage.network.address = "";
+			stage.network.chain_id = "";
 		},
-		is_installed () {
+		async status () {
+			const stage = _stage ();
+			
 			try {
-				if (rise.isRise === true) {
+				stage.installed = await stage.is_installed ();
+				if (stage.installed !== "yes") {
+					stage.connected = "no"
+					stage.reset ();
+					return;
+				}
+				
+				stage.connected = await stage.is_connected ();
+				if (stage.installed !== "yes") {
+					stage.reset ();
+					return;
+				}
+
+				const account = await Petra.account ();
+				stage.account.address = account.address;
+				stage.account.public_key = account.publicKey;
+				
+				const network = await Petra.getNetwork ();
+				stage.network.name = network.name;
+				stage.network.address = network.url;
+				stage.network.chain_id = network.chainId;
+			}
+			catch (imperfection) {
+				console.error ("status imperfection:", imperfection);
+			}
+		},
+		async is_installed () {
+			try {
+				if (typeof Petra === "object") {
 					return "yes";
 				}
 			}
 			catch (imperfection) {}
 			return "no";
 		},
-		is_connected () {
-			const this_bridge = freight.bridge;
-			if (this_bridge.is_installed () !== "yes") { return "no" }
+		async is_connected () {
+			const stage = _stage ();
+			if (await stage.is_installed () !== "yes") { return "no" }
 			
 			try {
-				if (rise.isConnected () === true) {
+				if (Petra.isConnected () === true) {
 					return "yes";
 				}
 			}
@@ -55,22 +89,26 @@ export const Petra_bridge_creator = ({ freight }) => {
 			return "no";
 		},
 		async connect () {
-			const this_bridge = freight.bridge;
+			const stage = _stage ();
 
-			await rise.connect ();
-			await this_bridge.status ();
+			await Petra.connect ();
+			await stage.status ();
 			
-			rise.onAccountChange (account => {
+			Petra.onAccountChange (account => {
 				console.log ("onAccountChange bridges:", { account });
-				this_bridge.status ();
+				stage.status ();
 			});
-			rise.onNetworkChange (network => {
+			Petra.onNetworkChange (network => {
 				console.log ("onNetworkChange bridges:", { network });
-				this_bridge.status ();
+				stage.status ();
+			});
+			Petra.onDisconnect (() => {
+				console.log ("Petra onDisconnect");
+				stage.status ();
 			});
 		},
-		disconnect () {
-			rise.removeAllListeners ();
+		async disconnect () {
+			Petra.removeAllListeners ();
 		}
 	}
 }

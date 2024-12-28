@@ -51,6 +51,7 @@ let the_is_wallet_connected_ask_loop = ""
 
 
 import { Rise_stage_creator } from "./Stages/Rise.js"
+import { Petra_stage_creator } from "./Stages/Petra.js"
 import { Pontem_stage_creator } from "./Stages/Pontem.js"
 
 
@@ -71,6 +72,10 @@ export const make = async () => {
 			wallets_list: [],
 			bridge: null,
 			bridge_is_connected: "no",
+			
+			stages: {
+				Rise: {}
+			},
 			
 			/*
 				This is meant to be called after
@@ -137,18 +142,20 @@ export const make = async () => {
 		}
 	});
 	
-	/*
-	const { bridge, bridge_is_connected, wallets_list } = await prepare_the_bridge ({ freight: trucks [1].freight });
-	trucks [1].freight.bridge = bridge;
-	trucks [1].freight.bridge_is_connected = bridge_is_connected;
-	trucks [1].freight.wallets_list = wallets_list;
-	*/
-	
 	const Rise_stage = Rise_stage_creator ({ freight: trucks [1].freight });
 	const Pontem_stage = Pontem_stage_creator ({ freight: trucks [1].freight });
+	const Petra_stage = Petra_stage_creator ({ freight: trucks [1].freight });
 
 	trucks [1].freight.wallets_list.push (Rise_stage)
 	trucks [1].freight.wallets_list.push (Pontem_stage)
+	trucks [1].freight.wallets_list.push (Petra_stage)
+	
+	
+	// trucks [1].freight.stages.Rise = Rise_stage;
+	
+	await Rise_stage.status ();
+	await Pontem_stage.status ();
+	await Petra_stage.status ();
 	
 	trucks [1].freight.check_for_local_storage_connection ();
 	

@@ -11,10 +11,16 @@
 export const Rise_stage_creator = ({ freight }) => {
 	const rise = window.rise;
 	
+	const _stage = () => {
+		return freight.wallets_list.find (w => {
+			return w.name === "Rise"
+		});
+	}
+	
 	return {
 		name: "Rise",
 		icon: "",
-		installed: "yes",
+		installed: "",
 		network: {
 			name: "",
 			address: "",
@@ -23,23 +29,43 @@ export const Rise_stage_creator = ({ freight }) => {
 		account: {
 			address: "",
 			public_key: ""
-		},	
-		async status () {
-			const this_bridge = freight.bridge;
-			
-			this_bridge.installed = this_bridge.is_installed ();
-			this_bridge.connected = this_bridge.is_connected ();
-
-			const account = await rise.account ();
-			this_bridge.account.address = account.address;
-			this_bridge.account.public_key = account.publicKey;
-			
-			const network = await rise.network ();
-			this_bridge.network.name = network.name;
-			this_bridge.network.address = network.api;
-			this_bridge.network.chain_id = network.chainId;
 		},
-		is_installed () {
+		async status () {
+			const stage = _stage ();
+			
+			try {
+				console.log ("rise stage:", { stage });
+				
+				stage.installed = await stage.is_installed ();
+				if (stage.installed !== "yes") {
+					stage.connected = "no"
+					
+					stage.account.address = "";
+					stage.account.public_key = "";
+					
+					stage.network.name = "";
+					stage.network.address = "";
+					stage.network.chain_id = "";
+					
+					return;
+				}
+				
+				stage.connected = await stage.is_connected ();
+
+				const account = await rise.account ();
+				stage.account.address = account.address;
+				stage.account.public_key = account.publicKey;
+				
+				const network = await rise.network ();
+				stage.network.name = network.name;
+				stage.network.address = network.api;
+				stage.network.chain_id = network.chainId;
+			}
+			catch (imperfection) {
+				console.error ("status imperfection:", imperfection);
+			}
+		},
+		async is_installed () {
 			try {
 				if (rise.isRise === true) {
 					return "yes";
@@ -48,9 +74,10 @@ export const Rise_stage_creator = ({ freight }) => {
 			catch (imperfection) {}
 			return "no";
 		},
-		is_connected () {
-			const this_bridge = freight.bridge;
-			if (this_bridge.is_installed () !== "yes") { return "no" }
+		async is_connected () {
+			const stage = _stage ();
+			
+			if (stage.is_installed () !== "yes") { return "no" }
 			
 			try {
 				if (rise.isConnected () === true) {
@@ -61,21 +88,21 @@ export const Rise_stage_creator = ({ freight }) => {
 			return "no";
 		},
 		async connect () {
-			const this_bridge = freight.bridge;
-
+			const stage = _stage ();
+			
 			await rise.connect ();
-			await this_bridge.status ();
+			await stage.status ();
 			
 			rise.onAccountChange (account => {
 				console.log ("onAccountChange bridges:", { account });
-				this_bridge.status ();
+				stage.status ();
 			});
 			rise.onNetworkChange (network => {
 				console.log ("onNetworkChange bridges:", { network });
-				this_bridge.status ();
+				stage.status ();
 			});
 		},
-		disconnect () {
+		async disconnect () {
 			rise.removeAllListeners ();
 		}
 	}

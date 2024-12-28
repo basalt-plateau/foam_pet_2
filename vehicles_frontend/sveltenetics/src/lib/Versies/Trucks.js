@@ -23,7 +23,6 @@ import { the_ledger_ask_loop_creator } from './Screenplays/is_connected'
 ////
 
 
-import { onMount, onDestroy } from "svelte"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 
 
@@ -203,7 +202,7 @@ export const lease_roomies_truck = () => {
 	}) => {
 		// flourisher_freight = pro_freight;
 		
-		// console.info ("extension changed:", pro_freight);
+		console.info ("😂 extension changed:", pro_freight);
 		
 		// trucks [1].net_path = pro_freight.network.address;
 		

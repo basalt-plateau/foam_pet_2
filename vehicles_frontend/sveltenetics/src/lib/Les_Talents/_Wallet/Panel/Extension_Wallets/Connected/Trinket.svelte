@@ -10,7 +10,11 @@ import { onMount, onDestroy } from "svelte"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 
 import _get from 'lodash/get'
+import { create_count_loop } from '$lib/PTO/APT/Count_Loop'
 
+
+
+let APT_count = ""
 
 let account_address;
 let account_public_key;
@@ -38,11 +42,24 @@ const establish_vars = () => {
 		network_name = bridge.network.name;
 		network_address = bridge.network.address;
 		network_chain_id = bridge.network.chain_id;		
+		
+		Count_Loop.play ({
+			address_hexadecimal_string: account_address,
+			net_path: network_address
+		});
 	}
 	catch (imperfection) {
 		console.info (imperfection.message);
 	}	
 }
+
+const Count_Loop = create_count_loop ({
+	on_change (packet) {
+		// console.log ("Octa_count:", Octa_count)
+		// Octa_count = packet.Octa_count;
+		APT_count = packet.APT_count;
+	}
+});
 
 const disconnect = () => {
 	flourisher_freight.disconnect ();
@@ -68,6 +85,7 @@ onMount (async () => {
 });
 onDestroy (async () => {
 	flourisher_monitor.stop ()
+	Count_Loop.stop ()
 });
 
 </script>
@@ -115,7 +133,7 @@ onDestroy (async () => {
 	</div>
 	
 	<div class="card p-4">
-		<div>APT: </div>
+		APT: { APT_count }
 	</div>
 	
 	<div class="card p-4">

@@ -21,7 +21,7 @@ export const the_ledger_ask_loop_creator = () => {
 		wait: 2000,
 		wait_for_response: "yes",
 		action: async () => {
-			console.log ("the_ledger_ask_loop");
+			// console.log ("the_ledger_ask_loop");
 			
 			const freight = ask_for_freight ();
 			const net_path = freight.net_path;

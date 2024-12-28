@@ -3,10 +3,16 @@
 export const Pontem_stage_creator = ({ freight }) => {
 	const Pontem = window.pontem;
 	
+	const _stage = () => {
+		return freight.wallets_list.find (w => {
+			return w.name === "Pontem"
+		});
+	}
+	
 	return {
 		name: "Pontem",
 		icon: "",
-		installed: "yes",
+		installed: "",
 		network: {
 			name: "",
 			address: "",
@@ -17,20 +23,33 @@ export const Pontem_stage_creator = ({ freight }) => {
 			public_key: ""
 		},	
 		async status () {
-			const this_bridge = freight.bridge;
+			const stage = _stage ();
 			
-			this_bridge.installed = await this_bridge.is_installed ();
-			this_bridge.connected = await this_bridge.is_connected ();
+			stage.installed = await stage.is_installed ();
+			if (stage.installed !== "yes") {
+				stage.connected = "no"
+				
+				stage.account.address = "";
+				stage.account.public_key = "";
+				
+				stage.network.name = "";
+				stage.network.address = "";
+				stage.network.chain_id = "";
+				
+				return;
+			}
+			
+			stage.connected = await stage.is_connected ();
 
-			this_bridge.account.address = await Pontem.account ();
-			this_bridge.account.public_key = await Pontem.publicKey ();
+			stage.account.address = await Pontem.account ();
+			stage.account.public_key = await Pontem.publicKey ();
 			
 			const network = await Pontem.network ();
 			console.log ({ network });
 			
-			this_bridge.network.name = network.name;
-			this_bridge.network.address = network.api;
-			this_bridge.network.chain_id = network.chainId;
+			stage.network.name = network.name;
+			stage.network.address = network.api;
+			stage.network.chain_id = network.chainId;
 		},
 		async is_installed () {
 			try {
@@ -42,8 +61,9 @@ export const Pontem_stage_creator = ({ freight }) => {
 			return "no";
 		},
 		async is_connected () {
-			const this_bridge = freight.bridge;
-			if (await this_bridge.is_installed () !== "yes") { return "no" }
+			const stage = _stage ();
+			
+			if (await stage.is_installed () !== "yes") { return "no" }
 			
 			try {
 				if (Pontem.isConnected () === true) {
@@ -54,7 +74,7 @@ export const Pontem_stage_creator = ({ freight }) => {
 			return "no";
 		},
 		async connect () {
-			const stage = freight.bridge;
+			const stage = _stage ();
 
 			await Pontem.connect ();
 			await stage.status ();
@@ -69,7 +89,7 @@ export const Pontem_stage_creator = ({ freight }) => {
 			});
 		},
 		async disconnect () {
-			await Pontem._clearListeners ();
+			Pontem.removeAllListeners ()
 		}
 	}
 	

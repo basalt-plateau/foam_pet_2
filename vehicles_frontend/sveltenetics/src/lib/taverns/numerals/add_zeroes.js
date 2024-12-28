@@ -23,7 +23,7 @@ export const add_zeroes = ({
 	part = "back",
 	until = 8
 }) => {
-	console.log ({ fractional, part, until })
+	// console.log ({ fractional, part, until })
 	
 	if (part === "back") {
 		const zeroes = until - fractional.length;
@@ -42,7 +42,7 @@ export const add_zeroes = ({
 		//
 		const zeroes = until - fractional.length;
 		
-		console.log (`Add ${ zeroes } zeroes`);
+		// console.log (`Add ${ zeroes } zeroes`);
 		
 		for (let E = 1; E <= zeroes; E++) {
 			fractional = "0" + fractional;
