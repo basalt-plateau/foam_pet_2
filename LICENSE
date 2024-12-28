@@ -1,6 +1,10 @@
 
 
-<pre>
+<body
+	style="
+		white-space: pre-wrap;
+	"
+>
 	<header>License (for motion picture use)</header>
 	<p>
 		Picture:
@@ -11,7 +15,7 @@
 		Foam Number: +1 (555) FOAM PET
 		Home Address: Aquí
 		
-		Medical Conditions: None
+		Medical Conditions: Foamy
 		Organ Donor: Yes
 		Blood Type: Memory Foam
 		
@@ -19,4 +23,4 @@
 			Dominion: Tekcyixor
 			Royaldom: Skococere
 	</p>
-</pre>
+</body>
