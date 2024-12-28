@@ -89,7 +89,8 @@ export const Pontem_stage_creator = ({ freight }) => {
 			});
 		},
 		async disconnect () {
-			Pontem.removeAllListeners ()
+			Pontem.eventListeners.onAccountChange = []
+			Pontem.eventListeners.onNetworkChange = []			
 		}
 	}
 	

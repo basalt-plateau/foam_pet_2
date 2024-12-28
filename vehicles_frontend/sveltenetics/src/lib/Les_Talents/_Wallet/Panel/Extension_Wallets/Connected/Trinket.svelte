@@ -15,6 +15,7 @@ import { create_count_loop } from '$lib/PTO/APT/Count_Loop'
 
 
 let APT_count = ""
+let APT_count_imperfection = ""
 
 let account_address;
 let account_public_key;
@@ -55,8 +56,13 @@ const establish_vars = () => {
 
 const Count_Loop = create_count_loop ({
 	on_change (packet) {
-		// console.log ("Octa_count:", Octa_count)
-		// Octa_count = packet.Octa_count;
+		if (packet.effective !== "yes") {
+			APT_count_imperfection = "?"
+			APT_count = ""
+			return;
+		}
+		
+		APT_count_imperfection = ""
 		APT_count = packet.APT_count;
 	}
 });
@@ -133,12 +139,25 @@ onDestroy (async () => {
 	</div>
 	
 	<div class="card p-4">
-		APT: { APT_count }
+		<span class="badge variant-soft">APT</span>
+		
+		{#if APT_count_imperfection.length >= 1 }
+		<span class="badge variant-filled-error">{ APT_count_imperfection }</span>
+		{:else}
+		<span>{ APT_count }</span>		
+		{/if}
+		
 	</div>
 	
 	<div class="card p-4">
-		<div>address: { account_address }</div>
-		<div>public key: { account_public_key }</div>
+		<div>
+			<span class="badge variant-soft">address</span>
+			<span>{ account_address }</span>
+		</div>
+		<div>
+			<span class="badge variant-soft">public key</span>
+			<span>{ account_public_key }</span>
+		</div>
 	</div>
 
 	

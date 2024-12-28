@@ -3,8 +3,12 @@
 /*
 	import { create_count_loop } from '$lib/PTO/APT/Count_Loop'
 	const Count_Loop = create_count_loop ({
-		on_change ({ Octa_count }) {
-			console.log ("Octa_count:", Octa_count)
+		on_change (packet) {
+			if (packet.effective !== "yes") {
+				return;
+			}
+			
+			const APT_count = packet.APT_count;
 		}
 	});
 
@@ -38,8 +42,13 @@ export const create_count_loop = ({
 				net_path
 			});
 			if (APT_count_ask.effective !== "yes") {
+				on_change ({
+					effective: "no",
+					Octa_count: "",
+					APT_count: ""
+				})
+				
 				console.error ("ineffective");
-				// APT_count_ask.exception
 				return;
 			}
 
@@ -47,6 +56,7 @@ export const create_count_loop = ({
 			const APT_count = ask_convert_Octas_to_APT ({ Octas: Octa_count })
 			
 			on_change ({
+				effective: "yes",
 				Octa_count,
 				APT_count
 			})
