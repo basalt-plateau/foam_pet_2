@@ -20,6 +20,7 @@ export const Petra_stage_creator = ({ freight }) => {
 	
 	return {
 		name: "Petra",
+		url: "https://petra.app",
 		icon: "",
 		installed: "",
 		network: {

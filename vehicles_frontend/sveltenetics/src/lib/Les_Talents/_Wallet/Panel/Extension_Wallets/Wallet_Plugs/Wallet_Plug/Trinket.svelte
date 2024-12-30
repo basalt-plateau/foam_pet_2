@@ -69,7 +69,6 @@ const obtain_wallet = ({ stage }) => {
 				Extension_Winch_Freight.connect ({ stage_name: stage.name });
 			}}
 		>Connect</button>						
-		
 		{:else if stage.installed === "no" }
 		<button 
 			type="button" 

@@ -15,6 +15,7 @@ export const Pontem_stage_creator = ({ freight }) => {
 	
 	return {
 		name: "Pontem",
+		url: "https://pontem.network",
 		icon: "",
 		installed: "",
 		network: {

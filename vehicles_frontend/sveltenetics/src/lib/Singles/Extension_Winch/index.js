@@ -115,10 +115,8 @@ export const make = async () => {
 				) {
 					try {
 						if (extension_winch_connected in freight.stages) {
-							freight.stage_name_connected = wallet;
-							// await wallet.connect ({ freight });
-						
-							freight.connect ({ 
+							freight.stage_name_connected = extension_winch_connected;
+							await freight.connect ({ 
 								stage_name: extension_winch_connected 
 							});
 						}
@@ -135,7 +133,6 @@ export const make = async () => {
 					localStorage.removeItem ("extension winch connected");
 				}
 			},
-
 			connect: async ({ stage_name }) => {	
 				console.log ("extension winch connect:", { stage_name });
 				
@@ -145,17 +142,28 @@ export const make = async () => {
 				localStorage.setItem ("extension winch connected", stage_name);
 			},
 			disconnect: async () => {
-				console.log ("disconnect");
+				const freight = trucks [1].freight;
 				
-				/*
-				if (trucks [1].freight.bridge_is_connected === "yes") {
-					await trucks [1].freight.bridge.disconnect ();
-					trucks [1].freight.bridge = null;
-					trucks [1].freight.bridge_is_connected = "no"
+				console.log ("disconnect", freight);
+				
+				if (freight.stage_name_connected.length >= 1) {
+					const stage_name = freight.stage_name_connected;
+					
+					await trucks [1].freight.stages [ stage_name ].disconnect ();
+					
+					//
+					//
+					//
+					//
+					trucks [1].freight.stage_name_connected = "";
+					
+					//
+					//	Remove the connected wallet name from local storage
+					//
+					//
 					localStorage.removeItem ("extension winch connected");
 					return;
 				}
-				*/
 				
 				console.error ("There doesn't seem to be a wallet bridge connected.");				
 			},
@@ -173,8 +181,9 @@ export const make = async () => {
 	*/
 
 	trucks [1].freight.stages.Rise = Rise_stage_creator ({ freight: trucks [1].freight });
+	trucks [1].freight.stages.Petra = Petra_stage_creator ({ freight: trucks [1].freight });
 	trucks [1].freight.stages.Pontem = Pontem_stage_creator ({ freight: trucks [1].freight });
-	trucks [1].freight.stages.Petra = Pontem_stage_creator ({ freight: trucks [1].freight });
+	
 	
 	/*
 	trucks [1].freight.wallets_list.push (Rise_stage)

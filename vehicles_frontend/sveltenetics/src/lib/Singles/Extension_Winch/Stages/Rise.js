@@ -23,6 +23,7 @@ export const Rise_stage_creator = ({ freight }) => {
 	
 	return {
 		name: "Rise",
+		url: "https://risewallet.io",
 		icon: "",
 		installed: "",
 		network: {
