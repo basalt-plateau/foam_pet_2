@@ -9,9 +9,13 @@ export const Petra_stage_creator = ({ freight }) => {
 	const Petra = window.petra;
 	
 	const _stage = () => {
+		return freight.stages.Petra;
+		
+		/*
 		return freight.wallets_list.find (w => {
 			return w.name === "Petra"
 		});
+		*/
 	}
 	
 	return {

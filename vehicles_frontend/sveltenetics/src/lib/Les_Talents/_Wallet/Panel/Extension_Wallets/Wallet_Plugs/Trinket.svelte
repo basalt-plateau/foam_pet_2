@@ -9,6 +9,7 @@ import { onMount, onDestroy } from "svelte"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 
+import Wallet_Plug from './Wallet_Plug/Trinket.svelte'
 
 
 const obtain_wallet = ({ wallet }) => {
@@ -70,7 +71,14 @@ onDestroy (async () => {
 		"
 		class="card p-2 variant-filled-primary"
 	>
-		{#each flourisher_freight.wallets_list as wallet}
+		{#each Object.keys (flourisher_freight.stages) as stage_name }
+		<Wallet_Plug 
+			stage_name={ stage_name }
+			stage={ flourisher_freight.stages [ stage_name ] }	
+		/>		
+		{/each}
+		
+		{#if false}
 		<div
 			style="
 				display: flex;
@@ -95,9 +103,9 @@ onDestroy (async () => {
 					width: 100%;
 				"
 			>
-				{#if wallet.icon.length >= 1}
+				{#if stage.icon.length >= 1}
 				<img 
-					src={ wallet.icon } 
+					src={ stage.icon } 
 					style="
 						height: 0.75cm;
 						width: 0.75cm;
@@ -110,31 +118,31 @@ onDestroy (async () => {
 					"
 				/>
 				{/if}
-				<p>{ wallet.name }</p>
+				<p>{ stage.name }</p>
 			</div>
 
 
 			<div>
-				{#if wallet.installed === "yes" }
+				{#if stage.installed === "yes" }
 				<button 
 					type="button" 
 					class="btn btn-sm variant-filled"
 					on:click={() => {
-						flourisher_freight.connect ({ wallet_name: wallet.name });
+						flourisher_freight.connect ({ wallet_name: stage.name });
 					}}
 				>Connect</button>						
 				
-				{:else if wallet.installed === "no" }
+				{:else if stage.installed === "no" }
 				<button 
 					type="button" 
 					class="btn btn-sm variant-filled"
 					on:click={() => {
-						obtain_wallet ({ wallet });
+						obtain_wallet ({ stage });
 					}}
 				>Obtain</button>
 				{/if}
 			</div>
 		</div>
-		{/each}
+		{/if}
 	</div>	
 </div>	

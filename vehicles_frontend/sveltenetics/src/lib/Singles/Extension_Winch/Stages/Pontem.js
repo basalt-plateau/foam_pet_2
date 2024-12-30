@@ -4,9 +4,13 @@ export const Pontem_stage_creator = ({ freight }) => {
 	const Pontem = window.pontem;
 	
 	const _stage = () => {
+		return freight.stages.Pontem;
+		
+		/*
 		return freight.wallets_list.find (w => {
 			return w.name === "Pontem"
 		});
+		*/
 	}
 	
 	return {

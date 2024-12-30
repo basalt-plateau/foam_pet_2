@@ -55,6 +55,7 @@ import { Petra_stage_creator } from "./Stages/Petra.js"
 import { Pontem_stage_creator } from "./Stages/Pontem.js"
 
 
+
 /*
 	This adds a truck to the trucks object as trucks [1] = ...
 	Such, the truck can then be deleted with the "destroy" method.
@@ -69,13 +70,36 @@ export const make = async () => {
 	*/
 	trucks [1] = build_truck ({
 		freight: {
+			
+			
+			//////
+			//
+			//	Vintage
+			//
 			wallets_list: [],
 			bridge: null,
 			bridge_is_connected: "no",
+			//
+			////
+						
 			
+			
+			/*
+				These are effectively aliases.
+				
+				They don't need to be the actual
+				name of the wallet.
+			*/
 			stages: {
-				Rise: {}
+				Rise: {},
+				Petra: {},
+				Pontem: {}
 			},
+			stage_name_connected: "",
+			
+			
+			search_name () {},
+			
 			
 			/*
 				This is meant to be called after
@@ -90,16 +114,18 @@ export const make = async () => {
 					extension_winch_connected.length >= 1
 				) {
 					try {
-						const wallet = freight.wallets_list.find (w => {
-							return w.name === extension_winch_connected
-						});
+						if (extension_winch_connected in freight.stages) {
+							freight.stage_name_connected = wallet;
+							// await wallet.connect ({ freight });
 						
+							freight.connect ({ 
+								stage_name: extension_winch_connected 
+							});
+						}
+						else {
+							console.info (`"${ extension_winch_connected }" is not in freight.stages`);
+						}
 						
-						freight.bridge = wallet;
-						await wallet.connect ({ freight });
-						
-						freight.bridge_is_connected = "yes"		
-						// window.wallet_bridge = wallet;
 						return;
 					}
 					catch (imperfection) {
@@ -108,23 +134,20 @@ export const make = async () => {
 					
 					localStorage.removeItem ("extension winch connected");
 				}
-				
 			},
 
-			connect: async ({ wallet_name }) => {	
-				console.log ("extension winch connect", { wallet_name });
-		
-				trucks [1].freight.bridge = trucks [1].freight.wallets_list.find (w => {
-					return w.name === wallet_name
-				});
-		
-				await trucks [1].freight.bridge.connect ();
-				trucks [1].freight.bridge_is_connected = "yes"
-				localStorage.setItem ("extension winch connected", trucks [1].freight.bridge.name);
+			connect: async ({ stage_name }) => {	
+				console.log ("extension winch connect:", { stage_name });
+				
+				const stage = trucks [1].freight.stages [ stage_name ];
+				await stage.connect ();
+				trucks [1].freight.stage_name_connected = stage_name
+				localStorage.setItem ("extension winch connected", stage_name);
 			},
 			disconnect: async () => {
 				console.log ("disconnect");
 				
+				/*
 				if (trucks [1].freight.bridge_is_connected === "yes") {
 					await trucks [1].freight.bridge.disconnect ();
 					trucks [1].freight.bridge = null;
@@ -132,6 +155,7 @@ export const make = async () => {
 					localStorage.removeItem ("extension winch connected");
 					return;
 				}
+				*/
 				
 				console.error ("There doesn't seem to be a wallet bridge connected.");				
 			},
@@ -142,20 +166,28 @@ export const make = async () => {
 		}
 	});
 	
+	/*
 	const Rise_stage = Rise_stage_creator ({ freight: trucks [1].freight });
 	const Pontem_stage = Pontem_stage_creator ({ freight: trucks [1].freight });
 	const Petra_stage = Petra_stage_creator ({ freight: trucks [1].freight });
+	*/
 
+	trucks [1].freight.stages.Rise = Rise_stage_creator ({ freight: trucks [1].freight });
+	trucks [1].freight.stages.Pontem = Pontem_stage_creator ({ freight: trucks [1].freight });
+	trucks [1].freight.stages.Petra = Pontem_stage_creator ({ freight: trucks [1].freight });
+	
+	/*
 	trucks [1].freight.wallets_list.push (Rise_stage)
 	trucks [1].freight.wallets_list.push (Pontem_stage)
 	trucks [1].freight.wallets_list.push (Petra_stage)
+	*/
 	
 	
 	// trucks [1].freight.stages.Rise = Rise_stage;
 	
-	await Rise_stage.status ();
-	await Pontem_stage.status ();
-	await Petra_stage.status ();
+	await trucks [1].freight.stages.Rise.status ();
+	await trucks [1].freight.stages.Pontem.status ();
+	await trucks [1].freight.stages.Petra.status ();
 	
 	trucks [1].freight.check_for_local_storage_connection ();
 	
@@ -190,6 +222,8 @@ export const make = async () => {
 	}) => {
 		try {
 			console.info ("😃 extension winch changed", property, value)
+			
+			
 		}
 		catch (imperfection) {
 			console.error (imperfection);

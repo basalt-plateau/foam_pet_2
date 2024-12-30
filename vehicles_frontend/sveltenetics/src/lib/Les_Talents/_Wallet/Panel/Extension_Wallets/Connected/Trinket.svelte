@@ -30,19 +30,19 @@ const establish_vars = () => {
 	try {
 		console.info ("establish_vars connected");
 		
-		const bridge = flourisher_freight.bridge;
-		console.log ({ bridge, flourisher_freight });
+		const stage_name = flourisher_freight.stage_name_connected;
+		const stage = flourisher_freight.stages [ stage_name ];
 		
-		const account = bridge.account;
+		const account = stage.account;
 		account_address = account.address;
 		account_public_key = account.public_key;
 		
-		wallet_name = bridge.name;
-		wallet_icon = bridge.icon;
+		wallet_name = stage.name;
+		wallet_icon = stage.icon;
 		
-		network_name = bridge.network.name;
-		network_address = bridge.network.address;
-		network_chain_id = bridge.network.chain_id;		
+		network_name = stage.network.name;
+		network_address = stage.network.address;
+		network_chain_id = stage.network.chain_id;		
 		
 		Count_Loop.play ({
 			address_hexadecimal_string: account_address,

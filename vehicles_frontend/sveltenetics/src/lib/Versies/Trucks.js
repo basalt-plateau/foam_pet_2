@@ -12,10 +12,11 @@ import * as AptosSDK from "@aptos-labs/ts-sdk";
 import { has_field } from '$lib/taverns/procedures/object/has_field'
 import { rhythm_filter } from '$lib/taverns/procedures/dates/rhythm-filter'
 //
-//
 import { build_truck } from '$lib/trucks'
 import { parse_styles } from '$lib/trinkets/styles/parse'
 import { assert_is_natural_numeral_string } from '$lib/taverns/numerals/natural/is_string'
+//
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 //
 //
 import { the_ledger_ask_loop_creator } from './Screenplays/is_connected'
@@ -23,7 +24,6 @@ import { the_ledger_ask_loop_creator } from './Screenplays/is_connected'
 ////
 
 
-import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 
 
 
@@ -86,7 +86,7 @@ const retrieve_network = () => {
 }
 
 
-let flourisher_monitor;
+let Extension_Winch_Monitor;
 export const lease_roomies_truck = () => {
 	const the_domain = window.location.hostname;
 	
@@ -162,6 +162,7 @@ export const lease_roomies_truck = () => {
 			
 			net_path,
 			net_name,
+			
 			net_connected: "no",
 			
 			use_slang,
@@ -191,21 +192,40 @@ export const lease_roomies_truck = () => {
 	})
 	
 	
-	flourisher_monitor = Extension_Winch.monitor (async ({
+	Extension_Winch_Monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
-		target,
+		bracket,
 		//
 		property, 
 		value
 	}) => {
 		// flourisher_freight = pro_freight;
 		
-		console.info ("😂 extension changed:", pro_freight);
+		console.info ("😂 extension changed:", { original_freight, bracket, property, value });
 		
 		// trucks [1].net_path = pro_freight.network.address;
-		
+		try {
+			
+			// 
+			//	bridge.network.address
+			//	bridge.network.chain_id
+			//	bridge.network.name
+			//
+			console.log (bracket === original_freight.bridge.network);
+			
+			
+			if (
+				bracket === original_freight.bridge.network && 
+				property === "address"
+			) {
+				console.info ("😂😂😂😂 network address changed");
+			}
+		}
+		catch (imperfection) {
+			// console.error (imperfection);
+		}
 	});
 	
 	monitor_window ({
@@ -225,7 +245,7 @@ export const give_back_roomies_truck = () => {
 	the_ledger_ask_loop.stop ();
 	window.removeEventListener ("resize", window_size_changed)
 	
-	flourisher_monitor.stop ()
+	Extension_Winch_Monitor.stop ()
 	
 	delete trucks [1];
 }

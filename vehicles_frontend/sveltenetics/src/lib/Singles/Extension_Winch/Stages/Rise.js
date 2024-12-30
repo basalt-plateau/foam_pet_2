@@ -12,9 +12,13 @@ export const Rise_stage_creator = ({ freight }) => {
 	const rise = window.rise;
 	
 	const _stage = () => {
+		return freight.stages.Rise;
+		
+		/*
 		return freight.wallets_list.find (w => {
 			return w.name === "Rise"
 		});
+		*/
 	}
 	
 	return {
