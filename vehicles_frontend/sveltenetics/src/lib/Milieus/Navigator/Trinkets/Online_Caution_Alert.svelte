@@ -109,7 +109,7 @@ onDestroy (() => {
 				<p style="line-height: inherit;"><b>Caution!</b> A connection to an <Slang text="Internet_Location" /> was established.</p>
 				<p style="line-height: inherit;">These <b>Loyals</b> activities should happen on a <Slang text="Machine" /> that has limited connectivity.</p>
 				<p style="line-height: inherit;">
-					<span>A <Slang text="Pet" /> for <Slang text="an_Offline_Machine" /> can be adopted from </span>
+					<span>A <Slang text="Town" /> for <Slang text="an_Offline_Machine" /> can be adopted from </span>
 					<Milieus_Button
 						name={ "Garden" }
 						location={[ "Ecology", "Garden" ]}

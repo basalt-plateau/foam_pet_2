@@ -52,7 +52,7 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 							"
 						>
 							<p>
-								The <Slang text="Online Machine" /> and the <Slang text="Offline Machine" /> both need <Slang text="Pet" />.
+								The <Slang text="Online Machine" /> and the <Slang text="Offline Machine" /> both need <Slang text="Town" />.
 							</p>
 						</div>
 					</div>

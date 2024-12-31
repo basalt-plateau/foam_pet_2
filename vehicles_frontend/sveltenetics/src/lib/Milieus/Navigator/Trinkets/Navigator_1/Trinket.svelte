@@ -98,7 +98,7 @@ const build = () => {
 	<Milieus_Button
 		monitor="Talents"
 	
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Talents"] : "Talents" }
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Activities"] : "Activities" }
 		location={[ "Talents" ]}
 		is_open_location={[ "Talents" ]}
 		

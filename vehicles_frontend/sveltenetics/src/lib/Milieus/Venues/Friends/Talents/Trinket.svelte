@@ -92,8 +92,8 @@ const mode = check_roomies_truck ().freight.mode;
 </style>
 
 <svelte:head>
-	<title>Talents</title>
-	<meta name="description" content="Talents" />
+	<title>Activities</title>
+	<meta name="description" content="Activities" />
 </svelte:head>
 
 
@@ -113,7 +113,7 @@ const mode = check_roomies_truck ().freight.mode;
 				text-align: center;
 				font-size: bold;
 			"
-		>Talents</header>
+		>Activities</header>
 
 		<div style="height: 0.25cm"></div>
 		
@@ -128,7 +128,7 @@ const mode = check_roomies_truck ().freight.mode;
 				
 				line-height: 200%;
 			"
-		>These are various moves that a <Slang text="Pet" /> can perform while connected to <Slang text="Aptos" />.</p>
+		>These are various moves that a <Slang text="Town" /> can perform while connected to <Slang text="Aptos" />.</p>
 		
 		<div style="height: 0.25cm"></div>
 	</div>

@@ -248,7 +248,7 @@ let clones_show = "Index"
 					
 					<div style="height: 0.5cm"></div>
 					
-					<p><Slang text="Pet" /> is made from these.</p>
+					<p><Slang text="Town" /> is made from these.</p>
 					<p><b>Index</b> is the name of every Topics license.</p>
 					<p><b>Entire</b> has the every Topics licenses.</p>
 				

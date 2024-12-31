@@ -198,7 +198,7 @@ export const lease_Milieus_truck = () => {
 				//	
 				//
 				"Ecology": "പരിസ്ഥിതി",
-				"Talents": "መክሊት",
+				"Activities": "እቅዶች",
 				//
 				////
 				

@@ -49,14 +49,14 @@ let the_panel = 1
 						font-size: 2em;
 						text-align: center;
 					"
-				><Slang text="Pet" /> with Docker Vehicle</header>
+				><Slang text="Town" /> with Docker Vehicle</header>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
 				<div style="text-align: center; font-size: 1.2em">
 					<div style="height: 1cm"></div>
 	
 					<p style="text-align: center; font-size: 1.2em">
-						<span><Slang text="Pets" /> can live entirely offline with docker.</span>
+						<span><Slang text="Towns" /> can live entirely offline with docker.</span>
 					</p>
 					<p style="text-align: center; font-size: 1.2em">
 						<a class="anchor" target="_blank" href="https://docker.com">https://docker.com</a>
@@ -112,7 +112,7 @@ let the_panel = 1
 												text-align: center;
 												line-height: 1.8em;
 											"
-										>A <Slang text="Pet" /> Docker image can be sent from<br /> <Slang text="Online Machine" /> to <Slang text="Offline Machine" /> with USB storage hardwear.</p>
+										>A <Slang text="Town" /> Docker image can be sent from<br /> <Slang text="Online Machine" /> to <Slang text="Offline Machine" /> with USB storage hardwear.</p>
 									
 										<div style="height: 0.5cm"></div>
 									

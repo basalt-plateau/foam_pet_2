@@ -99,8 +99,8 @@ let cow_clicked = () => {
 		on:click={ cow_clicked }
 		style="
 			position: absolute;
-			bottom: 10px;
-			right: 10px;
+			bottom: 0.125cm;
+			right: 0.5cm;
 			
 			height: 3cm;
 			width: 3cm;
@@ -133,10 +133,23 @@ let cow_clicked = () => {
 				src={ Cow } 
 				alt="cow"
 				
-				style="
-					
-				"
+				style=""
 			/>
+		</div>
+		
+		<div 
+			style="
+				position: absolute;
+				bottom: -0.25cm;
+				left: 50%;
+				transform: translateX(-50%);
+				
+				padding: 0cm 0.5cm;
+				border: 2px solid rgba(var(--color-primary-100));
+			"
+			class="card p-1"
+		>
+			Acquaintance
 		</div>
 	</button>
 </div>

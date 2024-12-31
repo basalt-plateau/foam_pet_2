@@ -45,7 +45,7 @@ into this: foam_pet_v1.0.0-1.tar
 					<div style="height: 0.5cm"></div>
 					
 					<div class="card variant-soft p-4">
-						<p>The <Slang text="Pet" /> docker image foam_pet_v1.0.0-1.tar.zip can be obtained from here:</p>
+						<p>The <Slang text="Town" /> docker image foam_pet_v1.0.0-1.tar.zip can be obtained from here:</p>
 						
 						<div style="height: 0.25cm"></div>
 						

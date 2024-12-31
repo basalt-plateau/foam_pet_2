@@ -73,7 +73,7 @@ let Cherokee_Garden = {
 		style="
 			text-align: center;
 		"
-	>A <Slang text="Pet" /> can be adopted from these.</p>
+	>A <Slang text="Town" /> can be adopted from these.</p>
 	
 	
 	<div style="height: 0.5cm"></div>

@@ -279,7 +279,7 @@ onDestroy (() => {
 	<div style="padding: 0 0 0.5cm">
 		<p
 			style="text-align: center; font-size: 1em"
-		>This is for net that <Slang text="Pet" /> connects to.</p>
+		>This is for net that <Slang text="Town" /> connects to.</p>
 		<div style="height: 12px"></div>
 		<p
 			style="text-align: center; font-size: 1em"

@@ -58,7 +58,7 @@ const releases = "https://github.com/basalt-plateau/foam_pet/releases"
 						font-size: 2em;
 						text-align: center;
 					"
-				><Slang text="Pet" /> with Linux Vehicle</header>
+				><Slang text="Town" /> with Linux Vehicle</header>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
 				<div class="card p-4">

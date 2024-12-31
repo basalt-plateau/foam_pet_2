@@ -28,7 +28,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 				font-size: 1.5em;
 				text-align: center;
 			"
-		>Activities</header>
+		>Locations</header>
 	</div>
 
 	<div style="height: 0.25cm" />
@@ -44,14 +44,14 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 							font-size: 1.5em;
 						"
 					>
-						<p>Friendships with <Slang text="Pets" /></p>
+						<p>Franchises</p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
 					<div style="height: 0.5cm"></div>
 				
 					<div style="text-align: center;">
-						<span><Slang text="Pets" /> can be found around the </span>
+						<span>A copy of this domain can be obtained here: </span>
 						
 						<Milieus_Button
 							name={ "Garden" }
@@ -79,12 +79,12 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 							font-size: 1.5em;
 						"
 					>
-						<p>Choose <Slang text="an_Account" /></p>
+						<p><Slang text="Accounts" /></p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
 					<p style="text-align: center;">
-						<span><Slang text="Accounts" /> are necessary for interacting with <Slang text="Aptos" />.</span>
+						There's a wallet bridge button at the top of the screen.
 					</p>
 				</svelte:fragment>
 			</AccordionItem>
@@ -103,16 +103,13 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 							font-size: 1.5em;
 						"
 					>
-						<p>Talents</p>
+						<p>Activities</p>
 					</div>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
 					<p style="text-align: center;">
-
-						<span>If asked politely, A <Slang text="Pet" /> might perform one of these</span>
-				
 						<Milieus_Button
-							name={ "Talents" }
+							name={ "Activities" }
 							location={[ "Talents" ]}
 							is_open_location={[ "Talents" ]}
 							style="display: inline-block"

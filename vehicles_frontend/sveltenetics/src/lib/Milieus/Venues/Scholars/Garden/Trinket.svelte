@@ -29,6 +29,7 @@ import Installation_with_Linux from './Linux/Trinket.svelte'
 //
 ///
 
+const releases = "https://github.com/basalt-plateau";
 
 </script>
 
@@ -69,14 +70,33 @@ a {
 				text-align: center;
 				margin: 0 auto;
 			"
-		>The entire domain <Slang text="this_domain" /> can be adopted (downloaded) and run as a Linux dapp.</p>
+		>The entire domain <Slang text="this_domain" /> can be obtained and run as a Linux dapp.</p>
+		
+		<div style="height: 0.5cm"></div>
+		
+		<div
+			style="
+				text-align: center;
+			"
+		>
+			<a 
+				href={ releases } 
+				target="_blank" 
+				class="anchor"
+				style="
+					text-decoration: none;
+				"
+			>
+				<span>{ releases }</span>
+			</a>
+		</div>
 		
 		<div style="height: 0.5cm"></div>
 	</div>
 	
 	<div style="height: 0.5cm"></div>
 
-	<Installation_with_Linux />
+	<!-- <Installation_with_Linux /> -->
 	
 	<div style="height: 0.5cm"></div>
 

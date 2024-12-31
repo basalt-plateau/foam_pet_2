@@ -23,7 +23,7 @@ export let rules_originals_link = ""
 		"
 	>Originals</header>
 	
-	<p>Original <Slang text="Pet" /> foam is subject to these rules.</p>
+	<p>Original <Slang text="Town" /> foam is subject to these rules.</p>
 
 	<div style="height: 0.5cm"></div>	
 	
