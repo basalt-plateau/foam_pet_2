@@ -140,7 +140,7 @@ let leaf = "Extensions"
 						bind:group={leaf} 
 						name="justify" 
 						value={ "Foam Pet Backpack" }
-					>Foam Pet Backpack</RadioItem>
+					>Shalom Town Backpack</RadioItem>
 				</RadioGroup>
 			</div>
 		

@@ -7,7 +7,7 @@
    viewBox="0 0 200 90"
    version="1.1"
    id="svg1"
-   sodipodi:docname="Foam_Pet_Bothies.svg"
+   sodipodi:docname="Foam_Pet_Bothies_2.svg"
    inkscape:version="1.3 (0e150ed, 2023-07-21)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.72693604"
-     inkscape:cx="325.33812"
-     inkscape:cy="172.64243"
+     inkscape:zoom="1.0280428"
+     inkscape:cx="408.05694"
+     inkscape:cy="24.804415"
      inkscape:window-width="1452"
      inkscape:window-height="991"
      inkscape:window-x="26"
@@ -744,7 +744,8 @@
        rx="1.7859477"
        ry="1.8552269" />
     <g
-       id="g8">
+       id="g8"
+       transform="matrix(0.41372871,0,0,0.41372871,73.959268,45.471934)">
       <ellipse
          style="fill:#c59824;fill-opacity:1;stroke:none;stroke-width:1.1615;stroke-linecap:round;stroke-dasharray:none"
          id="path7-6"

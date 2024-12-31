@@ -122,8 +122,8 @@ const show_rules = () => {
 						fill: rgb(var(--color-primary-500));
 					"
 				>
-					<tspan x="150" dy="30">Foam</tspan>
-					<tspan x="150" dy="45">Pet</tspan>
+					<tspan x="150" dy="30">Shalom</tspan>
+					<tspan x="150" dy="45">Town</tspan>
 				</text>
 			</svg>
 		</div>
