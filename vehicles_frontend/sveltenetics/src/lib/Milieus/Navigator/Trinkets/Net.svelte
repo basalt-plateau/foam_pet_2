@@ -48,6 +48,7 @@ if (RT_Freight && RT_Freight.window_width) {
 
 {#if RT_Prepared === "yes" }
 <div
+	monitor="net address"
 	style="
 		display: flex;
 		justify-content: center;
@@ -79,7 +80,6 @@ if (RT_Freight && RT_Freight.window_width) {
 				"
 			>
 				<span>net</span>
-				
 				
 				<span
 					class="badge variant-filled-surface"

@@ -295,6 +295,7 @@ onDestroy (() => {
 		<option value="mainnet">mainnet</option>
 		<option value="devnet">devnet</option>
 		<option value="testnet">testnet</option>
+		
 		<option value="custom">custom</option>
 	</select>
 	<div style="height: 6px"></div>

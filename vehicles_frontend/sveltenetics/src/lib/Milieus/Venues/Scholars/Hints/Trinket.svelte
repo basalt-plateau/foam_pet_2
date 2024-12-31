@@ -105,16 +105,47 @@ const show_rules = () => {
 		>
 			<header 
 				style="
+					display: none;
+				
 					font-weight: bold;
 					font-family: sans-serif;
-					font-size: 10vw; 
+					font-size: 12vw; 
 					
 					text-align: center;
 					
 					font-family: 'Rubik Vinyl', sans-serif;
+					
+					padding: 0 1cm;
 				"
 				class="gradient-heading"
-			>Foam Pet</header>
+			>Ribosome Town</header>
+			
+			<svg 
+				width="100%" 
+				height="100%" 
+				viewBox="0 0 300 100"
+			>
+				<text 
+
+					
+					text-anchor="middle" 
+					alignment-baseline="middle"
+					
+					textLength="300" 
+					lengthAdjust="spacingAndGlyphs"
+					dominant-baseline="middle" 
+					
+					style="
+						font-family: 'Rubik Vinyl', sans-serif;
+						font-weight: bold;
+						font-size: 2.8em;
+						fill: rgb(var(--color-primary-500));
+					"
+				>
+					<tspan x="150" dy="30">Ribosome</tspan>
+					<tspan x="150" dy="45">Town</tspan>
+				</text>
+			</svg>
 		</div>
 	</div>
 

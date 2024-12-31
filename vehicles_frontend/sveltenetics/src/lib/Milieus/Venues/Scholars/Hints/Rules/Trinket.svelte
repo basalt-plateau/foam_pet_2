@@ -207,8 +207,6 @@ let clones_show = "Index"
 					"
 				>Estates</header>
 				
-				<p>These are where Foam Pets are born.</p>
-			
 				<div style="height: 0.5cm"></div>	
 			
 				<span 

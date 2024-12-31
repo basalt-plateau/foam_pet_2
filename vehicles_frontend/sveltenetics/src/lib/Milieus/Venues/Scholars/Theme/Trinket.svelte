@@ -5,22 +5,6 @@
 
 <script>
 
-/*
-	@ Features
-		@ Theme
-	
-		@ Attributes
-		@ Characteristics
-	
-		@ Themes
-		@ Rules
-		@ Modes
-
-	@ Plays
-		@ Rules
-		@ Theme
-			@ Palette
-*/
 
 //\
 //

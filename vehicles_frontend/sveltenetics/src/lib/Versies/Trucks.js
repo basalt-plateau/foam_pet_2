@@ -205,22 +205,29 @@ export const lease_roomies_truck = () => {
 		
 		console.info ("😂 extension changed:", { original_freight, bracket, property, value });
 		
-		// trucks [1].net_path = pro_freight.network.address;
 		try {
+			const stage_name = original_freight.stage_name_connected;
+			const stage = original_freight.stages [ stage_name ];
+			console.log ({ stage_name, stage, bracket });
 			
 			// 
 			//	bridge.network.address
 			//	bridge.network.chain_id
 			//	bridge.network.name
 			//
-			console.log (bracket === original_freight.bridge.network);
+			console.log (bracket === stage);
 			
-			
-			if (
-				bracket === original_freight.bridge.network && 
-				property === "address"
-			) {
-				console.info ("😂😂😂😂 network address changed");
+			if (bracket === stage.network) {
+				if (property === "address") {
+					console.info ("😂😂😂😂 network address changed");
+					
+					trucks [1].freight.net_path = value;
+				}
+				if (property === "name") {
+					console.info ("😂😂😂😂 network name changed");
+					
+					trucks [1].freight.net_name = value;
+				}
 			}
 		}
 		catch (imperfection) {
