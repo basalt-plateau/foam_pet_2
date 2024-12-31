@@ -207,7 +207,7 @@ export const lease_Milieus_truck = () => {
 				//
 				//	
 				//
-				"Hints": "📜️",
+				"Hints": "🏖️️",
 				"Garden": "ᎠᏫᏒᏅ",
 				
 				// Theme:

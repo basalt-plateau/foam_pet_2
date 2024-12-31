@@ -144,12 +144,13 @@ let cow_clicked = () => {
 				left: 50%;
 				transform: translateX(-50%);
 				
-				padding: 0cm 0.5cm;
+				padding: 0cm 0cm;
+				width: 3cm;
 				border: 2px solid rgba(var(--color-primary-100));
 			"
 			class="card p-1"
 		>
-			Acquaintance
+			<p>Gala</p>
 		</div>
 	</button>
 </div>

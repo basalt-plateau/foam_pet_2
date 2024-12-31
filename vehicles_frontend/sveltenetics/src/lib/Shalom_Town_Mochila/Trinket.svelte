@@ -7,8 +7,8 @@
 */
 
 /*
-	import Foam_Pet_Backpack from "$lib/Foam_Pet_Backpack/Trinket.svelte"
-	<Foam_Pet_Backpack />
+	import Shalom_Town_Mochila from "$lib/Shalom_Town_Mochila/Trinket.svelte"
+	<Shalom_Town_Mochila />
 */
 
 

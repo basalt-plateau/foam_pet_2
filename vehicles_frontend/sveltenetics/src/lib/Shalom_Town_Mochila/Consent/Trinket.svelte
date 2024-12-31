@@ -138,7 +138,7 @@ onMount (() => {
 									font-size: 1.5em;
 								"
 							>
-								<p>Algorithms</p>
+								<p>Formulas</p>
 							</div>
 						</svelte:fragment>
 						<svelte:fragment slot="content">

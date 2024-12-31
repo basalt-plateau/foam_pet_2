@@ -7,8 +7,8 @@ export const blockchain = {
 	//	Roadmap
 	//	Multiverse, song, fest, gala
 	//			
-	"blockchain": "gala",
-	"Blockchain": "Gala",
+	"blockchain": "multiverse",
+	"Blockchain": "Multiverse",
 	
 	"Block": "Turn",
 	"block": "turn",

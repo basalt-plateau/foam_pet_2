@@ -5,7 +5,7 @@
 */
 
 export const wallet = {
-	"foam_pet_wallet": "Foam Pet Wallet",
+	"shalom_town_Mochila": "Shalom Town Mochila",
 	
 	"wallet": "signatory pet",
 	"Wallet": "Signatory Pet"	

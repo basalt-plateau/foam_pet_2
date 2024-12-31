@@ -26,7 +26,7 @@ import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
 //
 ////
 
-import Foam_Pet_Backpack from "$lib/Foam_Pet_Backpack/Trinket.svelte"
+import Shalom_Town_Mochila from "$lib/Shalom_Town_Mochila/Trinket.svelte"
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 
 import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
@@ -139,15 +139,15 @@ let leaf = "Extensions"
 					<RadioItem 
 						bind:group={leaf} 
 						name="justify" 
-						value={ "Foam Pet Backpack" }
-					>Shalom Town Backpack</RadioItem>
+						value={ "Foam Pet Mochila" }
+					>Shalom Town Mochila</RadioItem>
 				</RadioGroup>
 			</div>
 		
 			{#if leaf === "Extensions" }
 			<Extension_Wallets />
-			{:else if leaf === "Foam Pet Backpack" }
-			<Foam_Pet_Backpack />
+			{:else if leaf === "Foam Pet Mochila" }
+			<Shalom_Town_Mochila />
 			{/if}
 		</div>
 		{/if}

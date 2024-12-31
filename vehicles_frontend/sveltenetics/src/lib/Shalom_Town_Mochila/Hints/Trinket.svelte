@@ -35,11 +35,10 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 			width: 100%;
 		"
 	>
-		<div style="height: 0.5cm"></div>
+		<div style="height: 1cm"></div>
 	
 		<header
 			style="
-				font-size: 3em;
 				text-align: center;
 				font-size: bold;
 			"
@@ -47,10 +46,17 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 			<span
 				style="
 					display: inline-block;
+					font-size: 3em;
 				"
 			>
 				Hints
 			</span>
+			
+			<div style="height: 0.5cm"></div>
+			
+			<p>This is a prototype.</p>
+			
+			<div style="height: 0.5cm"></div>
 		</header>
 		
 		<div style="height: 0.5cm"></div>
@@ -133,9 +139,11 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 	
 	<div style="height: 0.5cm"></div>
 
-	
+	{#if false }
 	<Boards />
-	
+	<div style="height: 0.5cm"></div>
+	{/if}
+
 	<div style="height: 5cm"></div>
-	
+
 </Leaf>

@@ -123,12 +123,12 @@ const mode = check_roomies_truck ().freight.mode;
 				font-size: 1.2em;
 				
 				margin: 0 auto;
-				max-width: 600px;
+				max-width: 700px;
 				width: 100%;
 				
 				line-height: 200%;
 			"
-		>These are various moves that a <Slang text="Town" /> can perform while connected to <Slang text="Aptos" />.</p>
+		>These are various moves that can happen with <Slang text="Aptos" />.</p>
 		
 		<div style="height: 0.25cm"></div>
 	</div>
@@ -171,7 +171,7 @@ const mode = check_roomies_truck ().freight.mode;
 
 			<div style="height: 0.1cm"></div>
 
-			<p>This requires a <Slang text="foam_pet_wallet" />.</p>
+			<p>This requires a <Slang text="shalom_town_Mochila" />.</p>
 		
 			<div class="relative inline-block">
 				<button 
