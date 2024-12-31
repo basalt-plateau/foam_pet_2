@@ -89,8 +89,8 @@ a {
 </style>
 
 <svelte:head>
-	<title>Theme</title>
-	<meta name="description" content="Theme" />
+	<title>Beauty</title>
+	<meta name="description" content="Beauty" />
 </svelte:head>
 
 <Leaf>
@@ -115,7 +115,7 @@ a {
 					font-size: 3em;
 					line-height: 100%;
 				"
-			>Theme</header>
+			>Beauty</header>
 
 			<div style="height: 0.5cm"></div>
 		</div>

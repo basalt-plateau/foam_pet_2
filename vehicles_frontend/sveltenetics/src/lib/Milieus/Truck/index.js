@@ -64,9 +64,7 @@ import { build_truck } from '@visiwa/trucks'
 //
 //
 import { has_field } from '$lib/taverns/procedures/object/has_field'
-//
 import { parse_styles } from '$lib/trinkets/styles/parse'
-//
 //
 ////
 
@@ -195,13 +193,36 @@ export const lease_Milieus_truck = () => {
 			},
 			
 			linguistics: {
+				////
+				//
+				//	
+				//
 				"Ecology": "പരിസ്ഥിതി",
 				"Talents": "መክሊት",
+				//
+				////
 				
+				
+				////
+				//
+				//	
+				//
 				"Hints": "📜️",
 				"Garden": "ᎠᏫᏒᏅ",
-				"Theme": "θέμα",
-				"Resilience": "韌性",
+				
+				// Theme:
+				// 	Greek: θέμα
+				// 	Chinese:
+				// Show, Chinese: 演出
+				"Show": "演出",
+				
+				// 韌性
+				//  Techne: Τέχνης
+				//  Resilence: ανθεκτικότητα
+				"Resilience": "ανθεκτικότητα",
+				//
+				////
+				
 				
 				// "Wallets": "",
 				// "Loyals": "",

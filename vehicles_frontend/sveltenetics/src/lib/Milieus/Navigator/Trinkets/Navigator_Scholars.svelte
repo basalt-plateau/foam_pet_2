@@ -158,9 +158,9 @@ const Theme = {
 			style={ buttons_styles }
 		/>
 		<Milieus_Button
-			monitor="Theme"
+			monitor="Show"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Theme"] : "Theme" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Show"] : "Show" }
 			location={[ "Ecology", "Theme" ]}
 			is_open_location={[ "Ecology", "Theme" ]}
 			

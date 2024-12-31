@@ -103,35 +103,15 @@ const show_rules = () => {
 			"
 			class="card p-4 variant-soft-surface"
 		>
-			<header 
-				style="
-					display: none;
-				
-					font-weight: bold;
-					font-family: sans-serif;
-					font-size: 12vw; 
-					
-					text-align: center;
-					
-					font-family: 'Rubik Vinyl', sans-serif;
-					
-					padding: 0 1cm;
-				"
-				class="gradient-heading"
-			>Ribosome Town</header>
-			
 			<svg 
 				width="100%" 
 				height="100%" 
 				viewBox="0 0 300 100"
 			>
 				<text 
-
-					
 					text-anchor="middle" 
 					alignment-baseline="middle"
 					
-					textLength="300" 
 					lengthAdjust="spacingAndGlyphs"
 					dominant-baseline="middle" 
 					
@@ -142,8 +122,8 @@ const show_rules = () => {
 						fill: rgb(var(--color-primary-500));
 					"
 				>
-					<tspan x="150" dy="30">Ribosome</tspan>
-					<tspan x="150" dy="45">Town</tspan>
+					<tspan x="150" dy="30">Foam</tspan>
+					<tspan x="150" dy="45">Pet</tspan>
 				</text>
 			</svg>
 		</div>

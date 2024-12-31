@@ -160,7 +160,7 @@ $: {
 				font-size: 1.4em;
 				line-height: 100%;
 			"
-		>Beauty</header>
+		>Topicals</header>
 	</div>
 	
 	<div style="width: 10px"></div>
