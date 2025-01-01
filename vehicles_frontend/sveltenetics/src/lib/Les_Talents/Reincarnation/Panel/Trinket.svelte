@@ -17,11 +17,6 @@ import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 //
 ///
 
-//
-//
-let show_panel = "Digital Assets 1";
-//
-//
 
 
 const prepare = () => {
@@ -85,7 +80,7 @@ const on_prepare = () => {
 		return _merge ({}, freight, {
 			showing: 'yes',
 			
-			name: 'Venues',
+			name: '',
 			
 			unfinished: {
 				showing: 'no',
@@ -148,7 +143,6 @@ let isOpen = false;
 		"
 	>
 		{#if prepared === "yes" }
-		{#if show_panel === "Digital Assets 1" }
 		<div
 			style="
 				box-sizing: border-box;
@@ -166,15 +160,10 @@ let isOpen = false;
 				gap: 0.5cm;
 			"
 		>
-			<header
-				style="
-					font-size: 3em;
-				"
-			>Talent</header>
-		
-		
+			<div class="card p-4">
+				<p>Mixing. Please check later.</p>
+			</div>
 		</div>
-		{/if}
 		{/if}
 	</div>
 	

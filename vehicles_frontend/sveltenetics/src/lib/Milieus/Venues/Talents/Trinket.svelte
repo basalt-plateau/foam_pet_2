@@ -41,6 +41,9 @@ import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
 import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 
+import Reincarnation from '$lib/Les_Talents/Reincarnation/Frontier/Trinket.svelte'
+
+
 import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
 
 
@@ -218,6 +221,10 @@ const mode = check_roomies_truck ().freight.mode;
 					<p>Bit Pack</p>
 				</button>
 			</div>
+		</Panel>
+		
+		<Panel styles={ trends.panel }>	
+			<Reincarnation />
 		</Panel>
 		
 		<Panel styles={ trends.panel }>		
