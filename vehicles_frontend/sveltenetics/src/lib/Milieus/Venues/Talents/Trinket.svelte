@@ -15,7 +15,6 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
-//
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
@@ -91,30 +90,14 @@ const mode = check_roomies_truck ().freight.mode;
 
 </style>
 
-<svelte:head>
-	<title>Activities</title>
-	<meta name="description" content="Activities" />
-</svelte:head>
-
-
 <Leaf>
 	<div
 		class="card p-4"
 		style="
 			position: relative;
-		
-			padding: 1cm;
 			width: 100%;
 		"
 	>
-		<header
-			style="
-				font-size: 3em;
-				text-align: center;
-				font-size: bold;
-			"
-		>Activities</header>
-
 		<div style="height: 0.25cm"></div>
 		
 		<p
@@ -171,7 +154,7 @@ const mode = check_roomies_truck ().freight.mode;
 
 			<div style="height: 0.1cm"></div>
 
-			<p>This requires a <Slang text="shalom_town_Mochila" />.</p>
+			<p>This requires a <Slang text="Grimoire" />.</p>
 		
 			<div class="relative inline-block">
 				<button 

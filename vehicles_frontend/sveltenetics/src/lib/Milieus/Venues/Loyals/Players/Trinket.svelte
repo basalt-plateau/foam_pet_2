@@ -59,9 +59,6 @@ const modify_keys_count = () => {
 	}
 </style>
 
-<svelte:head>
-	<title>Harvests</title>
-</svelte:head>
 
 <Leaf>
 <main addresses monitor="accounts">

@@ -19,10 +19,6 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 
 
 
-<svelte:head>
-	<title>Hints</title>
-	<meta name="description" content="About this app" />
-</svelte:head>
 
 
 <Leaf>

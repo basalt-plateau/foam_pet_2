@@ -12,11 +12,6 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 
 </script>
 
-<svelte:head>
-	<title>Loyals, Hints</title>
-	<meta name="description" content="About this app" />
-</svelte:head>
-
 
 
 <div

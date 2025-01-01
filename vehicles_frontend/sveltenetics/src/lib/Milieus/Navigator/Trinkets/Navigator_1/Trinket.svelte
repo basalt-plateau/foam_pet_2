@@ -89,7 +89,7 @@ const build = () => {
 	<Milieus_Button
 		monitor="Scholars"
 		
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Ecology"] : "Ecology" }
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Glyphs"] : "Glyphs" }
 		location={[ "Ecology", "Hints" ]}
 		is_open_location={[ "Ecology" ]}
 		
@@ -98,7 +98,7 @@ const build = () => {
 	<Milieus_Button
 		monitor="Talents"
 	
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Activities"] : "Activities" }
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Ceremonies"] : "Ceremonies" }
 		location={[ "Talents" ]}
 		is_open_location={[ "Talents" ]}
 		

@@ -211,6 +211,7 @@ let clones_show = "Index"
 			
 				<span 
 					style="
+						display: none;
 						line-height: 2em;
 						text-align: center;
 					"

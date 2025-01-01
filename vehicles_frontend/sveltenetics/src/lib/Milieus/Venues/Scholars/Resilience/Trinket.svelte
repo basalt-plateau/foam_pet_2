@@ -79,11 +79,6 @@ a {
 
 </style>
 
-<svelte:head>
-	<title>Technicians, Theme</title>
-	<meta name="description" content="Technicians" />
-</svelte:head>
-
 
 <Leaf>
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
@@ -94,37 +89,9 @@ a {
 		class="card p-4"
 		style="padding: 1cm"
 	>
-		<header
-			style="
-				padding: 0.25cm;
-				font-size: 3em;
-				
-				text-align: center;
-			"
-		>Resilience</header>
-		
-		<!-- <div
-			class="card p-1 variant-soft-surface"
-			style="
-				width: 100%;
-			"
-		>
-			<p
-				style="
-					text-align: center;
-				"
-			><b>{ Resilience.Hakka.glyphs }</b>, perhaps occassionally spoken as <b>{ Resilience.Hakka.pronunciation }</b>,</p>
-			<p
-				style="
-					text-align: center;
-				"
-			>might be how to say <b>{ Resilience.Hakka.english }</b> with the <b>{ Resilience.Hakka.language }</b> language.</p>
-		</div> -->
-		
-		<div style="height: 20px"></div>
 		<p 
 			style="text-align: center"
-		>This region is for verifying and ensuring the resilience of the dapp.</p>
+		>This place is for guaranteeing and ensuring the resilience of the dapp.</p>
 		<p
 			style="text-align: center"
 		>These monitors don't have an impact on the rest of the dapp.</p>

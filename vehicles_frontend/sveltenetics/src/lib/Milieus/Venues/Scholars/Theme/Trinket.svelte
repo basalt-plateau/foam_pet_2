@@ -88,38 +88,12 @@ a {
 
 </style>
 
-<svelte:head>
-	<title>Beauty</title>
-	<meta name="description" content="Beauty" />
-</svelte:head>
 
 <Leaf>
 	<Scholars_Trucks on_change={ on_seeds_truck_change } />
 	
-	
 	{#if seeds_trucks_prepared === "yes" && mounted === "yes" }	
 	<div>
-		<div
-			class="card p-4"
-			style="
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-direction: column;
-			"
-		>
-			<div style="height: 0.5cm"></div>
-
-			<header
-				style="
-					font-size: 3em;
-					line-height: 100%;
-				"
-			>Beauty</header>
-
-			<div style="height: 0.5cm"></div>
-		</div>
-		
 		<div style="height: 0.2cm"></div>
 	
 		<div

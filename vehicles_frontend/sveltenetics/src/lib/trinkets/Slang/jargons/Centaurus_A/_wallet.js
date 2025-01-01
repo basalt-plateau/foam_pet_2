@@ -3,10 +3,10 @@
 /*
 	Gargantuan Reservoir Wallet Logistics
 */
-
+// Grimoire
 export const wallet = {
-	"shalom_town_Mochila": "Shalom Town Mochila",
+	"Grimoire": "Grimoire",
 	
-	"wallet": "signatory pet",
-	"Wallet": "Signatory Pet"	
+	"wallet": "signatory",
+	"Wallet": "Signatory"	
 }

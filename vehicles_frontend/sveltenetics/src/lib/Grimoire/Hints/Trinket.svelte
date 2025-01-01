@@ -22,48 +22,7 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 
 
 
-<svelte:head>
-	<title>Hints</title>
-	<meta name="description" content="About this app" />
-</svelte:head>
-
-
 <Leaf>
-	<div
-		class="card p-4"
-		style="
-			width: 100%;
-		"
-	>
-		<div style="height: 1cm"></div>
-	
-		<header
-			style="
-				text-align: center;
-				font-size: bold;
-			"
-		>
-			<span
-				style="
-					display: inline-block;
-					font-size: 3em;
-				"
-			>
-				Hints
-			</span>
-			
-			<div style="height: 0.5cm"></div>
-			
-			<p>This is a prototype.</p>
-			
-			<div style="height: 0.5cm"></div>
-		</header>
-		
-		<div style="height: 0.5cm"></div>
-	</div>
-
-	<div style="height: 0.25cm"></div>
-
 	<div 
 		style="
 			display: flex;

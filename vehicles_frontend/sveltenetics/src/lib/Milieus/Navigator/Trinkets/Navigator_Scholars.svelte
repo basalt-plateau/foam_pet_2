@@ -140,7 +140,7 @@ const Theme = {
 		<Milieus_Button
 			monitor="Hints"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Hints"] : "Hints" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Lantern"] : "Lantern" }
 			
 			location={[ "Ecology", "Hints" ]}
 			is_open_location={[ "Ecology", "Hints" ]}
@@ -160,7 +160,7 @@ const Theme = {
 		<Milieus_Button
 			monitor="Show"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Show"] : "Show" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Beauty"] : "Beauty" }
 			location={[ "Ecology", "Theme" ]}
 			is_open_location={[ "Ecology", "Theme" ]}
 			
@@ -169,7 +169,7 @@ const Theme = {
 		<Milieus_Button
 			monitor="Resilience"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Resilience"] : "Resilience" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Vows"] : "Vows" }
 			location={[ "Ecology", "Resilience", "Leaf" ]}
 			is_open_location={[ "Ecology", "Resilience" ]}
 			

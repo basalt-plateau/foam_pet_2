@@ -8,15 +8,20 @@
 export const le_label = {
 	"Aptos": "Aptos",
 	
-	"this_domain": "https://Shalom.Town",
-	"This Domain": "https://Shalom.Town",
+	"this_domain": "https://Spell.Town",
+	"This Domain": "https://Spell.Town",
 	
-	"the_pypi_module": "shalom",
+	"the_pypi_module": "Spell_Town",
 
-	"label": "shalom town",
-	"labels": "shalom towns",		
-	"Pet": "Shalom Town",	
-	"pet": "shalom town",		
-	"Pets": "Shalom Towns",
+	"Labels": "Spell Towns",
+	"Label": "Spell Town",
+	"label": "Spell Town",
+
+	
+	"Town": "Spell Town",	
+	"town": "spell town",	
+	
+	"Towns": "Spell Towns",
+	"towns": "spell towns"	
 }
 

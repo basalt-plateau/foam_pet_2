@@ -50,7 +50,6 @@ const modify_keys_count = () => {
 
 
 
-
 </script>
 
 <style>
@@ -59,30 +58,9 @@ const modify_keys_count = () => {
 	}
 </style>
 
-<svelte:head>
-	<title>Harvests</title>
-</svelte:head>
 
 <Leaf>
 <main addresses monitor="accounts">
-	<div class="card p-4">
-		<div style="height: 1cm" />
-
-		<header
-			style="{parse_styles ({
-				'display': 'flex',
-				'text-align': 'center',
-				'font-size': '3em',
-				'justify-content': 'center'
-			})}"
-		>
-			<Slang text="Accounts" />
-		</header>
-
-
-		<div style="height: 0.5cm"></div>
-	</div>
-	
 	<div style="height: 0.5cm" />
 	
 	<div class="card p-4">

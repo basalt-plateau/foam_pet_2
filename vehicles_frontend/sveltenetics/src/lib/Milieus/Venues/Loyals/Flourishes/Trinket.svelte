@@ -82,9 +82,6 @@ onMount (() => {
 
 </script>
 
-<svelte:head>
-	<title>Consent</title>
-</svelte:head>
 
 <Leaf>
 	<div monitor="signatures leaf">

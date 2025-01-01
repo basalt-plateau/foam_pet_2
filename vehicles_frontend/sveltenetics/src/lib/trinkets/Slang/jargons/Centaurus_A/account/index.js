@@ -40,7 +40,6 @@ export const account = {
 				A greater form is consent is an "original suggestion" with a signature from the author.
 		
 				* Private Elliptic Key Holder
-		
 							
 			
 			lobbyist

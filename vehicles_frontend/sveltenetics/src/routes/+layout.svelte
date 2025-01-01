@@ -128,7 +128,10 @@ beforeUpdate (async () => {
 </script>
 
 
-<svelte:head>{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}</svelte:head>
+
+<svelte:head>
+	{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}
+</svelte:head>
 
 <div 
 	in:fade={{ duration: 500 }} 

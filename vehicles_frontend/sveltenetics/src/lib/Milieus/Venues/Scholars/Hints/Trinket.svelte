@@ -22,10 +22,10 @@ import Boards from './Boards/Trinket.svelte'
 import Mural from './Mural/Trinket.svelte'
 import Pleasantries from './Pleasantries/Trinket.svelte'
 import Regions from './Regions/Estate.svelte'
-import AI_Caution from './AI_Caution/Estate.svelte'
 import { open_rules } from './Rules/open'
 //
 ////
+import { Slangify } from "$lib/trinkets/Slang"
 
 
 const modal_store = getModalStore ();
@@ -40,10 +40,6 @@ const show_rules = () => {
 
 
 </script>
-
-<svelte:head>
-	<title>Ecology</title>
-</svelte:head>
 
 
 <style>
@@ -87,51 +83,12 @@ const show_rules = () => {
 		</div>
 	</div>
 	
-	<div style="height: 0.5cm"></div>
-
-	<div
-		class="card p-4"
-		style="
-			width: 100%;
-		"
-	>
-		<div
-			style="
-				display: flex;
-				border-radius: 4px;
-				justify-content: center;
-			"
-			class="card p-4 variant-soft-surface"
-		>
-			<svg 
-				width="100%" 
-				height="100%" 
-				viewBox="0 0 300 100"
-			>
-				<text 
-					text-anchor="middle" 
-					alignment-baseline="middle"
-					
-					lengthAdjust="spacingAndGlyphs"
-					dominant-baseline="middle" 
-					
-					style="
-						font-family: 'Rubik Vinyl', sans-serif;
-						font-weight: bold;
-						font-size: 2.8em;
-						fill: rgb(var(--color-primary-500));
-					"
-				>
-					<tspan x="150" dy="30">Shalom</tspan>
-					<tspan x="150" dy="45">Town</tspan>
-				</text>
-			</svg>
-		</div>
-	</div>
 
 	
 
 	<!-- 
+	
+	
 	<div style="height: 0.5cm"></div>
 	<AI_Caution />
 	-->
@@ -182,6 +139,8 @@ const show_rules = () => {
 	<div
 		class="card p-4"
 		style="
+			display: none;
+		
 			margin: 0 auto;
 			text-align: center;
 		"
@@ -194,7 +153,13 @@ const show_rules = () => {
 			"
 		>Asks</header>
 		
-		<p>
+
+		
+		<p
+			style="
+				display: none;
+			"
+		>
 			<span>For any asks please open an <b>issue</b> or <b>pull request</b> at</span>
 			<br />
 			<a 

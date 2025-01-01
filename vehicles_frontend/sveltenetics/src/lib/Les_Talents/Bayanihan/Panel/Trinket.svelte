@@ -5,25 +5,7 @@
 
 const address_builder = ""
 
-const visiwas = {
-	tivaevae: {
-		establish: address_builder + "::Rondoval_Tivaevae::B",
-		destroy: address_builder + "::Rondoval_Tivaevae::J"
-	}
-}
 
-
-/*
-	Establish Tivaevae:
-		Rondoval_Tivaevae::B (& estate_1_signer, thermoplastic_sheets_to_add);
-
-
-
-
-
-
-
-*/
 
 
 ///

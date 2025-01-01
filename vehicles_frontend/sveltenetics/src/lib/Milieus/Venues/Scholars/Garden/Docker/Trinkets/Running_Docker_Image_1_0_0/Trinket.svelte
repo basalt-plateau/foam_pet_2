@@ -17,12 +17,6 @@ into this: foam_pet_v1.0.0-1.tar
 
 </script>
 
-<svelte:head>
-	<title>Loyals, Hints</title>
-	<meta name="description" content="About this app" />
-</svelte:head>
-
-
 
 <div
 	class="card variant-soft p-2"

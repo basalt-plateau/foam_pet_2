@@ -164,7 +164,7 @@ export const lease_Milieus_truck = () => {
 	let location = Location_Bracket.find ()
 	
 	
-	let nav_linguistics = "yes"
+	let nav_linguistics = "no"
 	
 
 	// console.log ("Leasing Milieus Truck:", location [0], location [1])
@@ -188,8 +188,6 @@ export const lease_Milieus_truck = () => {
 						)
 					}
 				},
-				
-				
 			},
 			
 			linguistics: {
@@ -207,7 +205,7 @@ export const lease_Milieus_truck = () => {
 				//
 				//	
 				//
-				"Hints": "🏖️️",
+				"Lantern": "🏖️️",
 				"Garden": "ᎠᏫᏒᏅ",
 				
 				// Theme:

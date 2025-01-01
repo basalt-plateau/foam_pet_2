@@ -7,8 +7,8 @@
 */
 
 /*
-	import Shalom_Town_Mochila from "$lib/Shalom_Town_Mochila/Trinket.svelte"
-	<Shalom_Town_Mochila />
+	import Grimoire from "$lib/Grimoire/Trinket.svelte"
+	<Grimoire />
 */
 
 
@@ -29,16 +29,20 @@ import Harvests from './Harvests/Trinket.svelte'
 import Consent_Leaf from './Consent/Trinket.svelte'
 
 
+import Grimoire_Truck from "./_Truck/index.js"
+const GTF = Truck_1.retrieve ().pro_freight;
+
 let leaf = "Hints";
 
-let text = {
-	Hints: (
-		"အညွှန်းများ"
-	),
-	Consent: (
-		"зөвшөөрөл"
-	)
-}
+import { onMount, onDestroy } from 'svelte'
+import * as Truck_1 from '$lib/trucks/truck_1/index.js'
+
+onMount (async () => {	
+	Truck_1.make ()
+});
+onDestroy (() => {
+	Truck_1.destroy ()
+});
 
 </script>
 
@@ -70,15 +74,23 @@ let text = {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			flex-direction: column;
 		"
 	>
 		<div>
 			<RadioGroup>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Hints" }>{ text.Hints }</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>ᚉᚏᚒᚐᚌ</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>{ text.Consent }</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Hints" }>Hints</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>Harvests</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>Consent</RadioItem>
 			</RadioGroup>
 		</div>
+		
+		<p
+			style="
+				text-align: center;
+				font-size: 1em;
+			"
+		>This is a prototype.</p>
 	</div>
 	
 	<div

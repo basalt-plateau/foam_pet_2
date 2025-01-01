@@ -8,7 +8,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 const tutorial_2 = '/pictures/tutorial_2.svg';
 const machines_picture = '/pictures/machines.svg';
-const pets = '/pictures/Foam_Pet_Bothies.svg';
+const pets = '/pictures/Bothies.svg';
 //
 ////
 

@@ -86,9 +86,7 @@ onMount (() => {
 
 </script>
 
-<svelte:head>
-	<title>Consent</title>
-</svelte:head>
+
 
 <Leaf>
 	<div monitor="signatures leaf">
@@ -98,13 +96,6 @@ onMount (() => {
 			"
 			class="card p-4"
 		>
-			<div style="height: 1cm"></div>
-		
-			<header
-				style="font-size: 2.5em; 
-				text-align: center"
-			><Slang text="Signature" /></header>
-
 			<div style="height: 1cm"></div>
 			
 			<p
@@ -128,7 +119,7 @@ onMount (() => {
 			"
 			class="card p-4"
 		>
-			<div class="card p-1 variant-soft-primary">
+			<div class="card p-1">
 				<Accordion>
 					<AccordionItem>
 						<svelte:fragment slot="summary">

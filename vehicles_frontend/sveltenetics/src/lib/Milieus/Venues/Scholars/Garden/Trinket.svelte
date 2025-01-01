@@ -46,11 +46,6 @@ a {
 
 </style>
 
-<svelte:head>
-	<title>Garden</title>
-	<meta name="description" content="Garden" />
-</svelte:head>
-
 <Leaf>
 
 	<div style="height: 0.5cm"></div>
@@ -58,6 +53,7 @@ a {
 		<div style="height: 0.5cm"></div>
 		<header 
 			style="
+				display: none;
 				font-size: 3em; 
 				text-align: center;
 			"
