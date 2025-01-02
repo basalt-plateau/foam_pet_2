@@ -32,7 +32,22 @@ import Boards from './Boards.svelte'
 			min-height: 100%;
 		"
 	>
-		<div style="height: 0.2cm"></div>
+		<div
+			class="card p-4"
+			style="
+				padding: 0.5cm;
+				width: 100%;
+			"
+		>
+			<p
+				style="
+					text-align: center;
+					font-size: 1em;
+				"
+			>This is the <Slang text="Label" /> wallet prototype.</p>
+		</div>
+
+		<div style="height: 0.5cm"></div>
 
 		<div
 			class="card p-4"

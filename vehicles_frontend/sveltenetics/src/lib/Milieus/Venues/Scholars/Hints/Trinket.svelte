@@ -59,12 +59,36 @@ const show_rules = () => {
 <Leaf>
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	{#if typeof Milieus_Freight === "object"}
-
 	
 	<div style="height: 0.5cm"></div>
-	<Boards />
-	
+	<Boards />	
 	<div style="height: 0.5cm"></div>
+	<div
+		class="card p-4"
+		style="
+			position: relative;
+			width: 100%;
+		"
+	>
+		<div style="height: 0.25cm"></div>
+		
+		<p
+			style="
+				text-align: center;
+				font-size: 1.2em;
+				
+				margin: 0 auto;
+				max-width: 700px;
+				width: 100%;
+				
+				line-height: 200%;
+			"
+		>To enchant the <Slang text="Aptos" /> scrolls, venture on.</p>
+		
+		<div style="height: 0.25cm"></div>
+	</div>
+	<div style="height: 0.5cm"></div>
+	
 	<Pleasantries />
 	<div style="height: 0.5cm"></div>
 	

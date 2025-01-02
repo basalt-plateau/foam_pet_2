@@ -25,6 +25,10 @@ import _merge from 'lodash/merge'
 //
 ///
 
+import { Slangify } from "$lib/trinkets/Slang"
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+			
+
 import Hints from './Hints/Trinket.svelte'
 import Harvests from './Harvests/Trinket.svelte'
 import Consent_Leaf from './Consent/Trinket.svelte'
@@ -107,13 +111,6 @@ onDestroy (() => {
 				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>Harvests</RadioItem>
 			</RadioGroup>
 		</div>
-		
-		<p
-			style="
-				text-align: center;
-				font-size: 1em;
-			"
-		>This is a prototype.</p>
 	</div>
 	
 	<div

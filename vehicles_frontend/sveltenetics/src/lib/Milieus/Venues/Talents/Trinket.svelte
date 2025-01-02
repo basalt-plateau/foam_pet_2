@@ -93,32 +93,7 @@ const mode = check_roomies_truck ().freight.mode;
 
 </style>
 
-<Leaf>
-	<div
-		class="card p-4"
-		style="
-			position: relative;
-			width: 100%;
-		"
-	>
-		<div style="height: 0.25cm"></div>
-		
-		<p
-			style="
-				text-align: center;
-				font-size: 1.2em;
-				
-				margin: 0 auto;
-				max-width: 700px;
-				width: 100%;
-				
-				line-height: 200%;
-			"
-		>These are various moves that can happen with <Slang text="Aptos" />.</p>
-		
-		<div style="height: 0.25cm"></div>
-	</div>
-	
+<Leaf>	
 	<div style="height: 0.3cm"></div>
 	
 	<div class="card p-4">

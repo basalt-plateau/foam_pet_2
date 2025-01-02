@@ -152,6 +152,64 @@ const conicStops = [
 				display: flex;
 				justify-content: center;
 				flex-wrap: wrap;
+			"
+		>
+			<span>Chain ID</span>
+			{#if got_consensus_info === "yes" }
+			<span class="badge variant-filled-surface">{ plays.chain_id }</span>
+			{/if}
+		</span>
+		<span class="badge variant-soft"
+			style="
+				position: relative;
+				font-size: 1.1em;
+				
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+			"
+		>
+			<span>Epoch</span>
+			{#if got_consensus_info === "yes" }
+			<span class="badge variant-filled-surface">{ plays.epoch }</span>
+			{/if}
+		</span>
+	
+		<span class="badge variant-soft"
+			style="
+				position: relative;
+				font-size: 1.1em;
+				
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+			"
+		>
+			<span>Block Height</span>
+			{#if got_consensus_info === "yes" }
+			<span class="badge variant-filled-surface">{ 
+				parse_with_commas (plays.block_height) 
+			}</span>
+			{/if}
+		</span>
+	</div>	
+	<div
+		style="
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 4px;
+			width: 100%;
+			margin: 4px 0;
+		"
+	>
+		<span class="badge variant-soft"
+			style="
+				position: relative;
+				font-size: 1.2em;
+				
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
 				
 				//display: grid;
 				//grid-template-columns: repeat(2, 1fr);
@@ -183,63 +241,7 @@ const conicStops = [
 			}</span>
 			{/if}
 		</span>
-	</div>	
-	<div
-		style="
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: 4px;
-			width: 100%;
-			margin: 4px 0;
-		"
-	>
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.2em;
-				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Chain ID</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ plays.chain_id }</span>
-			{/if}
-		</span>
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.1em;
-				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Epoch</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ plays.epoch }</span>
-			{/if}
-		</span>
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.1em;
-				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Block Height</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ 
-				parse_with_commas (plays.block_height) 
-			}</span>
-			{/if}
-		</span>
+		
 	</div>
 </Leaf>
 {/if}

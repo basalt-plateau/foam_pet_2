@@ -97,7 +97,7 @@ const on_prepare = () => {
 	polytope_modal.advance (({ freight }) => {
 		return _merge ({}, freight, {
 			showing: 'yes',
-			name: 'Bayanihan',
+			name: 'Rules',
 			
 			unfinished: {
 				showing: 'no',

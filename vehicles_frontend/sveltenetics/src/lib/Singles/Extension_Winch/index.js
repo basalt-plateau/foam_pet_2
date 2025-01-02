@@ -98,7 +98,12 @@ export const make = async () => {
 			stage_name_connected: "",
 			
 			
-			search_name () {},
+			ask_for_stage () {
+				const freight = trucks [1].freight;
+				const stage_name_connected = freight.stage_name_connected;
+
+				return freight.stages [ stage_name_connected ];
+			},
 			
 			
 			/*

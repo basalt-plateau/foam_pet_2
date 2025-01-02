@@ -8,6 +8,16 @@
 	<Wallet_Frontier />
 */
 
+/*
+	import Loyals from "$lib/Les_Talents/_Wallet/Frontier/Letters/Loyals.svelte"
+	<Loyals 
+		style={{
+			width: "50px",
+			height: "28px"
+		}}
+	/>
+*/
+
 //
 //
 import { onMount, onDestroy } from 'svelte'
@@ -15,7 +25,6 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
-import Loyals from "$lib/Les_Talents/_Wallet/Frontier/Letters/Loyals.svelte"
 //
 //
 	
@@ -61,16 +70,28 @@ onDestroy (() => {
 
 const wallet_address = () => {
 	try {
+		let stage = flourisher_freight.ask_for_stage ();
+		console.log ({ stage });
+		
+		let address = stage.account.address;
+		if (address.substring (0,2) === "0x") {
+			address = address.substring (2);
+			address = address.toUpperCase ();
+			return address.substring (0,4) + ".." + address.substring (address.length - 4);
+		}
+		
+		/*
 		let address = flourisher_freight.bridge.account.address;
 		if (address.substring (0,2) === "0x") {
 			address = address.substring (2);
 			address = address.toUpperCase ();
 			return address.substring (0,3) + ".." + address.substring (address.length - 3);
 		}
+		*/
 	}
 	catch (imperfection) {}
 
-	return "";
+	return "Connected";
 }
 
 </script>
@@ -95,15 +116,10 @@ const wallet_address = () => {
 		// box-shadow: 0 0 0px 2px rgb(var(--color-surface-500));
 	"
 >
-	{#if flourisher_freight.bridge_is_connected === "yes" }
+	{#if flourisher_freight.stage_name_connected.length >= 1 }
 	{ wallet_address () }
 	{:else}
-	<Loyals 
-		style={{
-			width: "50px",
-			height: "28px"
-		}}
-	/>
+	Wallet
 	{/if}
 </button>
 {/if}

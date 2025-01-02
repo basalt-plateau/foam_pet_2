@@ -140,20 +140,10 @@ const Theme = {
 		<Milieus_Button
 			monitor="Hints"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Lantern"] : "Lantern" }
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Entrance"] : "Entrance" }
 			
 			location={[ "Ecology", "Hints" ]}
 			is_open_location={[ "Ecology", "Hints" ]}
-			
-			style={ buttons_styles }
-		/>
-		<Milieus_Button
-			monitor="Garden"
-			
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Garden"] : "Garden" }
-			
-			location={[ "Ecology", "Garden" ]}
-			is_open_location={[ "Ecology", "Garden" ]}
 			
 			style={ buttons_styles }
 		/>
