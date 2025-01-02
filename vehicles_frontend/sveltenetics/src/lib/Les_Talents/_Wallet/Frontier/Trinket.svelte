@@ -45,6 +45,8 @@ let open = async () => {
 	});
 }
 
+
+let wallet_address = ""
 let mounted = "no"
 let flourisher_freight = ""
 let flourisher_monitor = ""
@@ -60,7 +62,10 @@ onMount (() => {
 		value
 	}) => {
 		flourisher_freight = pro_freight;
+		wallet_address = ask_for_wallet_address ();
 	});
+	
+	wallet_address = ask_for_wallet_address ();
 	mounted = "yes"
 });
 onDestroy (() => {
@@ -68,7 +73,7 @@ onDestroy (() => {
 });
 
 
-const wallet_address = () => {
+const ask_for_wallet_address = () => {
 	try {
 		let stage = flourisher_freight.ask_for_stage ();
 		console.log ({ stage });
@@ -89,7 +94,9 @@ const wallet_address = () => {
 		}
 		*/
 	}
-	catch (imperfection) {}
+	catch (imperfection) {
+		console.error ("wallet address imperfection:", imperfection);
+	}
 
 	return "Connected";
 }
@@ -117,7 +124,7 @@ const wallet_address = () => {
 	"
 >
 	{#if flourisher_freight.stage_name_connected.length >= 1 }
-	{ wallet_address () }
+	{ wallet_address }
 	{:else}
 	Wallet
 	{/if}

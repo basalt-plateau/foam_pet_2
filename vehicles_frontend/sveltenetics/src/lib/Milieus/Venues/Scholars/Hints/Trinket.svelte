@@ -83,7 +83,7 @@ const show_rules = () => {
 				
 				line-height: 200%;
 			"
-		>To enchant the <Slang text="Aptos" /> scrolls, venture on.</p>
+		>To enchant <Slang text="Aptos" />, venture on.</p>
 		
 		<div style="height: 0.25cm"></div>
 	</div>
