@@ -52,5 +52,5 @@ let open = async () => {
 			
 			white-space: pre-wrap;
 		"
-	>Human to Chicken Reincarnation Potion</button>
+	>Drink Shop</button>
 </div>

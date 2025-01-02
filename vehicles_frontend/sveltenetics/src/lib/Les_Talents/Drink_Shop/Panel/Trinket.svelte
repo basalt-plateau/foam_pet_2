@@ -17,7 +17,9 @@ import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 //
 ///
 
-
+import Alert_Note from '$lib/trinkets/Alerts/Note.svelte'
+import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
+	
 
 const prepare = () => {
 	return {
@@ -124,6 +126,10 @@ const on_prepare = () => {
 
 let isOpen = false;
 
+const buy_human_to_chicken_reincarnation_drink = () => {
+	
+}
+
 </script>
 
 
@@ -161,7 +167,39 @@ let isOpen = false;
 			"
 		>
 			<div class="card p-4">
-				<p>Mixing. Please check later.</p>
+				<span 
+					style="
+						display: block;
+						font-size: 1.5em;
+						line-height: 1.5em;
+						padding: 1cm .5cm;
+						white-space: pre-wrap;
+					"
+				>Human to Chicken Reincarnation Drink</span>
+				
+				<Alert_Note
+					text={ "Mixing. Please check later." }
+					progress={{
+						show: "yes"
+					}}
+				/>
+				
+				<div style="height: 0.25cm" />
+				
+				<div
+					style="
+						text-align: right;
+					"
+				>
+					<Petition_APT_Button
+						button_text="Buy"
+						
+						APT="1"
+						clicked={ buy_human_to_chicken_reincarnation_drink }
+					
+						permitted={ "no" }
+					/>
+				</div>
 			</div>
 		</div>
 		{/if}

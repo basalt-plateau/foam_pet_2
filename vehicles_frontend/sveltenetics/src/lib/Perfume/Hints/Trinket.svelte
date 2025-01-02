@@ -8,6 +8,7 @@
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
+import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example/Trinket.svelte'
 //
 //
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
@@ -15,7 +16,6 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 ////
 
 import Boards from './Boards.svelte'
-import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example/Trinket.svelte'
 
 
 </script>
@@ -41,13 +41,6 @@ import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example
 				width: 100%;
 			"
 		>
-			<header
-				style="
-					font-size: 2.5em;
-					text-align: center;
-				"
-			>Offline Wallet</header>
-					
 			<p
 				style="
 					text-align: center;

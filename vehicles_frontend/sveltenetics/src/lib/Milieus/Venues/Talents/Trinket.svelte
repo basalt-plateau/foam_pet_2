@@ -41,7 +41,7 @@ import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
 import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 
-import Reincarnation from '$lib/Les_Talents/Reincarnation/Frontier/Trinket.svelte'
+import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
 
 
 import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
@@ -157,7 +157,7 @@ const mode = check_roomies_truck ().freight.mode;
 
 			<div style="height: 0.1cm"></div>
 
-			<p>This requires a <Slang text="Grimoire" />.</p>
+			<p>This requires a <Slang text="Perfume" />.</p>
 		
 			<div class="relative inline-block">
 				<button 
@@ -224,7 +224,7 @@ const mode = check_roomies_truck ().freight.mode;
 		</Panel>
 		
 		<Panel styles={ trends.panel }>	
-			<Reincarnation />
+			<Drink_Shop />
 		</Panel>
 		
 		<Panel styles={ trends.panel }>		

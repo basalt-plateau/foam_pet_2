@@ -6,47 +6,69 @@
 	The goal is that this becomes an extension.
 */
 
+
 /*
-	import Grimoire from "$lib/Grimoire/Trinket.svelte"
-	<Grimoire />
+	import Perfume from "$lib/Perfume/Trinket.svelte"
+	<Perfume />
 */
 
 
-const address_builder = ""
-
 ///
+//
+import { onMount, onDestroy } from 'svelte'
+//
 //
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 import _merge from 'lodash/merge'
 //
-//
 ///
 
 import Hints from './Hints/Trinket.svelte'
 import Harvests from './Harvests/Trinket.svelte'
 import Consent_Leaf from './Consent/Trinket.svelte'
+import Garden_Leaf from './Garden/Tome.svelte'
 
-
-import Grimoire_Truck from "./_Truck/index.js"
-const GTF = Truck_1.retrieve ().pro_freight;
+import * as Perfume_Truck from "./_Truck/index.js"
 
 let leaf = "Hints";
 
-import { onMount, onDestroy } from 'svelte'
-import * as Truck_1 from '$lib/trucks/truck_1/index.js'
 
+let prepared = "no"
+let Perfume_Truck_Freight;
+let Perfume_Truck_Monitor;
 onMount (async () => {	
-	Truck_1.make ()
+	Perfume_Truck.make ()
+	Perfume_Truck_Monitor = Perfume_Truck.monitor (async ({
+		original_freight,
+		pro_freight, 
+		//
+		target,
+		//
+		property, 
+		value
+	}) => {
+		try {
+			Perfume_Truck_Freight = Perfume_Truck.retrieve ().pro_freight; 
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
+	});
+	
+	Perfume_Truck_Freight = Perfume_Truck.retrieve ().pro_freight;  
+	prepared = "yep"
 });
 onDestroy (() => {
-	Truck_1.destroy ()
+	Perfume_Truck_Monitor.stop ()
+	Perfume_Truck.destroy ()
 });
 
 </script>
 
 
+{#if prepared === "yep" }
 <div
 	style="
 		position: relative;
@@ -80,8 +102,9 @@ onDestroy (() => {
 		<div>
 			<RadioGroup>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Hints" }>Hints</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>Harvests</RadioItem>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>Consent</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Garden" }>Garden</RadioItem>				
+				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>Harvests</RadioItem>
 			</RadioGroup>
 		</div>
 		
@@ -106,6 +129,8 @@ onDestroy (() => {
 	>
 		{#if leaf === "Hints"}
 		<Hints />
+		{:else if leaf === "Garden" }
+		<Garden_Leaf />
 		{:else if leaf === "Harvests" }
 		<Harvests />
 		{:else if leaf === "Consent" }			
@@ -113,3 +138,4 @@ onDestroy (() => {
 		{/if}
 	</div>
 </div>
+{/if}

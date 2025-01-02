@@ -15,17 +15,17 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 //
+import { Slangify } from "$lib/trinkets/Slang"
+//
 //
 import Getting_Moving from './Getting_Moving/Trinket.svelte'
 import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
 import Boards from './Boards/Trinket.svelte'
-import Mural from './Mural/Trinket.svelte'
 import Pleasantries from './Pleasantries/Trinket.svelte'
 import Regions from './Regions/Estate.svelte'
 import { open_rules } from './Rules/open'
 //
 ////
-import { Slangify } from "$lib/trinkets/Slang"
 
 
 const modal_store = getModalStore ();
@@ -59,39 +59,7 @@ const show_rules = () => {
 <Leaf>
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	{#if typeof Milieus_Freight === "object"}
-	
-	<div
-		class="card p-4"
-		style="
-			display: none;
-			width: 100%;
-		"
-	>
-		<div
-			class="card p-4 variant-soft-surface"
-			
-			style="
-				width: 100%;
-				font-size: 1.2em;
-			"
-		>
-			<p
-				style="
-					text-align: center;
-				"
-			>The <b style="font-size: 1.4em">Ecology</b> region has features that affect the local browser.</p>
-		</div>
-	</div>
-	
 
-	
-
-	<!-- 
-	
-	
-	<div style="height: 0.5cm"></div>
-	<AI_Caution />
-	-->
 	
 	<div style="height: 0.5cm"></div>
 	<Boards />
@@ -122,17 +90,12 @@ const show_rules = () => {
 					padding: 0.25cm 1.5cm;
 				"
 				class="btn btn-lg btn bg-gradient-to-br variant-gradient-primary-secondary"
-			>Bayanihan</button>
+			>Rules</button>
 		</div>
 	</div>
 
 	<div style="height: 0.5cm"></div>
 	<Getting_Moving />	
-	
-	<!--
-	<div style="height: 0.5cm"></div>
-	<Regions />
-	-->
 	
 	<div style="height: 0.5cm"></div>
 	

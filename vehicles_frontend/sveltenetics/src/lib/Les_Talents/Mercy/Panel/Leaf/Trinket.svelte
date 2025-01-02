@@ -205,11 +205,11 @@ onDestroy (async () => {
 				text-align: center;
 			"
 		>
-			<button 
-				on:click={ establish }
-				type="button" 
-				class="btn variant-filled"
-			>Establish</button>
+			<Petition_APT_Button
+				button_text="Establish"
+				APT="0"
+				clicked={ establish }
+			/>
 		</div>
 		
 		<div
@@ -230,7 +230,7 @@ onDestroy (async () => {
 			>			
 				<Petition_APT_Button
 					button_text="Buy 1 Membership Pass"
-					APT="0"
+					APT="1"
 					clicked={ join }
 				/>
 				

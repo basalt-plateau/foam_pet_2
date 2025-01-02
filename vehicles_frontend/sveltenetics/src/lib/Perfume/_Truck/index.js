@@ -4,8 +4,8 @@
 
 
 /*
-	import Grimoire_Truck from "../_Truck/index.js"
-	const Grimoire_Truck_Freight = Truck_1.retrieve ().pro_freight;
+	import Perfume_Truck from "../_Truck/index.js"
+	const Perfume_Truck_Freight = Truck_1.retrieve ().pro_freight;
 */
 
 import { build_truck } from '@visiwa/trucks'

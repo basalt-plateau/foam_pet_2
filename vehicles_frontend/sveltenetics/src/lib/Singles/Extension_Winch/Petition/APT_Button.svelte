@@ -7,82 +7,153 @@
 	import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 	<Petition_APT_Button
 		button_text="Buy 1 Membership Pass"
+		
 		APT="0"
 		clicked={}
+	
+		permitted={ "yes" }
 	/>
 */
+
+import { parse_styles } from '$lib/trinkets/styles/parse'
 
 export let button_text = ""
 export let APT = ""
 export let clicked = () => {}
 
+export let permitted = "no"
+
+
+
 </script>
 
 
-
-<button 
-	type="button" 
-	on:click={ clicked }
-
+<div
 	style="
-		padding: 0.2cm 0.25cm 0.2cm 0.5cm;
+		position: relative;
 	"
-	class="btn variant-filled"
 >
-	<span
-		style="
-			font-size: 1.2em;
-			font-weight: bold;
-		"	
-	>{ button_text }</span>
+	{#if permitted === "yes" }
+	<button 
+		type="button" 
+		on:click={ clicked }
 
-	<span 
-		style="
-			display: flex;
-			
-			justify-content: center;
-			align-items: stretch;
-		
-			flex-direction: row;
-		"
-		class="badge variant-soft-primary"
+		style={ parse_styles (Object.assign ({}, {
+			padding: "0.2cm 0.25cm 0.2cm 0.5cm",
+			position: "relative"
+		})) }
+		class="btn variant-filled-primary"
 	>
-		<div
+		<span 
 			style="
 				display: flex;
 				
 				justify-content: center;
-				align-items: center;
+				align-items: stretch;
 			
 				flex-direction: row;
-				gap: 0.1cm;
 			"
-			class="badge variant-filled-primary"
-		>
-			<img 
-				src="/_Licensed/Aptos/aptos.png" 
-				style="
-					width: 0.75cm;
-					height: 0.75cm;								
-				"
-			/>
-			<span
-				style="
-					font-size: 2em;		
-					transform: translateY(2px);
-				"
-			>{ APT }</span>
-		</div>
-		
-		<div
-			class="badge variant-filled-primary"
 		>
 			<span
 				style="
-					font-size: 1.2em;		
-					transform: translateY(2px);
+					font-size: 1.2em;
+					font-weight: bold;
+				"	
+			>{ button_text }</span>
+		</span>
+
+		<span 
+			style="
+				display: flex;
+				
+				justify-content: center;
+				align-items: stretch;
+			
+				flex-direction: row;
+			"
+			class="badge variant-soft-primary"
+		>
+			<div
+				style="
+					display: flex;
+					
+					justify-content: center;
+					align-items: center;
+				
+					flex-direction: row;
+					gap: 0.0cm;
 				"
-			>+ Gas Fees</span>
-		</div>
-	</span>
-</button>
+				class="badge variant-filled-primary"
+			>
+				<img 
+					src="/_Licensed/Aptos/aptos.png" 
+					style="
+						width: 0.5cm;
+						height: 0.5cm;								
+					"
+				/>
+				<span
+					style="
+						font-size: 1.2em;	
+						transform: translateY(2px);
+					"
+				>{ APT }</span>
+			</div>
+			
+			<div
+				class="badge variant-filled-primary"
+				style="
+					display: flex;
+					
+					align-items: center;
+					justify-content: center;
+				"
+			>
+				<span
+					style="
+						font-size: 1.2em;		
+						transform: translateY(2px);
+					"
+				>+</span>
+				<img 
+					src="/_Licensed/Aptos/aptos.png" 
+					style="
+						width: 0.5cm;
+						height: 0.5cm;								
+					"
+				/>
+				<span
+					style="
+						font-size: 1.2em;		
+						transform: translateY(2px);
+					"
+				>Gas</span>
+			</div>
+		</span>
+	</button>
+	{:else}
+	<div
+		style="
+			position: relative;
+			top: 0;
+			left: 0;
+			height: 100%;
+			
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			
+			padding: 0.1cm 1cm;
+		"
+		class="card"
+	>
+		<span
+			style="
+				font-size: 1.2em;
+				font-weight: bold;
+				text-decoration: line-through;
+			"	
+		>{ button_text }</span>
+	</div>
+	{/if}
+</div>

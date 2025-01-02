@@ -26,7 +26,7 @@ import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
 //
 ////
 
-import Grimoire from "$lib/Grimoire/Trinket.svelte"
+import Perfume from "$lib/Perfume/Trinket.svelte"
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 
 import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
@@ -139,15 +139,15 @@ let leaf = "Extensions"
 					<RadioItem 
 						bind:group={leaf} 
 						name="justify" 
-						value={ "Grimoire" }
-					>Grimoire</RadioItem>
+						value={ "Perfume" }
+					>Perfume</RadioItem>
 				</RadioGroup>
 			</div>
 		
 			{#if leaf === "Extensions" }
 			<Extension_Wallets />
-			{:else if leaf === "Grimoire" }
-			<Grimoire />
+			{:else if leaf === "Perfume" }
+			<Perfume />
 			{/if}
 		</div>
 		{/if}

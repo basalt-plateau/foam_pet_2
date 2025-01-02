@@ -3,9 +3,9 @@
 /*
 	Gargantuan Reservoir Wallet Logistics
 */
-// Grimoire
+// Foam
 export const wallet = {
-	"Grimoire": "Grimoire",
+	"Foam": "Foam",
 	
 	"wallet": "signatory",
 	"Wallet": "Signatory"	

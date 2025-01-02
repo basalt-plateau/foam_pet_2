@@ -13,7 +13,7 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 				text-align: center;
 			"
 		>
-			<span>Literature with <b>jargon</b> can be found throughout.</span>
+			<span>Codexes with <b>Eclecticism</b> can be found throughout.</span>
 		</p>
 		
 		<div style="height: 0.25cm"></div>
@@ -24,10 +24,11 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 			"
 		>
 			<!-- ambassador mode -->
+			<!-- finesse, thematicism, eccentric, surrealism, aestheticism -->
 		
-			<span>The jargon cipher can be turned off at</span>
+			<span>The <b>Eclecticism</b> cipher can be turned off at</span>
 			<Milieus_Button
-				name={ "Theme" }
+				name={ "Beauty" }
 				location={[ "Ecology", "Theme" ]}
 				is_open_location={[ "Ecology", "Theme" ]}
 			/>
