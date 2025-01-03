@@ -21,6 +21,9 @@ export const le_label = {
 	"town": "Scroll town",	
 	
 	"Towns": "Scroll Towns",
-	"towns": "Scroll towns"	
+	"towns": "Scroll towns",
+	
+	
+	"this_domain_wallet": "Perfume"
 }
 

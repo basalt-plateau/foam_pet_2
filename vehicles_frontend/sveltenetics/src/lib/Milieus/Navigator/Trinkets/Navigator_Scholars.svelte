@@ -77,47 +77,12 @@ const build = () => {
 }
 
 /*
-
-	Friends:
-		
-
 	Garden:
 		Inuit: 
 			ᐊᔭᕙᓘᓐᖏᑦ
-		
-		Cherokee: 
-			ᎠᏫᏒᏅ
 */
-const names = {
-	garden: "ᎠᏫᏒᏅ"
-}
 
 
-const Garden = {
-	Cherokee: (
-		"ᎠᏫᏒᏅ"
-	)
-}
-
-
-/*
-	Mandarin (普通话): 主题 (zhǔtí)
-	Cantonese (粤语): 主题 (zyu2 tai4)
-	Hokkien / Taiwanese (台语 / 闽南语): 主题 (chú-tí or chí-thé)
-	Hakka (客家话): 主题 (zú-tî)
-	Wu Chinese (吴语): 主题 (zú-tí)
-	Xiang Chinese (湘语): 主题 (zhǔtí)
-	Gan Chinese (赣语): 主题 (zhǔtí)
-	Pinghua (平话): 主题 (zhǔtí)
-	Jin Chinese (晋语): 主题 (zhǔtí)
-	Huizhou (徽州话): 主题 (zhǔtí)
-	Yue (Cantonese, beyond Guangdong): 主题 (zyu2 tai4)
-*/
-const Theme = {
-	Hakka: (
-		"主題"
-	)
-}
 
 /*
 	Hints:
@@ -144,6 +109,15 @@ const Theme = {
 			
 			location={[ "Ecology", "Hints" ]}
 			is_open_location={[ "Ecology", "Hints" ]}
+			
+			style={ buttons_styles }
+		/>
+		<Milieus_Button
+			monitor="Garden"
+		
+			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Garden"] : "Garden" }
+			location={[ "Ecology", "Garden" ]}
+			is_open_location={[ "Ecology", "Garden" ]}
 			
 			style={ buttons_styles }
 		/>

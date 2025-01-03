@@ -53,11 +53,10 @@ a {
 		<div style="height: 0.5cm"></div>
 		<header 
 			style="
-				display: none;
-				font-size: 3em; 
+				font-size: 2em; 
 				text-align: center;
 			"
-		>Garden</header>
+		>Dapp</header>
 
 		<p
 			style="
@@ -66,12 +65,69 @@ a {
 				text-align: center;
 				margin: 0 auto;
 			"
-		>The entire domain <Slang text="this_domain" /> can be obtained and run as a Linux dapp.</p>
-		
+		>The <Slang text="this_domain" /> dapp cannot be obtained and run as a Linux dapp at this time.</p>
+
 		<div style="height: 0.5cm"></div>
+
+
+		<p
+			style="
+				text-align: center;
+				width: 500px;
+				text-align: center;
+				margin: 0 auto;
+			"
+		>Please check later.</p>
+		
+		
 		
 		<div
 			style="
+				display: none;
+				text-align: center;
+			"
+		>
+			<a 
+				href={ releases } 
+				target="_blank" 
+				class="anchor"
+				style="
+					text-decoration: none;
+				"
+			>
+				<span>{ releases }</span>
+			</a>
+		</div>
+		
+		<div style="height: 0.5cm"></div>
+	</div>
+
+		<div style="height: 0.5cm"></div>
+
+
+	<div class="card p-4">
+		<div style="height: 0.5cm"></div>
+		<header 
+			style="
+				font-size: 2em; 
+				text-align: center;
+			"
+		>Extension</header>
+
+		<p
+			style="
+				text-align: center;
+				width: 500px;
+				text-align: center;
+				margin: 0 auto;
+			"
+		><Slang text="this_domain_wallet" />, the <Slang text="this_domain" /> wallet extension, is in development.</p>
+
+		
+		
+		<div
+			style="
+				display: none;
 				text-align: center;
 			"
 		>

@@ -29,9 +29,9 @@ import { modal_plugs, trends } from './Trinket'
 //\
 
 
+////
 //
-//
-//	Porticos
+//	Frontiers (Porticos)
 //
 //
 import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico/Trinket.svelte'
@@ -40,8 +40,9 @@ import Rondovals_Portico from '$lib/Les_Talents/Rondovals/Portico/Trinket.svelte
 import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
 import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
-
 import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
+//
+////
 
 
 import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
@@ -93,12 +94,14 @@ const mode = check_roomies_truck ().freight.mode;
 
 </style>
 
-<Leaf>	
+<nav>	
 	<div style="height: 0.3cm"></div>
 	
-	<div class="card p-4">
-		<Stats_Wall />
-	</div>
+	<Leaf>
+		<div class="card p-1">
+			<Stats_Wall />
+		</div>
+	</Leaf>
 
 	<div style="height: 0.3cm"></div>
 
@@ -111,8 +114,12 @@ const mode = check_roomies_truck ().freight.mode;
 			position: 'relative',
 			display: 'grid',
 			'width': '100%',
-			'grid-template-columns': 'repeat(auto-fit, minmax(400px, 1fr))',
+			'margin': '0 auto',
+			
+			// 'grid-template-columns': 'repeat(auto-fit, minmax(500px, 1fr))',
+			'grid-template-columns': 'repeat(auto-fit, minmax(100px, 500px))',
 			'grid-gap': '10px',
+			'justify-content': 'center',
 			
 			'padding-bottom': '1cm'
 		}) }
@@ -344,4 +351,4 @@ const mode = check_roomies_truck ().freight.mode;
 		</Panel>
 	</section>
 	{/if}
-</Leaf>
+</nav>

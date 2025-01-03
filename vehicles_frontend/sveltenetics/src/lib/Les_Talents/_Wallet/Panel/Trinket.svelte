@@ -61,6 +61,9 @@ const on_prepare = () => {
 						Hypersphere
 						
 						Ellipsoid
+						Spherinder
+						
+					Torus	
 						
 					Trigintaduonion
 					

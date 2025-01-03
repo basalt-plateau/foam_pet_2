@@ -25,6 +25,7 @@ let Milieus = {
 	"Ecology": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
 		"Theme": async () => { return await import ('./Venues/Scholars/Theme/Trinket.svelte') },
+		"Garden": async () => { return await import ('./Venues/Scholars/Garden/Tome.svelte') },		
 		"Resilience": technicians_leaves
 	},
 	
@@ -103,8 +104,8 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 
 
 <div
+	monitor="milieus tome"
 	bind:this={ milieu_venue }
-
 	style={ style }
 >	
 	<Milieus_Truck on_change={ on_Milieus_truck_change } />

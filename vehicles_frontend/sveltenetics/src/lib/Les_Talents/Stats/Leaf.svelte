@@ -17,24 +17,27 @@
 		. Freshest
 */
 
+////
+//
 import { onMount, onDestroy } from 'svelte'
 import { ConicGradient } from '@skeletonlabs/skeleton';
-
+import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+//
+//
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
 import { ask_latest_block_number } from '$lib/PTO/Blocks/Latest'
 import { parse_with_commas } from '$lib/taverns/numbers/parse_with_commas'
-	
+//	
 import Progress_Wall from '$lib/trinkets/Progress/Wall/Trinket.svelte'
 import Radial_Progress from '$lib/trinkets/Progress/Radial/Trinket.svelte'
-	
+//
+import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
+//
+////
 
 
-import {
-	check_roomies_truck,
-	monitor_roomies_truck
-} from '$lib/Versies/Trucks'
 
 let RT_Prepared = "no"
 let RT_Monitor;
@@ -107,207 +110,216 @@ const conicStops = [
 
 </style>
 
-{#if RT_Prepared === "yes" }
+{#if RT_Prepared === "yes" && got_consensus_info === "yes" }
 <Leaf>
-	<header style="{parse_styles ({
-		position: 'relative',
-		padding: '.1cm',
-		'font-size': '1.5em',
-		'text-align': 'center',
-		display: 'flex',
-		'justify-content': 'space-between',
-		'align-items': 'center',
-		width: '100%'
-	})}">
-		<div
-			style="
-				position: absolute;
-				top: 0px;
-				left: 0px;
-				
-				display: inline-flex;
-				gap: 0.2cm;
-				align-items: center;
-			"
-		>		
-			<Radial_Progress />
+	<Accordion>
+		<AccordionItem>
+			<svelte:fragment slot="summary">
+				<div
+					style="
+						position: relative;
+						top: 0px;
+						left: 0px;
+						width: 100%;
+						
+						display: inline-flex;
+						gap: 0.2cm;
+						align-items: center;
+						justify-content: center;
+					"
+				>		
+					<Radial_Progress />
+					
+					{#if RT_Freight.net_connected === "yes" }
+					<div
+						class="badge variant-soft-surface"
+						style="
+							margin: 0;
+							padding: 0.15cm 0.25cm;
+							border-radius: 0.25cm;
+							
+							white-space: pre-wrap;
+							word-break: break-all;
+							overflow-wrap: break-word;
+							
+							display: block;
+						"
+					>
+						<span>Connected to</span>
+						<span class="badge variant-soft-surface">{ plays.chain_id }</span>
+						<span class="badge variant-soft-surface">{ RT_Freight.net_name }</span>
+						<span class="badge variant-soft-surface"
+							style="
+								white-space: pre-wrap;
+							word-break: break-all;
+							overflow-wrap: break-word;
+							"
+						>{ RT_Freight.net_path }</span>
+						<span>at Epoch</span>
+						<span class="badge variant-soft-surface">{ plays.epoch }</span>
+					</div>
+					{:else}
+					disconnected from network
+					{/if}
+				</div>
 			
-			<span
-				class="badge variant-filled"
-				style="
-					margin: 0;
-					padding: 0.15cm 0.25cm;
-					border-radius: 0.25cm;
-				"
-			>
-				{#if RT_Freight.net_connected === "yes" }
-				connected to network
-				{:else}
-				disconnected from network
-				{/if}
-			</span>
-		</div>
-		
-		<!-- Pep, Health, Stability, Condition -->
-		
-		<div style="width: 10px"></div>
-		<span>Position</span>
-		<div style="width: 10px"></div>
-
-	</header> 
-
-	<div
-		style="
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: 4px;
-			width: 100%;
-			margin: 4px 0;
-		"
-	>
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.2em;
+			</svelte:fragment>
+			<svelte:fragment slot="content">
+				<div
+					style="
+						display: grid;
+						grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+						gap: 4px;
+						width: 100%;
+						margin: 4px 0;
+					"
+				>
+					<span class="badge variant-soft"
+						style="
+							position: relative;
+							font-size: 1.2em;
+							
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+						"
+					>
+						<span>Net Name</span>
+						{#if got_consensus_info === "yes" }
+						<span class="badge variant-soft-surface">{ RT_Freight.net_name }</span>
+						{/if}
+					</span>
+					<span class="badge variant-soft"
+						style="
+							position: relative;
+							font-size: 1.2em;
+							
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+						"
+					>
+						<span>Chain ID</span>
+						{#if got_consensus_info === "yes" }
+						<span class="badge variant-soft-surface">{ plays.chain_id }</span>
+						{/if}
+					</span>
+				</div>
+				<div>		
+					<span class="badge variant-soft"
+						style="
+							position: relative;
+							font-size: 1.2em;
+							
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+						"
+					>
+						<span>Net Path</span>
+						{#if got_consensus_info === "yes" }
+						<span class="badge variant-soft-surface">{ RT_Freight.net_path }</span>
+						{/if}
+					</span>
+				</div>
 				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Net Name</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ RT_Freight.net_name }</span>
-			{/if}
-		</span>
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.2em;
+				<div style="height: 0.25cm" />
 				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Chain ID</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ plays.chain_id }</span>
-			{/if}
-		</span>
-	</div>
-	<div>		
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.2em;
+				<div
+					style="
+						display: grid;
+						grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+						gap: 4px;
+						width: 100%;
+						margin: 4px 0;
+					"
+				>
+					<span class="badge variant-soft"
+						style="
+							position: relative;
+							font-size: 1.1em;
+							
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+						"
+					>
+						<span>Epoch</span>
+						{#if got_consensus_info === "yes" }
+						<span class="badge variant-soft-surface">{ plays.epoch }</span>
+						{/if}
+					</span>
 				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Net Path</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ RT_Freight.net_path }</span>
-			{/if}
-		</span>
-	</div>
-	
-	<div style="height: 0.25cm" />
-	
-	<div
-		style="
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: 4px;
-			width: 100%;
-			margin: 4px 0;
-		"
-	>
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.1em;
-				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Epoch</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ plays.epoch }</span>
-			{/if}
-		</span>
-	
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.1em;
-				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Block Height</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ 
-				parse_with_commas (plays.block_height) 
-			}</span>
-			{/if}
-		</span>
-	</div>	
-	<div
-		style="
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: 4px;
-			width: 100%;
-			margin: 4px 0;
-		"
-	>
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.2em;
-				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-				
-				//display: grid;
-				//grid-template-columns: repeat(2, 1fr);
-				//align-items: center;
-			"
-		>
-			<span>Ledger Time</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ 
-				new Date (plays.ledger_timestamp / 1000).toUTCString () 
-			}</span>
-			{/if}
-		</span>
-		
-		<span class="badge variant-soft"
-			style="
-				position: relative;
-				font-size: 1.2em;
-				
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-			"
-		>
-			<span>Ledger Version</span>
-			{#if got_consensus_info === "yes" }
-			<span class="badge variant-filled-surface">{ 
-				parse_with_commas (plays.ledger_version)
-			}</span>
-			{/if}
-		</span>
-		
-	</div>
+					<span class="badge variant-soft"
+						style="
+							position: relative;
+							font-size: 1.1em;
+							
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+						"
+					>
+						<span>Block Height</span>
+						{#if got_consensus_info === "yes" }
+						<span class="badge variant-soft-surface">{ 
+							parse_with_commas (plays.block_height) 
+						}</span>
+						{/if}
+					</span>
+				</div>	
+				<div
+					style="
+						display: grid;
+						grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+						gap: 4px;
+						width: 100%;
+						margin: 4px 0;
+					"
+				>
+					<span class="badge variant-soft"
+						style="
+							position: relative;
+							font-size: 1.2em;
+							
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+							
+							//display: grid;
+							//grid-template-columns: repeat(2, 1fr);
+							//align-items: center;
+						"
+					>
+						<span>Ledger Time</span>
+						{#if got_consensus_info === "yes" }
+						<span class="badge variant-soft-surface">{ 
+							new Date (plays.ledger_timestamp / 1000).toUTCString () 
+						}</span>
+						{/if}
+					</span>
+					
+					<span class="badge variant-soft"
+						style="
+							position: relative;
+							font-size: 1.2em;
+							
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+						"
+					>
+						<span>Ledger Version</span>
+						{#if got_consensus_info === "yes" }
+						<span class="badge variant-soft-surface">{ 
+							parse_with_commas (plays.ledger_version)
+						}</span>
+						{/if}
+					</span>
+					
+				</div>
+			</svelte:fragment>
+		</AccordionItem>
+	</Accordion>
 </Leaf>
 {/if}
