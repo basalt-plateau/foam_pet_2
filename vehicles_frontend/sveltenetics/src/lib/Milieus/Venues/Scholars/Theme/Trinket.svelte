@@ -38,34 +38,6 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 	}
 }
 
-
-let net_prepare = () => {
-	return {
-		net_name: "mainnet"
-	}
-};
-let every_net_enhance = ({
-	net_name,
-	net_path,
-	net_connected,
-	chain_id
-}) => {
-	console.info ('every_net_enhance', {
-		net_name,
-		net_path,
-		chain_id
-	})
-	
-	seeds_freight.net_path = net_path
-	seeds_freight.net_name = net_name
-	seeds_freight.aptos = new AptosSDK.Aptos (new AptosSDK.AptosConfig ({		
-		fullnode: net_path,
-		network: AptosSDK.Network.CUSTOM
-	}));
-};
-
-
-
 let mounted = "no"
 onMount (() => {
 	mounted = "yes"
@@ -94,22 +66,6 @@ a {
 	
 	{#if seeds_trucks_prepared === "yes" && mounted === "yes" }	
 	<div>
-		<div style="height: 0.2cm"></div>
-	
-		<div
-			class="card p-4"
-			style="
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			"
-		>
-			<Net_Choices_with_Text 
-				prepare={ net_prepare }
-				every_enhance={ every_net_enhance }
-			/>
-		</div>
-		
 		<div style="height: 0.2cm"></div>
 		
 		<Slang_Toggle />

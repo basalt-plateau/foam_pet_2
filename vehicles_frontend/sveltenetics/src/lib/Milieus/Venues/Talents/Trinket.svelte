@@ -198,9 +198,11 @@ const mode = check_roomies_truck ().freight.mode;
 			</div>
 		</Panel>
 		
+		{#if mode === "nurture" }
 		<Panel styles={ trends.panel }>	
 			<Drink_Shop />
 		</Panel>
+		{/if}
 		
 		<Panel styles={ trends.panel }>		
 			<div class="relative inline-block">

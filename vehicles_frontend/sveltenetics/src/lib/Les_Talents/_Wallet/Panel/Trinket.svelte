@@ -19,15 +19,14 @@ import { has_field } from 'procedures/object/has_field'
 //
 //
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
+import Perfume from "$lib/Perfume/Trinket.svelte"
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 //
 //
 import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
 import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
 //
 ////
-
-import Perfume from "$lib/Perfume/Trinket.svelte"
-import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 
 
 let Extension_Winch_Freight = false
@@ -55,8 +54,26 @@ const on_prepare = () => {
 				Wallet..
 					Event Horizon
 					Frontier
+					
+					4D:
+						Duoprism
+					
+						Hypersphere
+						
+						Ellipsoid
+						
+					Trigintaduonion
+					
+					
+					Tunnels:
+						.Spin
+						
+						.Sensors
+						
+						* Send Wish
+						* Send Consent
 			*/
-			name: 'Wallet Bridge',
+			name: 'Wallet Sensors',
 			
 			unfinished: {
 				showing: 'no',

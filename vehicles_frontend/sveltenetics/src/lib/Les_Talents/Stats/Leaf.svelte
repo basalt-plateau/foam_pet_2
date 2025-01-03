@@ -60,6 +60,7 @@ const block_height_number = async () => {
 	
 	got_consensus_info = "yes"
 	
+	
 	await new Promise ((resolve) => {
 		setTimeout (() => {
 			resolve ()
@@ -114,27 +115,47 @@ const conicStops = [
 		'font-size': '1.5em',
 		'text-align': 'center',
 		display: 'flex',
-		'justify-content': 'space-around',
+		'justify-content': 'space-between',
 		'align-items': 'center',
 		width: '100%'
 	})}">
 		<div
 			style="
 				position: absolute;
-				top: 10px;
-				left: 10px;
+				top: 0px;
+				left: 0px;
+				
+				display: inline-flex;
+				gap: 0.2cm;
+				align-items: center;
 			"
 		>		
 			<Radial_Progress />
+			
+			<span
+				class="badge variant-filled"
+				style="
+					margin: 0;
+					padding: 0.15cm 0.25cm;
+					border-radius: 0.25cm;
+				"
+			>
+				{#if RT_Freight.net_connected === "yes" }
+				connected to network
+				{:else}
+				disconnected from network
+				{/if}
+			</span>
 		</div>
 		
 		<!-- Pep, Health, Stability, Condition -->
 		
 		<div style="width: 10px"></div>
-		<span>Status</span>
+		<span>Position</span>
 		<div style="width: 10px"></div>
+
 	</header> 
-	
+
 	<div
 		style="
 			display: grid;
@@ -154,11 +175,56 @@ const conicStops = [
 				flex-wrap: wrap;
 			"
 		>
+			<span>Net Name</span>
+			{#if got_consensus_info === "yes" }
+			<span class="badge variant-filled-surface">{ RT_Freight.net_name }</span>
+			{/if}
+		</span>
+		<span class="badge variant-soft"
+			style="
+				position: relative;
+				font-size: 1.2em;
+				
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+			"
+		>
 			<span>Chain ID</span>
 			{#if got_consensus_info === "yes" }
 			<span class="badge variant-filled-surface">{ plays.chain_id }</span>
 			{/if}
 		</span>
+	</div>
+	<div>		
+		<span class="badge variant-soft"
+			style="
+				position: relative;
+				font-size: 1.2em;
+				
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+			"
+		>
+			<span>Net Path</span>
+			{#if got_consensus_info === "yes" }
+			<span class="badge variant-filled-surface">{ RT_Freight.net_path }</span>
+			{/if}
+		</span>
+	</div>
+	
+	<div style="height: 0.25cm" />
+	
+	<div
+		style="
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 4px;
+			width: 100%;
+			margin: 4px 0;
+		"
+	>
 		<span class="badge variant-soft"
 			style="
 				position: relative;

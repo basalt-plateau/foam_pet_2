@@ -173,7 +173,7 @@ $: {
 			gap: 8px;
 		"
 	>
-		<div>Hyptothetical Physics</div>
+		<div>Hypothetical Magic</div>
 		<!-- Nocturnal -->
 
 		<!-- <LightSwitch /> -->
