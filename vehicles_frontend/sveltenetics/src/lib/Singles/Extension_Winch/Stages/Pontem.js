@@ -1,16 +1,19 @@
 
+////
+//
+import * as Aptos_SDK from "@aptos-labs/ts-sdk";
+import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+//
+////
+
+import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
+	
 
 export const Pontem_stage_creator = async ({ freight }) => {
 	const Pontem = window.pontem;
 	
 	const _stage = () => {
 		return freight.stages.Pontem;
-		
-		/*
-		return freight.wallets_list.find (w => {
-			return w.name === "Pontem"
-		});
-		*/
 	}
 	
 	return {
@@ -27,6 +30,79 @@ export const Pontem_stage_creator = async ({ freight }) => {
 			address: "",
 			public_key: ""
 		},	
+		
+		// prompting
+		async prompt () {
+			//
+			// signTransaction -- raw transaction
+			// signAndSubmitTransaction -- 
+			//
+			//		https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-62.md
+			//
+			
+			
+			const stage = _stage ();
+			
+			/*
+			const origin_address = address_to_hexadecimal (stage.account.address);
+			const to_address = "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5";
+			
+			console.log ({
+				origin_address,
+				to_address
+			});			
+			
+			const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
+				fullnode: "https://fullnode.devnet.aptoslabs.com/v1",
+				network: Aptos_SDK.Network.CUSTOM
+			}));
+			
+			const functionArguments = [
+				Aptos_SDK.AccountAddress.from (
+					Uint8Array_from_string (to_address)
+				),
+				BigInt ("100000")
+			]
+			
+			console.log ({ functionArguments });
+			
+			const tx1 = await aptos.transaction.build.simple ({
+				sender: Aptos_SDK.AccountAddress.from (
+					Uint8Array_from_string (origin_address)
+				),
+				data: {
+					function: "0x1::aptos_account::transfer",
+					typeArguments: [],
+					functionArguments
+				}
+			});
+			*/
+			
+			const tx = {
+				function: '0x1::coin::transfer',
+				type_arguments: ['0x1::aptos_coin::AptosCoin'],
+				arguments: [
+					'0xeb442855143ce3e26babc6152ad98e9da7db7f0820f08be3d006535b663a6292',
+					'100'
+				]
+			}
+
+			try {
+				const result = await Pontem.signAndSubmit (tx)
+			} 
+			catch (e) {
+				console.log(e);
+			}
+			
+			/*
+			await Pontem.signAndSubmitTransaction ({
+				payload: tx
+			});
+			*/
+			
+			// await Pontem.signTransaction (tx);
+		},
+		
 		async status () {
 			const stage = _stage ();
 			
@@ -97,6 +173,5 @@ export const Pontem_stage_creator = async ({ freight }) => {
 			Pontem.eventListeners.onAccountChange = []
 			Pontem.eventListeners.onNetworkChange = []			
 		}
-	}
-	
+	};
 }

@@ -113,8 +113,6 @@ onDestroy (async () => {
 		flex-direction: column;
 	"
 >
-	
-	
 	<div class="card p-4">
 		<div
 			style="

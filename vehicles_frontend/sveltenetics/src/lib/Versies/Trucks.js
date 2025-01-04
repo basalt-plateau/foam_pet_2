@@ -145,11 +145,18 @@ export const lease_roomies_truck = () => {
 		
 		try {
 			const stage_name = original_freight.stage_name_connected;
-			const stage = original_freight.stages [ stage_name ];
+			const stage = original_freight.stages [ stage_name ];			
 			// console.log ({ stage_name, stage, bracket });
 			
 			const pro_stage_name = pro_freight.stage_name_connected;			
 			const pro_stage = pro_freight.stages [ pro_stage_name ]
+			
+			if (pro_stage_name.length === 0) {
+				trucks [1].freight.wallet.net_path = "";
+				trucks [1].freight.wallet.net_name = "";
+				trucks [1].freight.wallet.chain_id = "";
+				return;
+			}
 			
 
 			if (bracket === original_freight) {

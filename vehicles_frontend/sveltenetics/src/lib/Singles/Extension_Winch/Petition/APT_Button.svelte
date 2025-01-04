@@ -15,7 +15,14 @@
 	/>
 */
 
+////
+//
 import { parse_styles } from '$lib/trinkets/styles/parse'
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+//
+////
+
+let Extension_Winch_Freight = false
 
 export let button_text = ""
 export let APT = ""
@@ -33,6 +40,9 @@ export let permitted = "no"
 		position: relative;
 	"
 >
+	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
+	{#if typeof Extension_Winch_Freight === "object"}
+
 	{#if permitted === "yes" }
 	<button 
 		type="button" 
@@ -155,5 +165,6 @@ export let permitted = "no"
 			"	
 		>{ button_text }</span>
 	</div>
+	{/if}
 	{/if}
 </div>

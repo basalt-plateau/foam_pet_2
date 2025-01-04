@@ -4,17 +4,21 @@
 
 <script>
 
+////
+//
 import { onMount, onDestroy } from 'svelte'
+import * as Aptos_SDK from "@aptos-labs/ts-sdk";
+//
+//
 import * as Mercy_Truck from '$lib/Les_Talents/Mercy/Panel/_Truck/index.js'
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
-
+//
 import Mercy_Sailboat from '$lib/Les_Talents/Mercy/Panel/_Truck/Sailboat.svelte'
-
-import * as Aptos_SDK from "@aptos-labs/ts-sdk";
-import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
-
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
-	
+//
+import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+//
+////
 
 const build_transaction = async () => {
 	const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
@@ -62,17 +66,19 @@ let join = () => {
 let establish = async () => {
 	console.info ("establish", MS_Freight.address_establish);
 	
-	console.log ("flourisher_freight:", { flourisher_freight });
+	console.log ("EWF:", { EWF });
 	console.log ("wallet:", Extension_Winch.wallet)
 	
-	const wallet = flourisher_freight.wallet_core._wallet;
-	console.log ("wallet:", wallet)
+
 	
 	// Extension_Winch.wallet
 	
 	let mercyverse = "10000000000000000000000000000000000000000000000000000000000000000000000000000";
 	
-	flourisher_freight.send_to_extension ({ petition: {} });
+	EWF.prompt ();
+	
+	
+	// EWF.send_to_extension ({ petition: {} });
 	return;
 	
 	
@@ -138,7 +144,7 @@ let establish = async () => {
 	}
 }
 
-let flourisher_freight = Extension_Winch.freight ();
+let EWF = Extension_Winch.freight ();
 let flourisher_monitor;
 onMount (async () => {
 	flourisher_monitor = Extension_Winch.monitor (async ({
@@ -150,7 +156,7 @@ onMount (async () => {
 		property, 
 		value
 	}) => {
-		flourisher_freight = pro_freight;
+		EWF = pro_freight;
 	});
 });
 onDestroy (async () => {
@@ -209,6 +215,8 @@ onDestroy (async () => {
 				button_text="Establish"
 				APT="0"
 				clicked={ establish }
+				
+				permitted={ "yes" }
 			/>
 		</div>
 		

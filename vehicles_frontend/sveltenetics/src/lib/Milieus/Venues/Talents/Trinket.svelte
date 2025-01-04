@@ -41,6 +41,7 @@ import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
 import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
+import APT_Passes from '$lib/Les_Talents/APT_Passes/Frontier/Tome.svelte'
 //
 ////
 
@@ -129,57 +130,11 @@ const mode = check_roomies_truck ().freight.mode;
 			<Mercy_Frontier { modal_store }/>	
 		</Panel>
 		{/if}
-	
-		<Panel styles={ trends.panel }>	
-			<p
-				style="font-size: 1.3em"
-			>
-				<span>APT Entrust</span>
-			</p>
-
-			<div style="height: 0.1cm"></div>
-
-			<p>This requires a <Slang text="Perfume" />.</p>
 		
-			<div class="relative inline-block">
-				<button 
-					aptos_account_transfer
-					
-					on:click={ octas_gifts_v1 }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>Petition</p>
-				</button>
-			</div>
-			
-			<div class="relative inline-block">
-				<button 
-					monitor="give"
-					
-					on:click={ open_consideration_modal }
-					type="button" 
-					
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 36px;
-						margin-top: 10px
-					"
-				>Consent</button>
-			</div>
-			<div style="height: 0.5cm"></div>
+		<Panel styles={ trends.panel }>	
+			<APT_Passes />
 		</Panel>
+		
 		
 		<Panel styles={ trends.panel }>		
 			<div class="relative inline-block">
@@ -235,6 +190,75 @@ const mode = check_roomies_truck ().freight.mode;
 			</div>
 		</Panel>
 	
+	</section>
+	
+	<section
+		monitor="perfume talents"		
+		
+		style={ parse_styles ({
+			position: 'relative',
+			display: 'grid',
+			'width': '100%',
+			'margin': '0 auto',
+			
+			// 'grid-template-columns': 'repeat(auto-fit, minmax(500px, 1fr))',
+			'grid-template-columns': 'repeat(auto-fit, minmax(100px, 500px))',
+			'grid-gap': '10px',
+			'justify-content': 'center',
+			
+			'padding-bottom': '1cm'
+		}) }
+	>
+		<Panel styles={ trends.panel }>	
+			<p
+				style="font-size: 1.3em"
+			>
+				<span>APT Entrust</span>
+			</p>
+
+			<div style="height: 0.1cm"></div>
+
+			<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
+		
+			<div class="relative inline-block">
+				<button 
+					aptos_account_transfer
+					
+					on:click={ octas_gifts_v1 }
+					type="button" 
+					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
+					style="
+						font-size: 1.3em;
+						padding: 12px 54px;
+						margin-top: 10px;
+						
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+					"
+				>
+					<p>Petition</p>
+				</button>
+			</div>
+			
+			<div class="relative inline-block">
+				<button 
+					monitor="give"
+					
+					on:click={ open_consideration_modal }
+					type="button" 
+					
+					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
+					style="
+						font-size: 1.3em;
+						padding: 12px 36px;
+						margin-top: 10px
+					"
+				>Consent</button>
+			</div>
+			<div style="height: 0.5cm"></div>
+		</Panel>
 	</section>
 	
 	

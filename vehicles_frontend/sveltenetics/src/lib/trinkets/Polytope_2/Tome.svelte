@@ -2,26 +2,33 @@
 
 
 
+
+
 <script>
+
+/*
+	import Polytope_2 from '$lib/trinkets/Polytope_2/Tome.svelte'
+	<Polytope_2 
+		bind:this={ polytope_modal }
+		on_prepare={ on_prepare }
+	>
+	
+	</Polytope_2>
+*/
 
 //
 //	https://schum123.github.io/svelte-loading-spinners/
 //
 
-///
-//
-import Unfinished from './Trinkets/Unfinished.svelte'
-//
-//
-import Eternal_1_Progress from '$lib/trinkets/Progress/Eternal_1/Trinket.svelte'
+////
 //
 //
 import { onMount } from 'svelte'
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
-//\
+////
 
-//
+
 const modal_store = getModalStore ();
 
 $: freight = {

@@ -1,5 +1,10 @@
 
-
+/*
+	perhaps relevant:
+		AIP 62 Standard
+		import { RiseWalletAdapter } from '@manahippo/aptos-wallet-adapter';
+		https://docs.risewallet.io/introduction/integrations/integrate-rise-wallet/with-the-wallet-adapter
+*/
 
 /*
 	Freight is the pro (proxy) object with an overriden
@@ -29,6 +34,9 @@ export const Rise_stage_creator = async ({ freight }) => {
 			address: "",
 			public_key: ""
 		},
+
+		
+
 		async status () {
 			const stage = _stage ();
 			

@@ -95,7 +95,7 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 		</nav>
 		
 		<!-- <Net_Trinket /> -->
-		<Online_Caution_Alert />
+		<!-- <Online_Caution_Alert /> -->
 	</div>
 	{/if}
 </div>

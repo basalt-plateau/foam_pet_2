@@ -8,14 +8,13 @@
 
 /*
 	AIP 62:
+		https://aptos.dev/en/build/sdks/wallet-adapter/wallet-standards
+		https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-62.md
+		
+		https://github.com/aptos-labs/aptos-wallet-adapter/blob/main/apps/nextjs-example/src/utils/standardWallet.ts
 
-	https://aptos.dev/en/build/sdks/wallet-adapter/wallet-standards
-	https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-62.md
-	
-	https://github.com/aptos-labs/aptos-wallet-adapter/blob/main/apps/nextjs-example/src/utils/standardWallet.ts
-
-	Hippospace:
-		https://github.com/hippospace/aptos-wallet-adapter/tree/main/packages/aptos-wallet-adapter
+		Hippospace:
+			https://github.com/hippospace/aptos-wallet-adapter/tree/main/packages/aptos-wallet-adapter
 */
 
 /*	
@@ -27,8 +26,6 @@
 		Petra
 		Nightly
 */
-
-
 
 import { build_Rise_bridge } from './Rise_Bridge/index.js'
 import { build_Petra_bridge } from './Petra_Bridge/index.js'

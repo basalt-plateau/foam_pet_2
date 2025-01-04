@@ -36,15 +36,18 @@
 	const EWF = Extension_Winch.freight ();
 */
 
+/*
+	import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+	const EWF = Extension_Winch.freight ();
+	EWF.prompt ();
+*/
+
 
 ////
 //
 //
 import { build_truck } from '@visiwa/trucks'
 //
-//
-import { ask_for_wallets_list } from "./Wallets/ask_for_list.js"
-import { is_wallet_connected_ask_loop } from './_Truck/screenplays/is_wallet_connected'
 //
 import { send_to_extension } from './Petition/send_to_extension.js'
 //
@@ -55,13 +58,8 @@ import { Pontem_stage_creator } from "./Stages/Pontem.js"
 //
 ////
 
-
-
 const trucks = {}
 	
-let the_is_wallet_connected_ask_loop = ""	
-
-
 
 
 
@@ -73,26 +71,12 @@ let the_is_wallet_connected_ask_loop = ""
 export const make = async () => {
 	
 	
-	
 	/*
 		Freight is the "state" or the object that is
 		is monitored.
 	*/
 	trucks [1] = build_truck ({
 		freight: {
-			
-			
-			//////
-			//
-			//	Vintage
-			//
-			wallets_list: [],
-			bridge: null,
-			bridge_is_connected: "no",
-			//
-			////
-						
-			
 			
 			/*
 				These are effectively aliases.
@@ -111,8 +95,12 @@ export const make = async () => {
 			ask_for_stage () {
 				const freight = trucks [1].freight;
 				const stage_name_connected = freight.stage_name_connected;
-
 				return freight.stages [ stage_name_connected ];
+			},
+			
+			async prompt () {
+				const stage = trucks [1].freight.ask_for_stage ();
+				await stage.prompt ();
 			},
 			
 			
@@ -194,9 +182,11 @@ export const make = async () => {
 	trucks [1].freight.stages.Petra = await Petra_stage_creator ({ freight: trucks [1].freight });
 	trucks [1].freight.stages.Pontem = await Pontem_stage_creator ({ freight: trucks [1].freight });
 	
-	await trucks [1].freight.stages.Rise.status ();
-	await trucks [1].freight.stages.Pontem.status ();
-	await trucks [1].freight.stages.Petra.status ();
+	let stages = trucks [1].freight.stages;
+	for (let stage_name in stages) {
+		await trucks [1].freight.stages [ stage_name ].status ();
+	}
+
 	
 	trucks [1].freight.check_for_local_storage_connection ();
 	
@@ -239,14 +229,10 @@ export const make = async () => {
 		}
 	});
 	
-	the_is_wallet_connected_ask_loop = is_wallet_connected_ask_loop ();
-	the_is_wallet_connected_ask_loop.play ();
-	
 	return trucks [1];	
 }
 
 export const destroy = () => {
-	the_is_wallet_connected_ask_loop.stop ();
 	delete trucks [1];
 }
 

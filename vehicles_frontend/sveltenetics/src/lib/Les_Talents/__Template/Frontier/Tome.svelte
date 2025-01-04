@@ -3,7 +3,7 @@
 <script>
 
 /*
-	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Trinket.svelte"
+	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Tome.svelte"
 */
 
 /*
@@ -20,7 +20,7 @@ let open = async () => {
 		type: 'component',
 		backdropClasses: '!p-0',
 		component: {
-			ref: (await import ('./../Panel/Trinket.svelte')).default,
+			ref: (await import ('./../Panel/Tome.svelte')).default,
 			props: { 
 				modal_store
 			}

@@ -23,16 +23,15 @@ Octa_count = APT_count_ask.Octa_count;
 
 
 
+////
 //
-//
-import { Aptos, AptosConfig, AccountAddress, Network } from "@aptos-labs/ts-sdk";
-import Fraction from 'fraction.js';
+// import { Aptos, AptosConfig, AccountAddress, Network } from "@aptos-labs/ts-sdk";
 //
 //
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 import { obtain_string } from '$lib/taverns/procedures/obtain/string'
 //
-//
+////
 
 
 export const ask_APT_count = async ({

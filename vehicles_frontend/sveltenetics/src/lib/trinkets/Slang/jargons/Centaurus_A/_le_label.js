@@ -5,6 +5,9 @@
 	// "Pet": "Orbital Covergence Softwhere",	
 	// "Pet": "Aptos Softwhere",	
 */
+/*
+	Gargantuan Reservoir Wallet Logistics
+*/
 export const le_label = {
 	"Aptos": "Aptos",
 	
@@ -24,6 +27,27 @@ export const le_label = {
 	"towns": "Scroll towns",
 	
 	
-	"this_domain_wallet": "Perfume"
+	////
+	//
+	"wallet": "signatory",
+	"Wallet": "Signatory",
+	//
+	////
+	
+	////
+	//
+	//	Extension Wallet
+	//		Perfume, Nose
+	//
+	"Label_Wallet_Extension": "Scroll Town Perfume",
+
+	////
+	//
+	//	Hardware Wallet
+	//		Perfume
+	//
+	
+	//
+	////
 }
 
