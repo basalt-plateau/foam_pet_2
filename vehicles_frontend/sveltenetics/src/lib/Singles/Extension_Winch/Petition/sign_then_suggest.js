@@ -1,5 +1,0 @@
-
-
-/*
-	signAndSubmitTransaction (transactionInput)
-*/

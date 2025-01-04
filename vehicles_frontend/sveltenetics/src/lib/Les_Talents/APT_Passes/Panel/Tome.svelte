@@ -20,8 +20,21 @@ let polytope_modal;
 let to = "";
 let amount = ""
 const transfer = () => {
-	// const EWF = Extension_Winch.freight ();
-	// EWF.prompt ();
+	/*
+		2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
+	*/
+	
+	const EWF = Extension_Winch.freight ();
+	EWF.prompt ({
+		petition: {
+			function: '0x1::coin::transfer',
+			type_arguments: ['0x1::aptos_coin::AptosCoin'],
+			arguments: [
+				to,
+				amount
+			]
+		}
+	});
 	
 	console.info ("transfer", { to, amount });
 }

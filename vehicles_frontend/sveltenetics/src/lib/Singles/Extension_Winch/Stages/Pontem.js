@@ -32,14 +32,15 @@ export const Pontem_stage_creator = async ({ freight }) => {
 		},	
 		
 		// prompting
-		async prompt () {
+		async prompt ({ petition }) {
+			console.info ({ petition });
+			
 			//
 			// signTransaction -- raw transaction
 			// signAndSubmitTransaction -- 
 			//
 			//		https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-62.md
 			//
-			
 			
 			const stage = _stage ();
 			
@@ -77,18 +78,10 @@ export const Pontem_stage_creator = async ({ freight }) => {
 				}
 			});
 			*/
-			
-			const tx = {
-				function: '0x1::coin::transfer',
-				type_arguments: ['0x1::aptos_coin::AptosCoin'],
-				arguments: [
-					'0xeb442855143ce3e26babc6152ad98e9da7db7f0820f08be3d006535b663a6292',
-					'100'
-				]
-			}
+
 
 			try {
-				const result = await Pontem.signAndSubmit (tx)
+				const result = await Pontem.signAndSubmit (petition)
 			} 
 			catch (e) {
 				console.log(e);

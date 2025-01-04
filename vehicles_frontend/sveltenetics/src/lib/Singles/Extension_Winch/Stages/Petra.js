@@ -44,8 +44,40 @@ export const Petra_stage_creator = async ({ freight }) => {
 			public_key: ""
 		},	
 		
-		async prompt () {
+		async prompt ({ petition }) {
 			const stage = _stage ();
+			
+			/*
+			const transaction = {
+				arguments: [address, '717'],
+				function: '0x1::coin::transfer',
+				type: 'entry_function_payload',
+				type_arguments: ['0x1::aptos_coin::AptosCoin'],
+			};
+			*/
+
+
+			try {
+				const network = await Petra.getNetwork ();
+				const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
+				
+				
+				const aptos_client = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
+					fullnode: network.address,
+					network: Aptos_SDK.Network.CUSTOM
+				}));
+				
+				
+				// const client = new Aptos_SDK.AptosClient (network.address);
+				const txn = await aptos_client.waitForTransactionWithResult (pending_transaction.hash);
+				console.log ({ txn });
+			} 
+			catch (imperfection) {
+				console.error (imperfection);
+			}
+			
+			
+			return;
 			
 			const origin_address = address_to_hexadecimal (stage.account.address);
 			const to_address = "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5";

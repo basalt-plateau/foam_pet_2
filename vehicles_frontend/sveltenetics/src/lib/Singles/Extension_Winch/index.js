@@ -98,9 +98,9 @@ export const make = async () => {
 				return freight.stages [ stage_name_connected ];
 			},
 			
-			async prompt () {
+			async prompt ({ petition }) {
 				const stage = trucks [1].freight.ask_for_stage ();
-				await stage.prompt ();
+				await stage.prompt ({ petition });
 			},
 			
 			

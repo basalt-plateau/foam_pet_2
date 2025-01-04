@@ -1,6 +1,10 @@
 
 <script>
 
+/*
+	Airdrop
+*/	
+
 ////
 ///
 //
@@ -66,8 +70,6 @@ const loop_1 = loop ({
 	wait: 2000,
 	wait_for_response: "yes",
 	action: async () => {
-				
-		
 		const { enhanced, transaction_fiberized } = await find_transaction_by_hash ({
 			net_path,
 			transaction_hash
