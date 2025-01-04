@@ -24,6 +24,7 @@ import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floati
 //
 import Navigator from "$lib/Milieus/Navigator/Trinket.svelte";
 import Footer from "$lib/trinkets/Footer/Trinket.svelte";
+import Cow from "$lib/trinkets/Cow/Trinket.svelte"
 //
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
@@ -40,12 +41,10 @@ import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck
 //\
 //\\
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
-import * as Tesseract_Rise from "$lib/Singles/Tesseract_Rise"
 	
 	
 
 
-import Cow from "$lib/trinkets/Cow/Trinket.svelte"
 
 
 ///

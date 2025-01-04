@@ -1,6 +1,6 @@
 
 
-export const Pontem_stage_creator = ({ freight }) => {
+export const Pontem_stage_creator = async ({ freight }) => {
 	const Pontem = window.pontem;
 	
 	const _stage = () => {

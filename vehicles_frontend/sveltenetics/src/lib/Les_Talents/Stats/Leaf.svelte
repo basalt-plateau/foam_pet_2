@@ -4,6 +4,8 @@
 
 
 /*
+	Position
+
 	.Scoreboard
 	.Stats
 	
@@ -22,6 +24,7 @@
 import { onMount, onDestroy } from 'svelte'
 import { ConicGradient } from '@skeletonlabs/skeleton';
 import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+import _get from 'lodash/get'
 //
 //
 import Panel from '$lib/trinkets/panel/trinket.svelte'
@@ -43,38 +46,9 @@ let RT_Prepared = "no"
 let RT_Monitor;
 $: RT_Freight = ""
 
-let plays = {
-	epoch: "",
-	block_height: ""
-}
 
-$: got_consensus_info = "no"
-const block_height_number = async () => {
-	if (running !== "yes") {
-		return;
-	}
-	
-	const { 
-		enhanced
-	} = await ask_latest_block_number ({
-		net_path: RT_Freight.net_path
-	})
-	plays = enhanced
-	
-	got_consensus_info = "yes"
-	
-	
-	await new Promise ((resolve) => {
-		setTimeout (() => {
-			resolve ()
-		}, 2000)
-	})
-	
-	block_height_number ()
-}
 
 let latest = ""
-let running = "no"
 onMount (() => {
 	const Truck = check_roomies_truck ()
 	RT_Freight = Truck.freight; 
@@ -84,19 +58,11 @@ onMount (() => {
 	})
 	
 	RT_Prepared = "yes"
-	running = "yes"
-	block_height_number ()
-})
+});
 onDestroy (() => {
-	console.log ("on destroy")
 	RT_Monitor.stop ()
-	running = "no"
-})
+});
 
-const conicStops = [
-	{ color: 'transparent', start: 0, end: 25 },
-	{ color: 'rgb(var(--color-primary-500))', start: 75, end: 100 }
-];
 
 </script>
 
@@ -110,7 +76,7 @@ const conicStops = [
 
 </style>
 
-{#if RT_Prepared === "yes" && got_consensus_info === "yes" }
+{#if RT_Prepared === "yes" }
 <Leaf>
 	<Accordion>
 		<AccordionItem>
@@ -127,12 +93,35 @@ const conicStops = [
 						align-items: center;
 						justify-content: center;
 					"
+				>
+					<span class="badge variant-soft-surface">{ RT_Freight.wallet.net_name }</span>
+					<span class="badge variant-soft-surface">{ RT_Freight.wallet.chain_id }</span>
+					<span class="badge variant-soft-surface"
+						style="
+							white-space: pre-wrap;
+						word-break: break-all;
+						overflow-wrap: break-word;
+						"
+					>{ RT_Freight.wallet.net_path }</span>
+				</div>
+			
+				<div
+					style="
+						position: relative;
+						top: 0px;
+						left: 0px;
+						width: 100%;
+						
+						display: inline-flex;
+						gap: 0.2cm;
+						align-items: center;
+						justify-content: center;
+					"
 				>		
 					<Radial_Progress />
 					
-					{#if RT_Freight.net_connected === "yes" }
+					{#if RT_Freight.consensus.connected === "yes" }
 					<div
-						class="badge variant-soft-surface"
 						style="
 							margin: 0;
 							padding: 0.15cm 0.25cm;
@@ -145,18 +134,11 @@ const conicStops = [
 							display: block;
 						"
 					>
-						<span>Connected to</span>
-						<span class="badge variant-soft-surface">{ plays.chain_id }</span>
-						<span class="badge variant-soft-surface">{ RT_Freight.net_name }</span>
-						<span class="badge variant-soft-surface"
-							style="
-								white-space: pre-wrap;
-							word-break: break-all;
-							overflow-wrap: break-word;
-							"
-						>{ RT_Freight.net_path }</span>
+						<span>Connected to Chain ID</span>
+						<span class="badge variant-soft-surface">{ RT_Freight.consensus.status.chain_id }</span>
+						
 						<span>at Epoch</span>
-						<span class="badge variant-soft-surface">{ plays.epoch }</span>
+						<span class="badge variant-soft-surface">{ RT_Freight.consensus.status.epoch }</span>
 					</div>
 					{:else}
 					disconnected from network
@@ -165,6 +147,7 @@ const conicStops = [
 			
 			</svelte:fragment>
 			<svelte:fragment slot="content">
+				{#if RT_Freight.consensus.connected === "yes" }
 				<div
 					style="
 						display: grid;
@@ -184,42 +167,8 @@ const conicStops = [
 							flex-wrap: wrap;
 						"
 					>
-						<span>Net Name</span>
-						{#if got_consensus_info === "yes" }
-						<span class="badge variant-soft-surface">{ RT_Freight.net_name }</span>
-						{/if}
-					</span>
-					<span class="badge variant-soft"
-						style="
-							position: relative;
-							font-size: 1.2em;
-							
-							display: flex;
-							justify-content: center;
-							flex-wrap: wrap;
-						"
-					>
 						<span>Chain ID</span>
-						{#if got_consensus_info === "yes" }
-						<span class="badge variant-soft-surface">{ plays.chain_id }</span>
-						{/if}
-					</span>
-				</div>
-				<div>		
-					<span class="badge variant-soft"
-						style="
-							position: relative;
-							font-size: 1.2em;
-							
-							display: flex;
-							justify-content: center;
-							flex-wrap: wrap;
-						"
-					>
-						<span>Net Path</span>
-						{#if got_consensus_info === "yes" }
-						<span class="badge variant-soft-surface">{ RT_Freight.net_path }</span>
-						{/if}
+						<span class="badge variant-soft-surface">{ RT_Freight.consensus.status.chain_id }</span>
 					</span>
 				</div>
 				
@@ -245,9 +194,7 @@ const conicStops = [
 						"
 					>
 						<span>Epoch</span>
-						{#if got_consensus_info === "yes" }
-						<span class="badge variant-soft-surface">{ plays.epoch }</span>
-						{/if}
+						<span class="badge variant-soft-surface">{ RT_Freight.consensus.status.epoch }</span>
 					</span>
 				
 					<span class="badge variant-soft"
@@ -261,11 +208,9 @@ const conicStops = [
 						"
 					>
 						<span>Block Height</span>
-						{#if got_consensus_info === "yes" }
 						<span class="badge variant-soft-surface">{ 
-							parse_with_commas (plays.block_height) 
+							parse_with_commas ( RT_Freight.consensus.status.block_height) 
 						}</span>
-						{/if}
 					</span>
 				</div>	
 				<div
@@ -292,11 +237,7 @@ const conicStops = [
 						"
 					>
 						<span>Ledger Time</span>
-						{#if got_consensus_info === "yes" }
-						<span class="badge variant-soft-surface">{ 
-							new Date (plays.ledger_timestamp / 1000).toUTCString () 
-						}</span>
-						{/if}
+						<span class="badge variant-soft-surface">{ RT_Freight.consensus.UTC_orbit }</span>
 					</span>
 					
 					<span class="badge variant-soft"
@@ -310,14 +251,12 @@ const conicStops = [
 						"
 					>
 						<span>Ledger Version</span>
-						{#if got_consensus_info === "yes" }
 						<span class="badge variant-soft-surface">{ 
-							parse_with_commas (plays.ledger_version)
+							parse_with_commas (RT_Freight.consensus.status.ledger_version)
 						}</span>
-						{/if}
 					</span>
-					
 				</div>
+				{/if}
 			</svelte:fragment>
 		</AccordionItem>
 	</Accordion>

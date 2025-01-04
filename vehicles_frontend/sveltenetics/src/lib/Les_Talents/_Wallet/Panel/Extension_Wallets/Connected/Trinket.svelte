@@ -4,14 +4,16 @@
 
 
 
-
-// getAccount ();
+////
+// 
 import { onMount, onDestroy } from "svelte"
-import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
-
 import _get from 'lodash/get'
+//
+//
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 import { create_count_loop } from '$lib/PTO/APT/Count_Loop'
-
+//
+////
 
 
 let APT_count = ""
@@ -96,6 +98,14 @@ onDestroy (async () => {
 
 </script>
 
+<style>
+
+[break-letters] {
+	word-break: break-all;
+}
+
+</style>
+
 <div
 	style="
 		display: flex;
@@ -103,13 +113,7 @@ onDestroy (async () => {
 		flex-direction: column;
 	"
 >
-	<div class="card p-4">
-		<button 
-			type="button" 
-			class="btn variant-filled"
-			on:click={ disconnect }
-		>Disconnect</button>
-	</div>
+	
 	
 	<div class="card p-4">
 		<div
@@ -152,19 +156,35 @@ onDestroy (async () => {
 	<div class="card p-4">
 		<div>
 			<span class="badge variant-soft">address</span>
-			<span>{ account_address }</span>
+			<span break-letters>{ account_address }</span>
 		</div>
 		<div>
 			<span class="badge variant-soft">public key</span>
-			<span>{ account_public_key }</span>
+			<span break-letters>{ account_public_key }</span>
 		</div>
 	</div>
 
 	
 	<div class="card p-4">
-		<div>network name: { network_name }</div>
-		<div>network address: { network_address }</div>
-		<div>network chain id: { network_chain_id }</div>
-		
+		<div>
+			<span class="badge variant-soft">network name</span>
+			<span>{ network_name }</span>
+		</div>
+		<div>
+			<span class="badge variant-soft">network address</span>
+			<span break-letters>{ network_address }</span>
+		</div>
+		<div>
+			<span class="badge variant-soft">network chain id</span>
+			<span>{ network_chain_id }</span>
+		</div>
+	</div>
+	
+	<div class="card p-4">
+		<button 
+			type="button" 
+			class="btn variant-filled"
+			on:click={ disconnect }
+		>Disconnect</button>
 	</div>
 </div>

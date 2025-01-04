@@ -5,17 +5,22 @@
 			prototype
 				isConnected
 */
-export const Petra_stage_creator = ({ freight }) => {
+export const Petra_stage_creator = async ({ freight }) => {
 	const Petra = window.petra;
 	
 	const _stage = () => {
 		return freight.stages.Petra;
+	}
+	
+	const reset = async () => {
+		const stage = _stage ();
+					
+		stage.account.address = "";
+		stage.account.public_key = "";
 		
-		/*
-		return freight.wallets_list.find (w => {
-			return w.name === "Petra"
-		});
-		*/
+		stage.network.name = "";
+		stage.network.address = "";
+		stage.network.chain_id = "";
 	}
 	
 	return {
@@ -32,16 +37,6 @@ export const Petra_stage_creator = ({ freight }) => {
 			address: "",
 			public_key: ""
 		},	
-		async reset () {
-			const stage = _stage ();
-					
-			stage.account.address = "";
-			stage.account.public_key = "";
-			
-			stage.network.name = "";
-			stage.network.address = "";
-			stage.network.chain_id = "";
-		},
 		async status () {
 			const stage = _stage ();
 			
@@ -49,13 +44,13 @@ export const Petra_stage_creator = ({ freight }) => {
 				stage.installed = await stage.is_installed ();
 				if (stage.installed !== "yes") {
 					stage.connected = "no"
-					stage.reset ();
+					reset ();
 					return;
 				}
 				
 				stage.connected = await stage.is_connected ();
 				if (stage.installed !== "yes") {
-					stage.reset ();
+					reset ();
 					return;
 				}
 

@@ -20,13 +20,15 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 //
 import { the_ledger_ask_loop_creator } from './Screenplays/is_connected'
+import { ask_for_mode } from './Screenplays/ask_for_mode.js'
+import { ask_for_commas_every } from './Screenplays/ask_for_commas_every.js'
+import { ask_for_slang } from './Screenplays/ask_for_slang.js'
+import { ask_for_origin_address } from './Screenplays/ask_for_origin_address.js'
+import { ask_for_wallet_network } from './Screenplays/ask_for_wallet_network.js'
 //
 ////
 
-
-
-
-
+	
 
 
 let the_ledger_ask_loop;
@@ -61,137 +63,124 @@ const monitor_window = ({ truck }) => {
 
 
 
-const retrieve_network = () => {
-	let net_path = "https://api.mainnett.aptoslabs.com/v1"
-	let net_name = "mainnet"
-	let chain_id = ""
-	
-	let EW_freight = Extension_Winch.freight ();
-	if (EW_freight.bridge_is_connected === "yes") {
-		const network = EW_freight.bridge.network;
-		net_path = network.address;
-		net_name = network.name;
-		chain_id = network.chain_id;
-	}
-	else {
-		if (typeof localStorage.net_name === "string") {
-			net_name = localStorage.net_name	
-		}
-		if (typeof localStorage.net_path === "string") {
-			net_path = localStorage.net_path	
-		}
-	}
-	
-	return { net_name, net_path };
-}
 
 
 let Extension_Winch_Monitor;
 export const lease_roomies_truck = () => {
 	const the_domain = window.location.hostname;
 	
-	/*
-	let net_path = "https://api.mainnet.aptoslabs.com/v1"
-	let net_name = "mainnet"
-	if (typeof localStorage.net_name === "string") {
-		net_name = localStorage.net_name	
-	}
-	if (typeof localStorage.net_path === "string") {
-		net_path = localStorage.net_path	
-	}
-	*/
+	const wallet_network = ask_for_wallet_network ();
+	let origin_address = ask_for_origin_address ();
+	let mode = ask_for_mode ();
+	let commas_every = ask_for_commas_every ();
+	let use_slang = ask_for_slang ();
 	
-	const { net_path, net_name } = retrieve_network ();
-
-	
-	let mode = "business"
-	if (typeof localStorage.mode === "string") {
-		mode = localStorage.mode	
-	}
-	
-	
-	// let origin_address = "http://localhost:22000"
-	// let origin_address = "https://" + the_domain;
-	// let origin_address = "/";
-	let origin_address = "https://foam.pet";
-	if (typeof localStorage.origin_address === "string") {
-		origin_address = localStorage.origin_address	
-	}
-	
-	
-	let commas_every = 5
-	if (typeof localStorage.commas_every === "string") {
-		try {
-			assert_is_natural_numeral_string (localStorage.commas_every)
-			commas_every = parseInt (localStorage.commas_every)
-		}		
-		catch (exception) {
-			// Like if the assertion failed.. exception note not important.
-			// console.info (exception)
-		}
-	}
-	
-	
-	let use_slang = "yes"
-	if (typeof localStorage.use_slang === "string") {
-		use_slang = localStorage.use_slang	
-	}
-
-	
+	const { net_path, net_name } = wallet_network;
 	
 	trucks [1] = build_truck ({
 		freight: {
-			/*
-				business: 
-					The actual mode of the package that's sent.
-				
-				nurture: 
-					For building, this has features that are being raised.
-				location
-				[ "nurture", "business" ]
-				 
-				import { check_roomies_truck } from '$lib/Versies/Trucks'
-				const mode = check_roomies_truck ().freight.mode;
-				{#if mode === "nurture" }
-				{/if}
-			*/
-			//mode: "business",
 			mode,
-			
 			origin_address,
-			
-			net_path,
-			net_name,
-			
-			net_connected: "no",
-			
 			use_slang,
-			
 			commas_every,
 			
-			// deep_example_1: { deep_example_2: 1 },
+			////
+			//
+			//	These are vintage ::::: being phased out.
+			//
+			//
+			net_path,
+			net_name,
+			net_connected: "no",
+			//
+			aptos: new AptosSDK.Aptos (
+				new AptosSDK.AptosConfig ({		
+					fullnode: net_path,
+					network: AptosSDK.Network.CUSTOM
+				})
+			),
+			//
+			////
+			
+			
+			wallet: wallet_network,
+			consensus: {
+				connected: "",
+				aptos: "",
+				
+				status: {}			
+			},
 			
 			
 			window_width: window.innerWidth,
-			
 			layout: {
 				leaf_styles: parse_styles ({
 					margin: '0 auto',
 					'max-width': '64rem',
 					width: '100%'
 				})
-			},
-			
-			aptos: new AptosSDK.Aptos (
-				new AptosSDK.AptosConfig ({		
-					fullnode: net_path,
-					network: AptosSDK.Network.CUSTOM
-				})
-			)
+			}
 		}
 	})
 	
 	
+	const change_wallet_net = (pro_stage) => {
+		console.info ({ pro_stage });
+		
+		trucks [1].freight.wallet.net_path = pro_stage.network.address;
+		trucks [1].freight.wallet.net_name = pro_stage.network.name;
+		trucks [1].freight.wallet.chain_id = pro_stage.network.chain_id;		
+	}
+	
+	const intercept_extension_winch = async ({
+		original_freight,
+		pro_freight, 
+		//
+		bracket,
+		//
+		property, 
+		value
+	}) => {
+		console.info ("🧞‍♀️ extension changed:", { original_freight, bracket, property, value });
+		
+		try {
+			const stage_name = original_freight.stage_name_connected;
+			const stage = original_freight.stages [ stage_name ];
+			// console.log ({ stage_name, stage, bracket });
+			
+			const pro_stage_name = pro_freight.stage_name_connected;			
+			const pro_stage = pro_freight.stages [ pro_stage_name ]
+			
+
+			if (bracket === original_freight) {
+				if (property === "stage_name_connected") {
+					console.info ("🔮 stage_name_connected changed");
+					change_wallet_net (pro_stage);
+				}
+			}
+			
+			if (bracket === stage.network) {
+				if (property === "address") {
+					console.info ("🔮 network address changed");
+					
+					change_wallet_net (pro_stage);
+				}
+				if (property === "name") {
+					console.info ("🔮 network name changed");
+					
+					change_wallet_net (pro_stage);
+				}
+			}
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
+	};
+	
+	/*
+		The extension winch is built before the Versies truck,
+		therefore can access it here.
+	*/
 	Extension_Winch_Monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
@@ -202,37 +191,15 @@ export const lease_roomies_truck = () => {
 		value
 	}) => {
 		// flourisher_freight = pro_freight;
-		
-		console.info ("😂 extension changed:", { original_freight, bracket, property, value });
-		
-		try {
-			const stage_name = original_freight.stage_name_connected;
-			const stage = original_freight.stages [ stage_name ];
-			console.log ({ stage_name, stage, bracket });
-			
-			// 
-			//	bridge.network.address
-			//	bridge.network.chain_id
-			//	bridge.network.name
+		intercept_extension_winch ({
+			original_freight,
+			pro_freight, 
 			//
-			console.log (bracket === stage);
-			
-			if (bracket === stage.network) {
-				if (property === "address") {
-					console.info ("😂😂😂😂 network address changed");
-					
-					trucks [1].freight.net_path = value;
-				}
-				if (property === "name") {
-					console.info ("😂😂😂😂 network name changed");
-					
-					trucks [1].freight.net_name = value;
-				}
-			}
-		}
-		catch (imperfection) {
-			// console.error (imperfection);
-		}
+			bracket,
+			//
+			property, 
+			value
+		});
 	});
 	
 	monitor_window ({

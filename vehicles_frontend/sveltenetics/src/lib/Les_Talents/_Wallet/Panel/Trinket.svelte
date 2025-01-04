@@ -4,7 +4,33 @@
 
 
 
-
+/*
+	Wallet Sensors:
+	
+		Event Horizon
+		Frontier
+		
+		4D:
+			Duoprism
+		
+			Hypersphere
+			
+			Ellipsoid
+			Spherinder
+			
+		Torus	
+			
+		Trigintaduonion
+		
+		
+		Tunnels:
+			.Spin
+			
+			.Sensors
+			
+			* Send Wish
+			* Send Consent
+*/
 
 ////
 //
@@ -23,11 +49,13 @@ import Perfume from "$lib/Perfume/Trinket.svelte"
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 //
 //
-import Wallet_Polytope from './Wallet_Polytope/Fabric.svelte'
+import Wallet_Polytope from './Polytope/Tome.svelte'
 import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
 //
 ////
 
+
+	
 
 let Extension_Winch_Freight = false
 
@@ -50,32 +78,6 @@ const on_prepare = () => {
 		return _merge ({}, freight, {
 			showing: 'yes',
 			
-			/*
-				Wallet..
-					Event Horizon
-					Frontier
-					
-					4D:
-						Duoprism
-					
-						Hypersphere
-						
-						Ellipsoid
-						Spherinder
-						
-					Torus	
-						
-					Trigintaduonion
-					
-					
-					Tunnels:
-						.Spin
-						
-						.Sensors
-						
-						* Send Wish
-						* Send Consent
-			*/
 			name: 'Wallet Sensors',
 			
 			unfinished: {
@@ -95,7 +97,6 @@ const on_prepare = () => {
 
 let is_connected = "perhaps"
 let wallets_show = []
-
 
 
 let le_wallet_link = "";
@@ -146,6 +147,7 @@ let leaf = "Extensions"
 				gap: 0.25cm;
 			"
 		>
+			{#if Extension_Winch_Freight.stage_name_connected.length === 0 }
 			<div>
 				<RadioGroup>
 					<RadioItem 
@@ -160,6 +162,7 @@ let leaf = "Extensions"
 					>Perfume</RadioItem>
 				</RadioGroup>
 			</div>
+			{/if}
 		
 			{#if leaf === "Extensions" }
 			<Extension_Wallets />

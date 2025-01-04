@@ -8,17 +8,11 @@
 	Modifying "this" as it pertains to the object won't
 	alert the monitor as to changes in the wallet talkie.
 */
-export const Rise_stage_creator = ({ freight }) => {
+export const Rise_stage_creator = async ({ freight }) => {
 	const rise = window.rise;
 	
 	const _stage = () => {
 		return freight.stages.Rise;
-		
-		/*
-		return freight.wallets_list.find (w => {
-			return w.name === "Rise"
-		});
-		*/
 	}
 	
 	return {
@@ -56,6 +50,17 @@ export const Rise_stage_creator = ({ freight }) => {
 				}
 				
 				stage.connected = await stage.is_connected ();
+				
+				if (stage.connected !== "yes") {
+					stage.account.address = "";
+					stage.account.public_key = "";
+					
+					stage.network.name = "";
+					stage.network.address = "";
+					stage.network.chain_id = "";
+					
+					return;
+				}
 
 				const account = await rise.account ();
 				stage.account.address = account.address;
@@ -82,7 +87,7 @@ export const Rise_stage_creator = ({ freight }) => {
 		async is_connected () {
 			const stage = _stage ();
 			
-			if (stage.is_installed () !== "yes") { return "no" }
+			if (await stage.is_installed () !== "yes") { return "no" }
 			
 			try {
 				if (rise.isConnected () === true) {

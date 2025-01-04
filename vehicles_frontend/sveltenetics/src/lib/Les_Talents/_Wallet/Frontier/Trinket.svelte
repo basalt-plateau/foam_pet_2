@@ -47,6 +47,8 @@ let open = async () => {
 
 
 let wallet_address = ""
+let wallet_provider = "?"
+
 let mounted = "no"
 let flourisher_freight = ""
 let flourisher_monitor = ""
@@ -62,10 +64,10 @@ onMount (() => {
 		value
 	}) => {
 		flourisher_freight = pro_freight;
-		wallet_address = ask_for_wallet_address ();
+		ask_for_wallet_address ();
 	});
 	
-	wallet_address = ask_for_wallet_address ();
+	ask_for_wallet_address ();
 	mounted = "yes"
 });
 onDestroy (() => {
@@ -75,30 +77,29 @@ onDestroy (() => {
 
 const ask_for_wallet_address = () => {
 	try {
+		if (flourisher_freight.stage_name_connected.length === 0) {
+			return;
+		}
+		
 		let stage = flourisher_freight.ask_for_stage ();
-		console.log ({ stage });
 		
 		let address = stage.account.address;
 		if (address.substring (0,2) === "0x") {
 			address = address.substring (2);
 			address = address.toUpperCase ();
-			return address.substring (0,4) + ".." + address.substring (address.length - 4);
+			wallet_address = address.substring (0,4) + ".." + address.substring (address.length - 4);
 		}
 		
-		/*
-		let address = flourisher_freight.bridge.account.address;
-		if (address.substring (0,2) === "0x") {
-			address = address.substring (2);
-			address = address.toUpperCase ();
-			return address.substring (0,3) + ".." + address.substring (address.length - 3);
-		}
-		*/
+		wallet_provider = flourisher_freight.stage_name_connected;
+		
+		return;
 	}
 	catch (imperfection) {
 		console.error ("wallet address imperfection:", imperfection);
 	}
 
-	return "Connected";
+	wallet_provider = "?";
+	wallet_address = "?";
 }
 
 </script>
@@ -124,7 +125,29 @@ const ask_for_wallet_address = () => {
 	"
 >
 	{#if flourisher_freight.stage_name_connected.length >= 1 }
-	{ wallet_address }
+	<span
+		style="
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+			transform: translateY(-4px);
+		"
+	>
+		<span
+			style="
+				height: 1em;
+				font-size: 0.75em;
+			"
+		>{ wallet_address }</span>
+		<span
+			style="
+				height: 1em;
+				font-size: 0.65em;
+			"
+		>{ wallet_provider }</span>
+	</span>
 	{:else}
 	Wallet
 	{/if}

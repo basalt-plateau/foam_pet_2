@@ -2,7 +2,7 @@
 
 <script>
 
-//
+////
 //
 import { onMount, onDestroy } from 'svelte'
 //
@@ -15,9 +15,8 @@ import Wallet_Frontier from "$lib/Les_Talents/_Wallet/Frontier/Trinket.svelte"
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
-//
+////
 
-	
 	
 let mode = check_roomies_truck ().freight.mode;
 let window_width = check_roomies_truck ().freight.window_width;
@@ -45,7 +44,6 @@ onDestroy (() => {
 let Milieus_Freight = false;
 $: {
 	let _ = Milieus_Freight;
-	
 }
 	
 
@@ -67,9 +65,6 @@ const build = () => {
 		loyals_button_styles = {}
 	}
 }
-
-
-
 
 
 

@@ -31,8 +31,13 @@
 	});
 */
 
+/*
+	import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+	const EWF = Extension_Winch.freight ();
+*/
 
-//
+
+////
 //
 //
 import { build_truck } from '@visiwa/trucks'
@@ -43,6 +48,13 @@ import { is_wallet_connected_ask_loop } from './_Truck/screenplays/is_wallet_con
 //
 import { send_to_extension } from './Petition/send_to_extension.js'
 //
+import { Rise_stage_creator } from "./Stages/Rise.js"
+import { Petra_stage_creator } from "./Stages/Petra.js"
+import { Pontem_stage_creator } from "./Stages/Pontem.js"
+//
+//
+////
+
 
 
 const trucks = {}
@@ -50,9 +62,7 @@ const trucks = {}
 let the_is_wallet_connected_ask_loop = ""	
 
 
-import { Rise_stage_creator } from "./Stages/Rise.js"
-import { Petra_stage_creator } from "./Stages/Petra.js"
-import { Pontem_stage_creator } from "./Stages/Pontem.js"
+
 
 
 
@@ -179,25 +189,10 @@ export const make = async () => {
 		}
 	});
 	
-	/*
-	const Rise_stage = Rise_stage_creator ({ freight: trucks [1].freight });
-	const Pontem_stage = Pontem_stage_creator ({ freight: trucks [1].freight });
-	const Petra_stage = Petra_stage_creator ({ freight: trucks [1].freight });
-	*/
 
-	trucks [1].freight.stages.Rise = Rise_stage_creator ({ freight: trucks [1].freight });
-	trucks [1].freight.stages.Petra = Petra_stage_creator ({ freight: trucks [1].freight });
-	trucks [1].freight.stages.Pontem = Pontem_stage_creator ({ freight: trucks [1].freight });
-	
-	
-	/*
-	trucks [1].freight.wallets_list.push (Rise_stage)
-	trucks [1].freight.wallets_list.push (Pontem_stage)
-	trucks [1].freight.wallets_list.push (Petra_stage)
-	*/
-	
-	
-	// trucks [1].freight.stages.Rise = Rise_stage;
+	trucks [1].freight.stages.Rise = await Rise_stage_creator ({ freight: trucks [1].freight });
+	trucks [1].freight.stages.Petra = await Petra_stage_creator ({ freight: trucks [1].freight });
+	trucks [1].freight.stages.Pontem = await Pontem_stage_creator ({ freight: trucks [1].freight });
 	
 	await trucks [1].freight.stages.Rise.status ();
 	await trucks [1].freight.stages.Pontem.status ();

@@ -11,6 +11,17 @@
 	})
 	
 	loop_1.play ()
+		//
+		//	This is like a planet spinning,
+		//	Action happens, then like clock
+		//	starts another action.
+		//
+		//	Example:
+		// 		Action
+		// 		await 2000 -> Action
+		// 		await 2000 -> Action
+		//
+	
 	loop_1.stop ()
 	loop_1.play ()
 */
@@ -27,8 +38,40 @@
 	})
 	
 	loop_1.play ()
+		//
+		//	This waits for action to complete,
+		//	before starting wait period.
+		//
+		// await Action
+		// await 2000
+		// await Action
+		// await 2000
+		//
+	
 	loop_1.stop ()
 	loop_1.play ()
+*/
+
+/*
+	Action
+	wait 2000
+	Action
+	wait 2000
+*/
+
+/*
+	wait_for_response = "yes"
+	
+		This waits for the action to complete
+		before starting the next cycle.
+		
+		
+	wait_for_response = "no"
+	
+		This is like a planet orbiting a star.
+		
+		The next cycle starts without waiting
+		for the action to complete.
 */
 
 
@@ -76,10 +119,6 @@ export const loop = ({
 				the_loop ()
 			}
 		},
-		/*pause: () => {
-			clearTimeout (timeout)
-			playing = "no"
-		},*/
 		stop: () => {
 			clearTimeout (timeout)
 			playing = "no"
