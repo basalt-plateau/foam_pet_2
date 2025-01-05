@@ -196,6 +196,7 @@ $: {
 		<RadioItem bind:group={theme} name="justify" value="Motto">Motto</RadioItem>	
 		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="Oceans">Oceans</RadioItem>		
 	</RadioGroup>
 
 	<div style="height: 0.2cm"></div>

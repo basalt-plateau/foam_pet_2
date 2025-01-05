@@ -8,9 +8,15 @@ export const PTO_theme = {
 		"--theme-font-family-heading": `system-ui`,
 		"--theme-font-color-base": "0 0 0",
 		"--theme-font-color-dark": "255 255 255",
-		"--theme-rounded-base": "9999px",
-		"--theme-rounded-container": "12px",
-		"--theme-border-base": "2px",
+		
+		"--theme-rounded-base": "8px",
+		"--theme-rounded-container": "8px",
+		"--theme-border-base": "8px",
+		
+
+		// "--theme-rounded-base": "9999px",
+		// "--theme-rounded-container": "12px",
+		// "--theme-border-base": "2px",
 		
 		
 		// =~= Theme On-X Colors =~=
