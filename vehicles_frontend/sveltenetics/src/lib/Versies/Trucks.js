@@ -164,7 +164,7 @@ export const lease_roomies_truck = () => {
 			
 			// const wallet_chain_id = pro_freight.network_status.status.chain_id;
 			
-			const wallet_chain_id = pro_freight.stage.network.chain_id;
+			const wallet_chain_id = parseInt (pro_freight.stage.network.chain_id);
 			const dapp_chain_id = trucks [1].freight.dapp_network.status.chain_id;
 		
 			console.log ({ wallet_chain_id, dapp_chain_id });

@@ -5,15 +5,21 @@
 import _get from 'lodash/get'
 
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
-let Versies_Freight = false
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 
+let Versies_Freight = false
+let Extension_Winch_Freight = false
 
 </script>
 
 <div>
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />	
+	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
+	
 	{#if 
-		typeof Versies_Freight === "object"
+		typeof Versies_Freight === "object" && 
+		typeof Extension_Winch_Freight === "object" &&
+		Extension_Winch_Freight.stage_name_connected.length >= 1
 	}
 	<div
 		style="

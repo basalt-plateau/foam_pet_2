@@ -162,29 +162,7 @@ const mode = check_roomies_truck ().freight.mode;
 		</Panel>
 		
 		
-		<Panel styles={ trends.panel }>		
-			<div class="relative inline-block">
-				<button 
-					monitor="bit pitch"
-					
-					on:click={ () => { open_bit_throw ({ modal_store }); } }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>Bit Pack</p>
-				</button>
-			</div>
-		</Panel>
+		
 		
 		{#if mode === "nurture" }
 		<Panel styles={ trends.panel }>	
@@ -242,9 +220,8 @@ const mode = check_roomies_truck ().freight.mode;
 				<span>APT Entrust</span>
 			</p>
 
-			<div style="height: 0.1cm"></div>
 
-			<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
+			
 		
 			<div class="relative inline-block">
 				<button 
@@ -283,9 +260,42 @@ const mode = check_roomies_truck ().freight.mode;
 					"
 				>Consent</button>
 			</div>
-			<div style="height: 0.5cm"></div>
+
+			<div style="height: 0.1cm"></div>
+
+
+			<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
+			
+		</Panel>
+		
+		<Panel styles={ trends.panel }>		
+			<div class="relative inline-block">
+				<button 
+					monitor="bit pitch"
+					
+					on:click={ () => { open_bit_throw ({ modal_store }); } }
+					type="button" 
+					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
+					style="
+						font-size: 1.3em;
+						padding: 12px 54px;
+						margin-top: 10px;
+						
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+					"
+				>
+					<p>Bit Pack</p>
+				</button>
+			</div>
+			<div style="height: 0.25cm" />
+			<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
 		</Panel>
 	</section>
+	
+	
 	
 	
 	{#if mode === "nurture" }

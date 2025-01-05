@@ -14,7 +14,34 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 ////
 
+import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
 
+let origin_address = {
+	effective: "no",
+	address_hexadecimal_string: "",
+	exception: ""
+}
+
+const on_change = ({
+	effective,
+	address_hexadecimal_string,
+	exception
+}) => {
+	origin_address.effective = effective;
+	origin_address.address_hexadecimal_string = address_hexadecimal_string;
+	origin_address.exception = exception;
+}
+
+//
+// This is for electing the original value of the trinket.
+//
+//
+let address_trinket = ""
+const on_prepare = () => {
+	address_trinket.change_address_hexadecimal_string ("")
+}
+
+	
 let polytope_modal;
 
 let to = "";
@@ -30,7 +57,7 @@ const transfer = () => {
 			function: '0x1::coin::transfer',
 			type_arguments: ['0x1::aptos_coin::AptosCoin'],
 			arguments: [
-				to,
+				origin_address.address_hexadecimal_string,
 				amount
 			]
 		}
@@ -42,7 +69,7 @@ const transfer = () => {
 
 
 let prepared = "no"
-const on_prepare = () => {
+const on_polytope_2_prepare = () => {
 	prepared = "yes"
 }
 
@@ -52,16 +79,13 @@ const on_prepare = () => {
 
 <Polytope_2 
 	bind:this={ polytope_modal }
-	on_prepare={ on_prepare }
+	on_prepare={ on_polytope_2_prepare }
 >
-	<div slot="leaves"
+	<div 
+		slot="leaves"
 		style="
 			height: 100%;
 			width: 100%;
-			
-			display: flex;
-			justify-content: center;
-			align-items: center;
 		"
 	>
 		{#if prepared === "yes" }
@@ -72,14 +96,6 @@ const on_prepare = () => {
 				width: 100%;
 				
 				padding: 1cm;
-				
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				
-				flex-direction: column;
-				
-				gap: 0.5cm;
 			"
 		>
 			<header
@@ -101,55 +117,55 @@ const on_prepare = () => {
 					"
 				>Transfer APT</header>
 				
-				<label 
+				<div 
 					style="
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						gap: 0.25cm;
+						width: 100%;
 					"
-					class="label"
+					class="card p-4"
 				>
-					<span
-						style="
-							min-width: 2cm;
-						"
-					>To</span>
-					<input
-						bind:value={ to }
-						style="
-							padding: 0.25cm;
-						"
-						class="input" 
-						type="text" 
-						placeholder="To" 
+					<Address_Qualities_Trinket 
+						name="Origin Address"
+					
+						bind:this={ address_trinket }
+						
+						on_change={ on_change }
+						on_prepare={ on_prepare }
 					/>
-				</label>
+				</div>
 				
-				<label 
+				<div style="height: 0.25cm" />
+				
+				<div 
 					style="
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						gap: 0.25cm;
+						width: 100%;
 					"
-					class="label"
+					class="card p-4"
 				>
-					<span
+					<label 
 						style="
-							min-width: 2cm;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							gap: 0.25cm;
 						"
-					>Amount</span>
-					<input
-						bind:value={ amount }
-						style="
-							padding: 0.25cm;
-						"
-						class="input" 
-						type="text" 
-						placeholder="Amount" 
-					/>
-				</label>
+						class="label"
+					>
+						<span
+							style="
+								min-width: 2cm;
+							"
+						>Amount</span>
+						<input
+							bind:value={ amount }
+							style="
+								padding: 0.25cm;
+							"
+							class="input" 
+							type="text" 
+							placeholder="Amount" 
+						/>
+					</label>
+				</div>
 				
 				<div
 					style="
@@ -166,12 +182,21 @@ const on_prepare = () => {
 						type="button" 
 						style="
 							padding: 0.25cm 2cm;
+							display: flex;
+							flex-direction: column;
 						"
 						class="btn variant-filled"
-					>Transfer</button>
+					>
+						<p>Transfer</p>
+						<p style="font-size: 0.75em">(this requires a gas fee)</p>
+					</button>
 				</div>
 			</div>
+			
+				
 		</div>
 		{/if}
+		
+		<div style="height: 12cm" />	
 	</div>
 </Polytope_2>
