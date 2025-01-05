@@ -16,7 +16,7 @@ import { Hacienda_Theme } from './_themes/skeleton.hacienda.theme'
 import { Motto_Theme } from './_themes/skeleton.motto.theme'
 import { Gauze_Theme } from './_themes/skeleton.Gauze.theme'
 import { Domes_Theme } from './_themes/skeleton.Domes.theme'
-import { Oceans_Theme } from './_themes/skeleton.Oceans.theme'
+import { HD_Theme } from './_themes/skeleton.HD.theme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -52,7 +52,7 @@ export default {
 					Motto_Theme,
 					Gauze_Theme,
 					Domes_Theme,
-					Oceans_Theme
+					HD_Theme
 					
 					// Rust_Theme, 
 					// Established_Theme 

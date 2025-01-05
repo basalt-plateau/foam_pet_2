@@ -243,7 +243,8 @@ html {
 		/* background: linear-gradient(10deg, #d2b99cf2, #dfd0b582) */
 		/* background: linear-gradient(10deg, #8cb1eaf2, #d7d6e6) */
 		/* background: linear-gradient(5deg, rgb(var(--color-warning-100)), rgb(var(--color-secondary-600))) */
-		background: linear-gradient(5deg, rgb(var(--color-surface-100)), rgb(var(--color-secondary-600)))		
+		background: linear-gradient(5deg, rgb(var(--color-surface-100)), rgb(var(--color-surface-600)))
+		
 	}
 }
 html.dark {

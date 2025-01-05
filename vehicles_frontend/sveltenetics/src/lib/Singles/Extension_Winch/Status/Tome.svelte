@@ -60,8 +60,6 @@ let EWF = false
 				>Wallet Network Status</p>
 				<hr />
 				
-				{#if EWF.stage_name_connected.length >= 1 }
-				
 				<div
 					style="
 						position: relative;
@@ -77,7 +75,7 @@ let EWF = false
 				>		
 					<Radial_Progress />
 					
-					{#if EWF.stage_name_connected.length >= 1 }
+					
 					<div
 						style="
 							margin: 0;
@@ -91,6 +89,8 @@ let EWF = false
 							display: block;
 						"
 					>
+						{#if EWF.stage_name_connected.length >= 1 }
+					
 						<span>Connected to</span>
 						<span class="badge variant-soft-surface">{ _get (EWF, [ "stage", "network", "chain_id" ], "") }</span>
 						<span class="badge variant-soft-surface"
@@ -100,22 +100,17 @@ let EWF = false
 								overflow-wrap: break-word;
 							"
 						>{ _get (EWF, [ "stage", "network", "address" ], "") }</span>
+						
+						{:else}
+						<p
+							style="
+								text-align: center;
+							"
+						><span class="badge variant-filled-error">A wallet is not connected.</span></p>
+						{/if}
 					</div>
-					{:else}
-					<p
-						style="
-							text-align: center;
-						"
-					><span class="badge variant-soft-surface">A wallet is not connected.</span></p>
-					{/if}
+					
 				</div>
-				{:else}
-				<p
-					style="
-						text-align: center;
-					"
-				><span class="badge variant-soft-surface">A wallet is not connected.</span></p>
-				{/if}
 			</svelte:fragment>
 			<svelte:fragment slot="content">
 				{#if EWF.stage_name_connected.length >= 1 }
