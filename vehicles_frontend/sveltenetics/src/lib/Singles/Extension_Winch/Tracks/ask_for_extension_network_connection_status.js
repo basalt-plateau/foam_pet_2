@@ -1,12 +1,18 @@
 
+
+
 /*
-	import { the_ledger_ask_loop } from './Screenplays/is_connected'
+	import { ask_for_extension_network_connection_status } from './Tracks/ask_for_extension_network_connection_status'
+	const extension_network_connection_status_track = ask_for_extension_network_connection_status ();
+	extension_network_connection_status_track.play ();
+	extension_network_connection_status_track.stop ();	
 */
 
 
 ////
 //
 import * as AptosSDK from "@aptos-labs/ts-sdk";
+import _get from "lodash/get"
 //
 //
 import { loop } from '$lib/taverns/loop'
@@ -15,6 +21,8 @@ import { ask_for_freight } from '$lib/Versies/Trucks'
 //
 ///
 
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+		
 let ledger_ask_count = 0;
 
 /*
@@ -23,25 +31,28 @@ let ledger_ask_count = 0;
 	await Action ()
 	await 2000	
 */
-export const the_ledger_ask_loop_creator = () => {
+export const ask_for_extension_network_connection_status = () => {
 	return loop ({
 		wait: 2000,
 		wait_for_response: "yes",
 		action: async () => {
-			const freight = ask_for_freight ();
-			const net_path = freight.wallet.net_path;
-			const there_is_a_net_path = typeof net_path === "string" && net_path.length >= 1;
-			
-			
 			/*
 			
 				This relies on "net_path"
 			
-			*/
+			*/			
+			const EWF = Extension_Winch.freight ();
+			const net_path = _get (EWF, [ "stage", "network", "address" ], "");
+			
+			// console.log ({ net_path, network: EWF.stage.network.address });
+			
+			const there_is_a_net_path = typeof net_path === "string" && net_path.length >= 1;			
 			if (there_is_a_net_path !== true) {
 				console.info (`There's not a "net path" for the ledger loop.`)
 				return;
 			}
+
+			// EWF.network_status
 			
 			ledger_ask_count += 1
 			const current_ledger_ask_count = ledger_ask_count;
@@ -53,10 +64,9 @@ export const the_ledger_ask_loop_creator = () => {
 				//	the info that was returned from the ask.
 				//
 				if (ledger_ask_count == current_ledger_ask_count) {
-					freight.net_connected = "yes"
 					
-					freight.consensus.connected = "yes"
-					freight.consensus.aptos = new AptosSDK.Aptos (
+					EWF.network_status.connected = "yes"
+					EWF.network_status.aptos = new AptosSDK.Aptos (
 						new AptosSDK.AptosConfig ({		
 							fullnode: net_path,
 							network: AptosSDK.Network.CUSTOM
@@ -80,8 +90,8 @@ export const the_ledger_ask_loop_creator = () => {
 					/*
 						There should be assertions here..
 					*/					
-					freight.consensus.status = enhanced;
-					freight.consensus.UTC_orbit = new Date (enhanced.ledger_timestamp / 1000).toUTCString ();
+					EWF.network_status.status = enhanced;
+					EWF.network_status.UTC_orbit = new Date (enhanced.ledger_timestamp / 1000).toUTCString ();
 					
 					return;
 				}
@@ -90,9 +100,10 @@ export const the_ledger_ask_loop_creator = () => {
 				console.error (imperfection);
 			}
 			
-			freight.consensus.connected = "no"
-			freight.consensus.status = {};
-			freight.consensus.UTC_orbit = ""
+			EWF.network_status.connected = "no"
+			EWF.network_status.aptos = {}
+			EWF.network_status.status = {};
+			EWF.network_status.UTC_orbit = ""
 		}
 	})
 }

@@ -16,8 +16,8 @@ import { has_field } from 'procedures/object/has_field'
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 //
-import Wallet_Plugs from "./Wallet_Plugs/Trinket.svelte"
-import Connected from "./Connected/Trinket.svelte"
+import Wallet_Plugs from "./Wallet_Plugs/Tome.svelte"
+import Connected from "./Connected/Tome.svelte"
 //
 
 

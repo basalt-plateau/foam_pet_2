@@ -29,6 +29,11 @@ import { modal_plugs, trends } from './Trinket'
 //\
 
 
+import Extension_Network_Status from '$lib/Singles/Extension_Winch/Status/Tome.svelte'
+import Dapp_Network_Status from '$lib/Versies/Tomes/Network_Status/Bothy.svelte'
+import Dapp_Network_Cohesion from '$lib/Versies/Tomes/Network_Cohesion/Bothy.svelte'
+
+
 ////
 //
 //	Frontiers (Porticos)
@@ -98,11 +103,32 @@ const mode = check_roomies_truck ().freight.mode;
 <nav>	
 	<div style="height: 0.3cm"></div>
 	
-	<Leaf>
+	<div
+		style="
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
+			grid-gap: 0.25cm;
+		"
+	>
 		<div class="card p-1">
-			<Stats_Wall />
+			<Dapp_Network_Status />
 		</div>
-	</Leaf>
+		<div class="card p-1">
+			<Extension_Network_Status />
+		</div>
+	</div>
+
+	<div style="height: 0.3cm"></div>
+
+	<div
+		style="
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
+			grid-gap: 0.25cm;
+		"
+	>
+		<Dapp_Network_Cohesion />
+	</div>
 
 	<div style="height: 0.3cm"></div>
 

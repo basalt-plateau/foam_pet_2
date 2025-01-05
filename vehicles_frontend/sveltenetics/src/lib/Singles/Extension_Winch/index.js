@@ -1,46 +1,7 @@
 
 
 
-/*
-	import { make_the_flourisher, destroy_the_flourisher } from "$lib/Singles/Extension_Winch"
-	make_the_flourisher ();
-	destroy_the_flourisher ();
-*/
 
-/*
-	import { onMount, onDestroy } from "svelte"
-	import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
-	
-	let flourisher_freight = Extension_Winch.freight ();
-	let flourisher_monitor;
-	onMount (async () => {
-		flourisher_monitor = Extension_Winch.monitor (async ({
-			original_freight,
-			pro_freight, 
-			//
-			target,
-			//
-			property, 
-			value
-		}) => {
-			flourisher_freight = pro_freight;
-		});
-	});
-	onDestroy (async () => {
-		flourisher_monitor.stop ()
-	});
-*/
-
-/*
-	import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
-	const EWF = Extension_Winch.freight ();
-*/
-
-/*
-	import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
-	const EWF = Extension_Winch.freight ();
-	EWF.prompt ();
-*/
 
 
 ////
@@ -55,21 +16,28 @@ import { Rise_stage_creator } from "./Stages/Rise.js"
 import { Petra_stage_creator } from "./Stages/Petra.js"
 import { Pontem_stage_creator } from "./Stages/Pontem.js"
 //
+import { ask_for_extension_network_connection_status } from './Tracks/ask_for_extension_network_connection_status'
+//
 //
 ////
 
 const trucks = {}
 	
+	
 
 
-
+let extension_network_connection_status_track;
 
 /*
 	This adds a truck to the trucks object as trucks [1] = ...
 	Such, the truck can then be deleted with the "destroy" method.
 */
-export const make = async () => {
+export const make = async (packet) => {
+	let _stages = {}
 	
+	if (packet && packet.stages) {
+		_stages = packet.stages;
+	}
 	
 	/*
 		Freight is the "state" or the object that is
@@ -90,7 +58,14 @@ export const make = async () => {
 				Pontem: {}
 			},
 			stage_name_connected: "",
+			stage: {},
 			
+			network_status: {
+				connected: "",
+				aptos: "",
+				status: {},
+				UTC_orbit: ""
+			},
 			
 			ask_for_stage () {
 				const freight = trucks [1].freight;
@@ -136,13 +111,22 @@ export const make = async () => {
 					localStorage.removeItem ("extension winch connected");
 				}
 			},
+			clear: async () => {
+				trucks [1].freight.stage_name_connected = "";
+				trucks [1].freight.stage = {};
+				trucks [1].freight.network_status = {};
+			},
 			connect: async ({ stage_name }) => {	
 				console.log ("extension winch connect:", { stage_name });
+				
+				await trucks [1].freight.clear ();
 				
 				const stage = trucks [1].freight.stages [ stage_name ];
 				await stage.connect ();
 				trucks [1].freight.stage_name_connected = stage_name
 				localStorage.setItem ("extension winch connected", stage_name);
+				
+				trucks [1].freight.stage = stage;
 			},
 			disconnect: async () => {
 				const freight = trucks [1].freight;
@@ -158,7 +142,7 @@ export const make = async () => {
 					//
 					//
 					//
-					trucks [1].freight.stage_name_connected = "";
+					await trucks [1].freight.clear ();
 					
 					//
 					//	Remove the connected wallet name from local storage
@@ -220,7 +204,7 @@ export const make = async () => {
 		value
 	}) => {
 		try {
-			console.info ("😃 extension winch changed", property, value)
+			// console.info ("😃 extension winch changed", property, value)
 			
 			
 		}
@@ -229,10 +213,16 @@ export const make = async () => {
 		}
 	});
 	
+	
+	extension_network_connection_status_track = ask_for_extension_network_connection_status ();
+	extension_network_connection_status_track.play ();
+		
+	
 	return trucks [1];	
 }
 
 export const destroy = () => {
+	extension_network_connection_status_track.stop ();
 	delete trucks [1];
 }
 

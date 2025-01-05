@@ -20,6 +20,55 @@
 		* Mlhovina
 		
 	
+	<header>Usage</header>
+	
+	/*
+		Suggestion:
+			import * as Extension_Winch from "$lib/Singles/Extension_Winch"
+			
+			await Extension_Winch.make ({
+				stages: {
+					Rise: {}
+				}
+			});
+			Extension_Winch.destroy ();
+	*/
+
+	/*
+		import { onMount, onDestroy } from "svelte"
+		import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+		
+		let flourisher_freight = Extension_Winch.freight ();
+		let flourisher_monitor;
+		onMount (async () => {
+			flourisher_monitor = Extension_Winch.monitor (async ({
+				original_freight,
+				pro_freight, 
+				//
+				target,
+				//
+				property, 
+				value
+			}) => {
+				flourisher_freight = pro_freight;
+			});
+		});
+		onDestroy (async () => {
+			flourisher_monitor.stop ()
+		});
+	*/
+
+	/*
+		import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+		const EWF = Extension_Winch.freight ();
+	*/
+
+	/*
+		import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+		const EWF = Extension_Winch.freight ();
+		EWF.prompt ();
+	*/	
+	
 	<header>Novella</header>
 		* search for wallets
 	

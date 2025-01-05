@@ -9,7 +9,7 @@ import { onMount, onDestroy } from "svelte"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 
-import Wallet_Plug from './Wallet_Plug/Trinket.svelte'
+import Wallet_Plug from './Wallet_Plug/Tome.svelte'
 
 
 const obtain_wallet = ({ wallet }) => {
