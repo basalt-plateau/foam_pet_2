@@ -4,49 +4,15 @@
 
 
 
-/*
-	Wallet Sensors:
-	
-		Event Horizon
-		Frontier
-		
-		4D:
-			Duoprism
-		
-			Hypersphere
-			
-			Ellipsoid
-			Spherinder
-			
-		Torus	
-			
-		Trigintaduonion
-		
-		
-		Tunnels:
-			.Spin
-			
-			.Sensors
-			
-			* Send Wish
-			* Send Consent
-*/
+
 
 ////
 //
 import { onMount, onDestroy } from "svelte"
-import { Autocomplete } from '@skeletonlabs/skeleton';
-import { popup } from '@skeletonlabs/skeleton';
-import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-//
 import _merge from 'lodash/merge'
 //
 import { has_field } from 'procedures/object/has_field'
 //
-//
-import * as Extension_Winch from "$lib/Singles/Extension_Winch"
-import Perfume from "$lib/Perfume/Trinket.svelte"
-import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 //
 //
 import Wallet_Polytope from './Polytope/Tome.svelte'
@@ -54,10 +20,8 @@ import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
 //
 ////
 
-
+import Wallet_Leaf from "./Leaf.svelte"
 	
-
-let Extension_Winch_Freight = false
 
 
 let polytope_modal;
@@ -95,25 +59,6 @@ const on_prepare = () => {
 }
 
 
-let is_connected = "perhaps"
-let wallets_show = []
-
-
-let le_wallet_link = "";
-let le_signatory = ""
-
-
-const obtain_wallet = ({ wallet }) => {
-	console.log ("obtain_wallet:", { wallet });
-	window.open (wallet.url, '_blank');
-}
-
-let mounted = "no"
-onMount (async () => {
-	mounted = "yup"
-});
-
-let leaf = "Extensions"
 
 </script>
 
@@ -129,48 +74,8 @@ let leaf = "Extensions"
 			width: 100%;
 		"
 	>
-		<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
-		{#if typeof Extension_Winch_Freight === "object"}	
-		{#if polytope_established === "yup" && mounted === "yup" }
-		<div
-			style="
-				width: 100%;
-				
-				padding: 0.25cm;
-				
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				
-				flex-direction: column;
-				
-				gap: 0.25cm;
-			"
-		>
-			{#if Extension_Winch_Freight.stage_name_connected.length === 0 }
-			<div>
-				<RadioGroup>
-					<RadioItem 
-						bind:group={leaf} 
-						name="justify" 
-						value={ "Extensions" }
-					>Extensions</RadioItem>
-					<RadioItem 
-						bind:group={leaf} 
-						name="justify" 
-						value={ "Perfume" }
-					>Perfume</RadioItem>
-				</RadioGroup>
-			</div>
-			{/if}
-		
-			{#if leaf === "Extensions" }
-			<Extension_Wallets />
-			{:else if leaf === "Perfume" }
-			<Perfume />
-			{/if}
-		</div>
-		{/if}
+		{#if polytope_established === "yup" }
+		<Wallet_Leaf />		
 		{/if}
 	</div>
 	

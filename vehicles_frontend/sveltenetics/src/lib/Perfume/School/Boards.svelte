@@ -45,49 +45,6 @@ const pet_2 = '/pictures/Foam_Pet_0002.svg';
 
 	<div style="height: 0.25cm" />
 
-	<div class="card p-4 variant-soft-surface">
-		<!-- Supermassive Reservoir -->
-		<!-- Supermassive Pupil that can send the speed of light through fonction frontiers. -->
-		<!-- Gargantuan Reservoir Wallet Logistics Duo for -->
-	
-		<div
-			style="
-				margin: 0 auto;
-				width: 100%;
-				max-width: 700px;
-				text-align: center;
-				font-size: 1.2em;
-				
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				
-				gap: 10px;
-			"
-		>	
-			<p>Pets for </p>
-			
-			<div
-				style="
-					display: flex;
-					align-items: center;
-				"
-			>
-				<img 
-					src="/_Licensed/Aptos/aptos.png" 
-					style="
-						display: none;
-						width: 0.75cm;
-						height: 0.75cm;								
-					"
-				/>
-				<Slang text="Aptos" />
-			</div>
-		</div>
-	</div>
-
-	<div style="height: 0.25cm" />
-
 	<div 
 		style="
 			display: flex;

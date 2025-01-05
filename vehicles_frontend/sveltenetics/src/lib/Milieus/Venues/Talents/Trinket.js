@@ -81,7 +81,6 @@ export const modal_plugs = ({
 	}
 	
 	
-	
 	const open_transaction_modal = () => {
 		open_modal ({
 			modal_store,

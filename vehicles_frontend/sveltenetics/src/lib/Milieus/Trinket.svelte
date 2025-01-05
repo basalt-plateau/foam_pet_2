@@ -30,11 +30,13 @@ let Milieus = {
 	},
 	
 	"Talents": async () => { return await import ('./Venues/Talents/Trinket.svelte') },
+	"Wallet": async () => { return await import ('$lib/Les_Talents/_Wallet/Panel/Leaf.svelte') },
 	
 	"Loyals": {
 		"Hints": async () => { return await import ('./Venues/Loyals/Hints/Trinket.svelte') },
 		"Accounts": async () => { return await import ('./Venues/Loyals/Players/Trinket.svelte') },
-		"Signatures": async () => { return await import ('./Venues/Loyals/Flourishes/Trinket.svelte') }
+		// "Signatures": async () => { return await import ('./Venues/Loyals/Flourishes/Trinket.svelte') },
+		
 	}
 }
 

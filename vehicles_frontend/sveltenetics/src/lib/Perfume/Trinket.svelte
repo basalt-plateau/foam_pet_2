@@ -17,10 +17,10 @@
 //
 import { onMount, onDestroy } from 'svelte'
 //
-//
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
+//
 import _merge from 'lodash/merge'
 //
 //
@@ -28,7 +28,7 @@ import { Slangify } from "$lib/trinkets/Slang"
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 //
-import Hints from './Hints/Trinket.svelte'
+import School from './School/Trinket.svelte'
 import Harvests from './Harvests/Trinket.svelte'
 import Consent_Leaf from './Consent/Trinket.svelte'
 import Garden_Leaf from './Garden/Tome.svelte'
@@ -38,7 +38,7 @@ import * as Perfume_Truck from "./_Truck/index.js"
 //
 ////
 
-let leaf = "Hints";
+let leaf = "School";
 
 
 let prepared = "no"
@@ -107,28 +107,26 @@ onDestroy (() => {
 	>
 		<div>
 			<RadioGroup>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Hints" }>Hints</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>Consent</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "School" }>School</RadioItem>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Garden" }>Garden</RadioItem>		
 				<RadioItem bind:group={ leaf } name="justify" value={ "Beauty" }>Beauty</RadioItem>	
 				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>Harvests</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>Consent</RadioItem>				
 			</RadioGroup>
 		</div>
 	</div>
 	
 	<div
 		style="
-			position: absolute;
-			top: 100px;
+			position: relative;
 			left: 0;
 		
 			box-sizing: border-box;
-			height: calc(100% - 100px);
 			width: 100%;
 		"
 	>
-		{#if leaf === "Hints"}
-		<Hints />
+		{#if leaf === "School"}
+		<School />
 		{:else if leaf === "Garden" }
 		<Garden_Leaf />
 		{:else if leaf === "Beauty" }

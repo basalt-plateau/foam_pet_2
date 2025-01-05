@@ -16,6 +16,7 @@ import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
 ////
+import Wallet_Button from './Wallet_Button.svelte'
 
 	
 let mode = check_roomies_truck ().freight.mode;
@@ -100,6 +101,11 @@ const build = () => {
 		style={ buttons_styles }
 	/>
 	
-	<Wallet_Frontier />	
+	<Wallet_Button 
+		buttons_styles={ buttons_styles }
+	/>
+	
+	
+	<Wallet_Frontier />
 	{/if}
 </div>

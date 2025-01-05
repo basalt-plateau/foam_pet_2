@@ -48,6 +48,9 @@ import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
 import APT_Passes from '$lib/Les_Talents/APT_Passes/Frontier/Tome.svelte'
 //
+import APT_Entrust_Consent_Opener from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Opener.svelte'
+
+//
 ////
 
 
@@ -161,8 +164,9 @@ const mode = check_roomies_truck ().freight.mode;
 			<APT_Passes />
 		</Panel>
 		
-		
-		
+		<Panel styles={ trends.panel }>	
+			<APT_Entrust_Consent_Opener />
+		</Panel>
 		
 		{#if mode === "nurture" }
 		<Panel styles={ trends.panel }>	
@@ -219,9 +223,6 @@ const mode = check_roomies_truck ().freight.mode;
 			>
 				<span>APT Entrust</span>
 			</p>
-
-
-			
 		
 			<div class="relative inline-block">
 				<button 

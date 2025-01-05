@@ -56,8 +56,8 @@ onMount (() => {
 		left: 0;
 		padding: 0;
 		
-		width: 80vw;
-		height: 80vh;
+		width: 90vw;
+		height: 90vh;
 
 		overflow-y: scroll;
 	"

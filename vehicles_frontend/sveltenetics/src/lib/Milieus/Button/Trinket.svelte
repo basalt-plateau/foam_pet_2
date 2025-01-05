@@ -40,6 +40,21 @@
 	/>
 */
 
+/*
+	<Milieus_Button
+		monitor="Loyals"
+	
+		location={[ "Loyals", "Hints" ]}
+		is_open_location={[ "Loyals" ]}
+		
+		style={ buttons_styles }
+		
+		use_slot="yes"
+	>	
+		<div>Button</div>
+	</Milieus_Button>
+*/
+
 
 import { onMount, onDestroy } from 'svelte'
 import { check_Milieus_truck, monitor_Milieus_truck } from '$lib/Milieus/Truck'
@@ -47,6 +62,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import lo_clone from 'lodash/clone'	
 
 export let monitor = ""
+export let use_slot = ""
 
 export let scroll_to_top = "yes"
 export let name = ""
@@ -191,6 +207,8 @@ let untapped = "variant-filled-primary"
 >
 	{#if typeof component === "function" }
 	<svelte:component this={ component } {...component_props} />
+	{:else if use_slot === "yes" }
+	<slot></slot>
 	{:else}
 	{ name }	
 	{/if}
