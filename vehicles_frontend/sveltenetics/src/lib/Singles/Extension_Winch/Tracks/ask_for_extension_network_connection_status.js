@@ -36,6 +36,8 @@ export const ask_for_extension_network_connection_status = () => {
 		wait: 2000,
 		wait_for_response: "yes",
 		action: async () => {
+			console.info ("ask_for_extension_network_connection_status");
+			
 			/*
 			
 				This relies on "net_path"
@@ -44,7 +46,7 @@ export const ask_for_extension_network_connection_status = () => {
 			const EWF = Extension_Winch.freight ();
 			const net_path = _get (EWF, [ "stage", "network", "address" ], "");
 			
-			// console.log ({ net_path, network: EWF.stage.network.address });
+			console.log ({ net_path, network: EWF.stage.network.address });
 			
 			const there_is_a_net_path = typeof net_path === "string" && net_path.length >= 1;			
 			if (there_is_a_net_path !== true) {
@@ -58,7 +60,11 @@ export const ask_for_extension_network_connection_status = () => {
 			const current_ledger_ask_count = ledger_ask_count;
 			
 			try {
-				const { enhanced } = await request_ledger_info ({ net_path })
+				console.info ("waiting for ledger info");
+				const { enhanced } = await request_ledger_info ({ net_path });
+				console.info ("got ledger info");
+				
+				
 				//
 				//	If the UI changed, after the ask, this filters
 				//	the info that was returned from the ask.

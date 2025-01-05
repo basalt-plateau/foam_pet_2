@@ -15,7 +15,7 @@
 
 const ask = async (URL, {
 	method = "GET",
-	timeout = Number.POSITIVE_INFINITY
+	timeout = 2000
 }) => {
 	return await new Promise ((resolve, reject) => {
 		var xhr = new XMLHttpRequest();
@@ -41,11 +41,30 @@ const ask = async (URL, {
 		};
 
 		xhr.send ();
-	})
-
+	});
 }
 
 export const request_ledger_info = async ({ net_path }) => {
+	const controller = new AbortController ();
+	const { signal } = controller;
+	const timeoutId = setTimeout(() => {
+		controller.abort(); // Abort the fetch request
+	}, 1000);
+	
+	const response = await fetch (net_path, {
+		signal
+	});
+	if (!response.ok) {
+		throw new Error ('request_ledger_info failed');
+    }
+	const data = await response.json ();
+	
+	return {
+		enhanced: data,
+		status: response.status
+	};
+	
+	
 	const proceeds = await ask (net_path, {
 		timeout: 1000
 	})

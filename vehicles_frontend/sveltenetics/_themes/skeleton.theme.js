@@ -11,7 +11,7 @@ export const PTO_theme = {
 		
 		"--theme-rounded-base": "8px",
 		"--theme-rounded-container": "8px",
-		"--theme-border-base": "8px",
+		"--theme-border-base": "4px",
 		
 
 		// "--theme-rounded-base": "9999px",

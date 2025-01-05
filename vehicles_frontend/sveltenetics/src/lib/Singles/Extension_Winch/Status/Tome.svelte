@@ -51,7 +51,7 @@ let EWF = false
 	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { EWF = pro_freight; } } />
 	{#if typeof EWF === "object"}
 	<Accordion>
-		<AccordionItem open>
+		<AccordionItem>
 			<svelte:fragment slot="summary">
 				<p
 					style="
@@ -114,6 +114,7 @@ let EWF = false
 			</svelte:fragment>
 			<svelte:fragment slot="content">
 				{#if EWF.stage_name_connected.length >= 1 }
+				{#if EWF.network_status.connected === "yes" }
 				<div
 					style="
 						display: grid;
@@ -210,6 +211,9 @@ let EWF = false
 						<span class="badge variant-soft-surface">{ _get (EWF, [ "network_status", "status", "ledger_version" ], "") }</span>
 					</span>
 				</div>
+				{:else}
+				<p style="text-align: center;">The wallet node didn't provide any network details.</p>				
+				{/if}
 				{/if}
 			</svelte:fragment>
 		</AccordionItem>

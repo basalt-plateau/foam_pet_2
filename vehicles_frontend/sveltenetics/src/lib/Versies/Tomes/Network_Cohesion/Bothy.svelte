@@ -25,12 +25,12 @@ let Versies_Freight = false
 		{#if Versies_Freight.dapp_wallet_cohesion.chain_id !== "yes" }
 		<div class="card p-2 variant-filled-error">
 			<div class="card p-2 variant-filled-error">
-				<span>The <b>Dapp</b> and <b>Extension</b> are not connected to the same network.</span>
+				<span>The <b>Dapp</b> and <b>Wallet</b> are not connected to the same network.</span>
 			</div>
 		</div>
 		{:else}
 		<div class="card p-4 variant-filled-primary">
-			<span>😁 The <b>Dapp</b> and <b>Extension</b> are connected to the same network.</span>
+			<span>😁 The <b>Dapp</b> and <b>Wallet</b> are connected to the same network.</span>
 		</div>
 		{/if}
 	</div>

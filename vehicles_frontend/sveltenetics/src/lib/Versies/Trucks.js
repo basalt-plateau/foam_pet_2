@@ -162,13 +162,16 @@ export const lease_roomies_truck = () => {
 			const pro_stage_name = pro_freight.stage_name_connected;			
 			const pro_stage = pro_freight.stages [ pro_stage_name ];
 			
-			const wallet_chain_id = pro_freight.network_status.status.chain_id;
+			// const wallet_chain_id = pro_freight.network_status.status.chain_id;
+			
+			const wallet_chain_id = pro_freight.stage.network.chain_id;
 			const dapp_chain_id = trucks [1].freight.dapp_network.status.chain_id;
 		
 			console.log ({ wallet_chain_id, dapp_chain_id });
 			
 			if (wallet_chain_id === dapp_chain_id) {
 				trucks [1].freight.dapp_wallet_cohesion.chain_id = "yes"
+				return;
 			}
 		}
 		catch (imperfection) {
