@@ -12,6 +12,7 @@ export const Atolls_Theme = {
 		"--theme-rounded-base": "8px",
 		"--theme-rounded-container": "8px",
 		"--theme-border-base": "2px",
+		
 		// =~= Theme On-X Colors =~=
 		"--on-primary": "0 0 0",
 		"--on-secondary": "0 0 0",
@@ -20,6 +21,7 @@ export const Atolls_Theme = {
 		"--on-warning": "0 0 0",
 		"--on-error": "0 0 0",
 		"--on-surface": "0 0 0",
+		
 		// =~= Theme Colors  =~=
 		// primary | #d0cfed 
 		"--color-primary-50": "248 248 252", // #f8f8fc

@@ -163,8 +163,13 @@ export const Pontem_stage_creator = async ({ freight }) => {
 			});
 		},
 		async disconnect () {
-			Pontem.eventListeners.onAccountChange = []
-			Pontem.eventListeners.onNetworkChange = []			
+			try {
+				Pontem.eventListeners.onAccountChange = []
+				Pontem.eventListeners.onNetworkChange = []		
+			}	
+			catch (imperfection) {
+				console.error (imperfection);
+			}
 		}
 	};
 }

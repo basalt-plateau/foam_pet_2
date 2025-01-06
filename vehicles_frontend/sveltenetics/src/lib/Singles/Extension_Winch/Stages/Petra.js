@@ -186,13 +186,31 @@ export const Petra_stage_creator = async ({ freight }) => {
 				console.log ("onNetworkChange bridges:", { network });
 				stage.status ();
 			});
+			
+			//
+			// presumably this listens for a disconnect
+			// that begins in the wallet
+			//
 			Petra.onDisconnect (() => {
 				console.log ("Petra onDisconnect");
-				stage.status ();
+				reset ();
 			});
 		},
 		async disconnect () {
-			Petra.removeAllListeners ();
+			try {
+				Petra.transport.eventCallbacks.accountChange = []	
+				Petra.transport.eventCallbacks.networkChange = []	
+				Petra.transport.eventCallbacks.disconnect = []									
+			}	
+			catch (imperfection) {
+				console.error (imperfection);
+			}
+			
+			
+
+			
+			// Petra.removeAllListeners ();
+			Petra.disconnect ()
 		}
 	}
 }

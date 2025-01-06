@@ -6,8 +6,8 @@
 */
 export const address_to_hexadecimal = (address) => {
 	if (address.substring (0,2) === "0x") {
-		return address.substring (2)
+		return address.substring (2).toUpperCase ();
 	}
 	
-	return address;
+	return address.toUpperCase ();
 }

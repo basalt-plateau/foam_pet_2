@@ -7,6 +7,7 @@
 ////
 //
 import * as AptosSDK from "@aptos-labs/ts-sdk";
+import _get from 'lodash/get'
 //
 //
 import { rhythm_filter } from '$lib/taverns/procedures/dates/rhythm-filter'
@@ -18,8 +19,6 @@ import { assert_is_natural_numeral_string } from '$lib/taverns/numerals/natural/
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 //
 //
-// import { the_ledger_ask_loop_creator } from './Screenplays/is_connected'
-//
 import { ask_for_mode } from './Screenplays/ask_for_mode.js'
 import { ask_for_commas_every } from './Screenplays/ask_for_commas_every.js'
 import { ask_for_slang } from './Screenplays/ask_for_slang.js'
@@ -30,7 +29,7 @@ import { ask_for_dapp_network_connection_status } from './Screenplays/ask_for_da
 //
 ////
 
-	
+		
 
 
 let dapp_network_connection_loop;
@@ -93,24 +92,19 @@ export const lease_roomies_truck = () => {
 			//	These are vintage ::::: being phased out.
 			//
 			//
-			net_path,
-			net_name,
-			net_connected: "no",
+			// net_path,
+			// net_name,
+			// net_connected: "no",
 			//
-			aptos: new AptosSDK.Aptos (
-				new AptosSDK.AptosConfig ({		
-					fullnode: net_path,
-					network: AptosSDK.Network.CUSTOM
-				})
-			),
+			// aptos: new AptosSDK.Aptos (
+			// 	new AptosSDK.AptosConfig ({		
+			// 		fullnode: net_path,
+			// 		network: AptosSDK.Network.CUSTOM
+			// 	})
+			// ),
 			//
-			wallet: wallet_network,
-			consensus: {
-				connected: "",
-				aptos: "",
-				
-				status: {}			
-			},
+			// wallet: wallet_network,
+			// consensus: { connected: "", aptos: "", status: {}		 },
 			//
 			////
 			
@@ -162,7 +156,7 @@ export const lease_roomies_truck = () => {
 		property, 
 		value
 	}) => {
-		console.log ("🌾 Versie Freight was modified", bracket === original_freight.dapp_network, property);
+		// console.log ("🌾 Versie Freight was modified", bracket === original_freight.dapp_network, property);
 		
 		try {
 			if (bracket === original_freight.dapp_network && property === "net_path") {
@@ -181,9 +175,42 @@ export const lease_roomies_truck = () => {
 		catch (imperfection) {
 			console.error (imperfection);
 		}
+		
+		check_cohesion ();
 	});
 	
-
+	const check_cohesion = () => {
+		let wallet_chain_id = ""
+		try {
+			wallet_chain_id = parseInt (Extension_Winch.freight ().stage.network.chain_id);
+		}
+		catch (imperfection) {}
+		
+		let dapp_chain_id = ""
+		try {
+			dapp_chain_id = trucks [1].freight.dapp_network.status.chain_id;
+		}
+		catch (imperfection) {}
+		
+		
+		console.log ("check_cohesion", { wallet_chain_id, dapp_chain_id });
+		
+		try {
+			if (
+				typeof wallet_chain_id === "number" &&
+				typeof dapp_chain_id === "number" &&		
+				wallet_chain_id === dapp_chain_id
+			) { 
+				trucks [1].freight.dapp_wallet_cohesion.chain_id = "yes"
+				return;
+			}
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
+		
+		trucks [1].freight.dapp_wallet_cohesion.chain_id = "no"
+	}
 	
 	//
 	//	The extension winch is built before the Versies truck,
@@ -198,27 +225,7 @@ export const lease_roomies_truck = () => {
 		property, 
 		value
 	}) => {
-		try {
-			const pro_stage_name = pro_freight.stage_name_connected;			
-			const pro_stage = pro_freight.stages [ pro_stage_name ];
-			
-			// const wallet_chain_id = pro_freight.network_status.status.chain_id;
-			
-			const wallet_chain_id = parseInt (pro_freight.stage.network.chain_id);
-			const dapp_chain_id = trucks [1].freight.dapp_network.status.chain_id;
-		
-			console.log ({ wallet_chain_id, dapp_chain_id });
-			
-			if (wallet_chain_id === dapp_chain_id) {
-				trucks [1].freight.dapp_wallet_cohesion.chain_id = "yes"
-				return;
-			}
-		}
-		catch (imperfection) {
-			console.error (imperfection);
-		}
-		
-		trucks [1].freight.dapp_wallet_cohesion.chain_id = "no"
+		check_cohesion ();
 	});
 
 	

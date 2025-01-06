@@ -60,6 +60,10 @@ export const make = async (packet) => {
 			stage_name_connected: "",
 			stage: {},
 			
+			//
+			//	This is vintage.  Don't use this.
+			//
+			//
 			network_status: {
 				connected: "",
 				aptos: "",
@@ -214,15 +218,15 @@ export const make = async (packet) => {
 	});
 	
 	
-	extension_network_connection_status_track = ask_for_extension_network_connection_status ();
-	extension_network_connection_status_track.play ();
+	// extension_network_connection_status_track = ask_for_extension_network_connection_status ();
+	// extension_network_connection_status_track.play ();
 		
 	
 	return trucks [1];	
 }
 
 export const destroy = () => {
-	extension_network_connection_status_track.stop ();
+	// extension_network_connection_status_track.stop ();
 	delete trucks [1];
 }
 

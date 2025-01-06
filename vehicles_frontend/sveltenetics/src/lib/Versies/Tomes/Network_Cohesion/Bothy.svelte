@@ -2,6 +2,11 @@
 
 <script>
 
+/*
+	import Network_Cohesion from "$lib/Versies/Tomes/Network_Cohesion/Bothy.svelte"
+	<Network_Cohesion />
+*/
+
 import _get from 'lodash/get'
 
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
@@ -31,12 +36,12 @@ let Extension_Winch_Freight = false
 		{#if Versies_Freight.dapp_wallet_cohesion.chain_id !== "yes" }
 		<div class="card p-2 variant-filled-error">
 			<div class="card p-2 variant-filled-error">
-				<span>The <b>Dapp</b> and <b>Wallet</b> are not connected to the same Chain ID.</span>
+				<span>The <b>Dapp</b> and <b>Wallet</b> are not on the same Chain ID.</span>
 			</div>
 		</div>
 		{:else}
 		<div class="card p-4 variant-filled-primary">
-			<span>😁 The <b>Dapp</b> and <b>Wallet</b> are connected to the same Chain ID.</span>
+			<span>😁 The <b>Dapp</b> and <b>Wallet</b> report are on the same Chain ID.</span>
 		</div>
 		{/if}
 	</div>

@@ -57,6 +57,10 @@ header {
 	line-height: 1.5em;
 }
 
+::selection {
+    background: rgba(var(--color-surface-500));
+    color: rgba(var(--on-surface));
+}
 
 /*
 	

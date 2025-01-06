@@ -23,9 +23,14 @@
 	})
 */
 
-import { ask_APT_count } from '$lib/PTO/APT/Count'
+////
+//
 import { loop } from '$lib/taverns/loop'
 import { ask_convert_Octas_to_APT } from '$lib/taverns/APT/Octas_to_APT.js'
+//
+import { ask_APT_count } from '$lib/PTO/APT/Count'
+//
+////
 		
 
 export const create_count_loop = ({
@@ -67,6 +72,8 @@ export const create_count_loop = ({
 		play (packet) {
 			address_hexadecimal_string = packet.address_hexadecimal_string;
 			net_path = packet.net_path;
+			
+			loop_1.stop ()
 			loop_1.play ()
 		},
 		stop () {

@@ -57,7 +57,7 @@ let every_net_enhance = ({
 	"
 >
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
-	{#if typeof Versies_Freight === "object"}
+	{#if false && typeof Versies_Freight === "object"}
 	<Net_Choices_with_Text 
 		prepare={ net_prepare }
 		every_enhance={ every_net_enhance }

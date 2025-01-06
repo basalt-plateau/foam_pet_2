@@ -41,6 +41,9 @@ onDestroy (async () => {
 <div 
 	style="
 		width: 100%;
+		max-width: 20cm;
+		margin: 0 auto;
+		
 		height: 400px;
 		
 		display: flex;

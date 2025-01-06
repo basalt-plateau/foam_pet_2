@@ -2,6 +2,42 @@
 
 <script>
 
+
+/*
+	import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
+
+	let origin_address = {
+		effective: "no",
+		address_hexadecimal_string: "",
+		exception: ""
+	}
+	
+	//
+	// This is for electing the original value of the trinket.
+	//
+	//
+	let address_trinket = ""
+
+	<Address_Qualities_Trinket 
+		name="Origin Address"
+	
+		bind:this={ address_trinket }
+		
+		on_change={({
+			effective,
+			address_hexadecimal_string,
+			exception
+		}) => {
+			origin_address.effective = effective;
+			origin_address.address_hexadecimal_string = address_hexadecimal_string;
+			origin_address.exception = exception;
+		}}
+		on_prepare={() => {
+			address_trinket.change_address_hexadecimal_string ("")
+		}}
+	/>
+*/
+
 //	
 /*
 	import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
@@ -64,7 +100,9 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import { ask_sequence_number } from '$lib/PTO/Address/Sequence_Number'
 	
 
+
 export let name = "Address"
+export let has_field = "yes"
 export let on_change = () => {}
 export let on_prepare = () => {}
 
@@ -248,13 +286,13 @@ const ask_balance = async () => {
 		const address_hexadecimal_string_ask = address_hexadecimal_string;
 		const APT_count_ask = await ask_APT_count ({ 
 			address_hexadecimal_string: address_hexadecimal_string_ask,
-			net_path: RT_Freight.net_path
+			net_path: RT_Freight.dapp_network.net_path
 		})
 		
 		let sequence_number = "?"
 		try {
 			const sequence_number_proceeds = await ask_sequence_number ({ 
-				net_path: RT_Freight.net_path,
+				net_path: RT_Freight.dapp_network.net_path,
 				address: address_hexadecimal_string_ask
 			})	
 			sequence_number = sequence_number_proceeds.sequence_number;
@@ -408,6 +446,7 @@ onDestroy (() => {
 				</div>
 			</div>
 			
+			{#if has_field === "yes" }
 			<textarea 
 				address_hexadecimal_string
 			
@@ -421,6 +460,9 @@ onDestroy (() => {
 				rows="1" 
 				placeholder="Address" 
 			/>
+			{:else}
+			<p>{ address_hexadecimal_string }</p>
+			{/if}
 			
 			{#if false}
 			<ProgressBar 

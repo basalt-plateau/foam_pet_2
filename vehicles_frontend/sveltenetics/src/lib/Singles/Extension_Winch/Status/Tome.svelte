@@ -57,7 +57,7 @@ let EWF = false
 					style="
 						text-align: center;
 					"
-				>Wallet Network Status</p>
+				>Wallet Network</p>
 				<hr />
 				
 				<div
@@ -73,8 +73,7 @@ let EWF = false
 						justify-content: center;
 					"
 				>		
-					<Radial_Progress />
-					
+					<!-- <Radial_Progress /> -->
 					
 					<div
 						style="
@@ -91,7 +90,6 @@ let EWF = false
 					>
 						{#if EWF.stage_name_connected.length >= 1 }
 					
-						<span>Connected to</span>
 						<span class="badge variant-soft-surface">{ _get (EWF, [ "stage", "network", "chain_id" ], "") }</span>
 						<span class="badge variant-soft-surface"
 							style="
@@ -113,6 +111,8 @@ let EWF = false
 				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
+				{#if false }
+			
 				{#if EWF.stage_name_connected.length >= 1 }
 				{#if EWF.network_status.connected === "yes" }
 				<div
@@ -213,6 +213,7 @@ let EWF = false
 				</div>
 				{:else}
 				<p style="text-align: center;">The wallet node didn't provide any network details.</p>				
+				{/if}
 				{/if}
 				{/if}
 			</svelte:fragment>

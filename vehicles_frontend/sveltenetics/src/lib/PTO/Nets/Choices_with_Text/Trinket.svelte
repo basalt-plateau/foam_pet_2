@@ -57,21 +57,23 @@ export let every_enhance = () => {};
 let ICANN_addresses = {}
 
 
+/*
+	"testnet": {
+		"name": "testnet",
+		"path": "https://api.testnet.aptoslabs.com/v1"
+	},
+*/
 const nets = {
 	"mainnet": {
 		"name": "mainnet",
 		"path": "https://api.mainnet.aptoslabs.com/v1"
 	},
-	"testnet": {
-		"name": "testnet",
-		"path": "https://api.testnet.aptoslabs.com/v1"
-	},
 	"devnet": {
 		"name": "devnet",
 		"path": "https://api.devnet.aptoslabs.com/v1"
 	},
-	"custom": {
-		"name": "custom",
+	"other": {
+		"name": "other",
 		"path": ""
 	}
 }
@@ -84,7 +86,7 @@ $: chain_id = ""
 $: block_height = ""
 $: epoch = ""
 $: alert_problem_text = ""
-$: custom_address_confirmed = "no"
+$: other_address_confirmed = "no"
 $: ledger_info_loop_allowed = "no"
 
 let ledger_ask_count = 0;
@@ -96,7 +98,7 @@ const clear_info = () => {
 	block_height = "";
 	epoch = "";
 	//
-	custom_address_confirmed = "no"
+	other_address_confirmed = "no"
 	//
 	alert_problem_text = ""
 }
@@ -171,11 +173,11 @@ const on_select_change = async (event) => {
 	net_name = event.target.value;
 	let net = nets [ net_name ]
 	net_path = net.path;
-	custom_address_confirmed = "no"
+	other_address_confirmed = "no"
 	
 	console.log ({ net })
 	
-	if (net_name === "custom") {
+	if (net_name === "other") {
 		// don't start the loop		
 		return;
 	}
@@ -187,23 +189,23 @@ const on_select_change = async (event) => {
 //	Unconfirm
 //
 //
-const on_custom_textarea_change = async (event) => {
+const on_other_textarea_change = async (event) => {
 	the_ledger_ask_loop.stop ()
 	clear_info ()
 	
 	net_path = event.target.value;
-	// net_name = "custom"
+	// net_name = "other"
 	
-	custom_address_confirmed = "no"
+	other_address_confirmed = "no"
 	
 	// the_ledger_ask_loop.play ()
 }
-const after_confirm_custom_address = () => {
+const after_confirm_other_address = () => {
 	the_ledger_ask_loop.stop ()
 	clear_info ()
 	
 	
-	custom_address_confirmed = "yes"
+	other_address_confirmed = "yes"
 	the_ledger_ask_loop.play ()
 }
 
@@ -276,15 +278,14 @@ onDestroy (() => {
 	>
 		<option value="mainnet">mainnet</option>
 		<option value="devnet">devnet</option>
-		<option value="testnet">testnet</option>
 		
-		<option value="custom">custom</option>
+		<option value="other">other</option>
 	</select>
 	<div style="height: 6px"></div>
 	
-	{#if net_name === "custom" }
+	{#if net_name === "other" }
 	<div
-		custom_net_path_region
+		other_net_path_region
 		style="
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -307,7 +308,7 @@ onDestroy (() => {
 					justify-content: center;
 					padding: 0 10px;
 					
-					opacity: { custom_address_confirmed === "yes" ? 1 : 0}
+					opacity: { other_address_confirmed === "yes" ? 1 : 0}
 				"
 			>
 				<ConicGradient 
@@ -345,7 +346,7 @@ onDestroy (() => {
 		<textarea 
 			icann_net_address
 			
-			on:keyup={ on_custom_textarea_change }
+			on:keyup={ on_other_textarea_change }
 			bind:value={ net_path }
 			
 			style="
@@ -374,8 +375,8 @@ onDestroy (() => {
 				class="btn variant-filled"
 				
 				
-				on:click={ after_confirm_custom_address }
-				disabled={ custom_address_confirmed === "yes" }
+				on:click={ after_confirm_other_address }
+				disabled={ other_address_confirmed === "yes" }
 			>Confirm Address</button>
 		</div>
 	</div>

@@ -49,7 +49,12 @@ onDestroy (() => {
 
 
 {#if mounted === "yup" }
-<div>
+<div
+	style="
+		width: 100%;
+		
+	"
+>
 	<div style="height: 0.5cm;" />
 	
 	{#if flourisher_freight.stage_name_connected.length >= 1 }
