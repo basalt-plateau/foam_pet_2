@@ -82,7 +82,6 @@ const on_polytope_2_prepare = () => {
 	on_prepare={ on_polytope_2_prepare }
 >
 	<div 
-		slot="leaves"
 		style="
 			height: 100%;
 			width: 100%;

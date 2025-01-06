@@ -63,10 +63,11 @@ export const build_truck = ({ freight }) => {
 				property,
 				value,
 				
-				target,
 				
+				bracket: target,
 				
 				// vintage
+				target,
 				freight: the_freight,
 			})
 		}

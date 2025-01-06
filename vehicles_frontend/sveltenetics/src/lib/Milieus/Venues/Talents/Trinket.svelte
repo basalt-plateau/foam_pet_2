@@ -48,8 +48,6 @@ import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
 import APT_Passes from '$lib/Les_Talents/APT_Passes/Frontier/Tome.svelte'
 //
-import APT_Entrust_Consent_Opener from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Opener.svelte'
-
 //
 ////
 
@@ -164,10 +162,6 @@ const mode = check_roomies_truck ().freight.mode;
 			<APT_Passes />
 		</Panel>
 		
-		<Panel styles={ trends.panel }>	
-			<APT_Entrust_Consent_Opener />
-		</Panel>
-		
 		{#if mode === "nurture" }
 		<Panel styles={ trends.panel }>	
 			<Drink_Shop />
@@ -246,27 +240,7 @@ const mode = check_roomies_truck ().freight.mode;
 				</button>
 			</div>
 			
-			<div class="relative inline-block">
-				<button 
-					monitor="give"
-					
-					on:click={ open_consideration_modal }
-					type="button" 
-					
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 36px;
-						margin-top: 10px
-					"
-				>Consent</button>
-			</div>
-
-			<div style="height: 0.1cm"></div>
-
-
 			<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
-			
 		</Panel>
 		
 		<Panel styles={ trends.panel }>		

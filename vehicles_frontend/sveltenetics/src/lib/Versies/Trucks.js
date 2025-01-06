@@ -121,6 +121,12 @@ export const lease_roomies_truck = () => {
 			dapp_network: {
 				net_path: dapp_network.net_path,
 				net_name: dapp_network.net_name,
+				
+				//
+				// There's the decided chain id,
+				// and the one that is returned from
+				// the node.
+				//
 				chain_id: dapp_network.chain_id,
 				
 				connected: "",
@@ -130,6 +136,10 @@ export const lease_roomies_truck = () => {
 				UTC_orbit: ""
 			},
 			
+			//
+			// could have dapp_node_status
+			// dapp_node_status: { status, UTC_orbit, connected }
+			//
 			
 			
 			window_width: window.innerWidth,
@@ -141,7 +151,37 @@ export const lease_roomies_truck = () => {
 				})
 			}
 		}
-	})
+	});
+	
+	let monitor = trucks [1].monitor (async ({
+		original_freight,
+		pro_freight, 
+		//
+		bracket,
+		//
+		property, 
+		value
+	}) => {
+		console.log ("🌾 Versie Freight was modified", bracket === original_freight.dapp_network, property);
+		
+		try {
+			if (bracket === original_freight.dapp_network && property === "net_path") {
+				localStorage.setItem ("net_path", value);
+			}
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
+		
+		try {
+			if (bracket === original_freight.dapp_network && property === "net_name") {
+				localStorage.setItem ("net_name", value);
+			}
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
+	});
 	
 
 	
@@ -182,13 +222,10 @@ export const lease_roomies_truck = () => {
 	});
 
 	
-	
 	monitor_window ({ truck: trucks [1] });
 	
 	dapp_network_connection_loop = ask_for_dapp_network_connection_status ();
 	dapp_network_connection_loop.play ();
-	
-
 }
 
 

@@ -106,6 +106,6 @@ const build = () => {
 	/>
 	
 	
-	<Wallet_Frontier />
+	<!-- <Wallet_Frontier /> -->
 	{/if}
 </div>

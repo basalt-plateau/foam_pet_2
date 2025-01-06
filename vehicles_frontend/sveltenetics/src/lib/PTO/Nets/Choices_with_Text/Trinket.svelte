@@ -4,58 +4,49 @@
 <script>
 
 /*
-import Choices_with_Text from '$lib/PTO/Nets/Choices_with_Text.svelte'
+import Net_Choices_with_Text from '$lib/PTO/Nets/Choices_with_Text/Trinket.svelte'
 
-let net_prepare = () => {
-	return {
-		net_name: "mainnet"
-	}
-};
-
-let every_net_enhance = ({
-	net_name,
-	net_path,
-	chain_id
-}) => {
-	console.info ({
+<Net_Choices_with_Text 
+	prepare={() => {
+		return {
+			net_name: "mainnet"
+		}
+	}}
+	every_enhance={({
 		net_name,
 		net_path,
 		chain_id
-	})
-};
-
-<Net_Choices_with_Text 
-	prepare={ net_prepare }
-	every_enhance={ every_net_enhance }
+	}) => {
+		console.info ({
+			net_name,
+			net_path,
+			chain_id
+		})
+	}}
 />
 */
 
 
+////
 //
-//
-import Net_Choices from '$lib/PTO/Nets/Choices.svelte'
-import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
-import { request_ledger_info } from '$lib/PTO/General/Ledger_Info.API'
-//
-import { loop } from '$lib/taverns/loop'
-import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-//
-//
-import { has_field } from '$lib/taverns/procedures/object/has_field'
 import { ConicGradient } from '@skeletonlabs/skeleton';
 import { onMount, onDestroy } from 'svelte'
 //
 //
+import Net_Choices from '$lib/PTO/Nets/Choices.svelte'
+import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Radial_Progress from '$lib/trinkets/Progress/Radial/Trinket.svelte'
-	
+//
+import { loop } from '$lib/taverns/loop'
+import { request_ledger_info } from '$lib/PTO/General/Ledger_Info.API'
+import { has_field } from '$lib/taverns/procedures/object/has_field'
+//
+//
+//
 
 
 export let prepare = () => {
-	const preparations = {
-		net_name: "mainnet"
-	}
-	
-	
 	return {
 		net_name
 	}
@@ -127,9 +118,6 @@ const the_ledger_ask_loop = loop ({
 			console.info (`There's not a "net path" for the ledger loop.`)
 			return;
 		}
-		
-		localStorage.setItem ("net_path", net_path)
-		localStorage.setItem ("net_name", net_name)
 		
 		ledger_ask_count += 1
 		const curren_ledger_ask_count = ledger_ask_count;
@@ -228,12 +216,6 @@ const on_mount_prepare = () => {
 	let net = nets [ net_name ]
 	net_path = net.path;
 	
-	if (typeof localStorage.net_name === "string") {
-		net_name = localStorage.net_name	
-	}
-	if (typeof localStorage.net_path === "string") {
-		net_path = localStorage.net_path	
-	}
 	
 	prepared = "yes"
 	

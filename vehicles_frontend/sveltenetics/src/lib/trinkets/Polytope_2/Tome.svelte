@@ -8,12 +8,39 @@
 
 /*
 	import Polytope_2 from '$lib/trinkets/Polytope_2/Tome.svelte'
+	let polytope_2_modal;
+	let polytope_2_prepared = "no"
+
 	<Polytope_2 
-		bind:this={ polytope_modal }
-		on_prepare={ on_prepare }
+		bind:this={ polytope_2_modal }
+		on_prepare={() => {
+			polytope_2_prepared = "yes"
+		}}
 	>
-	
+		{#if polytope_2_prepared === "yes" }
+			
+
+		{/if}
 	</Polytope_2>
+*/
+
+/*
+	import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+	const modal_store = getModalStore ();
+
+
+	let open = async () => {
+		modal_store.trigger ({
+			type: 'component',
+			backdropClasses: '!p-0',
+			component: {
+				ref: (await import ('./../Panel/Tome.svelte')).default,
+				props: { 
+					modal_store
+				}
+			}
+		});
+	}
 */
 
 //
@@ -28,24 +55,16 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 ////
 
-
 const modal_store = getModalStore ();
 
 $: freight = {
 	name: '',
-	panel: {
-		text: ''
-	},
 	close: () => {
 		modal_store.close ();
 	}
 }
 
-export let on_prepare;
-export const advance = (action) => {
-	const _freight = action ({ freight })
-	freight = _freight;
-}
+export let on_prepare = () => {};
 
 onMount (() => {
 	on_prepare ()
@@ -131,7 +150,7 @@ onMount (() => {
 				overflow-y: scroll;
 			"
 		>
-			<slot name="leaves"></slot>
+			<slot></slot>
 		</div>
 		<div style="height: 70px" />
 	</div>
