@@ -1,0 +1,22 @@
+
+
+[package]
+name = "Rules_02"
+version = "1.0.0"
+authors = []
+
+[addresses]
+ride = "_"
+
+[dev-addresses]
+
+
+[dependencies.AptosFramework]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
+
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
+
+
+
+

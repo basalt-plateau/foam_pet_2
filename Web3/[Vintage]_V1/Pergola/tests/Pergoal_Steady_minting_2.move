@@ -55,8 +55,6 @@ module ride::Pergola_Steady_minting_2 {
 		
 		//
 		//
-		
-		
 
         let (burn_cap, freeze_cap, mint_cap) = coin::initialize<AptosCoin>(
             aptos_framework,
