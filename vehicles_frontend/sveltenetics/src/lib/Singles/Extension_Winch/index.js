@@ -1,7 +1,10 @@
 
 
 
-
+/*
+	Could ask for wallet network status if the wallet 
+	is asking to connect to a trusted node.
+*/
 
 
 ////
@@ -64,11 +67,27 @@ export const make = async (packet) => {
 			//	This is vintage.  Don't use this.
 			//
 			//
-			network_status: {
-				connected: "",
-				aptos: "",
-				status: {},
-				UTC_orbit: ""
+			// network_status: {
+			// 	connected: "",
+			// 	aptos: "",
+			// 	status: {},
+			// 	UTC_orbit: ""
+			// },
+			// 
+			
+			propose_for_account_address () {
+				try {
+					const freight = trucks [1].freight;
+					const stage_name_connected = freight.stage_name_connected;
+					const stage = freight.stages [ stage_name_connected ];
+					
+					return stage.account.address;
+				}
+				catch (imperfection) {
+					console.error (imperfection);
+				}
+				
+				return ""
 			},
 			
 			ask_for_stage () {
@@ -77,6 +96,19 @@ export const make = async (packet) => {
 				return freight.stages [ stage_name_connected ];
 			},
 			
+			
+			/*
+				EWF.prompt ({
+					petition: {
+						function: '0x1::coin::transfer',
+						type_arguments: ['0x1::aptos_coin::AptosCoin'],
+						arguments: [
+							origin_address.address_hexadecimal_string,
+							amount
+						]
+					}
+				});
+			*/
 			async prompt ({ petition }) {
 				const stage = trucks [1].freight.ask_for_stage ();
 				await stage.prompt ({ petition });

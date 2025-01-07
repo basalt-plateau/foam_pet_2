@@ -120,7 +120,7 @@ pydash==8.0.4
     #   foam-pet (pyproject.toml)
     #   ships
     #   ventures
-pygments==2.19.0
+pygments==2.19.1
     # via
     #   emergency
     #   rich

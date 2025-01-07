@@ -156,7 +156,7 @@ export const lease_roomies_truck = () => {
 		property, 
 		value
 	}) => {
-		// console.log ("🌾 Versie Freight was modified", bracket === original_freight.dapp_network, property);
+		// console.log ("🌾 Versie Freight was modified", value, property);
 		
 		try {
 			if (bracket === original_freight.dapp_network && property === "net_path") {
@@ -193,7 +193,7 @@ export const lease_roomies_truck = () => {
 		catch (imperfection) {}
 		
 		
-		console.log ("check_cohesion", { wallet_chain_id, dapp_chain_id });
+		// console.log ("check_cohesion", { wallet_chain_id, dapp_chain_id });
 		
 		try {
 			if (
@@ -225,6 +225,8 @@ export const lease_roomies_truck = () => {
 		property, 
 		value
 	}) => {
+		console.log ("🌾 Extension_Winch_Monitor", value, property);
+		
 		check_cohesion ();
 	});
 

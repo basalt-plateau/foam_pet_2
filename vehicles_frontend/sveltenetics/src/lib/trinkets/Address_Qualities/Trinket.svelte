@@ -23,6 +23,8 @@
 	
 		bind:this={ address_trinket }
 		
+		has_field="no"
+		
 		on_change={({
 			effective,
 			address_hexadecimal_string,

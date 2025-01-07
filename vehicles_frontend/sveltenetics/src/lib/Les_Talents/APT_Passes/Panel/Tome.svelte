@@ -16,12 +16,13 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 
 import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
 
+let origin_address_trinket;
+
 let origin_address = {
 	effective: "no",
 	address_hexadecimal_string: "",
 	exception: ""
 }
-
 const on_change = ({
 	effective,
 	address_hexadecimal_string,
@@ -124,6 +125,33 @@ const on_polytope_2_prepare = () => {
 				>
 					<Address_Qualities_Trinket 
 						name="Origin Address"
+
+						bind:this={ origin_address_trinket }
+						
+						has_field="no"
+						
+						on_change={({
+							effective,
+							address_hexadecimal_string,
+							exception
+						}) => {}}
+						on_prepare={() => {
+							const address = Extension_Winch.freight ().propose_for_account_address ();
+							console.info ({ address });
+							
+							origin_address_trinket.change_address_hexadecimal_string (address)
+						}}
+					/>
+				</div>
+				
+				<div 
+					style="
+						width: 100%;
+					"
+					class="card p-4"
+				>
+					<Address_Qualities_Trinket 
+						name="To Address"
 					
 						bind:this={ address_trinket }
 						

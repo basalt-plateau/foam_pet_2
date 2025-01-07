@@ -58,10 +58,19 @@ export const Petra_stage_creator = async ({ freight }) => {
 
 
 			try {
-				const network = await Petra.getNetwork ();
+				//
+				//	Send the petition
+				//
+				//
 				const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
+				console.info ({ pending_transaction });
 				
 				
+				//
+				//	Wait for the results of the petition.
+				//
+				//
+				const network = await Petra.getNetwork ();
 				const aptos_client = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
 					fullnode: network.address,
 					network: Aptos_SDK.Network.CUSTOM
@@ -69,6 +78,7 @@ export const Petra_stage_creator = async ({ freight }) => {
 				
 				
 				// const client = new Aptos_SDK.AptosClient (network.address);
+				console.log ("waiting for transaction")
 				const txn = await aptos_client.waitForTransactionWithResult (pending_transaction.hash);
 				console.log ({ txn });
 			} 
