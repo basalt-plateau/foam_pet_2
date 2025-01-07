@@ -27,7 +27,7 @@ module ride::Rules_02 {
 		vector::append (&mut vectors, b"\n\nThis module is everyone's to play with however \n");
 		vector::append (&mut vectors, b"they so please.\n");
 		vector::append (&mut vectors, b"\n");
-		vector::append (&mut vectors, b"Everyone is allowed to make modules that are \n");
+		vector::append (&mut vectors, b"Everyone is allowed to make modules that are\n");
 		vector::append (&mut vectors, b"exactly the same or derivate of this module.\n");
 		vector::append (&mut vectors, b"\n");
 		vector::append (&mut vectors, b"Any module that volunteers these volitions\n");
