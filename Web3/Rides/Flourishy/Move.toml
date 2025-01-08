@@ -2,14 +2,16 @@
 
 
 
+
+
 [package]
-name = "Peptyde_01"
+name = "Flourishy_01"
 version = "1.0.0"
 authors = []
 upgrade_policy = "compatible"
 
 [addresses]
-builder_1 = "_"
+creator_1 = "_"
 
 [dev-addresses]
 
