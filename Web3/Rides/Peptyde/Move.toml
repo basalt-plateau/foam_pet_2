@@ -3,13 +3,13 @@
 
 
 [package]
-name = "Flourish_01"
+name = "Peptyde_01"
 version = "1.0.0"
 authors = []
 upgrade_policy = "compatible"
 
 [addresses]
-ride = "_"
+boat_1 = "_"
 
 [dev-addresses]
 
