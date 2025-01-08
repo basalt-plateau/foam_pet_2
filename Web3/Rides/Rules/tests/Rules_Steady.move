@@ -8,7 +8,7 @@
 
 
 
-module ride::Rules_02_Steady {
+module ride::Rules_09_Steady {
 
 	use std::string::{ Self, String };
 	
@@ -17,8 +17,8 @@ module ride::Rules_02_Steady {
 		use std::debug;
 		use std::string_utils;
 		
-		use ride::Rules_02;
-		let rules : String = Rules_02::Volitions_01 ();
+		use ride::Rules_09;
+		let rules : String = Rules_09::Volitions_01 ();
 		
 		debug::print (& string_utils::format1 (
 			& b"Rules: {}", 

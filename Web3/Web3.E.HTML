@@ -15,7 +15,7 @@
 			#	This should be in the .gitignore
 			#
 			#
-			(cd /Metro/Mottos && aptos init --network devnet --assume-yes)
+			(cd /Metro/Web3 && aptos init --network devnet --assume-yes)
 			
 			#
 			#	Modify legacy_address "ride" in publish
@@ -26,6 +26,9 @@
 		<header>Main</header>
 			aptos init --network mainnet --assume-yes
 	
+			<header>Publishing</header>
+			python3 steady.py
+		
 	
 	<header>plays</header>
 		aptos account list --query resources
@@ -34,7 +37,7 @@
 	<header>Places</header>
 	
 		Visiwa: Rules
-		Quary: Data Types
+		Quary: Wonder_Types
 		Tholvi: Blockchain (Board) Info
 		Pergola: Accounts + APT
 		
