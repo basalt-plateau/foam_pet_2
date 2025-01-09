@@ -14,16 +14,27 @@ module builder_1::Water_Balloons_1_Players {
 	}
 	
 	struct Player has store, drop {
-		address : address
+		address : address,
+		water_balloons : u256
 	}
 	
 	public fun add (address : address) : Player {
 		let player = Player {
-			address : address
+			address : address,
+			water_balloons : 0
 		};
 		player
 	}
 	
+	public fun player_address (player : & Player) : address {
+		player.address
+	}
 	
+	public fun add_water_balloons (
+		player : &mut Player, 
+		add : u256
+	) {
+		player.water_balloons = player.water_balloons + add;
+	}
 	
 }

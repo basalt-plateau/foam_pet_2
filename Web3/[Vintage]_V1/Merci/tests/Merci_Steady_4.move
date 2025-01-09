@@ -145,6 +145,7 @@ module ride_1::Merci_Steady_4 {
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_1_spot) != mercyverse) { abort 2 };
 		if (Merci_Harvest::ask_for_party_count () != 1) { abort 7 };
 		
+		
 		/*
 			Joining:
 				Estate 2
@@ -159,6 +160,7 @@ module ride_1::Merci_Steady_4 {
 		if (Merci_Harvest::ask_for_le_amount_of_mercy_that_a_party_has (estate_2_spot) != 0) { abort 4 };
 		if (Merci_Harvest::ask_for_party_count () != 2) { abort 7 };
 		if (coin::balance<AptosCoin>(estate_2_spot) != 0) { abort 89389 };
+		
 		
 		/*
 			Joining:

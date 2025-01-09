@@ -135,22 +135,34 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		coin::register<AptosCoin>(& player_03);			
 		//
 		//
-		coin::transfer<AptosCoin>(& owner_1, player_01_position, 500);
+		coin::transfer<AptosCoin>(& owner_1, player_01_position, 200000000);
 		coin::transfer<AptosCoin>(& owner_1, player_02_position, 500);
 		coin::transfer<AptosCoin>(& owner_1, player_03_position, 500);		
 		//
 		////
 		
 		
+		////
+		//
+		//	The Sport
+		//
+		//
 		Water_Balloons_1_Sport::Begin (& owner_1);
 		Water_Balloons_1_Sport::Join (& player_01);
 		Water_Balloons_1_Sport::Join (& player_02);
+		Water_Balloons_1_Sport::Join (& player_03);
 		
 		
+		
+		if (Water_Balloons_1_Sport::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 89389 };
 		Water_Balloons_1_Sport::Buy_5_water_balloons_for_1_APT (& player_01);
 		
-		Water_Balloons_1_Sport::End (& owner_1);	
 		
+		
+		
+		Water_Balloons_1_Sport::End (& owner_1);	
+		//
+		////		
 		
 		
 		////
