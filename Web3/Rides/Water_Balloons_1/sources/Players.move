@@ -13,10 +13,14 @@ module builder_1::Water_Balloons_1_Players {
 		Rules_09::Volitions_01 ()
 	}
 	
-	struct Player has store, drop {}
+	struct Player has store, drop {
+		address : address
+	}
 	
-	public fun add () : Player {
-		let player = Player {};
+	public fun add (address : address) : Player {
+		let player = Player {
+			address : address
+		};
 		player
 	}
 	

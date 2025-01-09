@@ -91,23 +91,53 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		use std::signer;
 		use std::string_utils;
 		use std::string::{ utf8 };
+		use std::vector;
 
 		use aptos_framework::account;
 
 		use builder_1::Water_Balloons_1_Sport; 
 		
+		/*
+		let players = vector::empty<signer>();
+		vector::push_back (&mut players, & player_01);
+		vector::push_back (&mut players, & player_02);
+		vector::push_back (&mut players, & player_03);
+		for (i in 0..vector::length (& players)) {
+			
+		};
+		*/
+		
 		////
 		//
-		//	Tailgate
+		//	Tailgate: APT Moves
 		//
 		//
 		let owner_position = signer::address_of (& owner_1);
-		account::create_account_for_test (owner_position);
+		let player_01_position = signer::address_of (& player_01);
+		let player_02_position = signer::address_of (& player_02);
+		let player_03_position = signer::address_of (& player_03);		
 		//
 		let (burn_cap, freeze_cap, mint_cap) = origin (& aptos_framework_consenter);
-		coin::register<AptosCoin>(& owner_1);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
+		//
+		account::create_account_for_test (owner_position);
+		coin::register<AptosCoin>(& owner_1);
 		coin::deposit (owner_position, coins);
+		//
+		//
+		account::create_account_for_test (player_01_position);
+		account::create_account_for_test (player_02_position);
+		account::create_account_for_test (player_03_position);
+		//
+		//
+		coin::register<AptosCoin>(& player_01);
+		coin::register<AptosCoin>(& player_02);
+		coin::register<AptosCoin>(& player_03);			
+		//
+		//
+		coin::transfer<AptosCoin>(& owner_1, player_01_position, 500);
+		coin::transfer<AptosCoin>(& owner_1, player_02_position, 500);
+		coin::transfer<AptosCoin>(& owner_1, player_03_position, 500);		
 		//
 		////
 		
@@ -118,7 +148,6 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		
 		
 		Water_Balloons_1_Sport::Buy_5_water_balloons_for_1_APT (& player_01);
-		
 		
 		Water_Balloons_1_Sport::End (& owner_1);	
 		

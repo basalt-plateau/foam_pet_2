@@ -47,17 +47,28 @@ module builder_1::Water_Balloons_1_Sport {
 	}
 	
 	
-	public entry fun Join (player : & signer) acquires Sport {
+	public entry fun Join (consenter : & signer) acquires Sport {
+		let consenter_address = signer::address_of (consenter);
+		
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
-		let player = Water_Balloons_1_Players::add ();
+		let player = Water_Balloons_1_Players::add (consenter_address);
 		vector::push_back (players, player);		
 	}
 		
 	
-	public entry fun Buy_5_water_balloons_for_1_APT (client : & signer) {
-
+	public entry fun Buy_5_water_balloons_for_1_APT (consenter : & signer) {
+		//
+		//	Check if the consenter is a player.
+		//
+		//
 		
+		// coin::transfer<AptosCoin>(& consenter, player_01_position, 500);
+		
+		
+	}
+	
+	fun has_joined_the_sport () {
 		
 	}
 	
