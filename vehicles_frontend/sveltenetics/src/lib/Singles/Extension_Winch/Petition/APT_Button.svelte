@@ -68,6 +68,9 @@ export let permitted = "no"
 				style="
 					font-size: 1.2em;
 					font-weight: bold;
+					
+					height: 100%;
+					padding: 0 0.5cm;					
 				"	
 			>{ button_text }</span>
 		</span>
@@ -81,7 +84,6 @@ export let permitted = "no"
 			
 				flex-direction: row;
 			"
-			class="badge variant-soft-primary"
 		>
 			<div
 				style="
@@ -93,13 +95,13 @@ export let permitted = "no"
 					flex-direction: row;
 					gap: 0.0cm;
 				"
-				class="badge variant-filled-primary"
+				class="badge variant-filled-surface"
 			>
 				<img 
 					src="/_Licensed/Aptos/aptos.png" 
 					style="
 						width: 0.5cm;
-						height: 0.5cm;								
+						height: 0.5cm;
 					"
 				/>
 				<span
@@ -108,30 +110,12 @@ export let permitted = "no"
 						transform: translateY(2px);
 					"
 				>{ APT }</span>
-			</div>
-			
-			<div
-				class="badge variant-filled-primary"
-				style="
-					display: flex;
-					
-					align-items: center;
-					justify-content: center;
-				"
-			>
 				<span
 					style="
 						font-size: 1.2em;		
 						transform: translateY(2px);
 					"
 				>+</span>
-				<img 
-					src="/_Licensed/Aptos/aptos.png" 
-					style="
-						width: 0.5cm;
-						height: 0.5cm;								
-					"
-				/>
 				<span
 					style="
 						font-size: 1.2em;		

@@ -3,61 +3,7 @@
 
 module builder_1::Water_Ballons_1_Steady_1 {
 	
-	
-	/*
-		let (burn_cap, freeze_cap, mint_cap) = origin (& aptos_framework_flourisher);
-	
-	
-		coin::destroy_mint_cap (mint_cap);
-        coin::destroy_freeze_cap (freeze_cap);
-		coin::destroy_burn_cap (burn_cap);
-	*/
-	use aptos_framework::coin;
-	use aptos_framework::aptos_coin::AptosCoin;
-	#[test (
-		aptos_framework_consenter = @0x1 
-	)]
-	fun origin (
-		aptos_framework_consenter: & signer
-	) : (
-		coin::BurnCapability<AptosCoin>,
-		coin::FreezeCapability<AptosCoin>,
-		coin::MintCapability<AptosCoin>		
-	) {
-		use std::string;
 
-		use aptos_framework::aptos_coin::AptosCoin;
-		use aptos_framework::coin::{ Self, Coin };
-		use aptos_framework::timestamp;
-		
-		/*
-			public fun initialize<CoinType>(
-				account: &signer, 
-				name: string::String, 
-				symbol: string::String, 
-				decimals: u8, 
-				monitor_supply: bool
-			): (
-				coin::BurnCapability<CoinType>, 
-				coin::FreezeCapability<CoinType>, 
-				coin::MintCapability<CoinType>
-			)
-		*/
-		let decimals : u8 = 8;
-		let monitor_supply : bool = false;
-		let (burn_cap, freeze_cap, mint_cap) = coin::initialize<AptosCoin>(
-            aptos_framework_consenter,
-            string::utf8 (b"Swerve"),
-            string::utf8 (b"SWE"),
-            decimals,
-            monitor_supply
-        );
-		
-		// let coins = coin::mint<AptosCoin>(10000, &mint_cap);
-        // coin::deposit (estate_1_spot, coins);
-		
-		(burn_cap, freeze_cap, mint_cap)
-	}
 	
 	
 	/*
@@ -87,25 +33,19 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		player_02 : signer,
 		player_03 : signer
 	) {	
-		use std::debug;
-		use std::signer;
+		use std::vector;
 		use std::string_utils;
 		use std::string::{ utf8 };
-		use std::vector;
+		use std::signer;
+		use std::debug;
 
-		use aptos_framework::account;
-
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin::AptosCoin;
+		use aptos_framework::account;		
+	
 		use builder_1::Water_Balloons_1_Sport; 
+		use builder_1::Steady; 
 		
-		/*
-		let players = vector::empty<signer>();
-		vector::push_back (&mut players, & player_01);
-		vector::push_back (&mut players, & player_02);
-		vector::push_back (&mut players, & player_03);
-		for (i in 0..vector::length (& players)) {
-			
-		};
-		*/
 		
 		////
 		//
@@ -117,7 +57,7 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		let player_02_position = signer::address_of (& player_02);
 		let player_03_position = signer::address_of (& player_03);		
 		//
-		let (burn_cap, freeze_cap, mint_cap) = origin (& aptos_framework_consenter);
+		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
 		//
 		account::create_account_for_test (owner_position);
@@ -148,18 +88,29 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		//
 		//
 		Water_Balloons_1_Sport::Begin (& owner_1);
+		
+		//	Join
+		//
 		Water_Balloons_1_Sport::Join (& player_01);
 		Water_Balloons_1_Sport::Join (& player_02);
 		Water_Balloons_1_Sport::Join (& player_03);
-		
-		
-		
 		if (Water_Balloons_1_Sport::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 89389 };
+		if (Water_Balloons_1_Sport::player_has_joined_the_sport (player_02_position) != utf8 (b"yup")) { abort 89389 };
+		if (Water_Balloons_1_Sport::player_has_joined_the_sport (player_03_position) != utf8 (b"yup")) { abort 89389 };
+		
+		//	Buy
+		//
 		Water_Balloons_1_Sport::Buy_5_water_balloons_for_1_APT (& player_01);
+		if (Water_Balloons_1_Sport::Water_Balloons_Score (player_01_position) != 5) { abort 1 };
 		
+		//	Throw
+		//
+		Water_Balloons_1_Sport::Throw_Water_Balloon (& player_01, player_02_position);
+		if (Water_Balloons_1_Sport::Water_Balloons_Score (player_01_position) != 4) { abort 1 };
+		if (Water_Balloons_1_Sport::Water_Balloons_Score (player_02_position) != 1) { abort 1 };
 		
-		
-		
+		//	End
+		//
 		Water_Balloons_1_Sport::End (& owner_1);	
 		//
 		////		

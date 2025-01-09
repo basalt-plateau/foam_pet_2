@@ -27,7 +27,8 @@ module builder_1::Water_Balloons_1_Sport {
 	
 	struct Water_Balloon has key, drop {}
 	struct Sport has key, drop {
-		players: vector<Player>
+		water_balloons_for_sale : u256,
+		players : vector<Player>
 	}
 	
 	
@@ -41,7 +42,8 @@ module builder_1::Water_Balloons_1_Sport {
 		//
 		//
 		let sport = Sport {
-			players: vector::empty<Player>()
+			water_balloons_for_sale : 900000,
+			players : vector::empty<Player>()
 		};
 		
 		move_to<Sport>(consenter, sport)
@@ -67,13 +69,14 @@ module builder_1::Water_Balloons_1_Sport {
 		
 	
 	public entry fun Buy_5_water_balloons_for_1_APT (consenter : & signer) acquires Sport {
+		let consenter_address = signer::address_of (consenter);
+		let sport = borrow_global<Sport>(owner_position ());
 		
 		//
 		//
 		//	Check if the consenter has joined the sport as a player.
 		//
 		//
-		let consenter_address = signer::address_of (consenter);
 		if (player_has_joined_the_sport (consenter_address) != utf8 (b"yup")) { 
 			abort Imperfection_consenter_has_not_joined 
 		};
@@ -86,6 +89,12 @@ module builder_1::Water_Balloons_1_Sport {
 		if (coin::balance<AptosCoin>(consenter_address) < 100000000) { 
 			abort Imperfection_consenter_does_not_have_enough_APT_for_purchase 
 		};
+		
+		//
+		//
+		//	Check if there are enough water balloons left for sale.
+		//
+		//
 		
 		
 		//
@@ -102,11 +111,10 @@ module builder_1::Water_Balloons_1_Sport {
 		//
 		//
 		let water_balloons_to_add : u256 = 5;
-		let player_index = search_for_player (consenter_address);
+		let player_index = search_for_index_of_player (consenter_address);
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
 		let player_at_index_ref = vector::borrow_mut (players, player_index);
-		
 		
 		
 		Water_Balloons_1_Players::add_water_balloons (player_at_index_ref, water_balloons_to_add);	
@@ -116,8 +124,30 @@ module builder_1::Water_Balloons_1_Sport {
 		// coin::transfer<AptosCoin>(& consenter, owner_position (), 500);
 	}
 	
+	public entry fun Throw_Water_Balloon (
+		consenter : & signer, 
+		other_player_address : address
+	) acquires Sport {
+		let consenter_address = signer::address_of (consenter);
+		
+		//
+		//
+		//
+		//
+		let index_of_player_from = search_for_index_of_player (consenter_address);
+		let index_of_player_to = search_for_index_of_player (other_player_address);
+		let sport = borrow_global_mut<Sport>(owner_position ());
+		let players = &mut sport.players;
+		
+		let player_from_ref = vector::borrow_mut (players, index_of_player_from);
+		Water_Balloons_1_Players::subtract_water_balloons (player_from_ref, 1);	
+
+		let player_to_ref = vector::borrow_mut (players, index_of_player_to);		
+		Water_Balloons_1_Players::add_water_balloons (player_to_ref, 1);		
+	}
 	
-	public fun search_for_player (player_address : address) : u64 acquires Sport {
+	
+	public fun search_for_index_of_player (player_address : address) : u64 acquires Sport {
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
 		for (index in 0..vector::length (players)) {
@@ -145,6 +175,18 @@ module builder_1::Water_Balloons_1_Sport {
 		utf8 (b"no")
 	}
 	
-	
+
+	#[view]
+	public fun Water_Balloons_Score (player_address : address) : u256 acquires Sport {
+		let index_of_player = search_for_index_of_player (player_address);
+		let sport = borrow_global<Sport>(owner_position ());
+		let players = & sport.players;
+		let player_at_index_ref = vector::borrow (
+			players, 
+			index_of_player
+		);
+		
+		Water_Balloons_1_Players::water_balloons_score (player_at_index_ref)
+	}
 	
 }

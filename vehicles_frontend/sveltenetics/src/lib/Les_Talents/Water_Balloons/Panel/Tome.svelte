@@ -13,6 +13,10 @@ import Polytope_2 from '$lib/trinkets/Polytope_2/Tome.svelte'
 //
 ////
 
+import Leaf from './Leaf.svelte'
+
+
+
 
 	
 let polytope_2_modal;
@@ -29,7 +33,6 @@ let polytope_2_prepared = "no"
 	}}
 >
 	{#if polytope_2_prepared === "yes" }
-		
-
+	<Leaf />
 	{/if}
 </Polytope_2>

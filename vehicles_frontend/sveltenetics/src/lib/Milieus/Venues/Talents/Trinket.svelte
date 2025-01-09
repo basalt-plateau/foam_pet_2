@@ -47,6 +47,7 @@ import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
 import APT_Passes from '$lib/Les_Talents/APT_Passes/Frontier/Tome.svelte'
+import Water_Balloons from '$lib/Les_Talents/Water_Balloons/Frontier/Tome.svelte'
 //
 //
 ////
@@ -157,6 +158,10 @@ const mode = check_roomies_truck ().freight.mode;
 			<Mercy_Frontier { modal_store }/>	
 		</Panel>
 		{/if}
+		
+		<Panel styles={ trends.panel }>	
+			<Water_Balloons />
+		</Panel>
 		
 		<Panel styles={ trends.panel }>	
 			<APT_Passes />
