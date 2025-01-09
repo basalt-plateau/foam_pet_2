@@ -103,16 +103,15 @@ module builder_1::Water_Balloons_1_Sport {
 		//
 		let water_balloons_to_add : u256 = 5;
 		let player_index = search_for_player (consenter_address);
-		
-		
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
 		let player_at_index_ref = vector::borrow_mut (players, player_index);
 		
 		
 		
+		Water_Balloons_1_Players::add_water_balloons (player_at_index_ref, water_balloons_to_add);	
 		
-		//Water_Balloons_1_Players::add_water_balloons (consenter, water_balloons_to_add);		
+		
 		// coin::transfer<AptosCoin>(& consenter, player_01_position, 500);
 		// coin::transfer<AptosCoin>(& consenter, owner_position (), 500);
 	}
