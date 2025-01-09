@@ -5,29 +5,36 @@ module builder_1::Water_Balloons_1_Sport {
 	
 	use std::signer;
 	use std::string::{ String, utf8 };
-	
+	use std::vector;
+
 	use builder_1::Rules_09;
 	
-	use builder_1::Water_Balloons_1_Players;
-	use builder_1::Water_Balloons_1_Owner;
-	
+	use builder_1::Water_Balloons_1_Players::{ Self, Player };
+	use builder_1::Water_Balloons_1_Owner::{ owner_position, ask_if_consenter_is_owner };
+
+
 	#[view]
 	public fun Volitions () : String {
 		Rules_09::Volitions_01 ()
 	}
 	
 	struct Water_Balloon has key, drop {}
-	struct Sport has key, drop {}
+	struct Sport has key, drop {
+		players: vector<Player>
+	}
 	
 	
 	public entry fun Begin (consenter : & signer) {
-		if (Water_Balloons_1_Owner::ask_if_consenter_is_owner (consenter) != utf8 (b"yup")) { abort 9502 };
+		if (ask_if_consenter_is_owner (consenter) != utf8 (b"yup")) { abort 9502 };
 		
 		//
 		//	Check if the consenter is the producer.
 		//
 		//
-		let sport = Sport {};
+		let sport = Sport {
+			players: vector::empty<Player>()
+		};
+		
 		move_to<Sport>(consenter, sport)
 	}
 	public entry fun End (consenter : & signer) {
@@ -37,10 +44,16 @@ module builder_1::Water_Balloons_1_Sport {
 		//
 		
 		
-		
-		
 	}
 	
+	
+	public entry fun Join (player : & signer) acquires Sport {
+		let sport = borrow_global_mut<Sport>(owner_position ());
+		let players = &mut sport.players;
+		let player = Water_Balloons_1_Players::add ();
+		vector::push_back (players, player);		
+	}
+		
 	
 	public entry fun Buy_5_water_balloons_for_1_APT (client : & signer) {
 

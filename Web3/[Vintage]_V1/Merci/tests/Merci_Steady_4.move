@@ -13,6 +13,15 @@ module ride_1::Merci_Steady_4 {
 		Merci_Bayanihan::Bayanihan ()
 	}	
 	
+	
+	/*
+		let (burn_cap, freeze_cap, mint_cap) = origin (aptos_framework_flourisher);
+	
+	
+		coin::destroy_mint_cap (mint_cap);
+        coin::destroy_freeze_cap (freeze_cap);
+		coin::destroy_burn_cap (burn_cap);
+	*/
 	use aptos_framework::coin;
 	use aptos_framework::aptos_coin::AptosCoin;
 	#[test (

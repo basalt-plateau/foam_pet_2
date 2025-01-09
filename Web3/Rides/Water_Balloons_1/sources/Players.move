@@ -13,9 +13,12 @@ module builder_1::Water_Balloons_1_Players {
 		Rules_09::Volitions_01 ()
 	}
 	
-	struct Player has key, drop {}
+	struct Player has store, drop {}
 	
-	
+	public fun add () : Player {
+		let player = Player {};
+		player
+	}
 	
 	
 	
