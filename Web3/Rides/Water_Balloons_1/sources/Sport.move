@@ -19,6 +19,7 @@ module builder_1::Water_Balloons_1_Sport {
 	const Imperfection_consenter_is_not_owner : u64 = 1;
 	const Imperfection_consenter_does_not_have_enough_APT_for_purchase : u64 = 2;
 	const Ending_player_was_not_found : u64 = 3;
+	const Ending_every_water_balloon_has_been_sold : u64 = 3;
 
 	#[view]
 	public fun Volitions () : String {
@@ -70,7 +71,7 @@ module builder_1::Water_Balloons_1_Sport {
 	
 	public entry fun Buy_5_water_balloons_for_1_APT (consenter : & signer) acquires Sport {
 		let consenter_address = signer::address_of (consenter);
-		let sport = borrow_global<Sport>(owner_position ());
+		
 		
 		//
 		//
@@ -95,7 +96,10 @@ module builder_1::Water_Balloons_1_Sport {
 		//	Check if there are enough water balloons left for sale.
 		//
 		//
-		
+		let sport = borrow_global<Sport>(owner_position ());
+		if (sport.water_balloons_for_sale < 5) {
+			abort Ending_every_water_balloon_has_been_sold
+		};
 		
 		//
 		//
