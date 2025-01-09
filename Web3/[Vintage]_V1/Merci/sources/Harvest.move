@@ -14,13 +14,11 @@ module ride_1::Merci_Harvest {
 	use ride_1::Merci_Gifts;
 	use ride_1::Merci_Parties;
 	
-	
 	#[view]
 	public fun Bayanihan () : String {
 		use ride_1::Merci_Bayanihan;
 		Merci_Bayanihan::Bayanihan ()
 	}	
-
 
 	struct Harvest has key, drop {
 		parties: vector<Merci_Parties::Party>,

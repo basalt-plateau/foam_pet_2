@@ -68,7 +68,7 @@ module ride::Pergola {
 	#[view]
     public fun estate_scout (address_1: address): String {
 		if (account::exists_at (address_1)) {			
-			let estate_built: String = utf8 (b"There is an estate at that address.");
+			let estate_built : String = utf8 (b"There is an estate at that address.");
 			estate_built
 		}
 		else {

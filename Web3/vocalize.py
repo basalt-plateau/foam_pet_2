@@ -22,6 +22,7 @@ import click
 
 import Rides.Rules as Rules_Moves
 import Rides.Peptyde as Peptyde_Moves
+import Rides.Water_Balloons_1 as Water_Balloons_1
 
 ride_plate = "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD"
 
@@ -39,12 +40,18 @@ moves_structures = {
 			"ride_plate": ride_plate,
 			"location": "/Metro/Web3/Rides/Peptyde"
 		}
+	},
+	"Water_Balloons_1": {
+		"moves": Water_Balloons_1,
+		"envelope": {
+			"ride_plate": ride_plate,
+			"location": "/Metro/Web3/Rides/Water_Balloons_1"
+		}
 	}
 }
 
 moves = [
-	#"Rules",
-	"Peptyde"
+	"Water_Balloons_1"
 ]
 
 
