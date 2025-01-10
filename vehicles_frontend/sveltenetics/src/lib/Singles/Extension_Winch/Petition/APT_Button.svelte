@@ -97,6 +97,7 @@ export let permitted = "no"
 				"
 				class="badge variant-filled-surface"
 			>
+				
 				<img 
 					src="/_Licensed/Aptos/aptos.png" 
 					style="
@@ -104,6 +105,8 @@ export let permitted = "no"
 						height: 0.5cm;
 					"
 				/>
+				
+				{#if APT !== "0" }
 				<span
 					style="
 						font-size: 1.2em;	
@@ -116,6 +119,8 @@ export let permitted = "no"
 						transform: translateY(2px);
 					"
 				>+</span>
+				{/if}
+				
 				<span
 					style="
 						font-size: 1.2em;		

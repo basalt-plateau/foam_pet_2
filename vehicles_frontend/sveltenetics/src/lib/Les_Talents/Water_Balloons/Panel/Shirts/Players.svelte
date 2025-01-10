@@ -36,7 +36,7 @@ const leave = () => {
 		"
 	>
 		<Petition_APT_Button
-			button_text="Join"
+			button_text="Join the Game"
 			APT="0"
 			clicked={ join }
 			
@@ -44,7 +44,7 @@ const leave = () => {
 		/>
 		
 		<Petition_APT_Button
-			button_text="Leave"
+			button_text="Leave the Game"
 			APT="0"
 			clicked={ leave }
 			
@@ -52,7 +52,18 @@ const leave = () => {
 		/>
 	</div>
 
-
+	<div class="card p-4"
+		style="
+			width: 100%;
+			text-align: center;
+			
+			display: flex;
+			justify-content: space-around;
+		"
+	>
+		<header>Roster</header>
+	
+	</div>
 
 
 

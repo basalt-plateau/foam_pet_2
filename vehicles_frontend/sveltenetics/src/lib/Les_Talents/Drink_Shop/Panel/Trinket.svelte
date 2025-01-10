@@ -175,7 +175,7 @@ const buy_human_to_chicken_reincarnation_drink = () => {
 						padding: 1cm .5cm;
 						white-space: pre-wrap;
 					"
-				>Human to Chicken Reincarnation Drink</span>
+				>Human to Chicken Transmogrification Reincarnation Spell</span>
 				
 				<Alert_Note
 					text={ "Mixing. Please check later." }

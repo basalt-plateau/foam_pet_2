@@ -33,7 +33,10 @@ module builder_1::Water_Balloons_1_Sport {
 	}
 	
 	
-	public entry fun Begin (consenter : & signer) {
+	public entry fun Begin (
+		consenter : & signer,
+		water_balloons_for_sale : u256
+	) {
 		if (ask_if_consenter_is_owner (consenter) != utf8 (b"yup")) { 
 			abort Imperfection_consenter_is_not_owner 
 		};

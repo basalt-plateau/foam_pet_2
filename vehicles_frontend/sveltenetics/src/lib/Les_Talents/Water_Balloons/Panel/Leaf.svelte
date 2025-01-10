@@ -37,9 +37,8 @@ let shirt = "Game";
 		style="
 			text-align: center;
 		"
-		class="card p-4"
 	>
-		{#if shirt === "Sport" }
+		{#if shirt === "Game" }
 		<Sport />
 		{:else if shirt === "Players" }
 		<Players />
