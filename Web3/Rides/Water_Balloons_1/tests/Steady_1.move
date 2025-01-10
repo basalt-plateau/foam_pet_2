@@ -51,6 +51,7 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		let player_02_position = signer::address_of (& player_02_consenter);
 		let player_03_position = signer::address_of (& player_03_consenter);	
 		
+		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
@@ -64,11 +65,12 @@ module builder_1::Water_Ballons_1_Steady_1 {
 		account::create_account_for_test (player_03_position);
 		
 		Steady::prepare_APT_for_players (
-			& owner_1_consenter,
 			& player_01_consenter,
 			& player_02_consenter,
 			& player_03_consenter
 		);
+		
+		
 		
 		coin::transfer<AptosCoin>(& owner_1_consenter, player_01_position, 300000000);
 		

@@ -31,7 +31,6 @@ module ride::Steady_Tholvi_Planet_3_1 {
 		use aptos_framework::genesis;
 	
 		timestamp::set_time_has_started_for_testing (aptos_framework_account);
-		
 		let one_synodic_rotation = 86400000000;
 				
 		let microsends : u64 = 10000; 

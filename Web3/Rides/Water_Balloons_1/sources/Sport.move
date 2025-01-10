@@ -151,11 +151,20 @@ module builder_1::Water_Balloons_1_Sport {
 		let consenter_address = signer::address_of (consenter);
 		
 		//
+		//	Search for player "from", if not found, end.
 		//
 		//
-		//
-		let index_of_player_from = search_for_index_of_player (consenter_address);
-		let index_of_player_to = search_for_index_of_player (other_player_address);
+		let index_of_player_from = search_for_index_of_player_with_ending_code (
+			consenter_address,
+			Water_Balloons_1_Endings::Ending_the_thrower_has_not_joined_the_game ()
+		);
+		
+		let index_of_player_to = search_for_index_of_player_with_ending_code (
+			other_player_address,
+			Water_Balloons_1_Endings::Ending_the_catcher_has_not_joined_the_game ()
+		);
+		
+		// let index_of_player_to = search_for_index_of_player (other_player_address);
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
 		
@@ -168,6 +177,13 @@ module builder_1::Water_Balloons_1_Sport {
 	
 	
 	public fun search_for_index_of_player (player_address : address) : u64 acquires Sport {
+		search_for_index_of_player_with_ending_code (player_address, Ending_player_was_not_found)
+	}
+	
+	public fun search_for_index_of_player_with_ending_code (
+		player_address : address,
+		ending_code : u64
+	) : u64 acquires Sport {
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
 		for (index in 0..vector::length (players)) {
@@ -178,7 +194,7 @@ module builder_1::Water_Balloons_1_Sport {
 			}			
 		};
 		
-		abort Ending_player_was_not_found
+		abort ending_code
 	}
 	
 	public fun player_has_joined_the_sport (player_address : address) : String acquires Sport {

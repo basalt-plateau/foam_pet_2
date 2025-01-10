@@ -6,6 +6,20 @@ module builder_1::Steady {
 	use aptos_framework::aptos_coin::AptosCoin;
 	use aptos_framework::coin;
 	
+	
+	public fun clock (
+		aptos_framework_consenter: & signer
+	) {
+		use aptos_framework::timestamp;
+		use aptos_framework::genesis;
+	
+		let one_synodic_rotation = 86400000000;
+		let microsends : u64 = 10000; 
+		
+		timestamp::set_time_has_started_for_testing (aptos_framework_account);
+		timestamp::update_global_time_for_test (microsends);
+	}
+	
 	/*
 		let (burn_cap, freeze_cap, mint_cap) = origin (& aptos_framework_flourisher);
 	
@@ -46,6 +60,12 @@ module builder_1::Steady {
             monitor_supply
         );
 		
+		
+		
+		
+		
+		
+		
 		// let coins = coin::mint<AptosCoin>(10000, &mint_cap);
         // coin::deposit (estate_1_spot, coins);
 		
@@ -54,19 +74,12 @@ module builder_1::Steady {
 	
 	
 	public fun prepare_APT_for_players (
-		owner_1_consenter : & signer,
 		player_01_consenter : & signer,
 		player_02_consenter : & signer,
 		player_03_consenter : & signer
 	) {
-		use std::signer;
-
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
-	
-		let player_01_position = signer::address_of (player_01_consenter);
-		let player_02_position = signer::address_of (player_02_consenter);
-		let player_03_position = signer::address_of (player_03_consenter);
 		
 		coin::register<AptosCoin>(player_01_consenter);
 		coin::register<AptosCoin>(player_02_consenter);

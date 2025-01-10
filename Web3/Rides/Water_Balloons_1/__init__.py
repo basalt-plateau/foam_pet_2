@@ -63,8 +63,7 @@ def roster ():
 		counter += 1;
 
 
-filter = ""
-
+filter = "--filter steady_1"
 
 def steady (envelope):
 	ride_plate = envelope ["ride_plate"]

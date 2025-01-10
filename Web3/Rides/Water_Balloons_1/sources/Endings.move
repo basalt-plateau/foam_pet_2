@@ -8,4 +8,11 @@ module builder_1::Water_Balloons_1_Endings {
 		return 94734
 	}
 	
+	public (friend) fun Ending_the_thrower_has_not_joined_the_game () : u64 {
+		return 473890
+	}
+	
+	public (friend) fun Ending_the_catcher_has_not_joined_the_game () : u64 {
+		return 890478
+	}
 }
