@@ -53,5 +53,30 @@ module builder_1::Steady {
 	}
 	
 	
+	public fun prepare_APT_for_players (
+		owner_1_consenter : & signer,
+		player_01_consenter : & signer,
+		player_02_consenter : & signer,
+		player_03_consenter : & signer
+	) {
+		use std::signer;
+
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin::AptosCoin;
+	
+		let player_01_position = signer::address_of (player_01_consenter);
+		let player_02_position = signer::address_of (player_02_consenter);
+		let player_03_position = signer::address_of (player_03_consenter);
+		
+		coin::register<AptosCoin>(player_01_consenter);
+		coin::register<AptosCoin>(player_02_consenter);
+		coin::register<AptosCoin>(player_03_consenter);	
+		
+		// coin::transfer<AptosCoin>(owner_1_consenter, player_01_position, 200000000);
+		// coin::transfer<AptosCoin>(owner_1_consenter, player_02_position, 0);
+		// coin::transfer<AptosCoin>(owner_1_consenter, player_03_position, 0);	
+	}
+	
+	
 }
 

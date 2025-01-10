@@ -14,6 +14,7 @@ module builder_1::Water_Balloons_1_Sport {
 	
 	use builder_1::Water_Balloons_1_Players::{ Self, Player };
 	use builder_1::Water_Balloons_1_Owner::{ owner_position, ask_if_consenter_is_owner };
+	use builder_1::Water_Balloons_1_Endings;
 
 	const Imperfection_consenter_has_not_joined : u64 = 0;
 	const Imperfection_consenter_is_not_owner : u64 = 1;
@@ -27,11 +28,17 @@ module builder_1::Water_Balloons_1_Sport {
 	}
 	
 	struct Water_Balloon has key, drop {}
+	
 	struct Sport has key, drop {
 		water_balloons_for_sale : u256,
 		players : vector<Player>
 	}
 	
+	#[view]
+	public fun Water_Balloons_For_Sale_Left () : u256 acquires Sport {
+		let sport = borrow_global<Sport>(owner_position ());
+		sport.water_balloons_for_sale
+	}
 	
 	public entry fun Begin (
 		consenter : & signer,
@@ -46,7 +53,7 @@ module builder_1::Water_Balloons_1_Sport {
 		//
 		//
 		let sport = Sport {
-			water_balloons_for_sale : 900000,
+			water_balloons_for_sale : water_balloons_for_sale,
 			players : vector::empty<Player>()
 		};
 		
@@ -101,7 +108,7 @@ module builder_1::Water_Balloons_1_Sport {
 		//
 		let sport = borrow_global<Sport>(owner_position ());
 		if (sport.water_balloons_for_sale < 5) {
-			abort Ending_every_water_balloon_has_been_sold
+			abort Water_Balloons_1_Endings::Ending_there_are_not_enough_water_balloons_left_to_make_that_sale ()
 		};
 		
 		//
@@ -123,9 +130,15 @@ module builder_1::Water_Balloons_1_Sport {
 		let players = &mut sport.players;
 		let player_at_index_ref = vector::borrow_mut (players, player_index);
 		
-		
 		Water_Balloons_1_Players::add_water_balloons (player_at_index_ref, water_balloons_to_add);	
 		
+		
+		//
+		//
+		//	Subtract 5 Water Balloons from for sale
+		//
+		//
+		sport.water_balloons_for_sale = sport.water_balloons_for_sale - 5;
 		
 		// coin::transfer<AptosCoin>(& consenter, player_01_position, 500);
 		// coin::transfer<AptosCoin>(& consenter, owner_position (), 500);
