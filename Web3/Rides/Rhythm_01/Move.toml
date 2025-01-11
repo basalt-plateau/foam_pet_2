@@ -1,0 +1,28 @@
+
+
+
+
+
+
+[package]
+name = "Rhythm_01"
+version = "1.0.0"
+authors = []
+upgrade_policy = "compatible"
+
+[addresses]
+builder_1 = "_"
+
+[dev-addresses]
+
+
+[dependencies.AptosFramework]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
+
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
+
+[dependencies.Rules_09]
+local = "/Metro/Web3/Rides/Rules" 
+
+

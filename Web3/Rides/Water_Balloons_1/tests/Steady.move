@@ -6,7 +6,7 @@ module builder_1::Steady {
 	use aptos_framework::aptos_coin::AptosCoin;
 	use aptos_framework::coin;
 	
-	
+	#[test (aptos_framework_consenter = @0x1)]
 	public fun clock (
 		aptos_framework_consenter: & signer
 	) {
@@ -16,7 +16,7 @@ module builder_1::Steady {
 		let one_synodic_rotation = 86400000000;
 		let microsends : u64 = 10000; 
 		
-		timestamp::set_time_has_started_for_testing (aptos_framework_account);
+		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
 		timestamp::update_global_time_for_test (microsends);
 	}
 	
