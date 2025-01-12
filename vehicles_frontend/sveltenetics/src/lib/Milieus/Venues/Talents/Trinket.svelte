@@ -157,11 +157,13 @@ const mode = check_roomies_truck ().freight.mode;
 		<Panel styles={ trends.panel }>		
 			<Mercy_Frontier { modal_store }/>	
 		</Panel>
-		{/if}
 		
 		<Panel styles={ trends.panel }>	
 			<Water_Balloons />
 		</Panel>
+		{/if}
+		
+		
 		
 		<Panel styles={ trends.panel }>	
 			<APT_Passes />
@@ -200,7 +202,7 @@ const mode = check_roomies_truck ().freight.mode;
 	</section>
 	
 	<section
-		monitor="perfume talents"		
+		monitor="Greetings talents"		
 		
 		style={ parse_styles ({
 			position: 'relative',

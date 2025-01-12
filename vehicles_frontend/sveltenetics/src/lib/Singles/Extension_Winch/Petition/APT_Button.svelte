@@ -106,7 +106,6 @@ export let permitted = "no"
 					"
 				/>
 				
-				{#if APT !== "0" }
 				<span
 					style="
 						font-size: 1.2em;	
@@ -119,6 +118,8 @@ export let permitted = "no"
 						transform: translateY(2px);
 					"
 				>+</span>
+				
+				{#if APT !== "0" }				
 				{/if}
 				
 				<span

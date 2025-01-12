@@ -4,9 +4,7 @@
 module ride::Rhythm_01_Planet_3 {
 	
 	use std::string::{ String, utf8 };
-	
 	use aptos_framework::timestamp;
-	
 	use ride::Rules_09;
 	
 	const U64_UPPER_LIMIT : u64 = 18_446_744_073_709_551_615;
@@ -18,7 +16,7 @@ module ride::Rhythm_01_Planet_3 {
 	
 	/*
 		Epoch IX:
-			Rhythm_Planet_3::Epoch_IX_microseconds ()
+			Rhythm_01_Planet_3::Epoch_IX_microseconds ()
 	*/
 	#[view]
 	public fun Epoch_IX_microseconds () : u64 {		
@@ -28,7 +26,7 @@ module ride::Rhythm_01_Planet_3 {
 	
 	/*
 		Epoch IX:
-			Rhythm_Planet_3::Epoch_IX_microseconds_after_synodic_rotations (1)
+			Rhythm_01_Planet_3::Epoch_IX_microseconds_after_synodic_rotations (1)
 			
 		Notes:
 			milliseconds in second: 1_000_000

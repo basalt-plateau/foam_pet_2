@@ -26,7 +26,7 @@ import { Aptos, AptosConfig, Network, Account } from "@aptos-labs/ts-sdk";
 
 import { parse_with_commas } from '$lib/taverns/numbers/parse_with_commas'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
-	
+
 
 let to_address_hexadecimal_string = ""
 let amount_of_Octas = "1e8"

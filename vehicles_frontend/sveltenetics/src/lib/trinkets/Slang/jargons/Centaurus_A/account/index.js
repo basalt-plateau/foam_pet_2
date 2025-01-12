@@ -132,7 +132,7 @@ export const account = {
 		advantages, obligation,
 		
 		worthiness, aptitude, mercy,
-		glamour, seduction, 
+		Greetingsour, seduction, 
 		
 		influence, beg, persuasion
 

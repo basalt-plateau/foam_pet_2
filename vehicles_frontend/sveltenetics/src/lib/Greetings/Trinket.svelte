@@ -8,8 +8,8 @@
 
 
 /*
-	import Perfume from "$lib/Perfume/Trinket.svelte"
-	<Perfume />
+	import Greetings from "$lib/Greetings/Trinket.svelte"
+	<Greetings />
 */
 
 
@@ -34,7 +34,7 @@ import Consent_Leaf from './Consent/Trinket.svelte'
 import Garden_Leaf from './Garden/Tome.svelte'
 import Beauty_Leaf from './Beauty/Tome.svelte'
 //
-import * as Perfume_Truck from "./_Truck/index.js"
+import * as Greetings_Truck from "./_Truck/index.js"
 //
 ////
 
@@ -42,11 +42,11 @@ let leaf = "School";
 
 
 let prepared = "no"
-let Perfume_Truck_Freight;
-let Perfume_Truck_Monitor;
+let Greetings_Truck_Freight;
+let Greetings_Truck_Monitor;
 onMount (async () => {	
-	Perfume_Truck.make ()
-	Perfume_Truck_Monitor = Perfume_Truck.monitor (async ({
+	Greetings_Truck.make ()
+	Greetings_Truck_Monitor = Greetings_Truck.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -56,19 +56,19 @@ onMount (async () => {
 		value
 	}) => {
 		try {
-			Perfume_Truck_Freight = Perfume_Truck.retrieve ().pro_freight; 
+			Greetings_Truck_Freight = Greetings_Truck.retrieve ().pro_freight; 
 		}
 		catch (imperfection) {
 			console.error (imperfection);
 		}
 	});
 	
-	Perfume_Truck_Freight = Perfume_Truck.retrieve ().pro_freight;  
+	Greetings_Truck_Freight = Greetings_Truck.retrieve ().pro_freight;  
 	prepared = "yep"
 });
 onDestroy (() => {
-	Perfume_Truck_Monitor.stop ()
-	Perfume_Truck.destroy ()
+	Greetings_Truck_Monitor.stop ()
+	Greetings_Truck.destroy ()
 });
 
 </script>

@@ -6,7 +6,7 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
-import Perfume from "$lib/Perfume/Trinket.svelte"
+import Greetings from "$lib/Greetings/Trinket.svelte"
 
 
 let Extension_Winch_Freight = false
@@ -44,16 +44,16 @@ let leaf = "Extensions"
 				<RadioItem 
 					bind:group={leaf} 
 					name="justify" 
-					value={ "Perfume" }
-				>Perfume</RadioItem>
+					value={ "Greetings" }
+				>Greetings</RadioItem>
 			</RadioGroup>
 		</div>
 		{/if}
 
 		{#if leaf === "Extensions" }
 		<Extension_Wallets />
-		{:else if leaf === "Perfume" }
-		<Perfume />
+		{:else if leaf === "Greetings" }
+		<Greetings />
 		{/if}
 	</div>
 	{/if}

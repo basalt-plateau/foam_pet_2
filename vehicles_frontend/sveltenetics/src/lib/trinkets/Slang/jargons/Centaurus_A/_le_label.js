@@ -37,14 +37,14 @@ export const le_label = {
 	////
 	//
 	//	Extension Wallet
-	//		Perfume, Nose
+	//		Greetings, Nose
 	//
-	"Label_Wallet_Extension": "Scroll Town Perfume",
+	"Label_Wallet_Extension": "Scroll Town Greetings",
 
 	////
 	//
 	//	Hardware Wallet
-	//		Perfume
+	//		Greetings
 	//
 	
 	//
