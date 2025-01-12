@@ -15,7 +15,8 @@ import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.s
 
 import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
 	
-
+import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
+	
 
 let origin_address_trinket;
 
@@ -49,16 +50,15 @@ let polytope_modal;
 
 let to = "";
 let amount = ""
-const transfer = () => {
+const transfer = async () => {
 	// const origin_address = Extension_Winch.freight ().propose_for_account_address ();
 	
 	/*
 		2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
-		
 		'0x1::aptos_coin::AptosCoin'
 	*/
 	const EWF = Extension_Winch.freight ();
-	EWF.prompt ({
+	await EWF.prompt ({
 		petition: {
 			function: '0x1::aptos_account::transfer',
 			type_arguments: [],
@@ -68,6 +68,22 @@ const transfer = () => {
 			]
 		}
 	});
+	
+	/*
+	find_transaction_by_hash_loop ({
+		bracket: {
+			net_path,
+			transaction_hash
+		},
+		
+		found () {
+			
+		},
+		otiose () {
+			
+		}
+	});
+	*/
 	
 	console.info ("transfer", { to, amount });
 }

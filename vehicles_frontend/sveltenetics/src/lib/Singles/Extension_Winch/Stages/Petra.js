@@ -3,7 +3,8 @@
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
-
+import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
+	
 
 /*
 	window.petra
@@ -63,8 +64,24 @@ export const Petra_stage_creator = async ({ freight }) => {
 				//
 				//
 				const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
-				console.info ({ pending_transaction });
+				const pending_transaction_hash = pending_transaction.hash;
+				console.info ({ pending_transaction, pending_transaction_hash });
 				
+				find_transaction_by_hash_loop ({
+					bracket: {
+						net_path: stage.network.address,
+						transaction_hash: pending_transaction_hash
+					},
+					
+					found () {
+						console.log ("found");
+					},
+					otiose () {
+						console.log ("otiose");
+					}
+				});
+				
+				return;
 				
 				//
 				//	Wait for the results of the petition.
