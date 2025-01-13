@@ -41,7 +41,7 @@ module builder_1::Water_Ballons_1_Steady_4 {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use builder_1::Water_Balloons_1_Sport; 
+		use builder_1::Digital_Hydro_Balloons_1_Sport; 
 		use builder_1::Steady; 
 		
 		let owner_position = signer::address_of (& owner_1_consenter);
@@ -75,22 +75,22 @@ module builder_1::Water_Ballons_1_Steady_4 {
 		//	The Sport
 		//
 		//
-		let water_balloons_for_sale : u256 = 10;
-		Water_Balloons_1_Sport::Begin (& owner_1_consenter, water_balloons_for_sale);
-		if (Water_Balloons_1_Sport::Water_Balloons_For_Sale_Left () != 10) { abort 2 };
+		let digital_hydro_balloons_for_sale : u256 = 10;
+		Digital_Hydro_Balloons_1_Sport::Begin (& owner_1_consenter, digital_hydro_balloons_for_sale);
+		if (Digital_Hydro_Balloons_1_Sport::Digital_Hydro_Balloons_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join
 		//
-		Water_Balloons_1_Sport::Join (& player_01_consenter);
-		if (Water_Balloons_1_Sport::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 1 };
-		Water_Balloons_1_Sport::Join (& player_02_consenter);
-		if (Water_Balloons_1_Sport::player_has_joined_the_sport (player_02_position) != utf8 (b"yup")) { abort 1 };
+		Digital_Hydro_Balloons_1_Sport::Join (& player_01_consenter);
+		if (Digital_Hydro_Balloons_1_Sport::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 1 };
+		Digital_Hydro_Balloons_1_Sport::Join (& player_02_consenter);
+		if (Digital_Hydro_Balloons_1_Sport::player_has_joined_the_sport (player_02_position) != utf8 (b"yup")) { abort 1 };
 		
 
 		
 		//	Throw
 		//
-		Water_Balloons_1_Sport::Throw_Water_Balloon (& player_03_consenter, player_01_position);
+		Digital_Hydro_Balloons_1_Sport::Throw_Digital_Hydro_Balloon (& player_03_consenter, player_01_position);
 		
 		
 		////

@@ -1,14 +1,14 @@
 
 
 
-module builder_1::Water_Balloons_1_Players {
-	friend builder_1::Water_Balloons_1_Sport;
+module builder_1::Digital_Hydro_Balloons_1_Players {
+	friend builder_1::Digital_Hydro_Balloons_1_Sport;
 	
 	use std::string::{ String };
 	
 	use builder_1::Rules_09;
 
-	const Ending_from_player_has_zero_water_balloons : u64 = 3;
+	const Ending_from_player_has_zero_digital_hydro_balloons : u64 = 3;
 	const Ending_player_was_not_found : u64 = 3;
 
 
@@ -19,13 +19,13 @@ module builder_1::Water_Balloons_1_Players {
 	
 	struct Player has store, drop {
 		address : address,
-		water_balloons : u256
+		digital_hydro_balloons : u256
 	}
 	
 	public fun add (address : address) : Player {
 		let player = Player {
 			address : address,
-			water_balloons : 0
+			digital_hydro_balloons : 0
 		};
 		player
 	}
@@ -34,38 +34,38 @@ module builder_1::Water_Balloons_1_Players {
 		player.address
 	}
 	
-	public fun add_water_balloons (
+	public fun add_digital_hydro_balloons (
 		player : &mut Player, 
 		add : u256
 	) {
-		player.water_balloons = player.water_balloons + add;
+		player.digital_hydro_balloons = player.digital_hydro_balloons + add;
 	}
 	
-	public fun subtract_water_balloons (
+	public fun subtract_digital_hydro_balloons (
 		player : &mut Player, 
 		subtract : u256
 	) {
-		if (player.water_balloons == 0) {
-			abort Ending_from_player_has_zero_water_balloons
+		if (player.digital_hydro_balloons == 0) {
+			abort Ending_from_player_has_zero_digital_hydro_balloons
 		};
 		
-		player.water_balloons = player.water_balloons - subtract;
+		player.digital_hydro_balloons = player.digital_hydro_balloons - subtract;
 	}
 	
-	public fun throw_water_balloon (
+	public fun throw_digital_hydro_balloon (
 		from_player : &mut Player, 
 		to_player : &mut Player
 	) {
-		if (from_player.water_balloons == 0) {
-			abort Ending_from_player_has_zero_water_balloons
+		if (from_player.digital_hydro_balloons == 0) {
+			abort Ending_from_player_has_zero_digital_hydro_balloons
 		};
 		
-		from_player.water_balloons = from_player.water_balloons - 1;
-		to_player.water_balloons = to_player.water_balloons + 1;
+		from_player.digital_hydro_balloons = from_player.digital_hydro_balloons - 1;
+		to_player.digital_hydro_balloons = to_player.digital_hydro_balloons + 1;
 	}
 	
-	public fun water_balloons_score (player : & Player) : u256 {
-		player.water_balloons
+	public fun digital_hydro_balloons_score (player : & Player) : u256 {
+		player.digital_hydro_balloons
 	}
 	
 }
