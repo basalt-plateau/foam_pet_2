@@ -7,7 +7,7 @@ authors = []
 upgrade_policy = "immutable"
 
 [addresses]
-ride = "_"
+Ride_01 = "_"
 
 [dev-addresses]
 

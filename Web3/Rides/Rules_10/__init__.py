@@ -10,13 +10,16 @@ def steady (envelope):
 	ride_plate = envelope ["ride_plate"]
 	location = envelope ["location"]
 
-	os.system (" ".join ([
+	screenplay = " ".join ([
 		f"cd { location }",
 		"&&",
 		"aptos move test",
-		f"--named-addresses 'ride={ ride_plate }'"
-	]));
+		f"--named-addresses 'Ride_01={ ride_plate }'"
+	]);
 	
+	print ("screenplay:", screenplay);
+	
+	os.system (screenplay);
 	
 	
 def publish (envelope):
@@ -27,7 +30,7 @@ def publish (envelope):
 		f"cd { location }",
 		"&&",
 		"aptos move publish",
-		f"--named-addresses 'ride={ ride_plate }'"
+		f"--named-addresses 'Ride_01={ ride_plate }'"
 	]));
 
 def build (envelope):
@@ -39,5 +42,5 @@ def build (envelope):
 		f"cd { location }",
 		"&&",
 		"aptos move build",
-		f"--named-addresses 'ride={ ride_plate }'"
+		f"--named-addresses 'Ride_01={ ride_plate }'"
 	]));

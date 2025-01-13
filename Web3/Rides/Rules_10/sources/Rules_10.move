@@ -2,7 +2,7 @@
 
 
 
-module ride::Rules_10 {
+module Ride_01::Rules_10 {
 	
 	/*
 		These volitions are given by the producer.
