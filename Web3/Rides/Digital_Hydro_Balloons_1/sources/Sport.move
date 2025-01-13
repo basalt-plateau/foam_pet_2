@@ -71,7 +71,9 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 		utf8 (b"no")
 	}
 	
-	public entry fun End (consenter : & signer) acquires Sport {
+	#[view]
+	public fun End () : String acquires Sport {
+		// public entry fun End (consenter : & signer) acquires Sport {
 		//
 		//	Check if is after 2250 = 30 + 250 = 280
 		//
@@ -87,7 +89,9 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 		//	is dropped?
 		//
 		//
-		let sport = move_from<Sport>(owner_position ());
+		move_from<Sport>(owner_position ());
+		
+		sport_exists ()
 	}
 	
 	

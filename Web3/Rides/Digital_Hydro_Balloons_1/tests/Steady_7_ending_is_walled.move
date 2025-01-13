@@ -104,7 +104,8 @@ module builder_1::digital_hydro_balloons_1_Steady_7 {
 		//
 		let year_ms : u64 = 31557600000;
 		timestamp::update_global_time_for_test (year_ms * 279);
-		Digital_Hydro_Balloons_1_Sport::End (& owner_1_consenter);	
+		let ending = Digital_Hydro_Balloons_1_Sport::End ();	
+		debug::print (& string_utils::format1 (& b"Ending: {}", ending));
 		//
 		////
 		
