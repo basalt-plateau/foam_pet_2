@@ -3,8 +3,8 @@
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
-import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
-	
+
+import _get from "lodash/get"
 
 /*
 	window.petra
@@ -48,104 +48,10 @@ export const Petra_stage_creator = async ({ freight }) => {
 		async prompt ({ petition }) {
 			const stage = _stage ();
 			
-			/*
-			const transaction = {
-				arguments: [address, '717'],
-				function: '0x1::coin::transfer',
-				type: 'entry_function_payload',
-				type_arguments: ['0x1::aptos_coin::AptosCoin'],
-			};
-			*/
-
-
-			try {
-				//
-				//	Send the petition
-				//
-				//
-				const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
-				const pending_transaction_hash = pending_transaction.hash;
-				console.info ({ pending_transaction, pending_transaction_hash });
-				
-				find_transaction_by_hash_loop ({
-					bracket: {
-						net_path: stage.network.address,
-						transaction_hash: pending_transaction_hash
-					},
-					
-					found () {
-						console.log ("found");
-					},
-					otiose () {
-						console.log ("otiose");
-					}
-				});
-				
-				return;
-				
-				//
-				//	Wait for the results of the petition.
-				//
-				//
-				const network = await Petra.getNetwork ();
-				const aptos_client = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
-					fullnode: network.address,
-					network: Aptos_SDK.Network.CUSTOM
-				}));
-				
-				
-				// const client = new Aptos_SDK.AptosClient (network.address);
-				console.log ("waiting for transaction")
-				const txn = await aptos_client.waitForTransactionWithResult (pending_transaction.hash);
-				console.log ({ txn });
-			} 
-			catch (imperfection) {
-				console.error (imperfection);
-			}
+			const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
+			const pending_transaction_hash = _get (pending_transaction, "hash", "");
 			
-			
-			return;
-			
-			const origin_address = address_to_hexadecimal (stage.account.address);
-			const to_address = "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5";
-			
-			console.log ({
-				origin_address,
-				to_address
-			});			
-			
-			const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
-				fullnode: "https://api.devnet.aptoslabs.com/v1",
-				network: Aptos_SDK.Network.CUSTOM
-			}));
-			
-			const functionArguments = [
-				Aptos_SDK.AccountAddress.from (
-					Uint8Array_from_string (to_address)
-				),
-				BigInt ("100000")
-			]
-			
-			console.log ({ functionArguments });
-			
-			const tx = await aptos.transaction.build.simple ({
-				sender: Aptos_SDK.AccountAddress.from (
-					Uint8Array_from_string (origin_address)
-				),
-				data: {
-					function: "0x1::aptos_account::transfer",
-					typeArguments: [],
-					functionArguments
-				}
-			});
-			
-			// signAndSubmitTransaction
-			await Petra.signAndSubmitTransaction ({
-				payload: tx
-			});
-
-			
-			// await Petra.signTransaction (tx);
+			return { pending_transaction_hash }			
 		},
 		
 		async status () {

@@ -113,7 +113,7 @@ onMount (() => {
 
 
 
-let visibility = $modeCurrent || false;
+let visibility = $modeCurrent || true;
 const change_visibility = () => {
 	// console.log ("change_visibility:", { visibility });
 	$modeCurrent = visibility;

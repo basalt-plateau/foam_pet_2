@@ -42,7 +42,7 @@ let show_the_alert = (
 		align-items: center;
 		
 		padding: 12px; 
-		margin-top: 8px
+		margin: 8px 0;
 	"
 >
 	<div 

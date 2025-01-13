@@ -10,11 +10,8 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 ////
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
-	
 import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
-
 import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
-	
 import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
 	
 
@@ -47,6 +44,7 @@ const on_change = ({
 
 	
 let polytope_modal;
+let petition_APT_button = "";
 
 let to = "";
 let amount = ""
@@ -58,7 +56,20 @@ const transfer = async () => {
 		'0x1::aptos_coin::AptosCoin'
 	*/
 	const EWF = Extension_Winch.freight ();
-	await EWF.prompt ({
+	
+	
+	petition_APT_button.mode ("progress");
+
+	/*
+	petition_APT_button.mode ("success", {
+		note: "was successful"
+	});
+	petition_APT_button.mode ("imperfection", {
+		note: "imperfection"
+	});
+	*/
+	
+	const { result, note, transaction } = await EWF.prompt ({
 		petition: {
 			function: '0x1::aptos_account::transfer',
 			type_arguments: [],
@@ -68,24 +79,20 @@ const transfer = async () => {
 			]
 		}
 	});
+	if (result === "discovered") {
+		petition_APT_button.mode ("success", {
+			note
+		});
+	}
+	else {
+		petition_APT_button.mode ("imperfection", {
+			note
+		});
+	}
 	
-	/*
-	find_transaction_by_hash_loop ({
-		bracket: {
-			net_path,
-			transaction_hash
-		},
-		
-		found () {
-			
-		},
-		otiose () {
-			
-		}
-	});
-	*/
 	
-	console.info ("transfer", { to, amount });
+	
+	console.info ("transfer progress",  { result, note, transaction });
 }
 
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
@@ -216,6 +223,8 @@ let Extension_Winch_Freight = false
 			"
 		>
 			<Petition_APT_Button
+				bind:this={ petition_APT_button }
+			
 				button_text="Transfer"
 				
 				APT="0"

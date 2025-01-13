@@ -55,6 +55,7 @@ let aside_styles = `
 	align-items: center;
 	
 	padding: 12px; 
+	margin: 8px 0;
 `
 let progress_styles = ``
 if (size === "small") {

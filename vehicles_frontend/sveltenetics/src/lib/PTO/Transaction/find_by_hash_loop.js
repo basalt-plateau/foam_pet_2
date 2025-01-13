@@ -7,7 +7,6 @@
 			net_path,
 			transaction_hash
 		},
-		
 		discovered ({ note, bracket }) {
 			
 		},
@@ -47,7 +46,7 @@ export const find_transaction_by_hash_loop = async ({
 					
 					discovered ({
 						note: "The transaction was successful.",
-						bracket: transaction_fiberized,
+						bracket: enhanced
 					})
 					return;
 				}

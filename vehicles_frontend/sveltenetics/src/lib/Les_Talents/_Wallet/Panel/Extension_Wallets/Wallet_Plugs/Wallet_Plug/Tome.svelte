@@ -28,7 +28,7 @@ const obtain_wallet = ({ stage }) => {
 		width: 100%;
 		min-width: 200px;
 	"
-	class="card p-2"
+	class="card p-2 variant-soft-surface"
 >
 	<div
 		style="

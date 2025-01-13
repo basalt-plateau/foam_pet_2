@@ -57,7 +57,7 @@ onDestroy (async () => {
 			width: 100%;
 			text-align: center;
 		"
-		class="card p-2 variant-soft-primary"
+		class="card p-2"
 	>
 		<header>Wallet Options</header>
 	</div>
@@ -72,7 +72,7 @@ onDestroy (async () => {
 			align-items: center;
 			gap: 10px;
 		"
-		class="card p-2 variant-filled-primary"
+		class="card p-2"
 	>
 		{#each Object.keys (flourisher_freight.stages) as stage_name }
 		<Wallet_Plug 

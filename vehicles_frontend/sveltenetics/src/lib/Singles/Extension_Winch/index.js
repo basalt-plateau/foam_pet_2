@@ -20,10 +20,12 @@ import { Petra_stage_creator } from "./Stages/Petra.js"
 import { Pontem_stage_creator } from "./Stages/Pontem.js"
 //
 import { ask_for_extension_network_connection_status } from './Tracks/ask_for_extension_network_connection_status'
+import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
 //
 //
 ////
-
+import { ask_for_freight } from '$lib/Versies/Trucks'
+	
 const trucks = {}
 	
 	
@@ -98,7 +100,9 @@ export const make = async (packet) => {
 			
 			
 			/*
-				EWF.prompt ({
+				// result: discovered, otiose
+				//
+				const { result, note, transaction } = EWF.prompt ({
 					petition: {
 						function: '0x1::coin::transfer',
 						type_arguments: ['0x1::aptos_coin::AptosCoin'],
@@ -108,10 +112,77 @@ export const make = async (packet) => {
 						]
 					}
 				});
+				if (result === "discovered") {
+					petition_APT_button.mode ("success", { note });
+				}
+				else {
+					petition_APT_button.mode ("imperfection", { note });
+				}
 			*/
 			async prompt ({ petition }) {
 				const stage = trucks [1].freight.ask_for_stage ();
-				await stage.prompt ({ petition });
+				const { pending_transaction_hash } = await stage.prompt ({ 
+					petition 
+				});
+				
+				const net_path = ask_for_freight ().dapp_network.net_path;
+				
+				try {
+					const { result, note, transaction } = await new Promise (resolve => {
+						try {
+							find_transaction_by_hash_loop ({
+								bracket: {
+									net_path,
+									transaction_hash: pending_transaction_hash
+								},
+								discovered ({ note, bracket }) {
+									console.log ("discovered", { note, bracket });
+
+									resolve ({
+										result: "discovered",
+										note,
+										transaction: bracket
+									});							
+								},
+								otiose () {
+									console.log ("otiose");
+									
+									resolve ({
+										result: "otiose",
+										note: `There was a problem locating transaction ${ pending_transaction_hash }.`,
+										transaction: ""
+									});	
+								}
+							});
+							return;
+						}
+						catch (exception) {
+							console.error (exception);
+						}
+						
+						resolve ({
+							result: "otiose",
+							note: `There was a problem locating transaction ${ pending_transaction_hash }.`,
+							transaction: ""
+						});	
+					});
+					
+					return { 
+						result, 
+						note, 
+						transaction 
+					};
+				} 
+				catch (imperfection) {
+					console.error (imperfection);
+				}
+				
+				
+				return { 
+					result: "otiose",
+					note: `The peition could not be prompted.`,
+					transaction: ""
+				};
 			},
 			
 			

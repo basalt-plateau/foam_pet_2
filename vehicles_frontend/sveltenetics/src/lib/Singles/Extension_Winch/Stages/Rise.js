@@ -6,6 +6,9 @@
 		https://docs.risewallet.io/introduction/integrations/integrate-rise-wallet/with-the-wallet-adapter
 */
 
+import _get from "lodash/get"
+
+
 /*
 	Freight is the pro (proxy) object with an overriden
 	get and set.
@@ -35,13 +38,21 @@ export const Rise_stage_creator = async ({ freight }) => {
 			public_key: ""
 		},
 
-		
+		async prompt ({ petition }) {
+			const stage = _stage ();
+			const pending_transaction = await window.rise.signAndSubmitTransaction (petition);
+			const pending_transaction_hash = _get (pending_transaction, "hash", "");
+			
+			return {
+				pending_transaction_hash
+			}
+		},
 
 		async status () {
 			const stage = _stage ();
 			
 			try {
-				console.log ("rise stage:", { stage });
+				// console.log ("rise stage:", { stage });
 				
 				stage.installed = await stage.is_installed ();
 				if (stage.installed !== "yes") {

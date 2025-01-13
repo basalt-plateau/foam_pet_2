@@ -10,9 +10,29 @@
 		
 		APT="0"
 		clicked={}
-	
-		permitted={ "yes" }
 	/>
+*/
+
+/*
+	petition_APT_button.mode ("progress");
+
+	petition_APT_button.mode ("success", {
+		note: "was successful"
+	});
+
+	petition_APT_button.mode ("imperfection", {
+		note: "imperfection"
+	});
+*/
+
+/*
+	modes:
+		on
+		off
+		progress
+		
+		imperfection
+		success
 */
 
 ////
@@ -22,35 +42,52 @@ import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 //
 ////
 
+import Radial_Progress from '$lib/trinkets/Progress/Radial/Trinket.svelte'
+import Alert_Success from '$lib/trinkets/Alerts/Success.svelte'
+import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
+		
+
 let Extension_Winch_Freight = false
+
 
 export let button_text = ""
 export let APT = ""
 export let clicked = () => {}
 
-export let permitted = "no"
+let details = ""
+let the_mode = "on"
+export const mode = (next_the_mode, next_details) => {
+	console.log (next_the_mode, next_details);
+	
+	if (next_details && next_details.note) {
+		details = next_details.note;
+	}
+	the_mode = next_the_mode;
+}
 
+/*
 
-
+*/
 </script>
 
 
+<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
+{#if typeof Extension_Winch_Freight === "object"}
 <div
 	style="
 		position: relative;
+		display: inline-block;
 	"
 >
-	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
-	{#if typeof Extension_Winch_Freight === "object"}
-
-	{#if permitted === "yes" }
+	
 	<button 
 		type="button" 
 		on:click={ clicked }
 
 		style={ parse_styles (Object.assign ({}, {
 			padding: "0.2cm 0.25cm 0.2cm 0.5cm",
-			position: "relative"
+			position: "relative",
+			overflow: 'hidden'
 		})) }
 		class="btn variant-filled-primary"
 	>
@@ -70,7 +107,7 @@ export let permitted = "no"
 					font-weight: bold;
 					
 					height: 100%;
-					padding: 0 0.5cm;					
+					padding: 0 0.5cm;
 				"	
 			>{ button_text }</span>
 		</span>
@@ -119,7 +156,7 @@ export let permitted = "no"
 					"
 				>+</span>
 				
-				{#if APT !== "0" }				
+				{#if APT !== "0" }
 				{/if}
 				
 				<span
@@ -129,32 +166,46 @@ export let permitted = "no"
 					"
 				>Gas</span>
 			</div>
-		</span>
+		</span>		
 	</button>
-	{:else}
+
+	{#if [ "off", "progress" ].includes (the_mode) }
 	<div
 		style="
-			position: relative;
+			position: absolute;
 			top: 0;
 			left: 0;
+			
+			width: 100%;
 			height: 100%;
 			
-			display: inline-flex;
+			display: flex;
 			justify-content: center;
 			align-items: center;
+		
+			background: white;
+			opacity: 0.7;
 			
-			padding: 0.1cm 1cm;
+			cursor: not-allowed;
 		"
-		class="card"
-	>
-		<span
-			style="
-				font-size: 1.2em;
-				font-weight: bold;
-				text-decoration: line-through;
-			"	
-		>{ button_text }</span>
+	>		
+		{#if [ "progress" ].includes (the_mode) }
+		<Radial_Progress />
+		{/if}
 	</div>
 	{/if}
+	
+	{#if [ "success" ].includes (the_mode) }
+	<Alert_Success 
+		text={ details }
+	/>	
 	{/if}
+	
+	{#if [ "imperfection" ].includes (the_mode) }
+	<Problem_Alert 
+		text={ details }
+	/>
+	{/if}
+	
 </div>
+{/if}
