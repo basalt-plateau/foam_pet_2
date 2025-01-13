@@ -61,9 +61,9 @@ moves_structures = {
 }
 
 moves = [
-	#"Water_Balloons_1",
+	"Water_Balloons_1",
 	#"Rhythm_01",
-	"Rules_10"
+	#"Rules_10"
 ]
 
 
