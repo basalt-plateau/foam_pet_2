@@ -3,7 +3,7 @@
 
 
 
-module builder_1::Water_Ballons_1_Steady_6 {
+module builder_1::Water_Ballons_1_Steady_7 {
 	
 	
 	
@@ -20,6 +20,7 @@ module builder_1::Water_Ballons_1_Steady_6 {
 		player_02_consenter = @player_02,
 		player_03_consenter = @player_03		
 	)]
+	#[expected_failure (abort_code = 943728)]
     public fun steady (
 		aptos_framework_consenter : signer,
 	
@@ -102,7 +103,7 @@ module builder_1::Water_Ballons_1_Steady_6 {
 		//	End
 		//
 		let year_ms : u64 = 31557600000;
-		timestamp::update_global_time_for_test (year_ms * 281);
+		timestamp::update_global_time_for_test (year_ms * 279);
 		Digital_Hydro_Balloons_1_Sport::End (& owner_1_consenter);	
 		//
 		////

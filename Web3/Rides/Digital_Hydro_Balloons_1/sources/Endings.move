@@ -22,4 +22,8 @@ module builder_1::Digital_Hydro_Balloons_1_Endings {
 	public (friend) fun Ending_the_catcher_has_not_joined_the_game () : u64 {
 		return 890478
 	}
+	
+	public (friend) fun Ending_cannot_end_yet () : u64 {
+		return 943728
+	}
 }

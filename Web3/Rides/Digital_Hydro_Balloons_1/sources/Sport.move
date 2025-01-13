@@ -7,6 +7,7 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 	use std::string::{ String, utf8 };
 	use std::signer;
 
+	use aptos_framework::timestamp;
 	use aptos_framework::coin;
 	use aptos_framework::aptos_coin::AptosCoin;
 
@@ -61,14 +62,23 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 	}
 	
 	
-	public entry fun End (consenter : & signer) {
+	public entry fun End (consenter : & signer) acquires Sport {
 		//
 		//	Check if is after 2250 = 30 + 250 = 280
 		//
 		//
 		// 1000 * 60 * 60 * 24 * 365.25
-		let year : u64 = 31557600000 * 280;
-		// year * years
+		let can_end_after : u64 = 31557600000 * 280;
+		if (timestamp::now_microseconds () <= can_end_after) {
+			abort Digital_Hydro_Balloons_1_Endings::Ending_cannot_end_yet ()
+		};
+		
+		
+		//
+		//	is dropped?
+		//
+		//
+		let sport = move_from<Sport>(owner_position ());
 	}
 	
 	
