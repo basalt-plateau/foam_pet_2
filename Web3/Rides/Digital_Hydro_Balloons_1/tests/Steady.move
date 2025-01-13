@@ -7,17 +7,21 @@ module builder_1::Steady {
 	use aptos_framework::coin;
 	
 	#[test (aptos_framework_consenter = @0x1)]
-	public fun clock (
-		aptos_framework_consenter: & signer
-	) {
+	public fun clock (aptos_framework_consenter: & signer) {
 		use aptos_framework::timestamp;
 		use aptos_framework::genesis;
 	
-		let one_synodic_rotation = 86400000000;
-		let microsends : u64 = 10000; 
-		
+	
 		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
-		timestamp::update_global_time_for_test (microsends);
+		
+		//
+		//	Update the Clock
+		//		Epoch IX = January 1, 1970
+		//		2100 = around 55 * 60 * 60 * 24 * 365 * 1000 
+		//
+		let year_ms : u64 = 31557600000;
+		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
+		timestamp::update_global_time_for_test (year_ms * 130);
 	}
 	
 	/*

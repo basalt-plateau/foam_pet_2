@@ -19,13 +19,13 @@ module ride::Rhythm_01_Planet_3_Steady_1 {
 		
 		use ride::Rhythm_01_Planet_3_Scroll_01;
 		
-		let year_ms : u64 = 31557600000;
 				
 		//
 		//	Update the Clock
 		//		Epoch IX = January 1, 1970
 		//		2100 = around 55 * 60 * 60 * 24 * 365 * 1000 
 		//
+		let year_ms : u64 = 31557600000;
 		timestamp::set_time_has_started_for_testing (aptos_framework_account);
 		timestamp::update_global_time_for_test (year_ms * 130);
 		

@@ -59,13 +59,16 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 		
 		move_to<Sport>(consenter, sport)
 	}
+	
+	
 	public entry fun End (consenter : & signer) {
 		//
-		//	Check if is after 2250
+		//	Check if is after 2250 = 30 + 250 = 280
 		//
 		//
-		
-		
+		// 1000 * 60 * 60 * 24 * 365.25
+		let year : u64 = 31557600000 * 280;
+		// year * years
 	}
 	
 	
