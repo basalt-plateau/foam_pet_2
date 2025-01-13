@@ -62,6 +62,15 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 	}
 	
 	
+	#[view]
+	public fun sport_exists () : String {
+		if (exists<Sport>(owner_position ())) {
+			return utf8 (b"yup")
+		};
+		
+		utf8 (b"no")
+	}
+	
 	public entry fun End (consenter : & signer) acquires Sport {
 		//
 		//	Check if is after 2250 = 30 + 250 = 280
