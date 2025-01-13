@@ -41,18 +41,36 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 		sport.digital_hydro_balloons_for_sale
 	}
 	
+	/*
+	#[view]
+	public fun Player_Roster () acquires Sport {
+		let sport = borrow_global<Sport>(owner_position ());
+		
+		let bracket = vector::empty<u8>();	
+		let num_players = vector::length(&sport.players);
+	}
+	*/
+	
+	#[view]
+	public fun Player_Count () : u64 acquires Sport {
+		let sport = borrow_global<Sport>(owner_position ());
+		vector::length (&sport.players)
+	}
+	
+	
+	
 	public entry fun Begin (
 		consenter : & signer,
 		digital_hydro_balloons_for_sale : u256
 	) {
+		//
+		//	Make sure the consenter is the owner.
+		//
+		//
 		if (ask_if_consenter_is_owner (consenter) != utf8 (b"yup")) { 
 			abort Imperfection_consenter_is_not_owner 
 		};
-		
-		//
-		//	Check if the consenter is the producer.
-		//
-		//
+
 		let sport = Sport {
 			digital_hydro_balloons_for_sale : digital_hydro_balloons_for_sale,
 			players : vector::empty<Player>()
@@ -85,17 +103,13 @@ module builder_1::Digital_Hydro_Balloons_1_Sport {
 		};
 		
 		
-		//
-		//	is dropped?
-		//
-		//
 		move_from<Sport>(owner_position ());
 		
 		sport_exists ()
 	}
 	
 	
-	public entry fun Join (consenter : & signer) acquires Sport {
+	public entry fun Join_the_Game (consenter : & signer) acquires Sport {
 		let consenter_address = signer::address_of (consenter);
 		
 		let sport = borrow_global_mut<Sport>(owner_position ());

@@ -67,5 +67,4 @@ module builder_1::Digital_Hydro_Balloons_1_Players {
 	public (friend) fun digital_hydro_balloons_score (player : & Player) : u256 {
 		player.digital_hydro_balloons
 	}
-	
 }

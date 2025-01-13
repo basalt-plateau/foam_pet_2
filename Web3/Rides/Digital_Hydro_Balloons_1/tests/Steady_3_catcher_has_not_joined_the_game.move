@@ -77,11 +77,11 @@ module builder_1::digital_hydro_balloons_1_Steady_3 {
 		Digital_Hydro_Balloons_1_Sport::Begin (& owner_1_consenter, digital_hydro_balloons_for_sale);
 		if (Digital_Hydro_Balloons_1_Sport::Digital_Hydro_Balloons_For_Sale_Left () != 10) { abort 2 };
 		
-		//	Join
+		//	Join_the_Game
 		//
-		Digital_Hydro_Balloons_1_Sport::Join (& player_01_consenter);
+		Digital_Hydro_Balloons_1_Sport::Join_the_Game (& player_01_consenter);
 		if (Digital_Hydro_Balloons_1_Sport::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 1 };
-		Digital_Hydro_Balloons_1_Sport::Join (& player_02_consenter);
+		Digital_Hydro_Balloons_1_Sport::Join_the_Game (& player_02_consenter);
 		if (Digital_Hydro_Balloons_1_Sport::player_has_joined_the_sport (player_02_position) != utf8 (b"yup")) { abort 1 };
 		
 		//	Buy

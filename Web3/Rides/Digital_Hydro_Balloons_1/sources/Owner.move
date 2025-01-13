@@ -29,8 +29,7 @@ module builder_1::Digital_Hydro_Balloons_1_Owner {
 		position
 	}
 	public (friend) fun ask_if_consenter_is_owner (consenter : & signer) : String {
-		let address_1 = signer::address_of (consenter);
-		if (address_1 == owner_position ()) {
+		if (signer::address_of (consenter) == owner_position ()) {
 			return utf8 (b"yup")
 		};
 		
