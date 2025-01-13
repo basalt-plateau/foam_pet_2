@@ -22,7 +22,7 @@ module builder_1::Digital_Hydro_Balloons_1_Players {
 		digital_hydro_balloons : u256
 	}
 	
-	public fun add (address : address) : Player {
+	public (friend) fun add (address : address) : Player {
 		let player = Player {
 			address : address,
 			digital_hydro_balloons : 0
@@ -30,18 +30,18 @@ module builder_1::Digital_Hydro_Balloons_1_Players {
 		player
 	}
 	
-	public fun player_address (player : & Player) : address {
+	public (friend) fun player_address (player : & Player) : address {
 		player.address
 	}
 	
-	public fun add_digital_hydro_balloons (
+	public (friend) fun add_digital_hydro_balloons (
 		player : &mut Player, 
 		add : u256
 	) {
 		player.digital_hydro_balloons = player.digital_hydro_balloons + add;
 	}
 	
-	public fun subtract_digital_hydro_balloons (
+	public (friend) fun subtract_digital_hydro_balloons (
 		player : &mut Player, 
 		subtract : u256
 	) {
@@ -52,7 +52,7 @@ module builder_1::Digital_Hydro_Balloons_1_Players {
 		player.digital_hydro_balloons = player.digital_hydro_balloons - subtract;
 	}
 	
-	public fun throw_digital_hydro_balloon (
+	public (friend) fun throw_digital_hydro_balloon (
 		from_player : &mut Player, 
 		to_player : &mut Player
 	) {
@@ -64,7 +64,7 @@ module builder_1::Digital_Hydro_Balloons_1_Players {
 		to_player.digital_hydro_balloons = to_player.digital_hydro_balloons + 1;
 	}
 	
-	public fun digital_hydro_balloons_score (player : & Player) : u256 {
+	public (friend) fun digital_hydro_balloons_score (player : & Player) : u256 {
 		player.digital_hydro_balloons
 	}
 	
