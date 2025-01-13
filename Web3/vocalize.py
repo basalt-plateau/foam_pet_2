@@ -28,11 +28,11 @@ import Rides.Rhythm_01 as Rhythm_01
 ride_plate = "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD"
 
 moves_structures = {
-	"Rules": {
+	"Rules_10": {
 		"moves": Rules_Moves,
 		"envelope": {
 			"ride_plate": ride_plate,
-			"location": "/Metro/Web3/Rides/Rules"
+			"location": "/Metro/Web3/Rides/Rules_10"
 		}
 	},
 	"Peptyde": {
@@ -60,7 +60,8 @@ moves_structures = {
 
 moves = [
 	#"Water_Balloons_1",
-	"Rhythm_01"
+	#"Rhythm_01",
+	"Rules_10"
 ]
 
 
@@ -80,7 +81,20 @@ def clique ():
 		CWD = os.getcwd ()
 		
 		for move in moves:
-			continue;
+			moves_structure = moves_structures [ move ];
+			moves_structure ["moves"].publish (moves_structure ["envelope"]);
+
+	group.add_command (vocalize__publish)
+
+
+	
+	@click.command ("build")
+	def vocalize__publish ():	
+		CWD = os.getcwd ()
+		
+		for move in moves:
+			moves_structure = moves_structures [ move ];
+			moves_structure ["moves"].build (moves_structure ["envelope"]);
 
 	group.add_command (vocalize__publish)
 
@@ -98,8 +112,6 @@ def clique ():
 			print ("move", move)
 		
 			moves_structure = moves_structures [ move ];
-			
-			
 			moves_structure ["moves"].steady (moves_structure ["envelope"]);
 
 	group.add_command (vocalize__steady)

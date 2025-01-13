@@ -26,11 +26,20 @@
 			new Date (1731120569519914 / 1000).toUTCString () 
 
 
+		Synodic Rotation
 
 
 
-
-
+	<header></header>
+		const U64_UPPER_LIMIT : u64 = 18_446_744_073_709_551_615;
+		
+		public fun can_increase_u64 (u64_1: u64, u64_2: u64) : String {
+			if (u64_1 > (U64_UPPER_LIMIT - u64_2)) {
+				return utf8 (b"no")
+			};
+			
+			utf8 (b"yup")
+		}
 
 
 

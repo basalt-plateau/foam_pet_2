@@ -112,9 +112,40 @@ def publish (envelope):
 	ride_plate = envelope ["ride_plate"]
 	location = envelope ["location"]
 
+	named_addresses = "".join ([
+		f"""--named-addresses '""",
+
+		f"""ride={ builder_1 ["address"] }, """,		
+		f"""builder_1={ builder_1 ["address"] } """,		
+		
+		"'"
+	]);
+
 	os.system (" ".join ([
 		f"cd { location }",
 		"&&",
 		"aptos move publish",
 		f"--named-addresses 'ride={ ride_plate }'"
+		#named_addresses
+	]));
+
+
+def build (envelope):
+	ride_plate = envelope ["ride_plate"]
+	location = envelope ["location"]
+
+	named_addresses = "".join ([
+		f"""--named-addresses '""",
+
+		f"""ride={ builder_1 ["address"] }, """,		
+		f"""builder_1={ builder_1 ["address"] } """,		
+		
+		"'"
+	]);
+
+	os.system (" ".join ([
+		f"cd { location }",
+		"&&",
+		"aptos move build",
+		named_addresses
 	]));

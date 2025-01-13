@@ -8,10 +8,10 @@
 name = "Rhythm_01"
 version = "1.0.0"
 authors = []
-upgrade_policy = "compatible"
+upgrade_policy = "immutable"
 
 [addresses]
-builder_1 = "_"
+ride = "_"
 
 [dev-addresses]
 

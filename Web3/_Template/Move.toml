@@ -1,15 +1,13 @@
 
 
-
-
 [package]
-name = "Water_Balloons_1"
+name = "Template"
 version = "1.0.0"
 authors = []
-upgrade_policy = "compatible"
+upgrade_policy = "immutable"
 
 [addresses]
-builder_1 = "_"
+ride = "_"
 
 [dev-addresses]
 
@@ -20,7 +18,6 @@ local = "/Metro/aptos-core/aptos-move/framework/aptos-framework"
 [dependencies.AptosStdlib]
 local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
 
-[dependencies.Rules_09]
-local = "/Metro/Web3/Rides/Rules" 
+
 
 
