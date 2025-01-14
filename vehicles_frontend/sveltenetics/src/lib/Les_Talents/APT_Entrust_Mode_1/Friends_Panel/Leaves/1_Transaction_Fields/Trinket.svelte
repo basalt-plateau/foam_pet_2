@@ -60,8 +60,8 @@ onMount (() => {
 	//	
 	//
 	const roomies_freight = ask_for_freight ();
-	freight.fields.ICANN_net_path = roomies_freight.net_path;
-	freight.fields.net_name = roomies_freight.net_name;
+	freight.fields.ICANN_net_path = roomies_freight.dapp_network.net_path;
+	freight.fields.net_name = roomies_freight.dapp_network.net_name;
 	
 	prepared = "yes"
 });

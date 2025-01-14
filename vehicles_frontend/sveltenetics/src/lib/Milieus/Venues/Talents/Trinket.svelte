@@ -198,7 +198,6 @@ const mode = check_roomies_truck ().freight.mode;
 				</button>
 			</div>
 		</Panel>
-	
 	</section>
 	
 	<section
@@ -218,6 +217,8 @@ const mode = check_roomies_truck ().freight.mode;
 			'padding-bottom': '1cm'
 		}) }
 	>
+		
+	
 		<Panel styles={ trends.panel }>	
 			<p
 				style="font-size: 1.3em"

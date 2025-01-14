@@ -203,14 +203,13 @@ const calculate_exponent = () => {1
 {#if prepared === "yes"}
 <div>
 	<div>
-		<aside class="alert variant-filled-warning">
+		<aside class="alert variant-filled-surface">
 			<div class="alert-message"
 				style="
 					text-align: center;
 				"
 			>
-				<p><b>Caution</b>, Please make sure "<b>Actual Amount</b>" is the intended amount.
-				<p>It's calculated from the number provided and is the amount used.</p>
+				<p>"<b>Actual Amount</b>" is calculated from the number provided and is the amount used.</p>				
 			</div>
 		</aside>
 

@@ -13,9 +13,36 @@ import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Butto
 import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
 import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
 import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
-	
+import Amount_Field from '$lib/trinkets/Amount_Field/Trinket.svelte'
+
 
 let origin_address_trinket;
+
+////
+//
+//	Amount Field
+//
+let amount_field = ""
+let amount_of_octas = ""
+const on_amount_change = ({ 
+	effects,
+	actual_amount_of_Octas
+}) => {
+	console.log ("on_amount_change", actual_amount_of_Octas)
+	
+	// freight.fields.actual_amount_of_Octas_problem = effects.problem;
+	
+	if (effects.problem === "") {
+		amount_of_octas = actual_amount_of_Octas;
+	}
+}
+const on_amount_prepare = () => {
+	amount_field.modify ({ 
+		Octas: "0"
+	})
+}
+//
+////
 
 
 
@@ -59,7 +86,7 @@ const transfer = async () => {
 	
 	
 	petition_APT_button.mode ("progress");
-
+	
 	/*
 	petition_APT_button.mode ("success", {
 		note: "was successful"
@@ -69,30 +96,40 @@ const transfer = async () => {
 	});
 	*/
 	
-	const { result, note, transaction } = await EWF.prompt ({
-		petition: {
-			function: '0x1::aptos_account::transfer',
-			type_arguments: [],
-			arguments: [
-				to_address.address_hexadecimal_string,
-				amount
-			]
+	try {
+		const { result, note, transaction } = await EWF.prompt ({
+			petition: {
+				function: '0x1::aptos_account::transfer',
+				type_arguments: [],
+				arguments: [
+					to_address.address_hexadecimal_string,
+					amount_of_octas
+				]
+			}
+		});
+		console.info ("transfer progress",  { result, note, transaction });
+
+		
+		if (result === "discovered") {
+			petition_APT_button.mode ("success", {
+				note
+			});
 		}
-	});
-	if (result === "discovered") {
-		petition_APT_button.mode ("success", {
-			note
-		});
+		else {
+			petition_APT_button.mode ("imperfection", {
+				note
+			});
+		}
 	}
-	else {
+	catch (imperfection) {
+		console.error ("imperfection:", imperfection)
 		petition_APT_button.mode ("imperfection", {
-			note
+			note: "A problem occurred while processing the transfer."
 		});
 	}
 	
 	
 	
-	console.info ("transfer progress",  { result, note, transaction });
 }
 
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
@@ -112,13 +149,6 @@ let Extension_Winch_Freight = false
 		padding: 1cm;
 	"
 >
-	<header
-		style="
-			font-size: 3em;
-			text-align: center;
-		"
-	>APT Passes</header>
-	
 	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
 	{#if typeof Extension_Winch_Freight === "object" }
 	{#if Extension_Winch_Freight.stage_name_connected.length >= 1 }
@@ -126,7 +156,6 @@ let Extension_Winch_Freight = false
 		style="
 			width: 100%;
 		"
-		class="card p-4"
 	>
 		<header
 			style="
@@ -161,7 +190,10 @@ let Extension_Winch_Freight = false
 				}}
 			/>
 		</div>
-		
+
+		<div style="height: 0.25cm" />
+
+
 		<div 
 			style="
 				width: 100%;
@@ -180,37 +212,30 @@ let Extension_Winch_Freight = false
 		
 		<div style="height: 0.25cm" />
 		
-		<div 
-			style="
-				width: 100%;
-			"
-			class="card p-4"
-		>
-			<label 
-				style="
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					gap: 0.25cm;
-				"
-				class="label"
-			>
-				<span
+		<div class="card variant-soft-primary p-4" style="color: inherit">
+			<div style="text-align: center;">
+				<span 
+					class="badge variant-soft-primary" 
 					style="
-						min-width: 2cm;
+						margin: 0 auto;
+						padding: 0.2cm 1cm;
 					"
-				>Amount</span>
-				<input
-					bind:value={ amount }
-					style="
-						padding: 0.25cm;
-					"
-					class="input" 
-					type="text" 
-					placeholder="Amount" 
-				/>
-			</label>
+				>
+					<p style="font-size: 1.2em; font-weight: bold;">Amount</p>
+				</span>
+			</div>
+			
+			<p
+				style="text-align: center; padding-bottom: 10px"
+			>1 APT = 1e8 Octas</p>
+			
+			<Amount_Field 
+				bind:this={ amount_field }
+				on_change={ on_amount_change }
+				on_prepare={ on_amount_prepare }			
+			/>
 		</div>
+		
 		
 		<div
 			style="
