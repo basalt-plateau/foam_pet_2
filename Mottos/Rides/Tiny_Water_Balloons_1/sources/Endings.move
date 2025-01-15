@@ -1,8 +1,8 @@
 
 
 
-module builder_1::Digital_Hydro_Balloons_1_Endings {
-	friend builder_1::Digital_Hydro_Balloons_1_Sport;
+module builder_1::Tiny_Water_Balloons_1_Endings {
+	friend builder_1::Tiny_Water_Balloons_1_Sport;
 
 	use std::string::{ String };
 	use builder_1::Rules_09;
@@ -11,7 +11,7 @@ module builder_1::Digital_Hydro_Balloons_1_Endings {
 	#[view]
 	public fun Volitions () : String { Rules_09::Volitions_01 () }
 	
-	public (friend) fun Ending_there_are_not_enough_digital_hydro_balloons_left_to_make_that_sale () : u64 {
+	public (friend) fun Ending_there_are_not_enough_tiny_water_balloons_left_to_make_that_sale () : u64 {
 		return 94734
 	}
 	

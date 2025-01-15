@@ -10,8 +10,8 @@
 		ask_if_consenter_is_owner
 		ask_if_address_is_owner
 */
-module builder_1::Digital_Hydro_Balloons_1_Owner {	
-	friend builder_1::Digital_Hydro_Balloons_1_Sport;
+module builder_1::Tiny_Water_Balloons_1_Owner {	
+	friend builder_1::Tiny_Water_Balloons_1_Sport;
 	
 	use std::string::{ String, utf8 };
 	use std::signer;
