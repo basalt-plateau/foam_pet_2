@@ -6,10 +6,15 @@ export const blockchain = {
 	//	[ Dream, Story, Note ]	
 	//	Roadmap
 	//	Multiverse, song, fest, gala, metropolis
+	//	map, megastructure
 	//			
 	"blockchain": "megastructure",
 	"Blockchain": "Megastructure",
 	
+	//
+	//	Turn, Moment, Blink
+	//
+	//
 	"Block": "Turn",
 	"block": "turn",
 	
@@ -40,7 +45,10 @@ export const blockchain = {
 	"Blockchain Transactions": "Adaptations",
 	"Blockchain transactions": "Adaptations",
 	
-	////
+	
+	
+	
+	//////
 	//
 	//	Vintage
 	//
@@ -57,5 +65,7 @@ export const blockchain = {
 	//	Vintage: use "transaction petition"
 	"Unsigned_Transaction": "Petition",
 	"Unsigned_Transactions": "Petitions",
+	//
+	//////
 }
 

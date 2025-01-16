@@ -118,4 +118,32 @@ module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 	}
 	
 	
+	
+	#[test]
+    public fun steady_remove_ending_zeroes () {
+		use std::string::{ String, utf8 };
+		use std::string_utils;
+		use std::signer;
+		use std::debug;
+
+		use Ride_01::Motions_01_String_Guarantee_Equality::{ guarantee_string_equality };
+
+		// modifications
+		guarantee_string_equality (& promptly (utf8 (b"0.01009000")), & utf8 (b"0.01009"));
+		guarantee_string_equality (& promptly (utf8 (b"0.0102000")), & utf8 (b"0.0102"));
+		guarantee_string_equality (& promptly (utf8 (b"0.01000000")), & utf8(b"0.01"));
+		guarantee_string_equality (& promptly (utf8 (b"0.10010")), & utf8(b"0.1001"));
+
+		// no modifications
+		guarantee_string_equality (& promptly (utf8 (b"1.")), & utf8 (b"1."));
+		guarantee_string_equality (& promptly (utf8 (b"0.10001")), & utf8(b"0.10001"));
+		
+		// no modifications zero next to dot
+		guarantee_string_equality (& promptly (utf8 (b"21.0")), & utf8 (b"21.0"));
+		guarantee_string_equality (& promptly (utf8 (b"1.0")), & utf8 (b"1.0"));
+		
+
+	}
+	
+	
 }
