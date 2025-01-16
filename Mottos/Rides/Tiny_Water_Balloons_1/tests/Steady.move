@@ -65,11 +65,6 @@ module builder_1::Steady {
         );
 		
 		
-		
-		
-		
-		
-		
 		// let coins = coin::mint<AptosCoin>(10000, &mint_cap);
         // coin::deposit (estate_1_spot, coins);
 		

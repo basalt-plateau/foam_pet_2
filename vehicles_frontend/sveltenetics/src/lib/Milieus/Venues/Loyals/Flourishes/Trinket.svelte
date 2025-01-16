@@ -170,11 +170,11 @@ onMount (() => {
 							padding: 12px 36px;
 							margin-top: 10px
 						"
-					>APT Entrust</button>
+					>APT Transfer</button>
 				</div>
 				<div style="height: 10px"></div>
 				<article style="{ trends.article }">
-					<p style="text-align: center">This is for <Slang text="signing" /> for an "APT Entrust".</p>
+					<p style="text-align: center">This is for <Slang text="signing" /> for an "APT Transfer".</p>
 				</article>
 				<div style="height: 0.5cm"></div>
 			</Panel>

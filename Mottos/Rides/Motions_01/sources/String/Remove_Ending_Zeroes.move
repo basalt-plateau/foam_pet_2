@@ -1,10 +1,14 @@
 
 module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
-
-	use std::string::{ Self, String, utf8 };
+	#[view] public fun Volitions () : String { 
+		use Ride_01::Rules_10; Rules_10::Volitions_01 () 
+	}
 	
-	// use std::string_utils;
-	// use std::debug;
+	
+	use std::string::{ Self, String, utf8 };
+
+	use Ride_01::Motions_01_String_Dots_Score::{ dots_score };
+	
 	
 	#[view]
 	public fun establish_if_string_has_a_dot_then_glyph (sequence : String) : bool {	
@@ -81,6 +85,15 @@ module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 	#[view]
 	public fun remove_ending_zeroes (sequence : String) : String {	
 		//
+		//	Establishing if there's 1 dot in the string.
+		//
+		//
+		if (dots_score (sequence) != 1) {
+			return sequence
+		};
+		
+		
+		//
 		//	Establishing if there's a "._" in the string
 		//
 		//
@@ -105,8 +118,6 @@ module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 		if (string::sub_string (& sequence, last_zero_index - 1, last_zero_index) == utf8 (b".")) {
 			return sequence;
 		};
-		
-
 		
 		
 		//

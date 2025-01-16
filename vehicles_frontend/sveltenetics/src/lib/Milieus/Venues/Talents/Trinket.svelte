@@ -220,12 +220,6 @@ const mode = check_roomies_truck ().freight.mode;
 		
 	
 		<Panel styles={ trends.panel }>	
-			<p
-				style="font-size: 1.3em"
-			>
-				<span>APT Entrust</span>
-			</p>
-		
 			<div class="relative inline-block">
 				<button 
 					aptos_account_transfer
@@ -244,7 +238,7 @@ const mode = check_roomies_truck ().freight.mode;
 						align-items: center;
 					"
 				>
-					<p>Petition</p>
+					<p>APT Transfer</p>
 				</button>
 			</div>
 			

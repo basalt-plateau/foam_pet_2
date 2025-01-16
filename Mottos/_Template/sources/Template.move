@@ -1,7 +1,7 @@
 
 
 
-module ride::Template {
+module Ride_01::Template {
 	
 	
 	

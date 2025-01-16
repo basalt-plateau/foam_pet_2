@@ -162,7 +162,7 @@ let Extension_Winch_Freight = false
 				font-size: 1.5em;
 				text-align: center;
 			"
-		>Transfer APT</header>
+		>APT Transfer</header>
 		
 		<div 
 			style="

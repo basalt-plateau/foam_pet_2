@@ -73,7 +73,6 @@ module Ride_01::APT_Octas_Math_01 {
 				dots = dots + 1;
 			};
 		};
-		
 		if (dots >= 2) {
 			return false
 		};

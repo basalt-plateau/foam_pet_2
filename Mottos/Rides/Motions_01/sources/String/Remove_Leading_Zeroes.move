@@ -2,9 +2,14 @@
 
 
 module Ride_01::Motions_01_String_Remove_Leading_Zeroes {
+	#[view] public fun Volitions () : String { 
+		use Ride_01::Rules_10; Rules_10::Volitions_01 () 
+	}
+	
 	
 	use std::string::{ Self, String, utf8 };
 
+	
 	
 	#[view]
 	public fun promptly (sequence : String) : String {

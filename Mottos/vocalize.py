@@ -30,8 +30,9 @@ import Rides_Published_Mainnet.Rules_10 as Rules_10_Moves
 import Rides.Motions_01 as Motions_01_Moves
 #
 #
+import Rides.Accounts_With_Aptos_01 as Accounts_With_Aptos_01
 import Rides.APT_Octas_Math_01 as APT_Octas_Math_01
-import Rides.APT_Requests_01 as APT_Requests_01
+import Rides.APT_Wishes_01 as APT_Wishes_01
 
 import Rides.Peptyde as Peptyde_Moves
 import Rides.Rhythm_01 as Rhythm_01
@@ -115,6 +116,7 @@ def motion_for_named_addresses ():
 
 
 moves_structures = {
+	"Accounts_With_Aptos_01": Accounts_With_Aptos_01,	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
 	"Rules_10": Rules_10_Moves,
 	"Motions_01": Motions_01_Moves,
@@ -133,7 +135,7 @@ def clique ():
 
 
 	"""
-		python3 vocalize.py vocalize --move Motions_01_Moves --steady
+		python3 vocalize.py vocalize --move Motions_01 --steady
 	"""
 	@click.command ("vocalize")
 	@click.option ('--move', type = str, help = '')

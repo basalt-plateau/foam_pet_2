@@ -173,7 +173,7 @@ var modal_style = `
 					text-align: center;
 					font-size: 1.2em;
 				"
-			>APT Entrust</header>
+			>APT Transfer</header>
 			<hr class="!border-t-2" />
 		</div>
 	

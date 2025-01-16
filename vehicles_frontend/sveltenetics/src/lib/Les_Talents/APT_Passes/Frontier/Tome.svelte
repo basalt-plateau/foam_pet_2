@@ -53,6 +53,6 @@ let open = async () => {
 			white-space: break-spaces;
 		"
 	>
-		<p>Transfer APT</p>
+		<p>APT Transfer</p>
 	</button>
 </div>
