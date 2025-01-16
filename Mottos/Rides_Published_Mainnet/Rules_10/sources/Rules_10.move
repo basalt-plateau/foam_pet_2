@@ -49,6 +49,26 @@ module Ride_01::Rules_10 {
 
 		utf8 (vectors)
 	}
+	
+	#[test]
+    public fun steady_1 () {
+		use std::debug;
+		use std::string_utils;
+		use std::string::{ Self, String };
+		
+		let rules : String = Volitions_01 ();
+		
+		debug::print (& string_utils::format1 (
+			& b"Rules: {}", 
+			rules
+		));
+		debug::print (& string_utils::format1 (
+			& b"Rules Length: {}", 
+			string::length (& rules)
+		));
+		
+		assert! (string::length (& rules) == 377, 0);
+    }
 }
 
 

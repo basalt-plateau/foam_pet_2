@@ -2,19 +2,22 @@
 
 
 import os
+import pathlib
 
-
+this_directory = pathlib.Path (__file__).parent.resolve ()	
 
 
 def steady (envelope):
 	ride_plate = envelope ["ride_plate"]
-	location = envelope ["location"]
+	named_addresses = envelope ["named_addresses"]
+
+	print ("named_addresses:", named_addresses)
 
 	screenplay = " ".join ([
-		f"cd { location }",
+		f"cd { this_directory }",
 		"&&",
 		"aptos move test",
-		f"--named-addresses 'Ride_01={ ride_plate }'"
+		named_addresses
 	]);
 	
 	print ("screenplay:", screenplay);
@@ -27,11 +30,12 @@ def publish (envelope):
 	location = envelope ["location"]
 
 	os.system (" ".join ([
-		f"cd { location }",
+		f"cd { this_directory }",
 		"&&",
 		"aptos move publish",
 		f"--named-addresses 'Ride_01={ ride_plate }'"
 	]));
+	
 
 def build (envelope):
 	ride_plate = envelope ["ride_plate"]
@@ -39,7 +43,7 @@ def build (envelope):
 
 
 	os.system (" ".join ([
-		f"cd { location }",
+		f"cd { this_directory }",
 		"&&",
 		"aptos move build",
 		f"--named-addresses 'Ride_01={ ride_plate }'"

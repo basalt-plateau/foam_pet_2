@@ -1,7 +1,7 @@
 
 
 [package]
-name = "APT_Octas_Math_01"
+name = "Wonder_Types_01"
 version = "1.0.0"
 authors = []
 upgrade_policy = "immutable"
@@ -18,10 +18,6 @@ local = "/Metro/aptos-core/aptos-move/framework/aptos-framework"
 [dependencies.AptosStdlib]
 local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
 
-[dependencies.Rules_10]
-local = "/Metro/Mottos/Rides/Rules_10" 
 
-[dependencies.Rules_10]
-local = "/Metro/Mottos/Rides/Wonder_Types_01" 
 
 
