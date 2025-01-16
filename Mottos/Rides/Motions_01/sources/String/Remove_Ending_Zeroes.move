@@ -1,6 +1,10 @@
 
 module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 
+	use std::string::{ Self, String, utf8 };
+	use std::string_utils;
+	use std::debug;
+	
 	#[view]
 	public fun promptly (sequence : String) : String {		
 		//

@@ -7,6 +7,12 @@ module Ride_01::Motions_01_String_Guarantee_Equality {
 	use std::string_utils;
 	use std::debug;
 	
+	
+	
+	#[view]
+	public fun Volitions () : String { use Ride_01::Rules_10; Rules_10::Volitions_01 () }
+	
+	
 	public fun promptly (
 		parameter_1: & String, 
 		parameter_2: & String
