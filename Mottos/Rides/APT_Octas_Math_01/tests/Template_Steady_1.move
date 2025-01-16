@@ -53,8 +53,6 @@ module Ride_01::Templates_Steady_1 {
 	
 	
 	
-	
-	
 	#[test (
 		aptos_framework_consenter = @0x1, 
 		ride_01_consenter = @Ride_01

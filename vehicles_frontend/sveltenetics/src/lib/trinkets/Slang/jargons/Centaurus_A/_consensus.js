@@ -19,15 +19,13 @@ export const consensus = {
 	//
 	//	Maintenance, Leaders, Care,
 	//	Theater, Fest
-	//
 	//	Gala, Banquet, Chaperones, Volunteer, volitional
-	//
 	//	Party, Fest, Gala
-	//
 	//	Pono - Hawaiian about group decision making
+	//	sequencer
 	//
-	"consensus": "consensus",
-	"Consensus": "Consensus",
+	"consensus": "sequencer",
+	"Consensus": "Sequencer",
 	
 	/*
 		Chaperones, Bouncers

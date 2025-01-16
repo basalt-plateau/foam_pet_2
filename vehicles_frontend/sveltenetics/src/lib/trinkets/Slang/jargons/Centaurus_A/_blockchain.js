@@ -8,8 +8,8 @@ export const blockchain = {
 	//	Multiverse, song, fest, gala, metropolis
 	//	map, megastructure
 	//			
-	"blockchain": "megastructure",
-	"Blockchain": "Megastructure",
+	"blockchain": "Multiverse Score",
+	"Blockchain": "Multiverse Score",
 	
 	//
 	//	Turn, Moment, Blink
@@ -36,14 +36,14 @@ export const blockchain = {
 	"Transaction petitions": "Petitions",
 
 	/*
-		Treaty, Bargain
+		Treaty, Bargain, Adaptation
 	
 	*/
-	"blockchain transaction": "adaptation",
-	"Blockchain Transaction": "Adaptation",
-	"Blockchain transaction": "Adaptation",	
-	"Blockchain Transactions": "Adaptations",
-	"Blockchain transactions": "Adaptations",
+	"blockchain transaction": "beautification",
+	"Blockchain Transaction": "Beautification",
+	"Blockchain transaction": "Beautification",	
+	"Blockchain Transactions": "Beautifications",
+	"Blockchain transactions": "Beautifications",
 	
 	
 	
@@ -53,9 +53,9 @@ export const blockchain = {
 	//	Vintage
 	//
 	//	Vintage: use "blockchain transaction"
-	"transaction": "adaptation",
-	"Transaction": "Adaptation",
-	"Transactions": "Adaptations",
+	"transaction": "beautification",
+	"Transaction": "Beautification",
+	"Transactions": "Beautifications",
 	
 	//	Vintage: use "transaction petition"
 	"petition": "petition",	
