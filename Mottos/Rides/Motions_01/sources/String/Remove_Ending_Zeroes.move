@@ -2,8 +2,9 @@
 module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 
 	use std::string::{ Self, String, utf8 };
-	use std::string_utils;
-	use std::debug;
+	
+	// use std::string_utils;
+	// use std::debug;
 	
 	#[view]
 	public fun establish_if_string_has_a_dot_then_glyph (sequence : String) : bool {	
@@ -21,8 +22,6 @@ module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 	}
 	#[test]
     public fun steady_establish_if_string_has_a_dot_then_glyph_01 () {
-		use Ride_01::Motions_01_String_Guarantee_Equality::{ guarantee_string_equality };
-
 		assert! (string::length (& utf8 (b"1")) == 1, 1);
 
 		assert! (establish_if_string_has_a_dot_then_glyph (utf8 (b"0.01009000")), 1);
@@ -68,25 +67,19 @@ module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 	}
 	#[test]
     public fun steady_establish_last_zero_of_string_01 () {
-		use Ride_01::Motions_01_String_Guarantee_Equality::{ guarantee_string_equality };
-
 		let (last_zero_index, last_zero_index_sensed) = establish_has_zero_at_end_of_string (utf8 (b"0.01009000"));
 		assert! (last_zero_index_sensed == true, 1);
 		assert! (last_zero_index == 7, 1);
 	}
 	#[test]
     public fun steady_establish_last_zero_of_string_03 () {
-		use Ride_01::Motions_01_String_Guarantee_Equality::{ guarantee_string_equality };
-
-		let (last_zero_index, last_zero_index_sensed) = establish_has_zero_at_end_of_string (utf8 (b"0.1"));
+		let (_last_zero_index, last_zero_index_sensed) = establish_has_zero_at_end_of_string (utf8 (b"0.1"));
 		assert! (last_zero_index_sensed == false, 1);
 	}
 	
 	
 	#[view]
 	public fun remove_ending_zeroes (sequence : String) : String {	
-		let sequence_length = string::length (& sequence);
-		
 		//
 		//	Establishing if there's a "._" in the string
 		//
@@ -117,24 +110,18 @@ module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 		
 		
 		//
-		//	if last_zero_index_sensed, then remove zeroes from the end.
+		//	Remove zeroes from the end until last_zero_index.
 		//
 		//
 		let result = utf8 (b"");
-		let index_3 = 0;
-		while (index_3 <= last_zero_index - 1) {
-			let glyph = string::sub_string (& sequence, index_3, index_3 + 1);
-			
-			debug::print (
-				& string_utils::format1 (
-					& b"appending: {}", 
-					glyph
-				)
+		let index = 0;
+		while (index <= last_zero_index - 1) {
+			string::append (
+				&mut result, 
+				string::sub_string (& sequence, index, index + 1)
 			);
 			
-			string::append (&mut result, glyph);
-			
-			index_3 = index_3 + 1;
+			index = index + 1;
 		};
 		
 		result
@@ -142,10 +129,7 @@ module Ride_01::Motions_01_String_Remove_Ending_Zeroes {
 	
 	#[test]
     public fun steady_remove_ending_zeroes () {
-		use std::string::{ String, utf8 };
-		use std::string_utils;
-		use std::signer;
-		use std::debug;
+		use std::string::{ utf8 };
 
 		use Ride_01::Motions_01_String_Guarantee_Equality::{ guarantee_string_equality };
 

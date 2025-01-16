@@ -28,8 +28,6 @@ module Ride_01::APT_Octas_Math_01 {
 		octas
 	}
 	
-
-	
 	
 		
 	#[view]
@@ -54,8 +52,6 @@ module Ride_01::APT_Octas_Math_01 {
 		
 		result
 	}
-	
-	
 	
 	#[view]
 	public fun glyphs_are_1234567890_or_period (sequence : String) : bool {

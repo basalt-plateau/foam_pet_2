@@ -4,8 +4,7 @@
 module Ride_01::Motions_01_String_Remove_Leading_Zeroes {
 	
 	use std::string::{ Self, String, utf8 };
-	use std::string_utils;
-	use std::debug;
+
 	
 	#[view]
 	public fun promptly (sequence : String) : String {
@@ -13,7 +12,6 @@ module Ride_01::Motions_01_String_Remove_Leading_Zeroes {
 		
 		let searching_leading = true;
 		
-		// let index = 0;
 		let index_end = string::length (& sequence);
 		for (index in 0..index_end) {
 			let glyph = string::sub_string (& sequence, index, index + 1);
