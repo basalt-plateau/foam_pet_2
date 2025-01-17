@@ -1,0 +1,24 @@
+
+
+[package]
+name = "APT_Catches_01"
+version = "1.0.0"
+authors = []
+upgrade_policy = "immutable"
+
+[addresses]
+Ride_01 = "_"
+
+[dev-addresses]
+
+
+[dependencies.AptosFramework]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
+
+[dependencies.AptosStdlib]
+local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
+
+[dependencies.Rules_10]
+local = "/Metro/Board/Rides_Published_Mainnet/Rules_10" 
+
+
