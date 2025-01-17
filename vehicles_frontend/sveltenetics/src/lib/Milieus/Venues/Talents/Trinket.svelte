@@ -10,81 +10,103 @@
 
 ///
 //
-import { Modal, getModalStore } from '@skeletonlabs/skeleton';
-//
-//
+import Panel from '$lib/trinkets/panel/trinket.svelte'
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import { parse_styles } from '$lib/trinkets/styles/parse'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
-import Panel from '$lib/trinkets/panel/trinket.svelte'
-import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
-import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-import Stats_Wall from '$lib/Les_Talents/Stats/Wall.svelte'
 //
-import { parse_styles } from '$lib/trinkets/styles/parse'
-import { open_bit_throw } from '$lib/Les_Talents/Bit_Pack/open'
-//
-//
-import { modal_plugs, trends } from './Trinket'
+import { trends } from './Trinket'
 //
 //\
 
-
+////
+//
 import Extension_Network_Status from '$lib/Singles/Extension_Winch/Status/Tome.svelte'
 import Dapp_Network_Status from '$lib/Versies/Tomes/Network_Status/Bothy.svelte'
 import Dapp_Network_Cohesion from '$lib/Versies/Tomes/Network_Cohesion/Bothy.svelte'
+//
+////
 
 
 ////
 //
 //	Frontiers (Porticos)
 //
-//
-import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico/Trinket.svelte'
-import Digital_Assets_Portico from '$lib/Les_Talents/Digital_Assets/Portico/Trinket.svelte'
-import Rondovals_Portico from '$lib/Les_Talents/Rondovals/Portico/Trinket.svelte'
-import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
-import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
-import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
-import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
+import Address_Search from '$lib/Les_Talents/Address_Search/Frontier/Board.svelte'
 import APT_Passes from '$lib/Les_Talents/APT_Passes/Frontier/Tome.svelte'
+import APT_Entrust_Friends from '$lib/Les_Talents/APT_Entrust_Mode_1/Friends_Frontier/Board.svelte'
+import Adaptation_Portico from '$lib/Les_Talents/Adaptation/Portico/Trinket.svelte'
+import Bit_Pack from '$lib/Les_Talents/Bit_Pack/Frontier/Board.svelte'
+import Digital_Assets_Portico from '$lib/Les_Talents/Digital_Assets/Portico/Trinket.svelte'
+import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
+import Faucet from '$lib/Les_Talents/Faucet/Frontier/Board.svelte'
+import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
+import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
+import Rondovals_Portico from '$lib/Les_Talents/Rondovals/Portico/Trinket.svelte'
+import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 import Water_Balloons from '$lib/Les_Talents/Water_Balloons/Frontier/Tome.svelte'
 //
 //
 ////
 
 
-import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
 
+const Les_Talents = [
+	{
+		"Frontier": Address_Search,
+		"Mode": "business"
+	},
+	{
+		"Frontier": APT_Entrust_Friends,
+		"Mode": "business"
+	},
+	{
+		"Frontier": APT_Passes,
+		"Mode": "business"
+	},
+	{
+		"Frontier": Adaptation_Portico,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Bit_Pack,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Digital_Assets_Portico,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Drink_Shop,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Faucet,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Harvests_Portico,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Mercy_Frontier,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Rondovals_Portico,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Venues_Portico,
+		"Mode": "nurture"
+	},
+	{
+		"Frontier": Water_Balloons,
+		"Mode": "nurture"
+	}
+]
 
-
-const modal_store = getModalStore ();
-
-const {
-	octas_gifts_v1,
-	open_faucet,
-	open_transaction_modal,
-	open_coin_transfer,
-	open_address_search
-} = modal_plugs ({
-	modal_store
-});
-
-const open_consideration_modal = async () => {
-	console.log ('open_consideration_modal')
-	
-	modal_store.trigger ({
-		type: 'component',
-		
-		backdropClasses: '!p-0',
-		
-		component: {
-			ref: APT_Entrust_Mode_1_Loyals_Panel,
-			props: { 
-				modal_store
-			}
-		}
-	});
-}
 
 const mode = check_roomies_truck ().freight.mode;
 
@@ -137,7 +159,7 @@ const mode = check_roomies_truck ().freight.mode;
 	<section
 		quests_address
 		
-		monitor="talents_list"		
+		monitor="talents_list"
 		
 		style={ parse_styles ({
 			position: 'relative',
@@ -153,239 +175,28 @@ const mode = check_roomies_truck ().freight.mode;
 			'padding-bottom': '1cm'
 		}) }
 	>
-		{#if mode === "nurture" }
-		<Panel styles={ trends.panel }>		
-			<Mercy_Frontier { modal_store }/>	
-		</Panel>
+		{#each Les_Talents as Le_Talent }
+		{#if mode === "business" && Le_Talent.Mode !== "business" }
 		
-		<Panel styles={ trends.panel }>	
-			<Water_Balloons />
-		</Panel>
-		{/if}
-		
-		
-		
-		<Panel styles={ trends.panel }>	
-			<APT_Passes />
-		</Panel>
-		
-		{#if mode === "nurture" }
-		<Panel styles={ trends.panel }>	
-			<Drink_Shop />
-		</Panel>
-		{/if}
-		
-		<Panel styles={ trends.panel }>		
-			<div class="relative inline-block">
-				<button 
-					aptos_account_transfer
-					
-					on:click={ open_address_search }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>Address Search</p>
-				</button>
-			</div>
-		</Panel>
-	</section>
-	
-	<section
-		monitor="Greetings talents"		
-		
-		style={ parse_styles ({
-			position: 'relative',
-			display: 'grid',
-			'width': '100%',
-			'margin': '0 auto',
-			
-			// 'grid-template-columns': 'repeat(auto-fit, minmax(500px, 1fr))',
-			'grid-template-columns': 'repeat(auto-fit, minmax(100px, 500px))',
-			'grid-gap': '10px',
-			'justify-content': 'center',
-			
-			'padding-bottom': '1cm'
-		}) }
-	>
-		
-	
-		<Panel styles={ trends.panel }>	
-			<div class="relative inline-block">
-				<button 
-					aptos_account_transfer
-					
-					on:click={ octas_gifts_v1 }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>APT Transfer</p>
-				</button>
-			</div>
-			
-			<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
-		</Panel>
-		
-		<Panel styles={ trends.panel }>		
-			<div class="relative inline-block">
-				<button 
-					monitor="bit pitch"
-					
-					on:click={ () => { open_bit_throw ({ modal_store }); } }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>Bit Pack</p>
-				</button>
-			</div>
+		{:else}
+		<Panel 
+			styles={
+				Object.assign ({}, trends.panel, {
+					...(Le_Talent.Mode !== "business" ? {
+						border: '20px solid rgb(var(--color-warning-500))'
+					} : {})
+				}) 
+			}
+		>		
+			<svelte:component this={ Le_Talent.Frontier }  />
+			{#if Le_Talent.Mode === "nurture"}
 			<div style="height: 0.25cm" />
-			<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
-		</Panel>
-	</section>
-	
-	
-	
-	
-	{#if mode === "nurture" }
-	<section
-		monitor="talents_list_nurture"
-	
-		style={ parse_styles ({
-			position: 'relative',
-			display: 'grid',
-			'width': '100%',
-			'grid-template-columns': 'repeat(auto-fit, minmax(400px, 1fr))',
-			'grid-gap': '10px',
-			
-			'padding-bottom': '5cm'
-		}) }
-	>
-		<Panel styles={ trends.panel }>		
-			<div class="relative inline-block">
-				<button 
-					faucet
-					monitor="faucet"
-					
-					on:click={ open_faucet }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>Faucet</p>
-					<span 
-						class="badge variant-filled-primary"
-						style="margin: 0; display: none;"
-					>Iteration 1</span>
-				</button>
-				
+			<div class="card" style="padding: 0.1cm 0.5cm">
+				<p>{ Le_Talent.Mode }</p>
 			</div>
+			{/if}
 		</Panel>
-		
-		
-		
-		<Panel styles={ trends.panel }>		
-			<Venues_Portico { modal_store }/>	
-		</Panel>
-		
-		<Panel styles={ trends.panel }>		
-			<Harvests_Portico { modal_store }/>	
-		</Panel>
-		
-		<Panel 
-			styles={ trends.panel }
-		>		
-			<Adaptation_Portico { modal_store }/>
-		</Panel>
-		<Panel 
-			styles={ trends.panel }
-		>		
-			<Digital_Assets_Portico { modal_store }/>	
-		</Panel>
-		<Panel 
-			styles={ trends.panel }
-		>		
-			<Rondovals_Portico { modal_store }/>	
-		</Panel>
-		<Panel 
-			styles={ trends.panel }
-		>		
-			<div class="relative inline-block">
-
-				<button 
-					octas_gifts__version_1
-					
-					on:click={ open_coin_transfer }
-					type="button" 
-					class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-					style="
-						font-size: 1.3em;
-						padding: 12px 54px;
-						margin-top: 10px;
-						
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;
-					"
-				>
-					<p>Coin Transfer</p>
-					<span 
-						class="badge variant-filled-primary"
-						style="margin: 0; display: none;"
-					>Iteration 1</span>
-				</button>
-			</div>
-
-			<div style="height: 12px" />
-
-			<span class="badge variant-soft"
-				style="
-					position: relative;
-					font-size: 1.2em;
-				"
-			>
-				<span>Function</span>
-				<span class="badge variant-filled-surface">0x1::coin::transfer</span>
-			</span>
-		</Panel>
+		{/if}
+		{/each}
 	</section>
-	{/if}
 </nav>

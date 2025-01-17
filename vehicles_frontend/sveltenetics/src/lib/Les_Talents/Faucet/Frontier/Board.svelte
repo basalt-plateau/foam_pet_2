@@ -4,16 +4,16 @@
 
 
 
-
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 const modal_store = getModalStore ();
+
 
 let open = async () => {
 	modal_store.trigger ({
 		type: 'component',
 		backdropClasses: '!p-0',
 		component: {
-			ref: (await import ('./../Panel/Trinket.svelte')).default,
+			ref: (await import ('./../Trinket.svelte')).default,
 			props: { 
 				modal_store
 			}
@@ -23,13 +23,13 @@ let open = async () => {
 
 
 
-
 </script>
 
 
 <div class="relative inline-block">
 	<button 
-		monitor="glyph for adaptation"
+		faucet
+		monitor="faucet"
 		
 		on:click={ open }
 		type="button" 
@@ -45,6 +45,6 @@ let open = async () => {
 			align-items: center;
 		"
 	>
-		<p>Venues</p>
+		<p>Faucet</p>
 	</button>
 </div>

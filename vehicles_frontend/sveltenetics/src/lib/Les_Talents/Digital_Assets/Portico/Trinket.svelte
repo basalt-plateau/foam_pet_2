@@ -6,7 +6,8 @@
 
 import Panel from './../Panel/Trinket.svelte'
 
-export let modal_store;
+import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+const modal_store = getModalStore ();
 
 let open = () => {
 	modal_store.trigger ({

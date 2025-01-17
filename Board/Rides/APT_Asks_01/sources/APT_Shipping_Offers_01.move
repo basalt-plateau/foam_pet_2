@@ -3,14 +3,14 @@
 
 
 
-module Ride_01::APT_Shipping_Offers_01 {
+module Ride_01::APT_Asks_01 {
 	#[view] public fun Volitions () : String { use Ride_01::Rules_10; Rules_10::Volitions_01 () }
 
 	use std::vector;
 	use std::string::{ String, utf8 };
 	use std::signer;
 
-	struct Movement_Request has store, drop {
+	struct APT_Ask has store, drop {
 		amount_octas: u64,
 		
 		origin_address: address,
@@ -20,7 +20,10 @@ module Ride_01::APT_Shipping_Offers_01 {
 		status: String
 	}
 	
-	struct APT_Import_Request has key, drop {
+	/*
+		This belongs to each person.
+	*/
+	struct APT_Asks has key, drop {
 		imports : vector <Catch> 
 	}
 	

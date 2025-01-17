@@ -6,6 +6,20 @@
 				[Validator Address]:
 */
 
+/*
+	Consensus needs to convey that they are like
+	a board of directors that votes on keeping the 
+	blockchain alive.
+*/
+
+/*
+	Aristocracy, Oligarchy, Government
+	Bourgeoisie
+*/
+
+/*
+	https://explorer.aptoslabs.com/validators/all?network=mainnet
+*/
 
 export const consensus = {
 	
@@ -24,14 +38,14 @@ export const consensus = {
 	//	Pono - Hawaiian about group decision making
 	//	sequencer
 	//
-	"consensus": "sequencer",
-	"Consensus": "Sequencer",
+	"consensus": "leadership",
+	"Consensus": "Leadership",
 	
 	/*
-		Chaperones, Bouncers
+		Chaperones, Bouncers, Rulers
 	*/
-	"consensus_validator": "bouncer",
-	"Consensus_validators": "Bouncers"
+	"consensus_validator": "leaders",
+	"Consensus_validators": "Leaders"
 	
 }
 

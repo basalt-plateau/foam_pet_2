@@ -149,7 +149,7 @@ export const build_entry_petition_AO = async ({
 			TP2_AO_Uint8Array,
 			
 			//
-			// Perhaps this is what is sent to the "APT Transfer"
+			// Perhaps this is what is sent to the "APT" outbound
 			TP2_hexadecimal_string,
 			
 			TPE_fiberized,

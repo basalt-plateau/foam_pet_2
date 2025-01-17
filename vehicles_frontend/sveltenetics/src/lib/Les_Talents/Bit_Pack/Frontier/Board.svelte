@@ -2,8 +2,13 @@
 
 <script>
 
+/*
+	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Tome.svelte"
+*/
 
-
+/*
+	Frontier, Event Horizon
+*/
 
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 const modal_store = getModalStore ();
@@ -13,7 +18,7 @@ let open = async () => {
 		type: 'component',
 		backdropClasses: '!p-0',
 		component: {
-			ref: (await import ('./../Panel/Trinket.svelte')).default,
+			ref: (await import ('./../Trinket.svelte')).default,
 			props: { 
 				modal_store
 			}
@@ -45,6 +50,6 @@ let open = async () => {
 			align-items: center;
 		"
 	>
-		<p>Venues</p>
+		<p>Bit Pack</p>
 	</button>
 </div>

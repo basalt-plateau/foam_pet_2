@@ -2,18 +2,23 @@
 
 <script>
 
+/*
+	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Tome.svelte"
+*/
 
-
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 const modal_store = getModalStore ();
+
+
 
 let open = async () => {
 	modal_store.trigger ({
 		type: 'component',
 		backdropClasses: '!p-0',
 		component: {
-			ref: (await import ('./../Panel/Trinket.svelte')).default,
+			ref: (await import ('./../Friends_Panel/Trinket.svelte')).default,
 			props: { 
 				modal_store
 			}
@@ -45,6 +50,8 @@ let open = async () => {
 			align-items: center;
 		"
 	>
-		<p>Venues</p>
+		<p>APT Entrust</p>
 	</button>
+	<div style="height: 0.25cm" />
+	<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
 </div>

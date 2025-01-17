@@ -50,6 +50,8 @@ let open = async () => {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			
+			white-space: break-spaces;
 		"
 	>
 		<p>Talent</p>

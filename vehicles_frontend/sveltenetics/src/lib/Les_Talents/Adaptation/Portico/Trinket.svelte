@@ -4,7 +4,8 @@
 
 
 
-export let modal_store;
+import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+const modal_store = getModalStore ();
 
 let open = async () => {
 	modal_store.trigger ({
