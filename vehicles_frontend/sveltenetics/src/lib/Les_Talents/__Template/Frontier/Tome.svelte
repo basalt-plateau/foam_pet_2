@@ -7,7 +7,7 @@
 */
 
 /*
-	Frontier, Event Horizon
+	Frontier, Event Horizon, Opener
 */
 
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';

@@ -202,18 +202,7 @@ const calculate_exponent = () => {1
 
 {#if prepared === "yes"}
 <div>
-	<div>
-		<aside class="alert variant-filled-surface">
-			<div class="alert-message"
-				style="
-					text-align: center;
-				"
-			>
-				<p>"<b>Actual Amount</b>" is calculated from the number provided and is the amount used.</p>				
-			</div>
-		</aside>
-
-		
+	<div>		
 		<div 
 			_class="input-group input-group-divider grid-cols-[auto_1fr_auto]"
 			style="
@@ -364,6 +353,18 @@ const calculate_exponent = () => {1
 				>Octas</span>
 			</div>
 		</span>
+		
+		<div style="height: 0.25cm"></div>
+		
+		<aside class="alert variant-filled-surface">
+			<div class="alert-message"
+				style="
+					text-align: center;
+				"
+			>
+				<p>"<b>Actual Amount</b>" is calculated from the number provided and is the amount used.</p>				
+			</div>
+		</aside>
 	</div>
 	
 	{#if effects.problem.length >= 1 }

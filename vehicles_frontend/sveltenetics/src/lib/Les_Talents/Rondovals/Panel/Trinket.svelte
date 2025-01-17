@@ -45,14 +45,6 @@ let show_panel = "Digital Assets 1";
 //
 
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
-
 let polytope_modal;
 
 const on_click = () => {
