@@ -25,13 +25,7 @@ import Wallet_Leaf from "./Leaf.svelte"
 
 
 let polytope_modal;
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
+
 const on_modal_change = () => {}
 
 

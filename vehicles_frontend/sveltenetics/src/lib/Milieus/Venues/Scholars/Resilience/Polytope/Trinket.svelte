@@ -11,13 +11,6 @@ const modal_store = getModalStore ();
 //
 
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
 const enhance = () => {
 	return {}
 }

@@ -14,13 +14,7 @@ import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 import Online_Petition from './Online_Petition/Trinket.svelte'
 import Offline_Petition from '$lib/PTO/Offline/Petition_Form/Trinket.svelte'
 	
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
+
 
 let polytope_modal;
 

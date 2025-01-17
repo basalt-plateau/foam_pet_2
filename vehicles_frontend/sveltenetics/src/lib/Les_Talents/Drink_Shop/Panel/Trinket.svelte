@@ -21,14 +21,6 @@ import Alert_Note from '$lib/trinkets/Alerts/Note.svelte'
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 	
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
-
 let polytope_modal;
 
 const on_click = () => {

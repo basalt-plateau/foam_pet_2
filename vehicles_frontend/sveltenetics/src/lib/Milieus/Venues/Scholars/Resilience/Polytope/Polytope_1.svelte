@@ -7,14 +7,6 @@ import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 
 import _merge from 'lodash/merge'
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
-
 let polytope_modal;
 const on_click = () => {
 	polytope_modal.advance (({ freight }) => {

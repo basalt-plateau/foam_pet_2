@@ -57,13 +57,6 @@ let rules_entire_link = "/Rules/Laboratory/frontend_rules_entire.txt"
 let rules_legend_link = "/Rules/Laboratory/frontend_rules_legend.txt"
 let rules_originals_link = "/Rules/Laboratory/Frontend_Rules_Originals.HTML"
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
 
 let polytope_modal;
 

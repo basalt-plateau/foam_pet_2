@@ -7,13 +7,6 @@ import _merge from 'lodash/merge'
 
 import Leaf_1 from './Leaf_1.svelte'
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
 
 let polytope_modal;
 const on_click = () => {
