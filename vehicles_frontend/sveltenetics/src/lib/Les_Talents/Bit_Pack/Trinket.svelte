@@ -97,13 +97,6 @@ $: {
 }
 
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
 
 let polytope_modal;
 

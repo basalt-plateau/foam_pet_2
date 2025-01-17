@@ -14,13 +14,6 @@ import Polytope from '$lib/trinkets/Polytope/Fabric.svelte'
 import Offline_Petition from '$lib/PTO/Offline/Petition_Form/Trinket.svelte'
 import Offline_Signatory from '$lib/PTO/Offline/Signatory_Form/Trinket.svelte'
 
-const prepare = () => {
-	return {
-		name: "Transfer",
-		next: "yes",
-		back: "yes"
-	}
-}
 
 let polytope_modal;
 

@@ -44,5 +44,5 @@ let open = async () => {
 		align-items: center;
 	"
 >
-	<p>APT Transfer Consent</p>
+	<p>APT Transfer</p>
 </button>
