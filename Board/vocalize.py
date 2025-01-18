@@ -115,6 +115,7 @@ def motion_for_named_addresses ():
 		f"""Ride_01={ builder_1 ["address"] }, """,
 		f"""ride={ builder_1 ["address"] }, """,		
 		f"""builder_1={ builder_1 ["address"] } """,		
+		f"""Builder_01={ builder_1 ["address"] } """,		
 		
 		"'"
 	]);
