@@ -1,7 +1,7 @@
 
 
 
-module builder_1::Mix_Venue_Module {
+module builder_1::Venue_Module {
 	
 	use std::vector;
 	use std::string::{ String, utf8 };
@@ -11,51 +11,48 @@ module builder_1::Mix_Venue_Module {
 	use aptos_framework::coin;
 	use aptos_framework::aptos_coin::AptosCoin;
 
-	use builder_1::Rules_09;
-	
 	use builder_1::Mascot_Module::{ Self, Mascot };
-	use builder_1::Production_Module::{ owner_position, ask_if_consenter_is_owner };
+	use builder_1::Formulator_Module::{ formulator_position, ask_if_consenter_is_Formulator };
 	use builder_1::Endings_Module;
 
 	const Imperfection_consenter_has_not_joined : u64 = 0;
-	const Imperfection_consenter_is_not_owner : u64 = 1;
+	const Imperfection_consenter_is_not_Formulator : u64 = 1;
 	const Imperfection_consenter_does_not_have_enough_APT_for_purchase : u64 = 2;
 	const Ending_mascot_was_not_found : u64 = 3;
 	const Ending_every_voht_has_been_sold : u64 = 3;
-
+	
+	struct Voht has key, drop {}
+	
+	struct Venue has key, drop {
+		vohts_for_sale : u256,
+		mascots : vector<Mascot>
+	}
+	
 	#[view] public fun Volitions () : String { 
 		use ride::Rules_10;
 		Rules_10::Volitions_01 () 
 	}
 	
-	struct Voht has key, drop {}
 	
-	struct Sport has key, drop {
-		vohts_for_sale : u256,
-		mascots : vector<Mascot>
+	#[view] public fun Vohts_For_Sale_Left () : u256 acquires Venue {
+		let sport = borrow_global<Venue>(formulator_position ());
+		sport.vohts_for_sale
 	}
 	
-	#[view]
-	public fun Vohts_For_Sale_Left () : u256 acquires Sport {
-		let sport = borrow_global<Sport>(owner_position ());
-		sport.vohts_for_sale
+	#[view] public fun Mascot_Count () : u64 acquires Venue {
+		let sport = borrow_global<Venue>(formulator_position ());
+		vector::length (&sport.mascots)
 	}
 	
 	/*
 	#[view]
-	public fun Mascot_Roster () acquires Sport {
-		let sport = borrow_global<Sport>(owner_position ());
+	public fun Mascot_Roster () acquires Venue {
+		let sport = borrow_global<Venue>(formulator_position ());
 		
 		let bracket = vector::empty<u8>();	
 		let num_mascots = vector::length(&sport.mascots);
 	}
 	*/
-	
-	#[view]
-	public fun Mascot_Count () : u64 acquires Sport {
-		let sport = borrow_global<Sport>(owner_position ());
-		vector::length (&sport.mascots)
-	}
 	
 	
 	
@@ -64,25 +61,25 @@ module builder_1::Mix_Venue_Module {
 		vohts_for_sale : u256
 	) {
 		//
-		//	Make sure the consenter is the owner.
+		//	Make sure the consenter is the Formulator.
 		//
 		//
-		if (ask_if_consenter_is_owner (consenter) != utf8 (b"yup")) { 
-			abort Imperfection_consenter_is_not_owner 
+		if (ask_if_consenter_is_Formulator (consenter) != utf8 (b"yup")) { 
+			abort Imperfection_consenter_is_not_Formulator 
 		};
 
-		let sport = Sport {
+		let sport = Venue {
 			vohts_for_sale : vohts_for_sale,
 			mascots : vector::empty<Mascot>()
 		};
 		
-		move_to<Sport>(consenter, sport)
+		move_to<Venue>(consenter, sport)
 	}
 	
 	
 	#[view]
 	public fun sport_exists () : String {
-		if (exists<Sport>(owner_position ())) {
+		if (exists<Venue>(formulator_position ())) {
 			return utf8 (b"yup")
 		};
 		
@@ -90,8 +87,8 @@ module builder_1::Mix_Venue_Module {
 	}
 	
 	#[view]
-	public fun End () : String acquires Sport {
-		// public entry fun End (consenter : & signer) acquires Sport {
+	public fun End () : String acquires Venue {
+		// public entry fun End (consenter : & signer) acquires Venue {
 		//
 		//	Check if is after 2250 = 30 + 250 = 280
 		//
@@ -103,23 +100,23 @@ module builder_1::Mix_Venue_Module {
 		};
 		
 		
-		move_from<Sport>(owner_position ());
+		move_from<Venue>(formulator_position ());
 		
 		sport_exists ()
 	}
 	
 	
-	public entry fun Join_the_Game (consenter : & signer) acquires Sport {
+	public entry fun Join_the_Game (consenter : & signer) acquires Venue {
 		let consenter_address = signer::address_of (consenter);
 		
-		let sport = borrow_global_mut<Sport>(owner_position ());
+		let sport = borrow_global_mut<Venue>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		let mascot = Mascot_Module::add (consenter_address);
 		vector::push_back (mascots, mascot);		
 	}
 		
 	
-	public entry fun Buy_5_vohts_for_1_APT (consenter : & signer) acquires Sport {
+	public entry fun Buy_5_vohts_for_1_APT (consenter : & signer) acquires Venue {
 		let consenter_address = signer::address_of (consenter);
 		
 		
@@ -146,17 +143,17 @@ module builder_1::Mix_Venue_Module {
 		//	Check if there are enough water balloons left for sale.
 		//
 		//
-		let sport = borrow_global<Sport>(owner_position ());
+		let sport = borrow_global<Venue>(formulator_position ());
 		if (sport.vohts_for_sale < 5) {
 			abort Endings_Module::Ending_there_are_not_enough_vohts_left_to_make_that_sale ()
 		};
 		
 		//
 		//
-		//	Send 1 APT to the owner
+		//	Send 1 APT to the Formulator
 		//
 		//
-		coin::transfer<AptosCoin>(consenter, owner_position (), 100000000);
+		coin::transfer<AptosCoin>(consenter, formulator_position (), 100000000);
 		
 		
 		//
@@ -166,7 +163,7 @@ module builder_1::Mix_Venue_Module {
 		//
 		let vohts_to_add : u256 = 5;
 		let mascot_index = search_for_index_of_mascot (consenter_address);
-		let sport = borrow_global_mut<Sport>(owner_position ());
+		let sport = borrow_global_mut<Venue>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		let mascot_at_index_ref = vector::borrow_mut (mascots, mascot_index);
 		
@@ -181,13 +178,13 @@ module builder_1::Mix_Venue_Module {
 		sport.vohts_for_sale = sport.vohts_for_sale - 5;
 		
 		// coin::transfer<AptosCoin>(& consenter, mascot_01_position, 500);
-		// coin::transfer<AptosCoin>(& consenter, owner_position (), 500);
+		// coin::transfer<AptosCoin>(& consenter, formulator_position (), 500);
 	}
 	
 	public entry fun Throw_Voht (
 		consenter : & signer, 
 		other_mascot_address : address
-	) acquires Sport {
+	) acquires Venue {
 		let consenter_address = signer::address_of (consenter);
 		
 		//
@@ -205,7 +202,7 @@ module builder_1::Mix_Venue_Module {
 		);
 		
 		// let index_of_mascot_to = search_for_index_of_mascot (other_mascot_address);
-		let sport = borrow_global_mut<Sport>(owner_position ());
+		let sport = borrow_global_mut<Venue>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		
 		let mascot_from_ref = vector::borrow_mut (mascots, index_of_mascot_from);
@@ -216,15 +213,15 @@ module builder_1::Mix_Venue_Module {
 	}
 	
 	
-	public fun search_for_index_of_mascot (mascot_address : address) : u64 acquires Sport {
+	public fun search_for_index_of_mascot (mascot_address : address) : u64 acquires Venue {
 		search_for_index_of_mascot_with_ending_code (mascot_address, Ending_mascot_was_not_found)
 	}
 	
 	public fun search_for_index_of_mascot_with_ending_code (
 		mascot_address : address,
 		ending_code : u64
-	) : u64 acquires Sport {
-		let sport = borrow_global_mut<Sport>(owner_position ());
+	) : u64 acquires Venue {
+		let sport = borrow_global_mut<Venue>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		for (index in 0..vector::length (mascots)) {
 			let mascot_at_index_ref = vector::borrow_mut (mascots, index);
@@ -237,8 +234,8 @@ module builder_1::Mix_Venue_Module {
 		abort ending_code
 	}
 	
-	public fun mascot_has_joined_the_sport (mascot_address : address) : String acquires Sport {
-		let sport = borrow_global<Sport>(owner_position ());
+	public fun mascot_has_joined_the_sport (mascot_address : address) : String acquires Venue {
+		let sport = borrow_global<Venue>(formulator_position ());
 		let mascots = & sport.mascots;
 		for (index in 0..vector::length (mascots)) {
 			let mascot_at_index_ref = vector::borrow (& sport.mascots, index);
@@ -253,9 +250,9 @@ module builder_1::Mix_Venue_Module {
 	
 
 	#[view]
-	public fun Vohts_Score (mascot_address : address) : u256 acquires Sport {
+	public fun Vohts_Score (mascot_address : address) : u256 acquires Venue {
 		let index_of_mascot = search_for_index_of_mascot (mascot_address);
-		let sport = borrow_global<Sport>(owner_position ());
+		let sport = borrow_global<Venue>(formulator_position ());
 		let mascots = & sport.mascots;
 		let mascot_at_index_ref = vector::borrow (
 			mascots, 

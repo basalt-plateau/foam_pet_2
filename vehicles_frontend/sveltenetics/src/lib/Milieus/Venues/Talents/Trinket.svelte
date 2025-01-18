@@ -45,7 +45,7 @@ import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
 import Rondovals_Portico from '$lib/Les_Talents/Rondovals/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
-import Water_Balloons from '$lib/Les_Talents/Water_Balloons/Frontier/Tome.svelte'
+import Voeht from '$lib/Les_Talents/Voeht/Frontier/Tome.svelte'
 //
 //
 ////
@@ -53,6 +53,13 @@ import Water_Balloons from '$lib/Les_Talents/Water_Balloons/Frontier/Tome.svelte
 
 
 const Les_Talents = [
+	{
+		"Frontier": Voeht,
+		"Mode": "nurture"
+	},
+	
+	
+
 	{
 		"Frontier": Address_Search,
 		"Mode": "business"
@@ -99,10 +106,6 @@ const Les_Talents = [
 	},
 	{
 		"Frontier": Venues_Portico,
-		"Mode": "nurture"
-	},
-	{
-		"Frontier": Water_Balloons,
 		"Mode": "nurture"
 	}
 ]

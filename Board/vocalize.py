@@ -110,7 +110,7 @@ def motion_for_named_addresses ():
 		f"""mascot_09={ mascot_09 ["legacy address"] }, """,
 		f"""mascot_10={ mascot_10 ["legacy address"] }, """,
 
-		f"""owner_1={ owner_1 ["address"] }, """,
+		f"""Formulator_1={ owner_1 ["address"] }, """,
 
 		f"""Ride_01={ builder_1 ["address"] }, """,
 		f"""ride={ builder_1 ["address"] }, """,		

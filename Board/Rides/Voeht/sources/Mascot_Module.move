@@ -2,12 +2,10 @@
 
 
 module builder_1::Mascot_Module {
-	friend builder_1::Mix_Venue_Module;
+	friend builder_1::Venue_Module;
 	
 	use std::string::{ String };
 	
-	use builder_1::Rules_09;
-
 	const Ending_from_mascot_has_zero_vohts : u64 = 3;
 	const Ending_mascot_was_not_found : u64 = 3;
 	

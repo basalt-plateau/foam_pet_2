@@ -84,9 +84,9 @@ module builder_1::Steady {
 		coin::register<AptosCoin>(mascot_02_consenter);
 		coin::register<AptosCoin>(mascot_03_consenter);	
 		
-		// coin::transfer<AptosCoin>(owner_1_consenter, mascot_01_position, 200000000);
-		// coin::transfer<AptosCoin>(owner_1_consenter, mascot_02_position, 0);
-		// coin::transfer<AptosCoin>(owner_1_consenter, mascot_03_position, 0);	
+		// coin::transfer<AptosCoin>(formulator_1_consenter, mascot_01_position, 200000000);
+		// coin::transfer<AptosCoin>(formulator_1_consenter, mascot_02_position, 0);
+		// coin::transfer<AptosCoin>(formulator_1_consenter, mascot_03_position, 0);	
 	}
 	
 	
