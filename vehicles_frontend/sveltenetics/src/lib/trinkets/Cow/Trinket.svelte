@@ -150,7 +150,7 @@ let cow_clicked = () => {
 			"
 			class="card p-1"
 		>
-			<p>Friend</p>
+			<p>Frend</p>
 		</div>
 	</button>
 </div>

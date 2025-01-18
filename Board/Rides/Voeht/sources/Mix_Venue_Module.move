@@ -1,7 +1,7 @@
 
 
 
-module builder_1::Void_Freight_Group_Module {
+module builder_1::Mix_Venue_Module {
 	
 	use std::vector;
 	use std::string::{ String, utf8 };
@@ -13,7 +13,7 @@ module builder_1::Void_Freight_Group_Module {
 
 	use builder_1::Rules_09;
 	
-	use builder_1::Freighter_Module::{ Self, Player };
+	use builder_1::Mascot_Module::{ Self, Player };
 	use builder_1::Production_Module::{ owner_position, ask_if_consenter_is_owner };
 	use builder_1::Endings_Module;
 
@@ -114,7 +114,7 @@ module builder_1::Void_Freight_Group_Module {
 		
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
-		let player = Freighter_Module::add (consenter_address);
+		let player = Mascot_Module::add (consenter_address);
 		vector::push_back (players, player);		
 	}
 		
@@ -170,7 +170,7 @@ module builder_1::Void_Freight_Group_Module {
 		let players = &mut sport.players;
 		let player_at_index_ref = vector::borrow_mut (players, player_index);
 		
-		Freighter_Module::add_tiny_water_balloons (player_at_index_ref, tiny_water_balloons_to_add);	
+		Mascot_Module::add_tiny_water_balloons (player_at_index_ref, tiny_water_balloons_to_add);	
 		
 		
 		//
@@ -209,10 +209,10 @@ module builder_1::Void_Freight_Group_Module {
 		let players = &mut sport.players;
 		
 		let player_from_ref = vector::borrow_mut (players, index_of_player_from);
-		Freighter_Module::subtract_tiny_water_balloons (player_from_ref, 1);	
+		Mascot_Module::subtract_tiny_water_balloons (player_from_ref, 1);	
 
 		let player_to_ref = vector::borrow_mut (players, index_of_player_to);		
-		Freighter_Module::add_tiny_water_balloons (player_to_ref, 1);		
+		Mascot_Module::add_tiny_water_balloons (player_to_ref, 1);		
 	}
 	
 	
@@ -228,7 +228,7 @@ module builder_1::Void_Freight_Group_Module {
 		let players = &mut sport.players;
 		for (index in 0..vector::length (players)) {
 			let player_at_index_ref = vector::borrow_mut (players, index);
-			let player_at_index_address = Freighter_Module::player_address (player_at_index_ref);
+			let player_at_index_address = Mascot_Module::player_address (player_at_index_ref);
 			if (player_at_index_address == player_address) {
 				return index
 			}			
@@ -242,7 +242,7 @@ module builder_1::Void_Freight_Group_Module {
 		let players = & sport.players;
 		for (index in 0..vector::length (players)) {
 			let player_at_index_ref = vector::borrow (& sport.players, index);
-			let player_at_index_address = Freighter_Module::player_address (player_at_index_ref);
+			let player_at_index_address = Mascot_Module::player_address (player_at_index_ref);
 			if (player_at_index_address == player_address) {
 				return utf8 (b"yup")
 			}			
@@ -262,7 +262,7 @@ module builder_1::Void_Freight_Group_Module {
 			index_of_player
 		);
 		
-		Freighter_Module::tiny_water_balloons_score (player_at_index_ref)
+		Mascot_Module::tiny_water_balloons_score (player_at_index_ref)
 	}
 	
 }

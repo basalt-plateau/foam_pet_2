@@ -11,7 +11,7 @@
 		ask_if_address_is_owner
 */
 module builder_1::Production_Module {	
-	friend builder_1::Void_Freight_Group_Module;
+	friend builder_1::Mix_Venue_Module;
 	
 	use std::string::{ String, utf8 };
 	use std::signer;

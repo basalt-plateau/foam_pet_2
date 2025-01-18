@@ -41,6 +41,7 @@ def steady (envelope):
 	print ("screenplay:", screenplay);
 	
 	os.system (screenplay);
+	os.system (f"cd '{ this_directory }' && chmod -R 777 .")
 	
 	
 def publish (envelope):
