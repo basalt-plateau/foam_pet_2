@@ -3,11 +3,10 @@
 
 module builder_1::Tiny_Water_Balloons_1_Endings {
 	friend builder_1::Tiny_Water_Balloons_1_Sport;
-
+	
 	use std::string::{ String };
 	use builder_1::Rules_09;
-
-
+	
 	#[view]
 	public fun Volitions () : String { Rules_09::Volitions_01 () }
 	
