@@ -28,7 +28,7 @@ module builder_1::Mix_Venue_Module {
 		Rules_10::Volitions_01 () 
 	}
 	
-	struct Tiny_Water_Balloon has key, drop {}
+	struct Voht has key, drop {}
 	
 	struct Sport has key, drop {
 		vohts_for_sale : u256,
@@ -36,7 +36,7 @@ module builder_1::Mix_Venue_Module {
 	}
 	
 	#[view]
-	public fun Tiny_Water_Balloons_For_Sale_Left () : u256 acquires Sport {
+	public fun Vohts_For_Sale_Left () : u256 acquires Sport {
 		let sport = borrow_global<Sport>(owner_position ());
 		sport.vohts_for_sale
 	}
@@ -184,7 +184,7 @@ module builder_1::Mix_Venue_Module {
 		// coin::transfer<AptosCoin>(& consenter, owner_position (), 500);
 	}
 	
-	public entry fun Throw_Tiny_Water_Balloon (
+	public entry fun Throw_Voht (
 		consenter : & signer, 
 		other_mascot_address : address
 	) acquires Sport {
@@ -253,7 +253,7 @@ module builder_1::Mix_Venue_Module {
 	
 
 	#[view]
-	public fun Tiny_Water_Balloons_Score (mascot_address : address) : u256 acquires Sport {
+	public fun Vohts_Score (mascot_address : address) : u256 acquires Sport {
 		let index_of_mascot = search_for_index_of_mascot (mascot_address);
 		let sport = borrow_global<Sport>(owner_position ());
 		let mascots = & sport.mascots;

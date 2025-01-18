@@ -77,7 +77,7 @@ module builder_1::vohts_1_Steady_4 {
 		//
 		let vohts_for_sale : u256 = 10;
 		Mix_Venue_Module::Begin (& owner_1_consenter, vohts_for_sale);
-		if (Mix_Venue_Module::Tiny_Water_Balloons_For_Sale_Left () != 10) { abort 2 };
+		if (Mix_Venue_Module::Vohts_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game
 		//
@@ -90,7 +90,7 @@ module builder_1::vohts_1_Steady_4 {
 		
 		//	Throw
 		//
-		Mix_Venue_Module::Throw_Tiny_Water_Balloon (& mascot_03_consenter, mascot_01_position);
+		Mix_Venue_Module::Throw_Voht (& mascot_03_consenter, mascot_01_position);
 		
 		
 		////

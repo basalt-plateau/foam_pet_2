@@ -89,13 +89,13 @@ module builder_1::vohts_1_Steady_5 {
 		//	Buy
 		//
 		Mix_Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
-		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (mascot_01_position) != 5) { abort 1 };
+		if (Mix_Venue_Module::Vohts_Score (mascot_01_position) != 5) { abort 1 };
 		
 		//	Throw
 		//
-		Mix_Venue_Module::Throw_Tiny_Water_Balloon (& mascot_01_consenter, mascot_02_position);
-		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (mascot_01_position) != 4) { abort 1 };
-		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (mascot_02_position) != 1) { abort 1 };
+		Mix_Venue_Module::Throw_Voht (& mascot_01_consenter, mascot_02_position);
+		if (Mix_Venue_Module::Vohts_Score (mascot_01_position) != 4) { abort 1 };
+		if (Mix_Venue_Module::Vohts_Score (mascot_02_position) != 1) { abort 1 };
 		
 		//	End
 		//
