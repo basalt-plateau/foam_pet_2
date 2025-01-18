@@ -8,8 +8,8 @@ module builder_1::Mascot_Module {
 	
 	use builder_1::Rules_09;
 
-	const Ending_from_player_has_zero_tiny_water_balloons : u64 = 3;
-	const Ending_player_was_not_found : u64 = 3;
+	const Ending_from_mascot_has_zero_tiny_water_balloons : u64 = 3;
+	const Ending_mascot_was_not_found : u64 = 3;
 
 
 	#[view]
@@ -17,54 +17,54 @@ module builder_1::Mascot_Module {
 		Rules_09::Volitions_01 ()
 	}
 	
-	struct Player has store, drop {
+	struct Mascot has store, drop {
 		address : address,
 		tiny_water_balloons : u256
 	}
 	
-	public (friend) fun add (address : address) : Player {
-		let player = Player {
+	public (friend) fun add (address : address) : Mascot {
+		let mascot = Mascot {
 			address : address,
 			tiny_water_balloons : 0
 		};
-		player
+		mascot
 	}
 	
-	public (friend) fun player_address (player : & Player) : address {
-		player.address
+	public (friend) fun mascot_address (mascot : & Mascot) : address {
+		mascot.address
 	}
 	
 	public (friend) fun add_tiny_water_balloons (
-		player : &mut Player, 
+		mascot : &mut Mascot, 
 		add : u256
 	) {
-		player.tiny_water_balloons = player.tiny_water_balloons + add;
+		mascot.tiny_water_balloons = mascot.tiny_water_balloons + add;
 	}
 	
 	public (friend) fun subtract_tiny_water_balloons (
-		player : &mut Player, 
+		mascot : &mut Mascot, 
 		subtract : u256
 	) {
-		if (player.tiny_water_balloons == 0) {
-			abort Ending_from_player_has_zero_tiny_water_balloons
+		if (mascot.tiny_water_balloons == 0) {
+			abort Ending_from_mascot_has_zero_tiny_water_balloons
 		};
 		
-		player.tiny_water_balloons = player.tiny_water_balloons - subtract;
+		mascot.tiny_water_balloons = mascot.tiny_water_balloons - subtract;
 	}
 	
 	public (friend) fun throw_tiny_water_balloon (
-		from_player : &mut Player, 
-		to_player : &mut Player
+		from_mascot : &mut Mascot, 
+		to_mascot : &mut Mascot
 	) {
-		if (from_player.tiny_water_balloons == 0) {
-			abort Ending_from_player_has_zero_tiny_water_balloons
+		if (from_mascot.tiny_water_balloons == 0) {
+			abort Ending_from_mascot_has_zero_tiny_water_balloons
 		};
 		
-		from_player.tiny_water_balloons = from_player.tiny_water_balloons - 1;
-		to_player.tiny_water_balloons = to_player.tiny_water_balloons + 1;
+		from_mascot.tiny_water_balloons = from_mascot.tiny_water_balloons - 1;
+		to_mascot.tiny_water_balloons = to_mascot.tiny_water_balloons + 1;
 	}
 	
-	public (friend) fun tiny_water_balloons_score (player : & Player) : u256 {
-		player.tiny_water_balloons
+	public (friend) fun tiny_water_balloons_score (mascot : & Mascot) : u256 {
+		mascot.tiny_water_balloons
 	}
 }

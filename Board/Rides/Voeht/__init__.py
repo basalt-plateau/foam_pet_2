@@ -13,10 +13,10 @@ this_directory = pathlib.Path (__file__).parent.resolve ()
 
 
 def roster ():
-	players = []
+	mascots = []
 	counter = 1;
 	while (counter <= 10):
-		players.append (f"""player_{ counter }={ player_1 ["legacy address"] }, """);
+		mascots.append (f"""mascot_{ counter }={ mascot_1 ["legacy address"] }, """);
 		counter += 1;
 
 

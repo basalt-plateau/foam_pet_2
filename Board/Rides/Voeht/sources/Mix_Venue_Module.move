@@ -13,14 +13,14 @@ module builder_1::Mix_Venue_Module {
 
 	use builder_1::Rules_09;
 	
-	use builder_1::Mascot_Module::{ Self, Player };
+	use builder_1::Mascot_Module::{ Self, Mascot };
 	use builder_1::Production_Module::{ owner_position, ask_if_consenter_is_owner };
 	use builder_1::Endings_Module;
 
 	const Imperfection_consenter_has_not_joined : u64 = 0;
 	const Imperfection_consenter_is_not_owner : u64 = 1;
 	const Imperfection_consenter_does_not_have_enough_APT_for_purchase : u64 = 2;
-	const Ending_player_was_not_found : u64 = 3;
+	const Ending_mascot_was_not_found : u64 = 3;
 	const Ending_every_tiny_water_balloon_has_been_sold : u64 = 3;
 
 	#[view]
@@ -32,7 +32,7 @@ module builder_1::Mix_Venue_Module {
 	
 	struct Sport has key, drop {
 		tiny_water_balloons_for_sale : u256,
-		players : vector<Player>
+		mascots : vector<Mascot>
 	}
 	
 	#[view]
@@ -43,18 +43,18 @@ module builder_1::Mix_Venue_Module {
 	
 	/*
 	#[view]
-	public fun Player_Roster () acquires Sport {
+	public fun Mascot_Roster () acquires Sport {
 		let sport = borrow_global<Sport>(owner_position ());
 		
 		let bracket = vector::empty<u8>();	
-		let num_players = vector::length(&sport.players);
+		let num_mascots = vector::length(&sport.mascots);
 	}
 	*/
 	
 	#[view]
-	public fun Player_Count () : u64 acquires Sport {
+	public fun Mascot_Count () : u64 acquires Sport {
 		let sport = borrow_global<Sport>(owner_position ());
-		vector::length (&sport.players)
+		vector::length (&sport.mascots)
 	}
 	
 	
@@ -73,7 +73,7 @@ module builder_1::Mix_Venue_Module {
 
 		let sport = Sport {
 			tiny_water_balloons_for_sale : tiny_water_balloons_for_sale,
-			players : vector::empty<Player>()
+			mascots : vector::empty<Mascot>()
 		};
 		
 		move_to<Sport>(consenter, sport)
@@ -113,9 +113,9 @@ module builder_1::Mix_Venue_Module {
 		let consenter_address = signer::address_of (consenter);
 		
 		let sport = borrow_global_mut<Sport>(owner_position ());
-		let players = &mut sport.players;
-		let player = Mascot_Module::add (consenter_address);
-		vector::push_back (players, player);		
+		let mascots = &mut sport.mascots;
+		let mascot = Mascot_Module::add (consenter_address);
+		vector::push_back (mascots, mascot);		
 	}
 		
 	
@@ -125,10 +125,10 @@ module builder_1::Mix_Venue_Module {
 		
 		//
 		//
-		//	Check if the consenter has joined the sport as a player.
+		//	Check if the consenter has joined the sport as a mascot.
 		//
 		//
-		if (player_has_joined_the_sport (consenter_address) != utf8 (b"yup")) { 
+		if (mascot_has_joined_the_sport (consenter_address) != utf8 (b"yup")) { 
 			abort Imperfection_consenter_has_not_joined 
 		};
 		
@@ -165,12 +165,12 @@ module builder_1::Mix_Venue_Module {
 		//
 		//
 		let tiny_water_balloons_to_add : u256 = 5;
-		let player_index = search_for_index_of_player (consenter_address);
+		let mascot_index = search_for_index_of_mascot (consenter_address);
 		let sport = borrow_global_mut<Sport>(owner_position ());
-		let players = &mut sport.players;
-		let player_at_index_ref = vector::borrow_mut (players, player_index);
+		let mascots = &mut sport.mascots;
+		let mascot_at_index_ref = vector::borrow_mut (mascots, mascot_index);
 		
-		Mascot_Module::add_tiny_water_balloons (player_at_index_ref, tiny_water_balloons_to_add);	
+		Mascot_Module::add_tiny_water_balloons (mascot_at_index_ref, tiny_water_balloons_to_add);	
 		
 		
 		//
@@ -180,56 +180,56 @@ module builder_1::Mix_Venue_Module {
 		//
 		sport.tiny_water_balloons_for_sale = sport.tiny_water_balloons_for_sale - 5;
 		
-		// coin::transfer<AptosCoin>(& consenter, player_01_position, 500);
+		// coin::transfer<AptosCoin>(& consenter, mascot_01_position, 500);
 		// coin::transfer<AptosCoin>(& consenter, owner_position (), 500);
 	}
 	
 	public entry fun Throw_Tiny_Water_Balloon (
 		consenter : & signer, 
-		other_player_address : address
+		other_mascot_address : address
 	) acquires Sport {
 		let consenter_address = signer::address_of (consenter);
 		
 		//
-		//	Search for player "from", if not found, end.
+		//	Search for mascot "from", if not found, end.
 		//
 		//
-		let index_of_player_from = search_for_index_of_player_with_ending_code (
+		let index_of_mascot_from = search_for_index_of_mascot_with_ending_code (
 			consenter_address,
 			Endings_Module::Ending_the_thrower_has_not_joined_the_game ()
 		);
 		
-		let index_of_player_to = search_for_index_of_player_with_ending_code (
-			other_player_address,
+		let index_of_mascot_to = search_for_index_of_mascot_with_ending_code (
+			other_mascot_address,
 			Endings_Module::Ending_the_catcher_has_not_joined_the_game ()
 		);
 		
-		// let index_of_player_to = search_for_index_of_player (other_player_address);
+		// let index_of_mascot_to = search_for_index_of_mascot (other_mascot_address);
 		let sport = borrow_global_mut<Sport>(owner_position ());
-		let players = &mut sport.players;
+		let mascots = &mut sport.mascots;
 		
-		let player_from_ref = vector::borrow_mut (players, index_of_player_from);
-		Mascot_Module::subtract_tiny_water_balloons (player_from_ref, 1);	
+		let mascot_from_ref = vector::borrow_mut (mascots, index_of_mascot_from);
+		Mascot_Module::subtract_tiny_water_balloons (mascot_from_ref, 1);	
 
-		let player_to_ref = vector::borrow_mut (players, index_of_player_to);		
-		Mascot_Module::add_tiny_water_balloons (player_to_ref, 1);		
+		let mascot_to_ref = vector::borrow_mut (mascots, index_of_mascot_to);		
+		Mascot_Module::add_tiny_water_balloons (mascot_to_ref, 1);		
 	}
 	
 	
-	public fun search_for_index_of_player (player_address : address) : u64 acquires Sport {
-		search_for_index_of_player_with_ending_code (player_address, Ending_player_was_not_found)
+	public fun search_for_index_of_mascot (mascot_address : address) : u64 acquires Sport {
+		search_for_index_of_mascot_with_ending_code (mascot_address, Ending_mascot_was_not_found)
 	}
 	
-	public fun search_for_index_of_player_with_ending_code (
-		player_address : address,
+	public fun search_for_index_of_mascot_with_ending_code (
+		mascot_address : address,
 		ending_code : u64
 	) : u64 acquires Sport {
 		let sport = borrow_global_mut<Sport>(owner_position ());
-		let players = &mut sport.players;
-		for (index in 0..vector::length (players)) {
-			let player_at_index_ref = vector::borrow_mut (players, index);
-			let player_at_index_address = Mascot_Module::player_address (player_at_index_ref);
-			if (player_at_index_address == player_address) {
+		let mascots = &mut sport.mascots;
+		for (index in 0..vector::length (mascots)) {
+			let mascot_at_index_ref = vector::borrow_mut (mascots, index);
+			let mascot_at_index_address = Mascot_Module::mascot_address (mascot_at_index_ref);
+			if (mascot_at_index_address == mascot_address) {
 				return index
 			}			
 		};
@@ -237,13 +237,13 @@ module builder_1::Mix_Venue_Module {
 		abort ending_code
 	}
 	
-	public fun player_has_joined_the_sport (player_address : address) : String acquires Sport {
+	public fun mascot_has_joined_the_sport (mascot_address : address) : String acquires Sport {
 		let sport = borrow_global<Sport>(owner_position ());
-		let players = & sport.players;
-		for (index in 0..vector::length (players)) {
-			let player_at_index_ref = vector::borrow (& sport.players, index);
-			let player_at_index_address = Mascot_Module::player_address (player_at_index_ref);
-			if (player_at_index_address == player_address) {
+		let mascots = & sport.mascots;
+		for (index in 0..vector::length (mascots)) {
+			let mascot_at_index_ref = vector::borrow (& sport.mascots, index);
+			let mascot_at_index_address = Mascot_Module::mascot_address (mascot_at_index_ref);
+			if (mascot_at_index_address == mascot_address) {
 				return utf8 (b"yup")
 			}			
 		};
@@ -253,16 +253,16 @@ module builder_1::Mix_Venue_Module {
 	
 
 	#[view]
-	public fun Tiny_Water_Balloons_Score (player_address : address) : u256 acquires Sport {
-		let index_of_player = search_for_index_of_player (player_address);
+	public fun Tiny_Water_Balloons_Score (mascot_address : address) : u256 acquires Sport {
+		let index_of_mascot = search_for_index_of_mascot (mascot_address);
 		let sport = borrow_global<Sport>(owner_position ());
-		let players = & sport.players;
-		let player_at_index_ref = vector::borrow (
-			players, 
-			index_of_player
+		let mascots = & sport.mascots;
+		let mascot_at_index_ref = vector::borrow (
+			mascots, 
+			index_of_mascot
 		);
 		
-		Mascot_Module::tiny_water_balloons_score (player_at_index_ref)
+		Mascot_Module::tiny_water_balloons_score (mascot_at_index_ref)
 	}
 	
 }

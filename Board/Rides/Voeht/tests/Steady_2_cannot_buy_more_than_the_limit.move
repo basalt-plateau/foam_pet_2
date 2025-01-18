@@ -20,9 +20,9 @@ module builder_1::tiny_water_balloons_1_Steady_2 {
 		builder_1_consenter = @builder_1,
 		owner_1_consenter = @owner_1,
 	
-		player_01_consenter = @player_01, 
-		player_02_consenter = @player_02,
-		player_03_consenter = @player_03		
+		mascot_01_consenter = @mascot_01, 
+		mascot_02_consenter = @mascot_02,
+		mascot_03_consenter = @mascot_03		
 	)]
 	#[expected_failure (abort_code = 94734)]
     public fun ending__cannot_buy_more_than_the_limit (
@@ -31,9 +31,9 @@ module builder_1::tiny_water_balloons_1_Steady_2 {
 		builder_1_consenter : signer,
 		owner_1_consenter : signer,		
 	
-		player_01_consenter : signer,
-		player_02_consenter : signer,
-		player_03_consenter : signer
+		mascot_01_consenter : signer,
+		mascot_02_consenter : signer,
+		mascot_03_consenter : signer
 	) {	
 		use std::vector;
 		use std::string_utils;
@@ -49,9 +49,9 @@ module builder_1::tiny_water_balloons_1_Steady_2 {
 		use builder_1::Steady; 
 		
 		let owner_position = signer::address_of (& owner_1_consenter);
-		let player_01_position = signer::address_of (& player_01_consenter);
-		let player_02_position = signer::address_of (& player_02_consenter);
-		let player_03_position = signer::address_of (& player_03_consenter);	
+		let mascot_01_position = signer::address_of (& mascot_01_consenter);
+		let mascot_02_position = signer::address_of (& mascot_02_consenter);
+		let mascot_03_position = signer::address_of (& mascot_03_consenter);	
 		
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
@@ -61,18 +61,18 @@ module builder_1::tiny_water_balloons_1_Steady_2 {
 		coin::deposit (owner_position, coins);
 		
 		
-		account::create_account_for_test (player_01_position);
-		account::create_account_for_test (player_02_position);
-		account::create_account_for_test (player_03_position);
+		account::create_account_for_test (mascot_01_position);
+		account::create_account_for_test (mascot_02_position);
+		account::create_account_for_test (mascot_03_position);
 		
 		
-		Steady::prepare_APT_for_players (
-			& player_01_consenter,
-			& player_02_consenter,
-			& player_03_consenter
+		Steady::prepare_APT_for_mascots (
+			& mascot_01_consenter,
+			& mascot_02_consenter,
+			& mascot_03_consenter
 		);
 		
-		coin::transfer<AptosCoin>(& owner_1_consenter, player_01_position, 300000000);
+		coin::transfer<AptosCoin>(& owner_1_consenter, mascot_01_position, 300000000);
 		
 		////
 		//
@@ -85,24 +85,24 @@ module builder_1::tiny_water_balloons_1_Steady_2 {
 		
 		//	Join_the_Game
 		//
-		Mix_Venue_Module::Join_the_Game (& player_01_consenter);
-		Mix_Venue_Module::Join_the_Game (& player_02_consenter);
-		Mix_Venue_Module::Join_the_Game (& player_03_consenter);
-		if (Mix_Venue_Module::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 1 };
-		if (Mix_Venue_Module::player_has_joined_the_sport (player_02_position) != utf8 (b"yup")) { abort 1 };
-		if (Mix_Venue_Module::player_has_joined_the_sport (player_03_position) != utf8 (b"yup")) { abort 1 };
+		Mix_Venue_Module::Join_the_Game (& mascot_01_consenter);
+		Mix_Venue_Module::Join_the_Game (& mascot_02_consenter);
+		Mix_Venue_Module::Join_the_Game (& mascot_03_consenter);
+		if (Mix_Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 1 };
+		if (Mix_Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 1 };
+		if (Mix_Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 1 };
 		
 		//	Buy
 		//
-		Mix_Venue_Module::Buy_5_tiny_water_balloons_for_1_APT (& player_01_consenter);
-		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (player_01_position) != 5) { abort 1 };
+		Mix_Venue_Module::Buy_5_tiny_water_balloons_for_1_APT (& mascot_01_consenter);
+		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (mascot_01_position) != 5) { abort 1 };
 		if (Mix_Venue_Module::Tiny_Water_Balloons_For_Sale_Left () != 5) { abort 2 };
 		
-		Mix_Venue_Module::Buy_5_tiny_water_balloons_for_1_APT (& player_01_consenter);
-		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (player_01_position) != 10) { abort 1 };
+		Mix_Venue_Module::Buy_5_tiny_water_balloons_for_1_APT (& mascot_01_consenter);
+		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (mascot_01_position) != 10) { abort 1 };
 		if (Mix_Venue_Module::Tiny_Water_Balloons_For_Sale_Left () != 0) { abort 2 };
 		
-		Mix_Venue_Module::Buy_5_tiny_water_balloons_for_1_APT (& player_01_consenter);
+		Mix_Venue_Module::Buy_5_tiny_water_balloons_for_1_APT (& mascot_01_consenter);
 		
 		////
 		//
