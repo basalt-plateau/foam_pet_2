@@ -52,6 +52,6 @@ let open = async () => {
 			align-items: center;
 		"
 	>
-		<p>Voeht</p>
+		<p>Vote Pack</p>
 	</button>
 </div>

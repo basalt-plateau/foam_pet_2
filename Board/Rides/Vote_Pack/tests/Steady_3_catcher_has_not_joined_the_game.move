@@ -74,7 +74,7 @@ module builder_1::votes_1_Steady_3 {
 		//
 		//
 		let votes_for_sale : u256 = 10;
-		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
+		Venue_Module::Build (& formulator_1_consenter, votes_for_sale);
 		if (Venue_Module::Votes_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game

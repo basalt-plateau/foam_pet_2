@@ -140,15 +140,17 @@ export const account = {
 		
 		prerogative, purpose
 		privilege
+		
+		stealth mix
 	*/
-	"private key": "obligation",
-	"Private Key": "Obligation",
+	"private key": "mix",
+	"Private Key": "Mix",
 	
-	"private keys": "obligations",
+	"private keys": "mixes",
 	
-	"A_Private_Key": "An Obligation",	
-	"a_Private_Key": "an obligation",	
-	"Private Keys": "Obligations",
+	"A_Private_Key": "A Mix",	
+	"a_Private_Key": "a mix",	
+	"Private Keys": "Mixes",
 	
 	//
 	//

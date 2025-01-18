@@ -11,14 +11,20 @@ const buy_5_water_balloons = () => {
 </script>
 
 
-<div>
+<div
+	style="
+		display: flex;
+		gap: 0.1cm;
+		flex-direction: column;
+	"
+>
 	<div
 		style="
 			text-align: center;
 		"
 		class="card p-4"
 	>
-		<header>Buy</header>
+		<header>Vote</header>
 	</div>
 	
 	<div class="card p-4"

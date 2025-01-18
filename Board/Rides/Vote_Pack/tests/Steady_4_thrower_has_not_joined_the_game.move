@@ -76,7 +76,7 @@ module builder_1::votes_1_Steady_4 {
 		//
 		//
 		let votes_for_sale : u256 = 10;
-		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
+		Venue_Module::Build (& formulator_1_consenter, votes_for_sale);
 		if (Venue_Module::Votes_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game
@@ -87,7 +87,6 @@ module builder_1::votes_1_Steady_4 {
 		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 1 };
 		
 
-		
 		//	Throw
 		//
 		Venue_Module::Throw_Vote (& mascot_03_consenter, mascot_01_position);

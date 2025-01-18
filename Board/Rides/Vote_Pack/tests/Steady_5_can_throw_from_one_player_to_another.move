@@ -75,7 +75,7 @@ module builder_1::votes_1_Steady_5 {
 		//
 		//
 		let votes_for_sale : u256 = 900000;
-		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
+		Venue_Module::Build (& formulator_1_consenter, votes_for_sale);
 		
 		//	Join_the_Game
 		//

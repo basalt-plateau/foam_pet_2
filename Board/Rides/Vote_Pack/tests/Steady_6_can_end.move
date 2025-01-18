@@ -77,7 +77,7 @@ module builder_1::votes_1_Steady_6 {
 		//
 		//
 		let votes_for_sale : u256 = 900000;
-		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
+		Venue_Module::Build (& formulator_1_consenter, votes_for_sale);
 		
 		//	Join_the_Game
 		//
@@ -101,7 +101,7 @@ module builder_1::votes_1_Steady_6 {
 		
 		//	End
 		//
-		if (Venue_Module::sport_exists () != utf8 (b"yup")) { abort 89389 };
+		if (Venue_Module::is_venue_built () != utf8 (b"yup")) { abort 89389 };
 		//		
 		let year_ms : u64 = 31557600000;
 		timestamp::update_global_time_for_test (year_ms * 281);
@@ -111,7 +111,7 @@ module builder_1::votes_1_Steady_6 {
 		
 		//	Check if can access sport
 		//
-		if (Venue_Module::sport_exists () != utf8 (b"no")) { abort 89389 };
+		if (Venue_Module::is_venue_built () != utf8 (b"no")) { abort 89389 };
 		//
 		////
 		

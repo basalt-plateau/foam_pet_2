@@ -4,18 +4,34 @@
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 
-const begin = () => {
+const enter = () => {
 	
 }
 
-const end = () => {
-	
+const exit = () => {
+
 }
+
 
 </script>
 
 
-<div>
+<div
+	style="
+		display: flex;
+		gap: 0.1cm;
+		flex-direction: column;
+	"
+>
+	<div
+		style="
+			text-align: center;
+		"
+		class="card p-4"
+	>
+		<header>Mascots</header>
+	</div>
+	
 	<div class="card p-4"
 		style="
 			width: 100%;
@@ -26,29 +42,40 @@ const end = () => {
 		"
 	>
 		<Petition_APT_Button
-			button_text="Begin"
-			APT="0"
-			clicked={ begin }
+			button_text="Buy a Pass"
+			APT="1"
+			clicked={ enter }
 			
 			permitted={ "yes" }
 		/>
 		
 		<Petition_APT_Button
-			button_text="End"
+			button_text="Exit"
 			APT="0"
-			clicked={ end }
+			clicked={ exit }
 			
 			permitted={ "yes" }
 		/>
 	</div>
-	
+
 	<div class="card p-4"
 		style="
 			width: 100%;
 			text-align: center;
+			
+			display: flex;
+			justify-content: space-around;
 		"
 	>
-
+		<header>Roster</header>
+	
 	</div>
-</div>
 
+
+
+
+
+
+
+
+</div>

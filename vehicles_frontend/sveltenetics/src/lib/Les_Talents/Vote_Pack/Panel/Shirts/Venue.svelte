@@ -4,28 +4,24 @@
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 
-const join = () => {
+const build = () => {
 	
 }
 
-const leave = () => {
-
+const demolish = () => {
+	
 }
-
 
 </script>
 
 
-<div>
-	<div
-		style="
-			text-align: center;
-		"
-		class="card p-4"
-	>
-		<header>Players</header>
-	</div>
-	
+<div
+	style="
+		display: flex;
+		gap: 0.1cm;
+		flex-direction: column;
+	"
+>
 	<div class="card p-4"
 		style="
 			width: 100%;
@@ -36,40 +32,29 @@ const leave = () => {
 		"
 	>
 		<Petition_APT_Button
-			button_text="Join the Game"
+			button_text="Build"
 			APT="0"
-			clicked={ join }
+			clicked={ build }
 			
 			permitted={ "yes" }
 		/>
 		
 		<Petition_APT_Button
-			button_text="Leave the Game"
+			button_text="Demolish"
 			APT="0"
-			clicked={ leave }
+			clicked={ demolish }
 			
 			permitted={ "yes" }
 		/>
 	</div>
-
+	
 	<div class="card p-4"
 		style="
 			width: 100%;
 			text-align: center;
-			
-			display: flex;
-			justify-content: space-around;
 		"
 	>
-		<header>Roster</header>
-	
+
 	</div>
-
-
-
-
-
-
-
-
 </div>
+
