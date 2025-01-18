@@ -1,8 +1,8 @@
 
 
 
-module builder_1::Tiny_Water_Balloons_1_Endings {
-	friend builder_1::Tiny_Water_Balloons_1_Sport;
+module builder_1::Endings_Module {
+	friend builder_1::Void_Freight_Group_Module;
 	
 	use std::string::{ String };
 	use builder_1::Rules_09;

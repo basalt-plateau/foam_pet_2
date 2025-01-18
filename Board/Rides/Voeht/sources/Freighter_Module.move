@@ -1,8 +1,8 @@
 
 
 
-module builder_1::Tiny_Water_Balloons_1_Players {
-	friend builder_1::Tiny_Water_Balloons_1_Sport;
+module builder_1::Freighter_Module {
+	friend builder_1::Void_Freight_Group_Module;
 	
 	use std::string::{ String };
 	

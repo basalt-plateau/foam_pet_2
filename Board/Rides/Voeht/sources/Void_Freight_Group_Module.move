@@ -1,7 +1,7 @@
 
 
 
-module builder_1::Tiny_Water_Balloons_1_Sport {
+module builder_1::Void_Freight_Group_Module {
 	
 	use std::vector;
 	use std::string::{ String, utf8 };
@@ -13,9 +13,9 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 
 	use builder_1::Rules_09;
 	
-	use builder_1::Tiny_Water_Balloons_1_Players::{ Self, Player };
-	use builder_1::Tiny_Water_Balloons_1_Owner::{ owner_position, ask_if_consenter_is_owner };
-	use builder_1::Tiny_Water_Balloons_1_Endings;
+	use builder_1::Freighter_Module::{ Self, Player };
+	use builder_1::Production_Module::{ owner_position, ask_if_consenter_is_owner };
+	use builder_1::Endings_Module;
 
 	const Imperfection_consenter_has_not_joined : u64 = 0;
 	const Imperfection_consenter_is_not_owner : u64 = 1;
@@ -99,7 +99,7 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		// 1000 * 60 * 60 * 24 * 365.25
 		let can_end_after : u64 = 31557600000 * 280;
 		if (timestamp::now_microseconds () <= can_end_after) {
-			abort Tiny_Water_Balloons_1_Endings::Ending_cannot_end_yet ()
+			abort Endings_Module::Ending_cannot_end_yet ()
 		};
 		
 		
@@ -114,7 +114,7 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let players = &mut sport.players;
-		let player = Tiny_Water_Balloons_1_Players::add (consenter_address);
+		let player = Freighter_Module::add (consenter_address);
 		vector::push_back (players, player);		
 	}
 		
@@ -148,7 +148,7 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		//
 		let sport = borrow_global<Sport>(owner_position ());
 		if (sport.tiny_water_balloons_for_sale < 5) {
-			abort Tiny_Water_Balloons_1_Endings::Ending_there_are_not_enough_tiny_water_balloons_left_to_make_that_sale ()
+			abort Endings_Module::Ending_there_are_not_enough_tiny_water_balloons_left_to_make_that_sale ()
 		};
 		
 		//
@@ -170,7 +170,7 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		let players = &mut sport.players;
 		let player_at_index_ref = vector::borrow_mut (players, player_index);
 		
-		Tiny_Water_Balloons_1_Players::add_tiny_water_balloons (player_at_index_ref, tiny_water_balloons_to_add);	
+		Freighter_Module::add_tiny_water_balloons (player_at_index_ref, tiny_water_balloons_to_add);	
 		
 		
 		//
@@ -196,12 +196,12 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		//
 		let index_of_player_from = search_for_index_of_player_with_ending_code (
 			consenter_address,
-			Tiny_Water_Balloons_1_Endings::Ending_the_thrower_has_not_joined_the_game ()
+			Endings_Module::Ending_the_thrower_has_not_joined_the_game ()
 		);
 		
 		let index_of_player_to = search_for_index_of_player_with_ending_code (
 			other_player_address,
-			Tiny_Water_Balloons_1_Endings::Ending_the_catcher_has_not_joined_the_game ()
+			Endings_Module::Ending_the_catcher_has_not_joined_the_game ()
 		);
 		
 		// let index_of_player_to = search_for_index_of_player (other_player_address);
@@ -209,10 +209,10 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		let players = &mut sport.players;
 		
 		let player_from_ref = vector::borrow_mut (players, index_of_player_from);
-		Tiny_Water_Balloons_1_Players::subtract_tiny_water_balloons (player_from_ref, 1);	
+		Freighter_Module::subtract_tiny_water_balloons (player_from_ref, 1);	
 
 		let player_to_ref = vector::borrow_mut (players, index_of_player_to);		
-		Tiny_Water_Balloons_1_Players::add_tiny_water_balloons (player_to_ref, 1);		
+		Freighter_Module::add_tiny_water_balloons (player_to_ref, 1);		
 	}
 	
 	
@@ -228,7 +228,7 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		let players = &mut sport.players;
 		for (index in 0..vector::length (players)) {
 			let player_at_index_ref = vector::borrow_mut (players, index);
-			let player_at_index_address = Tiny_Water_Balloons_1_Players::player_address (player_at_index_ref);
+			let player_at_index_address = Freighter_Module::player_address (player_at_index_ref);
 			if (player_at_index_address == player_address) {
 				return index
 			}			
@@ -242,7 +242,7 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 		let players = & sport.players;
 		for (index in 0..vector::length (players)) {
 			let player_at_index_ref = vector::borrow (& sport.players, index);
-			let player_at_index_address = Tiny_Water_Balloons_1_Players::player_address (player_at_index_ref);
+			let player_at_index_address = Freighter_Module::player_address (player_at_index_ref);
 			if (player_at_index_address == player_address) {
 				return utf8 (b"yup")
 			}			
@@ -262,7 +262,7 @@ module builder_1::Tiny_Water_Balloons_1_Sport {
 			index_of_player
 		);
 		
-		Tiny_Water_Balloons_1_Players::tiny_water_balloons_score (player_at_index_ref)
+		Freighter_Module::tiny_water_balloons_score (player_at_index_ref)
 	}
 	
 }

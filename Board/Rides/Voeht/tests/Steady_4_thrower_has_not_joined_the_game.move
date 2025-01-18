@@ -41,7 +41,7 @@ module builder_1::tiny_water_balloons_1_Steady_4 {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use builder_1::Tiny_Water_Balloons_1_Sport; 
+		use builder_1::Void_Freight_Group_Module; 
 		use builder_1::Steady; 
 		
 		let owner_position = signer::address_of (& owner_1_consenter);
@@ -76,21 +76,21 @@ module builder_1::tiny_water_balloons_1_Steady_4 {
 		//
 		//
 		let tiny_water_balloons_for_sale : u256 = 10;
-		Tiny_Water_Balloons_1_Sport::Begin (& owner_1_consenter, tiny_water_balloons_for_sale);
-		if (Tiny_Water_Balloons_1_Sport::Tiny_Water_Balloons_For_Sale_Left () != 10) { abort 2 };
+		Void_Freight_Group_Module::Begin (& owner_1_consenter, tiny_water_balloons_for_sale);
+		if (Void_Freight_Group_Module::Tiny_Water_Balloons_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game
 		//
-		Tiny_Water_Balloons_1_Sport::Join_the_Game (& player_01_consenter);
-		if (Tiny_Water_Balloons_1_Sport::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 1 };
-		Tiny_Water_Balloons_1_Sport::Join_the_Game (& player_02_consenter);
-		if (Tiny_Water_Balloons_1_Sport::player_has_joined_the_sport (player_02_position) != utf8 (b"yup")) { abort 1 };
+		Void_Freight_Group_Module::Join_the_Game (& player_01_consenter);
+		if (Void_Freight_Group_Module::player_has_joined_the_sport (player_01_position) != utf8 (b"yup")) { abort 1 };
+		Void_Freight_Group_Module::Join_the_Game (& player_02_consenter);
+		if (Void_Freight_Group_Module::player_has_joined_the_sport (player_02_position) != utf8 (b"yup")) { abort 1 };
 		
 
 		
 		//	Throw
 		//
-		Tiny_Water_Balloons_1_Sport::Throw_Tiny_Water_Balloon (& player_03_consenter, player_01_position);
+		Void_Freight_Group_Module::Throw_Tiny_Water_Balloon (& player_03_consenter, player_01_position);
 		
 		
 		////

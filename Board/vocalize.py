@@ -37,7 +37,7 @@ import Rides.APT_Asks_01 as APT_Asks_01
 import Rides.Peptyde as Peptyde_Moves
 import Rides.Rhythm_01 as Rhythm_01
 
-import Rides.Voht as Voht
+import Rides.Voeht as Voeht
 
 
 #
@@ -114,7 +114,7 @@ def motion_for_named_addresses ():
 
 		f"""Ride_01={ builder_1 ["address"] }, """,
 		f"""ride={ builder_1 ["address"] }, """,		
-		f"""builder_1={ builder_1 ["address"] } """,		
+		f"""builder_1={ builder_1 ["address"] },""",		
 		f"""Builder_01={ builder_1 ["address"] } """,		
 		
 		"'"
@@ -124,7 +124,7 @@ def motion_for_named_addresses ():
 
 
 moves_structures = {
-	"Voht": Voht,
+	"Voeht": Voeht,
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
 	"Rules_10": Rules_10_Moves,
