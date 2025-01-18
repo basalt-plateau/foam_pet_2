@@ -8,24 +8,24 @@ module builder_1::Mascot_Module {
 	
 	use builder_1::Rules_09;
 
-	const Ending_from_mascot_has_zero_tiny_water_balloons : u64 = 3;
+	const Ending_from_mascot_has_zero_vohts : u64 = 3;
 	const Ending_mascot_was_not_found : u64 = 3;
-
-
-	#[view]
-	public fun Volitions () : String {
-		Rules_09::Volitions_01 ()
+	
+	
+	#[view] public fun Volitions () : String { 
+		use ride::Rules_10;
+		Rules_10::Volitions_01 () 
 	}
 	
 	struct Mascot has store, drop {
 		address : address,
-		tiny_water_balloons : u256
+		vohts : u256
 	}
 	
 	public (friend) fun add (address : address) : Mascot {
 		let mascot = Mascot {
 			address : address,
-			tiny_water_balloons : 0
+			vohts : 0
 		};
 		mascot
 	}
@@ -34,37 +34,37 @@ module builder_1::Mascot_Module {
 		mascot.address
 	}
 	
-	public (friend) fun add_tiny_water_balloons (
+	public (friend) fun add_vohts (
 		mascot : &mut Mascot, 
 		add : u256
 	) {
-		mascot.tiny_water_balloons = mascot.tiny_water_balloons + add;
+		mascot.vohts = mascot.vohts + add;
 	}
 	
-	public (friend) fun subtract_tiny_water_balloons (
+	public (friend) fun subtract_vohts (
 		mascot : &mut Mascot, 
 		subtract : u256
 	) {
-		if (mascot.tiny_water_balloons == 0) {
-			abort Ending_from_mascot_has_zero_tiny_water_balloons
+		if (mascot.vohts == 0) {
+			abort Ending_from_mascot_has_zero_vohts
 		};
 		
-		mascot.tiny_water_balloons = mascot.tiny_water_balloons - subtract;
+		mascot.vohts = mascot.vohts - subtract;
 	}
 	
-	public (friend) fun throw_tiny_water_balloon (
+	public (friend) fun throw_voht (
 		from_mascot : &mut Mascot, 
 		to_mascot : &mut Mascot
 	) {
-		if (from_mascot.tiny_water_balloons == 0) {
-			abort Ending_from_mascot_has_zero_tiny_water_balloons
+		if (from_mascot.vohts == 0) {
+			abort Ending_from_mascot_has_zero_vohts
 		};
 		
-		from_mascot.tiny_water_balloons = from_mascot.tiny_water_balloons - 1;
-		to_mascot.tiny_water_balloons = to_mascot.tiny_water_balloons + 1;
+		from_mascot.vohts = from_mascot.vohts - 1;
+		to_mascot.vohts = to_mascot.vohts + 1;
 	}
 	
-	public (friend) fun tiny_water_balloons_score (mascot : & Mascot) : u256 {
-		mascot.tiny_water_balloons
+	public (friend) fun vohts_score (mascot : & Mascot) : u256 {
+		mascot.vohts
 	}
 }

@@ -3,7 +3,7 @@
 
 
 
-module builder_1::tiny_water_balloons_1_Steady_4 {
+module builder_1::vohts_1_Steady_4 {
 	
 	
 	
@@ -75,8 +75,8 @@ module builder_1::tiny_water_balloons_1_Steady_4 {
 		//	The Sport
 		//
 		//
-		let tiny_water_balloons_for_sale : u256 = 10;
-		Mix_Venue_Module::Begin (& owner_1_consenter, tiny_water_balloons_for_sale);
+		let vohts_for_sale : u256 = 10;
+		Mix_Venue_Module::Begin (& owner_1_consenter, vohts_for_sale);
 		if (Mix_Venue_Module::Tiny_Water_Balloons_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game

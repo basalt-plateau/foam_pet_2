@@ -23,4 +23,5 @@ local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib"
 [dependencies.Rules_09]
 local = "/Metro/Board/Rides_Published_Mainnet/Rules" 
 
-
+[dependencies.Rules_10]
+local = "/Metro/Board/Rides_Published_Mainnet/Rules_10" 

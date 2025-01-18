@@ -21,24 +21,24 @@ module builder_1::Mix_Venue_Module {
 	const Imperfection_consenter_is_not_owner : u64 = 1;
 	const Imperfection_consenter_does_not_have_enough_APT_for_purchase : u64 = 2;
 	const Ending_mascot_was_not_found : u64 = 3;
-	const Ending_every_tiny_water_balloon_has_been_sold : u64 = 3;
+	const Ending_every_voht_has_been_sold : u64 = 3;
 
-	#[view]
-	public fun Volitions () : String {
-		Rules_09::Volitions_01 ()
+	#[view] public fun Volitions () : String { 
+		use ride::Rules_10;
+		Rules_10::Volitions_01 () 
 	}
 	
 	struct Tiny_Water_Balloon has key, drop {}
 	
 	struct Sport has key, drop {
-		tiny_water_balloons_for_sale : u256,
+		vohts_for_sale : u256,
 		mascots : vector<Mascot>
 	}
 	
 	#[view]
 	public fun Tiny_Water_Balloons_For_Sale_Left () : u256 acquires Sport {
 		let sport = borrow_global<Sport>(owner_position ());
-		sport.tiny_water_balloons_for_sale
+		sport.vohts_for_sale
 	}
 	
 	/*
@@ -61,7 +61,7 @@ module builder_1::Mix_Venue_Module {
 	
 	public entry fun Begin (
 		consenter : & signer,
-		tiny_water_balloons_for_sale : u256
+		vohts_for_sale : u256
 	) {
 		//
 		//	Make sure the consenter is the owner.
@@ -72,7 +72,7 @@ module builder_1::Mix_Venue_Module {
 		};
 
 		let sport = Sport {
-			tiny_water_balloons_for_sale : tiny_water_balloons_for_sale,
+			vohts_for_sale : vohts_for_sale,
 			mascots : vector::empty<Mascot>()
 		};
 		
@@ -119,7 +119,7 @@ module builder_1::Mix_Venue_Module {
 	}
 		
 	
-	public entry fun Buy_5_tiny_water_balloons_for_1_APT (consenter : & signer) acquires Sport {
+	public entry fun Buy_5_vohts_for_1_APT (consenter : & signer) acquires Sport {
 		let consenter_address = signer::address_of (consenter);
 		
 		
@@ -147,8 +147,8 @@ module builder_1::Mix_Venue_Module {
 		//
 		//
 		let sport = borrow_global<Sport>(owner_position ());
-		if (sport.tiny_water_balloons_for_sale < 5) {
-			abort Endings_Module::Ending_there_are_not_enough_tiny_water_balloons_left_to_make_that_sale ()
+		if (sport.vohts_for_sale < 5) {
+			abort Endings_Module::Ending_there_are_not_enough_vohts_left_to_make_that_sale ()
 		};
 		
 		//
@@ -164,13 +164,13 @@ module builder_1::Mix_Venue_Module {
 		//	Send 5 Water Balloons
 		//
 		//
-		let tiny_water_balloons_to_add : u256 = 5;
+		let vohts_to_add : u256 = 5;
 		let mascot_index = search_for_index_of_mascot (consenter_address);
 		let sport = borrow_global_mut<Sport>(owner_position ());
 		let mascots = &mut sport.mascots;
 		let mascot_at_index_ref = vector::borrow_mut (mascots, mascot_index);
 		
-		Mascot_Module::add_tiny_water_balloons (mascot_at_index_ref, tiny_water_balloons_to_add);	
+		Mascot_Module::add_vohts (mascot_at_index_ref, vohts_to_add);	
 		
 		
 		//
@@ -178,7 +178,7 @@ module builder_1::Mix_Venue_Module {
 		//	Subtract 5 Water Balloons from for sale
 		//
 		//
-		sport.tiny_water_balloons_for_sale = sport.tiny_water_balloons_for_sale - 5;
+		sport.vohts_for_sale = sport.vohts_for_sale - 5;
 		
 		// coin::transfer<AptosCoin>(& consenter, mascot_01_position, 500);
 		// coin::transfer<AptosCoin>(& consenter, owner_position (), 500);
@@ -209,10 +209,10 @@ module builder_1::Mix_Venue_Module {
 		let mascots = &mut sport.mascots;
 		
 		let mascot_from_ref = vector::borrow_mut (mascots, index_of_mascot_from);
-		Mascot_Module::subtract_tiny_water_balloons (mascot_from_ref, 1);	
+		Mascot_Module::subtract_vohts (mascot_from_ref, 1);	
 
 		let mascot_to_ref = vector::borrow_mut (mascots, index_of_mascot_to);		
-		Mascot_Module::add_tiny_water_balloons (mascot_to_ref, 1);		
+		Mascot_Module::add_vohts (mascot_to_ref, 1);		
 	}
 	
 	
@@ -262,7 +262,7 @@ module builder_1::Mix_Venue_Module {
 			index_of_mascot
 		);
 		
-		Mascot_Module::tiny_water_balloons_score (mascot_at_index_ref)
+		Mascot_Module::vohts_score (mascot_at_index_ref)
 	}
 	
 }

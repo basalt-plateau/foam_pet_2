@@ -1,7 +1,7 @@
 
 
 
-module builder_1::tiny_water_balloons_1_Steady_3 {
+module builder_1::vohts_1_Steady_3 {
 	
 	
 	
@@ -73,8 +73,8 @@ module builder_1::tiny_water_balloons_1_Steady_3 {
 		//	The Sport
 		//
 		//
-		let tiny_water_balloons_for_sale : u256 = 10;
-		Mix_Venue_Module::Begin (& owner_1_consenter, tiny_water_balloons_for_sale);
+		let vohts_for_sale : u256 = 10;
+		Mix_Venue_Module::Begin (& owner_1_consenter, vohts_for_sale);
 		if (Mix_Venue_Module::Tiny_Water_Balloons_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game
@@ -86,7 +86,7 @@ module builder_1::tiny_water_balloons_1_Steady_3 {
 		
 		//	Buy
 		//
-		Mix_Venue_Module::Buy_5_tiny_water_balloons_for_1_APT (& mascot_01_consenter);
+		Mix_Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
 		if (Mix_Venue_Module::Tiny_Water_Balloons_Score (mascot_01_position) != 5) { abort 1 };
 		if (Mix_Venue_Module::Tiny_Water_Balloons_For_Sale_Left () != 5) { abort 2 };
 
