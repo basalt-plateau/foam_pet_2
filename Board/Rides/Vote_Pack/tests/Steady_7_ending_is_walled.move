@@ -3,12 +3,12 @@
 
 
 
-module builder_1::vohts_1_Steady_5 {
+module builder_1::votes_1_Steady_7 {
 	
 	
 	
 	/*
-		Can throw from one mascot to another.
+		Can end
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -20,7 +20,8 @@ module builder_1::vohts_1_Steady_5 {
 		mascot_02_consenter = @mascot_02,
 		mascot_03_consenter = @mascot_03		
 	)]
-    public fun can_throw_from_one_mascot_to_another (
+	#[expected_failure (abort_code = 943728)]
+    public fun steady (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -36,6 +37,7 @@ module builder_1::vohts_1_Steady_5 {
 		use std::signer;
 		use std::debug;
 
+		use aptos_framework::timestamp;
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
@@ -48,6 +50,7 @@ module builder_1::vohts_1_Steady_5 {
 		let mascot_02_position = signer::address_of (& mascot_02_consenter);
 		let mascot_03_position = signer::address_of (& mascot_03_consenter);	
 		
+		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
@@ -74,8 +77,8 @@ module builder_1::vohts_1_Steady_5 {
 		//	The Venue
 		//
 		//
-		let vohts_for_sale : u256 = 900000;
-		Venue_Module::Begin (& formulator_1_consenter, vohts_for_sale);
+		let votes_for_sale : u256 = 900000;
+		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
 		
 		//	Join_the_Game
 		//
@@ -88,18 +91,21 @@ module builder_1::vohts_1_Steady_5 {
 		
 		//	Buy
 		//
-		Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
-		if (Venue_Module::Vohts_Score (mascot_01_position) != 5) { abort 1 };
+		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
 		
 		//	Throw
 		//
-		Venue_Module::Throw_Voht (& mascot_01_consenter, mascot_02_position);
-		if (Venue_Module::Vohts_Score (mascot_01_position) != 4) { abort 1 };
-		if (Venue_Module::Vohts_Score (mascot_02_position) != 1) { abort 1 };
+		Venue_Module::Throw_Vote (& mascot_01_consenter, mascot_02_position);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 4) { abort 1 };
+		if (Venue_Module::Votes_Score (mascot_02_position) != 1) { abort 1 };
 		
 		//	End
 		//
-		// Venue_Module::End (& formulator_1_consenter);	
+		let year_ms : u64 = 31557600000;
+		timestamp::update_global_time_for_test (year_ms * 279);
+		let ending = Venue_Module::End ();	
+		debug::print (& string_utils::format1 (& b"Ending: {}", ending));
 		//
 		////
 		

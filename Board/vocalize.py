@@ -37,7 +37,7 @@ import Rides.APT_Asks_01 as APT_Asks_01
 import Rides.Peptyde as Peptyde_Moves
 import Rides.Rhythm_01 as Rhythm_01
 
-import Rides.Voeht as Voeht
+import Rides.Vote_Pack as Vote_Pack
 
 
 #
@@ -124,7 +124,7 @@ def motion_for_named_addresses ():
 
 
 moves_structures = {
-	"Voeht": Voeht,
+	"Vote_Pack": Vote_Pack,
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
 	"Rules_10": Rules_10_Moves,

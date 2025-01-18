@@ -3,7 +3,7 @@
 
 
 [package]
-name = "Voeht"
+name = "Vote_Pack"
 version = "1.0.0"
 authors = []
 upgrade_policy = "compatible"

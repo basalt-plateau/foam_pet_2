@@ -1,18 +1,14 @@
 
 
 
-module builder_1::vohts_1_Steady_2 {
-	
+
+
+module builder_1::votes_1_Steady_5 {
 	
 	
 	
 	/*
-		Ensure that can't buy more than the limit.
-		
-			10 Water Balloons
-			Purchases -> Pass
-			Purchases -> Pass
-			Purchases -> Fail
+		Can throw from one mascot to another.
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -24,8 +20,7 @@ module builder_1::vohts_1_Steady_2 {
 		mascot_02_consenter = @mascot_02,
 		mascot_03_consenter = @mascot_03		
 	)]
-	#[expected_failure (abort_code = 94734)]
-    public fun ending__cannot_buy_more_than_the_limit (
+    public fun can_throw_from_one_mascot_to_another (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -79,30 +74,35 @@ module builder_1::vohts_1_Steady_2 {
 		//	The Venue
 		//
 		//
-		let vohts_for_sale : u256 = 10;
-		Venue_Module::Begin (& formulator_1_consenter, vohts_for_sale);
-		if (Venue_Module::Vohts_For_Sale_Left () != 10) { abort 2 };
+		let votes_for_sale : u256 = 900000;
+		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
 		
 		//	Join_the_Game
 		//
 		Venue_Module::Join_the_Game (& mascot_01_consenter);
 		Venue_Module::Join_the_Game (& mascot_02_consenter);
 		Venue_Module::Join_the_Game (& mascot_03_consenter);
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 1 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 1 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 1 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 89389 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 89389 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 89389 };
 		
 		//	Buy
 		//
-		Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
-		if (Venue_Module::Vohts_Score (mascot_01_position) != 5) { abort 1 };
-		if (Venue_Module::Vohts_For_Sale_Left () != 5) { abort 2 };
+		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
 		
-		Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
-		if (Venue_Module::Vohts_Score (mascot_01_position) != 10) { abort 1 };
-		if (Venue_Module::Vohts_For_Sale_Left () != 0) { abort 2 };
+		//	Throw
+		//
+		Venue_Module::Throw_Vote (& mascot_01_consenter, mascot_02_position);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 4) { abort 1 };
+		if (Venue_Module::Votes_Score (mascot_02_position) != 1) { abort 1 };
 		
-		Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
+		//	End
+		//
+		// Venue_Module::End (& formulator_1_consenter);	
+		//
+		////
+		
 		
 		////
 		//

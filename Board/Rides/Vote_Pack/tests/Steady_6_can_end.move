@@ -3,12 +3,12 @@
 
 
 
-module builder_1::vohts_1_Steady_4 {
+module builder_1::votes_1_Steady_6 {
 	
 	
 	
 	/*
-		Thrower hasn't joined the game.
+		Can end
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -20,8 +20,7 @@ module builder_1::vohts_1_Steady_4 {
 		mascot_02_consenter = @mascot_02,
 		mascot_03_consenter = @mascot_03		
 	)]
-	#[expected_failure (abort_code = 473890)]
-    public fun ending__thrower_has_not_joined_the_game (
+    public fun steady (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -37,6 +36,7 @@ module builder_1::vohts_1_Steady_4 {
 		use std::signer;
 		use std::debug;
 
+		use aptos_framework::timestamp;
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
@@ -49,6 +49,7 @@ module builder_1::vohts_1_Steady_4 {
 		let mascot_02_position = signer::address_of (& mascot_02_consenter);
 		let mascot_03_position = signer::address_of (& mascot_03_consenter);	
 		
+		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
@@ -75,22 +76,46 @@ module builder_1::vohts_1_Steady_4 {
 		//	The Venue
 		//
 		//
-		let vohts_for_sale : u256 = 10;
-		Venue_Module::Begin (& formulator_1_consenter, vohts_for_sale);
-		if (Venue_Module::Vohts_For_Sale_Left () != 10) { abort 2 };
+		let votes_for_sale : u256 = 900000;
+		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
 		
 		//	Join_the_Game
 		//
 		Venue_Module::Join_the_Game (& mascot_01_consenter);
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 1 };
 		Venue_Module::Join_the_Game (& mascot_02_consenter);
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 1 };
+		Venue_Module::Join_the_Game (& mascot_03_consenter);
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 89389 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 89389 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 89389 };
 		
-
+		//	Buy
+		//
+		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
 		
 		//	Throw
 		//
-		Venue_Module::Throw_Voht (& mascot_03_consenter, mascot_01_position);
+		Venue_Module::Throw_Vote (& mascot_01_consenter, mascot_02_position);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 4) { abort 1 };
+		if (Venue_Module::Votes_Score (mascot_02_position) != 1) { abort 1 };
+		
+		//	End
+		//
+		if (Venue_Module::sport_exists () != utf8 (b"yup")) { abort 89389 };
+		//		
+		let year_ms : u64 = 31557600000;
+		timestamp::update_global_time_for_test (year_ms * 281);
+		let ending = Venue_Module::End ();	
+		debug::print (& string_utils::format1 (& b"Ending: {}", ending));	
+		//
+		
+		//	Check if can access sport
+		//
+		if (Venue_Module::sport_exists () != utf8 (b"no")) { abort 89389 };
+		//
+		////
+		
+		
 		
 		
 		////

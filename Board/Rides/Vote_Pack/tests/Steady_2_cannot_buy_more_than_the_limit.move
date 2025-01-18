@@ -1,17 +1,18 @@
 
 
 
-module builder_1::vohts_1_Steady_1 {
+module builder_1::votes_1_Steady_2 {
 	
 	
 	
 	
 	/*
-		Ask:
-			Venue Begin
-			Mascot Join_the_Game
-			
-			Venue End
+		Ensure that can't buy more than the limit.
+		
+			10 Water Balloons
+			Purchases -> Pass
+			Purchases -> Pass
+			Purchases -> Fail
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -23,7 +24,8 @@ module builder_1::vohts_1_Steady_1 {
 		mascot_02_consenter = @mascot_02,
 		mascot_03_consenter = @mascot_03		
 	)]
-    public fun steady_1 (
+	#[expected_failure (abort_code = 94734)]
+    public fun ending__cannot_buy_more_than_the_limit (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -34,12 +36,14 @@ module builder_1::vohts_1_Steady_1 {
 		mascot_03_consenter : signer
 	) {	
 		use std::vector;
+		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
+		use std::debug;
 
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
-		use aptos_framework::account;
+		use aptos_framework::account;		
 	
 		use builder_1::Venue_Module; 
 		use builder_1::Steady; 
@@ -49,7 +53,6 @@ module builder_1::vohts_1_Steady_1 {
 		let mascot_02_position = signer::address_of (& mascot_02_consenter);
 		let mascot_03_position = signer::address_of (& mascot_03_consenter);	
 		
-		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
@@ -62,51 +65,44 @@ module builder_1::vohts_1_Steady_1 {
 		account::create_account_for_test (mascot_02_position);
 		account::create_account_for_test (mascot_03_position);
 		
+		
 		Steady::prepare_APT_for_mascots (
 			& mascot_01_consenter,
 			& mascot_02_consenter,
 			& mascot_03_consenter
 		);
 		
-		
-		
 		coin::transfer<AptosCoin>(& formulator_1_consenter, mascot_01_position, 300000000);
-		
 		
 		////
 		//
 		//	The Venue
 		//
 		//
-		let vohts_for_sale : u256 = 900000;
-		Venue_Module::Begin (& formulator_1_consenter, vohts_for_sale);
+		let votes_for_sale : u256 = 10;
+		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
+		if (Venue_Module::Votes_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game
 		//
 		Venue_Module::Join_the_Game (& mascot_01_consenter);
 		Venue_Module::Join_the_Game (& mascot_02_consenter);
 		Venue_Module::Join_the_Game (& mascot_03_consenter);
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 89389 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 89389 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 89389 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 1 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 1 };
+		if (Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 1 };
 		
 		//	Buy
 		//
-		Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
-		if (Venue_Module::Vohts_Score (mascot_01_position) != 5) { abort 1 };
+		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
+		if (Venue_Module::Votes_For_Sale_Left () != 5) { abort 2 };
 		
-		//	Throw
-		//
-		Venue_Module::Throw_Voht (& mascot_01_consenter, mascot_02_position);
-		if (Venue_Module::Vohts_Score (mascot_01_position) != 4) { abort 1 };
-		if (Venue_Module::Vohts_Score (mascot_02_position) != 1) { abort 1 };
+		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 10) { abort 1 };
+		if (Venue_Module::Votes_For_Sale_Left () != 0) { abort 2 };
 		
-		//	End
-		//
-		// Venue_Module::End (& formulator_1_consenter);	
-		//
-		////		
-		
+		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
 		
 		////
 		//

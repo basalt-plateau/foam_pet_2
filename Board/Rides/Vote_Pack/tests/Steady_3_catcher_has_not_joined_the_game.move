@@ -1,7 +1,7 @@
 
 
 
-module builder_1::vohts_1_Steady_3 {
+module builder_1::votes_1_Steady_3 {
 	
 	
 	
@@ -73,9 +73,9 @@ module builder_1::vohts_1_Steady_3 {
 		//	The Venue
 		//
 		//
-		let vohts_for_sale : u256 = 10;
-		Venue_Module::Begin (& formulator_1_consenter, vohts_for_sale);
-		if (Venue_Module::Vohts_For_Sale_Left () != 10) { abort 2 };
+		let votes_for_sale : u256 = 10;
+		Venue_Module::Begin (& formulator_1_consenter, votes_for_sale);
+		if (Venue_Module::Votes_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game
 		//
@@ -86,14 +86,14 @@ module builder_1::vohts_1_Steady_3 {
 		
 		//	Buy
 		//
-		Venue_Module::Buy_5_vohts_for_1_APT (& mascot_01_consenter);
-		if (Venue_Module::Vohts_Score (mascot_01_position) != 5) { abort 1 };
-		if (Venue_Module::Vohts_For_Sale_Left () != 5) { abort 2 };
+		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Venue_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
+		if (Venue_Module::Votes_For_Sale_Left () != 5) { abort 2 };
 
 		
 		//	Throw
 		//
-		Venue_Module::Throw_Voht (& mascot_01_consenter, mascot_03_position);
+		Venue_Module::Throw_Vote (& mascot_01_consenter, mascot_03_position);
 		
 		
 		////
