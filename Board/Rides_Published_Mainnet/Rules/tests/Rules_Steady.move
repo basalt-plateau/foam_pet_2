@@ -30,6 +30,6 @@ module ride::Rules_09_Steady {
 			string::length (& rules)
 		));
 		
-		assert (string::length (& rules) == 287, 0);
+		assert! (string::length (& rules) == 287, 0);
     }
 }

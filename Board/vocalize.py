@@ -32,12 +32,12 @@ import Rides.Motions_01 as Motions_01_Moves
 #
 import Rides.APT_Octas_Math_01 as APT_Octas_Math_01
 
-import Rides.APT_Catches_01 as APT_Catches_01
+import Rides.APT_Asks_01 as APT_Asks_01
 
 import Rides.Peptyde as Peptyde_Moves
 import Rides.Rhythm_01 as Rhythm_01
 
-import Rides.Tiny_Water_Balloons_1 as Tiny_Water_Balloons_1
+import Rides.Voht as Voht
 
 
 #
@@ -123,14 +123,16 @@ def motion_for_named_addresses ():
 
 
 moves_structures = {
+	"Voht": Voht,
+	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
 	"Rules_10": Rules_10_Moves,
 	"Motions_01": Motions_01_Moves,
 	#"Peptyde": Peptyde_Moves,
-	"Tiny_Water_Balloons_1": Tiny_Water_Balloons_1,
+	
 	"Rhythm_01": Rhythm_01,
 	
-	"APT_Catches_01": APT_Catches_01
+	"APT_Asks_01": APT_Asks_01
 }
 
 
