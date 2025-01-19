@@ -72,21 +72,21 @@ module builder_1::Steady {
 	}
 	
 	
-	public fun prepare_APT_for_mascots (
-		mascot_01_consenter : & signer,
-		mascot_02_consenter : & signer,
-		mascot_03_consenter : & signer
+	public fun prepare_APT_for_boar_Teams (
+		boar_Team_01_consenter : & signer,
+		boar_Team_02_consenter : & signer,
+		boar_Team_03_consenter : & signer
 	) {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		
-		coin::register<AptosCoin>(mascot_01_consenter);
-		coin::register<AptosCoin>(mascot_02_consenter);
-		coin::register<AptosCoin>(mascot_03_consenter);	
+		coin::register<AptosCoin>(boar_Team_01_consenter);
+		coin::register<AptosCoin>(boar_Team_02_consenter);
+		coin::register<AptosCoin>(boar_Team_03_consenter);	
 		
-		// coin::transfer<AptosCoin>(formulator_1_consenter, mascot_01_position, 200000000);
-		// coin::transfer<AptosCoin>(formulator_1_consenter, mascot_02_position, 0);
-		// coin::transfer<AptosCoin>(formulator_1_consenter, mascot_03_position, 0);	
+		// coin::transfer<AptosCoin>(formulator_1_consenter, boar_Team_01_position, 200000000);
+		// coin::transfer<AptosCoin>(formulator_1_consenter, boar_Team_02_position, 0);
+		// coin::transfer<AptosCoin>(formulator_1_consenter, boar_Team_03_position, 0);	
 	}
 	
 	

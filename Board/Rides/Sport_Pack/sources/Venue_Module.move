@@ -11,7 +11,7 @@ module builder_1::Game_Module {
 	use aptos_framework::coin;
 	use aptos_framework::aptos_coin::AptosCoin;
 
-	use builder_1::Mascot_Module::{ Self, Mascot };
+	use builder_1::Boar_Team_Module::{ Self, Boar_Team };
 	use builder_1::Formulator_Module::{ 
 		formulator_position, 
 		ask_if_consenter_is_Formulator 
@@ -21,14 +21,14 @@ module builder_1::Game_Module {
 	const Imperfection_consenter_has_not_joined : u64 = 0;
 	const Imperfection_consenter_is_not_Formulator : u64 = 1;
 	const Imperfection_consenter_does_not_have_enough_APT_for_purchase : u64 = 2;
-	const Ending_mascot_was_not_found : u64 = 3;
+	const Ending_boar_Team_was_not_found : u64 = 3;
 	const Ending_every_vote_has_been_sold : u64 = 3;
 	
 	struct Vote has key, drop {}
 	
 	struct Game has key, drop {
 		votes_for_sale : u256,
-		mascots : vector<Mascot>
+		boar_Teams : vector<Boar_Team>
 	}
 	
 	#[view] public fun Volitions () : String { 
@@ -57,7 +57,7 @@ module builder_1::Game_Module {
 
 		let venue = Game {
 			votes_for_sale : votes_for_sale,
-			mascots : vector::empty<Mascot>()
+			boar_Teams : vector::empty<Boar_Team>()
 		};
 		
 		move_to<Game>(consenter, venue)
@@ -92,46 +92,46 @@ module builder_1::Game_Module {
 	
 	////
 	//
-	//	Mascots
+	//	Boar_Teams
 	//
 	//
 	public entry fun Join_the_Game (consenter : & signer) acquires Game {
 		let consenter_address = signer::address_of (consenter);
 		
 		let sport = borrow_global_mut<Game>(formulator_position ());
-		let mascots = &mut sport.mascots;
-		let mascot = Mascot_Module::add (consenter_address);
-		vector::push_back (mascots, mascot);		
+		let boar_Teams = &mut sport.boar_Teams;
+		let boar_Team = Boar_Team_Module::add (consenter_address);
+		vector::push_back (boar_Teams, boar_Team);		
 	}
 	
-	#[view] public fun Mascot_Count () : u64 acquires Game {
+	#[view] public fun Boar_Team_Count () : u64 acquires Game {
 		let sport = borrow_global<Game>(formulator_position ());
-		vector::length (&sport.mascots)
+		vector::length (&sport.boar_Teams)
 	}
 	/*
 	#[view]
-	public fun Mascot_Roster () acquires Game {
+	public fun Boar_Team_Roster () acquires Game {
 		let sport = borrow_global<Game>(formulator_position ());
 		
 		let bracket = vector::empty<u8>();	
-		let num_mascots = vector::length(&sport.mascots);
+		let num_boar_Teams = vector::length(&sport.boar_Teams);
 	}
 	*/
 	
-	public fun search_for_index_of_mascot (mascot_address : address) : u64 acquires Game {
-		search_for_index_of_mascot_with_ending_code (mascot_address, Ending_mascot_was_not_found)
+	public fun search_for_index_of_boar_Team (boar_Team_address : address) : u64 acquires Game {
+		search_for_index_of_boar_Team_with_ending_code (boar_Team_address, Ending_boar_Team_was_not_found)
 	}
 	
-	public fun search_for_index_of_mascot_with_ending_code (
-		mascot_address : address,
+	public fun search_for_index_of_boar_Team_with_ending_code (
+		boar_Team_address : address,
 		ending_code : u64
 	) : u64 acquires Game {
 		let sport = borrow_global_mut<Game>(formulator_position ());
-		let mascots = &mut sport.mascots;
-		for (index in 0..vector::length (mascots)) {
-			let mascot_at_index_ref = vector::borrow_mut (mascots, index);
-			let mascot_at_index_address = Mascot_Module::mascot_address (mascot_at_index_ref);
-			if (mascot_at_index_address == mascot_address) {
+		let boar_Teams = &mut sport.boar_Teams;
+		for (index in 0..vector::length (boar_Teams)) {
+			let boar_Team_at_index_ref = vector::borrow_mut (boar_Teams, index);
+			let boar_Team_at_index_address = Boar_Team_Module::boar_Team_address (boar_Team_at_index_ref);
+			if (boar_Team_at_index_address == boar_Team_address) {
 				return index
 			}			
 		};
@@ -139,13 +139,13 @@ module builder_1::Game_Module {
 		abort ending_code
 	}
 	
-	public fun mascot_has_joined_the_sport (mascot_address : address) : String acquires Game {
+	public fun boar_Team_has_joined_the_sport (boar_Team_address : address) : String acquires Game {
 		let sport = borrow_global<Game>(formulator_position ());
-		let mascots = & sport.mascots;
-		for (index in 0..vector::length (mascots)) {
-			let mascot_at_index_ref = vector::borrow (& sport.mascots, index);
-			let mascot_at_index_address = Mascot_Module::mascot_address (mascot_at_index_ref);
-			if (mascot_at_index_address == mascot_address) {
+		let boar_Teams = & sport.boar_Teams;
+		for (index in 0..vector::length (boar_Teams)) {
+			let boar_Team_at_index_ref = vector::borrow (& sport.boar_Teams, index);
+			let boar_Team_at_index_address = Boar_Team_Module::boar_Team_address (boar_Team_at_index_ref);
+			if (boar_Team_at_index_address == boar_Team_address) {
 				return utf8 (b"yup")
 			}			
 		};
@@ -170,11 +170,11 @@ module builder_1::Game_Module {
 		
 		//
 		//	Vows:
-		//		1. Vow that the consenter has joined the sport as a mascot.
+		//		1. Vow that the consenter has joined the sport as a boar_Team.
 		//		2. Vow that the consenter has greater than 1 APT.
 		//		3. Vow that there are enough votes left for sale.
 		//
-		if (mascot_has_joined_the_sport (consenter_address) != utf8 (b"yup")) { 
+		if (boar_Team_has_joined_the_sport (consenter_address) != utf8 (b"yup")) { 
 			abort Imperfection_consenter_has_not_joined 
 		};
 		if (coin::balance<AptosCoin>(consenter_address) < 100000000) { 
@@ -199,12 +199,12 @@ module builder_1::Game_Module {
 		//
 		//
 		let votes_to_add : u256 = 5;
-		let mascot_index = search_for_index_of_mascot (consenter_address);
+		let boar_Team_index = search_for_index_of_boar_Team (consenter_address);
 		let sport = borrow_global_mut<Game>(formulator_position ());
-		let mascots = &mut sport.mascots;
-		let mascot_at_index_ref = vector::borrow_mut (mascots, mascot_index);
+		let boar_Teams = &mut sport.boar_Teams;
+		let boar_Team_at_index_ref = vector::borrow_mut (boar_Teams, boar_Team_index);
 		
-		Mascot_Module::add_votes (mascot_at_index_ref, votes_to_add);	
+		Boar_Team_Module::add_votes (boar_Team_at_index_ref, votes_to_add);	
 		
 		
 		//
@@ -214,39 +214,39 @@ module builder_1::Game_Module {
 		//
 		sport.votes_for_sale = sport.votes_for_sale - 5;
 		
-		// coin::transfer<AptosCoin>(& consenter, mascot_01_position, 500);
+		// coin::transfer<AptosCoin>(& consenter, boar_Team_01_position, 500);
 		// coin::transfer<AptosCoin>(& consenter, formulator_position (), 500);
 	}
 	
 	public entry fun Throw_Vote (
 		consenter : & signer, 
-		other_mascot_address : address
+		other_boar_Team_address : address
 	) acquires Game {
 		let consenter_address = signer::address_of (consenter);
 		
 		//
-		//	Search for mascot "from", if not found, end.
+		//	Search for boar_Team "from", if not found, end.
 		//
 		//
-		let index_of_mascot_from = search_for_index_of_mascot_with_ending_code (
+		let index_of_boar_Team_from = search_for_index_of_boar_Team_with_ending_code (
 			consenter_address,
 			Endings_Module::Ending_the_thrower_has_not_joined_the_game ()
 		);
 		
-		let index_of_mascot_to = search_for_index_of_mascot_with_ending_code (
-			other_mascot_address,
+		let index_of_boar_Team_to = search_for_index_of_boar_Team_with_ending_code (
+			other_boar_Team_address,
 			Endings_Module::Ending_the_catcher_has_not_joined_the_game ()
 		);
 		
-		// let index_of_mascot_to = search_for_index_of_mascot (other_mascot_address);
+		// let index_of_boar_Team_to = search_for_index_of_boar_Team (other_boar_Team_address);
 		let sport = borrow_global_mut<Game>(formulator_position ());
-		let mascots = &mut sport.mascots;
+		let boar_Teams = &mut sport.boar_Teams;
 		
-		let mascot_from_ref = vector::borrow_mut (mascots, index_of_mascot_from);
-		Mascot_Module::subtract_votes (mascot_from_ref, 1);	
+		let boar_Team_from_ref = vector::borrow_mut (boar_Teams, index_of_boar_Team_from);
+		Boar_Team_Module::subtract_votes (boar_Team_from_ref, 1);	
 
-		let mascot_to_ref = vector::borrow_mut (mascots, index_of_mascot_to);		
-		Mascot_Module::add_votes (mascot_to_ref, 1);		
+		let boar_Team_to_ref = vector::borrow_mut (boar_Teams, index_of_boar_Team_to);		
+		Boar_Team_Module::add_votes (boar_Team_to_ref, 1);		
 	}
 	
 	
@@ -254,16 +254,16 @@ module builder_1::Game_Module {
 	
 
 	#[view]
-	public fun Votes_Score (mascot_address : address) : u256 acquires Game {
-		let index_of_mascot = search_for_index_of_mascot (mascot_address);
+	public fun Votes_Score (boar_Team_address : address) : u256 acquires Game {
+		let index_of_boar_Team = search_for_index_of_boar_Team (boar_Team_address);
 		let sport = borrow_global<Game>(formulator_position ());
-		let mascots = & sport.mascots;
-		let mascot_at_index_ref = vector::borrow (
-			mascots, 
-			index_of_mascot
+		let boar_Teams = & sport.boar_Teams;
+		let boar_Team_at_index_ref = vector::borrow (
+			boar_Teams, 
+			index_of_boar_Team
 		);
 		
-		Mascot_Module::votes_score (mascot_at_index_ref)
+		Boar_Team_Module::votes_score (boar_Team_at_index_ref)
 	}
 	
 }

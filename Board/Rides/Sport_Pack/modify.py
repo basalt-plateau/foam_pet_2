@@ -1,5 +1,7 @@
 
-
+'''
+	python3 /Metro/Board/Rides/Sport_Pack/modify.py
+'''
 
 import ships.paths.directory.find_and_replace_string_v2 as find_and_replace_string_v2
 import pathlib
@@ -9,13 +11,17 @@ this_directory = pathlib.Path (__file__).parent.resolve ()
 
 places = [
 	str (normpath (join (this_directory, "sources"))),
-	str (normpath (join (this_directory, "test"))),
-	str (normpath (join (this_directory, "test")))
+	str (normpath (join (this_directory, "tests")))
 ]
 
+#
+#	boar_, Boar_
+#
+#
+
 find_and_replace = [
-	[ "Game", "Verse_Freight_Group" ],
-	[ "game", "le_Verse_Freight_Group" ]
+	[ "Formulator", "Boar_Producer" ],
+	[ "formulator", "boar_Producer" ]
 ]
 
 

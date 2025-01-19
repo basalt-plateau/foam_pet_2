@@ -20,9 +20,9 @@ module builder_1::votes_1_Steady_2 {
 		builder_1_consenter = @builder_1,
 		formulator_1_consenter = @Formulator_1,
 	
-		mascot_01_consenter = @mascot_01, 
-		mascot_02_consenter = @mascot_02,
-		mascot_03_consenter = @mascot_03		
+		boar_Team_01_consenter = @boar_Team_01, 
+		boar_Team_02_consenter = @boar_Team_02,
+		boar_Team_03_consenter = @boar_Team_03		
 	)]
 	#[expected_failure (abort_code = 94734)]
     public fun ending__cannot_buy_more_than_the_limit (
@@ -31,9 +31,9 @@ module builder_1::votes_1_Steady_2 {
 		builder_1_consenter : signer,
 		formulator_1_consenter : signer,		
 	
-		mascot_01_consenter : signer,
-		mascot_02_consenter : signer,
-		mascot_03_consenter : signer
+		boar_Team_01_consenter : signer,
+		boar_Team_02_consenter : signer,
+		boar_Team_03_consenter : signer
 	) {	
 		use std::vector;
 		use std::string_utils;
@@ -49,9 +49,9 @@ module builder_1::votes_1_Steady_2 {
 		use builder_1::Steady; 
 		
 		let formulator_position = signer::address_of (& formulator_1_consenter);
-		let mascot_01_position = signer::address_of (& mascot_01_consenter);
-		let mascot_02_position = signer::address_of (& mascot_02_consenter);
-		let mascot_03_position = signer::address_of (& mascot_03_consenter);	
+		let boar_Team_01_position = signer::address_of (& boar_Team_01_consenter);
+		let boar_Team_02_position = signer::address_of (& boar_Team_02_consenter);
+		let boar_Team_03_position = signer::address_of (& boar_Team_03_consenter);	
 		
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
@@ -61,18 +61,18 @@ module builder_1::votes_1_Steady_2 {
 		coin::deposit (formulator_position, coins);
 		
 		
-		account::create_account_for_test (mascot_01_position);
-		account::create_account_for_test (mascot_02_position);
-		account::create_account_for_test (mascot_03_position);
+		account::create_account_for_test (boar_Team_01_position);
+		account::create_account_for_test (boar_Team_02_position);
+		account::create_account_for_test (boar_Team_03_position);
 		
 		
-		Steady::prepare_APT_for_mascots (
-			& mascot_01_consenter,
-			& mascot_02_consenter,
-			& mascot_03_consenter
+		Steady::prepare_APT_for_boar_Teams (
+			& boar_Team_01_consenter,
+			& boar_Team_02_consenter,
+			& boar_Team_03_consenter
 		);
 		
-		coin::transfer<AptosCoin>(& formulator_1_consenter, mascot_01_position, 300000000);
+		coin::transfer<AptosCoin>(& formulator_1_consenter, boar_Team_01_position, 300000000);
 		
 		////
 		//
@@ -85,24 +85,24 @@ module builder_1::votes_1_Steady_2 {
 		
 		//	Join_the_Game
 		//
-		Game_Module::Join_the_Game (& mascot_01_consenter);
-		Game_Module::Join_the_Game (& mascot_02_consenter);
-		Game_Module::Join_the_Game (& mascot_03_consenter);
-		if (Game_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 1 };
-		if (Game_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 1 };
-		if (Game_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 1 };
+		Game_Module::Join_the_Game (& boar_Team_01_consenter);
+		Game_Module::Join_the_Game (& boar_Team_02_consenter);
+		Game_Module::Join_the_Game (& boar_Team_03_consenter);
+		if (Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 1 };
+		if (Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 1 };
+		if (Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 1 };
 		
 		//	Buy
 		//
-		Game_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
-		if (Game_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
+		Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
+		if (Game_Module::Votes_Score (boar_Team_01_position) != 5) { abort 1 };
 		if (Game_Module::Votes_For_Sale_Left () != 5) { abort 2 };
 		
-		Game_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
-		if (Game_Module::Votes_Score (mascot_01_position) != 10) { abort 1 };
+		Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
+		if (Game_Module::Votes_Score (boar_Team_01_position) != 10) { abort 1 };
 		if (Game_Module::Votes_For_Sale_Left () != 0) { abort 2 };
 		
-		Game_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
 		
 		////
 		//
