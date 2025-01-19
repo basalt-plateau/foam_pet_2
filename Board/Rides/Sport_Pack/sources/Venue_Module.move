@@ -1,7 +1,7 @@
 
 
 
-module builder_1::Venue_Module {
+module builder_1::Game_Module {
 	
 	use std::vector;
 	use std::string::{ String, utf8 };
@@ -26,7 +26,7 @@ module builder_1::Venue_Module {
 	
 	struct Vote has key, drop {}
 	
-	struct Venue has key, drop {
+	struct Game has key, drop {
 		votes_for_sale : u256,
 		mascots : vector<Mascot>
 	}
@@ -40,7 +40,7 @@ module builder_1::Venue_Module {
 	
 	////
 	//
-	//	Venue
+	//	Game
 	//
 	//
 	public entry fun Build (
@@ -55,22 +55,22 @@ module builder_1::Venue_Module {
 			abort Imperfection_consenter_is_not_Formulator 
 		};
 
-		let sport = Venue {
+		let venue = Game {
 			votes_for_sale : votes_for_sale,
 			mascots : vector::empty<Mascot>()
 		};
 		
-		move_to<Venue>(consenter, sport)
+		move_to<Game>(consenter, venue)
 	}
 	#[view] public fun is_venue_built () : String {
-		if (exists<Venue>(formulator_position ())) {
+		if (exists<Game>(formulator_position ())) {
 			return utf8 (b"yup")
 		};
 		
 		utf8 (b"no")
 	}
-	#[view] public fun End () : String acquires Venue {
-		// public entry fun End (consenter : & signer) acquires Venue {
+	#[view] public fun End () : String acquires Game {
+		// public entry fun End (consenter : & signer) acquires Game {
 		//
 		//	Check if is after 2250 = 30 + 250 = 280
 		//
@@ -82,7 +82,7 @@ module builder_1::Venue_Module {
 		};
 		
 		
-		move_from<Venue>(formulator_position ());
+		move_from<Game>(formulator_position ());
 		
 		is_venue_built ()
 	}
@@ -95,38 +95,38 @@ module builder_1::Venue_Module {
 	//	Mascots
 	//
 	//
-	public entry fun Join_the_Game (consenter : & signer) acquires Venue {
+	public entry fun Join_the_Game (consenter : & signer) acquires Game {
 		let consenter_address = signer::address_of (consenter);
 		
-		let sport = borrow_global_mut<Venue>(formulator_position ());
+		let sport = borrow_global_mut<Game>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		let mascot = Mascot_Module::add (consenter_address);
 		vector::push_back (mascots, mascot);		
 	}
 	
-	#[view] public fun Mascot_Count () : u64 acquires Venue {
-		let sport = borrow_global<Venue>(formulator_position ());
+	#[view] public fun Mascot_Count () : u64 acquires Game {
+		let sport = borrow_global<Game>(formulator_position ());
 		vector::length (&sport.mascots)
 	}
 	/*
 	#[view]
-	public fun Mascot_Roster () acquires Venue {
-		let sport = borrow_global<Venue>(formulator_position ());
+	public fun Mascot_Roster () acquires Game {
+		let sport = borrow_global<Game>(formulator_position ());
 		
 		let bracket = vector::empty<u8>();	
 		let num_mascots = vector::length(&sport.mascots);
 	}
 	*/
 	
-	public fun search_for_index_of_mascot (mascot_address : address) : u64 acquires Venue {
+	public fun search_for_index_of_mascot (mascot_address : address) : u64 acquires Game {
 		search_for_index_of_mascot_with_ending_code (mascot_address, Ending_mascot_was_not_found)
 	}
 	
 	public fun search_for_index_of_mascot_with_ending_code (
 		mascot_address : address,
 		ending_code : u64
-	) : u64 acquires Venue {
-		let sport = borrow_global_mut<Venue>(formulator_position ());
+	) : u64 acquires Game {
+		let sport = borrow_global_mut<Game>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		for (index in 0..vector::length (mascots)) {
 			let mascot_at_index_ref = vector::borrow_mut (mascots, index);
@@ -139,8 +139,8 @@ module builder_1::Venue_Module {
 		abort ending_code
 	}
 	
-	public fun mascot_has_joined_the_sport (mascot_address : address) : String acquires Venue {
-		let sport = borrow_global<Venue>(formulator_position ());
+	public fun mascot_has_joined_the_sport (mascot_address : address) : String acquires Game {
+		let sport = borrow_global<Game>(formulator_position ());
 		let mascots = & sport.mascots;
 		for (index in 0..vector::length (mascots)) {
 			let mascot_at_index_ref = vector::borrow (& sport.mascots, index);
@@ -160,11 +160,11 @@ module builder_1::Venue_Module {
 	//	Votes
 	//
 	//
-	#[view] public fun Votes_For_Sale_Left () : u256 acquires Venue {
-		let sport = borrow_global<Venue>(formulator_position ());
+	#[view] public fun Votes_For_Sale_Left () : u256 acquires Game {
+		let sport = borrow_global<Game>(formulator_position ());
 		sport.votes_for_sale
 	}
-	public entry fun Buy_5_votes_for_1_APT (consenter : & signer) acquires Venue {
+	public entry fun Buy_5_votes_for_1_APT (consenter : & signer) acquires Game {
 		let consenter_address = signer::address_of (consenter);
 		
 		
@@ -180,7 +180,7 @@ module builder_1::Venue_Module {
 		if (coin::balance<AptosCoin>(consenter_address) < 100000000) { 
 			abort Imperfection_consenter_does_not_have_enough_APT_for_purchase 
 		};
-		let sport = borrow_global<Venue>(formulator_position ());
+		let sport = borrow_global<Game>(formulator_position ());
 		if (sport.votes_for_sale < 5) {
 			abort Endings_Module::Ending_there_are_not_enough_votes_left_to_make_that_sale ()
 		};
@@ -200,7 +200,7 @@ module builder_1::Venue_Module {
 		//
 		let votes_to_add : u256 = 5;
 		let mascot_index = search_for_index_of_mascot (consenter_address);
-		let sport = borrow_global_mut<Venue>(formulator_position ());
+		let sport = borrow_global_mut<Game>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		let mascot_at_index_ref = vector::borrow_mut (mascots, mascot_index);
 		
@@ -221,7 +221,7 @@ module builder_1::Venue_Module {
 	public entry fun Throw_Vote (
 		consenter : & signer, 
 		other_mascot_address : address
-	) acquires Venue {
+	) acquires Game {
 		let consenter_address = signer::address_of (consenter);
 		
 		//
@@ -239,7 +239,7 @@ module builder_1::Venue_Module {
 		);
 		
 		// let index_of_mascot_to = search_for_index_of_mascot (other_mascot_address);
-		let sport = borrow_global_mut<Venue>(formulator_position ());
+		let sport = borrow_global_mut<Game>(formulator_position ());
 		let mascots = &mut sport.mascots;
 		
 		let mascot_from_ref = vector::borrow_mut (mascots, index_of_mascot_from);
@@ -254,9 +254,9 @@ module builder_1::Venue_Module {
 	
 
 	#[view]
-	public fun Votes_Score (mascot_address : address) : u256 acquires Venue {
+	public fun Votes_Score (mascot_address : address) : u256 acquires Game {
 		let index_of_mascot = search_for_index_of_mascot (mascot_address);
-		let sport = borrow_global<Venue>(formulator_position ());
+		let sport = borrow_global<Game>(formulator_position ());
 		let mascots = & sport.mascots;
 		let mascot_at_index_ref = vector::borrow (
 			mascots, 

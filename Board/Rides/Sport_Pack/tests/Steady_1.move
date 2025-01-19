@@ -8,10 +8,10 @@ module builder_1::votes_1_Steady_1 {
 	
 	/*
 		Ask:
-			Venue Build
+			Game Build
 			Mascot Join_the_Game
 			
-			Venue End
+			Game End
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -41,7 +41,7 @@ module builder_1::votes_1_Steady_1 {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;
 	
-		use builder_1::Venue_Module; 
+		use builder_1::Game_Module; 
 		use builder_1::Steady; 
 		
 		let formulator_position = signer::address_of (& formulator_1_consenter);
@@ -75,35 +75,35 @@ module builder_1::votes_1_Steady_1 {
 		
 		////
 		//
-		//	The Venue
+		//	The Game
 		//
 		//
 		let votes_for_sale : u256 = 900000;
-		Venue_Module::Build (& formulator_1_consenter, votes_for_sale);
+		Game_Module::Build (& formulator_1_consenter, votes_for_sale);
 		
 		//	Join_the_Game
 		//
-		Venue_Module::Join_the_Game (& mascot_01_consenter);
-		Venue_Module::Join_the_Game (& mascot_02_consenter);
-		Venue_Module::Join_the_Game (& mascot_03_consenter);
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 89389 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 89389 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 89389 };
+		Game_Module::Join_the_Game (& mascot_01_consenter);
+		Game_Module::Join_the_Game (& mascot_02_consenter);
+		Game_Module::Join_the_Game (& mascot_03_consenter);
+		if (Game_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 89389 };
+		if (Game_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 89389 };
+		if (Game_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 89389 };
 		
 		//	Buy
 		//
-		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
-		if (Venue_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
+		Game_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Game_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
 		
 		//	Throw
 		//
-		Venue_Module::Throw_Vote (& mascot_01_consenter, mascot_02_position);
-		if (Venue_Module::Votes_Score (mascot_01_position) != 4) { abort 1 };
-		if (Venue_Module::Votes_Score (mascot_02_position) != 1) { abort 1 };
+		Game_Module::Throw_Vote (& mascot_01_consenter, mascot_02_position);
+		if (Game_Module::Votes_Score (mascot_01_position) != 4) { abort 1 };
+		if (Game_Module::Votes_Score (mascot_02_position) != 1) { abort 1 };
 		
 		//	End
 		//
-		// Venue_Module::End (& formulator_1_consenter);	
+		// Game_Module::End (& formulator_1_consenter);	
 		//
 		////		
 		

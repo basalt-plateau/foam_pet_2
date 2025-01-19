@@ -11,7 +11,7 @@
 		ask_if_address_is_Formulator
 */
 module builder_1::Formulator_Module {	
-	friend builder_1::Venue_Module;
+	friend builder_1::Game_Module;
 	
 	use std::string::{ String, utf8 };
 	use std::signer;

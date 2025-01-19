@@ -143,14 +143,14 @@ export const account = {
 		
 		stealth mix
 	*/
-	"private key": "mix",
-	"Private Key": "Mix",
+	"private key": "wobble",
+	"Private Key": "Wobble",
 	
-	"private keys": "mixes",
+	"private keys": "wobble",
 	
-	"A_Private_Key": "A Mix",	
-	"a_Private_Key": "a mix",	
-	"Private Keys": "Mixes",
+	"A_Private_Key": "A Wobble",	
+	"a_Private_Key": "a wobble",	
+	"Private Keys": "Wobbles",
 	
 	//
 	//

@@ -1,14 +1,12 @@
 
 
 
-
-
-module builder_1::votes_1_Steady_6 {
+module builder_1::votes_1_Steady_3 {
 	
 	
 	
 	/*
-		Can end
+		Catcher hasn't joined the game.
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -20,7 +18,8 @@ module builder_1::votes_1_Steady_6 {
 		mascot_02_consenter = @mascot_02,
 		mascot_03_consenter = @mascot_03		
 	)]
-    public fun steady (
+	#[expected_failure (abort_code = 890478)]
+    public fun ending__catcher_has_not_joined_the_game (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -36,12 +35,11 @@ module builder_1::votes_1_Steady_6 {
 		use std::signer;
 		use std::debug;
 
-		use aptos_framework::timestamp;
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use builder_1::Venue_Module; 
+		use builder_1::Game_Module; 
 		use builder_1::Steady; 
 		
 		let formulator_position = signer::address_of (& formulator_1_consenter);
@@ -49,7 +47,6 @@ module builder_1::votes_1_Steady_6 {
 		let mascot_02_position = signer::address_of (& mascot_02_consenter);
 		let mascot_03_position = signer::address_of (& mascot_03_consenter);	
 		
-		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
@@ -73,49 +70,30 @@ module builder_1::votes_1_Steady_6 {
 		
 		////
 		//
-		//	The Venue
+		//	The Game
 		//
 		//
-		let votes_for_sale : u256 = 900000;
-		Venue_Module::Build (& formulator_1_consenter, votes_for_sale);
+		let votes_for_sale : u256 = 10;
+		Game_Module::Build (& formulator_1_consenter, votes_for_sale);
+		if (Game_Module::Votes_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game
 		//
-		Venue_Module::Join_the_Game (& mascot_01_consenter);
-		Venue_Module::Join_the_Game (& mascot_02_consenter);
-		Venue_Module::Join_the_Game (& mascot_03_consenter);
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 89389 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 89389 };
-		if (Venue_Module::mascot_has_joined_the_sport (mascot_03_position) != utf8 (b"yup")) { abort 89389 };
+		Game_Module::Join_the_Game (& mascot_01_consenter);
+		if (Game_Module::mascot_has_joined_the_sport (mascot_01_position) != utf8 (b"yup")) { abort 1 };
+		Game_Module::Join_the_Game (& mascot_02_consenter);
+		if (Game_Module::mascot_has_joined_the_sport (mascot_02_position) != utf8 (b"yup")) { abort 1 };
 		
 		//	Buy
 		//
-		Venue_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
-		if (Venue_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
+		Game_Module::Buy_5_votes_for_1_APT (& mascot_01_consenter);
+		if (Game_Module::Votes_Score (mascot_01_position) != 5) { abort 1 };
+		if (Game_Module::Votes_For_Sale_Left () != 5) { abort 2 };
+
 		
 		//	Throw
 		//
-		Venue_Module::Throw_Vote (& mascot_01_consenter, mascot_02_position);
-		if (Venue_Module::Votes_Score (mascot_01_position) != 4) { abort 1 };
-		if (Venue_Module::Votes_Score (mascot_02_position) != 1) { abort 1 };
-		
-		//	End
-		//
-		if (Venue_Module::is_venue_built () != utf8 (b"yup")) { abort 89389 };
-		//		
-		let year_ms : u64 = 31557600000;
-		timestamp::update_global_time_for_test (year_ms * 281);
-		let ending = Venue_Module::End ();	
-		debug::print (& string_utils::format1 (& b"Ending: {}", ending));	
-		//
-		
-		//	Check if can access sport
-		//
-		if (Venue_Module::is_venue_built () != utf8 (b"no")) { abort 89389 };
-		//
-		////
-		
-		
+		Game_Module::Throw_Vote (& mascot_01_consenter, mascot_03_position);
 		
 		
 		////

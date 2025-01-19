@@ -37,7 +37,7 @@ import Rides.APT_Asks_01 as APT_Asks_01
 import Rides.Peptyde as Peptyde_Moves
 import Rides.Rhythm_01 as Rhythm_01
 
-import Rides.Vote_Pack as Vote_Pack
+import Rides.Sport_Pack as Sport_Pack
 
 
 #
@@ -124,7 +124,10 @@ def motion_for_named_addresses ():
 
 
 moves_structures = {
-	"Vote_Pack": Vote_Pack,
+	"Sport_Pack": Sport_Pack,
+	
+	
+	
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
 	"Rules_10": Rules_10_Moves,
@@ -145,7 +148,7 @@ def clique ():
 
 
 	"""
-		python3 vocalize.py vocalize --move Motions_01 --steady
+		python3 vocalize.py vocalize --steady --move Motions_01
 	"""
 	@click.command ("vocalize")
 	@click.option ('--move', type = str, help = '')
