@@ -14,7 +14,7 @@ module builder_1::votes_1_Steady_4 {
 		aptos_framework_consenter = @0x1, 
 	
 		builder_1_consenter = @builder_1,
-		formulator_1_consenter = @Formulator_1,
+		boar_Producer_1_consenter = @Boar_Producer_1,
 	
 		boar_Team_01_consenter = @boar_Team_01, 
 		boar_Team_02_consenter = @boar_Team_02,
@@ -25,7 +25,7 @@ module builder_1::votes_1_Steady_4 {
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
-		formulator_1_consenter : signer,		
+		boar_Producer_1_consenter : signer,		
 	
 		boar_Team_01_consenter : signer,
 		boar_Team_02_consenter : signer,
@@ -44,7 +44,7 @@ module builder_1::votes_1_Steady_4 {
 		use builder_1::Game_Module; 
 		use builder_1::Steady; 
 		
-		let formulator_position = signer::address_of (& formulator_1_consenter);
+		let boar_Producer_position = signer::address_of (& boar_Producer_1_consenter);
 		let boar_Team_01_position = signer::address_of (& boar_Team_01_consenter);
 		let boar_Team_02_position = signer::address_of (& boar_Team_02_consenter);
 		let boar_Team_03_position = signer::address_of (& boar_Team_03_consenter);	
@@ -52,9 +52,9 @@ module builder_1::votes_1_Steady_4 {
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
-		account::create_account_for_test (formulator_position);
-		coin::register<AptosCoin>(& formulator_1_consenter);
-		coin::deposit (formulator_position, coins);
+		account::create_account_for_test (boar_Producer_position);
+		coin::register<AptosCoin>(& boar_Producer_1_consenter);
+		coin::deposit (boar_Producer_position, coins);
 		
 		
 		account::create_account_for_test (boar_Team_01_position);
@@ -68,7 +68,7 @@ module builder_1::votes_1_Steady_4 {
 			& boar_Team_03_consenter
 		);
 		
-		coin::transfer<AptosCoin>(& formulator_1_consenter, boar_Team_01_position, 300000000);
+		coin::transfer<AptosCoin>(& boar_Producer_1_consenter, boar_Team_01_position, 300000000);
 		
 		////
 		//
@@ -76,7 +76,7 @@ module builder_1::votes_1_Steady_4 {
 		//
 		//
 		let votes_for_sale : u256 = 10;
-		Game_Module::Build (& formulator_1_consenter, votes_for_sale);
+		Game_Module::Build (& boar_Producer_1_consenter, votes_for_sale);
 		if (Game_Module::Votes_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Game

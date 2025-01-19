@@ -16,12 +16,11 @@ places = [
 
 #
 #	boar_, Boar_
-#
+#	p1G_, P1G_
 #
 
 find_and_replace = [
-	[ "Formulator", "Boar_Producer" ],
-	[ "formulator", "boar_Producer" ]
+	[ "Game", "Boar_Game" ],
 ]
 
 

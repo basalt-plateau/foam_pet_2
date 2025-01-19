@@ -12,14 +12,14 @@ module builder_1::Game_Module {
 	use aptos_framework::aptos_coin::AptosCoin;
 
 	use builder_1::Boar_Team_Module::{ Self, Boar_Team };
-	use builder_1::Formulator_Module::{ 
-		formulator_position, 
-		ask_if_consenter_is_Formulator 
+	use builder_1::Boar_Producer_Module::{ 
+		boar_Producer_position, 
+		ask_if_consenter_is_Boar_Producer 
 	};
 	use builder_1::Endings_Module;
 
 	const Imperfection_consenter_has_not_joined : u64 = 0;
-	const Imperfection_consenter_is_not_Formulator : u64 = 1;
+	const Imperfection_consenter_is_not_Boar_Producer : u64 = 1;
 	const Imperfection_consenter_does_not_have_enough_APT_for_purchase : u64 = 2;
 	const Ending_boar_Team_was_not_found : u64 = 3;
 	const Ending_every_vote_has_been_sold : u64 = 3;
@@ -48,22 +48,22 @@ module builder_1::Game_Module {
 		votes_for_sale : u256
 	) {
 		//
-		//	Make sure the consenter is the Formulator.
+		//	Make sure the consenter is the Boar_Producer.
 		//
 		//
-		if (ask_if_consenter_is_Formulator (consenter) != utf8 (b"yup")) { 
-			abort Imperfection_consenter_is_not_Formulator 
+		if (ask_if_consenter_is_Boar_Producer (consenter) != utf8 (b"yup")) { 
+			abort Imperfection_consenter_is_not_Boar_Producer 
 		};
 
-		let venue = Game {
+		let boar_Game = Game {
 			votes_for_sale : votes_for_sale,
 			boar_Teams : vector::empty<Boar_Team>()
 		};
 		
-		move_to<Game>(consenter, venue)
+		move_to<Game>(consenter, boar_Game)
 	}
-	#[view] public fun is_venue_built () : String {
-		if (exists<Game>(formulator_position ())) {
+	#[view] public fun is_boar_Game_built () : String {
+		if (exists<Game>(boar_Producer_position ())) {
 			return utf8 (b"yup")
 		};
 		
@@ -82,9 +82,9 @@ module builder_1::Game_Module {
 		};
 		
 		
-		move_from<Game>(formulator_position ());
+		move_from<Game>(boar_Producer_position ());
 		
-		is_venue_built ()
+		is_boar_Game_built ()
 	}
 	//
 	////
@@ -98,20 +98,20 @@ module builder_1::Game_Module {
 	public entry fun Join_the_Game (consenter : & signer) acquires Game {
 		let consenter_address = signer::address_of (consenter);
 		
-		let sport = borrow_global_mut<Game>(formulator_position ());
+		let sport = borrow_global_mut<Game>(boar_Producer_position ());
 		let boar_Teams = &mut sport.boar_Teams;
 		let boar_Team = Boar_Team_Module::add (consenter_address);
 		vector::push_back (boar_Teams, boar_Team);		
 	}
 	
 	#[view] public fun Boar_Team_Count () : u64 acquires Game {
-		let sport = borrow_global<Game>(formulator_position ());
+		let sport = borrow_global<Game>(boar_Producer_position ());
 		vector::length (&sport.boar_Teams)
 	}
 	/*
 	#[view]
 	public fun Boar_Team_Roster () acquires Game {
-		let sport = borrow_global<Game>(formulator_position ());
+		let sport = borrow_global<Game>(boar_Producer_position ());
 		
 		let bracket = vector::empty<u8>();	
 		let num_boar_Teams = vector::length(&sport.boar_Teams);
@@ -126,7 +126,7 @@ module builder_1::Game_Module {
 		boar_Team_address : address,
 		ending_code : u64
 	) : u64 acquires Game {
-		let sport = borrow_global_mut<Game>(formulator_position ());
+		let sport = borrow_global_mut<Game>(boar_Producer_position ());
 		let boar_Teams = &mut sport.boar_Teams;
 		for (index in 0..vector::length (boar_Teams)) {
 			let boar_Team_at_index_ref = vector::borrow_mut (boar_Teams, index);
@@ -140,7 +140,7 @@ module builder_1::Game_Module {
 	}
 	
 	public fun boar_Team_has_joined_the_sport (boar_Team_address : address) : String acquires Game {
-		let sport = borrow_global<Game>(formulator_position ());
+		let sport = borrow_global<Game>(boar_Producer_position ());
 		let boar_Teams = & sport.boar_Teams;
 		for (index in 0..vector::length (boar_Teams)) {
 			let boar_Team_at_index_ref = vector::borrow (& sport.boar_Teams, index);
@@ -161,7 +161,7 @@ module builder_1::Game_Module {
 	//
 	//
 	#[view] public fun Votes_For_Sale_Left () : u256 acquires Game {
-		let sport = borrow_global<Game>(formulator_position ());
+		let sport = borrow_global<Game>(boar_Producer_position ());
 		sport.votes_for_sale
 	}
 	public entry fun Buy_5_votes_for_1_APT (consenter : & signer) acquires Game {
@@ -180,17 +180,17 @@ module builder_1::Game_Module {
 		if (coin::balance<AptosCoin>(consenter_address) < 100000000) { 
 			abort Imperfection_consenter_does_not_have_enough_APT_for_purchase 
 		};
-		let sport = borrow_global<Game>(formulator_position ());
+		let sport = borrow_global<Game>(boar_Producer_position ());
 		if (sport.votes_for_sale < 5) {
 			abort Endings_Module::Ending_there_are_not_enough_votes_left_to_make_that_sale ()
 		};
 		
 		//
 		//
-		//	Send 1 APT to the Formulator
+		//	Send 1 APT to the Boar_Producer
 		//
 		//
-		coin::transfer<AptosCoin>(consenter, formulator_position (), 100000000);
+		coin::transfer<AptosCoin>(consenter, boar_Producer_position (), 100000000);
 		
 		
 		//
@@ -200,7 +200,7 @@ module builder_1::Game_Module {
 		//
 		let votes_to_add : u256 = 5;
 		let boar_Team_index = search_for_index_of_boar_Team (consenter_address);
-		let sport = borrow_global_mut<Game>(formulator_position ());
+		let sport = borrow_global_mut<Game>(boar_Producer_position ());
 		let boar_Teams = &mut sport.boar_Teams;
 		let boar_Team_at_index_ref = vector::borrow_mut (boar_Teams, boar_Team_index);
 		
@@ -215,7 +215,7 @@ module builder_1::Game_Module {
 		sport.votes_for_sale = sport.votes_for_sale - 5;
 		
 		// coin::transfer<AptosCoin>(& consenter, boar_Team_01_position, 500);
-		// coin::transfer<AptosCoin>(& consenter, formulator_position (), 500);
+		// coin::transfer<AptosCoin>(& consenter, boar_Producer_position (), 500);
 	}
 	
 	public entry fun Throw_Vote (
@@ -239,7 +239,7 @@ module builder_1::Game_Module {
 		);
 		
 		// let index_of_boar_Team_to = search_for_index_of_boar_Team (other_boar_Team_address);
-		let sport = borrow_global_mut<Game>(formulator_position ());
+		let sport = borrow_global_mut<Game>(boar_Producer_position ());
 		let boar_Teams = &mut sport.boar_Teams;
 		
 		let boar_Team_from_ref = vector::borrow_mut (boar_Teams, index_of_boar_Team_from);
@@ -256,7 +256,7 @@ module builder_1::Game_Module {
 	#[view]
 	public fun Votes_Score (boar_Team_address : address) : u256 acquires Game {
 		let index_of_boar_Team = search_for_index_of_boar_Team (boar_Team_address);
-		let sport = borrow_global<Game>(formulator_position ());
+		let sport = borrow_global<Game>(boar_Producer_position ());
 		let boar_Teams = & sport.boar_Teams;
 		let boar_Team_at_index_ref = vector::borrow (
 			boar_Teams, 

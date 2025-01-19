@@ -111,6 +111,7 @@ def motion_for_named_addresses ():
 		f"""boar_Team_10={ boar_Team_10 ["legacy address"] }, """,
 
 		f"""Formulator_1={ owner_1 ["address"] }, """,
+		f"""Boar_Producer_1={ owner_1 ["address"] }, """,
 
 		f"""Ride_01={ builder_1 ["address"] }, """,
 		f"""ride={ builder_1 ["address"] }, """,		
