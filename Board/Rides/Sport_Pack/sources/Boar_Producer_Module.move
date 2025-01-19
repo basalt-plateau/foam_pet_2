@@ -11,7 +11,7 @@
 		ask_if_address_is_Boar_Producer
 */
 module builder_1::Boar_Producer_Module {	
-	friend builder_1::Game_Module;
+	friend builder_1::Boar_Game_Module;
 	
 	use std::string::{ String, utf8 };
 	use std::signer;

@@ -4,11 +4,11 @@
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 
-const build = () => {
+const start = () => {
 	
 }
 
-const demolish = () => {
+const end = () => {
 	
 }
 
@@ -32,17 +32,17 @@ const demolish = () => {
 		"
 	>
 		<Petition_APT_Button
-			button_text="Build"
+			button_text="Start"
 			APT="0"
-			clicked={ build }
+			clicked={ start }
 			
 			permitted={ "yes" }
 		/>
 		
 		<Petition_APT_Button
-			button_text="Demolish"
+			button_text="End"
 			APT="0"
-			clicked={ demolish }
+			clicked={ end }
 			
 			permitted={ "yes" }
 		/>

@@ -45,7 +45,7 @@ module builder_1::votes_1_Steady_2 {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use builder_1::Game_Module; 
+		use builder_1::Boar_Game_Module; 
 		use builder_1::Steady; 
 		
 		let boar_Producer_position = signer::address_of (& boar_Producer_1_consenter);
@@ -76,33 +76,33 @@ module builder_1::votes_1_Steady_2 {
 		
 		////
 		//
-		//	The Game
+		//	The Boar_Game
 		//
 		//
 		let votes_for_sale : u256 = 10;
-		Game_Module::Build (& boar_Producer_1_consenter, votes_for_sale);
-		if (Game_Module::Votes_For_Sale_Left () != 10) { abort 2 };
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, votes_for_sale);
+		if (Boar_Game_Module::Votes_For_Sale_Left () != 10) { abort 2 };
 		
-		//	Join_the_Game
+		//	Join_the_Boar_Game
 		//
-		Game_Module::Join_the_Game (& boar_Team_01_consenter);
-		Game_Module::Join_the_Game (& boar_Team_02_consenter);
-		Game_Module::Join_the_Game (& boar_Team_03_consenter);
-		if (Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 1 };
-		if (Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 1 };
-		if (Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 1 };
+		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_01_consenter);
+		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_02_consenter);
+		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_03_consenter);
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 1 };
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 1 };
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 1 };
 		
 		//	Buy
 		//
-		Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
-		if (Game_Module::Votes_Score (boar_Team_01_position) != 5) { abort 1 };
-		if (Game_Module::Votes_For_Sale_Left () != 5) { abort 2 };
+		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
+		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 5) { abort 1 };
+		if (Boar_Game_Module::Votes_For_Sale_Left () != 5) { abort 2 };
 		
-		Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
-		if (Game_Module::Votes_Score (boar_Team_01_position) != 10) { abort 1 };
-		if (Game_Module::Votes_For_Sale_Left () != 0) { abort 2 };
+		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
+		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 10) { abort 1 };
+		if (Boar_Game_Module::Votes_For_Sale_Left () != 0) { abort 2 };
 		
-		Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
+		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
 		
 		////
 		//

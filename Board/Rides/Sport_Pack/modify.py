@@ -20,7 +20,8 @@ places = [
 #
 
 find_and_replace = [
-	[ "Game", "Boar_Game" ],
+	[ "vote", "boar_Play" ],
+	[ "Vote", "Boar_Play" ]	
 ]
 
 

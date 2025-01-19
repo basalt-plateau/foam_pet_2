@@ -2,7 +2,7 @@
 
 
 module builder_1::Boar_Team_Module {
-	friend builder_1::Game_Module;
+	friend builder_1::Boar_Game_Module;
 	
 	use std::string::{ String };
 	

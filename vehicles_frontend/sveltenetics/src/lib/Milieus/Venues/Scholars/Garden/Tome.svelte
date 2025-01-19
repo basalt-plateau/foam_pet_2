@@ -66,10 +66,9 @@ a {
 				margin: 0 auto;
 			"
 		>The <Slang text="this_domain" /> dapp cannot be obtained and run as a Linux dapp at this time.</p>
-
+		
 		<div style="height: 0.5cm"></div>
-
-
+		
 		<p
 			style="
 				text-align: center;
@@ -78,8 +77,6 @@ a {
 				margin: 0 auto;
 			"
 		>Please check later.</p>
-		
-		
 		
 		<div
 			style="
@@ -101,10 +98,10 @@ a {
 		
 		<div style="height: 0.5cm"></div>
 	</div>
-
-		<div style="height: 0.5cm"></div>
-
-
+	
+	<div style="height: 0.5cm"></div>
+	
+	
 	<div class="card p-4">
 		<div style="height: 0.5cm"></div>
 		<header 
@@ -122,7 +119,7 @@ a {
 				margin: 0 auto;
 			"
 		><Slang text="this_domain_wallet" />, the <Slang text="this_domain" /> wallet extension, is in development.</p>
-
+		
 		
 		
 		<div

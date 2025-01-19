@@ -1,10 +1,16 @@
 
+
 <script>
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 
-const buy_5_water_balloons = () => {
-	console.log ("buy_5_water_balloons");
+const join = () => {
+	
+}
+
+// quit, exit, leave
+const exit = () => {
+
 }
 
 
@@ -24,7 +30,7 @@ const buy_5_water_balloons = () => {
 		"
 		class="card p-4"
 	>
-		<header>Vote</header>
+		<header>Teams</header>
 	</div>
 	
 	<div class="card p-4"
@@ -37,14 +43,34 @@ const buy_5_water_balloons = () => {
 		"
 	>
 		<Petition_APT_Button
-			button_text="5 Water Balloons"
+			button_text="Join"
 			APT="1"
-			clicked={ buy_5_water_balloons }
+			clicked={ join }
+			
+			permitted={ "yes" }
+		/>
+		
+		<Petition_APT_Button
+			button_text="Exit"
+			APT="0"
+			clicked={ exit }
+			
 			permitted={ "yes" }
 		/>
 	</div>
 
-
+	<div class="card p-4"
+		style="
+			width: 100%;
+			text-align: center;
+			
+			display: flex;
+			justify-content: space-around;
+		"
+	>
+		<header>Roster</header>
+	
+	</div>
 
 
 
