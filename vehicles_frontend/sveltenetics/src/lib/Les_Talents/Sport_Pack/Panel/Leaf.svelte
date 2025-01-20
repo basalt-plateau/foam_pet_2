@@ -4,9 +4,9 @@
 
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
-import Game from './Shirts/Game.svelte'
-import Teams from './Shirts/Teams.svelte'
-import Play from './Shirts/Play.svelte'
+import Game from './Stadium/Game.svelte'
+import Teams from './Stadium/Teams.svelte'
+import Play from './Stadium/Play.svelte'
 
 let shirt = "Game";
 
@@ -28,7 +28,7 @@ let shirt = "Game";
 		</RadioGroup>
 	</div>
 	
-	<div style="height: 1cm" />
+	<div style="height: 0.25cm" />
 	
 	<div
 		style="

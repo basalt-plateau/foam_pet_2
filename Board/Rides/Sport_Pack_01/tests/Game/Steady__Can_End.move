@@ -2,14 +2,12 @@
 
 
 
-
+/*
+	Can end
+*/
 module builder_1::Steady__Can_End {
 	
 	
-	
-	/*
-		Can end
-	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
 	
@@ -30,7 +28,6 @@ module builder_1::Steady__Can_End {
 		boar_Team_02_consenter : signer,
 		boar_Team_03_consenter : signer
 	) {	
-		use std::vector;
 		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -43,7 +40,16 @@ module builder_1::Steady__Can_End {
 	
 		use builder_1::Boar_Game_Module; 
 		use builder_1::Steady; 
+	
+	
+		let one_APT : u64 = 100000000; 
 		
+		let apt_mint : u64 = one_APT * 100;
+		let apt_boar_Team_01_position : u64 = one_APT * 10;
+
+		let boar_Plays_for_sale : u256 = 900000;
+	
+	
 		let boar_Producer_position = signer::address_of (& boar_Producer_1_consenter);
 		let boar_Team_01_position = signer::address_of (& boar_Team_01_consenter);
 		let boar_Team_02_position = signer::address_of (& boar_Team_02_consenter);
@@ -52,11 +58,10 @@ module builder_1::Steady__Can_End {
 		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
-		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
+		let coins = coin::mint<AptosCoin>(apt_mint, &mint_cap);
 		account::create_account_for_test (boar_Producer_position);
 		coin::register<AptosCoin>(& boar_Producer_1_consenter);
 		coin::deposit (boar_Producer_position, coins);
-		
 		
 		account::create_account_for_test (boar_Team_01_position);
 		account::create_account_for_test (boar_Team_02_position);
@@ -69,53 +74,30 @@ module builder_1::Steady__Can_End {
 			& boar_Team_03_consenter
 		);
 		
-		coin::transfer<AptosCoin>(& boar_Producer_1_consenter, boar_Team_01_position, 300000000);
+		coin::transfer<AptosCoin>(& boar_Producer_1_consenter, boar_Team_01_position, apt_boar_Team_01_position);
 		
 		////
 		//
-		//	The Boar_Game
+		//	Boar_Game Begin
 		//
 		//
 		let boar_Plays_for_sale : u256 = 900000;
 		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
-		
-		//	Join_the_Boar_Game
+		assert! (Boar_Game_Module::is_boar_Boar_Game_built () == utf8 (b"yup"), 1);
 		//
-		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_01_consenter);
-		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_02_consenter);
-		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_03_consenter);
-		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 89389 };
-		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 89389 };
-		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 89389 };
-		
-		//	Buy
+		////
+
+		////
 		//
-		Boar_Game_Module::Buy_5_boar_Plays_for_1_APT (& boar_Team_01_consenter);
-		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 5) { abort 1 };
-		
-		//	Throw
+		//	Boar_Game End
 		//
-		Boar_Game_Module::Throw_Boar_Play (& boar_Team_01_consenter, boar_Team_02_position);
-		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 4) { abort 1 };
-		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_02_position) != 1) { abort 1 };
-		
-		//	End
-		//
-		if (Boar_Game_Module::is_boar_Boar_Game_built () != utf8 (b"yup")) { abort 89389 };
-		//		
 		let year_ms : u64 = 31557600000;
 		timestamp::update_global_time_for_test (year_ms * 281);
 		let ending = Boar_Game_Module::End ();	
 		debug::print (& string_utils::format1 (& b"Ending: {}", ending));	
-		//
-		
-		//	Check if can access sport
-		//
-		if (Boar_Game_Module::is_boar_Boar_Game_built () != utf8 (b"no")) { abort 89389 };
+		assert! (Boar_Game_Module::is_boar_Boar_Game_built () == utf8 (b"no"), 1);
 		//
 		////
-		
-		
 		
 		
 		////

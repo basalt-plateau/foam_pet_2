@@ -2,6 +2,10 @@
 
 <script>
 
+/*
+	Roster, Leaderboard
+*/
+
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 
 const join = () => {

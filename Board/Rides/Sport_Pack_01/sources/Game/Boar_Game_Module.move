@@ -241,58 +241,7 @@ module builder_1::Boar_Game_Module {
 		//
 		sport.boar_Plays_for_sale = sport.boar_Plays_for_sale - amount_of_plays_to_buy;
 	}
-	public entry fun Buy_5_boar_Plays_for_1_APT (consenter : & signer) acquires Boar_Game {
-		let consenter_address = signer::address_of (consenter);
-		
-		//
-		//	Vows:
-		//		1. Vow that the consenter has joined the sport as a boar_Team.
-		//		2. Vow that the consenter has greater than 1 APT.
-		//		3. Vow that there are enough boar_Plays left for sale.
-		//
-		if (boar_Team_has_joined_the_sport (consenter_address) != utf8 (b"yup")) { 
-			abort Imperfection_consenter_has_not_joined 
-		};
-		if (coin::balance<AptosCoin>(consenter_address) < 100000000) { 
-			abort Imperfection_consenter_does_not_have_enough_APT_for_purchase 
-		};
-		let sport = borrow_global<Boar_Game>(boar_Producer_position ());
-		if (sport.boar_Plays_for_sale < 5) {
-			abort Endings_Module::Ending_there_are_not_enough_boar_Plays_left_to_make_that_sale ()
-		};
-		
-		//
-		//
-		//	Send 1 APT to the Boar_Producer
-		//
-		//
-		coin::transfer<AptosCoin>(consenter, boar_Producer_position (), 100000000);
-		
-		
-		//
-		//
-		//	Send 5 Water Balloons
-		//
-		//
-		let boar_Plays_to_add : u256 = 5;
-		let boar_Team_index = search_for_index_of_boar_Team (consenter_address);
-		let sport = borrow_global_mut<Boar_Game>(boar_Producer_position ());
-		let boar_Teams = &mut sport.boar_Teams;
-		let boar_Team_at_index_ref = vector::borrow_mut (boar_Teams, boar_Team_index);
-		
-		Boar_Team_Module::add_boar_Plays (boar_Team_at_index_ref, boar_Plays_to_add);	
-		
-		
-		//
-		//
-		//	Subtract 5 Water Balloons from for sale
-		//
-		//
-		sport.boar_Plays_for_sale = sport.boar_Plays_for_sale - 5;
-		
-		// coin::transfer<AptosCoin>(& consenter, boar_Team_01_position, 500);
-		// coin::transfer<AptosCoin>(& consenter, boar_Producer_position (), 500);
-	}
+	
 	
 	public entry fun Throw_Boar_Play (
 		consenter : & signer, 

@@ -47,9 +47,15 @@ module builder_1::boar_Plays_1_Steady_3 {
 		let boar_Team_02_position = signer::address_of (& boar_Team_02_consenter);
 		let boar_Team_03_position = signer::address_of (& boar_Team_03_consenter);	
 		
+		let one_APT : u64 = 100000000; 
 		
+		let apt_mint : u64 = one_APT * 100;
+		let apt_boar_Team_01_position : u64 = one_APT * 10;
+
+		let boar_Plays_for_sale : u256 = 10;
+	
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
-		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
+		let coins = coin::mint<AptosCoin>(apt_mint, &mint_cap);
 		account::create_account_for_test (boar_Producer_position);
 		coin::register<AptosCoin>(& boar_Producer_1_consenter);
 		coin::deposit (boar_Producer_position, coins);
@@ -66,14 +72,13 @@ module builder_1::boar_Plays_1_Steady_3 {
 			& boar_Team_03_consenter
 		);
 		
-		coin::transfer<AptosCoin>(& boar_Producer_1_consenter, boar_Team_01_position, 300000000);
+		coin::transfer<AptosCoin>(& boar_Producer_1_consenter, boar_Team_01_position, apt_boar_Team_01_position);
 		
 		////
 		//
 		//	The Boar_Game
 		//
 		//
-		let boar_Plays_for_sale : u256 = 10;
 		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
 		if (Boar_Game_Module::Boar_Plays_For_Sale_Left () != 10) { abort 2 };
 		
@@ -86,9 +91,10 @@ module builder_1::boar_Plays_1_Steady_3 {
 		
 		//	Buy
 		//
-		Boar_Game_Module::Buy_5_boar_Plays_for_1_APT (& boar_Team_01_consenter);
-		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 5) { abort 1 };
-		if (Boar_Game_Module::Boar_Plays_For_Sale_Left () != 5) { abort 2 };
+		Boar_Game_Module::Buy_Boar_Plays_for_1_APT_each (& boar_Team_01_consenter, 5);
+		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == one_APT * 5, 1);
+		assert! (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) == 5, 1);
+		assert! (Boar_Game_Module::Boar_Plays_For_Sale_Left () == 5, 1);
 
 		
 		//	Throw

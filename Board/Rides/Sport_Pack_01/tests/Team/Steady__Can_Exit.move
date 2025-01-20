@@ -33,7 +33,6 @@ module builder_1::Steady__Can_Exit {
 		boar_Team_02_consenter : signer,
 		boar_Team_03_consenter : signer
 	) {	
-		use std::vector;
 		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;

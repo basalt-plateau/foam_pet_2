@@ -97,17 +97,21 @@ module builder_1::Steady__Cannot_buy_more_than_the_limit {
 		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 1 };
 		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 1 };
 		 
+		//
+		//
 		//	Buy
 		//
 		Boar_Game_Module::Buy_Boar_Plays_for_1_APT_each (& boar_Team_01_consenter, 5);
-		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 5) { abort 1 };
-		if (Boar_Game_Module::Boar_Plays_For_Sale_Left () != 5) { abort 2 };
+		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == one_APT * 95, 1);
+		assert! (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) == 5, 1);
+		assert! (Boar_Game_Module::Boar_Plays_For_Sale_Left () == 5, 1);
+
+		Boar_Game_Module::Buy_Boar_Plays_for_1_APT_each (& boar_Team_01_consenter, 5);
+		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == one_APT * 90, 1);
+		assert! (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) == 10, 1);
+		assert! (Boar_Game_Module::Boar_Plays_For_Sale_Left () == 0, 1);
 		
-		Boar_Game_Module::Buy_5_boar_Plays_for_1_APT (& boar_Team_01_consenter);
-		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 10) { abort 1 };
-		if (Boar_Game_Module::Boar_Plays_For_Sale_Left () != 0) { abort 2 };
-		
-		Boar_Game_Module::Buy_5_boar_Plays_for_1_APT (& boar_Team_01_consenter);
+		Boar_Game_Module::Buy_Boar_Plays_for_1_APT_each (& boar_Team_01_consenter, 5);
 		
 		
 		
