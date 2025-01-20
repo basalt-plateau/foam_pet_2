@@ -4,7 +4,7 @@
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 
-const start = () => {
+const begin = () => {
 	
 }
 
@@ -32,9 +32,9 @@ const end = () => {
 		"
 	>
 		<Petition_APT_Button
-			button_text="Start"
+			button_text="Begin"
 			APT="0"
-			clicked={ start }
+			clicked={ begin }
 			
 			permitted={ "yes" }
 		/>

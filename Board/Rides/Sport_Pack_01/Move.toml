@@ -3,7 +3,7 @@
 
 
 [package]
-name = "Sport_Pack"
+name = "Sport_Pack_01"
 version = "1.0.0"
 authors = []
 upgrade_policy = "compatible"

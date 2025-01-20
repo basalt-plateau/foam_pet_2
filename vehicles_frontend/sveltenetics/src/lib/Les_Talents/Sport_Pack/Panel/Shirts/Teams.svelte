@@ -24,39 +24,48 @@ const exit = () => {
 		flex-direction: column;
 	"
 >
-	<div
+	<div 
 		style="
-			text-align: center;
+			display: flex;
+			flex-direction: column;
+			gap: 0.25cm;
 		"
 		class="card p-4"
 	>
-		<header>Teams</header>
-	</div>
-	
-	<div class="card p-4"
-		style="
-			width: 100%;
-			text-align: center;
-			
-			display: flex;
-			justify-content: space-around;
-		"
-	>
-		<Petition_APT_Button
-			button_text="Join"
-			APT="1"
-			clicked={ join }
-			
-			permitted={ "yes" }
-		/>
+		<div
+			style="
+				text-align: center;
+				font-size: 1.5em;
+			"
+		>
+			<header>Team</header>
+		</div>
 		
-		<Petition_APT_Button
-			button_text="Exit"
-			APT="0"
-			clicked={ exit }
+		<div class="card p-4"
+			style="
+				width: 100%;
+				text-align: center;
+				
+				display: flex;
+				justify-content: space-around;
+			"
+		>
+			<Petition_APT_Button
+				button_text="Join"
+				APT="1"
+				clicked={ join }
+				
+				permitted={ "yes" }
+			/>
 			
-			permitted={ "yes" }
-		/>
+			<Petition_APT_Button
+				button_text="Exit"
+				APT="0"
+				clicked={ exit }
+				
+				permitted={ "yes" }
+			/>
+		</div>
 	</div>
 
 	<div class="card p-4"

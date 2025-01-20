@@ -3,12 +3,15 @@
 
 
 
-module builder_1::votes_1_Steady_5 {
+
+
+
+module builder_1::Steady__Can_Exit {
 	
 	
 	
 	/*
-		Can throw from one boar_Team to another.
+		Can end
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -20,7 +23,7 @@ module builder_1::votes_1_Steady_5 {
 		boar_Team_02_consenter = @boar_Team_02,
 		boar_Team_03_consenter = @boar_Team_03		
 	)]
-    public fun can_throw_from_one_boar_Team_to_another (
+    public fun steady (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -36,6 +39,7 @@ module builder_1::votes_1_Steady_5 {
 		use std::signer;
 		use std::debug;
 
+		use aptos_framework::timestamp;
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
@@ -48,6 +52,7 @@ module builder_1::votes_1_Steady_5 {
 		let boar_Team_02_position = signer::address_of (& boar_Team_02_consenter);
 		let boar_Team_03_position = signer::address_of (& boar_Team_03_consenter);	
 		
+		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
@@ -74,34 +79,60 @@ module builder_1::votes_1_Steady_5 {
 		//	The Boar_Game
 		//
 		//
-		let votes_for_sale : u256 = 900000;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, votes_for_sale);
+		let boar_Plays_for_sale : u256 = 900000;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
 		
-		//	Join_the_Boar_Game
+		//
+		//
+		//	Join Board_Game
 		//
 		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_01_consenter);
-		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_02_consenter);
-		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_03_consenter);
 		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 89389 };
+		if (Boar_Game_Module::Boar_Team_Count () != 1) { abort 2 };
+		
+		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_02_consenter);
 		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 89389 };
+		if (Boar_Game_Module::Boar_Team_Count () != 2) { abort 2 };
+		
+		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_03_consenter);
 		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 89389 };
+		if (Boar_Game_Module::Boar_Team_Count () != 3) { abort 2 };
 		
-		//	Buy
-		//
-		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
-		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 5) { abort 1 };
 		
-		//	Throw
 		//
-		Boar_Game_Module::Throw_Vote (& boar_Team_01_consenter, boar_Team_02_position);
-		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 4) { abort 1 };
-		if (Boar_Game_Module::Votes_Score (boar_Team_02_position) != 1) { abort 1 };
+		//
+		//	Exit Board_Game
+		//
+		Boar_Game_Module::Exit_the_Boar_Game (& boar_Team_01_consenter);
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"no")) { abort 89389 };
+		if (Boar_Game_Module::Boar_Team_Count () != 2) { abort 2 };
+		
+		Boar_Game_Module::Exit_the_Boar_Game (& boar_Team_02_consenter);
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"no")) { abort 89389 };
+		if (Boar_Game_Module::Boar_Team_Count () != 1) { abort 2 };
+		
+		Boar_Game_Module::Exit_the_Boar_Game (& boar_Team_03_consenter);
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"no")) { abort 89389 };
+		if (Boar_Game_Module::Boar_Team_Count () != 0) { abort 2 };
 		
 		//	End
 		//
-		// Boar_Game_Module::End (& boar_Producer_1_consenter);	
+		if (Boar_Game_Module::is_boar_Boar_Game_built () != utf8 (b"yup")) { abort 89389 };
+		//		
+		let year_ms : u64 = 31557600000;
+		timestamp::update_global_time_for_test (year_ms * 281);
+		//
+		let ending = Boar_Game_Module::End ();	
+		debug::print (& string_utils::format1 (& b"Ending: {}", ending));	
+		//
+		
+		//	Check if can access sport
+		//
+		if (Boar_Game_Module::is_boar_Boar_Game_built () != utf8 (b"no")) { abort 89389 };
 		//
 		////
+		
+		
 		
 		
 		////

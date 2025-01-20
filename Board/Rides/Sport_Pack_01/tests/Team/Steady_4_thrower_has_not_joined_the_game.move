@@ -1,18 +1,14 @@
 
 
 
-module builder_1::votes_1_Steady_2 {
-	
+
+
+module builder_1::boar_Plays_1_Steady_4 {
 	
 	
 	
 	/*
-		Ensure that can't buy more than the limit.
-		
-			10 Water Balloons
-			Purchases -> Pass
-			Purchases -> Pass
-			Purchases -> Fail
+		Thrower hasn't joined the game.
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -24,8 +20,8 @@ module builder_1::votes_1_Steady_2 {
 		boar_Team_02_consenter = @boar_Team_02,
 		boar_Team_03_consenter = @boar_Team_03		
 	)]
-	#[expected_failure (abort_code = 94734)]
-    public fun ending__cannot_buy_more_than_the_limit (
+	#[expected_failure (abort_code = 473890)]
+    public fun ending__thrower_has_not_joined_the_game (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -79,30 +75,22 @@ module builder_1::votes_1_Steady_2 {
 		//	The Boar_Game
 		//
 		//
-		let votes_for_sale : u256 = 10;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, votes_for_sale);
-		if (Boar_Game_Module::Votes_For_Sale_Left () != 10) { abort 2 };
+		let boar_Plays_for_sale : u256 = 10;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
+		if (Boar_Game_Module::Boar_Plays_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Boar_Game
 		//
 		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_01_consenter);
-		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_02_consenter);
-		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_03_consenter);
 		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 1 };
+		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_02_consenter);
 		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 1 };
-		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 1 };
 		
-		//	Buy
+
+		//	Throw
 		//
-		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
-		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 5) { abort 1 };
-		if (Boar_Game_Module::Votes_For_Sale_Left () != 5) { abort 2 };
+		Boar_Game_Module::Throw_Boar_Play (& boar_Team_03_consenter, boar_Team_01_position);
 		
-		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
-		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 10) { abort 1 };
-		if (Boar_Game_Module::Votes_For_Sale_Left () != 0) { abort 2 };
-		
-		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
 		
 		////
 		//

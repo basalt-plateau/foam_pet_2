@@ -11,7 +11,7 @@ module builder_1::Endings_Module {
 		Rules_10::Volitions_01 () 
 	}
 	
-	public (friend) fun Ending_there_are_not_enough_votes_left_to_make_that_sale () : u64 {
+	public (friend) fun Ending_there_are_not_enough_boar_Plays_left_to_make_that_sale () : u64 {
 		return 94734
 	}
 	

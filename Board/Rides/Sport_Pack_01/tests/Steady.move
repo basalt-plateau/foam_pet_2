@@ -9,7 +9,6 @@ module builder_1::Steady {
 	#[test (aptos_framework_consenter = @0x1)]
 	public fun clock (aptos_framework_consenter: & signer) {
 		use aptos_framework::timestamp;
-		use aptos_framework::genesis;
 	
 	
 		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
@@ -23,6 +22,32 @@ module builder_1::Steady {
 		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
 		timestamp::update_global_time_for_test (year_ms * 130);
 	}
+	
+	/*
+	public fun denim () {
+		use aptos_framework::genesis;
+		
+		// https://aptos.dev/en/build/smart-contracts/reference?page=aptos-framework%2Fdoc%2Fgenesis.md#0x1_genesis_initialize
+		let gas_schedule = vector::empty<u8>();
+		let chain_id : u8 = 1;
+		
+		genesis::initialize (
+			gas_schedule: vector<u8>, 
+			chain_id: u8, 
+			initial_version: u64, 
+			consensus_config: vector<u8>, 
+			execution_config: vector<u8>, 
+			epoch_interval_microsecs: u64, 
+			minimum_stake: u64, 
+			maximum_stake: u64, 
+			recurring_lockup_duration_secs: u64, 
+			allow_validator_set_change: bool, 
+			rewards_rate: u64, 
+			rewards_rate_denominator: u64, 
+			voting_power_increase_limit: u64
+		)
+	}
+	*/
 	
 	/*
 		let (burn_cap, freeze_cap, mint_cap) = origin (& aptos_framework_flourisher);
@@ -40,7 +65,10 @@ module builder_1::Steady {
 		coin::MintCapability<AptosCoin>		
 	) {
 		use std::string;
-
+		use aptos_framework::chain_id;
+		
+		chain_id::initialize_for_test (aptos_framework_consenter, 3);
+		
 		/*
 			public fun initialize<CoinType>(
 				account: &signer, 
@@ -57,12 +85,12 @@ module builder_1::Steady {
 		let decimals : u8 = 8;
 		let monitor_supply : bool = false;
 		let (burn_cap, freeze_cap, mint_cap) = coin::initialize<AptosCoin>(
-            aptos_framework_consenter,
-            string::utf8 (b"Swerve"),
-            string::utf8 (b"SWE"),
-            decimals,
-            monitor_supply
-        );
+			aptos_framework_consenter,
+			string::utf8 (b"Swerve"),
+			string::utf8 (b"SWE"),
+			decimals,
+			monitor_supply
+		);
 		
 		
 		// let coins = coin::mint<AptosCoin>(10000, &mint_cap);
@@ -85,8 +113,6 @@ module builder_1::Steady {
 		coin::register<AptosCoin>(boar_Team_03_consenter);	
 		
 		// coin::transfer<AptosCoin>(boar_Producer_1_consenter, boar_Team_01_position, 200000000);
-		// coin::transfer<AptosCoin>(boar_Producer_1_consenter, boar_Team_02_position, 0);
-		// coin::transfer<AptosCoin>(boar_Producer_1_consenter, boar_Team_03_position, 0);	
 	}
 	
 	

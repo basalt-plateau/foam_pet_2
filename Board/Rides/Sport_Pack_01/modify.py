@@ -15,13 +15,20 @@ places = [
 ]
 
 #
+#	B0r, b0r
 #	boar_, Boar_
-#	p1G_, P1G_
+#	p1g_, P1g_
 #
-
+'''
+	boar_, Boar_
+	
+		Game
+		Team
+		Play
+'''
 find_and_replace = [
-	[ "vote", "boar_Play" ],
-	[ "Vote", "Boar_Play" ]	
+	[ "boar_Play", "boar_Motion" ],
+	[ "Boar_Play", "Boar_Motion" ]	
 ]
 
 

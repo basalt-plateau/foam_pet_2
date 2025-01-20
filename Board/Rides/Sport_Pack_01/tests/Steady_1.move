@@ -1,14 +1,17 @@
 
 
 
-
-
-module builder_1::votes_1_Steady_4 {
+module builder_1::boar_Plays_1_Steady_1 {
+	
 	
 	
 	
 	/*
-		Thrower hasn't joined the game.
+		Ask:
+			Boar_Game Build
+			Boar_Team Join_the_Boar_Game
+			
+			Boar_Game End
 	*/
 	#[test (
 		aptos_framework_consenter = @0x1, 
@@ -20,8 +23,7 @@ module builder_1::votes_1_Steady_4 {
 		boar_Team_02_consenter = @boar_Team_02,
 		boar_Team_03_consenter = @boar_Team_03		
 	)]
-	#[expected_failure (abort_code = 473890)]
-    public fun ending__thrower_has_not_joined_the_game (
+    public fun steady_1 (
 		aptos_framework_consenter : signer,
 	
 		builder_1_consenter : signer,
@@ -32,14 +34,12 @@ module builder_1::votes_1_Steady_4 {
 		boar_Team_03_consenter : signer
 	) {	
 		use std::vector;
-		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
-		use std::debug;
 
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
-		use aptos_framework::account;		
+		use aptos_framework::account;
 	
 		use builder_1::Boar_Game_Module; 
 		use builder_1::Steady; 
@@ -49,6 +49,7 @@ module builder_1::votes_1_Steady_4 {
 		let boar_Team_02_position = signer::address_of (& boar_Team_02_consenter);
 		let boar_Team_03_position = signer::address_of (& boar_Team_03_consenter);	
 		
+		Steady::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(9000000000, &mint_cap);
@@ -61,35 +62,50 @@ module builder_1::votes_1_Steady_4 {
 		account::create_account_for_test (boar_Team_02_position);
 		account::create_account_for_test (boar_Team_03_position);
 		
-		
 		Steady::prepare_APT_for_boar_Teams (
 			& boar_Team_01_consenter,
 			& boar_Team_02_consenter,
 			& boar_Team_03_consenter
 		);
 		
+		
+		
 		coin::transfer<AptosCoin>(& boar_Producer_1_consenter, boar_Team_01_position, 300000000);
+		
 		
 		////
 		//
 		//	The Boar_Game
 		//
 		//
-		let votes_for_sale : u256 = 10;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, votes_for_sale);
-		if (Boar_Game_Module::Votes_For_Sale_Left () != 10) { abort 2 };
+		let boar_Plays_for_sale : u256 = 900000;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
 		
 		//	Join_the_Boar_Game
 		//
 		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_01_consenter);
-		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 1 };
 		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_02_consenter);
-		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 1 };
+		Boar_Game_Module::Join_the_Boar_Game (& boar_Team_03_consenter);
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_01_position) != utf8 (b"yup")) { abort 89389 };
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_02_position) != utf8 (b"yup")) { abort 89389 };
+		if (Boar_Game_Module::boar_Team_has_joined_the_sport (boar_Team_03_position) != utf8 (b"yup")) { abort 89389 };
 		
-
+		//	Buy
+		//
+		Boar_Game_Module::Buy_5_boar_Plays_for_1_APT (& boar_Team_01_consenter);
+		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 5) { abort 1 };
+		
 		//	Throw
 		//
-		Boar_Game_Module::Throw_Vote (& boar_Team_03_consenter, boar_Team_01_position);
+		Boar_Game_Module::Throw_Boar_Play (& boar_Team_01_consenter, boar_Team_02_position);
+		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 4) { abort 1 };
+		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_02_position) != 1) { abort 1 };
+		
+		//	End
+		//
+		// Boar_Game_Module::End (& boar_Producer_1_consenter);	
+		//
+		////		
 		
 		
 		////

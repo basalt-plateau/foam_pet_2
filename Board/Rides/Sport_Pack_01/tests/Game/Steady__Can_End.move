@@ -3,7 +3,7 @@
 
 
 
-module builder_1::votes_1_Steady_6 {
+module builder_1::Steady__Can_End {
 	
 	
 	
@@ -76,8 +76,8 @@ module builder_1::votes_1_Steady_6 {
 		//	The Boar_Game
 		//
 		//
-		let votes_for_sale : u256 = 900000;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, votes_for_sale);
+		let boar_Plays_for_sale : u256 = 900000;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
 		
 		//	Join_the_Boar_Game
 		//
@@ -90,14 +90,14 @@ module builder_1::votes_1_Steady_6 {
 		
 		//	Buy
 		//
-		Boar_Game_Module::Buy_5_votes_for_1_APT (& boar_Team_01_consenter);
-		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 5) { abort 1 };
+		Boar_Game_Module::Buy_5_boar_Plays_for_1_APT (& boar_Team_01_consenter);
+		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 5) { abort 1 };
 		
 		//	Throw
 		//
-		Boar_Game_Module::Throw_Vote (& boar_Team_01_consenter, boar_Team_02_position);
-		if (Boar_Game_Module::Votes_Score (boar_Team_01_position) != 4) { abort 1 };
-		if (Boar_Game_Module::Votes_Score (boar_Team_02_position) != 1) { abort 1 };
+		Boar_Game_Module::Throw_Boar_Play (& boar_Team_01_consenter, boar_Team_02_position);
+		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) != 4) { abort 1 };
+		if (Boar_Game_Module::Boar_Plays_Score (boar_Team_02_position) != 1) { abort 1 };
 		
 		//	End
 		//

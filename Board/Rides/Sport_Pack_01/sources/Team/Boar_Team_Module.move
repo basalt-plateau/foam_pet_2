@@ -6,7 +6,7 @@ module builder_1::Boar_Team_Module {
 	
 	use std::string::{ String };
 	
-	const Ending_from_boar_Team_has_zero_votes : u64 = 3;
+	const Ending_from_boar_Team_has_zero_boar_Plays : u64 = 3;
 	const Ending_boar_Team_was_not_found : u64 = 3;
 	
 	
@@ -17,13 +17,13 @@ module builder_1::Boar_Team_Module {
 	
 	struct Boar_Team has store, drop {
 		address : address,
-		votes : u256
+		boar_Plays : u256
 	}
 	
 	public (friend) fun add (address : address) : Boar_Team {
 		let boar_Team = Boar_Team {
 			address : address,
-			votes : 0
+			boar_Plays : 0
 		};
 		boar_Team
 	}
@@ -32,37 +32,36 @@ module builder_1::Boar_Team_Module {
 		boar_Team.address
 	}
 	
-	public (friend) fun add_votes (
+	public (friend) fun add_boar_Plays (
 		boar_Team : &mut Boar_Team, 
 		add : u256
 	) {
-		boar_Team.votes = boar_Team.votes + add;
+		boar_Team.boar_Plays = boar_Team.boar_Plays + add;
 	}
-	
-	public (friend) fun subtract_votes (
+	public (friend) fun subtract_boar_Plays (
 		boar_Team : &mut Boar_Team, 
 		subtract : u256
 	) {
-		if (boar_Team.votes == 0) {
-			abort Ending_from_boar_Team_has_zero_votes
+		if (boar_Team.boar_Plays == 0) {
+			abort Ending_from_boar_Team_has_zero_boar_Plays
 		};
 		
-		boar_Team.votes = boar_Team.votes - subtract;
+		boar_Team.boar_Plays = boar_Team.boar_Plays - subtract;
 	}
 	
-	public (friend) fun throw_vote (
+	public (friend) fun throw_boar_Play (
 		from_boar_Team : &mut Boar_Team, 
 		to_boar_Team : &mut Boar_Team
 	) {
-		if (from_boar_Team.votes == 0) {
-			abort Ending_from_boar_Team_has_zero_votes
+		if (from_boar_Team.boar_Plays == 0) {
+			abort Ending_from_boar_Team_has_zero_boar_Plays
 		};
 		
-		from_boar_Team.votes = from_boar_Team.votes - 1;
-		to_boar_Team.votes = to_boar_Team.votes + 1;
+		from_boar_Team.boar_Plays = from_boar_Team.boar_Plays - 1;
+		to_boar_Team.boar_Plays = to_boar_Team.boar_Plays + 1;
 	}
 	
-	public (friend) fun votes_score (boar_Team : & Boar_Team) : u256 {
-		boar_Team.votes
+	public (friend) fun boar_Plays_score (boar_Team : & Boar_Team) : u256 {
+		boar_Team.boar_Plays
 	}
 }

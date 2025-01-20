@@ -37,20 +37,28 @@ import Rides.APT_Asks_01 as APT_Asks_01
 import Rides.Peptyde as Peptyde_Moves
 import Rides.Rhythm_01 as Rhythm_01
 
-import Rides.Sport_Pack as Sport_Pack
+import Rides.Sport_Pack_01 as Sport_Pack_01
 
 
 #
 #
-#	This needs to be the same as builder_1
+#	perhaps.. this is the address of the publisher.
 #
+#		perhaps.. this should be the same as builder_1.
+#
+#
+ride_plate = "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+ride_plate = "0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C"
+
+#
+#
+#	Petra
 #
 ride_plate = "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD"
-ride_plate = "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 
 def motion_for_named_addresses ():
 	owner_1 = {
-		"address": "0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd"
+		"address": ride_plate
 	}
 	builder_1 = {
 		"address": "0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd"
@@ -99,6 +107,14 @@ def motion_for_named_addresses ():
 	named_addresses = "".join ([
 		f"""--named-addresses '""",
 
+		f"""Formulator_1={ owner_1 ["address"] }, """,
+		f"""Boar_Producer_1={ owner_1 ["address"] }, """,
+
+		f"""Ride_01={ builder_1 ["address"] }, """,
+		f"""ride={ builder_1 ["address"] }, """,		
+		f"""builder_1={ builder_1 ["address"] },""",		
+		f"""Builder_01={ builder_1 ["address"] }, """,
+
 		f"""boar_Team_01={ boar_Team_01 ["legacy address"] }, """,
 		f"""boar_Team_02={ boar_Team_02 ["legacy address"] }, """,
 		f"""boar_Team_03={ boar_Team_03 ["legacy address"] }, """,
@@ -108,15 +124,9 @@ def motion_for_named_addresses ():
 		f"""boar_Team_07={ boar_Team_07 ["legacy address"] }, """,
 		f"""boar_Team_08={ boar_Team_08 ["legacy address"] }, """,
 		f"""boar_Team_09={ boar_Team_09 ["legacy address"] }, """,
-		f"""boar_Team_10={ boar_Team_10 ["legacy address"] }, """,
+		f"""boar_Team_10={ boar_Team_10 ["legacy address"] } """,
 
-		f"""Formulator_1={ owner_1 ["address"] }, """,
-		f"""Boar_Producer_1={ owner_1 ["address"] }, """,
-
-		f"""Ride_01={ builder_1 ["address"] }, """,
-		f"""ride={ builder_1 ["address"] }, """,		
-		f"""builder_1={ builder_1 ["address"] },""",		
-		f"""Builder_01={ builder_1 ["address"] } """,		
+				
 		
 		"'"
 	]);
@@ -125,7 +135,7 @@ def motion_for_named_addresses ():
 
 
 moves_structures = {
-	"Sport_Pack": Sport_Pack,
+	"Sport_Pack_01": Sport_Pack_01,
 	
 	
 	
