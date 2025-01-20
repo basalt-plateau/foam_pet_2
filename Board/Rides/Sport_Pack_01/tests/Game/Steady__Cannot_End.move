@@ -99,9 +99,9 @@ module builder_1::Steady__Cannot_End {
 		//
 		//
 		Boar_Game_Module::Buy_Boar_Plays_for_1_APT_each (& boar_Team_01_consenter, 5);
-		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == one_APT * 5, 1);
+		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == 0, 1);
 		assert! (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) == 5, 1);
-		assert! (Boar_Game_Module::Boar_Plays_For_Sale_Left () == 5, 1);
+		assert! (Boar_Game_Module::Boar_Plays_For_Sale_Left () == 900000 - 5, 1);
 		
 		
 		//	Throw
