@@ -47,7 +47,7 @@ module builder_1::Steady__Can_End {
 		let apt_mint : u64 = one_APT * 100;
 		let apt_boar_Team_01_position : u64 = one_APT * 10;
 
-		let boar_Plays_for_sale : u256 = 900000;
+		let boar_Passs_for_sale : u256 = 900000;
 	
 	
 		let boar_Producer_position = signer::address_of (& boar_Producer_1_consenter);
@@ -81,8 +81,8 @@ module builder_1::Steady__Can_End {
 		//	Boar_Game Begin
 		//
 		//
-		let boar_Plays_for_sale : u256 = 900000;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
+		let boar_Passs_for_sale : u256 = 900000;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Passs_for_sale);
 		assert! (Boar_Game_Module::is_boar_Boar_Game_built () == utf8 (b"yup"), 1);
 		//
 		////

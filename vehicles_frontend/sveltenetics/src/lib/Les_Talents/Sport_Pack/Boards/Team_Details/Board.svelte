@@ -580,7 +580,7 @@ onDestroy (() => {
 					/>
 				</div>
 			</span>
-			<span>Plays</span>
+			<span>Pass</span>
 			<span 
 				class="badge variant-filled-surface"
 			></span>

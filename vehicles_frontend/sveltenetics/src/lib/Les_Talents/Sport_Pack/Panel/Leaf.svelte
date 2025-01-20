@@ -6,7 +6,7 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
 import Game from './Stadium/Game.svelte'
 import Teams from './Stadium/Teams.svelte'
-import Play from './Stadium/Play.svelte'
+import Passes from './Stadium/Passes.svelte'
 
 let shirt = "Game";
 
@@ -24,7 +24,7 @@ let shirt = "Game";
 		<RadioGroup>
 			<RadioItem bind:group={ shirt } name="justify" value={ "Game" }>Game</RadioItem>		
 			<RadioItem bind:group={ shirt } name="justify" value={ "Teams" }>Teams</RadioItem>
-			<RadioItem bind:group={ shirt } name="justify" value={ "Play" }>Play</RadioItem>
+			<RadioItem bind:group={ shirt } name="justify" value={ "Passes" }>Passes</RadioItem>
 		</RadioGroup>
 	</div>
 	
@@ -39,8 +39,8 @@ let shirt = "Game";
 		<Game />
 		{:else if shirt === "Teams" }
 		<Teams />
-		{:else if shirt === "Play" }
-		<Play />
+		{:else if shirt === "Passes" }
+		<Passes />
 		{/if}
 	</div>
 </div>

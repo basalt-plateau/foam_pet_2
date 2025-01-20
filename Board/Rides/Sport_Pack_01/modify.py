@@ -1,6 +1,6 @@
 
 '''
-	python3 /Metro/Board/Rides/Sport_Pack/modify.py
+	python3 /Metro/Board/Rides/Sport_Pack_01/modify.py
 '''
 
 import ships.paths.directory.find_and_replace_string_v2 as find_and_replace_string_v2

@@ -1,7 +1,7 @@
 
 
 
-module builder_1::boar_Plays_1_Steady_3 {
+module builder_1::boar_Passs_1_Steady_3 {
 	
 	
 	
@@ -52,7 +52,7 @@ module builder_1::boar_Plays_1_Steady_3 {
 		let apt_mint : u64 = one_APT * 100;
 		let apt_boar_Team_01_position : u64 = one_APT * 10;
 
-		let boar_Plays_for_sale : u256 = 10;
+		let boar_Passs_for_sale : u256 = 10;
 	
 		let (burn_cap, freeze_cap, mint_cap) = Steady::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(apt_mint, &mint_cap);
@@ -79,8 +79,8 @@ module builder_1::boar_Plays_1_Steady_3 {
 		//	The Boar_Game
 		//
 		//
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Plays_for_sale);
-		if (Boar_Game_Module::Boar_Plays_For_Sale_Left () != 10) { abort 2 };
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Passs_for_sale);
+		if (Boar_Game_Module::Boar_Passs_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Boar_Game
 		//
@@ -91,15 +91,15 @@ module builder_1::boar_Plays_1_Steady_3 {
 		
 		//	Buy
 		//
-		Boar_Game_Module::Buy_Boar_Plays_for_1_APT_each (& boar_Team_01_consenter, 5);
+		Boar_Game_Module::Buy_Boar_Passs_for_1_APT_each (& boar_Team_01_consenter, 5);
 		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == one_APT * 5, 1);
-		assert! (Boar_Game_Module::Boar_Plays_Score (boar_Team_01_position) == 5, 1);
-		assert! (Boar_Game_Module::Boar_Plays_For_Sale_Left () == 5, 1);
+		assert! (Boar_Game_Module::Boar_Passs_Score (boar_Team_01_position) == 5, 1);
+		assert! (Boar_Game_Module::Boar_Passs_For_Sale_Left () == 5, 1);
 
 		
 		//	Throw
 		//
-		Boar_Game_Module::Throw_Boar_Play (& boar_Team_01_consenter, boar_Team_03_position);
+		Boar_Game_Module::Throw_Boar_Pass (& boar_Team_01_consenter, boar_Team_03_position);
 		
 		
 		////

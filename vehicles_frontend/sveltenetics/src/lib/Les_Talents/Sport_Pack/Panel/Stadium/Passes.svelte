@@ -55,7 +55,7 @@ let leaf = "Buy"
 			"
 			class="card p-4"
 		>
-			<header>Buy Plays</header>
+			<header>Buy Passes</header>
 		</div>
 		
 		<div class="card p-4"
@@ -97,9 +97,11 @@ let leaf = "Buy"
 			"
 			class="card p-4"
 		>
-			<header>Send Plays</header>
+			<header>Send Passes</header>
 			
-			<Team_Details />
+			<Team_Details 
+				name="To Address"
+			/>
 		</div>
 		{/if}
 	</div>
