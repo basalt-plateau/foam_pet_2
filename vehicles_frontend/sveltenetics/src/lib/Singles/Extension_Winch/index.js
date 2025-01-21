@@ -225,15 +225,19 @@ export const make = async (packet) => {
 			},
 			connect: async ({ stage_name }) => {	
 				console.info ("extension winch connect:", { stage_name });
-				
 				await trucks [1].freight.clear ();
 				
 				const stage = trucks [1].freight.stages [ stage_name ];
+				console.info ("connecting to:", stage_name);
+				
 				await stage.connect ();
 				trucks [1].freight.stage_name_connected = stage_name
-				localStorage.setItem ("extension winch connected", stage_name);
-				
 				trucks [1].freight.stage = stage;
+				console.info ("connected to:", stage_name);
+				
+				
+				
+				localStorage.setItem ("extension winch connected", stage_name);
 			},
 			disconnect: async () => {
 				const freight = trucks [1].freight;

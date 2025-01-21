@@ -129,28 +129,66 @@ export const account = {
 	/*
 		Liberty, Life, Volition,
 		Burden, Omega, tricks, talents,
-		advantages, obligation,
+		advantages, obligation, option
 		
-		worthiness, aptitude, mercy,
-		Greetingsour, seduction, 
+		Talent:
+			worthiness, aptitude, mercy,
+			Greetingsour, seduction, 
 		
-		influence, beg, persuasion
+		Turn
+			influence, beg, persuasion
+			seduction
 
+
+		Fear
+			Respect, Terror
+			
+			A glass room that everyone can look into,
+			with a private key on a drive. #CCTV
+			
+			
+		
 		reputation,
 		
 		prerogative, purpose
 		privilege
 		
 		stealth mix
+		
+		wobble, groove
+	
+		Obedience
+		
+		Exclusivity
+			Loyalty
+			Family
+			Greatness
+			Goodness
+		
+		Bark
+		
+		Silence, Quiet
+		Sound, Limiter, Song
+		
+		sense, think, dream, hallucination,
+		
+		charity
+		
+		void
+		
+		The idea of a private key being public for 1 Trillion people,
+		but there is so much trust that no one would even consider using it.
+		
+		
 	*/
-	"private key": "wobble",
-	"Private Key": "Wobble",
+	"private key": "goodest",
+	"Private Key": "Goodest",
 	
-	"private keys": "wobble",
+	"private keys": "goodest",
 	
-	"A_Private_Key": "A Wobble",	
-	"a_Private_Key": "a wobble",	
-	"Private Keys": "Wobbles",
+	"A_Private_Key": "A Goodest",	
+	"a_Private_Key": "a goodest",	
+	"Private Keys": "Goodests",
 	
 	//
 	//

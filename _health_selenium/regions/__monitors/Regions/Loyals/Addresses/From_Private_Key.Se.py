@@ -34,11 +34,19 @@ def check_1 ():
 	
 	driver.get (URL)
 	proceed_through_memo ({ "driver": driver });
-	Milieus_Navigate ({
-		"location": [ "Loyals", "Accounts" ],
-		"driver": driver
-	});
 	
+	from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
+	Milieus_Navigate_to_Greetings ({ "driver": driver });
+	
+	def open_accounts_panel ():
+		button = loop (lambda : driver.find_element (
+			By.CSS_SELECTOR, 
+			f'[monitor="accounts opener"]'
+		))
+		driver.execute_script("arguments[0].scrollIntoView(true);", button)
+		button.click ();
+	
+	open_accounts_panel ();
 	
 	def open_panels__single_key_account__from_hexadecimal ():
 		these_element = {}
@@ -46,7 +54,7 @@ def check_1 ():
 		def find_element_1 ():
 			button = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts"] [monitor="EEC 25519 Single Key"]'
+				'[monitor="accounts leaf"] [monitor="EEC 25519 Single Key"]'
 			)
 			button.click ();
 			
@@ -54,7 +62,7 @@ def check_1 ():
 		def find_element_2 ():
 			button = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts"] [monitor="from hexadecimal"]'
+				'[monitor="accounts leaf"] [monitor="from hexadecimal"]'
 			)
 			button.click ();
 	

@@ -15,6 +15,22 @@
 	loop (lambda : fn_1 ("1"))
 "'''
 
+''''
+def go ():
+	def find_button ():
+		return driver.find_element (
+			By.CSS_SELECTOR, 
+			f'button[monitor="Greetings"]'
+		)
+	
+	button = loop (lambda : find_button ())
+	
+	driver.execute_script("arguments[0].scrollIntoView(true);", button)
+	button.click ();
+
+go ();
+"'''
+
 import time
 import traceback
 

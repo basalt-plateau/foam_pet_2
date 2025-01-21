@@ -26,7 +26,7 @@ let open = async () => {
 
 
 <button 
-	monitor="glyph for adaptation"
+	monitor="APT Transfer Consent Frontier Button"
 	
 	on:click={ open }
 	type="button" 

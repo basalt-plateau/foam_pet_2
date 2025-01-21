@@ -27,7 +27,8 @@ import time
 #
 #\
 
-	
+from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
+		
 
 
 def check_1 ():
@@ -37,10 +38,18 @@ def check_1 ():
 	
 	driver.get (URL)
 	proceed_through_memo ({ "driver": driver });
-	Milieus_Navigate ({
-		"location": [ "Loyals", "Accounts" ],
-		"driver": driver
-	});
+	Milieus_Navigate_to_Greetings ({ "driver": driver });
+	
+	
+	def open_accounts_panel ():
+		button = loop (lambda : driver.find_element (
+			By.CSS_SELECTOR, 
+			f'[monitor="accounts opener"]'
+		))
+		driver.execute_script("arguments[0].scrollIntoView(true);", button)
+		button.click ();
+	
+	open_accounts_panel ();
 	
 	def open_panels__single_key_account_from_keyboard_glyph_modifier ():
 		these_element = {}
@@ -48,16 +57,20 @@ def check_1 ():
 		def find_element_1 ():
 			button = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts"] [monitor="EEC 25519 Single Key"]'
+				'[monitor="accounts leaf"] [monitor="EEC 25519 Single Key"]'
 			)
+			
+			driver.execute_script ("arguments[0].scrollIntoView(true);", button)
 			button.click ();
 			
 			
 		def find_element_2 ():
 			button = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts"] [monitor="from Keyboard Glyph Modifier"]'
+				'[monitor="accounts leaf"] [monitor="from Keyboard Glyph Modifier"]'
 			)
+			
+			driver.execute_script ("arguments[0].scrollIntoView(true);", button)
 			button.click ();
 	
 		#

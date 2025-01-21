@@ -13,26 +13,6 @@ from vivaciousness.Milieus.navigate import Milieus_Navigate
 
 
 #
-#	This opens the Modal.
-#
-#	outer_modal_buttons ["aptos_account_transfer"] = loop (lambda : open_the_modal (driver_1))
-#
-#
-''''
-	outer_modal_buttons ["aptos_account_transfer"] = loop (lambda : open_the_modal (driver_1))
-	outer_modal_buttons ["aptos_account_transfer"].click ()
-"'''
-def open_the_modal (driver_1):
-	def find_the_open ():
-		return driver_1.find_element (
-			By.CSS_SELECTOR, 
-			"[aptos_account_transfer]"
-		)
-		
-	open_modal_button = loop (lambda : find_the_open ()) 
-	open_modal_button.click ()
-
-#
 #
 #	[address-chooser-td] [nets-choices]
 #
@@ -62,18 +42,21 @@ def open_friends_modal (packet):
 	#	Goto address
 	#
 	#
-	Milieus_Navigate ({
-		"location": [ "Talents" ],
-		"driver": driver
-	});
+	Milieus_Navigate ({ "driver": driver, "location": [ "Talents" ] });
 	
 	
 	#
 	#
-	#	Modal
+	#	Open the Polytope
 	#
 	#	
-	open_the_modal (driver);
+	open_modal_button = loop (lambda : driver.find_element (
+		By.CSS_SELECTOR, 
+		'[monitor="APT Transfer Petition Frontier Button"]'
+	)) 
+	open_modal_button.click ()
+	
+	
 	modal_navigation_buttons = loop (lambda : check_for_inner_modal_buttons (driver))
 	
 	

@@ -110,8 +110,12 @@ onDestroy (() => {
 				<RadioItem bind:group={ leaf } name="justify" value={ "School" }>School</RadioItem>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Franchise" }>Franchise</RadioItem>		
 				<RadioItem bind:group={ leaf } name="justify" value={ "Glam" }>Glam</RadioItem>	
-				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>Harvests</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>Consent</RadioItem>				
+				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>
+					<p monitor="accounts opener">Harvests</p>
+				</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>
+					<p monitor="consent opener">Consent</p>
+				</RadioItem>				
 			</RadioGroup>
 		</div>
 	</div>

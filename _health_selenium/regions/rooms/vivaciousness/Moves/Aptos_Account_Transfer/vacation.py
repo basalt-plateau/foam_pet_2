@@ -67,12 +67,7 @@ def throw_APT_vacation (packet):
 	if ("origin address is legacy" in packet ["relatives"]):
 		origin_address_is_legacy = packet ["relatives"] ["origin address is legacy"]
 
-	give_Octas_from_faucet ({
-		"icann_faucet_net_address": "https://faucet.devnet.aptoslabs.com/mint",
-		"amount_of_octas": "1e8",
-		"to_address": packet ["friends"] ["origin address"]
-	})
-
+	
 	plays = retrieve_plays ()
 	URL = plays ["URL"]
 	
@@ -83,6 +78,7 @@ def throw_APT_vacation (packet):
 	relatives_captain = connect_to_driver ();
 	relatives_captain.get (URL)
 	proceed_through_memo ({ "driver": relatives_captain });
+
 
 	#\
 	#
@@ -98,6 +94,19 @@ def throw_APT_vacation (packet):
 		"tailfin": relatives_captain,
 		"ICAN_DNS_Address": ""
 	})
+	#/
+	
+	#\
+	#
+	#	Increasing
+	#
+	#
+	give_Octas_from_faucet ({
+		"icann_faucet_net_address": "https://faucet.devnet.aptoslabs.com/mint",
+		"amount_of_octas": "1e8",
+		"to_address": packet ["friends"] ["origin address"]
+	})
+	#
 	#/
 	
 	#\

@@ -59,7 +59,22 @@ onDestroy (async () => {
 		"
 		class="card p-2"
 	>
-		<header>Wallet Options</header>
+		<header
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.25cm;
+				justify-content: center;
+			"
+		>
+			<span>Aptos</span>
+			<img src="/_Licensed/Aptos/aptos.png" style="width: 0.5cm; height: 0.5cm;">
+			<span>Wallet Options</span>
+		</header>
+		<a 
+			target="_blank"
+			href="https://aptosfoundation.org"
+		>https://aptosfoundation.org</a>
 	</div>
 	
 	<div 

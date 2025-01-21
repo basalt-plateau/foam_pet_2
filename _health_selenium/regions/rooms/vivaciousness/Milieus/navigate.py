@@ -15,12 +15,36 @@
 	});
 "'''
 
+''''
+	from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
+	Milieus_Navigate_to_Greetings ({ "driver": driver });
+"'''
 
 from vivaciousness.procedures.loop import loop
 
 from selenium.webdriver.common.by import By
 
 import time
+
+
+def Milieus_Navigate_to_Greetings (packet):
+	driver = packet ["driver"]
+	
+	def go ():
+		def find_button ():
+			return driver.find_element (
+				By.CSS_SELECTOR, 
+				f'button[monitor="Greetings"]'
+			)
+		
+		button = loop (lambda : find_button ())
+		driver.execute_script("arguments[0].click();", button)
+		
+		#driver.execute_script("arguments[0].scrollIntoView(true);", button)
+		#button.click ();
+	
+	go ();
+
 
 
 def Milieus_Navigate_to_Vows (packet):
@@ -36,12 +60,16 @@ def Milieus_Navigate_to_Vows (packet):
 		
 		button = loop (lambda : find_button ())
 		
+		#
+		#
+		#	click even if not visible..
+		#
+		#driver.execute_script("arguments[0].click();", button)
+		
 		driver.execute_script("arguments[0].scrollIntoView(true);", button)
 		button.click ();
 	
 	go ();
-	
-	
 	
 	def click_technician_button ():
 		def find_button ():

@@ -32,9 +32,17 @@ let open = async () => {
 </script>
 
 
-<div class="relative inline-block">
+<div 
+	style="
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	"
+	class="relative inline-block"
+>
 	<button 
-		monitor="glyph for adaptation"
+		monitor="APT Transfer Petition Frontier Button"
 		
 		on:click={ open }
 		type="button" 
@@ -50,7 +58,16 @@ let open = async () => {
 			align-items: center;
 		"
 	>
-		<p>APT Entrust</p>
+		<p
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.25cm;
+			"
+		>
+			<img src="/_Licensed/Aptos/aptos.png" style="width: 0.5cm; height: 0.5cm;">
+			<span>APT Entrust</span>
+		</p>
 	</button>
 	<div style="height: 0.25cm" />
 	<p>This requires <Slang text="Label_Wallet_Extension" />.</p>

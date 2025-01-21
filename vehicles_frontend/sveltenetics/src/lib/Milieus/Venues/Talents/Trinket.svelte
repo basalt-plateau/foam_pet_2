@@ -54,6 +54,12 @@ import Glam_Frontier from "$lib/Les_Talents/Glam/Frontier/Tome.svelte"
 import Franchise_Frontier from "$lib/Les_Talents/Franchise/Frontier/Tome.svelte"
 
 const Les_Talents = [
+
+	{
+		"Frontier": Glam_Frontier,
+		"Mode": "business"
+	},
+
 	{
 		"Frontier": Sport_Pack,
 		"Mode": "nurture"
@@ -130,7 +136,8 @@ let Versies_Freight = false;
 
 <Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 {#if typeof Versies_Freight === "object"}
-<nav>	
+<nav>
+	{#if Versies_Freight.mode  === "nurture" }
 	<div 
 		style="
 			display: grid;
@@ -139,14 +146,10 @@ let Versies_Freight = false;
 		"
 		class="card p-2"
 	>
-		{#if Versies_Freight.mode  === "nurture" }
 		<Dapp_Network_Frontier />
 		<Franchise_Frontier />
-		{/if}
-		<Glam_Frontier />
-		
 	</div>
-	
+	{/if}
 	
 	<div style="height: 0.1cm"></div>
 	
@@ -155,6 +158,10 @@ let Versies_Freight = false;
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
 			grid-gap: 0.25cm;
+			
+			margin: 0 auto;
+			max-width: 32cm;
+			
 		"
 	>
 		<div class="card p-1">

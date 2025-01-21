@@ -5,10 +5,12 @@
 
 ////
 //
-import { make_trends } from './screenplays/trends'
-import { hexadecimalize_keys } from './screenplays/hexadecimalize_keys'
+import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
+import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
+import { onMount } from 'svelte'
 //
 //
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
 import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
 import Info_Alert from '$lib/trinkets/Alerts/Info.svelte'
@@ -20,13 +22,12 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 import { save_keys } from '$lib/taverns/keys_directory/save'
 //
 //
-import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
-import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
-import { onMount } from 'svelte'
+import { make_trends } from './screenplays/trends'
+import { hexadecimalize_keys } from './screenplays/hexadecimalize_keys'
 //
 //
 //\\
-import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+
 
 
 ////
@@ -278,13 +279,21 @@ onMount (() => {
 		<div style="height: 0.5cm"></div>
 	
 		<div
-			style="
+			style1="
 				display: flex;
 				justify-content: center;
 				flex-direction: column;
 				align-items: center;
 				
 				flex-direction: row;
+			"
+			
+			style="
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(5cm, 1fr));
+				gap: 4px;
+				
+				width: 100%;
 			"
 		>
 			<div
@@ -318,7 +327,6 @@ onMount (() => {
 				</div>
 			</div>
 			
-			<div style="width: 1cm"></div>
 			
 			<div
 				class="card variant-soft-primary p-4"
@@ -350,20 +358,7 @@ onMount (() => {
 					<span style={ trends.keyboard_glyph_hexadecimal }>7</span>
 				</div>
 			</div>
-		</div>
-		
-		<div style="height: 0.5cm"></div>
-		
-		<div
-			style="
-				display: flex;
-				justify-content: center;
-				flex-direction: column;
-				align-items: center;
-				
-				flex-direction: row;
-			"
-		>
+
 			<div
 				class="card variant-soft-primary p-4"
 				style="
@@ -394,8 +389,6 @@ onMount (() => {
 					<span style={ trends.keyboard_glyph_hexadecimal }>B</span>
 				</div>
 			</div>
-			
-			<div style="width: 1cm"></div>
 			
 			<div
 				class="card variant-soft-primary p-4"
@@ -446,14 +439,9 @@ onMount (() => {
 					<kbd class="kbd">E</kbd>
 					<kbd class="kbd">R</kbd>
 					<kbd class="kbd">T</kbd>
-					
-					<div 
-						style="
-							display: inline-block;
-							width: 0.2cm;
-						"
-					></div>
-					
+				</div>
+				
+				<div>
 					<kbd class="kbd">Y</kbd>
 					<kbd class="kbd">U</kbd>
 					<kbd class="kbd">I</kbd>

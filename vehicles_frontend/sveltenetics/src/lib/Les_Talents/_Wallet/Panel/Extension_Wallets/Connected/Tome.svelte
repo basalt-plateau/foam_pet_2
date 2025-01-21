@@ -123,7 +123,7 @@ onDestroy (async () => {
 		gap: 0.25cm;
 		flex-direction: column;
 		
-		max-width: 40cm;
+		max-width: 35cm;
 		width: 100%;
 		
 		margin: 0 auto;

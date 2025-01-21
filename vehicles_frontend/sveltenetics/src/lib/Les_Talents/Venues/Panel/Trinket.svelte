@@ -174,7 +174,7 @@ let isOpen = false;
 					font-size: 3em;
 					text-align: center;
 				"
-			>Multiverse</header>
+			>Multisong</header>
 		
 			<div>
 				<Multiverse />

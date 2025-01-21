@@ -99,4 +99,13 @@ def change_net (packet):
 	choose_net ()
 	loop (check_net_address)
 	
+	def close ():
+		button = loop (lambda : driver.find_element (
+			By.CSS_SELECTOR, 
+			f'[monitor="polytope_2 exit"]'
+		));
+		driver.execute_script("arguments[0].click();", button)
+		
+	close ();
+	
 	return 

@@ -53,6 +53,15 @@ let open = async () => {
 			white-space: break-spaces;
 		"
 	>
-		<p>APT Transfer</p>
+		<p
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.25cm;
+			"
+		>
+			<img src="/_Licensed/Aptos/aptos.png" style="width: 0.5cm; height: 0.5cm;">
+			<span>APT Transfer</span>
+		</p>
 	</button>
 </div>

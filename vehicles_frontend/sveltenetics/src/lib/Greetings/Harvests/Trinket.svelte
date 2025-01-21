@@ -16,12 +16,13 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
-import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keyboard/Trinket.svelte'
-import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 import { parse_with_commas } from '$lib/taverns/numbers/parse_with_commas'
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
+//
+import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keyboard/Trinket.svelte'
+import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
 //
 //
 import Atrium from './Trinkets/Atrium.svelte';
@@ -60,7 +61,7 @@ const modify_keys_count = () => {
 
 
 <Leaf>
-<main addresses monitor="accounts">
+<main addresses monitor="accounts leaf">
 	<div style="height: 0.5cm" />
 	
 	<div class="card p-4">

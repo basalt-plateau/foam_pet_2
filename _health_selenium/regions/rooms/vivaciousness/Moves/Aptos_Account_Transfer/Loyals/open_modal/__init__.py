@@ -28,27 +28,37 @@ def open_relatives_modal (packet):
 	# ICAN_DNS_Address = packet ["ICAN_DNS_Address"]
 	# tailfin.get (ICAN_DNS_Address)
 	
-	Milieus_Navigate ({
-		"location": [ "Loyals", "Signatures" ],
-		"driver": tailfin
-	});
+
+	from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
+	Milieus_Navigate_to_Greetings ({ "driver": tailfin });
+		
+	def open_consent_panel ():
+		button = loop (lambda : tailfin.find_element (
+			By.CSS_SELECTOR, 
+			f'[monitor="consent opener"]'
+		));
+		#driver.execute_script("arguments[0].click();", button)
+		
+		tailfin.execute_script("arguments[0].scrollIntoView(true);", button)
+		button.click ();
+	
+	open_consent_panel ();
 	
 	#
 	#
 	#	This is before the modal is opened.
 	#
 	#
-	def check_for_modal_opener ():
-		modal_open_button = tailfin.find_element (
+	def open_polytope ():
+		modal_open_button = loop (lambda : tailfin.find_element (
 			By.CSS_SELECTOR, 
-			"[monitor='signatures leaf'] button[monitor='give']"
-		)
+			"[monitor='signatures leaf'] button[monitor='APT Transfer Consent Frontier Button']"
+		))
+		modal_open_button.click ();
 		
-		return modal_open_button;
+	open_polytope ();
 		
-		
-	modal_open_button = loop (lambda : check_for_modal_opener ())
-	modal_open_button.click ();
+	
 	
 	#
 	#

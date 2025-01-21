@@ -27,7 +27,6 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 //
 //
-	
 
 
 const modal_store = getModalStore ();
@@ -107,7 +106,7 @@ const ask_for_wallet_address = () => {
 
 {#if mounted === "yes" }
 <button 
-	monitor="glyph for adaptation"
+	monitor="APT Transfer"
 	
 	on:click={ open }
 	type="button" 

@@ -27,8 +27,7 @@
 /*
 	import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 	const modal_store = getModalStore ();
-
-
+	
 	let open = async () => {
 		modal_store.trigger ({
 			type: 'component',
@@ -184,6 +183,7 @@ onMount (() => {
 			"
 		>
 			<button 
+				monitor="polytope_2 exit"
 				class="btn variant-filled" 
 				on:click={ freight.close }
 			>

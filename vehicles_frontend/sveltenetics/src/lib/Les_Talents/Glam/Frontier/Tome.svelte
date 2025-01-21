@@ -30,7 +30,16 @@ let open = async () => {
 }
 
 import { parse_styles } from '$lib/trinkets/styles/parse'
-
+const style_2 = parse_styles (Object.assign ({}, {
+	display: 'flex',
+	'flex-direction': 'column',
+	'justify-content': 'center',
+	'align-items': 'center',
+	
+	padding: '0.1cm 0',
+	
+	'white-space': 'break-spaces'
+}, style))
 
 
 </script>
@@ -42,18 +51,16 @@ import { parse_styles } from '$lib/trinkets/styles/parse'
 	on:click={ open }
 	type="button" 
 	class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-	style={ 
-		parse_styles (Object.assign ({}, {
-			display: 'flex',
-			'flex-direction': 'column',
-			'justify-content': 'center',
-			'align-items': 'center',
-			
-			padding: '0.1cm 0',
-			
-			'white-space': 'break-spaces'
-		}, style))
-	}
+	style="
+		font-size: 1.3em;
+		padding: 12px 54px;
+		margin-top: 10px;
+		
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	"
 >
 	<p>Glam</p>
 </button>

@@ -75,6 +75,7 @@ export const Pontem_stage_creator = async ({ freight }) => {
 				
 				stage.installed = await stage.is_installed ();
 				if (stage.installed !== "yes") {
+					console.info (`Wallet ${ stage.name } is not installed.`);
 					stage.connected = "no"
 					reset ();
 					return;
@@ -82,6 +83,7 @@ export const Pontem_stage_creator = async ({ freight }) => {
 				
 				stage.connected = await stage.is_connected ();
 				if (stage.connected !== "yes") {
+					console.info (`Wallet ${ stage.name } is not connected.`);
 					reset ();
 					return;
 				}
@@ -111,11 +113,10 @@ export const Pontem_stage_creator = async ({ freight }) => {
 		},
 		async is_connected () {
 			const stage = _stage ();
-			
 			if (await stage.is_installed () !== "yes") { return "no" }
 			
 			try {
-				if (Pontem.isConnected () === true) {
+				if (await Pontem.isConnected () === true) {
 					return "yes";
 				}
 			}
