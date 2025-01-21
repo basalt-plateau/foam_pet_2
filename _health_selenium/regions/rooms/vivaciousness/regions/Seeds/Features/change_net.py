@@ -26,7 +26,8 @@ import time
 #\
 
 from vivaciousness.Milieus.navigate import Milieus_Navigate
-	
+from vivaciousness.modes import use_mode
+
 
 #
 #	nets-choices
@@ -40,11 +41,33 @@ def change_net (packet):
 	plays = retrieve_plays ();
 	URL = plays ["URL"]
 	
+	
+	use_mode (driver, "nurture")
+	
 	driver.get (URL)
 	Milieus_Navigate ({
-		"location": [ "Scholars", "Theme" ],
+		"location": [ "Talents" ],
 		"driver": driver
 	});
+	
+	
+	#
+	#
+	#	monitor="dapp network frontier"
+	#
+	#
+	def open_dapp_network ():
+		buttons = {}
+		def search_element ():
+			buttons ["dapp_network"] = driver.find_element (
+				By.CSS_SELECTOR, 
+				'[monitor="dapp network frontier"]'
+			)
+		
+		loop (search_element);
+		buttons ["dapp_network"].click ();
+		
+	open_dapp_network();
 	
 	#
 	#	field elements

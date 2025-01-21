@@ -19,6 +19,17 @@ export const Pontem_stage_creator = async ({ freight }) => {
 		return freight.stages.Pontem;
 	}
 	
+	const reset = async () => {
+		const stage = _stage ();
+					
+		stage.account.address = "";
+		stage.account.public_key = "";
+		
+		stage.network.name = "";
+		stage.network.address = "";
+		stage.network.chain_id = "";
+	}
+	
 	return {
 		name: "Pontem",
 		url: "https://pontem.network",
@@ -59,33 +70,35 @@ export const Pontem_stage_creator = async ({ freight }) => {
 		},
 		
 		async status () {
-			const stage = _stage ();
-			
-			stage.installed = await stage.is_installed ();
-			if (stage.installed !== "yes") {
-				stage.connected = "no"
+			try {
+				const stage = _stage ();
 				
-				stage.account.address = "";
-				stage.account.public_key = "";
+				stage.installed = await stage.is_installed ();
+				if (stage.installed !== "yes") {
+					stage.connected = "no"
+					reset ();
+					return;
+				}
 				
-				stage.network.name = "";
-				stage.network.address = "";
-				stage.network.chain_id = "";
-				
-				return;
-			}
-			
-			stage.connected = await stage.is_connected ();
+				stage.connected = await stage.is_connected ();
+				if (stage.connected !== "yes") {
+					reset ();
+					return;
+				}
 
-			stage.account.address = await Pontem.account ();
-			stage.account.public_key = await Pontem.publicKey ();
-			
-			const network = await Pontem.network ();
-			console.log ({ network });
-			
-			stage.network.name = network.name;
-			stage.network.address = network.api;
-			stage.network.chain_id = network.chainId;
+				stage.account.address = await Pontem.account ();
+				stage.account.public_key = await Pontem.publicKey ();
+				
+				const network = await Pontem.network ();
+				console.log ({ network });
+				
+				stage.network.name = network.name;
+				stage.network.address = network.api;
+				stage.network.chain_id = network.chainId;
+			}
+			catch (imperfection) {
+				console.error (imperfection);
+			}
 		},
 		async is_installed () {
 			try {

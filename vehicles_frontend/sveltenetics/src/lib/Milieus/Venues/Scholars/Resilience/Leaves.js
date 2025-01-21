@@ -29,8 +29,6 @@ export const technicians_leaves = {
 
 	"Slang": async () => { return await import ('./Slang/Trinket.svelte') },
 
-	"Wallet Socket": async () => { return await import ('./Wallet_Socket/Trinket.svelte') },
-
 	"Field": async () => { return await import ('./Field/Trinket.svelte') },
 };
 

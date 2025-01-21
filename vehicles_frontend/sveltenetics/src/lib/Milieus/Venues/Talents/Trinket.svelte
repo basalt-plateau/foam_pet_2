@@ -10,10 +10,10 @@
 
 ///
 //
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
-import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
 //
 import { trends } from './Trinket'
@@ -25,6 +25,7 @@ import { trends } from './Trinket'
 import Extension_Network_Status from '$lib/Singles/Extension_Winch/Status/Tome.svelte'
 import Dapp_Network_Status from '$lib/Versies/Tomes/Network_Status/Bothy.svelte'
 import Dapp_Network_Cohesion from '$lib/Versies/Tomes/Network_Cohesion/Bothy.svelte'
+import Dapp_Network_Frontier from '$lib/Les_Talents/Dapp_Network/Frontier/Tome.svelte'
 //
 ////
 
@@ -49,7 +50,7 @@ import Sport_Pack from '$lib/Les_Talents/Sport_Pack/Frontier/Tome.svelte'
 //
 //
 ////
-
+import Glam_Frontier from "$lib/Les_Talents/Glam/Frontier/Tome.svelte"
 
 
 const Les_Talents = [
@@ -111,8 +112,7 @@ const Les_Talents = [
 ]
 
 
-const mode = check_roomies_truck ().freight.mode;
-
+let Versies_Freight = false;
 
 
 </script>
@@ -127,8 +127,11 @@ const mode = check_roomies_truck ().freight.mode;
 
 </style>
 
+
+<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+{#if typeof Versies_Freight === "object"}
 <nav>	
-	<div style="height: 0.3cm"></div>
+	<div style="height: 0.1cm"></div>
 	
 	<div
 		style="
@@ -144,9 +147,25 @@ const mode = check_roomies_truck ().freight.mode;
 			<Extension_Network_Status />
 		</div>
 	</div>
-
-	<div style="height: 0.3cm"></div>
-
+	
+	<div style="height: 0.1cm"></div>
+	
+	{#if Versies_Freight.mode  === "nurture" }
+	<div 
+		style="
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
+			grid-gap: 0.25cm;
+		"
+		class="card p-2"
+	>
+		<Dapp_Network_Frontier />
+		<Glam_Frontier />
+	</div>
+	{/if}
+	
+	<div style="height: 0.1cm"></div>
+	
 	<div
 		style="
 			display: grid;
@@ -179,7 +198,7 @@ const mode = check_roomies_truck ().freight.mode;
 		}) }
 	>
 		{#each Les_Talents as Le_Talent }
-		{#if mode === "business" && Le_Talent.Mode !== "business" }
+		{#if Versies_Freight.mode === "business" && Le_Talent.Mode !== "business" }
 		
 		{:else}
 		<Panel 
@@ -203,3 +222,4 @@ const mode = check_roomies_truck ().freight.mode;
 		{/each}
 	</section>
 </nav>
+{/if}

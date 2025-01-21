@@ -23,6 +23,17 @@ export const Rise_stage_creator = async ({ freight }) => {
 		return freight.stages.Rise;
 	}
 	
+	const reset = async () => {
+		const stage = _stage ();
+					
+		stage.account.address = "";
+		stage.account.public_key = "";
+		
+		stage.network.name = "";
+		stage.network.address = "";
+		stage.network.chain_id = "";
+	}
+	
 	return {
 		name: "Rise",
 		url: "https://risewallet.io",
@@ -52,32 +63,16 @@ export const Rise_stage_creator = async ({ freight }) => {
 			const stage = _stage ();
 			
 			try {
-				// console.log ("rise stage:", { stage });
-				
 				stage.installed = await stage.is_installed ();
 				if (stage.installed !== "yes") {
-					stage.connected = "no"
-					
-					stage.account.address = "";
-					stage.account.public_key = "";
-					
-					stage.network.name = "";
-					stage.network.address = "";
-					stage.network.chain_id = "";
-					
+					stage.connected = "no";
+					reset ();
 					return;
 				}
 				
 				stage.connected = await stage.is_connected ();
-				
 				if (stage.connected !== "yes") {
-					stage.account.address = "";
-					stage.account.public_key = "";
-					
-					stage.network.name = "";
-					stage.network.address = "";
-					stage.network.chain_id = "";
-					
+					reset ();
 					return;
 				}
 

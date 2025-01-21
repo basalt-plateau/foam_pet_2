@@ -66,7 +66,7 @@ export const Petra_stage_creator = async ({ freight }) => {
 				}
 				
 				stage.connected = await stage.is_connected ();
-				if (stage.installed !== "yes") {
+				if (stage.connected !== "yes") {
 					reset ();
 					return;
 				}

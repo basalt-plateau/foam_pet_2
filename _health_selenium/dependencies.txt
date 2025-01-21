@@ -20,14 +20,14 @@ certifi==2024.12.14
     # via
     #   requests
     #   selenium
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
-click==8.1.7
+click==8.1.8
     # via
     #   body-scan
     #   emergency
     #   flask
-coverage==7.6.9
+coverage==7.6.10
     # via emergency
 deepdiff==7.0.1
     # via foam-pet-health-selenium (pyproject.toml)
@@ -57,7 +57,7 @@ idna==3.10
     #   trio
 itsdangerous==2.2.0
     # via flask
-jinja2==3.1.4
+jinja2==3.1.5
     # via flask
 mako==1.3.8
     # via emergency
@@ -82,7 +82,7 @@ psutil==6.1.1
     # via botanist
 ptyprocess==0.7.0
     # via pexpect
-pygments==2.18.0
+pygments==2.19.1
     # via
     #   emergency
     #   rich
@@ -103,7 +103,7 @@ sanic==23.12.2
     # via emergency
 sanic-routing==23.12.0
     # via sanic
-selenium==4.27.1
+selenium==4.28.0
     # via foam-pet-health-selenium (pyproject.toml)
 sniffio==1.3.1
     # via trio
@@ -115,7 +115,7 @@ tinydb==4.8.2
     #   emergency
 tracerite==1.1.1
     # via sanic
-trio==0.27.0
+trio==0.28.0
     # via
     #   selenium
     #   trio-websocket
@@ -129,7 +129,7 @@ typing-extensions==4.12.2
     #   selenium
 ujson==5.10.0
     # via sanic
-urllib3==2.2.3
+urllib3==2.3.0
     # via
     #   requests
     #   selenium
@@ -137,7 +137,7 @@ uvloop==0.21.0
     # via sanic
 websocket-client==1.8.0
     # via selenium
-websockets==14.1
+websockets==14.2
     # via sanic
 werkzeug==3.1.3
     # via flask

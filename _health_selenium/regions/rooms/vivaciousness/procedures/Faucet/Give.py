@@ -64,7 +64,7 @@ def give_Octas_from_faucet (packet):
 		def find_the_button ():
 			elements ["faucet_button"] = driver_1.find_element (
 				By.CSS_SELECTOR, 
-				"[monitor='talents_list_nurture'] [monitor='faucet']"
+				"[monitor='talents_list'] [monitor='faucet']"
 			)
 			
 		loop (find_the_button)

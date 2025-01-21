@@ -48,7 +48,6 @@ import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 let Extension_Winch_Freight = false
 let Versies_Freight = false
 
-import Dapp_Network_Frontier from "$lib/Les_Talents/Dapp_Network/Frontier/Tome.svelte"
 
 
 </script>
@@ -215,10 +214,6 @@ import Dapp_Network_Frontier from "$lib/Les_Talents/Dapp_Network/Frontier/Tome.s
 						<span class="badge variant-soft-surface">{ Versies_Freight.dapp_network.status.ledger_version }</span>
 					</span>
 				</div>	
-				
-				{#if Versies_Freight.mode  === "nurture" }
-				<Dapp_Network_Frontier />
-				{/if}
 				
 				{/if}
 			</svelte:fragment>

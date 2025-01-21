@@ -224,7 +224,7 @@ export const make = async (packet) => {
 				trucks [1].freight.network_status = {};
 			},
 			connect: async ({ stage_name }) => {	
-				console.log ("extension winch connect:", { stage_name });
+				console.info ("extension winch connect:", { stage_name });
 				
 				await trucks [1].freight.clear ();
 				
@@ -268,18 +268,46 @@ export const make = async (packet) => {
 		}
 	});
 	
-
-	trucks [1].freight.stages.Rise = await Rise_stage_creator ({ freight: trucks [1].freight });
-	trucks [1].freight.stages.Petra = await Petra_stage_creator ({ freight: trucks [1].freight });
-	trucks [1].freight.stages.Pontem = await Pontem_stage_creator ({ freight: trucks [1].freight });
 	
-	let stages = trucks [1].freight.stages;
-	for (let stage_name in stages) {
-		await trucks [1].freight.stages [ stage_name ].status ();
+	try {
+		trucks [1].freight.stages.Rise = await Rise_stage_creator ({ freight: trucks [1].freight });
+	}
+	catch (imperfection) {
+		console.error (imperfection);
+	}
+	
+	try {
+		trucks [1].freight.stages.Petra = await Petra_stage_creator ({ freight: trucks [1].freight });
+	}
+	catch (imperfection) {
+		console.error (imperfection);
+	}
+	
+	try {
+		trucks [1].freight.stages.Pontem = await Pontem_stage_creator ({ freight: trucks [1].freight });
+	}
+	catch (imperfection) {
+		console.error (imperfection);
 	}
 
 	
+	let stages = trucks [1].freight.stages;
+	for (let stage_name in stages) {
+		console.info ("building:", stage_name);
+		
+		try {
+			await trucks [1].freight.stages [ stage_name ].status ();
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
+	}
+
+
+	//
+	console.info ("checking for local storage connection");
 	trucks [1].freight.check_for_local_storage_connection ();
+	console.info ("checked for local storage connection");
 	
 	window.extension_winch = trucks [1].freight;
 

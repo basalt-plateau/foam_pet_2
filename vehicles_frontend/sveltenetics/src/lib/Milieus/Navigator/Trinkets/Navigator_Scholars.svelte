@@ -122,15 +122,6 @@ const build = () => {
 			style={ buttons_styles }
 		/>
 		<Milieus_Button
-			monitor="Show"
-		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Beauty"] : "Beauty" }
-			location={[ "Ecology", "Theme" ]}
-			is_open_location={[ "Ecology", "Theme" ]}
-			
-			style={ buttons_styles }
-		/>
-		<Milieus_Button
 			monitor="Resilience"
 		
 			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Vows"] : "Vows" }

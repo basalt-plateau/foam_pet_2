@@ -3,11 +3,11 @@
 <script>
 
 /*
-	import Dapp_Network_Polytope from "$lib/Les_Talents/Dapp_Network/Frontier/Tome.svelte"
+	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Tome.svelte"
 */
 
 /*
-	Frontier, Event Horizon
+	Frontier, Event Horizon, Opener
 */
 
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
@@ -35,7 +35,7 @@ let open = async () => {
 
 
 <button 
-	monitor="dapp network frontier"
+	monitor="glyph for adaptation"
 	
 	on:click={ open }
 	type="button" 
@@ -48,7 +48,9 @@ let open = async () => {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		
+		white-space: break-spaces;
 	"
 >
-	<p>Dapp Network</p>
+	<p>Glam</p>
 </button>

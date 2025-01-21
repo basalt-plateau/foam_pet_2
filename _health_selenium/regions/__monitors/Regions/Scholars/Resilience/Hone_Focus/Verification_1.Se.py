@@ -34,7 +34,7 @@ def check_1 ():
 	driver_1.get (URL)
 	proceed_through_memo ({ "driver": driver_1 });
 	Milieus_Navigate ({
-		"location": [ "Scholars", "Resilience", "Hone Focus" ],
+		"location": [ "Ecology", "Resilience", "Hone Focus" ],
 		"driver": driver_1
 	});
 	

@@ -59,7 +59,7 @@ def check_1 ():
 	loop (lambda : use_mode (driver_1, "nurture"))
 	driver_1.get (URL)
 	Milieus_Navigate ({
-		"location": [ "Scholars", "Resilience", "Address Qualities" ],
+		"location": [ "Ecology", "Resilience", "Address Qualities" ],
 		"driver": driver_1
 	});
 	

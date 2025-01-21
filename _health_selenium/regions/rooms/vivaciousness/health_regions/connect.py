@@ -40,11 +40,9 @@ def connect_to_driver ():
 
 	print (f"""
 	
-	
 		connect_to_driver:
 		
 			Firefox_path = "{ firefox_path }"
-	
 	
 	
 	""");

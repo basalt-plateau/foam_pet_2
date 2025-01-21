@@ -11,7 +11,7 @@
 			#		_essence/merge/__init__.py
 			#
 			. /Metro/_plays/board/build_1.sh
-			
+			. /Metro/_plays/board/build_2.sh
 			
 			
 			#
@@ -42,6 +42,7 @@
 			#
 			#
 			(cd /Metro/vehicles_frontend/sveltenetics && pnpm run health)
+			(cd /Metro/vehicles_frontend/sveltenetics && pnpm run lint)
 		
 			
 			#
@@ -63,14 +64,15 @@
 			
 			#
 			#	E2E: Selenium
+			#		* Needs to be non-root
+			#		* Needs to be on OS (not Docker)
+			#		* Can run this on the dev server.
 			#
-			#		from outside of Docker run _health_selenium
-			#			change port to 22000
+			#		cd _health_selenium && . build_1.sh && python3 regions/health.proc.py run
 			#
-			#		cd aptos_metropolis/foam_pet/_health_selenium/regions
-			#		python3 health.proc.py run
+			#		Optional:
+			#			python3 regions/health.proc.py run --path="Regions/Scholars/Resilience/Address_Qualities/Verification_1.Se.py"
 			#
-
 			
 			#
 			#	poetry auth
