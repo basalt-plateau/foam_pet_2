@@ -20,7 +20,8 @@ import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
 	
 import { technicians_leaves } from './Venues/Scholars/Resilience/Leaves.js'
-	
+
+
 let Milieus = {
 	"Ecology": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
@@ -33,7 +34,7 @@ let Milieus = {
 	"Wallet": async () => { return await import ('$lib/Les_Talents/_Wallet/Panel/Leaf.svelte') },
 	
 	
-	"Event Horizon Wallet": technicians_leaves,
+	"Greetings": async () => { return await import ('$lib/Greetings/Trinket.svelte') },
 }
 
 let milieu_venue;

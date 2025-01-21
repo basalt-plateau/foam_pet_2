@@ -131,7 +131,6 @@ let Versies_Freight = false;
 <Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 {#if typeof Versies_Freight === "object"}
 <nav>	
-	{#if Versies_Freight.mode  === "nurture" }
 	<div 
 		style="
 			display: grid;
@@ -140,11 +139,14 @@ let Versies_Freight = false;
 		"
 		class="card p-2"
 	>
+		{#if Versies_Freight.mode  === "nurture" }
 		<Dapp_Network_Frontier />
-		<Glam_Frontier />
 		<Franchise_Frontier />
+		{/if}
+		<Glam_Frontier />
+		
 	</div>
-	{/if}
+	
 	
 	<div style="height: 0.1cm"></div>
 	

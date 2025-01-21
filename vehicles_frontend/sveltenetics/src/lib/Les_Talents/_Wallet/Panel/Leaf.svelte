@@ -33,28 +33,7 @@ let leaf = "Extensions"
 			gap: 0.25cm;
 		"
 	>
-		{#if Extension_Winch_Freight.stage_name_connected.length === 0 }
-		<div>
-			<RadioGroup>
-				<RadioItem 
-					bind:group={leaf} 
-					name="justify" 
-					value={ "Extensions" }
-				>Extensions</RadioItem>
-				<RadioItem 
-					bind:group={leaf} 
-					name="justify" 
-					value={ "Greetings" }
-				>Greetings</RadioItem>
-			</RadioGroup>
-		</div>
-		{/if}
-
-		{#if leaf === "Extensions" }
 		<Extension_Wallets />
-		{:else if leaf === "Greetings" }
-		<Greetings />
-		{/if}
 	</div>
 	{/if}
 </div>
