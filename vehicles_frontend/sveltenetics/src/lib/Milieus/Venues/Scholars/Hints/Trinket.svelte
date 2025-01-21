@@ -70,22 +70,24 @@ const show_rules = () => {
 			width: 100%;
 		"
 	>
-		<div style="height: 0.25cm"></div>
-		
-		<p
-			style="
-				text-align: center;
-				font-size: 1.2em;
-				
-				margin: 0 auto;
-				max-width: 700px;
-				width: 100%;
-				
-				line-height: 200%;
-			"
-		>To enchant <Slang text="Aptos" />, venture on.</p>
-		
-		<div style="height: 0.25cm"></div>
+		<div class="card p-4 variant-soft-surface">
+			<div style="height: 0.25cm"></div>
+			
+			<p
+				style="
+					text-align: center;
+					font-size: 1.2em;
+					
+					margin: 0 auto;
+					max-width: 700px;
+					width: 100%;
+					
+					line-height: 200%;
+				"
+			>To enchant <Slang text="Aptos" />, venture on.</p>
+			
+			<div style="height: 0.25cm"></div>
+		</div>
 	</div>
 	<div style="height: 0.5cm"></div>
 	
@@ -119,7 +121,7 @@ const show_rules = () => {
 	</div>
 
 	<div style="height: 0.5cm"></div>
-	<Getting_Moving />	
+	<!-- <Getting_Moving /> -->
 	
 	<div style="height: 0.5cm"></div>
 	
@@ -140,7 +142,6 @@ const show_rules = () => {
 			"
 		>Asks</header>
 		
-
 		
 		<p
 			style="

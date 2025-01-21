@@ -135,7 +135,6 @@ export const lease_roomies_truck = () => {
 			// dapp_node_status: { status, UTC_orbit, connected }
 			//
 			
-			
 			window_width: window.innerWidth,
 			layout: {
 				leaf_styles: parse_styles ({

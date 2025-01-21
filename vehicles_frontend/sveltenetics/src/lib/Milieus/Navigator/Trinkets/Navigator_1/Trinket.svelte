@@ -43,10 +43,7 @@ onDestroy (() => {
 }); 
 
 let Milieus_Freight = false;
-$: {
-	let _ = Milieus_Freight;
-}
-	
+
 
 let buttons_styles = ""
 let loyals_button_styles = {}
@@ -73,9 +70,16 @@ const build = () => {
 
 
 <div
+	monitor="navigator 1 structure"
 	style="
-		display: flex;
-		gap: 0.2cm;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(3cm, 1fr));
+		gap: 0.25cm;
+		
+		width: 100%;
+		height: 100%;
+		
+		padding: 0.25cm;
 		
 		font-size: 1.3em;
 	"

@@ -10,7 +10,6 @@ import { build_truck } from '$lib/trucks'
 	
 // import * as Fraction from 'fraction.js'	
 import Fraction from 'fraction.js';
-import Big from 'big.js';
 
 const trucks = {}
 

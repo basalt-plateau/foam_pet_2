@@ -32,7 +32,6 @@
 ////
 //
 import { onMount, onDestroy } from 'svelte';
-import Big from 'big.js'
 //
 import { has_field } from '$lib/taverns/procedures/object/has_field'
 //

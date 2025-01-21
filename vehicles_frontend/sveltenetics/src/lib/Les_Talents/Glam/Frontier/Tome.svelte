@@ -3,7 +3,7 @@
 <script>
 
 /*
-	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Tome.svelte"
+	import Glam_Frontier from "$lib/Les_Talents/Glam/Frontier/Tome.svelte"
 */
 
 /*
@@ -13,6 +13,7 @@
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 const modal_store = getModalStore ();
 
+export let style = "";
 
 
 let open = async () => {
@@ -28,6 +29,7 @@ let open = async () => {
 	});
 }
 
+import { parse_styles } from '$lib/trinkets/styles/parse'
 
 
 
@@ -40,16 +42,18 @@ let open = async () => {
 	on:click={ open }
 	type="button" 
 	class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-	style="
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		
-		padding: 0.1cm 0;
-		
-		white-space: break-spaces;
-	"
+	style={ 
+		parse_styles (Object.assign ({}, {
+			display: 'flex',
+			'flex-direction': 'column',
+			'justify-content': 'center',
+			'align-items': 'center',
+			
+			padding: '0.1cm 0',
+			
+			'white-space': 'break-spaces'
+		}, style))
+	}
 >
 	<p>Glam</p>
 </button>

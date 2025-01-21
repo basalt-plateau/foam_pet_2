@@ -11,20 +11,20 @@
 export const le_label = {
 	"Aptos": "Aptos",
 	
-	"this_domain": "https://Scroll.Town",
-	"This Domain": "https://Scroll.Town",
+	"this_domain": "https://Foam.Pet",
+	"This Domain": "https://Foam.Pet",
 	
-	"the_pypi_module": "Scroll_Town",
+	"the_pypi_module": "Foam_Pet",
 
-	"Labels": "Scroll Towns",
-	"Label": "Scroll Town",
-	"label": "Scroll Town",
+	"Labels": "Foam Pets",
+	"Label": "Foam Pet",
+	"label": "Foam Pet",
 
-	"Town": "Scroll Town",	
-	"town": "Scroll town",	
+	"Pet": "Foam Pet",	
+	"Pet": "Foam Pet",	
 	
-	"Towns": "Scroll Towns",
-	"towns": "Scroll towns",
+	"Pets": "Foam Pets",
+	"Pets": "Foam Pets",
 	
 	
 	////
@@ -39,7 +39,7 @@ export const le_label = {
 	//	Extension Wallet
 	//		Greetings, Nose
 	//
-	"Label_Wallet_Extension": "Scroll Town Greetings",
+	"Label_Wallet_Extension": "Foam Pet Greetings",
 
 	////
 	//

@@ -9,7 +9,6 @@
 import * as AptosSDK from "@aptos-labs/ts-sdk";
 //
 import { onMount, onDestroy, beforeUpdate } from 'svelte'
-import { page } from '$app/stores';
 import { fade } from 'svelte/transition';
 //
 import { initializeStores, Modal, Toast } from '@skeletonlabs/skeleton';
@@ -24,7 +23,6 @@ import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floati
 //
 import Navigator from "$lib/Milieus/Navigator/Trinket.svelte";
 import Footer from "$lib/trinkets/Footer/Trinket.svelte";
-import Cow from "$lib/trinkets/Cow/Trinket.svelte"
 //
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
@@ -122,6 +120,9 @@ beforeUpdate (async () => {
 });
 
 
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
+let Versies_Freight = false
+
 
 
 
@@ -137,16 +138,21 @@ beforeUpdate (async () => {
 	in:fade={{ duration: 500 }} 
 	class="app"
 	style="
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
 		// min-width: 100vw;
 	"
 >	
-	{#if 
-		built === "yes" && 
-		trucks_prepared === "yes"
-	}
+	{#if built === "yes" && trucks_prepared === "yes" }
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	{#if typeof Versies_Freight === "object"}
 	<div
 		in:fade={{ duration: 500 }} 
 		class="app"
@@ -162,60 +168,88 @@ beforeUpdate (async () => {
 		<Toast />
 		<Drawer />
 		
-		<Navigator />
 		
 		<div
 			style="
-				position: relative;
-			
-				display: flex;
-				flex-direction: column;
-				min-height: 100%;
-			"
-		>
-			<div 
-				style="
-					position: static;
-					min-height: 100vh;
-					
-					flex: 1;
-					display: flex;
-					flex-direction: column;
-					padding: 1rem;
-					width: 100%;
-					
-					margin: 0 auto;
-					box-sizing: border-box;
-				"
-			>	
-				<Milieus_Trinket />
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
 				
-				<!-- <slot></slot> -->
-			</div>
+				height: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
+			" 
+			
+			
+		>
+			<Navigator />
 		</div>
 		
 		<div
 			style="
-				position: fixed;
+				height: { Versies_Freight.window_width <= 800 ? 'calc(90vh - 1.5cm)' : 'calc(90vh - 2cm)' };
+				top: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
+				
+				position: absolute;
+				top: 2cm;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				
+				
+				
+				overflow-y: scroll;
+			"
+		>
+			<div
+				style="
+					position: relative;
+				
+					display: flex;
+					flex-direction: column;
+					min-height: 100%;
+				"
+			>
+				<div 
+					style="
+						position: static;
+						min-height: 100vh;
+						
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+						padding: 1rem;
+						width: 100%;
+						
+						margin: 0 auto;
+						box-sizing: border-box;
+					"
+				>	
+					<Milieus_Trinket />
+				</div>
+			</div>
+			
+			<div style="height: 0.25cm"></div>
+			<hr class="!border-t-8 !border-double" />
+			
+			<Navigator_Magma />
+				
+			<hr class="!border-t-8 !border-double" />
+			<div style="height: 0.25cm"></div>
+		</div>
+		<div
+			style="
+				position: absolute;
 				bottom: 0;
 				left: 0;
 				width: 100%;
+				height: 1cm;
 			"
 		>
-			<Cow />
 			<Navigator_Foundation />
 		</div>
-		
-		<div style="height: 0.25cm"></div>
-		<hr class="!border-t-8 !border-double" />
-		
-		<Navigator_Magma />
-			
-		<hr class="!border-t-8 !border-double" />
-		<div style="height: 0.25cm"></div>
 	</div>
-	{:else}
-		<div></div>
+	{/if}
 	{/if}
 </div>
 

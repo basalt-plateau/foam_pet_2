@@ -21,6 +21,8 @@
 //
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
+	
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 //
 ////
@@ -44,6 +46,12 @@ const on_seeds_truck_change = ({ freight: _freight, happening }) => {
 }
 
 let Milieus_Freight = ""
+let Versies_Freight = false
+$: {
+	location = Versies_Freight.location;
+}
+	
+
 let buttons_styles = ""
 
 </script>
@@ -57,7 +65,8 @@ let buttons_styles = ""
 	"
 >
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
-	{#if typeof Milieus_Freight === "object" }
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	{#if typeof Milieus_Freight === "object" && typeof Versies_Freight === "object" }
 	{#if mode === "nurture" }
 	<hr class="!border-t-2" />
 	<div class="bg-surface-100-800-token w-full"
@@ -70,7 +79,7 @@ let buttons_styles = ""
 			padding: 2px;
 		"
 	>
-		{#each location as location_ }
+		{#each Milieus_Freight.location as location_ }
 		<span class="badge variant-filled-surface"
 			style="
 				padding: 2px 4px;

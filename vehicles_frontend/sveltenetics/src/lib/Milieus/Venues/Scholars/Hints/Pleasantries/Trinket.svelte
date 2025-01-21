@@ -2,7 +2,7 @@
 <script>
 
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
-
+import Glam_Frontier from "$lib/Les_Talents/Glam/Frontier/Tome.svelte"
 
 </script>
 
@@ -27,11 +27,14 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 			<!-- finesse, thematicism, eccentric, surrealism, aestheticism -->
 		
 			<span>This can be turned off at</span>
-			<Milieus_Button
-				name={ "Beauty" }
-				location={[ "Ecology", "Theme" ]}
-				is_open_location={[ "Ecology", "Theme" ]}
+			
+			<Glam_Frontier 
+				style={{ 
+					display: 'inline-block',
+					padding: '0.25cm 1cm'
+				}}
 			/>
+			
 		</p>
 	</div>
 </div>
