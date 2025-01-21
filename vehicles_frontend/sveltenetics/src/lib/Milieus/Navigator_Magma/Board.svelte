@@ -22,11 +22,11 @@ let Milieus_Freight = "";
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	{#if typeof Milieus_Freight === "object" }
 	<Milieus_Button
-		monitor="Resilience"
+		monitor="Vows"
 	
 		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Vows"] : "Vows" }
-		location={[ "Ecology", "Resilience", "Leaf" ]}
-		is_open_location={[ "Ecology", "Resilience" ]}
+		location={[ "Vows", "Leaf" ]}
+		is_open_location={[ "Vows" ]}
 		
 		style="
 			padding: 0.25cm 1cm;

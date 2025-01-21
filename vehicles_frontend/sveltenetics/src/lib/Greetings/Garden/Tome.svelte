@@ -32,6 +32,8 @@ import Installation_with_Linux from './Linux/Tome.svelte'
 
 const releases = "https://github.com/basalt-plateau";
 
+import Linux_Tome from "./Linux/Tome.svelte"
+
 </script>
 
 <style>
@@ -61,7 +63,6 @@ a {
 
 		<p
 			style="
-				display: none;
 			
 				text-align: center;
 				width: 500px;
@@ -70,47 +71,54 @@ a {
 			"
 		>The entire domain <Slang text="this_domain" /> can be obtained and run as a Linux dapp.</p>
 		
-		<div style="height: 0.5cm"></div>
-		
-		<p
-			style="
-				text-align: center;
-				width: 500px;
-				text-align: center;
-				margin: 0 auto;
-			"
-		>The entire domain <Slang text="this_domain" /> cannot be obtained and run as a Linux dapp at this time.</p>
+		<Linux_Tome />
 		
 		<div style="height: 0.5cm"></div>
-		
-		<p
-			style="
-				text-align: center;
-				width: 500px;
-				text-align: center;
-				margin: 0 auto;
-			"
-		>Please check later.</p>
 		
 		<div
-			style="
-				display: none;
-				text-align: center;
-			"
+			style="display: none;"
 		>
-			<a 
-				href={ releases } 
-				target="_blank" 
-				class="anchor"
+			
+			<p
 				style="
-					text-decoration: none;
+					text-align: center;
+					width: 500px;
+					text-align: center;
+					margin: 0 auto;
+				"
+			>The entire domain <Slang text="this_domain" /> cannot be obtained and run as a Linux dapp at this time.</p>
+			
+			<div style="height: 0.5cm"></div>
+			
+			<p
+				style="
+					text-align: center;
+					width: 500px;
+					text-align: center;
+					margin: 0 auto;
+				"
+			>Please check later.</p>
+			
+			<div
+				style="
+					display: none;
+					text-align: center;
 				"
 			>
-				<span>{ releases }</span>
-			</a>
+				<a 
+					href={ releases } 
+					target="_blank" 
+					class="anchor"
+					style="
+						text-decoration: none;
+					"
+				>
+					<span>{ releases }</span>
+				</a>
+			</div>
+			
+			<div style="height: 0.5cm"></div>
 		</div>
-		
-		<div style="height: 0.5cm"></div>
 	</div>
 	
 	<div style="height: 0.5cm"></div>

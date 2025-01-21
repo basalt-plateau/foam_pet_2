@@ -58,8 +58,11 @@ def check_1 ():
 	});
 	loop (lambda : use_mode (driver_1, "nurture"))
 	driver_1.get (URL)
-	Milieus_Navigate ({
-		"location": [ "Ecology", "Resilience", "Address Qualities" ],
+
+	
+	from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Vows
+	Milieus_Navigate_to_Vows ({
+		"vow": "Address Qualities",
 		"driver": driver_1
 	});
 	

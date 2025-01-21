@@ -178,7 +178,6 @@ let transform = "scale(0.5)"
 				height: 100vh;
 				
 				transform: { Versies_Freight.parador.transform };
-				transition: 20s;
 			"
 		>
 			<div

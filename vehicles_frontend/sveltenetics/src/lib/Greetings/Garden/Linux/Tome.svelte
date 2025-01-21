@@ -27,6 +27,16 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 let the_panel = 1
 	
 let linux_x86 = {
+	"8_0_0_0": {
+		"foam": {
+			"link": "https://github.com/basalt-plateau/foam_pet/releases/download/publication_v8_0_0_0/Foam_Pet.linux-x86_64.v8_0_0_0.zip",
+			"name": "Adopt (Save to OS)"
+		},
+		"rules": {
+			"link": "https://github.com/basalt-plateau/foam_pet/releases/download/publication_v8_0_0_0/Foam_Pet.linux-x86_64.v8_0_0_0.Rules.zip",
+			"name": "Save Rules to OS"
+		}
+	},
 	"7_0_0_0": {
 		"foam": {
 			"link": "https://github.com/basalt-plateau/foam_pet/releases/download/publication-7.0.0.0/Foam_Pet.linux-x86_64.v7_0_0_0.zip",
@@ -38,6 +48,8 @@ let linux_x86 = {
 		}
 	}
 }	
+
+let le_dapp = linux_x86 ["8_0_0_0"];
 
 const releases = "https://github.com/basalt-plateau/foam_pet/releases"
 	
@@ -60,7 +72,7 @@ const releases = "https://github.com/basalt-plateau/foam_pet/releases"
 						font-size: 2em;
 						text-align: center;
 					"
-				><Slang text="Town" /> with Linux Vehicle</header>
+				>Linux Dapp</header>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
 				<div class="card p-4">
@@ -68,7 +80,7 @@ const releases = "https://github.com/basalt-plateau/foam_pet/releases"
 						style="
 							text-align: center;
 						"
-					>The latest Linux vehicles can be found here:</p>
+					>The latest Linux dapp can be found here:</p>
 				
 				
 					<p
@@ -93,7 +105,7 @@ const releases = "https://github.com/basalt-plateau/foam_pet/releases"
 					<header
 						style="text-align: center"
 					>
-						<span class="badge variant-primary-filled">Version 7_0_0_0</span>
+						<span class="badge variant-primary-filled">Version 8_0_0_0</span>
 					</header>
 				
 					<div style="height: 1cm"></div>
@@ -117,14 +129,14 @@ const releases = "https://github.com/basalt-plateau/foam_pet/releases"
 						"
 					>
 						<a 
-							href={ linux_x86 ["7_0_0_0"] ["rules"] ["link"] } 
+							href={ linux_x86 ["8_0_0_0"] ["rules"] ["link"] } 
 							target="_blank" 
 							class="btn variant-filled"
 							style="
 								text-decoration: none;
 							"
 						>
-							<span>{ linux_x86 ["7_0_0_0"] ["rules"] ["name"] }</span>
+							<span>{ linux_x86 ["8_0_0_0"] ["rules"] ["name"] }</span>
 						</a>	
 					</p>
 				
@@ -137,14 +149,14 @@ const releases = "https://github.com/basalt-plateau/foam_pet/releases"
 						"
 					>
 						<a 
-							href={ linux_x86 ["7_0_0_0"] ["foam"] ["link"] } 
+							href={ linux_x86 ["8_0_0_0"] ["foam"] ["link"] } 
 							target="_blank" 
 							class="btn variant-filled"
 							style="
 								text-decoration: none;
 							"
 						>
-							<span>{ linux_x86 ["7_0_0_0"] ["foam"] ["name"] }</span>
+							<span>{ linux_x86 ["8_0_0_0"] ["foam"] ["name"] }</span>
 						</a>	
 					</p>
 				</div>

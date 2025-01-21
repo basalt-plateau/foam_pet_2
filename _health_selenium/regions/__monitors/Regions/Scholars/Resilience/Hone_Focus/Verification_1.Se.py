@@ -33,8 +33,17 @@ def check_1 ():
 	
 	driver_1.get (URL)
 	proceed_through_memo ({ "driver": driver_1 });
+	
+	''''
 	Milieus_Navigate ({
 		"location": [ "Ecology", "Resilience", "Hone Focus" ],
+		"driver": driver_1
+	});
+	'''
+	
+	from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Vows
+	Milieus_Navigate_to_Vows ({
+		"vow": "Hone Focus",
 		"driver": driver_1
 	});
 	

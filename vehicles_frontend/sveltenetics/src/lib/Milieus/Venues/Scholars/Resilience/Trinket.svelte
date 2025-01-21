@@ -26,8 +26,6 @@ $:{
 }
 	
 
-	
-	
 
 const trends = {
 	panel: {
@@ -63,6 +61,14 @@ const Resilience = {
 		glyphs: "免疫",
 	}
 }
+
+
+const Les_Vows = [
+	{
+		"Frontier": "",
+		"Mode": "nurture"
+	}
+]
 
 </script>
 
@@ -113,16 +119,16 @@ a {
 				<Milieus_Button
 					name={ "APT Petition Button" }
 					
-					location={[ "Ecology", "Resilience", "APT Petition Button" ]}
-					is_open_location={[ "Ecology", "Resilience", "APT Petition Button" ]}
+					location={[ "Vows", "APT Petition Button" ]}
+					is_open_location={[ "Vows", "APT Petition Button" ]}
 				/>
 			</Panel>
 		
 			<Panel styles={ trends.panel }>
 				<Milieus_Button
 					name={ "Net Choices with Text" }
-					location={[ "Ecology", "Resilience", "Net Choices with Text" ]}
-					is_open_location={[ "Ecology", "Resilience", "Net Choices with Text" ]}
+					location={[ "Vows", "Net Choices with Text" ]}
+					is_open_location={[ "Vows", "Net Choices with Text" ]}
 				/>
 			</Panel>
 		
@@ -131,8 +137,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Amount Field" }
-					location={[ "Ecology", "Resilience", "Amount Field" ]}
-					is_open_location={[ "Ecology", "Resilience", "Amount Field" ]}
+					location={[ "Vows", "Amount Field" ]}
+					is_open_location={[ "Vows", "Amount Field" ]}
 				/>
 			</Panel>
 			
@@ -142,8 +148,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Hone Focus" }
-					location={[ "Ecology", "Resilience", "Hone Focus" ]}
-					is_open_location={[ "Ecology", "Resilience", "Hone Focus" ]}
+					location={[ "Vows", "Hone Focus" ]}
+					is_open_location={[ "Vows", "Hone Focus" ]}
 				/>
 			</Panel>
 			{/if}
@@ -168,8 +174,8 @@ a {
 			<Panel styles={ trends.panel }>
 				<Milieus_Button
 					name={ "Adaptation Prebuilt" }
-					location={[ "Ecology", "Resilience", "Adaptation Prebuilt" ]}
-					is_open_location={[ "Ecology", "Resilience", "Adaptation Prebuilt" ]}
+					location={[ "Vows", "Adaptation Prebuilt" ]}
+					is_open_location={[ "Vows", "Adaptation Prebuilt" ]}
 				/>
 			</Panel>
 		
@@ -178,8 +184,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Adaptation" }
-					location={[ "Ecology", "Resilience", "Adaptation" ]}
-					is_open_location={[ "Ecology", "Resilience", "Adaptation" ]}
+					location={[ "Vows", "Adaptation" ]}
+					is_open_location={[ "Vows", "Adaptation" ]}
 				/>
 			</Panel>
 			
@@ -188,8 +194,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Wallet Socket" }
-					location={[ "Ecology", "Resilience", "Wallet Socket" ]}
-					is_open_location={[ "Ecology", "Resilience", "Wallet Socket" ]}
+					location={[ "Vows", "Wallet Socket" ]}
+					is_open_location={[ "Vows", "Wallet Socket" ]}
 				/>
 			</Panel>
 			
@@ -199,8 +205,8 @@ a {
 				<Milieus_Button
 					name={ "Address Qualities with Address" }
 					
-					location={[ "Ecology", "Resilience", "Address Qualities with Address" ]}
-					is_open_location={[ "Ecology", "Resilience", "Address Qualities with Address" ]}
+					location={[ "Vows", "Address Qualities with Address" ]}
+					is_open_location={[ "Vows", "Address Qualities with Address" ]}
 				/>
 			</Panel>
 			
@@ -209,8 +215,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Address Qualities" }
-					location={[ "Ecology", "Resilience", "Address Qualities" ]}
-					is_open_location={[ "Ecology", "Resilience", "Address Qualities" ]}
+					location={[ "Vows", "Address Qualities" ]}
+					is_open_location={[ "Vows", "Address Qualities" ]}
 				/>
 			</Panel>
 			
@@ -219,8 +225,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Nets Choices" }
-					location={[ "Ecology", "Resilience", "Nets Choices" ]}
-					is_open_location={[ "Ecology", "Resilience", "Nets Choices" ]}
+					location={[ "Vows", "Nets Choices" ]}
+					is_open_location={[ "Vows", "Nets Choices" ]}
 				/>
 			</Panel>
 			
@@ -232,8 +238,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Consensus Transactions" }
-					location={[ "Ecology", "Resilience", "Consensus Transactions" ]}
-					is_open_location={[ "Ecology", "Resilience", "Consensus Transactions" ]}
+					location={[ "Vows", "Consensus Transactions" ]}
+					is_open_location={[ "Vows", "Consensus Transactions" ]}
 				/>
 			</Panel>
 			<Panel 
@@ -241,8 +247,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Polytope" }
-					location={[ "Ecology", "Resilience", "Polytope" ]}
-					is_open_location={[ "Ecology", "Resilience", "Polytope" ]}
+					location={[ "Vows", "Polytope" ]}
+					is_open_location={[ "Vows", "Polytope" ]}
 				/>
 			</Panel>
 			
@@ -251,8 +257,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Slang" }
-					location={[ "Ecology", "Resilience", "Slang" ]}
-					is_open_location={[ "Ecology", "Resilience", "Slang" ]}
+					location={[ "Vows", "Slang" ]}
+					is_open_location={[ "Vows", "Slang" ]}
 				/>
 			</Panel>
 			
@@ -261,8 +267,8 @@ a {
 			>
 				<Milieus_Button
 					name={ "Field" }
-					location={[ "Ecology", "Resilience", "Field" ]}
-					is_open_location={[ "Ecology", "Resilience", "Field" ]}
+					location={[ "Vows", "Field" ]}
+					is_open_location={[ "Vows", "Field" ]}
 				/>
 			</Panel>
 		</div>

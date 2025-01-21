@@ -8,18 +8,58 @@
 "'''
 
 ''''
-	click:
-		Scholars button
-	
-	click:
-		Hints button
+	from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Vows
+	Milieus_Navigate_to_Vows ({
+		"vow": "APT Petition Button",
+		"driver": driver
+	});
 "'''
+
 
 from vivaciousness.procedures.loop import loop
 
 from selenium.webdriver.common.by import By
 
 import time
+
+
+def Milieus_Navigate_to_Vows (packet):
+	driver = packet ["driver"]
+	vow = packet ["vow"]
+	
+	def go ():
+		def find_button ():
+			return driver.find_element (
+				By.CSS_SELECTOR, 
+				f'button[monitor="Vows"]'
+			)
+		
+		button = loop (lambda : find_button ())
+		
+		driver.execute_script("arguments[0].scrollIntoView(true);", button)
+		button.click ();
+	
+	go ();
+	
+	
+	
+	def click_technician_button ():
+		def find_button ():
+			return driver.find_element (
+				By.CSS_SELECTOR, 
+				f'[monitor="technicians buttons"] button[monitor="{ vow }"]'
+			)
+		
+		button = loop (lambda : find_button ())
+		
+		#
+		#	This scrolls to button.  Perhaps it can't be clicked unless it's in the view..
+		#	
+		#
+		driver.execute_script("arguments[0].scrollIntoView(true);", button)
+		button.click ();
+	
+	click_technician_button ();
 
 def Milieus_Navigate (packet):
 	driver = packet ["driver"]
