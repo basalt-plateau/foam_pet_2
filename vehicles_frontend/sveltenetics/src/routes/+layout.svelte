@@ -123,8 +123,7 @@ beforeUpdate (async () => {
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
 let Versies_Freight = false
 
-
-
+let transform = "scale(0.5)"
 
 </script>
 
@@ -153,9 +152,10 @@ let Versies_Freight = false
 	{#if built === "yes" && trucks_prepared === "yes" }
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 	{#if typeof Versies_Freight === "object"}
+	
 	<div
+		
 		in:fade={{ duration: 500 }} 
-		class="app"
 		style="
 			position: relative;
 		
@@ -168,82 +168,89 @@ let Versies_Freight = false
 		<Toast />
 		<Drawer />
 		
-		
 		<div
+			monitor="parador"
 			style="
 				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
 				bottom: 0;
-				
-				height: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
-			" 
-			
-			
-		>
-			<Navigator />
-		</div>
-		
-		<div
-			style="
-				height: { Versies_Freight.window_width <= 800 ? 'calc(90vh - 1.5cm)' : 'calc(90vh - 2cm)' };
-				top: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
-				
-				position: absolute;
-				top: 2cm;
 				left: 0;
-				right: 0;
-				bottom: 0;
+				width: 100%;
+				height: 100vh;
 				
-				
-				
-				overflow-y: scroll;
+				transform: { Versies_Freight.parador.transform };
+				transition: 20s;
 			"
 		>
 			<div
 				style="
-					position: relative;
-				
-					display: flex;
-					flex-direction: column;
-					min-height: 100%;
-				"
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					height: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
+				" 
 			>
-				<div 
-					style="
-						position: static;
-						min-height: 100vh;
-						
-						flex: 1;
-						display: flex;
-						flex-direction: column;
-						padding: 1rem;
-						width: 100%;
-						
-						margin: 0 auto;
-						box-sizing: border-box;
-					"
-				>	
-					<Milieus_Trinket />
-				</div>
+				<Navigator />
 			</div>
 			
-			<div style="height: 0.25cm"></div>
-			<hr class="!border-t-8 !border-double" />
-			
-			<Navigator_Magma />
+			<div
+				style="
+					height: { Versies_Freight.window_width <= 800 ? 'calc(100vh - 1.5cm)' : 'calc(100vh - 2cm)' };
+					top: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
+					
+					position: absolute;
+					left: 0;
+					right: 0;
+					
+					overflow-y: scroll;
+				"
+			>
+				<div
+					style="
+						position: relative;
+					
+						display: flex;
+						flex-direction: column;
+						min-height: 100%;
+					"
+				>
+					<div 
+						style="
+							position: static;
+							min-height: 100vh;
+							
+							flex: 1;
+							display: flex;
+							flex-direction: column;
+							padding: 1rem;
+							width: 100%;
+							
+							margin: 0 auto;
+							box-sizing: border-box;
+						"
+					>	
+						<Milieus_Trinket />
+					</div>
+				</div>
 				
-			<hr class="!border-t-8 !border-double" />
-			<div style="height: 0.25cm"></div>
+				<div style="height: 0.25cm"></div>
+				<hr class="!border-t-8 !border-double" />
+				
+				<Navigator_Magma />
+					
+				<hr class="!border-t-8 !border-double" />
+				<div style="height: 0.25cm"></div>
+			</div>
 		</div>
+		
+		
 		<div
 			style="
 				position: absolute;
 				bottom: 0;
 				left: 0;
 				width: 100%;
-				height: 1cm;
 			"
 		>
 			<Navigator_Foundation />

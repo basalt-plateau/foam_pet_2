@@ -82,31 +82,19 @@ export const lease_roomies_truck = () => {
 	
 	trucks [1] = build_truck ({
 		freight: {
+			parador: {
+				transform: "scale(1)"
+			},
+			
+			shrink () {
+				trucks [1].freight.parador.transform = "scale(0)";
+			},
+			
 			mode,
 			origin_address,
 			use_slang,
 			commas_every,
 			
-			////
-			//
-			//	These are vintage ::::: being phased out.
-			//
-			//
-			// net_path,
-			// net_name,
-			// net_connected: "no",
-			//
-			// aptos: new AptosSDK.Aptos (
-			// 	new AptosSDK.AptosConfig ({		
-			// 		fullnode: net_path,
-			// 		network: AptosSDK.Network.CUSTOM
-			// 	})
-			// ),
-			//
-			// wallet: wallet_network,
-			// consensus: { connected: "", aptos: "", status: {}		 },
-			//
-			////
 			
 			dapp_wallet_cohesion: {
 				chain_id: "no" // "no" or "yes"
@@ -134,7 +122,6 @@ export const lease_roomies_truck = () => {
 			// could have dapp_node_status
 			// dapp_node_status: { status, UTC_orbit, connected }
 			//
-			
 			window_width: window.innerWidth,
 			layout: {
 				leaf_styles: parse_styles ({
@@ -156,6 +143,13 @@ export const lease_roomies_truck = () => {
 		value
 	}) => {
 		// console.log ("🌾 Versie Freight was modified", value, property);
+		
+		if (property === "commas_every") {
+			localStorage.setItem ("commas_every", value)
+		}
+		else if (property === "use_slang") {
+			localStorage.setItem ("use_slang", value)
+		}
 		
 		try {
 			if (bracket === original_freight.dapp_network && property === "net_path") {
@@ -253,17 +247,7 @@ export const check_roomies_truck = () => {
 	return trucks [1];
 }
 export const monitor_roomies_truck = (action) => {	
-	return trucks [1].monitor (({ freight, property, value }) => {
-		if (property === "commas_every") {
-			localStorage.setItem ("commas_every", value)
-		}
-		else if (property === "use_slang") {
-			localStorage.setItem ("use_slang", value)
-		}
-
-		
-		action (freight);
-	})
+	return trucks [1].monitor (({ freight, property, value }) => { action (freight); });
 }
 
 

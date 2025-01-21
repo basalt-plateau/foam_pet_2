@@ -131,6 +131,21 @@ let Versies_Freight = false;
 <Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 {#if typeof Versies_Freight === "object"}
 <nav>	
+	{#if Versies_Freight.mode  === "nurture" }
+	<div 
+		style="
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
+			grid-gap: 0.25cm;
+		"
+		class="card p-2"
+	>
+		<Dapp_Network_Frontier />
+		<Glam_Frontier />
+		<Franchise_Frontier />
+	</div>
+	{/if}
+	
 	<div style="height: 0.1cm"></div>
 	
 	<div
@@ -150,22 +165,7 @@ let Versies_Freight = false;
 	
 	<div style="height: 0.1cm"></div>
 	
-	{#if Versies_Freight.mode  === "nurture" }
-	<div 
-		style="
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
-			grid-gap: 0.25cm;
-		"
-		class="card p-2"
-	>
-		<Dapp_Network_Frontier />
-		<Glam_Frontier />
-		<Franchise_Frontier />
-	</div>
-	{/if}
-	
-	<div style="height: 0.1cm"></div>
+
 	
 	<div
 		style="

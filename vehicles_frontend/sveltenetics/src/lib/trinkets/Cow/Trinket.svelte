@@ -2,10 +2,16 @@
 
 <script>
 
+/*
+	import Cow from "$lib/trinkets/Cow/Trinket.svelte"
+*/
+
 import { fade } from 'svelte/transition';
 import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
-
-
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
+let Versies_Freight = false
+	
+	
 
 let sound_gem = ""
 
@@ -19,6 +25,8 @@ let cow_clicked = () => {
 	show_dialogue = "yes"
 	sound_gem.playa ();
 	
+	Versies_Freight.shrink ();
+	
 	clearTimeout (chat_timeout);
 	chat_timeout = setTimeout (() => {
 		show_dialogue = "no"
@@ -28,11 +36,6 @@ let cow_clicked = () => {
 
 </script>
 
-
-<style>
-
-
-</style>
 
 
 
@@ -49,6 +52,11 @@ let cow_clicked = () => {
 		cursor: pointer;
 	"
 >
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	{#if typeof Versies_Freight === "object"}
+	
+	
+
 	<Sound_Gem 
 		bind:this={ sound_gem }
 		source="/sonors/Beep/Beep.ogg"
@@ -153,4 +161,6 @@ let cow_clicked = () => {
 			<p>Frend</p>
 		</div>
 	</button>
+	
+	{/if}
 </div>
