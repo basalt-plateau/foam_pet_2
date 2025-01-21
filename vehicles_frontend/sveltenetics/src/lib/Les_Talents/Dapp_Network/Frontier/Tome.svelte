@@ -41,13 +41,12 @@ let open = async () => {
 	type="button" 
 	class="btn bg-gradient-to-br variant-gradient-primary-secondary"
 	style="
-		font-size: 1.3em;
-		padding: 12px 54px;
-		
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		
+		padding: 0.1cm 0;
 	"
 >
 	<p>Dapp Network</p>

@@ -28,31 +28,25 @@ let open = async () => {
 	});
 }
 
-
-
-
 </script>
 
 
-<div class="relative inline-block">
-	<button 
-		monitor="glyph for adaptation"
+<button 
+	monitor="glyph for adaptation"
+	
+	on:click={ open }
+	type="button" 
+	class="btn bg-gradient-to-br variant-gradient-primary-secondary"
+	style="
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		
-		on:click={ open }
-		type="button" 
-		class="btn bg-gradient-to-br variant-gradient-primary-secondary"
-		style="
-			font-size: 1.3em;
-			padding: 12px 54px;
-			
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			
-			white-space: break-spaces;
-		"
-	>
-		<p>Talent</p>
-	</button>
-</div>
+		padding: 0.1cm 0;
+		
+		white-space: break-spaces;
+	"
+>
+	<p>Franchise</p>
+</button>

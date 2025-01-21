@@ -35,6 +35,7 @@ import Milieus_Trinket from '$lib/Milieus/Trinket.svelte'
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 //
 import Navigator_Foundation from '$lib/Milieus/Navigator_Foundation/Trinket.svelte'
+import Navigator_Magma from '$lib/Milieus/Navigator_Magma/Board.svelte'
 //
 import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck'
 //
@@ -202,14 +203,13 @@ beforeUpdate (async () => {
 			"
 		>
 			<Cow />
-		
-			<Navigator_Foundation />	
+			<Navigator_Foundation />
 		</div>
 		
 		<div style="height: 0.25cm"></div>
 		<hr class="!border-t-8 !border-double" />
 		
-		<div style="height: 4cm" />
+		<Navigator_Magma />
 			
 		<hr class="!border-t-8 !border-double" />
 		<div style="height: 0.25cm"></div>

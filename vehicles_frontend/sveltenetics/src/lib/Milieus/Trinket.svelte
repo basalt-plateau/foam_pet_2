@@ -24,7 +24,6 @@ import { technicians_leaves } from './Venues/Scholars/Resilience/Leaves.js'
 let Milieus = {
 	"Ecology": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
-		"Garden": async () => { return await import ('./Venues/Scholars/Garden/Tome.svelte') },		
 		"Resilience": technicians_leaves
 	},
 	
