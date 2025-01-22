@@ -66,7 +66,7 @@ let open = async () => {
 			"
 		>
 			<img src="/_Licensed/Aptos/aptos.png" style="width: 0.5cm; height: 0.5cm;">
-			<span>APT Entrust</span>
+			<span>APT Transfer</span>
 		</p>
 	</button>
 	<div style="height: 0.25cm" />

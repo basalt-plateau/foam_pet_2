@@ -8,7 +8,10 @@ import presetIcons from '@unocss/preset-icons';
  
 import { presetAtoUI } from 'ato-ui/preset';
  
-export default defineConfig({
+/*
+	What is purpose of this...
+*/
+export default defineConfig ({
     presets: [
         presetIcons({
             extraProperties: {
@@ -19,5 +22,8 @@ export default defineConfig({
         presetWind (),
         presetAtoUI ()
     ],
-    transformers: [transformerVariantGroup(), transformerDirectives()]
+    transformers: [
+		transformerVariantGroup (), 
+		transformerDirectives ()
+	]
 });
