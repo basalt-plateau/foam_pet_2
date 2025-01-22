@@ -53,12 +53,15 @@ let EWF = false
 	<Accordion>
 		<AccordionItem>
 			<svelte:fragment slot="summary">
-				<p
+				<div
 					style="
-						text-align: center;
+						display: flex;
+						align-items: center;
+						justify-content: center;
 					"
-				>Wallet Network</p>
-				<hr />
+				>
+					<span class="badge variant-filled-surface">Wallet Network</span>
+				</div>
 				
 				<div
 					style="

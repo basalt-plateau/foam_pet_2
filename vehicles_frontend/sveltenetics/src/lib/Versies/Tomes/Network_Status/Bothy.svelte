@@ -59,12 +59,16 @@ let Versies_Freight = false
 	<Accordion>
 		<AccordionItem>
 			<svelte:fragment slot="summary">
-				<p
-					style="text-align: center"
-				>Dapp Network Status</p>
+				<div
+					style="
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					"
+				>
+					<span class="badge variant-filled-surface">Dapp Network Status</span>
+				</div>
 				
-				<hr />
-			
 				<div
 					style="
 						position: relative;

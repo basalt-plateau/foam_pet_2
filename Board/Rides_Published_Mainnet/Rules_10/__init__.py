@@ -27,24 +27,28 @@ def steady (envelope):
 	
 def publish (envelope):
 	ride_plate = envelope ["ride_plate"]
-	location = envelope ["location"]
+	named_addresses = envelope ["named_addresses"]
 
 	os.system (" ".join ([
 		f"cd { this_directory }",
 		"&&",
 		"aptos move publish",
-		f"--named-addresses 'Ride_01={ ride_plate }'"
+		named_addresses
+		#f"--named-addresses 'Ride_01={ ride_plate }'"
 	]));
 	
 
 def build (envelope):
 	ride_plate = envelope ["ride_plate"]
 	location = envelope ["location"]
-
-
+	
 	os.system (" ".join ([
 		f"cd { this_directory }",
 		"&&",
 		"aptos move build",
 		f"--named-addresses 'Ride_01={ ride_plate }'"
 	]));
+	
+	
+	
+	

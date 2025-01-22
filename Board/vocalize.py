@@ -24,7 +24,7 @@ import click
 #
 #
 import Rides_Published_Mainnet.Rules as Rules_Moves
-import Rides_Published_Mainnet.Rules_10 as Rules_10_Moves
+import Rides_Published_Mainnet.Rules_10 as Rules_10
 #
 #
 import Rides.Motions_01 as Motions_01_Moves
@@ -39,22 +39,19 @@ import Rides.Rhythm_01 as Rhythm_01
 
 import Rides.Sport_Pack_01 as Sport_Pack_01
 
+publishers = {
+	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
+	"Dev": "0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C"
+}
 
 #
 #
 #	perhaps.. this is the address of the publisher.
-#
 #		perhaps.. this should be the same as builder_1.
 #
 #
-ride_plate = "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
-ride_plate = "0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C"
+ride_plate = publishers ["Dev"]
 
-#
-#
-#	Petra
-#
-ride_plate = "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD"
 
 def motion_for_named_addresses ():
 	owner_1 = {
@@ -141,7 +138,7 @@ moves_structures = {
 	
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
-	"Rules_10": Rules_10_Moves,
+	"Rules_10": Rules_10,
 	"Motions_01": Motions_01_Moves,
 	#"Peptyde": Peptyde_Moves,
 	
@@ -159,7 +156,10 @@ def clique ():
 
 
 	"""
-		python3 vocalize.py vocalize --steady --move Motions_01
+		python3 vocalize.py vocalize --steady --move Sport_Pack_01
+		
+		python3 vocalize.py vocalize --publish --move Rules_10
+		python3 vocalize.py vocalize --publish --move Sport_Pack_01
 	"""
 	@click.command ("vocalize")
 	@click.option ('--move', type = str, help = '')

@@ -15,6 +15,8 @@ import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 let Versies_Freight = false
 let Extension_Winch_Freight = false
 
+const grin = "😁"
+
 </script>
 
 <div>
@@ -40,8 +42,8 @@ let Extension_Winch_Freight = false
 			</div>
 		</div>
 		{:else}
-		<div class="card p-4 variant-filled-primary">
-			<span>😁 The <b>Dapp</b> and <b>Wallet</b> report are on the same Chain ID.</span>
+		<div class="card p-4 variant-filled-surface">
+			<span>{ grin } The <b>Dapp</b> and <b>Wallet</b> report are on the same Chain ID.</span>
 		</div>
 		{/if}
 	</div>

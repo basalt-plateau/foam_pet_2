@@ -4,6 +4,12 @@
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 
+import * as Truck_1 from '$lib/Les_Talents/Sport_Pack/Panel/Truck/index.js'
+import Truck_1_Ride from '$lib/Les_Talents/Sport_Pack/Panel/Truck/Ride.svelte'
+let Truck_1_Freight = false
+
+
+
 const begin = () => {
 	
 }
@@ -14,7 +20,8 @@ const end = () => {
 
 </script>
 
-
+<Truck_1_Ride on_change={ ({ pro_freight }) => { Truck_1_Freight = pro_freight; } } />
+{#if typeof Truck_1_Freight === "object"}
 <div
 	style="
 		display: flex;
@@ -57,4 +64,4 @@ const end = () => {
 
 	</div>
 </div>
-
+{/if}

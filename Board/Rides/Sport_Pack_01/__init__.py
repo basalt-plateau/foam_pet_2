@@ -48,9 +48,13 @@ def publish (envelope):
 	ride_plate = envelope ["ride_plate"]
 	named_addresses = envelope ["named_addresses"]
 
-	os.system (" ".join ([
+	screenplay = " ".join ([
 		f"cd { this_directory }",
 		"&&",
 		"aptos move publish",
 		named_addresses
-	]));
+	]);
+	
+	print ("screenplay:", screenplay);
+
+	os.system (screenplay);
