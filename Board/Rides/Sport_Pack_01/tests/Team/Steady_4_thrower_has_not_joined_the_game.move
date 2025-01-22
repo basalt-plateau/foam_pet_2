@@ -3,7 +3,7 @@
 
 
 
-module builder_1::boar_Passs_1_Steady_4 {
+module builder_1::boar_Planet_IVs_1_Steady_4 {
 	
 	
 	
@@ -75,9 +75,9 @@ module builder_1::boar_Passs_1_Steady_4 {
 		//	The Boar_Game
 		//
 		//
-		let boar_Passs_for_sale : u256 = 10;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Passs_for_sale);
-		if (Boar_Game_Module::Boar_Passs_For_Sale_Left () != 10) { abort 2 };
+		let boar_Planet_IVs_for_sale : u256 = 10;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Planet_IVs_for_sale);
+		if (Boar_Game_Module::Boar_Planet_IVs_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Boar_Game
 		//
@@ -89,7 +89,7 @@ module builder_1::boar_Passs_1_Steady_4 {
 
 		//	Throw
 		//
-		Boar_Game_Module::Throw_Boar_Pass (& boar_Team_03_consenter, boar_Team_01_position);
+		Boar_Game_Module::Throw_Boar_Planet_IV (& boar_Team_03_consenter, boar_Team_01_position);
 		
 		
 		////

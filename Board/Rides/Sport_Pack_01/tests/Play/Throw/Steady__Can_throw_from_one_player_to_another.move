@@ -49,7 +49,7 @@ module builder_1::Steady__Can_throw_from_one_player_to_another {
 		let apt_mint : u64 = one_APT * 100;
 		let apt_boar_Team_01_position : u64 = one_APT * 10;
 
-		let boar_Passs_for_sale : u256 = 900000;
+		let boar_Planet_IVs_for_sale : u256 = 900000;
 		
 		
 		let boar_Producer_position = signer::address_of (& boar_Producer_1_consenter);
@@ -83,8 +83,8 @@ module builder_1::Steady__Can_throw_from_one_player_to_another {
 		//	The Boar_Game
 		//
 		//
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Passs_for_sale);
-		assert! (Boar_Game_Module::Boar_Passs_For_Sale_Left () == boar_Passs_for_sale, 2);
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Planet_IVs_for_sale);
+		assert! (Boar_Game_Module::Boar_Planet_IVs_For_Sale_Left () == boar_Planet_IVs_for_sale, 2);
 		
 		//	Join_the_Boar_Game
 		//
@@ -101,9 +101,9 @@ module builder_1::Steady__Can_throw_from_one_player_to_another {
 		//	Swap: 1 APT -> 5 Plays 
 		//
 		//
-		Boar_Game_Module::Buy_Boar_Passs_for_1_APT_each (& boar_Team_01_consenter, 5);
-		assert! (Boar_Game_Module::Boar_Passs_Score (boar_Team_01_position) == 5, 1);
-		assert! (Boar_Game_Module::Boar_Passs_For_Sale_Left () == (boar_Passs_for_sale - 5), 1);
+		Boar_Game_Module::Buy_Boar_Planet_IVs_for_1_APT_each (& boar_Team_01_consenter, 5);
+		assert! (Boar_Game_Module::Boar_Planet_IVs_Score (boar_Team_01_position) == 5, 1);
+		assert! (Boar_Game_Module::Boar_Planet_IVs_For_Sale_Left () == (boar_Planet_IVs_for_sale - 5), 1);
 		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == 500000000, 1);
 		
 		
@@ -111,9 +111,9 @@ module builder_1::Steady__Can_throw_from_one_player_to_another {
 		//
 		//	Throw
 		//
-		Boar_Game_Module::Throw_Boar_Pass (& boar_Team_01_consenter, boar_Team_02_position);
-		if (Boar_Game_Module::Boar_Passs_Score (boar_Team_01_position) != 4) { abort 1 };
-		if (Boar_Game_Module::Boar_Passs_Score (boar_Team_02_position) != 1) { abort 1 };
+		Boar_Game_Module::Throw_Boar_Planet_IV (& boar_Team_01_consenter, boar_Team_02_position);
+		if (Boar_Game_Module::Boar_Planet_IVs_Score (boar_Team_01_position) != 4) { abort 1 };
+		if (Boar_Game_Module::Boar_Planet_IVs_Score (boar_Team_02_position) != 1) { abort 1 };
 		
 		
 		

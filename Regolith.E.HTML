@@ -4,7 +4,7 @@
 <body style="white-space: pre-wrap">
 	
 	<nav>
-		<header>foam_pet</header>
+		<header>Mech_Pet</header>
 			.Metro
 			.Basalt
 	</nav>
@@ -37,14 +37,14 @@
 		<header>on</header>
 			<header>session 1</header>
 			<code>
-				docker stop foam_pet && docker rm foam_pet
-				docker run --name foam_pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
+				docker stop Mech_Pet && docker rm Mech_Pet
+				docker run --name Mech_Pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
 				. /Metro/_plays/board/build_1.sh
 			</code>	
 				
 			<header>session 2</header>
 			<code>	
-				docker exec -it foam_pet bash -c "bash"
+				docker exec -it Mech_Pet bash -c "bash"
 				. /Metro/_plays/board/build_2.sh
 			</code>
 		</article>
@@ -53,7 +53,7 @@
 			<header>session 1</header>
 			<code>
 				docker compose up -d
-				docker exec -it Foam_Pet.1 bash -c "bash"
+				docker exec -it Mech_Pet.1 bash -c "bash"
 				. /Metro/_plays/board/build_1.sh
 			</code>	
 
@@ -61,8 +61,8 @@
 		
 		<header></header>
 			<header>ventures</header>
-				foam_pet_1 demux_hap build_unverified_certificates
-				foam_pet_1 ventures on
+				Mech_Pet_1 demux_hap build_unverified_certificates
+				Mech_Pet_1 ventures on
 				
 				#
 				#	localhost:22000
@@ -97,7 +97,7 @@
 					#
 					(cd /Metro/vehicles_frontend/sveltenetics && pnpm run build)
 					
-					# (cp -R /Metro/vehicles_frontend/sveltenetics/src /Metro/vehicles/foam_pet/sveltnetics_src)
+					# (cp -R /Metro/vehicles_frontend/sveltenetics/src /Metro/vehicles/Mech_Pet/sveltnetics_src)
 					
 				<haeder>build licenses</header>
 					(cd /Metro/vehicles_frontend/sveltenetics && pnpm run build_licenses)
@@ -110,7 +110,7 @@
 				#	Also, can't be "root" user.
 				#
 			
-				. ./foam_pet/_health_selenium/build_1.sh
+				. ./Mech_Pet/_health_selenium/build_1.sh
 				python3 /Metro/_health_selenium/regions/vivaciousness/health.proc.py
 				
 		<h2>build #1</h2>

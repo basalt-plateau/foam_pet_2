@@ -3,7 +3,7 @@
 #
 # 	python3 /Metro/_plays/board/find_and_replace.py
 #
-#	atopodentatus, tholin, hemoglycin
+#	atopodentatus, tholin, hemoglycin, foam_pet
 #
 
 def add_paths_to_system (paths):

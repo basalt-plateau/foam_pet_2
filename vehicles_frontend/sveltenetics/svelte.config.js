@@ -36,7 +36,7 @@ const config = {
 			
 			// default options are shown. On some platforms
 			// these options are set automatically — see below
-			pages: '/Metro/vehicles/foam_pet/sveltnetics_packets',
+			pages: '/Metro/vehicles/Mech_Pet/sveltnetics_packets',
 			// assets: 'build',
 			// fallback: undefined,
 			

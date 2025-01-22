@@ -21,7 +21,7 @@ export PATH="/root/.local/bin:$PATH"
 #
 #/
 
-export PATH=$PATH:/Metro/vehicles/mech_pet/__glossary
+export PATH=$PATH:/Metro/vehicles/Mech_Pet/__glossary
 
 #
 #

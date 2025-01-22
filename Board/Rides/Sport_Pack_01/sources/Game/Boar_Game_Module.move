@@ -22,13 +22,13 @@ module builder_1::Boar_Game_Module {
 	const Imperfection_consenter_is_not_Boar_Producer : u64 = 1;
 	const Imperfection_consenter_does_not_have_enough_APT_for_purchase : u64 = 2;
 	const Ending_boar_Team_was_not_found : u64 = 3;
-	const Ending_every_boar_Pass_has_been_sold : u64 = 3;
+	const Ending_every_boar_Planet_IV_has_been_sold : u64 = 3;
 	const Ending_cannot_exit_the_game_if_have_plays : u64 = 3;
 	
-	struct Boar_Pass has key, drop {}
+	struct Boar_Planet_IV has key, drop {}
 	
 	struct Boar_Game has key, drop {
-		boar_Passs_for_sale : u256,
+		boar_Planet_IVs_for_sale : u256,
 		boar_Teams : vector<Boar_Team>
 	}
 	
@@ -46,7 +46,7 @@ module builder_1::Boar_Game_Module {
 	//
 	public entry fun Build (
 		consenter : & signer,
-		boar_Passs_for_sale : u256
+		boar_Planet_IVs_for_sale : u256
 	) {
 		//
 		//	Make sure the consenter is the Boar_Producer.
@@ -57,7 +57,7 @@ module builder_1::Boar_Game_Module {
 		};
 
 		let boar_Boar_Game = Boar_Game {
-			boar_Passs_for_sale : boar_Passs_for_sale,
+			boar_Planet_IVs_for_sale : boar_Planet_IVs_for_sale,
 			boar_Teams : vector::empty<Boar_Team>()
 		};
 		
@@ -118,7 +118,7 @@ module builder_1::Boar_Game_Module {
 		let boar_Teams = &mut boar_Game.boar_Teams;
 		let boar_Team_at_index_ref = vector::borrow_mut (boar_Teams, index);
 		
-		if (Boar_Team_Module::boar_Passs_score (boar_Team_at_index_ref) != 0) {
+		if (Boar_Team_Module::boar_Planet_IVs_score (boar_Team_at_index_ref) != 0) {
 			abort Ending_cannot_exit_the_game_if_have_plays
 		};
 		
@@ -178,14 +178,14 @@ module builder_1::Boar_Game_Module {
 	
 	////
 	//
-	//	Boar_Passs
+	//	Boar_Planet_IVs
 	//
 	//
-	#[view] public fun Boar_Passs_For_Sale_Left () : u256 acquires Boar_Game {
+	#[view] public fun Boar_Planet_IVs_For_Sale_Left () : u256 acquires Boar_Game {
 		let sport = borrow_global<Boar_Game>(boar_Producer_position ());
-		sport.boar_Passs_for_sale
+		sport.boar_Planet_IVs_for_sale
 	}
-	public entry fun Buy_Boar_Passs_for_1_APT_each (
+	public entry fun Buy_Boar_Planet_IVs_for_1_APT_each (
 		consenter : & signer,
 		amount_of_plays_to_buy : u256
 	) acquires Boar_Game {
@@ -200,7 +200,7 @@ module builder_1::Boar_Game_Module {
 		//	Vows:
 		//		1. Vow that the consenter has joined the sport as a boar_Team.
 		//		2. Vow that the consenter has greater than 1 * "amount_of_plays_to_buy" APT.
-		//		3. Vow that there are enough boar_Passs left for sale.
+		//		3. Vow that there are enough boar_Planet_IVs left for sale.
 		//
 		if (boar_Team_has_joined_the_sport (consenter_address) != utf8 (b"yup")) { 
 			abort Imperfection_consenter_has_not_joined 
@@ -209,8 +209,8 @@ module builder_1::Boar_Game_Module {
 			abort Imperfection_consenter_does_not_have_enough_APT_for_purchase 
 		};
 		let sport = borrow_global<Boar_Game>(boar_Producer_position ());
-		if (sport.boar_Passs_for_sale < amount_of_plays_to_buy) {
-			abort Endings_Module::Ending_there_are_not_enough_boar_Passs_left_to_make_that_sale ()
+		if (sport.boar_Planet_IVs_for_sale < amount_of_plays_to_buy) {
+			abort Endings_Module::Ending_there_are_not_enough_boar_Planet_IVs_left_to_make_that_sale ()
 		};
 		
 		//
@@ -231,7 +231,7 @@ module builder_1::Boar_Game_Module {
 		let boar_Teams = &mut sport.boar_Teams;
 		let boar_Team_at_index_ref = vector::borrow_mut (boar_Teams, boar_Team_index);
 		
-		Boar_Team_Module::add_boar_Passs (boar_Team_at_index_ref, amount_of_plays_to_buy);	
+		Boar_Team_Module::add_boar_Planet_IVs (boar_Team_at_index_ref, amount_of_plays_to_buy);	
 		
 		
 		//
@@ -239,11 +239,11 @@ module builder_1::Boar_Game_Module {
 		//	Subtract "amount_of_plays_to_buy" Water Balloons from for sale
 		//
 		//
-		sport.boar_Passs_for_sale = sport.boar_Passs_for_sale - amount_of_plays_to_buy;
+		sport.boar_Planet_IVs_for_sale = sport.boar_Planet_IVs_for_sale - amount_of_plays_to_buy;
 	}
 	
 	
-	public entry fun Throw_Boar_Pass (
+	public entry fun Throw_Boar_Planet_IV (
 		consenter : & signer, 
 		other_boar_Team_address : address
 	) acquires Boar_Game {
@@ -268,10 +268,10 @@ module builder_1::Boar_Game_Module {
 		let boar_Teams = &mut sport.boar_Teams;
 		
 		let boar_Team_from_ref = vector::borrow_mut (boar_Teams, index_of_boar_Team_from);
-		Boar_Team_Module::subtract_boar_Passs (boar_Team_from_ref, 1);	
+		Boar_Team_Module::subtract_boar_Planet_IVs (boar_Team_from_ref, 1);	
 
 		let boar_Team_to_ref = vector::borrow_mut (boar_Teams, index_of_boar_Team_to);		
-		Boar_Team_Module::add_boar_Passs (boar_Team_to_ref, 1);		
+		Boar_Team_Module::add_boar_Planet_IVs (boar_Team_to_ref, 1);		
 	}
 	
 	
@@ -279,7 +279,7 @@ module builder_1::Boar_Game_Module {
 	
 
 	#[view]
-	public fun Boar_Passs_Score (boar_Team_address : address) : u256 acquires Boar_Game {
+	public fun Boar_Planet_IVs_Score (boar_Team_address : address) : u256 acquires Boar_Game {
 		let index_of_boar_Team = search_for_index_of_boar_Team (boar_Team_address);
 		let sport = borrow_global<Boar_Game>(boar_Producer_position ());
 		let boar_Teams = & sport.boar_Teams;
@@ -288,7 +288,7 @@ module builder_1::Boar_Game_Module {
 			index_of_boar_Team
 		);
 		
-		Boar_Team_Module::boar_Passs_score (boar_Team_at_index_ref)
+		Boar_Team_Module::boar_Planet_IVs_score (boar_Team_at_index_ref)
 	}
 	
 }

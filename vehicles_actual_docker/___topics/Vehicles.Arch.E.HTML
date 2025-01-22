@@ -22,7 +22,7 @@
 			#
 			#
 			#	docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
-			#	docker rmi foam_pet:v1.0.0
+			#	docker rmi Mech_Pet:v1.0.0
 			#
 			#	images:
 			#		debian
@@ -38,7 +38,7 @@
 			#	cd building
 			#
 			#
-			[OS] docker run --name foam_pet -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v .:/building -it alpine 
+			[OS] docker run --name Mech_Pet -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v .:/building -it alpine 
 			
 			[Boat] bash /building/build.sh
 			
@@ -51,22 +51,22 @@
 		<header>make image</header>
 		
 			#
-			#	cd foam_pet_docker
+			#	cd Mech_Pet_docker
 			#
-			#	[OS] docker rmi foam_pet:v1.0.0
+			#	[OS] docker rmi Mech_Pet:v1.0.0
 			#
 			
 			[OS] docker container list --all
-			[OS] docker commit foam_pet foam_pet:v1.0.0-1
-			[OS] docker save -o foam_pet_v1.0.0-1.tar foam_pet:v1.0.0-1
-			# [OS] gzip foam_pet_v1.0.0.tar
-			[OS] zip foam_pet_v1.0.0-1.tar.zip foam_pet_v1.0.0-1.tar
+			[OS] docker commit Mech_Pet Mech_Pet:v1.0.0-1
+			[OS] docker save -o Mech_Pet_v1.0.0-1.tar Mech_Pet:v1.0.0-1
+			# [OS] gzip Mech_Pet_v1.0.0.tar
+			[OS] zip Mech_Pet_v1.0.0-1.tar.zip Mech_Pet_v1.0.0-1.tar
 			
 			#
 			#	sha256sum: 152a889dfed3447f60272cc21a2aa71980c66e0e3ff3558f2f3daaa0364bfef9
 			#	
 			#
-			sha256sum foam_pet_v1.0.0-1.tar.gz
+			sha256sum Mech_Pet_v1.0.0-1.tar.gz
 			
 			
 			
@@ -75,20 +75,20 @@
 			
 			#
 			#
-			#	[OS] docker rmi foam_pet:v1.0.0
+			#	[OS] docker rmi Mech_Pet:v1.0.0
 			#
 			#
-			[OS] unzip foam_pet_v1.0.0-1.tar.zip
-			[OS] docker load -i foam_pet_v1.0.0-1.tar
-			[OS] docker run --name foam_pet.1 -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it foam_pet:v1.0.0 bash
-			[Container]	cd /habitat && . v_env/bin/activate && foam_pet ventures on
+			[OS] unzip Mech_Pet_v1.0.0-1.tar.zip
+			[OS] docker load -i Mech_Pet_v1.0.0-1.tar
+			[OS] docker run --name Mech_Pet.1 -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it Mech_Pet:v1.0.0 bash
+			[Container]	cd /habitat && . v_env/bin/activate && Mech_Pet ventures on
 		
 		
 		<header>open container that off</header>
 			
-			docker start foam_pet.1
-			docker exec -it foam_pet.1 /bin/bash
-			cd /habitat && . v_env/bin/activate && foam_pet ventures on
+			docker start Mech_Pet.1
+			docker exec -it Mech_Pet.1 /bin/bash
+			cd /habitat && . v_env/bin/activate && Mech_Pet ventures on
 			
 			
 			

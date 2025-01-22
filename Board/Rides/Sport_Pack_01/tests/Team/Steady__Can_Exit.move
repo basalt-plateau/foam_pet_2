@@ -78,8 +78,8 @@ module builder_1::Steady__Can_Exit {
 		//	The Boar_Game
 		//
 		//
-		let boar_Passs_for_sale : u256 = 900000;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Passs_for_sale);
+		let boar_Planet_IVs_for_sale : u256 = 900000;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Planet_IVs_for_sale);
 		
 		//
 		//

@@ -27,8 +27,8 @@ places = [
 		Play
 '''
 find_and_replace = [
-	[ "boar_Play", "boar_Pass" ],
-	[ "Boar_Play", "Boar_Pass" ]	
+	[ "boar_Pass", "boar_Planet_IV" ],
+	[ "Boar_Pass", "Boar_Planet_IV" ]	
 ]
 
 

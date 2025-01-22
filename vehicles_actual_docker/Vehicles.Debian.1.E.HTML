@@ -25,9 +25,9 @@
 			#
 			#	maybe:
 			#		docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
-			#		docker container stop foam_pet_jetboat; docker container rm foam_pet_jetboat; 
+			#		docker container stop Mech_Pet_jetboat; docker container rm Mech_Pet_jetboat; 
 			#
-			#		docker rmi foam_pet:v1.0.0-1
+			#		docker rmi Mech_Pet:v1.0.0-1
 			#
 
 			
@@ -41,8 +41,8 @@
 			#	2. Open the container
 			#	
 			[OS] docker pull jitesoft/debian 
-			[OS] docker run --name foam_pet_jetboat -td -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v ./building:/building jitesoft/debian
-			[OS] docker exec -it foam_pet_jetboat bash -c "bash"
+			[OS] docker run --name Mech_Pet_jetboat -td -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v ./building:/building jitesoft/debian
+			[OS] docker exec -it Mech_Pet_jetboat bash -c "bash"
 			
 			
 			#
@@ -56,7 +56,7 @@
 			#
 			#	In "/building/build.sh" change this:
 			#
-			#		pip install foam_pet==7.0.0
+			#		pip install Mech_Pet==7.0.0
 			#
 			[Boat] bash /building/build.sh
 			
@@ -66,11 +66,11 @@
 			#	check the internal status
 			#		
 			#		apt install nano -y
-			#		nano /Metro/v_env/lib/python3.11/site-packages/foam_pet/_health/__init__.py
+			#		nano /Metro/v_env/lib/python3.11/site-packages/Mech_Pet/_health/__init__.py
 			#
 			#		vehicles = "/Metro/v_env/lib/python3.11/site-packages"
 			#
-			. /Metro/v_env/bin/activate && foam_pet health
+			. /Metro/v_env/bin/activate && Mech_Pet health
 			
 			#
 			#
@@ -96,7 +96,7 @@
 			
 			#
 			#
-			#	A "foam_pet" container needs to be running for this.
+			#	A "Mech_Pet" container needs to be running for this.
 			#
 			#
 			

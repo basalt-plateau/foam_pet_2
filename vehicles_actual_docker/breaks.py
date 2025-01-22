@@ -19,9 +19,9 @@ this_folder = pathlib.Path (__file__).parent.resolve ()
 
 
 ''''
-	container: foam_pet_jetboat
+	container: Mech_Pet_jetboat
 
-	image: foam_pet
+	image: Mech_Pet
 
 	/the_build_1
 		/Foam_Pet.Docker.v7_0_0_0.zip
@@ -40,8 +40,8 @@ this_folder = pathlib.Path (__file__).parent.resolve ()
 			/readme.md
 "'''
 
-container_name = "foam_pet_jetboat"
-image_name = "foam_pet"
+container_name = "Mech_Pet_jetboat"
+image_name = "Mech_Pet"
 
 version = "v7_0_0_0"
 name = "Foam_Pet"
@@ -169,10 +169,10 @@ def check_image ():
 	
 	#
 	#	maybe:
-	#		[OS] docker rmi foam_pet:v1.3.0
+	#		[OS] docker rmi Mech_Pet:v1.3.0
 	#		[OS] docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 	#
-	#		[OS] unzip foam_pet_v1.3.0-1.tar.zip
+	#		[OS] unzip Mech_Pet_v1.3.0-1.tar.zip
 	#		[OS] docker load -i image/Foam_Pet_v1_3_0.0.Docker_image.tar
 	#
 	shutil.rmtree (the_build_2__path)
@@ -193,7 +193,7 @@ def check_image ():
 	run (f"docker rmi { image_name_plus_version }");
 	run (f"docker load -i '{ the_build_2__image_built }'")
 	run (f"docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)")
-	run (f'docker run --name foam_pet_1 -td -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 { image_name_plus_version } /bin/bash -c "bash /embark.sh"')
+	run (f'docker run --name Mech_Pet_1 -td -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 { image_name_plus_version } /bin/bash -c "bash /embark.sh"')
 	
 	
 	

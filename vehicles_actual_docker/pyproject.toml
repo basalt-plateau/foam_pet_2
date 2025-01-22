@@ -11,7 +11,7 @@ description = ""
 authors = []
 readme = "the_build_readme.md"
 packages = [
-    { include = "foam_pet", from = "vehicles" },
+    { include = "Mech_Pet", from = "vehicles" },
 ]
 license = ""
 exclude = []

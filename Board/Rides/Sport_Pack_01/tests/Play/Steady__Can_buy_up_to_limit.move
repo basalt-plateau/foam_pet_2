@@ -83,9 +83,9 @@ module builder_1::Steady__Can_buy_up_to_limit {
 		//	The Boar_Game
 		//
 		//
-		let boar_Passs_for_sale : u256 = 10;
-		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Passs_for_sale);
-		if (Boar_Game_Module::Boar_Passs_For_Sale_Left () != 10) { abort 2 };
+		let boar_Planet_IVs_for_sale : u256 = 10;
+		Boar_Game_Module::Build (& boar_Producer_1_consenter, boar_Planet_IVs_for_sale);
+		if (Boar_Game_Module::Boar_Planet_IVs_For_Sale_Left () != 10) { abort 2 };
 		
 		//	Join_the_Boar_Game
 		//
@@ -100,15 +100,15 @@ module builder_1::Steady__Can_buy_up_to_limit {
 		//
 		//	Buy
 		//
-		Boar_Game_Module::Buy_Boar_Passs_for_1_APT_each (& boar_Team_01_consenter, 5);
+		Boar_Game_Module::Buy_Boar_Planet_IVs_for_1_APT_each (& boar_Team_01_consenter, 5);
 		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == one_APT * 95, 1);
-		assert! (Boar_Game_Module::Boar_Passs_Score (boar_Team_01_position) == 5, 1);
-		assert! (Boar_Game_Module::Boar_Passs_For_Sale_Left () == 5, 1);
+		assert! (Boar_Game_Module::Boar_Planet_IVs_Score (boar_Team_01_position) == 5, 1);
+		assert! (Boar_Game_Module::Boar_Planet_IVs_For_Sale_Left () == 5, 1);
 
-		Boar_Game_Module::Buy_Boar_Passs_for_1_APT_each (& boar_Team_01_consenter, 5);
+		Boar_Game_Module::Buy_Boar_Planet_IVs_for_1_APT_each (& boar_Team_01_consenter, 5);
 		assert! (coin::balance<AptosCoin>(boar_Team_01_position) == one_APT * 90, 1);
-		assert! (Boar_Game_Module::Boar_Passs_Score (boar_Team_01_position) == 10, 1);
-		assert! (Boar_Game_Module::Boar_Passs_For_Sale_Left () == 0, 1);
+		assert! (Boar_Game_Module::Boar_Planet_IVs_Score (boar_Team_01_position) == 10, 1);
+		assert! (Boar_Game_Module::Boar_Planet_IVs_For_Sale_Left () == 0, 1);
 		
 		
 		////

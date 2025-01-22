@@ -22,8 +22,8 @@
 		
 		
 	<header>start stopped</header>
-		docker start foam_pet
-		docker exec -it foam_pet /bin/sh
+		docker start Mech_Pet
+		docker exec -it Mech_Pet /bin/sh
 		
 		
 		
@@ -31,7 +31,7 @@
 		#
 		#
 		#	docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
-		#	docker rmi foam_pet:v1.0.0
+		#	docker rmi Mech_Pet:v1.0.0
 		#
 		#	images:
 		#		madworx/netbsd
@@ -47,7 +47,7 @@
 		#	cd building
 		#
 		#
-		[OS] docker run --name foam_pet -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v .:/building -it madworx/netbsd 
+		[OS] docker run --name Mech_Pet -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -v .:/building -it madworx/netbsd 
 		 
 		[OS] login: root
 		 

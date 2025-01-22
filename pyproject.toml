@@ -8,26 +8,26 @@ build-backend = "poetry.core.masonry.api"
 #build-backend = "cx_Freeze"
 
 [tool.poetry]
-name = "mech_pet"
+name = "Mech_Pet"
 version = "1.0.0"
 description = "A foam pet that can play with Aptos from offline."
 authors = []
-readme = "vehicles/mech_pet/readme.md"
+readme = "vehicles/Mech_Pet/readme.md"
 packages = [
-    { include = "mech_pet", from = "vehicles" },
+    { include = "Mech_Pet", from = "vehicles" },
 ]
 license = "Mix: GPL-3.0-only for originals + Laboratory Rules"
 
 exclude = [
-	"vehicles/mech_pet/_status/DB/**"
+	"vehicles/Mech_Pet/_status/DB/**"
 ]
 include = [
-	"vehicles/mech_pet/sveltnetics_packets/**/*",
+	"vehicles/Mech_Pet/sveltnetics_packets/**/*",
 ]
 
 
 [tool.poetry.scripts]
-mech_pet = 'mech_pet:clique'
+Mech_Pet = 'Mech_Pet:clique'
 
 [tool.poetry.dependencies]
 python = "^3.10"

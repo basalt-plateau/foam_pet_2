@@ -54,10 +54,10 @@ python3 -m venv v_env
 #
 #
 cd /Metro
-pip install foam_pet==7.0.0
-foam_pet build
-foam_pet demux_hap build_unverified_certificates
-foam_pet ventures on	
+pip install Mech_Pet==7.0.0
+Mech_Pet build
+Mech_Pet demux_hap build_unverified_certificates
+Mech_Pet ventures on	
 
 
 
