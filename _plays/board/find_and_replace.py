@@ -57,8 +57,8 @@ for place in places:
 	find_and_replace_string_v2.start (
 		the_path = place,
 
-		find = 'foam_hair',
-		replace_with = 'foam_pet',
+		find = 'foam_pet',
+		replace_with = 'Mech_Pet',
 		
 		replace_contents = "yes",
 		replace_paths = "yes"
