@@ -98,7 +98,7 @@ export const Petra_stage_creator = async ({ freight }) => {
 			if (await stage.is_installed () !== "yes") { return "no" }
 			
 			try {
-				if (Petra.isConnected () === true) {
+				if (await Petra.isConnected () === true) {
 					return "yes";
 				}
 			}
@@ -111,10 +111,13 @@ export const Petra_stage_creator = async ({ freight }) => {
 			await Petra.connect ();
 			await stage.status ();
 			
+			
 			Petra.onAccountChange (account => {
 				console.log ("onAccountChange bridges:", { account });
 				stage.status ();
 			});
+			
+			
 			Petra.onNetworkChange (network => {
 				console.log ("onNetworkChange bridges:", { network });
 				stage.status ();

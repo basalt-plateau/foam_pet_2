@@ -179,7 +179,9 @@ export const account = {
 		The idea of a private key being public for 1 Trillion people,
 		but there is so much trust that no one would even consider using it.
 		
+		goodest
 		
+		passkey
 	*/
 	"private key": "goodest",
 	"Private Key": "Goodest",

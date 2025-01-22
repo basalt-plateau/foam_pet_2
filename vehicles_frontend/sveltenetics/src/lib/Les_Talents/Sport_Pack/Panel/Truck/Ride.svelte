@@ -3,11 +3,11 @@
 
 /*
 	import * as Truck_1 from '$lib/Les_Talents/Sport_Pack/Panel/Truck/index.js'
-	import Truck_1_Ride from '$lib/Les_Talents/Sport_Pack/Panel/Truck/Ride.svelte'
-	let Truck_1_Freight = false
+	import Sport_Pack_Ride from '$lib/Les_Talents/Sport_Pack/Panel/Truck/Ride.svelte'
+	let Sport_Pack_Freight = false
 
-	<Truck_1_Ride on_change={ ({ pro_freight }) => { Truck_1_Freight = pro_freight; } } />
-	{#if typeof Truck_1_Freight === "object"}
+	<Sport_Pack_Ride on_change={ ({ pro_freight }) => { Sport_Pack_Freight = pro_freight; } } />
+	{#if typeof Sport_Pack_Freight === "object"}
 	
 	{/if}
 */

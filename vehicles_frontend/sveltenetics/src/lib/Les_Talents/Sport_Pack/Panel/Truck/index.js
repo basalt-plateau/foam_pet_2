@@ -1,11 +1,19 @@
 
 
 // $lib/trucks/truck_1/index.js
-
+/*
+	https://explorer.aptoslabs.com/account/0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd/modules/view/Rules_10?network=devnet
+*/
 
 import { build_truck } from '@visiwa/trucks'
 
 const trucks = {}
+
+
+var public_addresses = Object.freeze ({
+	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
+	"Dev": "0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C"
+});
 
 /*
 	This adds a truck to the trucks object as trucks [1] = ...
@@ -19,7 +27,7 @@ export const make = async () => {
 	*/
 	trucks [1] = build_truck ({
 		freight: {
-			
+			Publisher_Address: "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD"
 		}
 	});
 	
