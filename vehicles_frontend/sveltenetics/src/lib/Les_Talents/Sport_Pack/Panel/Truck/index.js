@@ -12,7 +12,7 @@ const trucks = {}
 
 var public_addresses = Object.freeze ({
 	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
-	"Dev": "0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C"
+	"Dev": "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 });
 
 /*
@@ -27,7 +27,11 @@ export const make = async () => {
 	*/
 	trucks [1] = build_truck ({
 		freight: {
-			Publisher_Address: "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD"
+			Publisher_Address: public_addresses ["Dev"],
+			
+			did_the_game_begin () {
+				
+			}
 		}
 	});
 	
@@ -57,15 +61,7 @@ export const make = async () => {
 		value
 	}) => {
 		try {
-			// leaf name changed
-			if (bracket === original_freight && property === "leaf_name") {
-				console.info ("leaf name changed");
-			}
-			
-			// Leaf 1 alert_success changed
-			if (bracket === original_freight.leaves ["Leaf 1"] && property === "alert_success") {
-				console.info ("Leaf 1 alert_success changed.");
-			}
+
 		}
 		catch (imperfection) {
 			console.error (imperfection);

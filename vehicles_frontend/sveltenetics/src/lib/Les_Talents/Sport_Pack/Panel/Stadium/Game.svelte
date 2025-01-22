@@ -35,13 +35,15 @@ const begin = async () => {
 		"Build"
 	);
 	
+	console.log ({ fonction });
+	
 	try {
 		const { result, note, transaction } = await EWF.prompt ({
 			petition: {
 				function: fonction,
 				type_arguments: [],
 				arguments: [
-				
+					Planet_IV_Units
 				]
 			}
 		});

@@ -39,9 +39,13 @@ import Rides.Rhythm_01 as Rhythm_01
 
 import Rides.Sport_Pack_01 as Sport_Pack_01
 
-publishers = {
+''''
+	Publisher is the account that is loggen in @ .aptos/config.yaml
+"'''
+
+publisher_addresses = {
 	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
-	"Dev": "0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C"
+	"Dev": "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 }
 
 #
@@ -50,7 +54,7 @@ publishers = {
 #		perhaps.. this should be the same as builder_1.
 #
 #
-ride_plate = publishers ["Dev"]
+ride_plate = publisher_addresses ["Dev"]
 
 
 def motion_for_named_addresses ():
