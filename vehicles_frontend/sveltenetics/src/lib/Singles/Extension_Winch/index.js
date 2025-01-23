@@ -231,6 +231,12 @@ export const make = async (packet) => {
 				console.info ("connecting to:", stage_name);
 				
 				await stage.connect ();
+				const is_connected = await stage.is_connected ();
+				if (is_connected !== "yes") {
+					console.error ("A connection to the extension wallet could not be established.");					
+					return;
+				}
+				
 				trucks [1].freight.stage_name_connected = stage_name
 				trucks [1].freight.stage = stage;
 				console.info ("connected to:", stage_name);

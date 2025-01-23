@@ -17,42 +17,25 @@
 		by last glyph.
 */
 
+//
 import { onMount, onDestroy } from 'svelte'
 import { LightSwitch } from '@skeletonlabs/skeleton';
 import { SlideToggle } from '@skeletonlabs/skeleton';
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-
 import { modeOsPrefers, modeUserPrefers, modeCurrent } from '@skeletonlabs/skeleton';
 import { getModeOsPrefers, getModeUserPrefers, getModeAutoPrefers } from '@skeletonlabs/skeleton';
 import { setModeUserPrefers, setModeCurrent } from '@skeletonlabs/skeleton';
-
+//
+//
 import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
+//
+//
 
 
-let window_width = 0;
-let is_vertical = true;
-
-let seeds_freight = {}
-let seeds_trucks_prepared = "no"
-const on_seeds_truck_change = ({ freight: _freight, happening }) => {
-	seeds_freight = _freight;
-	if (happening === "mounted") {
-		seeds_trucks_prepared = "yes"
-	}
-	
-	window_width = _freight.window_width;
-	if (window_width <= 800) {
-		is_vertical = true;
-	}
-	else {
-		is_vertical = false;
-	}
-}
-
-/*
-	Theme is part of 
-*/
+let VF = false;
+let visibility = $modeCurrent || true;
 let theme = ""
 let mounted = "no"
 $: {
@@ -60,45 +43,28 @@ $: {
 	change_tints ({ theme })
 }
 const change_tints = ({ theme: _theme }) => {
-	console.log ("change_tints:", _theme)
-	
 	if (typeof _theme === 'string' && _theme.length >= 1) {
 		localStorage.setItem ('body-theme', _theme);
 		document.body.setAttribute ('data-theme', _theme)
 		theme = _theme;
-		
-		console.log ({ _theme })
 	}	
 }
 
 
 /*
-	Perhaps this is for checking if there is already
-	a theme picked.
+	This is for learning the name of the theme.
+	
 */
 const ask_for_theme = () => {
-	
-	/*
-		prefer a theme that is set in local storage
-	*/
-	let local_storage_theme = localStorage.getItem ('body-theme');
-	if (
-		typeof local_storage_theme === "string" &&
-		local_storage_theme.length >= 1
-	) {
-		return local_storage_theme;
-	}
-	
 	let body_theme = document.body.getAttribute ('data-theme') 
-	if (
-		typeof body_theme === "string" &&
-		body_theme.length >= 1
-	) {
+	if (typeof body_theme === "string" && body_theme.length >= 1) {
 		return body_theme;
 	}
 	
 	return ''
 }
+
+
 
 
 onMount (() => {
@@ -108,27 +74,20 @@ onMount (() => {
 		change_tints ({ theme });
 	}
 	
+	if (typeof $modeCurrent === "boolean") {
+		visibility = $modeCurrent;
+	}
+	
 	mounted = "yes"
 });
 
 
 
-let visibility = $modeCurrent || true;
 const change_visibility = () => {
-	// console.log ("change_visibility:", { visibility });
 	$modeCurrent = visibility;
 	setModeUserPrefers ($modeCurrent);
 	setModeCurrent ($modeCurrent);
 }
-
-/*
-$: {
-	let _visibility = visibility;
-	change_visibility ();	
-}
-*/
-
-
 
 </script>
 
@@ -142,12 +101,8 @@ $: {
 		flex-direction: column;
 	"
 >
-	<Seeds_Trucks on_change={ on_seeds_truck_change } />
-	
-	{#if seeds_trucks_prepared === "yes"}
-
-
-
+	<Versies_Truck on_change={ ({ freight }) => { VF = freight } } />
+	{#if typeof VF === "object"}
 	<div
 		class="card p-2 variant-soft-surface"
 		style="
@@ -186,8 +141,8 @@ $: {
 	<div style="height: 0.2cm"></div>
 	
 	<RadioGroup 
-		flexDirection={is_vertical ? 'flex-col' : 'row'}
-		rounded={is_vertical ? 'rounded-container-token' : 'rounded-token'}
+		flexDirection={ VF.window_width <= 1000 ? 'flex-col' : 'row'}
+		rounded={ VF.window_width <= 1000 ? 'rounded-container-token' : 'rounded-token'}
 	>
 		<RadioItem bind:group={theme} name="justify" value="Atolls">Atolls</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Domes">Domes</RadioItem>

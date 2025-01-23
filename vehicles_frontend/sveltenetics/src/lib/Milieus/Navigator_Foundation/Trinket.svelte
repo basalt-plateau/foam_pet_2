@@ -68,10 +68,12 @@ let buttons_styles = ""
 >
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	<Cow />
+	
 	{#if typeof Milieus_Freight === "object" && typeof Versies_Freight === "object" }
 	{#if mode === "nurture" }
 	<hr class="!border-t-2" />
-	<!-- <Cow /> -->
+	
 	
 	<div class="bg-surface-100-800-token w-full"
 		style="

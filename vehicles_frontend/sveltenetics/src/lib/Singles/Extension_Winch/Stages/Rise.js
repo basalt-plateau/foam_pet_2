@@ -125,6 +125,8 @@ export const Rise_stage_creator = async ({ freight }) => {
 				console.log ("onNetworkChange bridges:", { network });
 				stage.status ();
 			});
+		
+			
 		},
 		async disconnect () {
 			rise.removeAllListeners ();

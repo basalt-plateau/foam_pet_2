@@ -11,6 +11,7 @@ export const Domes_Theme = {
 		"--theme-rounded-base": "9999px",
 		"--theme-rounded-container": "24px",
 		"--theme-border-base": "4px",
+		
 		// =~= Theme On-X Colors =~=
 		"--on-primary": "0 0 0",
 		"--on-secondary": "0 0 0",
@@ -18,7 +19,8 @@ export const Domes_Theme = {
 		"--on-success": "255 255 255",
 		"--on-warning": "0 0 0",
 		"--on-error": "0 0 0",
-		"--on-surface": "0 0 0",
+		"--on-surface": "255 255 255",
+		
 		// =~= Theme Colors  =~=
 		// primary | #dc8add 
 		"--color-primary-50": "250 237 250", // #faedfa

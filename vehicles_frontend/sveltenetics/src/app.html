@@ -12,30 +12,25 @@
 		
 		<script>
 			// const arrival_theme = "HD 40307g"
-			const arrival_theme = "Atolls"
+			// const arrival_theme = "Atolls"
+			const arrival_theme = "Domes"
 		
 			window.onload = function () {
-				let theme = localStorage.getItem ('body-theme');
+				let local_storage_theme = localStorage.getItem ('body-theme');
 				
-				if (typeof theme === 'string' && theme.length >= 1) {
-					document.body.setAttribute ('data-theme', theme)
-				}
-				else {
-					//
-					//
-					//	data-theme="Atolls"
-					//
-					//
-					document.body.setAttribute ('data-theme', arrival_theme)
+				if (typeof local_storage_theme === 'string' && local_storage_theme.length >= 1) {
+					document.body.setAttribute ('data-theme', local_storage_theme);
+					return;
 				}
 				
-				document.body.style = "block"
+				document.body.setAttribute ('data-theme', arrival_theme)
 			};
 		</script>
 	</head>
 	<body 
 		data-sveltekit-preload-data="hover" 
 		class="bg-surface-50-900-token"
+		style=""
 	>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>

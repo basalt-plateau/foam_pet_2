@@ -24,6 +24,7 @@ let cow_clicked = () => {
 	console.log ("cow_clicked");
 	show_dialogue = "yes"
 	sound_gem.playa ();
+	return;
 	
 	Versies_Freight.shrink ();
 	
@@ -55,8 +56,6 @@ let cow_clicked = () => {
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 	{#if typeof Versies_Freight === "object"}
 	
-	
-
 	<Sound_Gem 
 		bind:this={ sound_gem }
 		source="/sonors/Beep/Beep.ogg"
@@ -152,13 +151,12 @@ let cow_clicked = () => {
 				left: 50%;
 				transform: translateX(-50%);
 				
-				padding: 0cm 0cm;
-				width: 3cm;
+				padding: 0cm 0.75cm;
 				border: 2px solid rgba(var(--color-primary-100));
 			"
-			class="card p-1"
+			class="card p-1 variant-filled-surface"
 		>
-			<p>Frend</p>
+			<p>Neighbor</p>
 		</div>
 	</button>
 	

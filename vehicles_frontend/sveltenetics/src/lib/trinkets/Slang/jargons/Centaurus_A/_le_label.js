@@ -11,20 +11,20 @@
 export const le_label = {
 	"Aptos": "Aptos",
 	
-	"this_domain": "https://Foam.Pet",
-	"This Domain": "https://Foam.Pet",
+	"this_domain": "https://Mech.Pet",
+	"This Domain": "https://Mech.Pet",
 	
-	"the_pypi_module": "Foam_Pet",
+	"the_pypi_module": "Mech_Pet",
 
-	"Labels": "Foam Pets",
-	"Label": "Foam Pet",
-	"label": "Foam Pet",
+	"Labels": "Mech Pets",
+	"Label": "Mech Pet",
+	"label": "Mech Pet",
 
-	"Pet": "Foam Pet",	
-	"Pet": "Foam Pet",	
+	"Pet": "Mech Pet",	
+	"Pet": "Mech Pet",	
 	
-	"Pets": "Foam Pets",
-	"Pets": "Foam Pets",
+	"Pets": "Mech Pets",
+	"Pets": "Mech Pets",
 	
 	
 	////
@@ -39,7 +39,7 @@ export const le_label = {
 	//	Extension Wallet
 	//		Greetings, Nose
 	//
-	"Label_Wallet_Extension": "Foam Pet Greetings",
+	"Label_Wallet_Extension": "Mech Pet Greetings",
 
 	////
 	//
