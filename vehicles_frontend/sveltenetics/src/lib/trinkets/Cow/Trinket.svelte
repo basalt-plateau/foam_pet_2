@@ -155,7 +155,7 @@ let cow_clicked = () => {
 			"
 			class="card p-1 variant-filled-surface"
 		>
-			<p>Peptyde</p>
+			<p>Peptide</p>
 		</div>
 	</button>
 	

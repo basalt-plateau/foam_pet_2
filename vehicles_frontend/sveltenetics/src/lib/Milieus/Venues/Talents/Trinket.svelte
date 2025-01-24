@@ -199,8 +199,7 @@ let Versies_Freight = false;
 			'width': '100%',
 			'margin': '0 auto',
 			
-			// 'grid-template-columns': 'repeat(auto-fit, minmax(500px, 1fr))',
-			'grid-template-columns': 'repeat(auto-fit, minmax(100px, 500px))',
+			'grid-template-columns': 'repeat(auto-fit, minmax(300px, 1fr))',
 			'grid-gap': '10px',
 			'justify-content': 'center',
 			

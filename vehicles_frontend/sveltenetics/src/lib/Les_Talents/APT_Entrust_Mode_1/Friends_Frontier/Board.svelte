@@ -70,5 +70,9 @@ let open = async () => {
 		</p>
 	</button>
 	<div style="height: 0.25cm" />
-	<p>This requires <Slang text="Label_Wallet_Extension" />.</p>
+	<p
+		style="
+			text-align: center;
+		"
+	>This requires <Slang text="Label_Wallet_Extension" />.</p>
 </div>
