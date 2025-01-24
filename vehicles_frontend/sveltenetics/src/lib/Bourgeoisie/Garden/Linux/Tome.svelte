@@ -29,29 +29,19 @@ let the_panel = 1
 let linux_x86 = {
 	"8_0_0_0": {
 		"foam": {
-			"link": "https://github.com/basalt-plateau/foam_pet/releases/download/publication_v8_0_0_0/Foam_Pet.linux-x86_64.v8_0_0_0.zip",
+			"link": "https://github.com/Planet-IV/Mech_Pet/releases/download/publication_v8_0_0_0/Foam_Pet.linux-x86_64.v8_0_0_0.zip",
 			"name": "Adopt (Save to OS)"
 		},
 		"rules": {
-			"link": "https://github.com/basalt-plateau/foam_pet/releases/download/publication_v8_0_0_0/Foam_Pet.linux-x86_64.v8_0_0_0.Rules.zip",
+			"link": "https://github.com/Planet-IV/Mech_Pet/releases/download/publication_v8_0_0_0/Foam_Pet.linux-x86_64.v8_0_0_0.Rules.zip",
 			"name": "Save Rules to OS"
-		}
-	},
-	"7_0_0_0": {
-		"foam": {
-			"link": "https://github.com/basalt-plateau/foam_pet/releases/download/publication-7.0.0.0/Foam_Pet.linux-x86_64.v7_0_0_0.zip",
-			"name": "Adopt (Save to OS)"
-		},
-		"rules": {
-			"link": "https://github.com/basalt-plateau/foam_pet/releases/download/publication-7.0.0.0/Foam_Pet.linux-x86_64.v7_0_0_0.Rules.zip",
-			"name": "Obtain Rules (Save to OS)"
 		}
 	}
 }	
 
 let le_dapp = linux_x86 ["8_0_0_0"];
 
-const releases = "https://github.com/basalt-plateau/foam_pet/releases"
+const releases = "https://github.com/Planet-IV/Mech_Pet/releases"
 	
 </script>
 

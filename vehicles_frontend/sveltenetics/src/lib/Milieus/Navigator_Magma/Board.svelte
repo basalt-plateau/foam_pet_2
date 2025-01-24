@@ -33,11 +33,11 @@ let Milieus_Freight = "";
 		"
 	/>
 	<Milieus_Button
-		monitor="Greetings"
+		monitor="Bourgeoisie"
 	
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Greetings"] : "Greetings" }
-		location={[ "Greetings" ]}
-		is_open_location={[ "Greetings" ]}
+		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Bourgeoisie"] : "Bourgeoisie" }
+		location={[ "Bourgeoisie" ]}
+		is_open_location={[ "Bourgeoisie" ]}
 		
 		style="
 			padding: 0.25cm 1cm;

@@ -34,7 +34,7 @@ let Milieus = {
 	"Wallet": async () => { return await import ('$lib/Les_Talents/_Wallet/Panel/Leaf.svelte') },
 	
 	
-	"Greetings": async () => { return await import ('$lib/Greetings/Trinket.svelte') },
+	"Bourgeoisie": async () => { return await import ('$lib/Bourgeoisie/Trinket.svelte') },
 }
 
 let milieu_venue;

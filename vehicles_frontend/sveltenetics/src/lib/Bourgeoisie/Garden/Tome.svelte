@@ -30,7 +30,7 @@ import Installation_with_Linux from './Linux/Tome.svelte'
 //
 ///
 
-const releases = "https://github.com/basalt-plateau";
+const releases = "https://github.com/Planet-IV";
 
 import Linux_Tome from "./Linux/Tome.svelte"
 

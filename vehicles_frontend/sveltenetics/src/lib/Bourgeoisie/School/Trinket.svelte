@@ -18,8 +18,9 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 //
 ////
 
-import Boards from './Boards.svelte'
+import Boards from './Boards/Board.svelte'
 import Topical from './Topical/Tome.svelte'
+import Levels from './Levels/Board.svelte'
 
 let leaf = "Topical";
 
@@ -47,6 +48,7 @@ let leaf = "Topical";
 		<div>
 			<RadioGroup>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Topical" }>Topical</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Levels" }>Levels</RadioItem>				
 				<RadioItem bind:group={ leaf } name="justify" value={ "Boards" }>Boards</RadioItem>		
 			</RadioGroup>
 		</div>
@@ -56,6 +58,8 @@ let leaf = "Topical";
 	<Topical />
 	{:else if leaf === "Boards" }
 	<Boards />
+	{:else if leaf === "Levels" }
+	<Levels />
 	{/if}
 
 	<div style="height: 5cm"></div>
