@@ -24,9 +24,8 @@ let cow_clicked = () => {
 	console.log ("cow_clicked");
 	show_dialogue = "yes"
 	sound_gem.playa ();
-	return;
 	
-	Versies_Freight.shrink ();
+	// Versies_Freight.shrink ();
 	
 	clearTimeout (chat_timeout);
 	chat_timeout = setTimeout (() => {
@@ -156,7 +155,7 @@ let cow_clicked = () => {
 			"
 			class="card p-1 variant-filled-surface"
 		>
-			<p>Neighbor</p>
+			<p>Peptyde</p>
 		</div>
 	</button>
 	
