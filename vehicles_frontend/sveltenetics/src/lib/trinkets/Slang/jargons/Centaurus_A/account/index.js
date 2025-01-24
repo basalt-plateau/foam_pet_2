@@ -145,8 +145,6 @@ export const account = {
 			
 			A glass room that everyone can look into,
 			with a private key on a drive. #CCTV
-			
-			
 		
 		reputation,
 		
@@ -183,14 +181,12 @@ export const account = {
 		
 		passkey
 	*/
-	"private key": "goodest",
-	"Private Key": "Goodest",
-	
-	"private keys": "goodest",
-	
-	"A_Private_Key": "A Goodest",	
-	"a_Private_Key": "a goodest",	
-	"Private Keys": "Goodests",
+	"private key": "opener",
+	"Private Key": "Opener",
+	"private keys": "openers",
+	"A_Private_Key": "An Opener",	
+	"a_Private_Key": "an opener",	
+	"Private Keys": "Openers",
 	
 	//
 	//

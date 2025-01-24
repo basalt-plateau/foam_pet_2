@@ -19,7 +19,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 	style="
 		word-wrap: break-word;
 	"
-	class="card p-0 variant-filled-primary"
+	class="card p-0 variant-soft-surface"
 >
 	<Accordion>
 		<AccordionItem>

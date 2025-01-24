@@ -153,12 +153,9 @@ const modify_keys_count = () => {
 			</select>
 		</div>
 
-		<div style="height: 0.25cm" />
-		<hr style="border-top-width: 0.1cm" />
-		<div style="height: 0.25cm" />
 		
 		{#if account_variety === "EEC_25519_single_key_account" }
-		<div class="card p-1 variant-filled-primary">
+		<div class="card p-1 variant-soft-surface">
 			<Accordion>
 				<AccordionItem>
 					<svelte:fragment slot="summary">

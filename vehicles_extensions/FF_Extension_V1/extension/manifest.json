@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
-	"name": "Mech Pet FF Extension",
-	"description": "Mech Pet FF Extension",
+	"name": "Foam Pet FF Extension",
+	"description": "Foam Pet FF Extension",
 	"version": "1.0",
 	"incognito": "spanning",
 	"permissions": [
@@ -11,7 +11,7 @@
 		"tabs"
 	],
 	"browser_action": {
-		"default_popup": "build/index.html",
+		"default_popup": "popup.html",
 		"default_icon": {
 			"16": "icons/icon16.png",
 			"48": "icons/icon48.png",
@@ -19,7 +19,10 @@
 		}
 	},
 	"content_scripts": [
-
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"]
+		}
 	],
 	"icons": {
 		"16": "icons/icon16.png",

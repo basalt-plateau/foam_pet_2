@@ -161,7 +161,8 @@ def rules_form (packet):
 					"
 				>Appropriateness:</header>		
 				<p>This domain is intended to be appropriate for most audiences.</p>
-				<p>Interaction are limited to approved places on the Aptos web.</p>
+				<p>Interactions are limited to approved places on the Aptos web.</p>
+				<p>Extension wallet content is subject to external discretion.</p>
 			</div>
 		</div>
 
