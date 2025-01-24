@@ -2,7 +2,7 @@
 
 
 # Mech Pet
-![Mech Pet](vehicles_frontend/sveltenetics/static/pictures/Mech_Pet_0001.svg)
+![Mech Pet](vehicles_frontend/sveltenetics/static/pictures/Foam_Pet_0001.svg)
 
 A pet on an offline machine (such as a laptop or desktop)  
 can interact with https://mech.pet
@@ -15,11 +15,6 @@ Both machines need a camera (bionic eye) and screen.
 A pet for a Linux_x86_64 machine or docker     
 can be adopted from releases:
 https://github.com/basalt-plateau/mech_pet/releases
-
-----
-
-## Motion Picture
-https://rumble.com/v5ixhx0-how-to-ship-apt-to-aptos-with-mech-pet.html
 
 ----
 
