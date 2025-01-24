@@ -88,7 +88,8 @@ let EWF = false
 							word-break: break-all;
 							overflow-wrap: break-word;
 							
-							display: block;
+							display: flex;
+							gap: 0.1cm;
 						"
 					>
 						{#if EWF.stage_name_connected.length >= 1 }
