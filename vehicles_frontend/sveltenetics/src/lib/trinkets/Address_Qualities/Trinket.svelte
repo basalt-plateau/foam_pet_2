@@ -78,29 +78,34 @@
 		on_prepare={ on_prepare }
 	/>
 */
-import Panel from '$lib/trinkets/panel/trinket.svelte'
+////
+//
+import { onMount, onDestroy } from 'svelte'
+import * as AptosSDK from "@aptos-labs/ts-sdk";
+//
 import { ConicGradient } from '@skeletonlabs/skeleton';
 import { SlideToggle } from '@skeletonlabs/skeleton';
-import * as AptosSDK from "@aptos-labs/ts-sdk";
-import { onMount, onDestroy } from 'svelte'
+import { ProgressRadial } from '@skeletonlabs/skeleton';
+import { ProgressBar } from '@skeletonlabs/skeleton';
 //
+import anime from 'animejs/lib/anime.es.js';
+//
+//
+import Panel from '$lib/trinkets/panel/trinket.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
 import { ask_APT_count } from '$lib/PTO/APT/Count'
-//
 import { loop } from '$lib/taverns/loop'
 import {
 	check_roomies_truck,
 	monitor_roomies_truck
 } from '$lib/Versies/Trucks'
 import { parse_with_commas } from '$lib/taverns/numbers/parse_with_commas'
-import { ProgressBar } from '@skeletonlabs/skeleton';
 //
-import { ProgressRadial } from '@skeletonlabs/skeleton';
-import anime from 'animejs/lib/anime.es.js';
 //
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import { ask_sequence_number } from '$lib/PTO/Address/Sequence_Number'
-	
+//
+////
 
 
 export let name = "Address"
@@ -143,8 +148,6 @@ export const change_address_hexadecimal_string = (address) => {
 const suggest_loop = loop ({
 	wait: 2000,
 	action: async () => {
-		// console.info ({ asking })
-		
 		if (asking === true) {
 			ask_balance ()
 		}
@@ -185,15 +188,17 @@ const show = {
 	},
 	info ({ info }) {
 		// This is called if..
-	
+		
 		alert_exception = ""
 		alert_caution = ""
-		alert_info = info
 		alert_proceeds = "no";
 		
+		alert_info = info
 		send_on_change ()
 	},
 	proceeds ({ Octas, le_sequence_number }) {
+		// 
+		
 		alert_exception = ""
 		alert_caution = ""
 		alert_info = "The address was found."
@@ -279,17 +284,16 @@ const ask_balance = async () => {
 	
 	try {
 		if (address_hexadecimal_string.length === 0) {
-			show.info ({
-				info: "Waiting for an address"
-			})
+			show.info ({ info: "Waiting for an address" });
 			return;
 		}
 		
 		const address_hexadecimal_string_ask = address_hexadecimal_string;
+		
 		const APT_count_ask = await ask_APT_count ({ 
 			address_hexadecimal_string: address_hexadecimal_string_ask,
 			net_path: RT_Freight.dapp_network.net_path
-		})
+		});
 		
 		let sequence_number = "?"
 		try {
@@ -308,9 +312,7 @@ const ask_balance = async () => {
 		//
 		//
 		if (address_hexadecimal_string_ask !== address_hexadecimal_string) {
-			show.info ({
-				info: "searching for address"
-			})
+			show.info ({ info: "searching for address" });
 			return;
 		}
 		
@@ -321,15 +323,11 @@ const ask_balance = async () => {
 		//
 		if (APT_count_ask.effective !== "yes") {
 			if (APT_count_ask.error_code === "resource_not_found") {
-				show.caution ({
-					caution: APT_count_ask.exception
-				})
+				show.caution ({ caution: APT_count_ask.exception });
 				return;
 			}
 			
-			show.exception ({
-				exception: APT_count_ask.exception
-			})
+			show.exception ({ exception: APT_count_ask.exception });
 			return;
 		}
 		 
@@ -340,17 +338,13 @@ const ask_balance = async () => {
 	}
 	catch (_exception) {
 		console.error (_exception)
-		show.exception ({
-			exception: _exception.message
-		})
-		
+		show.exception ({ exception: _exception.message });
 		return;
 	}
 }
 
 const address_changed = () => {
 	clear_alerts ()
-	
 	if (asking === true) {
 		show.info ({ info: "searching for address" })
 	}

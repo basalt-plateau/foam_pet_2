@@ -303,7 +303,7 @@ export const make = async (packet) => {
 	
 	let stages = trucks [1].freight.stages;
 	for (let stage_name in stages) {
-		console.info ("building:", stage_name);
+		console.info ("searching for:", stage_name);
 		
 		try {
 			await trucks [1].freight.stages [ stage_name ].status ();

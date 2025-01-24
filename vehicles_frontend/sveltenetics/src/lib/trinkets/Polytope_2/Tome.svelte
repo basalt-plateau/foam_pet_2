@@ -6,7 +6,9 @@
 
 <script>
 
+
 /*
+	import { parse_styles } from '$lib/trinkets/styles/parse'
 	import Polytope_2 from '$lib/trinkets/Polytope_2/Tome.svelte'
 	let polytope_2_modal;
 	let polytope_2_prepared = "no"
@@ -16,6 +18,9 @@
 		on_prepare={() => {
 			polytope_2_prepared = "yes"
 		}}
+		style={parse_style ({
+			
+		})}
 	>
 		{#if polytope_2_prepared === "yes" }
 			
@@ -54,6 +59,11 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 ////
 
+import { parse_styles } from '$lib/trinkets/styles/parse'
+
+
+export let style = {}
+
 const modal_store = getModalStore ();
 
 $: freight = {
@@ -75,17 +85,19 @@ onMount (() => {
 
 
 <div 
-	style="
-		position: relative;
-		top: 0;
-		left: 0;
-		padding: 0;
-		
-		width: 80vw;
-		height: 80vh;
+	style={ 
+		parse_styles (Object.assign ({}, {
+			position: "relative",
+			top: "0",
+			left: "0",
+			padding: "0",
+			
+			width: "80vw",
+			height: "80vh",
 
-		overflow-y: scroll;
-	"
+			"overflow-y": "scroll"
+		}, {})) 
+	}
 >
 	<div
 		class="bg-surface-50-900-token border border-primary-500/30"

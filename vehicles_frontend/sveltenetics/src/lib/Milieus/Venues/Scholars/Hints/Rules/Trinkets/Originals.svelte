@@ -51,55 +51,53 @@ article {
 	<article class="card p-4 variant-soft-surface">
 		<header>Festivities</header>
 		<p>
-			Festivities at <Slang text="Label" /> are allowed 
-			if the <Slang text="Label" /> friend is a loyal friend
-			to <Slang text="Label" /> and the friends of <Slang text="Label" />.
+			Festivities with <Slang text="Label" /> are allowed 
+			if the <Slang text="Label" /> friend is a scholarly loyal friend
+			to <Slang text="Label" /> and the loyal friends of <Slang text="Label" />.
 		</p>
 	</article>
 	
 	
 	<article class="card p-4 variant-soft-surface">
-		<header>Group Franchises</header>
+		<header>Estate Franchises</header>
 		<p style="white-space: pre-wrap">
-Building a <Slang text="Town" /> Franchise
-for friendly or festive purposes is allowed.
+<Slang text="Label" /> Estate franchise creation for friendly or festive purposes is allowed.
 
-This is a <Slang text="Town" /> Group:
+This is a <Slang text="Label" /> Estate:
 https://github.com/basalt-plateau/foam_pet
 
-<Slang text="Town" /> Group Franchises are the responsibility
-of the friends that run the Group Franchise.
+<Slang text="Label" /> Estate Franchises are the responsibility
+of the friends that run the Estate Franchise.
 		</p>
 	</article>
 	
 	<article class="card p-4 variant-soft-surface">
 		<header>Ride Franchises</header>
 		<p style="white-space: pre-wrap">
-Building a <Slang text="Town" /> Ride
+Building a <Slang text="Label" /> Ride
 for friendly or festive purposes is allowed.
 
 The PyPI module, plus the Icanniana Domain are rides.
 
-<Slang text="Town" /> rides are the responsibility
-of the friends that run the <Slang text="Town" /> ride franchise.
+<Slang text="Label" /> rides are the responsibility
+of the friends that run the <Slang text="Label" /> ride franchise.
 		</p>
 	</article>
 	
 	<article class="card p-4 variant-soft-surface">
 
-		<header>Structural Health</header>
+		<header>Structures</header>
 		<p style="white-space: pre-wrap">
-Building or emulating <Slang text="Town" /> structures, 
-for friendly or festive purposes, for the purposes of transplant
-into <Slang text="Town" /> or other towns is allowed.			
+Emulating <Slang text="Label" /> structures, 
+for friendly or festive purposes is permitted.
 		</p>
 	</article>
 	
 	
 	<article class="card p-1 variant-soft-surface">
-		<header>(Silly) Temporarily</header>
+		<header>(Silly) Temporarily,</header>
 		<p>
-			Scholarly Loyal <Slang text="Town" /> Friends 
+			Scholarly Loyal <Slang text="Label" /> Friends 
 		</p>
 	</article>
 </div>

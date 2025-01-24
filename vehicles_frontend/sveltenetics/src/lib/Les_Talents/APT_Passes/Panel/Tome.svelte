@@ -14,6 +14,7 @@ import Polytope_2 from '$lib/trinkets/Polytope_2/Tome.svelte'
 ////
 
 import Leaf from "./Leaf/Tome.svelte"
+import { parse_styles } from '$lib/trinkets/styles/parse'
 
 
 
@@ -34,6 +35,10 @@ const on_polytope_2_prepare = () => {
 <Polytope_2 
 	bind:this={ polytope_modal }
 	on_prepare={ on_polytope_2_prepare }
+	style={parse_styles ({
+		width: "100vw",
+		height: "100vh"
+	})}
 >
 	<div 
 		style="

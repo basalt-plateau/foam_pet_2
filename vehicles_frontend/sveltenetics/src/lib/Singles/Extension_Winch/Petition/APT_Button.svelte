@@ -5,15 +5,27 @@
 
 /*
 	import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
+	let petition_APT_button = "";
+	
 	<Petition_APT_Button
+		bind:this={ petition_APT_button }
+		
+		onMount={() => {
+			petition_APT_button.mode ("on");
+		}}
+	
 		button_text="Buy 1 Membership Pass"
 		
 		APT="0"
 		clicked={}
+		
+		
 	/>
 */
 
 /*
+	petition_APT_button.mode ("on");
+
 	petition_APT_button.mode ("progress");
 
 	petition_APT_button.mode ("success", {
@@ -37,25 +49,30 @@
 
 ////
 //
-import { parse_styles } from '$lib/trinkets/styles/parse'
-import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+import { onMount as _onMount } from 'svelte'
 //
-////
-
+//
+import { parse_styles } from '$lib/trinkets/styles/parse'
+//
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Radial_Progress from '$lib/trinkets/Progress/Radial/Trinket.svelte'
 import Alert_Success from '$lib/trinkets/Alerts/Success.svelte'
 import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
+//
+////
+
 		
 
 let Extension_Winch_Freight = false
 
-
 export let button_text = ""
 export let APT = ""
 export let clicked = () => {}
+export let onMount = () => {}
+
 
 let details = ""
-let the_mode = "on"
+let the_mode = "off"
 export const mode = (next_the_mode, next_details) => {
 	console.log (next_the_mode, next_details);
 	
@@ -65,13 +82,27 @@ export const mode = (next_the_mode, next_details) => {
 	the_mode = next_the_mode;
 }
 
+const EWR_Change = ({ pro_freight }) => {
+	Extension_Winch_Freight = pro_freight;
+	
+	if (typeof Extension_Winch_Freight === "object") {
+		
+	}
+}
+
+_onMount (() => {
+	onMount (() => {
+		
+	});
+});
+
 /*
 
 */
 </script>
 
 
-<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
+<Extension_Winch_Ride on_change={ EWR_Change } />
 {#if typeof Extension_Winch_Freight === "object"}
 <div
 	style="
@@ -87,7 +118,9 @@ export const mode = (next_the_mode, next_details) => {
 		style={ parse_styles (Object.assign ({}, {
 			padding: "0.2cm 0.25cm 0.2cm 0.5cm",
 			position: "relative",
-			overflow: 'hidden'
+			overflow: 'hidden',
+			background: 'linear-gradient(22deg, rgb(var(--color-surface-500)), rgb(var(--color-primary-500)), rgb(var(--color-success-300)))',
+			border: '2px solid rgb(var(--color-surface-300))' 
 		})) }
 		class="btn variant-filled-primary"
 	>
@@ -131,6 +164,9 @@ export const mode = (next_the_mode, next_details) => {
 				
 					flex-direction: row;
 					gap: 0.0cm;
+					
+					background: linear-gradient(80deg, rgb(var(--color-surface-300)), rgb(var(--color-surface-400)));
+					border: 1px solid rgb(var(--color-surface-500) / 0.4);
 				"
 				class="badge variant-filled-surface"
 			>

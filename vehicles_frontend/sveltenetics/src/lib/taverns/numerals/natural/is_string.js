@@ -6,6 +6,11 @@
 */
 
 /*
+	Natural Numbers are:
+	0, 1, 2, 3, ..., etc.
+*/
+
+/*
 	This asserts that a string is a natural numeral.
 */
 
