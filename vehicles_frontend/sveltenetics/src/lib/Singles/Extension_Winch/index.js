@@ -29,6 +29,22 @@ import { ask_for_freight } from '$lib/Versies/Trucks'
 const trucks = {}
 	
 	
+/*
+	If want to drop support for a wallet,
+	announce that they need to move their
+	private key to a supported wallet.
+*/
+/*
+	These are effectively aliases.
+	
+	They don't need to be the actual
+	name of the wallet.
+*/
+const allow_wallets = {
+	"Petra": "yup",
+	"Rise": "yup",
+	"Pontem": "yup"
+};
 
 
 let extension_network_connection_status_track;
@@ -51,16 +67,11 @@ export const make = async (packet) => {
 	trucks [1] = build_truck ({
 		freight: {
 			
-			/*
-				These are effectively aliases.
-				
-				They don't need to be the actual
-				name of the wallet.
-			*/
+			
 			stages: {
-				Rise: {},
-				Petra: {},
-				Pontem: {}
+				// Rise: {},
+				// Petra: {},
+				// Pontem: {}
 			},
 			stage_name_connected: "",
 			stage: {},
@@ -278,26 +289,31 @@ export const make = async (packet) => {
 		}
 	});
 	
-	
-	try {
-		trucks [1].freight.stages.Rise = await Rise_stage_creator ({ freight: trucks [1].freight });
-	}
-	catch (imperfection) {
-		console.error (imperfection);
-	}
-	
-	try {
-		trucks [1].freight.stages.Petra = await Petra_stage_creator ({ freight: trucks [1].freight });
-	}
-	catch (imperfection) {
-		console.error (imperfection);
+	if (allow_wallets [ "Rise" ] === "yup") {
+		try {
+			trucks [1].freight.stages.Rise = await Rise_stage_creator ({ freight: trucks [1].freight });
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
 	}
 	
-	try {
-		trucks [1].freight.stages.Pontem = await Pontem_stage_creator ({ freight: trucks [1].freight });
+	if (allow_wallets [ "Petra" ] === "yup") {
+		try {
+			trucks [1].freight.stages.Petra = await Petra_stage_creator ({ freight: trucks [1].freight });
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
 	}
-	catch (imperfection) {
-		console.error (imperfection);
+	
+	if (allow_wallets [ "Pontem" ] === "yup") {
+		try {
+			trucks [1].freight.stages.Pontem = await Pontem_stage_creator ({ freight: trucks [1].freight });
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
 	}
 
 	

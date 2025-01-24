@@ -127,7 +127,7 @@ const ask = () => {
 	
 		<p>
 			<span style="display: block;">To Suggest the <Slang text="Petition" /> + <Slang text="Signature" /> to the <Slang text="Consensus" />,
-			<span style="display: block;">press this button:</span>
+			<span style="display: block;">press suggest:</span>
 		</p>
 	
 		<div style="height: 1cm"></div>
@@ -145,14 +145,15 @@ const ask = () => {
 				word-wrap: break-word;
 				
 				width: 200px;
-				height: 200px;
+				height: 100px;
 				
-				border: 0.25cm solid rgb(var(--color-tertiary-500));
+				background: linear-gradient(22deg, rgb(var(--color-surface-500)), rgb(var(--color-primary-500)), rgb(var(--color-success-300)));
+				border: 0.1cm solid rgb(var(--color-tertiary-500));
 				
 				font-size: 2em;
 			"
 			
-		></button>
+		>Suggest</button>
 		
 		<div style="height: 1cm"></div>		
 	</div>

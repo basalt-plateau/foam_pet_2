@@ -54,6 +54,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 			The QR code interface should be used.
 		</p>
 		
+		
 		<div style="height: 0.25cm"></div>
 		
 		<div
@@ -66,6 +67,11 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 			<ol class="list">
 				<li class="card p-4">
 					<span class="badge-icon p-4 variant-soft-primary">1</span>
+					<span class="flex-auto">The Wallet can be downloaded from "Franchise".
+					</span>
+				</li>
+				<li class="card p-4">
+					<span class="badge-icon p-4 variant-soft-primary">2</span>
 					<span class="flex-auto">
 						<Slang text="Accounts"/> is for choosing <Slang text="Account"/>
 					</span>
@@ -76,12 +82,9 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 						line-height: 2em;
 					"
 				>
-					<span class="badge-icon p-4 variant-soft-primary">2</span>
+					<span class="badge-icon p-4 variant-soft-primary">3</span>
 					
-					<span class="flex-auto">
-						To ask the <Slang text="Consensus"/> to add a <Slang text="Transaction"/> to the <Slang text="Blockchain"/>,
-						a <Slang text="Petition"/> with <Slang text="a_signature"/> is necessary.
-					</span>
+					<span class="flex-auto">"Consent" is where suggestions can be signed.</span>
 				</li>
 			</ol>
 		</div>

@@ -146,8 +146,9 @@ def rules_form (packet):
 				</ul>
 			</div>
 			
+
 			<div style="height: 0.5cm"></div>
-			
+
 			<div
 				style="
 					line-height: 100%;
@@ -164,41 +165,32 @@ def rules_form (packet):
 				<p>Interactions are limited to approved places on the Aptos web.</p>
 				<p>Extension wallet content is subject to external discretion.</p>
 			</div>
-		</div>
 
-		<div style="height: 1cm"></div>
-		
-		<div
-			style="
-				text-align: right;
-				
-				height: fit-content;
-				width: 100%;
-				
-				padding: 1cm;
-				border-radius: 0.25cm;
-				
-				background: #FFF;
-				border: 2px solid #000;
-			"
-		>
-			<button 
-				monitor="proceed button"
+			<div style="height: 0.5cm"></div>
 			
-				onclick="proceed_tapped ()"
-				
+			<div
 				style="
-					background: #b6b6d5;
-					color: black;
-					cursor: pointer;
-					
-					padding: 0.25cm 0.5cm;
-					border-radius: 0.25cm;
-					border: 2px solid #a570ca;
-					
-					font-size: 1em;
+					text-align: right;
 				"
-			>Accept</button>
+			>
+				<button 
+					monitor="proceed button"
+				
+					onclick="proceed_tapped ()"
+					
+					style="
+						background: #b6b6d5;
+						color: black;
+						cursor: pointer;
+						
+						padding: 0.25cm 0.5cm;
+						border-radius: 0.25cm;
+						border: 2px solid #a570ca;
+						
+						font-size: 1em;
+					"
+				>Accept</button>
+			</div>
 		</div>
 	</main>
 	

@@ -39,7 +39,7 @@ export const le_label = {
 	//	Extension Wallet
 	//		Greetings, Nose
 	//
-	"Label_Wallet_Extension": "Mech Pet Bourgeoisie",
+	"Label_Wallet_Extension": "Mech Pet Bourgeoisie Wallet",
 
 	////
 	//

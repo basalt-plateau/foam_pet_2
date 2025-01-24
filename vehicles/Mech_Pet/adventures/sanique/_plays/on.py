@@ -79,8 +79,6 @@ def turn_on_sanique_web (packet):
 			script.append (">")
 			script.append ('/dev/null')
 			script.append ('&')
-			
-
 		
 		
 		hike_passive_forks ({

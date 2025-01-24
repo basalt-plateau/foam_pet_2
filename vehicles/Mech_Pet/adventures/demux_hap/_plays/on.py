@@ -23,6 +23,17 @@ def turn_on_demux_hap ():
 
 	config_path = "/etc/haproxy/haproxy.cfg"
 	
+	
+	''''
+		to_address example:
+			0.0.0.0:22000
+			0.0.0.0:22000
+			0.0.0.0:22000
+			0.0.0.0:22000
+			0.0.0.0:22000
+			0.0.0.0:22000
+			0.0.0.0:22000	
+	"'''
 	HA_HTTPS_to_HTTP.build (
 		SSL_certificate_path = "/etc/haproxy/SSL/certificate.pem",
 		config_path = config_path,

@@ -38,6 +38,8 @@ const obtain_wallet = ({ stage }) => {
 			justify-content: left;
 			gap: 10px;
 			
+			padding: 0 10px;
+			
 			width: 100%;
 		"
 	>
@@ -57,6 +59,10 @@ const obtain_wallet = ({ stage }) => {
 		/>
 		{/if}
 		<p>{ stage.name }</p>
+		
+		{#if stage.name === "Petra"}
+		<span class="badge variant-filled-surface">By Aptos Labs</span>
+		{/if}
 	</div>
 
 
