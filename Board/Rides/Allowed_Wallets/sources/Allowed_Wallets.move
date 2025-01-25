@@ -8,8 +8,8 @@
 module Ride_01::Allowed_Wallets {
 	#[view] public fun Volitions () : String { use Ride_01::Rules_10; Rules_10::Volitions_01 () }
 	
-	use std::vector;
-	use std::string::{ String, utf8 };
+	// use std::vector;
+	use std::string::{ String };
 	use std::signer;
 	
 	struct Wallets has key, drop {
@@ -17,7 +17,6 @@ module Ride_01::Allowed_Wallets {
 	}
 	
 	public entry fun establish (consenter : & signer, allowed_wallets : vector <String>) {
-		let consenter_address = signer::address_of (consenter);
 		let wallets = Wallets {
 			allowed : allowed_wallets
 		};

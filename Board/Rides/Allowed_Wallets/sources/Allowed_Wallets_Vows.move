@@ -5,7 +5,7 @@ module Ride_01::Allowed_Wallets_Vows {
 	
 	use std::signer;
 	use std::vector;
-	use std::string::{ Self, utf8, String };
+	use std::string::{ utf8, String };
 	
 	use Ride_01::Allowed_Wallets;
 	
