@@ -12,8 +12,7 @@
 import Polytope_2 from '$lib/trinkets/Polytope_2/Tome.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
-
-	
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
 //
 ////
 
@@ -21,7 +20,9 @@ import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.s
 	
 let polytope_2_modal;
 let polytope_2_prepared = "no"
-
+let Versies_Freight = false
+	
+	
 //
 // This is for electing the original value of the trinket.
 //
@@ -43,6 +44,8 @@ let address_trinket_2 = ""
 		height: "100vh"
 	}}
 >
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	{#if typeof Versies_Freight === "object"}
 	{#if polytope_2_prepared === "yes" }
 	<div>
 		<div 
@@ -62,12 +65,13 @@ let address_trinket_2 = ""
 		</div>
 	</div>
 	
+	
+	{#if Versies_Freight.mode === "nurture" }
 	<div
 		style="
 			margin: 1cm auto;
 			max-width: 30cm;
 			width: 100%;
-			display: none;
 		"
 		class="card p-2"
 	>
@@ -105,5 +109,7 @@ let address_trinket_2 = ""
 			/>
 		</div>
 	</div>
+	{/if}
+	{/if}
 	{/if}
 </Polytope_2>

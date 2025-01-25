@@ -49,22 +49,34 @@ publisher_addresses = {
 	"Dev": "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 }
 
-#
-#
-#	perhaps.. this is the address of the publisher.
-#		perhaps.. this should be the same as builder_1.
-#
-#
-le_publisher = publisher_addresses ["Dev"]
 
 
-def motion_for_named_addresses ():
-	owner_1 = {
-		"address": le_publisher
-	}
+def motion_for_named_addresses (packet):
+	publisher_address = packet ["publisher_address"]
+	
+	
+	#
+	#
+	#	Publisher
+	#
+	#
 	builder_1 = {
-		"address": "0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd"
+		"address": publisher_address
 	}
+	
+	#
+	#	Producer (Owner, etc.)
+	#		This is so that a producer address doesn't need to be passed
+	#		to each invokation.
+	#
+	#		For example:
+	#			* Build with Petra
+	#			* Produce with Bourgeoisie
+	#
+	owner_1 = {
+		"address": publisher_address
+	}
+	
 	boar_Team_01 = {
 		"private key": "B89ABC50712653C071625BC8F9EADBC8F9EDACB706152CBF89EDABC1625BC261",
 		"legacy address": "E7CB1E9B8FA8ADFF1C3720FA9C36A150E8F08B6E864FF5CB102F6ECCF5FE9BA3"
@@ -129,7 +141,6 @@ def motion_for_named_addresses ():
 		f"""boar_Team_08={ boar_Team_08 ["legacy address"] }, """,
 		f"""boar_Team_09={ boar_Team_09 ["legacy address"] }, """,
 		f"""boar_Team_10={ boar_Team_10 ["legacy address"] } """,
-
 				
 		
 		"'"
@@ -165,7 +176,7 @@ def clique ():
 	"""
 		python3 vocalize.py vocalize --steady --move Allowed_Wallets_01
 		
-		python3 vocalize.py vocalize --publish --move Allowed_Wallets_01
+		python3 vocalize.py vocalize --publish --move Allowed_Wallets_01 --publisher Petra
 		
 		python3 vocalize.py vocalize --publish --move Rules_10
 		python3 vocalize.py vocalize --publish --move Sport_Pack_01
@@ -174,17 +185,31 @@ def clique ():
 	@click.option ('--move', type = str, help = '')
 	@click.option ('--publish', is_flag = True, help = '')
 	@click.option ('--steady', is_flag = True, help = '')	
-	def vocalize (move, publish, steady):
+	@click.option ('--publisher', type = str, help = '')	
+	def vocalize (move, publish, steady, publisher):
 		if (publish):
+			#
+			#
+			#	license plate
+			#
+			#
+			publisher_address = publisher_addresses [ publisher ];
+		
 			moves_structures [ move ].publish ({
-				"ride_plate": le_publisher,
-				"named_addresses": motion_for_named_addresses ()
+				"ride_plate": publisher_address,
+				"named_addresses": motion_for_named_addresses ({
+					"publisher_address": publisher_address
+				})
 			});
 			
 		elif (steady):
+			publisher_address = publisher_addresses [ "Dev" ];
+		
 			moves_structures [ move ].steady ({
-				"ride_plate": le_publisher,
-				"named_addresses": motion_for_named_addresses ()
+				"ride_plate": publisher_address,
+				"named_addresses": motion_for_named_addresses ({
+					"publisher_address": publisher_address
+				})
 			});
 			
 		else:

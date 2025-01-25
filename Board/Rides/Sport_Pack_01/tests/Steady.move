@@ -68,7 +68,6 @@ module builder_1::Steady {
 	) {
 		use std::string;
 		use aptos_framework::chain_id;
-		
 		chain_id::initialize_for_test (aptos_framework_consenter, 3);
 		
 		/*
