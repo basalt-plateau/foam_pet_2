@@ -31,10 +31,13 @@ module Ride_01::Allowed_Wallets {
 		wallets.allowed = allowed_wallets;
 	}
 	
-	#[view] public entry fun retrieve (
+	#[view] public fun retrieve (
 		consenter_address : address
 	) : vector <String> acquires Wallets {
 		let wallets = borrow_global<Wallets>(consenter_address);
 		wallets.allowed
 	}
+	
+	
+	
 }
