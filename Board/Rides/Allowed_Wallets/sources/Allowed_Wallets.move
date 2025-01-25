@@ -37,7 +37,4 @@ module Ride_01::Allowed_Wallets {
 		let wallets = borrow_global<Wallets>(consenter_address);
 		wallets.allowed
 	}
-	
-	
-	
 }

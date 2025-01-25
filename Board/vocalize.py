@@ -110,6 +110,7 @@ def motion_for_named_addresses ():
 	named_addresses = "".join ([
 		f"""--named-addresses '""",
 
+		f"""Producer_01={ owner_1 ["address"] }, """,
 		f"""Formulator_1={ owner_1 ["address"] }, """,
 		f"""Boar_Producer_1={ owner_1 ["address"] }, """,
 
