@@ -33,7 +33,9 @@ module Publisher_01::Allowed_Wallets_01_Vows {
 		vector::push_back (&mut allowed_wallets_01, utf8 (b"Pontem"));
 		vector::push_back (&mut allowed_wallets_01, utf8 (b"Mech"));
 		
+		assert! (Allowed_Wallets_01::is_established () == utf8 (b"no"));
 		Allowed_Wallets_01::establish (producer_01_consenter, allowed_wallets_01);
+		assert! (Allowed_Wallets_01::is_established () == utf8 (b"yup"));
 		
 		
 		let allowed_wallets_02 = Allowed_Wallets_01::retrieve ();
@@ -54,11 +56,17 @@ module Publisher_01::Allowed_Wallets_01_Vows {
 		vector::push_back (&mut allowed_wallets_03, utf8 (b"Pontem"));
 		Allowed_Wallets_01::change (producer_01_consenter, allowed_wallets_03);
 		
-		
 		let allowed_wallets_04 = Allowed_Wallets_01::retrieve ();
 		assert! (vector::borrow (& allowed_wallets_04, 0) == & utf8 (b"Petra"), 1);
 		assert! (vector::borrow (& allowed_wallets_04, 1) == & utf8 (b"Rise"), 1);
 		assert! (vector::borrow (& allowed_wallets_04, 2) == & utf8 (b"Pontem"), 1);
 		assert! (vector::length (& allowed_wallets_04) == 3);
+	
+		//
+		//	Shred
+		//
+		//
+		Allowed_Wallets_01::shred (producer_01_consenter);
+		assert! (Allowed_Wallets_01::is_established () == utf8 (b"no"));
 	}
 }
