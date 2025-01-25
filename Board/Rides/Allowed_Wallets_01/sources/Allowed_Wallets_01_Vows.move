@@ -1,15 +1,15 @@
 
 
 
-module Ride_01::Allowed_Wallets_01_Vows {
+module Publisher_01::Allowed_Wallets_01_Vows {
 	
 	use std::signer;
 	use std::vector;
 	use std::string::{ utf8, String };
 	
-	use Ride_01::Allowed_Wallets_01;
+	use Publisher_01::Allowed_Wallets_01;
 	
-	#[view] public fun Volitions () : String { use Ride_01::Rules_10; Rules_10::Volitions_01 () }
+	#[view] public fun Volitions () : String { use Publisher_01::Rules_10; Rules_10::Volitions_01 () }
 	
 	#[test (producer_01_consenter = @Producer_01)]
 	public fun steady (

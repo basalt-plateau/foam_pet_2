@@ -44,7 +44,6 @@ import Rides.Sport_Pack_01 as Sport_Pack_01
 ''''
 	Publisher is the account that is loggen in @ .aptos/config.yaml
 "'''
-
 publisher_addresses = {
 	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
 	"Dev": "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
@@ -56,12 +55,12 @@ publisher_addresses = {
 #		perhaps.. this should be the same as builder_1.
 #
 #
-ride_plate = publisher_addresses ["Dev"]
+le_publisher = publisher_addresses ["Dev"]
 
 
 def motion_for_named_addresses ():
 	owner_1 = {
-		"address": ride_plate
+		"address": le_publisher
 	}
 	builder_1 = {
 		"address": "0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd"
@@ -114,6 +113,7 @@ def motion_for_named_addresses ():
 		f"""Formulator_1={ owner_1 ["address"] }, """,
 		f"""Boar_Producer_1={ owner_1 ["address"] }, """,
 
+		f"""Publisher_01={ builder_1 ["address"] }, """,
 		f"""Ride_01={ builder_1 ["address"] }, """,
 		f"""ride={ builder_1 ["address"] }, """,		
 		f"""builder_1={ builder_1 ["address"] },""",		
@@ -165,6 +165,8 @@ def clique ():
 	"""
 		python3 vocalize.py vocalize --steady --move Allowed_Wallets_01
 		
+		python3 vocalize.py vocalize --publish --move Allowed_Wallets_01
+		
 		python3 vocalize.py vocalize --publish --move Rules_10
 		python3 vocalize.py vocalize --publish --move Sport_Pack_01
 	"""
@@ -175,13 +177,13 @@ def clique ():
 	def vocalize (move, publish, steady):
 		if (publish):
 			moves_structures [ move ].publish ({
-				"ride_plate": ride_plate,
+				"ride_plate": le_publisher,
 				"named_addresses": motion_for_named_addresses ()
 			});
 			
 		elif (steady):
 			moves_structures [ move ].steady ({
-				"ride_plate": ride_plate,
+				"ride_plate": le_publisher,
 				"named_addresses": motion_for_named_addresses ()
 			});
 			

@@ -1,8 +1,8 @@
 
 
 
-module Ride_01::Allowed_Wallets_01 {
-	#[view] public fun Volitions () : String { use Ride_01::Rules_10; Rules_10::Volitions_01 () }
+module Publisher_01::Allowed_Wallets_01 {
+	#[view] public fun Volitions () : String { use Publisher_01::Rules_10; Rules_10::Volitions_01 () }
 	
 	// use std::vector;
 	use std::string::{ String };
