@@ -23,6 +23,24 @@ module Publisher_01::Allowed_Wallets_01 {
 		
 		move_to<Wallets>(consenter, wallets)
 	}
+	#[test (
+		producer_01_consenter = @0x9999999999999999999999999999999999999999999999999999999999999999,
+		aptos_framework_consenter = @0x1
+	)]
+	#[expected_failure (abort_code = 100001, location = Publisher_01::Allowed_Wallets_01_Producer)]
+	public fun steady (
+		producer_01_consenter : & signer,
+		aptos_framework_consenter : & signer
+	) {	
+		use std::vector;
+		use aptos_framework::chain_id;
+		
+		chain_id::initialize_for_test (aptos_framework_consenter, 1);
+		
+		let allowed_wallets_01 = vector::empty<String>();
+		establish (producer_01_consenter, allowed_wallets_01);
+	}
+	
 	public entry fun change (consenter : & signer, allowed_wallets : vector <String>) acquires Wallets {
 		Allowed_Wallets_01_Producer::ensure_consenter_is_producer (consenter);
 		let producer_address = signer::address_of (consenter);
