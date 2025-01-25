@@ -28,7 +28,7 @@ import Rides_Published_Mainnet.Rules_10 as Rules_10
 #
 #
 import Rides.Motions_01 as Motions_01_Moves
-import Rides.Allowed_Wallets as Allowed_Wallets
+import Rides.Allowed_Wallets_01 as Allowed_Wallets_01
 
 #
 #
@@ -141,7 +141,7 @@ def motion_for_named_addresses ():
 moves_structures = {
 	"Sport_Pack_01": Sport_Pack_01,
 	
-	"Allowed_Wallets": Allowed_Wallets,
+	"Allowed_Wallets_01": Allowed_Wallets_01,
 	
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
@@ -163,7 +163,7 @@ def clique ():
 
 
 	"""
-		python3 vocalize.py vocalize --steady --move Allowed_Wallets
+		python3 vocalize.py vocalize --steady --move Allowed_Wallets_01
 		
 		python3 vocalize.py vocalize --publish --move Rules_10
 		python3 vocalize.py vocalize --publish --move Sport_Pack_01

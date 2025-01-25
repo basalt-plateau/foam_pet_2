@@ -53,6 +53,7 @@ import Sport_Pack from '$lib/Les_Talents/Sport_Pack/Frontier/Tome.svelte'
 import Glam_Frontier from "$lib/Les_Talents/Glam/Frontier/Tome.svelte"
 import Franchise_Frontier from "$lib/Les_Talents/Franchise/Frontier/Tome.svelte"
 
+
 const Les_Talents = [
 
 	{

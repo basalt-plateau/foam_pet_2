@@ -63,6 +63,8 @@ export default defineConfig({
 		]
 	},
 	
+	resolve: process.env.VITEST ? { conditions: ['browser'] } : undefined,
+	
 	kit: {
 		// adapter: adapter ({ pages: "builds" }),
 		alias: {

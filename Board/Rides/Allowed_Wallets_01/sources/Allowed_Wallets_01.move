@@ -1,11 +1,7 @@
 
 
-/*
-	* build list of wallets
-	* change list of wallets
-	* retrieve list of wallets
-*/
-module Ride_01::Allowed_Wallets {
+
+module Ride_01::Allowed_Wallets_01 {
 	#[view] public fun Volitions () : String { use Ride_01::Rules_10; Rules_10::Volitions_01 () }
 	
 	// use std::vector;

@@ -4,6 +4,30 @@
 
 
 /*
+	//
+	// without input field
+	//
+	//
+
+	import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
+
+	//
+	// This is for electing the original value of the trinket.
+	//
+	//
+	let address_trinket = ""
+
+	<Address_Qualities_Trinket 
+		name="Origin Address"
+		bind:this={ address_trinket }
+		has_field="no"
+		on_prepare={() => {
+			address_trinket.change_address_hexadecimal_string ("")
+		}}
+	/>
+*/
+
+/*
 	import Address_Qualities_Trinket from '$lib/trinkets/Address_Qualities/Trinket.svelte'
 
 	let origin_address = {
@@ -400,7 +424,6 @@ onDestroy (() => {
 		<div 
 			style="
 				background: none; 
-				margin-right: 10px;
 				width: 100%;
 			"
 		>
@@ -457,7 +480,31 @@ onDestroy (() => {
 				placeholder="Address" 
 			/>
 			{:else}
-			<p>{ address_hexadecimal_string }</p>
+			<span 
+				style="
+					width: 100%;
+					font-size: 1.2em;
+					
+					// white-space: break-spaces;
+					// word-break: break-all;
+					display: flex;
+					flex-direction: row;
+				"
+				class="badge variant-soft"
+			>
+				<span>Address</span>
+				<span 
+					style="
+						font-size: 0.8em;
+						word-break: break-all;
+						white-space: break-spaces;
+						text-align: center;
+					"
+					class="badge variant-filled-surface"
+				>{ 
+					address_hexadecimal_string 
+				}</span>
+			</span>
 			{/if}
 			
 			{#if false}
