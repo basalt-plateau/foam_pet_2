@@ -10,6 +10,8 @@
 //
 //
 import Polytope_2 from '$lib/trinkets/Polytope_2/Tome.svelte'
+import { parse_styles } from '$lib/trinkets/styles/parse'
+//
 //
 ////
 

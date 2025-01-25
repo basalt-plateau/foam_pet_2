@@ -8,7 +8,8 @@ import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 
 import { retrieve_modules_for_address } from './../screenplays/retrieve_modules_for_address'
-
+import { ask_for_freight } from '$lib/Versies/Trucks'
+	
 
 
 let endorsed_modules = [];
@@ -70,11 +71,10 @@ let les_modules = []
 
 const address_changed = async () => {
 	console.log ("address changed:", { endorsed_modules });
-	
 	les_modules = [];
 	
 	const { les_modules: _les_modules } = await retrieve_modules_for_address ({
-		net_path,
+		net_path: ask_for_freight ().dapp_network.net_path,
 		address_hexadecimal_string: address
 	});
 	_les_modules.sort ((a, b) => {

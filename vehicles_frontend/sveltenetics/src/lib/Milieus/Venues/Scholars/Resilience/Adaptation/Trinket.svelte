@@ -18,7 +18,7 @@ const allow = {
 }
 */
 
-const endorsed = {
+const endorsed2 = {
 	"0x1": {
 		"account": "every",
 		"aptos_account": [ "transfer" ]
@@ -28,6 +28,7 @@ const endorsed = {
 	"0x4": "every"	
 }
 
+const endorsed = "every"
 
 </script>
 

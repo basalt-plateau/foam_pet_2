@@ -86,17 +86,19 @@ onMount (() => {
 
 <div 
 	style={ 
-		parse_styles (Object.assign ({}, {
-			position: "relative",
-			top: "0",
-			left: "0",
-			padding: "0",
-			
-			width: "80vw",
-			height: "80vh",
+		parse_styles (
+			Object.assign ({}, {
+				position: "relative",
+				top: "0",
+				left: "0",
+				padding: "0",
+				
+				width: "80vw",
+				height: "80vh",
 
-			"overflow-y": "scroll"
-		}, {})) 
+				"overflow-y": "scroll"
+			}, style)
+		) 
 	}
 >
 	<div
@@ -161,11 +163,14 @@ onMount (() => {
 				overflow-y: scroll;
 			"
 		>
+			
 			<slot></slot>
 		</div>
 		<div style="height: 70px" />
 	</div>
-
+	
+	
+	
 	<footer
 		class="bg-surface-50-900-token border border-primary-500/30"
 		style="

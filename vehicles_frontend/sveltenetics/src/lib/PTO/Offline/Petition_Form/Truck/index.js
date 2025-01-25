@@ -21,7 +21,7 @@ import { ask_for_freight as ask_for_Versies_freight } from '$lib/Versies/Trucks'
 
 const trucks = {}
 export const make_truck = () => {
-	const Versies_freight = ask_for_Versies_freight ().net_path;
+	const Versies_freight = ask_for_Versies_freight ();
 	const net_path = Versies_freight.net_path;
 	
 	trucks [1] = build_truck ({

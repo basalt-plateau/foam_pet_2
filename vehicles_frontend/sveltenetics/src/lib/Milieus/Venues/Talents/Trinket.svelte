@@ -85,7 +85,7 @@ const Les_Talents = [
 	},
 	{
 		"Frontier": Bit_Pack,
-		"Mode": "nurture"
+		"Mode": "business"
 	},
 	{
 		"Frontier": Digital_Assets_Portico,

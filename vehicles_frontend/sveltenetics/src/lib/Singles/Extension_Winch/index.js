@@ -40,11 +40,10 @@ const trucks = {}
 	They don't need to be the actual
 	name of the wallet.
 */
-const allow_wallets = {
-	"Petra": "yup",
-	"Rise": "yup",
-	"Pontem": "yup"
-};
+/*
+	This is set in the index.html
+*/
+const allow_wallets = window.allow_wallets;
 
 
 let extension_network_connection_status_track;

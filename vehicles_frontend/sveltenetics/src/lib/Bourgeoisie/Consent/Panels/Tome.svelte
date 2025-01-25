@@ -8,6 +8,7 @@ import { check_roomies_truck } from '$lib/Versies/Trucks'
 import Panel from '$lib/trinkets/panel/trinket.svelte'
 
 import APT_Entrust_Consent_Opener from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Frontier/Board.svelte'
+import Offline_Consent_Opener from '$lib/Les_Talents/Offline_Consent/Frontier/Board.svelte'
 
 import { parse_styles } from '$lib/trinkets/styles/parse'
 
@@ -29,6 +30,10 @@ const Les_Talents = [
 	{
 		"Frontier": APT_Entrust_Consent_Opener,
 		"Mode": "business"
+	},
+	{
+		"Frontier": Offline_Consent_Opener,
+		"Mode": "nurture"
 	}
 ]
 
