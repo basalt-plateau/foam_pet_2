@@ -32,7 +32,7 @@ module Publisher_01::Allowed_Wallets_01_Vows {
 		vector::push_back (&mut allowed_wallets_01, utf8 (b"Rise"));
 		vector::push_back (&mut allowed_wallets_01, utf8 (b"Pontem"));
 		vector::push_back (&mut allowed_wallets_01, utf8 (b"Mech"));
-		
+
 		assert! (Allowed_Wallets_01::is_established () == utf8 (b"no"));
 		Allowed_Wallets_01::establish (producer_01_consenter, allowed_wallets_01);
 		assert! (Allowed_Wallets_01::is_established () == utf8 (b"yup"));
