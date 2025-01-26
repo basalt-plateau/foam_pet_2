@@ -4,6 +4,15 @@
 	Should use: Trucks.svelte
 */
 
+/*	
+	import { ask_for_freight } from '$lib/Versies/Trucks'
+	const net_path = ask_for_freight ().dapp_network.net_path;
+*/
+
+/*	
+	import { ask_for_freight } from '$lib/Versies/Trucks'
+	const freight = ask_for_freight ();
+*/
 
 /*
 	import { check_roomies_truck } from '$lib/Versies/Trucks'
@@ -36,15 +45,9 @@ onDestroy (() => {
 */
 
 
-/*	
-	import { ask_for_freight } from '$lib/Versies/Trucks'
-	const freight = ask_for_freight ();
-*/
 
-/*	
-	import { ask_for_freight } from '$lib/Versies/Trucks'
-	const net_path = ask_for_freight ().dapp_network.net_path;
-*/
+
+
 
 
 /*

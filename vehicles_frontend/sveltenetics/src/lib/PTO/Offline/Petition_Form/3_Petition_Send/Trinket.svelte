@@ -87,6 +87,10 @@ let selected_option = "barcode"
 		<Barcode_Visual_2
 			hexadecimal_string={ PT_Freight.petition_envelope }
 		/>
+		
+		<Barcode_Visual_2
+			hexadecimal_string={ PT_Freight.petition_AO_hexadecimal_string }
+		/>
 	</div>
 	{:else}
 	<div class="card p-4">

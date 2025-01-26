@@ -81,6 +81,13 @@ const on_camera_success = async (decodedText, decodedResult) => {
 }
 
 const on_camera_error = function () {
+	const le_error = arguments [0];
+	if (le_error === "QR code parse error, error = NotFoundException: No MultiFormat Readers were able to detect the code.") {
+		console.info ("The code was not visualized.");
+		return;
+	}
+	
+	
 	console.log ('on_error', arguments)
 }
 

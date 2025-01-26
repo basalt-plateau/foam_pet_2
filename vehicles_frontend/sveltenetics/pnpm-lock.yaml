@@ -29,6 +29,9 @@ importers:
       '@manahippo/aptos-wallet-adapter':
         specifier: ^1.0.10
         version: 1.0.10(@solana/web3.js@1.98.0(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(aptos@1.21.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
+      '@scure/bip39':
+        specifier: ^1.5.4
+        version: 1.5.4
       '@skeletonlabs/skeleton':
         specifier: ^2.10.1
         version: 2.10.2(svelte@4.2.19)
@@ -849,6 +852,10 @@ packages:
     resolution: {integrity: sha512-1j6kQFb7QRru7eKN3ZDvRcP13rugwdxZqCjbiAVZfIJwgj2A65UmT4TgARXGlXgnRkORLTDTrO19ZErt7+QXgA==}
     engines: {node: ^14.21.3 || >=16}
 
+  '@noble/hashes@1.7.1':
+    resolution: {integrity: sha512-B8XBPsn4vT/KJAGqDzbwztd+6Yte3P4V7iafm24bxgDe/mlRuK6xmWPuCNrKt2vDafZ8MfJLlchDG/vYafQEjQ==}
+    engines: {node: ^14.21.3 || >=16}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1077,6 +1084,9 @@ packages:
   '@scure/base@1.1.9':
     resolution: {integrity: sha512-8YKhl8GHiNI/pU2VMaofa2Tor7PJRAjwQLBBuilkJ9L5+13yVbC7JO/wS7piioAvPSwR3JKM1IJ/u4xQzbcXKg==}
 
+  '@scure/base@1.2.4':
+    resolution: {integrity: sha512-5Yy9czTO47mqz+/J8GM6GIId4umdCk1wc1q8rKERQulIoc8VP9pzDcghv10Tl2E7R96ZUx/PhND3ESYUQX8NuQ==}
+
   '@scure/bip32@1.4.0':
     resolution: {integrity: sha512-sVUpc0Vq3tXCkDGYVWGIZTRfnvu8LoTDaev7vbwh0omSvVORONr960MQWdKqJDCReIEmTj3PAr73O3aoxz7OPg==}
 
@@ -1089,8 +1099,8 @@ packages:
   '@scure/bip39@1.3.0':
     resolution: {integrity: sha512-disdg7gHuTDZtY+ZdkmLpPCk7fxZSu3gBiEGuoC1XYxv9cGx3Z6cpTggCgW6odSOOIXCiDjuGejW+aJKCY/pIQ==}
 
-  '@scure/bip39@1.4.0':
-    resolution: {integrity: sha512-BEEm6p8IueV/ZTfQLp/0vhw4NPnT9oWf5+28nvmeUICjP99f4vr2d+qc7AVGDDtwRep6ifR43Yed9ERVmiITzw==}
+  '@scure/bip39@1.5.4':
+    resolution: {integrity: sha512-TFM4ni0vKvCfBpohoh+/lY05i9gRbSwXWngAsF4CABQxoaOHijxuaZ2R6cStDQ5CHtHO9aGJTr4ksVJASRRyMA==}
 
   '@sigstore/bundle@3.0.0':
     resolution: {integrity: sha512-XDUYX56iMPAn/cdgh/DTJxz5RWmqKV4pwvUAEKEWJl+HzKdCd/24wUa9JYNMlDSCb7SUHAdtksxYX779Nne/Zg==}
@@ -4131,7 +4141,7 @@ snapshots:
       '@noble/curves': 1.6.0
       '@noble/hashes': 1.5.0
       '@scure/bip32': 1.5.0
-      '@scure/bip39': 1.4.0
+      '@scure/bip39': 1.5.4
       eventemitter3: 5.0.1
       form-data: 4.0.0
       js-base64: 3.7.7
@@ -4900,7 +4910,7 @@ snapshots:
       '@noble/curves': 1.6.0
       '@noble/hashes': 1.5.0
       '@scure/bip32': 1.5.0
-      '@scure/bip39': 1.4.0
+      '@scure/bip39': 1.5.4
       '@suchipi/femver': 1.0.0
       jayson: 4.1.3(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       rpc-websockets: 7.11.2
@@ -4917,7 +4927,7 @@ snapshots:
       '@noble/hashes': 1.5.0
       '@open-rpc/client-js': 1.8.1(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@scure/bip32': 1.5.0
-      '@scure/bip39': 1.4.0
+      '@scure/bip39': 1.5.4
       '@suchipi/femver': 1.0.0
       events: 3.3.0
       superstruct: 1.0.4
@@ -4955,6 +4965,8 @@ snapshots:
   '@noble/hashes@1.4.0': {}
 
   '@noble/hashes@1.5.0': {}
+
+  '@noble/hashes@1.7.1': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -5232,6 +5244,8 @@ snapshots:
 
   '@scure/base@1.1.9': {}
 
+  '@scure/base@1.2.4': {}
+
   '@scure/bip32@1.4.0':
     dependencies:
       '@noble/curves': 1.4.2
@@ -5254,10 +5268,10 @@ snapshots:
       '@noble/hashes': 1.4.0
       '@scure/base': 1.1.9
 
-  '@scure/bip39@1.4.0':
+  '@scure/bip39@1.5.4':
     dependencies:
-      '@noble/hashes': 1.5.0
-      '@scure/base': 1.1.9
+      '@noble/hashes': 1.7.1
+      '@scure/base': 1.2.4
 
   '@sigstore/bundle@3.0.0':
     dependencies:

@@ -22,8 +22,99 @@ import { ask_for_freight as ask_for_Versies_freight } from '$lib/Versies/Trucks'
 const trucks = {}
 export const make_truck = () => {
 	const Versies_freight = ask_for_Versies_freight ();
-	const net_path = Versies_freight.net_path;
+	const net_path = Versies_freight.dapp_network.net_path;
 	
+	
+	/*
+		retro: probably should have written as:
+			* bracket can be printed
+			* advanced can't be printed
+			
+		freight: {
+			bracket: {
+				net_path: "",
+				
+				present_leaf: "Petition Form",
+				leaves: {
+					"Petition Form": {
+						"next": "no",
+						"back": "no",
+						
+						"fields": {
+							// BCS, BCS with Notes
+							"format": "",
+							
+							// view or entry
+							"mode": "",
+							
+							"address": "",
+							"module_name": "",
+							"fonction_name": "",
+							
+							"signer_hexadecimal_address": "",
+					
+							type_parameters: [],
+							parameters: [],
+						},
+						
+						"alerts": {
+							note: "",
+							success: "",
+							problem: "",
+						}
+					},
+					"Petition Verification": {
+						"next": "no",
+						"back": "no"
+					},
+					"Petition Send": {
+						"next": "no",
+						"back": "no"
+					},
+					Flourish_Receive: {
+						"next": "no",
+						"back": "no",
+						
+						Aptos_object_fiberized: "",
+						
+						"alerts": {
+							note: "waiting for the signature",
+							success: "",
+							problem: "",
+						}
+					},
+					Adaptation_Suggestion: {
+						"next": "no",
+						"back": "no",
+						
+						adaptation_hash: "",
+						adaptation_fiberized: "",
+					
+						"alerts": {
+							note: "",
+							success: "",
+							problem: "",
+						}
+					}
+				}
+			},
+			advanced: {
+				leaves: {
+					"Petition Form": {
+					
+					}
+				}
+				
+				//
+				//	This is what is sent to the consensus.
+				//
+				//
+				signature_Aptos_object: "",
+			},
+			fonctions: {}
+		}
+	
+	*/
 	trucks [1] = build_truck ({
 		freight: {
 			net_path,
@@ -61,7 +152,10 @@ export const make_truck = () => {
 			leaves: {
 				"Petition Form": {
 					"next": "no",
-					"back": "no"
+					"back": "no",
+					
+					// BCS, BCS with Notes
+					"format": "BCS"
 				},
 				"Petition Verification": {
 					"next": "no",
@@ -80,7 +174,6 @@ export const make_truck = () => {
 					//
 					//
 					signature_Aptos_object: "",
-					
 					
 					Aptos_object_fiberized: "",
 					
@@ -153,7 +246,8 @@ export const make_truck = () => {
 		property, 
 		value
 	}) => {
-
+		console.info ("🎶🎶 The petition freight was changed.", property, value)
+		
 		/*
 			target = bracket_of_freight
 		*/
@@ -167,6 +261,9 @@ export const make_truck = () => {
 				target === original_freight &&
 				property === "petition_fields"
 			) {
+				const net_path = trucks [1].freight.net_path;
+				console.log ({ net_path });
+				
 				
 				/*
 					wait for entry fonction
@@ -183,7 +280,9 @@ export const make_truck = () => {
 						TPE_fiberized,
 						TPE
 					} = await build_entry_petition_AO ({
-						net_path: original_freight.net_path,
+						petition_form: trucks [1].freight.leaves ["Petition Form"],
+						
+						net_path,
 						petition_fields: original_freight.petition_fields
 					});
 					
@@ -192,8 +291,8 @@ export const make_truck = () => {
 						pro_freight.petition_field_barrier = barrier
 					}
 					else {
-						pro_freight.petition_AO_fiberized = TP2_fiberized;
 						pro_freight.petition_AO_Uint8Array = TP2_AO_Uint8Array;
+						pro_freight.petition_AO_fiberized = TP2_fiberized;
 						pro_freight.petition_AO_hexadecimal_string = TP2_hexadecimal_string;
 						
 						pro_freight.petition_envelope_fiberized = TPE_fiberized;

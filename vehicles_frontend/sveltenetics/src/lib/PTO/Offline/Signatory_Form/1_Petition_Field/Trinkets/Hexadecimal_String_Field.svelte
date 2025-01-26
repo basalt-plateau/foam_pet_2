@@ -52,14 +52,15 @@ const refresh = async () => {
 	// add_petition_hexadecimal_string ();
 }
 
-const add_petition_hexadecimal_string = async () => {
+export const add_petition_hexadecimal_string = () => {}
+
+const add_petition_hexadecimal_string_v1 = async () => {
 	console.log ("add_petition_hexadecimal_string");
 	
 	try {
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem = ""
 		ST_Freight.leaves.Petition_Field.hexadecimal_string_problem_verbose = ""
 		
-
 		const { petition_aptos_object, envelope_show, petition_hexadecimal_string } = unpack_petition_envelope ({
 			TPE: ST_Freight.petition_envelope_hexadecimal_string
 		});
@@ -106,7 +107,8 @@ const add_petition_hexadecimal_string = async () => {
 	<Signatory_Truck on_change={ ({ pro_freight }) => { ST_Freight = pro_freight; } } />
 	
 	{#if typeof ST_Freight === "object"}
-	<div monitor="hexadecimal string panel"
+	<div 
+		monitor="hexadecimal string panel"
 		class="p-4"
 	>
 		<div>
@@ -140,7 +142,6 @@ const add_petition_hexadecimal_string = async () => {
 				class="textarea" 
 			/>
 		</label>
-		
 		
 		<div style="text-align: right; margin-top: 10px;">
 			<button 

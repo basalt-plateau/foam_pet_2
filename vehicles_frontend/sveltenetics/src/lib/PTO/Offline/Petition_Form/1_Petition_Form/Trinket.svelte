@@ -280,6 +280,21 @@ let fonction_type_parameters_changed = ({ index, contents }) => {
 		
 		<div style="height: 0.25cm" ></div>
 		
+		<div 
+			style="
+				display: grid;
+				justify-content: center;
+				align-items: center;
+				gap: 0.25cm
+			"
+			class="card grid-cols-[auto_1fr] p-2"
+		>
+			<span>Format</span>
+			<select class="select" bind:value={ PT_Freight.leaves ["Petition Form"].format }>
+				<option value="BCS">BCS</option>
+				<option value="BCS with Notes">BCS with Notes</option>
+			</select>
+		</div>
 		
 		{#if fonction_search === "fields" }
 		<div>

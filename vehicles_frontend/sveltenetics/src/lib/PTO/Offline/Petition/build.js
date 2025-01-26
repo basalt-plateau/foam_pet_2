@@ -14,43 +14,62 @@ import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 import { pick_expiration } from '$lib/PTO/Petition/Options_Expiration'
 import { build_entry_petition_AO as build_entry_petition_AO_ } from '$lib/PTO/Petition/Entry_AO_from_fields'
+import { fiberize_TP_AO, fiberize_TP_bytes } from '$lib/PTO/Offline/Petition/Fiberize'
+import { hexadecimal_string_from_UTF8 } from '$lib/taverns/hexadecimal/UTF8'
+import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
+import { pack_petition_envelope } from "$lib/PTO/Offline/Petition/Envelope"
 //
 //
 ////
 
-import { fiberize_TP_AO, fiberize_TP_bytes } from '$lib/PTO/Offline/Petition/Fiberize'
-import { hexadecimal_string_from_UTF8 } from '$lib/taverns/hexadecimal/UTF8'
-import { UTF8_from_hexadecimal_string } from '$lib/taverns/hexadecimal/UTF8'
 
-
-import { pack_petition_envelope } from "$lib/PTO/Offline/Petition/Envelope"
 	
 
 export const build_entry_petition_AO = async ({
+	petition_form,
+	
 	net_path,
 	petition_fields
 }) => {
 	try {
 		console.info ("build_entry_petition_AO");
 
-
+		const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
+			fullnode: net_path,
+			network: Aptos_SDK.Network.CUSTOM
+		}));
 
 
 		/*
 			Aptos_SDK.AccountAddress.from (
-					Uint8Array_from_string (to_address_hexadecimal_string)
-				)
+				Uint8Array_from_string (to_address_hexadecimal_string)
+			)
 		*/
 		const { parameters } = petition_fields;
 		const functionArguments = parameters.map (parameter => {
+			console.log ({ 
+				parameter
+			});
+			
 			if (parameter.name === "address") {
 				return Aptos_SDK.AccountAddress.from (
 					Uint8Array_from_string (parameter.field)
 				)
 			}
+			else if (parameter.name === "vector<0x1::string::String>") {
+				// new MoveString("hello")
+				console.info ("is vector<0x1::string::String>")
+				
+				return Aptos_SDK.MoveVector.MoveString (parameter.field)
+			}
+			
+			
 			
 			return parameter.field
-		})
+		});
+		
+		console.info ({ functionArguments });
+
 		
 		const transaction_petition_bracket = {
 			sender: Aptos_SDK.AccountAddress.from (
@@ -70,9 +89,7 @@ export const build_entry_petition_AO = async ({
 				functionArguments
 			},
 			options: {
-				expireTimestamp: pick_expiration ({ 
-					after_seconds: 600
-				}).expiration_timestamp,
+				expireTimestamp: pick_expiration ({ after_seconds: 600 }).expiration_timestamp,
 				gasUnitPrice: BigInt (100),
 				maxGasAmount: BigInt (200000)
 			}
@@ -85,32 +102,23 @@ export const build_entry_petition_AO = async ({
 
 
 		
-		const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
-			fullnode: net_path,
-			network: Aptos_SDK.Network.CUSTOM
-		}));
 
 		
 		let TP1_AO;
 		try {
 			TP1_AO = await aptos.transaction.build.simple (transaction_petition_bracket);		
-			
-			
 		}
 		catch (barrier) {
 			console.warn (barrier.message);
-			
 			return {
 				barrier: barrier.message
 			}
 		}
 		
+		
 		const TP1_AO_Uint8Array = TP1_AO.bcsToBytes ()
 		const TP1_AO_hexadecimal_string = string_from_Uint8Array (TP1_AO_Uint8Array)
 		const TP1_AO_fiberized = fiberize_TP_AO ({ TP_AO: TP1_AO })
-
-		// console.log ({ TP1_AO_hexadecimal_string });
-		// console.log ({ TP1_AO_Uint8Array });
 
 		////
 		//
@@ -142,14 +150,49 @@ export const build_entry_petition_AO = async ({
 		//
 		////
 		
-		return {
-			TP2_AO,
-			TP2_fiberized,
+		/*
+			* TP2 is the reversed transaction petition.
+			* TPE is the transaction petition with notes.
 			
-			TP2_AO_Uint8Array,
+			Asks:
+				return {
+					petition: {
+						BCS_Uint8Array:
+						
+						BCS:
+						fiberized:
+						hexadecimal_string
+					},
+					envelope: {
+						fiberized:
+						Uint8Array:
+					},
+					barrier: false
+				}
+		*/
+		return {
+			petition: {
+				BCS_Uint8Array: TP2_AO_Uint8Array,
+				
+				BCS: TP2_AO,
+				fiberized: TP2_fiberized,
+				hexadecimal_string: TP2_hexadecimal_string
+			},
+			envelope: {
+				fiberized: TPE_fiberized,
+				Uint8Array: TPE
+			},
+
+			barrier: false,
 			
 			//
-			// Perhaps this is what is sent to the "APT" outbound
+			//
+			//	Vintage
+			//
+			//
+			TP2_AO,
+			TP2_fiberized,
+			TP2_AO_Uint8Array,
 			TP2_hexadecimal_string,
 			
 			TPE_fiberized,
@@ -158,7 +201,7 @@ export const build_entry_petition_AO = async ({
 			// This is what is sent
 			TPE,
 			
-			barrier: false
+			
 		}
 	}
 	catch (anomaly) {

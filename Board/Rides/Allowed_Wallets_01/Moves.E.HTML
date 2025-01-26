@@ -5,16 +5,32 @@
 
 	<header>Template</header>
 	
-
+	
+	<header></header>
 		let board_id : u8 = chain_id::get ();
 		if (board_id == 1) {
 			return @0x652b8d45aebc4237cb4a4ca1d8b99725d8f973676844fe85eb09286d7f9d3808
 		};
 
 
-
-
-
+	<header></header>
+		--args [<ARGS>...]
+          Arguments combined with their type separated by spaces.
+          
+          Supported types [address, bool, hex, string, u8, u16, u32, u64, u128, u256, raw]
+          
+          Vectors may be specified using JSON array literal syntax (you may need to escape this with quotes based on your shell interpreter)
+          
+          Example: `address:0x1 bool:true u8:0 u256:1234 "bool:[true, false]" 'address:[["0xace", "0xbee"], []]'`
+	
+	
+		aptos move run --function-id 0x1::Allowed_Wallets_01::establish --args 0x2 '[ "Petra", "Rise", "Pontem" ]'
+		
+		
+		aptos move run --function-id 0xf5565cc1d71781d6ef766a2a50ed459b9d3b430ceb6f7bbf79393c3626a979cd::Allowed_Wallets_01::establish --args 'String:[ "Petra", "Rise", "Pontem" ]'
+		
+		
+		
 
 
 

@@ -31,6 +31,8 @@ import Atrium from './Trinkets/Atrium.svelte';
 ////
 
 
+
+
 let tabSet = 0;
 let possible_waves = parse_with_commas (
 	"115792089237316195423570985008687907853269984665640564039457584007913129639936",

@@ -29,8 +29,9 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 let barcode_vision = ""
 const found = async (packet) => {
 	const { hexadecimal_string } = packet;
-	
 	console.info ("found:", { hexadecimal_string });
+	
+	
 	
 	/*
 	if (freight.Unsigned_Transaction_Fields.camera.searching === "yes") {
@@ -50,6 +51,8 @@ const found = async (packet) => {
 	freight.Unsigned_Transaction_Fields.alert_success = "The barcode was scanned and the unsigned transaction object built."
 	
 	*/
+	
+	barcode_vision.stop_the_scan ();
 }
 
 

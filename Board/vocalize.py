@@ -50,7 +50,6 @@ publisher_addresses = {
 }
 
 
-
 def motion_for_named_addresses (packet):
 	publisher_address = packet ["publisher_address"]
 	
@@ -176,9 +175,10 @@ def clique ():
 	"""
 		python3 vocalize.py vocalize --steady --move Allowed_Wallets_01
 		
+		python3 vocalize.py vocalize --publish --move Rules_10  --publisher Petra
 		python3 vocalize.py vocalize --publish --move Allowed_Wallets_01 --publisher Petra
 		
-		python3 vocalize.py vocalize --publish --move Rules_10
+		
 		python3 vocalize.py vocalize --publish --move Sport_Pack_01
 	"""
 	@click.command ("vocalize")

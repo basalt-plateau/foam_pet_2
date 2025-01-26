@@ -227,24 +227,26 @@ export const account = {
 	//
 	//
 	//
-	"signature": "consent",
-	"A_signature": "consent",
-	"a_signature": "consent",
-	"signatures": "multiple gifts of consents",	
-
-	"Signature": "Consent",
-	"Signatures": "Multiple gifts of consent",
+	"signature": "flourish",
+	"A_signature": "A flourish",
+	"a_signature": "a flourish",
+	"signatures": "flourishes",	
+	"Signature": "Flourish",
+	"Signatures": "Flourishes",
 	//
-	"Sign": "Give consent",
-	"sign": "give consent",
 	//
-	"Signer": "The party who gave consent",		
+	//	
 	//
-	"Signing": "Giving consent",
-	"signing": "giving consent",	
+	"Sign": "Consent",
+	"sign": "consent",
 	//
-	"Signed": "Gave consent",
-	"signed": "gave consent",
+	"Signer": "Consenter",		
+	//
+	"Signing": "Consenting",
+	"signing": "consenting",	
+	//
+	"Signed": "Consented",
+	"signed": "consented",
 	//
 	////
 	

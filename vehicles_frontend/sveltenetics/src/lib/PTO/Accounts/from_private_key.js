@@ -73,7 +73,7 @@ const build_fresh_EEC_25519_Account = async ({
 		legacy: false 
 	});
 	
-	console.log ({ fresh_account })
+	// console.log ({ fresh_account })
 	
 	return {
 		"account": fresh_account,
@@ -108,7 +108,6 @@ export const Account_from_private_key = async ({
 		legacy_account: legacy_account.account,
 		
 		public_key_hexadecimal_string: fresh_account ["public_key"],	
-
 		pristine_address_hexadecimal_string: fresh_account ["address"],
 		legacy_address_hexadecimal_string: legacy_account ["address"],
 		

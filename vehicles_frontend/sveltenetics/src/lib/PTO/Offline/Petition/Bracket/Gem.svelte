@@ -18,7 +18,7 @@ export let petition_AO_fiberized = ""
 
 </script>
 
-<div class="card p-1 variant-filled-primary">
+<div class="card p-1">
 	<Accordion>
 		<AccordionItem open>
 			<svelte:fragment slot="summary">

@@ -3,6 +3,7 @@
 <script>
 
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import Elector_Fonction_Vector_String from './Elector_Fonction_Vector_String.svelte';
 
 export let header_size = ""
 
@@ -14,6 +15,8 @@ const fonction_parameters_changed = ({ index, contents }) => {
 	
 	on_change ({ index, contents });
 }
+
+
 
 </script>
 
@@ -51,6 +54,16 @@ const fonction_parameters_changed = ({ index, contents }) => {
 		
 		<div style="height: 0.1cm;"></div>
 		
+		{#if parameter.name === "vector<0x1::string::String>" }
+		<Elector_Fonction_Vector_String 
+			on_change={({ contents }) => {
+				console.log ("vector string changed:", { contents });
+				fonction_parameters_changed ({ index, contents })
+			}}
+		/>
+		
+		
+		{:else}
 		<textarea 
 			style="
 				padding: 0.25cm;
@@ -59,12 +72,10 @@ const fonction_parameters_changed = ({ index, contents }) => {
 			
 			on:keyup={(event) => {
 				const contents = event.target.value;
-				fonction_parameters_changed ({
-					index,
-					contents
-				})
+				fonction_parameters_changed ({ index, contents })
 			}}
 		/>
+		{/if}
 	</div>
 	{/each}
 	
