@@ -198,6 +198,7 @@ let Versies_Freight = false;
 			position: 'relative',
 			display: 'grid',
 			'width': '100%',
+			'max-width': '34cm',
 			'margin': '0 auto',
 			
 			'grid-template-columns': 'repeat(auto-fit, minmax(300px, 1fr))',

@@ -22,7 +22,7 @@ import * as AptosSDK from "@aptos-labs/ts-sdk";
 
 import { Account_from_private_key } from '$lib/PTO/Accounts/from_private_key'
 import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
-	
+
 /*
 	"m/44'/637'/0'/0'/0'"
 */
@@ -50,13 +50,12 @@ export const create_account_from_mnemonic = async ({
 		}
 	}
 	
-	// console.log ({ wordlist });
+	console.log ({ wordlist });
 	
 	const account = AptosSDK.Account.fromDerivationPath ({
 		path: derivation_path,
 		mnemonic,
 		scheme: schemes [ scheme ],
-		
 		
 		// irrelevantish
 		// this is for address, not private key...
@@ -65,6 +64,7 @@ export const create_account_from_mnemonic = async ({
 	
 	const retrieve_private_key = () => {
 		if (scheme == "SECP_256k1") {
+			// console.log (account.privateKey.key.data);
 			return string_from_Uint8Array (account.privateKey.key.data);
 		}
 		
@@ -77,50 +77,56 @@ export const create_account_from_mnemonic = async ({
 	
 	const retrieve_public_key = () => {
 		if (scheme == "SECP_256k1") {
+			// console.log (account.publicKey.publicKey.key);
 			return string_from_Uint8Array (account.publicKey.publicKey.key.data);
 		}
 		
 		if (scheme == "EEC_25519") {
+			// console.log (account.publicKey.key.data);
 			return string_from_Uint8Array (account.publicKey.key.data);
 		}
 		
 		throw new Error ("...");
 	}
 	
-	const ask_for_address = async ({
-		private_key_hexadecimal_string
-	}) => {
-		if (scheme == "EEC_25519") {
-			const {
-				public_key_hexadecimal_string,	
-
-				pristine_address_hexadecimal_string,
-				legacy_address_hexadecimal_string,
-			} = await Account_from_private_key ({
-				private_key_hexadecimal_string
-			});
-			
-			return {
-				pristine_address_hexadecimal_string,
-				legacy_address_hexadecimal_string
-			}
-		}
+	const ask_for_address = () => {
 		
+		if (scheme == "EEC_25519") {
+			// console.log (account.publicKey.key.data);
+			return string_from_Uint8Array (account.accountAddress.data);
+		}
 		
 		throw new Error ("...");
 	}
 
+	 console.log ({ account });
+	
 	const private_key_hexadecimal_string = retrieve_private_key ();
 	const public_key_hexadecimal_string = retrieve_public_key ();
-	const { 
-		legacy_address_hexadecimal_string,
-		pristine_address_hexadecimal_string
-	} = await ask_for_address ({ private_key_hexadecimal_string });
+	const address_hexadecimal_string = ask_for_address ();
 	
+	console.log ({ 
+		private_key_hexadecimal_string, 
+		public_key_hexadecimal_string,
+		address_hexadecimal_string
+	});
+	
+	/*
+	const {
+		pristine_account,
+		legacy_account,
+		
+		public_key_hexadecimal_string,	
+
+		pristine_address_hexadecimal_string,
+		legacy_address_hexadecimal_string,
+	} = await Account_from_private_key ({
+		private_key_hexadecimal_string
+	});
+	*/
+
 	return {
 		private_key_hexadecimal_string,
-		public_key_hexadecimal_string,
-		legacy_address_hexadecimal_string,
-		pristine_address_hexadecimal_string
+		public_key_hexadecimal_string
 	}
 }

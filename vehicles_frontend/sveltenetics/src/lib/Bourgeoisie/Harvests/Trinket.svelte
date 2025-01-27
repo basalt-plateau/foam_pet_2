@@ -23,9 +23,11 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 //
 import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keyboard/Trinket.svelte'
 import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
+import Address_from_Mnemonic from '$lib/PTO/Accounts/Trinkets/Address_from_Mnemonic/Board.svelte'
 //
 //
 import Atrium from './Trinkets/Atrium.svelte';
+import EEC_25519_Mathematics from './Trinkets/EEC_25519_Mathematics.svelte'
 //
 //
 ////
@@ -98,7 +100,7 @@ const modify_keys_count = () => {
 				style="{parse_styles ({
 					'display': 'block',
 					'text-align': 'center',
-					'font-size': '2em',
+					'font-size': '1.5em',
 				})}"
 			
 			><Slang text="Account" /> Chooser</header>
@@ -106,196 +108,69 @@ const modify_keys_count = () => {
 		
 		<div style="height: 0.4cm"></div>
 
-		<div class="card variant-soft-primary p-4">
-			<header
-				style="{parse_styles ({
-					'display': 'block',
-					'text-align': 'center',
-					'font-size': '2em',
-					'padding': '0.5cm',
-				})}"
-			><Slang text="Account" /> Type</header>
+		<div class="card variant-soft-primary p-2">
 			
 			<!-- Lock Mode -->
 			
 			<div 
 				account_type
 				style="
-					display: flex;
-					justify-content: center;
+					display: grid;
+					gap: 0.1cm;
+					grid-template-columns: repeat(auto-fit, minmax(5cm, 1fr));
 				"
 			>
-				<RadioGroup
-					flexDirection="flex-col"
-					rounded="rounded-container-token"
+				<div class="card p-2"><Slang text="Account" /> Type</div>
+			
+				<select 
+					style=""
+				
+					keys_count
+				
+					class="select"
+					on:change={ modify_keys_count }
 				>
-					<RadioItem bind:group={account_variety} name="justify" value="EEC_25519_single_key_account">
-						<span
-							monitor="EEC 25519 Single Key"
-						>EEC 25519 Single Key <Slang text="Account" /></span>
-					</RadioItem>
-					<RadioItem bind:group={account_variety} name="justify" value="multi_key_account">
-						<span
-							monitor="Multi Key"
-						>Multi Key <Slang text="Account" /></span>
-					</RadioItem>
-				</RadioGroup>
+					<option value="EEC_25519_single_key_account">EEC 25519 Single Key</option>
+					<option value="multi_key_account">Multi Key</option>
+				</select>
 			</div>
-			
-			<select 
-				style="display: none"
-			
-				keys_count
-			
-				class="select"
-				on:change={ modify_keys_count }
-			>
-				<option value="EEC_25519_single_key_account">EEC 25519 Single Key</option>
-				<option value="multi_key_account">Multi Key</option>
-			</select>
 		</div>
-
 		
 		{#if account_variety === "EEC_25519_single_key_account" }
-		<div class="card p-1 variant-soft-surface">
-			<Accordion>
-				<AccordionItem>
-					<svelte:fragment slot="summary">
-						<header
-							style="{parse_styles ({
-								'display': 'block',
-								'text-align': 'center',
-								'font-size': '1.5em',
-								'line-height': '1.5em',
-							})}"
-						>
-							<span>Mathematics</span>
-						</header>
-					</svelte:fragment>
-					<svelte:fragment slot="content">
-						<div>
-							<header
-								style="{parse_styles ({
-									'display': 'block',
-									'text-align': 'center',
-									'font-size': '1.5em',
-									'line-height': '1em',
-								})}"
-							>
-								<span>Edward's Elliptic Curve (EEC) 25519 <Slang text="Private Keys" /></span>
-							</header>
-							
-							<div style="height: 0.4cm"></div>
-							
-							<p>
-								An EEC 25519 <Slang text="Private Key" /> is 64 hexadecimal (base 16) characters.
-							</p>
-							<p>
-								The possible hexadecimal characters are 0123456789ABCDEF.
-							</p>
-							
-							<div style="height: 0.4cm"></div>
-							
-							<span style="word-break: break-word">For each <Slang text="Private Key" /> there is a unique <Slang text="Public Key" />.</span>
-							
-							<div style="height: 0.4cm"></div>
-							
-							<span style="word-break: break-word">There are 64^16 possible <Slang text="Private Keys" /> and thus 64^16 possible <Slang text="Public Keys" />.</span>
-							<br/>
-							<p>
-								<span style="display: inline-block">As base 10 that equals</span>
-								<span 
-									class="badge variant-filled"
-									style="display: inline-block"
-								>&gt;1.157 E +77</span>
-								<span style="display: inline-block">possible key pairs:</span>
-							</p>
-							
-							<span
-								style="
-									white-space: pre-wrap;
-									max-width: 300px;
-									margin: 0.1cm auto;
-									text-align: right;
-								"
-							>{ possible_waves.trim () }</span>
-							
-							<div style="height: 0.4cm"></div>
-							
-							<p>
-								<span style="display: inline-block"></span>
-							</p>
-						</div>
-					</svelte:fragment>
-				</AccordionItem>
-			</Accordion>
-		</div>
 		
-		<div style="height: 0.4cm"></div>
-		
-		<div class="card variant-soft-primary p-4">
-			<header
-				style="{parse_styles ({
-					'display': 'block',
-					'text-align': 'center',
-					'font-size': '2em',
-					'padding': '0.25cm',
-				})}"
-			
-			>Form Type</header>
-			
-			
+		<div
+			style="
+					display: grid;
+					gap: 0.1cm;
+					grid-template-columns: repeat(auto-fit, minmax(5cm, 1fr));
+				"
+			class="card variant-soft-primary p-2"
+		>
+			<div class="card p-2">Form Type</div>
 			
 			<select 
-				style="
-					display: none;
-				"
-			
+				style=""
 				single_key_address_navigator
-			
 				class="select"
 				on:change={ change_leaf }
 			>
 				<option value="from_private_key_glyphs">From Keyboard Glyph Modifier</option>
 				<option value="from_private_key_hexadecimal">From Private Key Hexadecimal</option>
+				<option value="from_mnemonic">From Mnemonic</option>
 			</select>
-			
-			<div 
-				single_key_address_navigator
-				style="
-					display: flex;
-					justify-content: center;
-				"
-			>
-				<RadioGroup
-					flexDirection="flex-col"
-					rounded="rounded-container-token"
-				>
-					<RadioItem bind:group={leaf} name="justify" value="from_private_key_glyphs">
-						<span
-							monitor="from Keyboard Glyph Modifier"
-						>
-							<Slang text="Account" /> from Keyboard Glyph Modifier
-						</span>
-					</RadioItem>
-					<RadioItem bind:group={leaf} name="justify" value="from_private_key_hexadecimal">
-						<span
-							monitor="from hexadecimal"
-						>
-							<Slang text="Account" reveal={ "no" } /> from <Slang text="Private Key" reveal={ "no" } /> Hexadecimal
-						</span>
-					</RadioItem>
-				</RadioGroup>
-			</div>
 		</div>
 		
 		<div style="height: 0.4cm"></div>
 		
+		<EEC_25519_Mathematics />
+		
 		<div class="card p-4">
 			{#if leaf === "from_private_key_glyphs" }
-				<Address_from_Keyboard />
+			<Address_from_Keyboard />
 			{:else if leaf === "from_private_key_hexadecimal" }
-				<Address_from_Private_Key />
+			<Address_from_Private_Key />
+			{:else if leaf === "from_mnemonic" }
+			<Address_from_Mnemonic />
 			{/if}
 		</div>
 		{:else if account_variety === "multi_key_account" }
