@@ -95,6 +95,7 @@ describe ('from_mnemonic', () => {
 				});
 				
 				accounts.push ({
+					derivation_path: EEC_derivation_path,
 					private_key_hexadecimal_string,
 					public_key_hexadecimal_string,
 					legacy_address_hexadecimal_string,
