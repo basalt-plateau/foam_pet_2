@@ -23,7 +23,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 //
 import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keyboard/Trinket.svelte'
 import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
-import Address_from_Mnemonic from '$lib/PTO/Accounts/Trinkets/Address_from_Mnemonic/Board.svelte'
+import Address_from_Mnemonic from '$lib/PTO/Accounts/Mnemonic/Board.svelte'
 //
 //
 import Atrium from './Trinkets/Atrium.svelte';
