@@ -43,7 +43,7 @@ let panel_name = "Send Bits"
 
 let rules_entire_link = "/Rules_Modules/Frontend/frontend_rules_entire.txt"
 let rules_legend_link = "/Rules_Modules/Frontend/frontend_rules_legend.txt"
-let rules_legend_link = "/Rules/Frontend/frontend_rules_legend.txt"
+// let rules_legend_link = "/Rules_Originals/Frontend/Frontend_Rules_Originals.HTML"
 
 
 let show = "Originals";
