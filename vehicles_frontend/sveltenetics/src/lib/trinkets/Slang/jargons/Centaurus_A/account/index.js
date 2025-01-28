@@ -180,6 +180,12 @@ export const account = {
 		goodest
 		
 		passkey
+		
+		Combination
+		
+		opener
+		
+		kisiwa
 	*/
 	"private key": "opener",
 	"Private Key": "Opener",
@@ -190,7 +196,7 @@ export const account = {
 	
 	//
 	//
-	//	Reflection, Abstrakt
+	//	Reflection, Abstrakt, Verification Key
 	//
 	//
 	"public key": "abstraction",

@@ -3,7 +3,7 @@
 /*
 	import {
 		mnemonic_numerals_string_to_BIP_39_English_string
-	} from "./string_to_BIP_39_English_string.js"
+	} from "$lib/PTO/Accounts/Mnemonic/numerals/string_to_BIP_39_English_string.js"
 	const mnemonic_BIP_39_English = mnemonic_numerals_string_to_BIP_39_English_string (mnemonic_numerals_string)
 */
 
