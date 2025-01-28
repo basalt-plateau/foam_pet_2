@@ -49,31 +49,31 @@ def check_1 ():
 	open_accounts_panel ();
 	
 	def open_panels__single_key_account__from_hexadecimal ():
-		these_element = {}
-		
-		def find_element_1 ():
-			button = driver.find_element (
+		def account_type__EEC_25519_single_key_account ():
+			account_type_select = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts leaf"] [monitor="EEC 25519 Single Key"]'
+				'[monitor="accounts leaf"] [monitor="Account Type"]'
 			)
-			button.click ();
+			
+			Select (account_type_select).select_by_value ("EEC_25519_single_key_account")
 			
 			
-		def find_element_2 ():
-			button = driver.find_element (
+		def form_type__from_private_key_glyphs ():
+			form_type_select = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts leaf"] [monitor="from hexadecimal"]'
+				'[monitor="accounts leaf"] [monitor="Form Type"]'
 			)
-			button.click ();
+			Select (form_type_select).select_by_value ("from_private_key_hexadecimal")
+
 	
 		#
 		# 	loop find:
 		#		monitor="EEC 25519 Single Key"
 		#
-		loop (lambda : find_element_1 ())
-		loop (lambda : find_element_2 ())
+		loop (lambda : account_type__EEC_25519_single_key_account ())
+		loop (lambda : form_type__from_private_key_glyphs ())
 	
-	
+
 	choosies = {}
 	def open_the_region ():
 		def find_key_count_select ():

@@ -36,7 +36,11 @@
 
 	button:
 		[click]
-			elements ["faucet_button"].click ()
+			button.click ()
+
+		[scroll + click]
+			driver.execute_script ("arguments[0].scrollIntoView(true);", button)
+			button.click ();
 
 	div:
 		[text]

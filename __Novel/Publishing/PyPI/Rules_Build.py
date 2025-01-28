@@ -72,11 +72,21 @@ def proc (screenplay):
 def build_rules ():
 	os.system ("rm -rf /Metro/.pnpm-store");
 	system_proc (f"rm -rf '{ Rules_Path }'");
-
+	
+	#
+	#
+	#	FE Modules Rules
+	#
+	#
 	proc (["pnpm", "run", "build_frontend"])
 	proc (["pnpm", "run", "rules_build"])
 
-
+	
+	#
+	#
+	#	PyPI Modules Rules
+	#
+	#
 	system_proc (f"mkdir -p '{ Rules_Path_BE }'")
 	system_proc (f"pip-licenses --with-license-file --format=json > '{ Rules_Path_BE }/PyPI_rules_entire.json'")
 	system_proc (f"pip-licenses > '{ Rules_Path_BE }/PyPI_rules_legend.txt'")

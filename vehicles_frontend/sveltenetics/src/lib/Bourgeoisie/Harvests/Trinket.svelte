@@ -64,8 +64,7 @@ const modify_keys_count = () => {
 </style>
 
 
-<Leaf>
-<main addresses monitor="accounts leaf">
+<main monitor="accounts leaf">
 	<div style="height: 0.5cm" />
 	
 	<div class="card p-4">
@@ -123,10 +122,8 @@ const modify_keys_count = () => {
 				<div class="card p-2"><Slang text="Account" /> Type</div>
 			
 				<select 
+					monitor="Account Type"
 					style=""
-				
-					keys_count
-				
 					class="select"
 					on:change={ modify_keys_count }
 				>
@@ -149,8 +146,8 @@ const modify_keys_count = () => {
 			<div class="card p-2">Form Type</div>
 			
 			<select 
+				monitor="Form Type"
 				style=""
-				single_key_address_navigator
 				class="select"
 				on:change={ change_leaf }
 			>
@@ -186,4 +183,3 @@ const modify_keys_count = () => {
 	
 	<div style="height: 15cm"></div>
 </main>
-</Leaf>

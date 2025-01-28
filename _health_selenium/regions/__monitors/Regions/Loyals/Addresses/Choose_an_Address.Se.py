@@ -13,22 +13,26 @@
 
 #/
 #
+#
+import time
+#
+#
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
+#
+#
 from vivaciousness.procedures.loop import loop
 from vivaciousness.health_regions.connect import connect_to_driver
 from vivaciousness._plays import retrieve_plays
 from vivaciousness.memo import proceed_through_memo
 from vivaciousness.Milieus.navigate import Milieus_Navigate
-#
-#
-from selenium.webdriver.common.by import By
-#
-#
-import time
+from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
 #
 #\
 
-from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
-		
+
+
+					
 
 
 def check_1 ():
@@ -52,33 +56,29 @@ def check_1 ():
 	open_accounts_panel ();
 	
 	def open_panels__single_key_account_from_keyboard_glyph_modifier ():
-		these_element = {}
-		
-		def find_element_1 ():
-			button = driver.find_element (
+		def account_type__EEC_25519_single_key_account ():
+			account_type_select = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts leaf"] [monitor="EEC 25519 Single Key"]'
+				'[monitor="accounts leaf"] [monitor="Account Type"]'
 			)
 			
-			driver.execute_script ("arguments[0].scrollIntoView(true);", button)
-			button.click ();
+			Select (account_type_select).select_by_value ("EEC_25519_single_key_account")
 			
 			
-		def find_element_2 ():
-			button = driver.find_element (
+		def form_type__from_private_key_glyphs ():
+			form_type_select = driver.find_element (
 				By.CSS_SELECTOR, 
-				'[monitor="accounts leaf"] [monitor="from Keyboard Glyph Modifier"]'
+				'[monitor="accounts leaf"] [monitor="Form Type"]'
 			)
-			
-			driver.execute_script ("arguments[0].scrollIntoView(true);", button)
-			button.click ();
+			Select (form_type_select).select_by_value ("from_private_key_glyphs")
+
 	
 		#
 		# 	loop find:
 		#		monitor="EEC 25519 Single Key"
 		#
-		loop (lambda : find_element_1 ())
-		loop (lambda : find_element_2 ())
+		loop (lambda : account_type__EEC_25519_single_key_account ())
+		loop (lambda : form_type__from_private_key_glyphs ())
 		
 	
 	
