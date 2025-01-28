@@ -41,9 +41,9 @@ import Other from './Trinkets/Other.svelte'
 let panel_name = "Send Bits"
 
 
-let rules_entire_link = "/Rules_Modules/Frontend/frontend_rules_entire.txt"
-let rules_legend_link = "/Rules_Modules/Frontend/frontend_rules_legend.txt"
-// let rules_legend_link = "/Rules_Originals/Frontend/Frontend_Rules_Originals.HTML"
+let rules_entire_link = "/Rules/Modules/Frontend/frontend_rules_entire.txt"
+let rules_legend_link = "/Rules/Modules/Frontend/frontend_rules_legend.txt"
+let rules_originals_frontend = "/Rules/Originals/Frontend/Frontend_Rules_Originals.HTML"
 
 
 let show = "Originals";
@@ -93,7 +93,7 @@ let clones_show = "Index"
 		class="card p-4"
 	>
 		{#if show === "Originals" }
-		<Originals />
+		<Originals rules_originals_frontend={ rules_originals_frontend }/>
 		{/if}
 		
 		{#if show === "Other" }
