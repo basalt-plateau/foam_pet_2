@@ -5,65 +5,119 @@
 "'''
 
 import os
+import time
+import shutil
 
+version = "v2_0_0_0"
+Le_OS = "linux-x86_64"
 
-version = "v8_0_0_0"
+name_softwhere = f"Mech_Pet.{ Le_OS }.{ version }"
+name_rules = f"Mech_Pet.{ Le_OS }.{ version }.Rules"
+
 
 assets_path = "/Metro/vehicles_cx_freeze/assets"
-distribution_path = f"/Metro/vehicles_cx_freeze/_distributions/{ version }/Foam_Pet.linux-x86_64.{ version }"
-rules_distribution_path = f"{ distribution_path }.Rules"
+build_path = "/Metro/vehicles_cx_freeze/build"
+distributions_path = f"/Metro/vehicles_cx_freeze/_distributions"
+
+#
+#	Build: Softwhere
+#
+#
+module_build_path = f"{ build_path }/{ name_softwhere }"
+module_rules_path = f"{ build_path }/{ name_softwhere }/lib/Mech_Pet/Rules"
+
+#
+#	Build: The outer rules
+#
+#
+module_outer_rules_path = f"{ build_path }/{ name_rules }"
+
+
+#
+#	The distribution
+#
+#
+distribution_path_softwhere =	f"{ distributions_path }/{ version }/{ name_softwhere }"
+distribution_path_rules = 		f"{ distributions_path }/{ version }/{ name_rules }"
+
+
+
+#
+#
+#	GH
+#
+#
+GH_Repo = "https://github.com/Planet-IV/Mech_Pet"
+
 
 def mimic (packet):
 	origin = packet ["origin"]
 	to = packet ["to"]
-	os.system (f"cp '{ origin }' '{ to }'")
+	print ("mimic:", origin, to);
+	
+	shutil.copy (origin, to)
+	
+	#os.system (f"cp '{ origin }' '{ to }'")
 
 def mimic_recursively (packet):
 	origin = packet ["origin"]
 	to = packet ["to"]
-	os.system (f"cp -R '{ origin }' '{ to }'")
+	
+	print ("mimic_recursively:", origin, to);
+	
+	shutil.copytree (origin, to, dirs_exist_ok = True)
+	
+	#os.system (f"cp -R '{ origin }' '{ to }'")
 
 
 
 os.system ('apt install zip -y')
 
-os.system (f"mkdir /Metro/vehicles_cx_freeze/_distributions/{ version }");
 
 
+#--
 #
+#	This adds to the "build"
 #
-#	Add Assets to the distribution
-#
+#		* Scroll (Brochure)
+#		* Rules
 #
 mimic ({
 	"origin": f"{ assets_path }/Rules.E.HTML",
-	"to": f"{ distribution_path }/Rules.{ version }.HTML"
+	"to": f"{ module_build_path }/Rules.HTML"
 })
 mimic ({
-	"origin": f"{ assets_path }/Leaflet.E.HTML",
-	"to": f"{ distribution_path }/Leaflet.HTML"
+	"origin": f"{ assets_path }/Scroll.E.HTML",
+	"to": f"{ module_build_path }/Scroll.HTML"
 })
+#
+#--
 
 
+
+#--
+#
+#	Outer Rules:
 #
 #
-#	Prep the rules
 #
-#
-os.system (f"mkdir { rules_distribution_path }")
+os.system (f"rm -rf '{ module_outer_rules_path }'")
+os.system (f"mkdir -p { module_outer_rules_path }")
+#os.system (f"mkdir -p '{ module_outer_rules_path }/lib/Mech_Pet/Rules'")
+mimic ({
+	"origin": 	f"{ assets_path }/Rules.E.HTML",
+	"to": 		f"{ module_outer_rules_path }/Rules.E.HTML"
+})
 mimic_recursively ({
-	"origin": f"/Metro/vehicles_cx_freeze/_distributions/{ version }/Foam_Pet.linux-x86_64.{ version }/lib/foam_pet/Rules",
-	"to": f"/Metro/vehicles_cx_freeze/_distributions/{ version }/Foam_Pet.linux-x86_64.{ version }.Rules/Rules_PyPI_foam_pet"
+	"origin": 	f"{ module_build_path }/lib/Mech_Pet/Rules",
+	"to": 		f"{ module_outer_rules_path }/lib/Mech_Pet/Rules"
 })
 mimic ({
-	"origin": "/Metro/vehicles_cx_freeze/assets/Rules.E.HTML",
-	"to": f"/Metro/vehicles_cx_freeze/_distributions/{ version }/Foam_Pet.linux-x86_64.{ version }.Rules/Rules.E.HTML"
+	"origin": 	f"{ module_build_path }/frozen_application_license.txt",
+	"to":		f"{ module_outer_rules_path }/frozen_application_license.txt"
 })
-mimic ({
-	"origin": "/Metro/vehicles_cx_freeze/_distributions/{ version }/Foam_Pet.linux-x86_64.{ version }/frozen_application_license.txt",
-	"to": f"/Metro/vehicles_cx_freeze/_distributions/{ version }/Foam_Pet.linux-x86_64.{ version }.Rules/frozen_application_license.txt"
-})
-
+#
+#--
 
 
 
@@ -74,25 +128,44 @@ mimic ({
 #
 print ("zipping");
 os.system (f"chmod -R 777 /Metro")
-os.system (f'(cd _distributions/{ version } && zip -r "Foam_Pet.linux-x86_64.{ version }.zip" "Foam_Pet.linux-x86_64.{ version }")');
-os.system (f'(cd _distributions/{ version } && zip -r "Foam_Pet.linux-x86_64.{ version }.Rules.zip" "Foam_Pet.linux-x86_64.{ version }.Rules")');
+os.system (f'(cd { build_path } && zip -r "Mech_Pet.linux-x86_64.{ version }.zip" "Mech_Pet.linux-x86_64.{ version }")');
+os.system (f'(cd { build_path } && zip -r "Mech_Pet.linux-x86_64.{ version }.Rules.zip" "Mech_Pet.linux-x86_64.{ version }.Rules")');
 os.system (f"chmod -R 777 /Metro")
 print ("done zipping");
 
 
+#
+#
+#	create distribtuion
+#
+#
+mimic_recursively ({
+	"origin": 	module_build_path,
+	"to": 		distribution_path_softwhere
+})
+mimic_recursively ({
+	"origin": 	module_rules_path,
+	"to": 		distribution_path_rules
+})
+
+#
+#	
+#	This is the Github message.
+#
+#
 print (f"""
 
-This is a Foam Pet that can live in a Linux OS that use a x86-64 Processor.
+This is a Mech Pet that can live in a Linux OS that use a x86-64 Processor.
 
-[Save Rules to OS](https://github.com/basalt-plateau/foam_pet/releases/download/publication_{ version }/Foam_Pet.linux-x86_64.{ version }.Rules.zip)
-[Adopt (Save to OS)](https://github.com/basalt-plateau/foam_pet/releases/download/publication_{ version }/Foam_Pet.linux-x86_64.{ version }.zip)
+[Store Rules on OS]({ GH_Repo }/releases/download/publication_{ version }/Mech_Pet.{ Le_OS }.{ version }.Rules.zip)
+[Adopt (Store to OS)]({ GH_Repo }/releases/download/publication_{ version }/Mech_Pet.{ Le_OS }.{ version }.zip)
 
 Opening:
 Open a terminal and run:
 
-./Foam_Pet_{ version }.linux-x86_64/clap
+./Mech_Pet_{ version }.linux-x86_64/clap
 
-After that, the Foam Pet should be here:
+After that, the Mech Pet should be here:
 http://localhost:2300/
 
 """)
