@@ -19,21 +19,17 @@
 	relevant:
 		"license-report": "^6.5.0",
 		license-checker
-		
 		 "madge": "^8.0.0",
 */
 
-/*
-    "build_licenses": "pnpm run licensing_csv && pnpm run licensing_details",
-	"licensing": "yarn licenses list --json",
-	"licensing_2": "pnpm licenses > /Metro/vehicles/foam_pet/Rules/Laboratory/frontend_licenses_report.txt",
-    "licensing_csv": "nlf -c -d > /Metro/vehicles/foam_pet/Rules/Laboratory/frontend_licenses.csv",
-    "licensing_details": "nlf -d -s simple > /Metro/vehicles/foam_pet/Rules/Laboratory/frontend_licenses_summary.txt",
-*/
+const Rules_Path_FE = process.env.Rules_Path_FE;
+if (typeof Rules_Path_FE !== "string") {
+	throw new Error ("Rules_Path_FE must be a string.");
+}
 
 module.exports = {
 	inputs: ["./package.json"],
-	output: "/Metro/vehicles/Mech_Pet/Rules/Laboratory/frontend_rules_entire.txt",
+	output: Rules_Path_FE + "/frontend_rules_entire.txt",
 	overwrite: true,
 	eol: "lf",
 	ci: true,

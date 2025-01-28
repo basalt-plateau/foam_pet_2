@@ -10,7 +10,7 @@
     "rules_build": "pnpm run rules_build_full && pnpm run rules_build_legend",
     "rules_build_full": "generate-license-file",
     "rules_build_full----": ".glf.cjs has the config for this",
-    "rules_build_legend": "pnpm licenses list > /Metro/vehicles/Mech_Pet/Rules/Laboratory/frontend_rules_legend.txt",
+    "rules_build_legend": "pnpm licenses list > \"$Rules_Path_FE/frontend_rules_legend.txt\"",
     "health": "node --version && vitest",
     "health----": "if node is not installed, vitest doesn't do anything..",
     "preview": "vite preview",
@@ -44,7 +44,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@aptos-labs/aptos-faucet-client": "0.2.0",
     "@aptos-labs/ts-sdk": "^1.33.1",
     "@floating-ui/dom": "^1.6.11",
     "@lucide/lab": "^0.1.2",
