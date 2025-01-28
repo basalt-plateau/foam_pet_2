@@ -18,7 +18,11 @@
 					$Rules_Path/Laboratory/frontend_rules_legend.txt
 				
 		Python3:
+			* Builds these inside the Python3 modules
 			
+		* clone rules into Sveltenetics
+		
+		* Build sveltnetics into Python3
 "'''
 
 ''''
@@ -33,9 +37,18 @@ import subprocess
 
 #--
 #
-Rules_Path = "/Metro/vehicles/Mech_Pet/Rules"
-Rules_Path_FE = "/Metro/vehicles/Mech_Pet/Rules/Frontend"
+Rules_Path = "/Metro/vehicles/Mech_Pet/Rules_Modules"
 FE_Path = "/Metro/vehicles_frontend/sveltenetics"
+#
+#
+Rules_Path_FE = Rules_Path + "/Frontend"
+Rules_Path_BE = Rules_Path + "/Python3"
+#
+#
+Original_Rules_Path_PyPI = "/Metro/vehicles/Mech_Pet/Rules_Originals"
+Original_Rules_Path_Svelte = "/Metro/vehicles_frontend/sveltenetics/static/Rules_Originals"
+#
+Sveltenetics_Static_Path = FE_Path + "/static/Rules_Modules"
 #
 #
 Le_env = os.environ.copy ()
@@ -43,7 +56,9 @@ Le_env ["Rules_Path_FE"] = Rules_Path_FE;
 #
 #--
 
-
+def system_proc (screenplay):
+	print ("screenplay:", screenplay);
+	os.system (screenplay);
 
 def proc (screenplay):
 	result = subprocess.run(
@@ -54,17 +69,44 @@ def proc (screenplay):
 	assert (result.returncode == 0);
 	print ("played:", screenplay);
 
-#os.system ("rm -rf /Metro/.pnpm-store");
+def build_rules ():
+	os.system ("rm -rf /Metro/.pnpm-store");
+	system_proc (f"rm -rf '{ Rules_Path }'");
 
-#proc (["pnpm", "run", "build_frontend"])
-#proc (["pnpm", "run", "rules_build"])
+	proc (["pnpm", "run", "build_frontend"])
+	proc (["pnpm", "run", "rules_build"])
 
-#os.system (f"pip-licenses --with-license-file --format=json > '{ Rules_Path }/Python3/PyPI_rules_entire.json'")
-#os.system (f"pip-licenses > '{ Rules_Path }/Python3/PyPI_rules_legend.txt'")
 
-#
-#	clone the rules
-#
-#
-os.system (f"rm -rf '{ Rules_Path }/'*");
-os.system (f"cp -Rv '{ Rules_Path }/'* '{ FE_Path }/static/Rules/'");
+	system_proc (f"mkdir -p '{ Rules_Path_BE }'")
+	system_proc (f"pip-licenses --with-license-file --format=json > '{ Rules_Path_BE }/PyPI_rules_entire.json'")
+	system_proc (f"pip-licenses > '{ Rules_Path_BE }/PyPI_rules_legend.txt'")
+
+
+	#
+	#	Clone the module rules: PyPI to Sveltenetics
+	#
+	#
+	system_proc (f"rm -rf '{ Sveltenetics_Static_Path }'");
+	system_proc (f"mkdir -p '{ Sveltenetics_Static_Path }'");
+	system_proc (f"cp -Rv '{ Rules_Path }/'* '{ Sveltenetics_Static_Path }/'");
+	
+	
+	#
+	#	Clone the original rules: PyPI to Sveltenetics
+	#
+	#
+	#
+	system_proc (f"rm -rf '{ Original_Rules_Path_Svelte }'");
+	system_proc (f"mkdir -p '{ Original_Rules_Path_Svelte }'");
+	system_proc (f"cp -Rv '{ Original_Rules_Path_PyPI }/'* '{ Original_Rules_Path_Svelte }/'");
+
+	#
+	#
+	#	Need to build the frontend again for the PyPI module.
+	#		Svelnetics -> PyPI
+	#
+	proc (["pnpm", "run", "build_frontend"])
+	
+	
+
+build_rules ();

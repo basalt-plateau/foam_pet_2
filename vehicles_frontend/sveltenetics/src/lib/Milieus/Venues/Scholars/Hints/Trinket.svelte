@@ -23,10 +23,9 @@ import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
 import Boards from './Boards/Trinket.svelte'
 import Pleasantries from './Pleasantries/Trinket.svelte'
 import Regions from './Regions/Estate.svelte'
-import { open_rules } from './Rules/open'
 //
 ////
-
+import Rules_Frontier from "$lib/Les_Talents/Rules/Frontier/Board.svelte"
 
 const modal_store = getModalStore ();
 const mode = check_roomies_truck ().freight.mode;		
@@ -108,15 +107,7 @@ const show_rules = () => {
 				text-align: center;
 			"
 		>	
-			<button
-				on:click={ show_rules }
-				type="button" 
-				
-				style="
-					padding: 0.25cm 1.5cm;
-				"
-				class="btn btn-lg btn bg-gradient-to-br variant-gradient-primary-secondary"
-			>Rules</button>
+			<Rules_Frontier />
 		</div>
 	</div>
 
