@@ -26,7 +26,7 @@ rm -rf /Metro/.pnpm-store
 #
 #
 (cd /Metro/vehicles_frontend/sveltenetics && pnpm run build_frontend)
-(cd /Metro/vehicles_frontend/sveltenetics && pnpm run build_rules)
+(cd /Metro/vehicles_frontend/sveltenetics && pnpm run rules_build)
 
 
 #

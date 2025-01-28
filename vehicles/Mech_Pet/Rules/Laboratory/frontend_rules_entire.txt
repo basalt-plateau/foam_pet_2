@@ -17821,7 +17821,7 @@ The following npm packages may be included in this product:
  - @scure/bip32@1.5.0
  - @scure/bip39@1.2.1
  - @scure/bip39@1.3.0
- - @scure/bip39@1.4.0
+ - @scure/bip39@1.5.4
 
 These packages each contain the following license:
 
@@ -17858,6 +17858,7 @@ The following npm packages may be included in this product:
  - @noble/hashes@1.3.3
  - @noble/hashes@1.4.0
  - @noble/hashes@1.5.0
+ - @noble/hashes@1.7.1
 
 These packages each contain the following license:
 
@@ -17885,11 +17886,12 @@ THE SOFTWARE.
 
 -----------
 
-The following npm package may be included in this product:
+The following npm packages may be included in this product:
 
  - @scure/base@1.1.9
+ - @scure/base@1.2.4
 
-This package contains the following license:
+These packages each contain the following license:
 
 The MIT License (MIT)
 
