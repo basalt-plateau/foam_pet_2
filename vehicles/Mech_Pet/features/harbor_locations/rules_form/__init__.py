@@ -142,7 +142,7 @@ def rules_form (packet):
 				<ul>
 					<li>links to sub domains</li>
 					<li>links to other domains</li>
-					<li>saving envelopes in the browser</li>
+					<li>storing envelopes in the browser</li>
 				</ul>
 			</div>
 			
