@@ -1,5 +1,15 @@
 
 
+
+/*
+	import {
+		search_for_last_from_twenty_three
+	} from "$lib/PTO/Accounts/Mnemonic/numerals/search_for_last/from_twenty_three.js"
+	const legit_numerals = await search_for_last_from_twenty_three (
+		"1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
+	);
+*/
+
 import * as bip39 from '@scure/bip39';
 import { wordlist as BIP_39_Word_List } from '@scure/bip39/wordlists/english';
 import { sha256 } from 'js-sha256';
@@ -10,11 +20,6 @@ import {
 
 
 
-/*
-	import {
-		search_for_last_from_twenty_three
-	} from "$lib/PTO/Accounts/Mnemonic/numerals/search_for_last/from_twenty_three.js"
-*/
 export const search_for_last_from_twenty_three = async (twenty_three) => {
 	if (typeof twenty_three !== "string") {
 		throw new Error (`That phrase isn't a string.`);

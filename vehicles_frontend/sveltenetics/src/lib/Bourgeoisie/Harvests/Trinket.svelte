@@ -24,6 +24,7 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keyboard/Trinket.svelte'
 import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
 import Address_from_Mnemonic from '$lib/PTO/Accounts/Mnemonic/Board.svelte'
+import Address_from_Mnemonic_Numerals from '$lib/PTO/Accounts/Mnemonic/Board_from_Numerals.svelte'
 //
 //
 import Atrium from './Trinkets/Atrium.svelte';
@@ -109,7 +110,6 @@ const modify_keys_count = () => {
 
 		<div class="card variant-soft-primary p-2">
 			
-			<!-- Lock Mode -->
 			
 			<div 
 				account_type
@@ -134,7 +134,6 @@ const modify_keys_count = () => {
 		</div>
 		
 		{#if account_variety === "EEC_25519_single_key_account" }
-		
 		<div
 			style="
 					display: grid;
@@ -153,7 +152,8 @@ const modify_keys_count = () => {
 			>
 				<option value="from_private_key_glyphs">From Keyboard Glyph Modifier</option>
 				<option value="from_private_key_hexadecimal">From Private Key Hexadecimal</option>
-				<option value="from_mnemonic">From Mnemonic</option>
+				<option value="from_mnemonic_words">From Mnemonic Words</option>
+				<option value="from_mnemonic_numerals">From Mnemonic Numerals</option>				
 			</select>
 		</div>
 		
@@ -168,6 +168,8 @@ const modify_keys_count = () => {
 			<Address_from_Private_Key />
 			{:else if leaf === "from_mnemonic" }
 			<Address_from_Mnemonic />
+			{:else if leaf === "from_mnemonic_numerals" }
+			<Address_from_Mnemonic_Numerals />
 			{/if}
 		</div>
 		{:else if account_variety === "multi_key_account" }
