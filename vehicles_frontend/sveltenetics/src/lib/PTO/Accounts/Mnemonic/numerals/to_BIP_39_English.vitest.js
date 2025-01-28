@@ -39,5 +39,7 @@ describe ('from_mnemonic', () => {
 				"abandon", "abandon", "abandon", "abandon", "abandon", "abandon"
 			].join (" ")
 		)
+		
+		
 	});
 });

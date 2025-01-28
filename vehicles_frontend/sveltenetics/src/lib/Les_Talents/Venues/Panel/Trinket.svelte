@@ -5,22 +5,8 @@
 
 const address_builder = ""
 
-const visiwas = {
-	tivaevae: {
-		establish: address_builder + "::Rondoval_Tivaevae::B",
-		destroy: address_builder + "::Rondoval_Tivaevae::J"
-	}
-}
 
 
-/*
-	Establish Tivaevae:
-		Rondoval_Tivaevae::B (& estate_1_signer, thermoplastic_sheets_to_add);
-
-
-
-
-*/
 import Multiverse from './Multiverse/Trinket.svelte';
 
 ///
@@ -159,28 +145,7 @@ let isOpen = false;
 		"
 	>
 		{#if prepared === "yes" }
-		{#if show_panel === "Digital Assets 1" }
-		<div
-			style="
-				box-sizing: border-box;
-				height: 100%;
-				width: 100%;
-				
-				padding: 1cm;
-			"
-		>
-			<header
-				style="
-					font-size: 3em;
-					text-align: center;
-				"
-			>Multisong</header>
-		
-			<div>
-				<Multiverse />
-			</div>
-		</div>
-		{/if}
+		<Multiverse />
 		{/if}
 	</div>
 	

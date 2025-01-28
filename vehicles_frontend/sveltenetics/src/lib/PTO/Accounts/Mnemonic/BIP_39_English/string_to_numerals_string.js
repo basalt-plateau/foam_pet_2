@@ -27,7 +27,6 @@ export const search_for_word = (word) => {
 export const BIP_39_English_String_to_Numerals_String = (BIP_39_English_String) => {
 	return BIP_39_English_String.split (" ").map (word => {
 		return search_for_word (word)
-	});
-	
+	}).join (" ");
 }
 

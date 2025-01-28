@@ -42,9 +42,26 @@ onDestroy (() => {
 </script>
 
 
-<div 
-	id="map" 
+<div
 	style="
-		height: 500px;
+		height: 100%;
+		width: 100%;
+		padding: 1cm 0;
+		
+		display: flex;
+		justify-content: center;
+		align-content: center;
 	"
-></div>
+>
+	<div 
+		id="map" 
+		style="
+			box-sizing: border-box;
+			border: 2px solid black;
+			border-radius: 10px;
+			
+			height: 100%;
+			width: 100%;
+		"
+	></div>
+</div>

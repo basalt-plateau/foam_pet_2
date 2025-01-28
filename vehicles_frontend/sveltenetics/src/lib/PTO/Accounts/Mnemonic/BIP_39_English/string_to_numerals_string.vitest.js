@@ -49,7 +49,7 @@ describe ('from_mnemonic', () => {
 				831,
 				140,
 				741
-			]
+			].join (" ")
 		);
 	});
 });

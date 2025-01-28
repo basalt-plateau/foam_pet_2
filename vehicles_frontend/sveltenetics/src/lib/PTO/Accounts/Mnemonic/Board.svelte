@@ -15,7 +15,6 @@
 import * as bip39 from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english';
 //
-import { InputChip } from '@skeletonlabs/skeleton';
 import { Autocomplete } from '@skeletonlabs/skeleton';
 //
 //
@@ -30,14 +29,30 @@ import {
 
 let mnemonic = ""
 let BIP_39_English_Word_String = "";
+let BIP_39_English_Word_String_Length = "";
+
+const ensure_word_string_is_legit = () => {
+	
+}
+
+const retrieve_size = () => {
+	console.info ("retrieve_size");
+	
+	try {
+		BIP_39_English_Word_String_Length = BIP_39_English_Word_String.split (" ").length;
+		return;
+	}
+	catch (imperfection) {
+		console.error (imperfection);
+	}
+	
+	BIP_39_English_Word_String_Length = "?"
+}
 
 let input_demo = "";
-let input_demo_2 = "";
-let inputChipList = [];
 
 let directory_name = "Aptos Estate 1"
 
-let inputChip = '';
 
 let choosen = [];
 const on_choose = (event) => {
@@ -70,111 +85,26 @@ const on_choose = (event) => {
 
 let from_form_type = "from_numerals";
 const mnemonic_from_elector_changed = (value) => {
-	// console.info ("mnemonic_from_elector_changed", event.target.value);
 	from_form_type = event.target.value;
 	
 }
 
 const send_to_OS_please = async () => {
-	console.info ("send_to_OS");
-	
-	let mnemonic_string = "";
 	let mnemonic_numerals = "";	
 	if (from_form_type === "from_BIP_39_English_Word_String") {
-		mnemonic_string = BIP_39_English_Word_String;
-		mnemonic_numerals = BIP_39_English_String_to_Numerals_String ({ 
-			BIP_39_English_String: BIP_39_English_Word_String
-		})
+		mnemonic_numerals = BIP_39_English_String_to_Numerals_String ( 
+			BIP_39_English_Word_String
+		)
 	}
 	else {
-		mnemonic_string = choosen.map (entry => { return entry.word }).join (" ");
 		mnemonic_numerals = choosen.map (entry => { return entry.numeral }).join (" ");
 	}
 	
 	await send_to_OS_from_mnemonic_numerals ({
+		directory_name,
 		mnemonic_numerals
 	});
-	return;
-	
-	const accounts = {}
-	const public_accounts = {}
-	
-	let le_account = 0;
-	let le_change = 0;
-	let le_address_index = 0;
-	
-	// SECP_256k1
-	// EEC_25519
-	let le_scheme = "EEC_25519";
-	
-	while (le_account <= 9) {
-		const EEC_derivation_path = (
-			`m/44'/637'/` + 
-			le_account.toString () + 
-			"'/" +
-			le_change.toString() +
-			"'/" +
-			le_address_index.toString () +
-			"'"
-		);
-		
-		const {
-			private_key_hexadecimal_string,
-			public_key_hexadecimal_string,
-			legacy_address_hexadecimal_string,
-			pristine_address_hexadecimal_string
-		} = await create_account_from_mnemonic ({
-			derivation_path: EEC_derivation_path,
-			scheme: le_scheme,
-			mnemonic: mnemonic_string
-		});
-		
-		const label = "account " + le_account.toString ();
-		
-		accounts [ label ] = {
-			"derivation path": EEC_derivation_path,
-			"private key": private_key_hexadecimal_string,
-			"public key": public_key_hexadecimal_string,
-			"address legacy": legacy_address_hexadecimal_string,
-			"address": pristine_address_hexadecimal_string
-		};
-		
-		public_accounts [ label ] = {
-			"derivation path": EEC_derivation_path,
-			"public key": public_key_hexadecimal_string,
-			"address legacy": legacy_address_hexadecimal_string,
-			"address": pristine_address_hexadecimal_string
-		}
-		
-		le_account++;
-	};
-	
-	await send_to_OS ({
-		directory_name,
-		//
-		wealth: {
-			"Aptos Single Key Mnemonic": {
-				"Format": "EEC 25519",
-				
-				"Mnemonic": {
-					"Numerals": choosen.map (entry => { return entry.numeral }).join (" "),
-					"BIP 39 English Wordlist": choosen.map (entry => { return entry.word }).join (" ")
-				},
-				
-				"Accounts": accounts
-			}
-		},
-		boast: {
-			"Aptos Single Key Mnemonic": {
-				"Format": "EEC 25519",
-				"Accounts": public_accounts
-			}
-		}
-		
-		
-	});
 }
-
 
 
 </script>
@@ -200,7 +130,11 @@ const send_to_OS_please = async () => {
 			</ul>
 		</div>
 		
+		{#if from_form_type === "from_numerals" }
 		<div class="card p-2">size: { choosen.length }</div>
+		{:else if from_form_type === "from_BIP_39_English_Word_String" }
+		<div class="card p-2">size: { BIP_39_English_Word_String_Length }</div>
+		{/if}
 		
 		<input 
 			style="
@@ -256,18 +190,6 @@ const send_to_OS_please = async () => {
 				on:keydown={ on_choose } 
 			/>
 		</div>
-		{:else if from_form_type === "from_BIP_39_English_Word_String" }
-		<input 
-			style="
-				padding: 0.25cm;
-			"
-			class="input" 
-			type="search" 
-			
-			bind:value={ BIP_39_English_Word_String }
-		/>
-		{/if}
-		
 		<div 
 			style="
 				display: grid;
@@ -303,6 +225,18 @@ const send_to_OS_please = async () => {
 			</div>
 			{/each}
 		</div>
+		{:else if from_form_type === "from_BIP_39_English_Word_String" }
+		<input 
+			style="
+				padding: 0.25cm;
+			"
+			class="input" 
+			type="search" 
+			
+			bind:value={ BIP_39_English_Word_String }
+			on:keyup={ retrieve_size }
+		/>
+		{/if}
 	</div>
 	
 	<div

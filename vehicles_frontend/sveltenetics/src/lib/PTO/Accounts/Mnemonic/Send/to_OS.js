@@ -42,17 +42,20 @@ Aptos Single Key Mnemonic:
 		presence, show, existence, brag, gloat, strut, reach, boast
 */
 
-
+////
+//
 import { dump } from 'js-yaml';
 import JSZip from 'jszip'
-
-
+//
+//
 import { build_tickets } from "./build.js"
+//
+////
 
 const save_YAML_to_OS = (yamlString, fileName) => {
 	const blob = new Blob([yamlString], { type: 'text/yaml' });
 	const url = window.URL.createObjectURL(blob);
-	const a = document.createElement('a');
+	const a = document.createElement ('a');
 	a.href = url;
 	a.download = fileName || 'document.yaml';
 	document.body.appendChild (a);
@@ -62,13 +65,11 @@ const save_YAML_to_OS = (yamlString, fileName) => {
 }
 
 
-
 export const send_to_OS_from_mnemonic_numerals = async ({
 	directory_name,
 	mnemonic_numerals
 }) => {
 	const { wealth, boast } = await build_tickets ({ mnemonic_numerals });
-	
 	const zip = new JSZip ();
 	
 	const keys_dir = zip.folder (directory_name);
