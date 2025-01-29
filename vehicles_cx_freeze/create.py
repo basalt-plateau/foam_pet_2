@@ -8,7 +8,7 @@ import os
 import time
 import shutil
 
-version = "v2_0_0_0"
+version = "v2_1_0_0"
 Le_OS = "linux-x86_64"
 
 name_softwhere = f"Mech_Pet.{ Le_OS }.{ version }"

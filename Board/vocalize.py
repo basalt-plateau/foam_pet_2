@@ -28,7 +28,7 @@ import Rides_Published_Mainnet.Rules_10 as Rules_10
 #
 #
 import Rides.Motions_01 as Motions_01_Moves
-import Rides.Allowed_Wallets_01 as Allowed_Wallets_01
+import Rides.Allowed_Wallets_02 as Allowed_Wallets_02
 
 #
 #
@@ -140,7 +140,6 @@ def motion_for_named_addresses (packet):
 		f"""boar_Team_08={ boar_Team_08 ["legacy address"] }, """,
 		f"""boar_Team_09={ boar_Team_09 ["legacy address"] }, """,
 		f"""boar_Team_10={ boar_Team_10 ["legacy address"] } """,
-				
 		
 		"'"
 	]);
@@ -151,7 +150,7 @@ def motion_for_named_addresses (packet):
 moves_structures = {
 	"Sport_Pack_01": Sport_Pack_01,
 	
-	"Allowed_Wallets_01": Allowed_Wallets_01,
+	"Allowed_Wallets_02": Allowed_Wallets_02,
 	
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
@@ -173,10 +172,12 @@ def clique ():
 
 
 	"""
-		python3 vocalize.py vocalize --steady --move Allowed_Wallets_01
+		python3 vocalize.py vocalize --steady --move Allowed_Wallets_02
+		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --publisher Petra
+		
 		
 		python3 vocalize.py vocalize --publish --move Rules_10  --publisher Petra
-		python3 vocalize.py vocalize --publish --move Allowed_Wallets_01 --publisher Petra
+		
 		
 		
 		python3 vocalize.py vocalize --publish --move Sport_Pack_01

@@ -26,6 +26,7 @@ import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash
 ////
 import { ask_for_freight } from '$lib/Versies/Trucks'
 	
+
 const trucks = {}
 	
 	
@@ -288,6 +289,8 @@ export const make = async (packet) => {
 		}
 	});
 	
+	/*
+	
 	if (allow_wallets [ "Rise" ] === "yup") {
 		try {
 			trucks [1].freight.stages.Rise = await Rise_stage_creator ({ freight: trucks [1].freight });
@@ -327,6 +330,7 @@ export const make = async (packet) => {
 			console.error (imperfection);
 		}
 	}
+	*/
 
 
 	//

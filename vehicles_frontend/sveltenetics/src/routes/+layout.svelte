@@ -43,7 +43,7 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 	
 	
 
-
+import { latch_wallets } from "$lib/Singles/Extension_Winch/_screenplays/latch_wallets.js"
 
 
 ///
@@ -73,12 +73,14 @@ onMount (async () => {
 	//		The versies (roomies) truck is subscribed
 	//		to the extension winch.
 	//
-	await Extension_Winch.make ();
-	// await Tesseract_Rise.make ();
-		
 	
+		
+	await Extension_Winch.make ();
 	lease_roomies_truck ()
 	lease_Milieus_truck ()
+	
+	await latch_wallets ();
+	
 	trucks_prepared = "yes"
 	//
 	////

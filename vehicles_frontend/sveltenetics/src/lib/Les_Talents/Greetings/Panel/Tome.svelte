@@ -29,7 +29,7 @@ let Versies_Freight = false
 //
 let address_trinket_1 = ""
 let address_trinket_2 = ""
-
+let address_trinket_3 = ""
 
 </script>
 
@@ -108,6 +108,19 @@ let address_trinket_2 = ""
 				}}
 			/>
 		</div>
+		<div class="card p-2">
+			<Address_Qualities_Trinket 
+				name="Keystone Address 1"
+				bind:this={ address_trinket_3 }
+				has_field="no"
+				on_prepare={() => {
+					address_trinket_3.change_address_hexadecimal_string (
+						"FBE0B4ECA5928CC51E2A36EF25BC479CF24B22040B5571DD6D0A37283F99A240"
+					);
+				}}
+			/>
+		</div>
+		
 	</div>
 	{/if}
 	{/if}
