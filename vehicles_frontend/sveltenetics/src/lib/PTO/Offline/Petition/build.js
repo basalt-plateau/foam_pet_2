@@ -12,6 +12,8 @@ import * as Aptos_SDK from "@aptos-labs/ts-sdk";
 //
 //
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
+import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
+//
 import { pick_expiration } from '$lib/PTO/Petition/Options_Expiration'
 import { build_entry_petition_AO as build_entry_petition_AO_ } from '$lib/PTO/Petition/Entry_AO_from_fields'
 import { fiberize_TP_AO, fiberize_TP_bytes } from '$lib/PTO/Offline/Petition/Fiberize'

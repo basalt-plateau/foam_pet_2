@@ -21,9 +21,6 @@ export const le_label = {
 	"label": "Mech Pet",
 
 	"Pet": "Mech Pet",	
-	"Pet": "Mech Pet",	
-	
-	"Pets": "Mech Pets",
 	"Pets": "Mech Pets",
 	
 	

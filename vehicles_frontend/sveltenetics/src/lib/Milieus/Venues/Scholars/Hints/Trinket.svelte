@@ -33,10 +33,6 @@ const mode = check_roomies_truck ().freight.mode;
 let Milieus_Freight = false;
 
 
-const show_rules = () => {
-	open_rules ({ modal_store });
-}
-
 
 </script>
 
@@ -51,7 +47,6 @@ const show_rules = () => {
 .badge {
 	white-space: break-spaces;
 }
-
 </style>
 
 

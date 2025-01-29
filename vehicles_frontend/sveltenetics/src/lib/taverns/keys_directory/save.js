@@ -103,15 +103,4 @@ export const save_keys = async ({
 	});
 	
 	console.log ({ zip })
-	
-	return;
-
-	// Usage
-	save_YAML_to_OS (dump ({
-		"private key": seed_hexadecimal
-	}), 'Aptos.EEC448.private-key.yaml');
-	
-	save_YAML_to_OS (dump ({
-		"private key": seed_hexadecimal
-	}), 'Aptos.EEC448.public-key.yaml');
 }

@@ -80,6 +80,40 @@ onDestroy (async () => {
 	<div 
 		style="
 			width: 100%;
+			text-align: center;
+			
+			display: grid;
+			gap: 0.25cm;
+		"
+		class="card p-2"
+	>
+		<header
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.25cm;
+				justify-content: center;
+			"
+		>
+			<span><b>Keystone 3 Pro</b> with the <b>Petra Extension</b> is recommended.</span>
+		</header>
+		<div class="card p-2">
+			<a 
+				target="_blank"
+				href="https://keyst.one"
+			>https://keyst.one</a>
+		</div>
+		<div class="card p-2">
+			<a 
+				target="_blank"
+				href="https://petra.app"
+			>https://petra.app</a>
+		</div>
+	</div>
+	
+	<div 
+		style="
+			width: 100%;
 			height: 400px;
 			
 			display: flex;

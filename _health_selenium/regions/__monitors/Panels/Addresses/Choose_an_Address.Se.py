@@ -31,10 +31,6 @@ from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
 #\
 
 
-
-					
-
-
 def check_1 ():
 	driver = connect_to_driver ();
 	plays = retrieve_plays ();

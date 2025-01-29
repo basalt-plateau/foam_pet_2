@@ -83,7 +83,7 @@ const adaptations = {
 			const integer_amount = parseInt (bigint_amount)
 			
 			if (bigint_amount != integer_amount) {
-				throw new Error (`Adapt "${ entrance_format }" into "${ exit_format }" failed.  Big Int "${ bigint_amount }" != Int "${ integer_amount }"`)
+				throw new Error (`Adapt "hexadecimal string" into "integer" failed.  Big Int "${ bigint_amount }" != Int "${ integer_amount }"`)
 			}
 		}	
 	}

@@ -14,6 +14,14 @@
 			. /Metro/_plays/board/build_2.sh
 			
 			
+			#//
+			#/
+			#	Frontend: Vitest + Lint
+			#
+			#
+			(cd /Metro/vehicles_frontend/sveltenetics && pnpm run health)
+			(cd /Metro/vehicles_frontend/sveltenetics && pnpm run lint)
+			
 			#
 			#
 			#	Frontend: Build
@@ -37,13 +45,7 @@
 			
 			
 		
-			#//
-			#/
-			#	Frontend: Vitest + Lint
-			#
-			#
-			(cd /Metro/vehicles_frontend/sveltenetics && pnpm run health)
-			(cd /Metro/vehicles_frontend/sveltenetics && pnpm run lint)
+			
 		
 			
 			#

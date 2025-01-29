@@ -68,7 +68,7 @@ worker.onmessage = function (event) {
 	
 	const { twenty_three, legit_numerals } = event.data;
 	if (legit_numerals.length === 0) {
-		zero_permitted_numerals_for_24 = "yup"
+		// zero_permitted_numerals_for_24 = "yup"
 	};
 	
 	if (choosen_numeral_string === twenty_three) {
@@ -176,14 +176,8 @@ const mnemonic_from_elector_changed = (value) => {
 
 const send_to_OS_please = async () => {
 	let mnemonic_numerals = "";	
-	if (from_form_type === "from_BIP_39_English_Word_String") {
-		mnemonic_numerals = BIP_39_English_String_to_Numerals_String ( 
-			BIP_39_English_Word_String
-		)
-	}
-	else {
-		mnemonic_numerals = choosen.map (entry => { return entry.numeral }).join (" ");
-	}
+	
+	mnemonic_numerals = choosen.map (entry => { return entry.numeral }).join (" ");
 	
 	await send_to_OS_from_mnemonic_numerals ({
 		directory_name,

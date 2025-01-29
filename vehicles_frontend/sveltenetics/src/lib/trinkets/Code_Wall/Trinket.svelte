@@ -43,8 +43,8 @@ const on_clone = async () => {
 	<div
 		style="
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-			grid-template-columns: min-content auto;
+			// grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			// grid-template-columns: min-content auto;
 			grid-template-columns: min-content repeat(auto-fill, minmax(200px, 1fr));
 			gap: 5px;
 		"

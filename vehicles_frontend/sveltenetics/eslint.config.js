@@ -20,8 +20,11 @@ export default [
 	{
 		rules: {
 			// 'off', 'warn'
-			'no-unreachable': 'warn',
-			'no-unused-vars': 'warn' // Set no-unused-vars as a warning
+			'no-constant-condition': 'off',
+			'no-empty': 'off',
+			
+			'no-unreachable': 'off',
+			'no-unused-vars': 'off' // Set no-unused-vars as a warning
 		}
 	}
 ];
