@@ -143,15 +143,17 @@ onMount (() => {
 							"
 							class="card p-4"
 						>
-							<div style="height: 1cm"></div>
-
 							<p><Slang text="petition" /> + <Slang text="sender" /> <Slang text="private key" /> -> <Slang text="sender" /> <Slang text="signature" /> </p>
-							
-							<div style="height: 0.5cm"></div>
-							
+						</div>
+												
+						<div 
+							style="
+								text-align: center;
+							"
+							class="card p-4"
+						>							
 							<p><Slang text="petition" /> + <Slang text="sender" /> <Slang text="signature" /> + <Slang text="signature" /> from each <Slang text="validator" /> -> <Slang text="blockchain transaction" /></p>
 						
-							<div style="height: 1cm"></div>		
 						</div>
 					</svelte:fragment>
 				</AccordionItem>
