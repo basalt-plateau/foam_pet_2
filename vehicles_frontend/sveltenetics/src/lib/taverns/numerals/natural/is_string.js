@@ -16,6 +16,8 @@
 
 const valid_characters = "01234567890"
 
+
+
 export const assert_is_natural_numeral_string = (digit) => {
 	if (typeof digit !== "string") {
 		throw new Error (`Natural numeral amount needs to be a string, however received: "${ typeof digit }".`)

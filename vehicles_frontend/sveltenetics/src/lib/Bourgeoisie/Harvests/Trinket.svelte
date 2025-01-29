@@ -25,6 +25,7 @@ import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keybo
 import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
 import Address_from_Mnemonic from '$lib/PTO/Accounts/Mnemonic/Board.svelte'
 import Address_from_Mnemonic_Numerals from '$lib/PTO/Accounts/Mnemonic/Board_from_Numerals.svelte'
+import Address_from_Mnemonic_String from '$lib/PTO/Accounts/Mnemonic/Board_from_String.svelte'
 //
 //
 import Atrium from './Trinkets/Atrium.svelte';
@@ -166,8 +167,8 @@ const modify_keys_count = () => {
 			<Address_from_Keyboard />
 			{:else if leaf === "from_private_key_hexadecimal" }
 			<Address_from_Private_Key />
-			{:else if leaf === "from_mnemonic" }
-			<Address_from_Mnemonic />
+			{:else if leaf === "from_mnemonic_words" }
+			<Address_from_Mnemonic_String />
 			{:else if leaf === "from_mnemonic_numerals" }
 			<Address_from_Mnemonic_Numerals />
 			{/if}

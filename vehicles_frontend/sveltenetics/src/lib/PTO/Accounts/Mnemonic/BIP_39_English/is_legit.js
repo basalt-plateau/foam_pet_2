@@ -2,7 +2,7 @@
 
 /*
 	import { BIP_39_English_String_is_legit_2 } from "$lib/PTO/Accounts/Mnemonic/BIP_39_English/is_legit.js"
-	if (BIP_39_English_String_is_legit_2 (BIP_39_English_String) !== "yup") {
+	if (await BIP_39_English_String_is_legit_2 (BIP_39_English_String) !== "yup") {
 		
 	}
 */
@@ -14,15 +14,15 @@ import { sha256 } from 'js-sha256';
 import { search_for_word } from "./search_for_word.js"
 
 
-export BIP_39_English_String_is_legit_2 = async (BIP_39_English_String) => {
+export const BIP_39_English_String_is_legit_2 = async (BIP_39_English_String) => {
 	try {
-		BIP_39_English_String_is_legit (BIP_39_English_String);
+		return BIP_39_English_String_is_legit (BIP_39_English_String);
 	}
 	catch (imperfection) {
-		return "no"
+		console.error (imperfection);
 	}
 	
-	return "yup"
+	return "no"
 }
 
 

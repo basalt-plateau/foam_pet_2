@@ -7,5 +7,8 @@
 */
 
 export const Mnemonic = () => {
-	return {}
+	return {
+		numerals: {},
+		English: {}
+	}
 }

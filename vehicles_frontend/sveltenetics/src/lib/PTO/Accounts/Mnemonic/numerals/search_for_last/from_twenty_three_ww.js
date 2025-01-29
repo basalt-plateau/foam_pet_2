@@ -21,10 +21,10 @@ import {
 
 
 self.onmessage = async function (event) {
+	console.log ("from_twenty_three_ww", event);
+	
 	const twenty_three = event.data;
-	const legit_numerals = await search_for_last_from_twenty_three (
-		"1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
-	);
+	const legit_numerals = await search_for_last_from_twenty_three (twenty_three);
 	
 	self.postMessage ({
 		twenty_three,
