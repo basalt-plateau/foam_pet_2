@@ -12,6 +12,11 @@
 		* Elliptic Algorithm: EEC 25519
 */
 
+/*
+	legit:
+		nation sorry clock vacant whisper visual art topic scene where decade sweet excess usage tuna close search behind theory barely sorry guitar badge frame
+*/
+
 ////
 //
 import * as bip39 from '@scure/bip39';
@@ -26,6 +31,8 @@ import { BIP_39_English_String_to_Numerals_String } from "./BIP_39_English/strin
 import {
 	mnemonic_numerals_string_to_BIP_39_English_string
 } from "./numerals/string_to_BIP_39_English_string.js"
+import { BIP_39_English_String_is_legit_2 } from "$lib/PTO/Accounts/Mnemonic/BIP_39_English/is_legit.js"
+
 //
 ////
 
@@ -34,8 +41,7 @@ import {
 //
 let directory_name = "Aptos Estate 1"
 
-// let mnemonic = ""
-let legit = "";
+let legit = "no";
 
 let BIP_39_English_Word_String = "";
 let BIP_39_English_Word_String_Length = "";
@@ -54,10 +60,21 @@ const retrieve_size = () => {
 	BIP_39_English_Word_String_Length = "?"
 }
 
+const guarantee_is_legit = async () => {
+	console.info ("guarantee_is_legit");
+	
+	if (await BIP_39_English_String_is_legit_2 (BIP_39_English_Word_String) === "yup") {
+		legit = "yes"
+	}
+	else {
+		legit = "no"
+	}
+}
 
 
-const on_input_change = () => {
+const on_input_change = async () => {
 	retrieve_size ();
+	guarantee_is_legit ();
 }
 
 
@@ -106,28 +123,55 @@ const send_to_OS_please = async () => {
 		<div class="card p-2">size: { BIP_39_English_Word_String_Length }</div>
 		<div class="card p-2">legit: { legit }</div>
 		
-		<input 
+		<div style="height: 0.25cm"></div>
+		
+		<div
 			style="
-				padding: 0.25cm;
+				display: grid;
+				gap: 0.1cm;
+				grid-template-columns: repeat(auto-fit, minmax(5cm, 1fr));
 			"
-			class="input" 
-			type="search" 
-			name="demo" 
-			bind:value={ directory_name }
-		/>
+			class="card variant-soft-primary p-2"
+		>
+			<div class="card p-2">Directory Name</div>
+			<input 
+				monitor="directory name"
+			
+				style="
+					padding: 0.25cm;
+				"
+				class="input" 
+				type="search" 
+				name="demo" 
+				bind:value={ directory_name }
+			/>
+		</div>
+		
 		
 		<div style="height: 0.25cm"></div>
 		
-		<input 
+		<div
 			style="
-				padding: 0.25cm;
+				display: flex;
+				gap: 0.1cm;
+				grid-template-columns: repeat(auto-fit, minmax(5cm, 1fr));
 			"
-			class="input" 
-			type="search" 
+			class="card variant-soft-primary p-2"
+		>
+			<div class="card p-2">BIP 39 English Word String</div>
+			<textarea 
+				monitor="numeral field"
 			
-			bind:value={ BIP_39_English_Word_String }
-			on:keyup={ on_input_change }
-		/>
+				style="
+					padding: 0.25cm;
+				"
+				class="input" 
+				type="search" 
+				
+				bind:value={ BIP_39_English_Word_String }
+				on:keyup={ on_input_change }
+			/>
+		</div>
 	</div>
 	
 	<div
@@ -139,9 +183,10 @@ const send_to_OS_please = async () => {
 			margin: 4px 0;
 		"
 	>
-
 		<button 
 			on:click={ send_to_OS_please }
+			disabled={ legit === "yes" ? false : true }
+			
 			
 			class="btn variant-filled-primary"
 		>

@@ -33,7 +33,7 @@
 			#	Rules: 
 			#		This builds the frontend and backend rules.
 			#
-			sh /Metro/__Novel/Publishing/PyPI/Rules_Build.sh
+			python3 /Metro/__Novel/Publishing/PyPI/Rules_Build.py
 			
 			
 		
@@ -95,7 +95,7 @@
 			#	A git tag with the current version number
 			#
 			#
-			git add --all && git commit -m "MP-2.0.0" && git tag MP.2.0.0
+			git add --all && git commit -m "MP-2.1.0" && git tag MP.2.1.0
 			git push GH friends --tags && git push GH friends
 			
 			

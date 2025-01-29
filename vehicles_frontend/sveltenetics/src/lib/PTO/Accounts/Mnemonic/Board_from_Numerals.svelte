@@ -196,7 +196,9 @@ const send_to_OS_please = async () => {
 
 
 
-<div>
+<div
+	monitor="accounts from mnemonic numerals" 
+>
 	<div 
 		style="width: 100%; background: none; margin-top: 10px"
 	>
@@ -249,6 +251,8 @@ const send_to_OS_please = async () => {
 		</div>
 		
 		<div 
+			monitor="legit"
+		
 			style="
 				display: flex;
 				gap: 0.25cm;
@@ -257,9 +261,9 @@ const send_to_OS_please = async () => {
 		>
 			<span class="badge variant-filled-surface">legit</span>
 			{#if legit === "yes" }
-			<span class="badge variant-filled-success">{ legit }</span> 
+			<span class="badge variant-filled-success" monitor="legit-success">{ legit }</span> 
 			{:else}
-			<span class="badge variant-filled-error">{ legit }</span> 
+			<span class="badge variant-filled-error" monitor="legit-error">{ legit }</span> 
 			{/if}
 		</div>
 		
@@ -295,6 +299,8 @@ const send_to_OS_please = async () => {
 		>
 			<div class="card p-2">Directory Name</div>
 			<input 
+				monitor="directory name"
+			
 				style="
 					padding: 0.25cm;
 				"
@@ -314,6 +320,8 @@ const send_to_OS_please = async () => {
 		>
 			<div class="card p-2">Numeral (1 to 2048 then press enter)</div>
 			<input 
+				monitor="numeral field"
+			
 				style="
 					padding: 0.25cm;
 				"

@@ -16,5 +16,12 @@ export default [
 	},
 	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
+	},
+	{
+		rules: {
+			// 'off', 'warn'
+			'no-unreachable': 'warn',
+			'no-unused-vars': 'warn' // Set no-unused-vars as a warning
+		}
 	}
 ];

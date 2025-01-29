@@ -23,7 +23,6 @@ import { parse_styles } from '$lib/trinkets/styles/parse.js';
 //
 import Address_from_Keyboard from '$lib/PTO/Accounts/Trinkets/Address_from_Keyboard/Trinket.svelte'
 import Address_from_Private_Key from '$lib/PTO/Accounts/Trinkets/Address_from_Private_Key/Trinket.svelte'
-import Address_from_Mnemonic from '$lib/PTO/Accounts/Mnemonic/Board.svelte'
 import Address_from_Mnemonic_Numerals from '$lib/PTO/Accounts/Mnemonic/Board_from_Numerals.svelte'
 import Address_from_Mnemonic_String from '$lib/PTO/Accounts/Mnemonic/Board_from_String.svelte'
 //
@@ -34,7 +33,8 @@ import EEC_25519_Mathematics from './Trinkets/EEC_25519_Mathematics.svelte'
 //
 ////
 
-
+import { ask_for_freight } from '$lib/Versies/Trucks'
+const mode = ask_for_freight ().mode;
 
 
 let tabSet = 0;
@@ -153,8 +153,11 @@ const modify_keys_count = () => {
 			>
 				<option value="from_private_key_glyphs">From Keyboard Glyph Modifier</option>
 				<option value="from_private_key_hexadecimal">From Private Key Hexadecimal</option>
+				
+				{#if mode === "nurture" }
 				<option value="from_mnemonic_words">From Mnemonic Words</option>
-				<option value="from_mnemonic_numerals">From Mnemonic Numerals</option>				
+				<option value="from_mnemonic_numerals">From Mnemonic Numerals</option>
+				{/if}
 			</select>
 		</div>
 		

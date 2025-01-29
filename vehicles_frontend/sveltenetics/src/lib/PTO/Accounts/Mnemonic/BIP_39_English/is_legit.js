@@ -11,15 +11,17 @@ import * as bip39 from '@scure/bip39';
 import { wordlist as BIP_39_Word_List } from '@scure/bip39/wordlists/english';
 import { sha256 } from 'js-sha256';
 
+import _get from 'lodash/get'
+
 import { search_for_word } from "./search_for_word.js"
 
 
 export const BIP_39_English_String_is_legit_2 = async (BIP_39_English_String) => {
 	try {
-		return BIP_39_English_String_is_legit (BIP_39_English_String);
+		return await BIP_39_English_String_is_legit (BIP_39_English_String);
 	}
 	catch (imperfection) {
-		console.error (imperfection);
+		console.info ("🚨 BIP_39_English_String_is_legit_2 imperfection:", _get (imperfection, [ "message" ], ""));
 	}
 	
 	return "no"

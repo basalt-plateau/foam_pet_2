@@ -86,7 +86,7 @@ pygments==2.19.1
     # via
     #   emergency
     #   rich
-pymongo==4.10.1
+pymongo==4.11
     # via emergency
 pysocks==1.7.1
     # via urllib3

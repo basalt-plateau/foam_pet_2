@@ -39,7 +39,7 @@
  ptyprocess                 0.7.0       ISC License (ISCL)                              
  pydash                     8.0.5       MIT License                                     
  pyinotify                  0.9.6       MIT License                                     
- pymongo                    4.10.1      Apache Software License                         
+ pymongo                    4.11        Apache Software License                         
  redis                      5.2.1       MIT License                                     
  referencing                0.36.2      UNKNOWN                                         
  requests                   2.32.3      Apache Software License                         
