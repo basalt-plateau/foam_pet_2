@@ -2,7 +2,7 @@
 <script>
 
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
-import Glam_Frontier from "$lib/Les_Talents/Glam/Frontier/Tome.svelte"
+import Beauty_Frontier from "$lib/Les_Talents/Beauty/Frontier/Tome.svelte"
 
 </script>
 
@@ -32,7 +32,7 @@ import Glam_Frontier from "$lib/Les_Talents/Glam/Frontier/Tome.svelte"
 					display: inline-block;
 				"
 			>
-				<Glam_Frontier 
+				<Beauty_Frontier 
 					style={{ 
 						display: 'inline-block',
 						padding: '0.25cm 1cm'

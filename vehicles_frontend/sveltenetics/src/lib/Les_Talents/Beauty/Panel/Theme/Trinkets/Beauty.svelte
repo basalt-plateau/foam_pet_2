@@ -115,7 +115,7 @@ const change_visibility = () => {
 				font-size: 1.4em;
 				line-height: 100%;
 			"
-		>Topicals</header>
+		>Hues</header>
 	</div>
 	
 	<div style="width: 10px"></div>
@@ -128,14 +128,17 @@ const change_visibility = () => {
 			gap: 8px;
 		"
 	>
-		<div>Hypothetical Magic</div>
-		<!-- Nocturnal -->
+		<div>Improv</div>
+		<!-- Nocturnal, Show, Dark, Theater -->
+		<!-- Show, Theater, Jam Session, Improv -->
+		<!-- Techno, Twerk  -->
 
 		<!-- <LightSwitch /> -->
 		<SlideToggle name="slide" bind:checked={ visibility } on:change={ change_visibility } />
 		
 		<div>Voltaics</div>
-		<!-- Diurnal -->
+		<!-- Diurnal, Voltaics, Matinee, Tropical -->
+		<!-- Constellation, Luminescence, Lazers -->
 	</div>
 	
 	<div style="height: 0.2cm"></div>

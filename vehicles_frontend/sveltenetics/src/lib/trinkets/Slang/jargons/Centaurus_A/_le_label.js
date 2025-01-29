@@ -26,8 +26,8 @@ export const le_label = {
 	
 	////
 	//
-	"wallet": "signatory",
-	"Wallet": "Signatory",
+	"wallet": "wallet",
+	"Wallet": "Wallet",
 	//
 	////
 	

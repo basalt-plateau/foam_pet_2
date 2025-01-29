@@ -24,6 +24,10 @@ export const blockchain = {
 	//	concept, motion, strategy
 	//	invitation,
 	//
+	//	wish, hope, aspiration, ambition,
+	//	Yearn, Urge
+	//
+	
 	// "signed_transaction_petition": "consented to petition",
 	
 	"transaction_petition": "petition",

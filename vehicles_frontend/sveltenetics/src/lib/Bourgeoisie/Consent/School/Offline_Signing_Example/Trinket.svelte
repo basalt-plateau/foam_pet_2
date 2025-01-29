@@ -6,7 +6,14 @@
 	import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example/Trinket.svelte'
 */
 
+////
+//
+import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+//
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
+import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
+//
+////
 
 const form_petition = '/pictures/orbital/form_petition.svg';
 const send_petition = '/pictures/orbital/send_petition.svg';
@@ -14,16 +21,14 @@ const form_signature = '/pictures/orbital/form_signature.svg';
 const send_signature = '/pictures/orbital/send_signature.svg';
 const form_note = '/pictures/orbital/form_note.svg';
 
-import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 
-import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
 
 </script>
 
 
 
-<div class="card p-1 variant-filled-soft">
+<div class="card p-1">
 	<Accordion>
 		<AccordionItem>
 			<svelte:fragment slot="summary">
@@ -32,31 +37,13 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 						text-align: center;
 						font-size: 1.5em;
 					"
+					class="card p-1 variant-filled-primary"
 				>
-					<p>Offline Signing Example</p>
+					<p>Offline <Slang text="Signing" /> Example</p>
 				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
-				<div>
-					<div style="height: 0.25cm"></div>
-
-					<p style="font-size: 1em; text-align: center; display: none;">
-						<span class="badge variant-filled-primary">@ Orbital Alignment</span>
-					</p>
-
-					<div class="card p-2">
-						<div
-							style="
-								text-align: center;
-								padding: 0.25cm 0;
-							"
-						>
-							<p>
-								The <Slang text="Online Machine" /> and the <Slang text="Offline Machine" /> both need <Slang text="Town" />.
-							</p>
-						</div>
-					</div>
-
+				<div class="card p-2">
 					<div style="height: 0.25cm"></div>
 
 					<div class="card p-2">
@@ -66,15 +53,8 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 								padding: 0.25cm 0;
 							"
 						>
-							<header style="font-size: 1.5em"><Slang text="Petition" /> Formation</header>
 							<p>
-								<span>A <Slang text="Petition" /> can be formed from the <Slang text="Online Machine" /> at</span>
-								<Milieus_Button
-									style="display: inline-block;"
-									name={ "Talents" }
-									location={[ "Friends", "Talents" ]}
-									is_open_location={[ "Friends" ]}
-								/>
+								<span>A <Slang text="Petition" /> is formed on the <Slang text="Online Machine" />.</span>
 							</p>
 						</div>
 
@@ -98,15 +78,8 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 								padding: 0.25cm 0;
 							"
 						>
-							<header style="font-size: 1.5em"><Slang text="Petition" /> Distribution</header>
 							<p>
-								<span>A <Slang text="Petition" /> replica can then be sent to the <Slang text="Offline Machine" /> at</span>
-								<Milieus_Button
-									style="display: inline-block;"
-									name={ "Signatures" }
-									location={[ "Loyals", "Signatures" ]}
-									is_open_location={[ "Loyals" ]}
-								/>
+								<span>A <Slang text="Petition" /> replica is sent to the <Slang text="Offline Machine" />.</span>
 							</p>
 						</div>
 
@@ -130,8 +103,7 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 								padding: 0.25cm 0;
 							"
 						>
-							<header style="font-size: 1.5em"><Slang text="Signature" /> Formation</header>
-							<p>With a <Slang text="Petition" /> + <Slang text="Private Key" />, a <Slang text="Signature" /> can be formed.</p>
+							<p>With a <Slang text="private key" /> plus <Slang text="petition" />, <Slang text="a_signature" /> can be formulated.</p>
 						</div>
 
 						<div
@@ -154,8 +126,7 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 								padding: 0.25cm 0;
 							"
 						>
-							<header style="font-size: 1.5em"><Slang text="Signature" /> Distribution</header>
-							<p>A <Slang text="Signature" /> replica can then be sent to the <Slang text="Online Machine" /></p>
+							<p>A <Slang text="signature" /> replica can then be sent to the <Slang text="Online Machine" /></p>
 						</div>
 
 						<div
@@ -178,7 +149,6 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 								padding: 0.25cm 0;
 							"
 						>
-							<header style="font-size: 1.5em"><Slang text="Transaction" /> Formation</header>
 							<p>With the <Slang text="Petition" /> + <Slang text="Signature" />, the <Slang text="Consensus" /> can add a <Slang text="Transaction" /> to the <Slang text="Blockchain" />.</p>
 						</div>
 

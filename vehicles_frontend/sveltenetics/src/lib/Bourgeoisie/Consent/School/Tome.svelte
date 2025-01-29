@@ -22,15 +22,21 @@ import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 //
 //
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
+//
 import Panel from '$lib/trinkets/panel/trinket.svelte'
-import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
-import Offline_Signing_Example from '$lib/trinkets/Hints/Offline_Signing_Example/Trinket.svelte'
 //
+import Offline_Signing_Example from './Offline_Signing_Example/Trinket.svelte'
 //
 ////
 		
+////
+//
+import APT_Entrust_Mode_1_Loyals_Panel from '$lib/Les_Talents/APT_Entrust_Mode_1/Loyals_Panel/Trinket.svelte'
+//
+////
+
 
 const trends = {
 	article: parse_styles ({
@@ -125,6 +131,7 @@ onMount (() => {
 								text-align: center;
 								font-size: 1.5em;
 							"
+							class="card p-1 variant-filled-primary"
 						>
 							<p>Formulas</p>
 						</div>
@@ -172,7 +179,7 @@ onMount (() => {
 		<p
 			style="font-size: 1em; text-align: center; line-height: 2em;"
 		>
-			<span>A <Slang text="Wallet" /> should be on an <Slang text="Offline Machine" />.</span>
+			<span>The <Slang text="Wallet" /> should be on an <Slang text="Offline Machine" />.</span>
 		</p>
 		
 		<div style="height: 1cm"></div>
@@ -192,6 +199,7 @@ onMount (() => {
 								text-align: center;
 								font-size: 1.5em;
 							"
+							class="card p-1 variant-filled-primary"
 						>
 							<p>QR Codes + Cameras</p>
 						</div>

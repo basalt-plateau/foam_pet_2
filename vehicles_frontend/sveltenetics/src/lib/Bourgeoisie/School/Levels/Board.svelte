@@ -55,7 +55,7 @@
 				text-align: center;
 				font-size: 1em;
 			"
-		>These essentially require advanced firewalls and most likely a great degree of wealth.</p>
+		>These essentially require advanced envelope filtering.</p>
 	</div>
 	
 	<div style="height: 0.5cm"></div>
@@ -84,6 +84,12 @@
 				font-size: 1em;
 			"
 		>A Bourgeoisie Wallet (like a Lobbyist) is for consenting to suggestions that are to be requested of the Aristocracy.</p>
+		<p
+			style="
+				text-align: center;
+				font-size: 1em;
+			"
+		>The best Bourgeoisie Wallet for Aptos might be Keystone <a href="https://keyst.one" target="_blank">https://keyst.one</a>.</p>
 	</div>
 
 	<div style="height: 0.5cm"></div>
@@ -104,7 +110,7 @@
 				text-align: center;
 				font-size: 1em;
 			"
-		>This Wallet is intended to be the most secure Bourgeoisie Wallet software.</p>
+		>If installed on an offline computer, this wallet is Bourgeoisie Wallet software.</p>
 	</div>
 
 	<div style="height: 0.5cm"></div>

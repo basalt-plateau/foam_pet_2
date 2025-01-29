@@ -36,16 +36,25 @@ export const consensus = {
 	//	Gala, Banquet, Chaperones, Volunteer, volitional
 	//	Party, Fest, Gala
 	//	Pono - Hawaiian about group decision making
-	//	sequencer
+	//	sequencer, jam session
 	//
-	"consensus": "leadership",
-	"Consensus": "Leadership",
+	//	chord
+	//
+	//	symbiosis, Mutual
+	//
+	//	Nexus
+	//
+	//	Adapters, Enhancers, Modifiers, Beautifiers, Producers,
+	//	Federation
+	//
+	"consensus": "gala",
+	"Consensus": "Gala",
 	
 	/*
 		Chaperones, Bouncers, Rulers
 	*/
-	"consensus_validator": "leaders",
-	"Consensus_validators": "Leaders"
+	"consensus_validator": "volunteers",
+	"Consensus_validators": "Volunteers"
 	
 }
 
