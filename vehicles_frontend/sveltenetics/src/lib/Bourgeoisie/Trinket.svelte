@@ -28,7 +28,7 @@ import { Slangify } from "$lib/trinkets/Slang"
 import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 //
 //
-import School from './School/Trinket.svelte'
+import Tutorials from './Tutorials/Trinket.svelte'
 import Harvests from './Harvests/Trinket.svelte'
 import Consent_Leaf from './Consent/Trinket.svelte'
 import Garden_Leaf from './Garden/Tome.svelte'
@@ -38,7 +38,7 @@ import * as Bourgeoisie_Truck from "./_Truck/index.js"
 //
 ////
 
-let leaf = "School";
+let leaf = "Tutorials";
 
 
 let prepared = "no"
@@ -107,7 +107,7 @@ onDestroy (() => {
 	>
 		<div>
 			<RadioGroup>
-				<RadioItem bind:group={ leaf } name="justify" value={ "School" }>School</RadioItem>
+				<RadioItem bind:group={ leaf } name="justify" value={ "Tutorials" }>Tutorials</RadioItem>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Franchise" }>Franchise</RadioItem>		
 				<RadioItem bind:group={ leaf } name="justify" value={ "Beauty" }>Beauty</RadioItem>	
 				<RadioItem bind:group={ leaf } name="justify" value={ "Harvests" }>
@@ -129,8 +129,8 @@ onDestroy (() => {
 			width: 100%;
 		"
 	>
-		{#if leaf === "School"}
-		<School />
+		{#if leaf === "Tutorials"}
+		<Tutorials />
 		{:else if leaf === "Franchise" }
 		<Garden_Leaf />
 		{:else if leaf === "Beauty" }

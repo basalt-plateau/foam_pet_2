@@ -16,7 +16,7 @@ import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 //
 ////
 
-import School from "./School/Tome.svelte"
+import Tutorials from "./Tutorials/Tome.svelte"
 import Panels from "./Panels/Tome.svelte"
 
 // Enzymes, Flourishes
@@ -46,15 +46,15 @@ let leaf = "Panels";
 		<div>
 			<RadioGroup>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Panels" }>Panels</RadioItem>
-				<RadioItem bind:group={ leaf } name="justify" value={ "School" }>School</RadioItem>		
+				<RadioItem bind:group={ leaf } name="justify" value={ "Tutorials" }>Tutorials</RadioItem>		
 			</RadioGroup>
 		</div>
 	</div>
 
 	<div style="height: 0.5cm" />
 	
-	{#if leaf === "School"}
-	<School />
+	{#if leaf === "Tutorials"}
+	<Tutorials />
 	{:else if leaf === "Panels" }
 	<Panels />
 	{/if}

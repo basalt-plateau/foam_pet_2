@@ -28,7 +28,7 @@ const form_note = '/pictures/orbital/form_note.svg';
 
 
 
-<div class="card p-1">
+<div class="card p-1 variant-soft-surface">
 	<Accordion>
 		<AccordionItem>
 			<svelte:fragment slot="summary">
@@ -37,7 +37,6 @@ const form_note = '/pictures/orbital/form_note.svg';
 						text-align: center;
 						font-size: 1.5em;
 					"
-					class="card p-1 variant-filled-primary"
 				>
 					<p>Offline <Slang text="Signing" /> Example</p>
 				</div>

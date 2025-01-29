@@ -122,7 +122,7 @@ onMount (() => {
 		"
 		class="card p-4"
 	>
-		<div class="card p-1">
+		<div class="card p-1 variant-soft-surface">
 			<Accordion>
 				<AccordionItem>
 					<svelte:fragment slot="summary">
@@ -131,7 +131,6 @@ onMount (() => {
 								text-align: center;
 								font-size: 1.5em;
 							"
-							class="card p-1 variant-filled-primary"
 						>
 							<p>Formulas</p>
 						</div>
@@ -192,7 +191,7 @@ onMount (() => {
 		
 		<div style="height: 0.25cm"></div>
 
-		<div class="card p-1 variant-filled-soft">
+		<div class="card p-1 variant-soft-surface">
 			<Accordion>
 				<AccordionItem>
 					<svelte:fragment slot="summary">
@@ -201,9 +200,8 @@ onMount (() => {
 								text-align: center;
 								font-size: 1.5em;
 							"
-							class="card p-1 variant-filled-primary"
 						>
-							<p>QR Codes + Cameras</p>
+							<p>QR Code Scanners</p>
 						</div>
 					</svelte:fragment>
 					<svelte:fragment slot="content">
