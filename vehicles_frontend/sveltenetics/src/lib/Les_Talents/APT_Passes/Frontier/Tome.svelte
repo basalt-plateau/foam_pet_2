@@ -35,7 +35,7 @@ let open = async () => {
 
 <div class="relative inline-block">
 	<button 
-		monitor="glyph for adaptation"
+		monitor="Extension APT Throw"
 		
 		on:click={ open }
 		type="button" 

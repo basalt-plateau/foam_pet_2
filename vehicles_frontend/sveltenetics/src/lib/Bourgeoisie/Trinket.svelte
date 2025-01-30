@@ -71,6 +71,9 @@ onDestroy (() => {
 	Bourgeoisie_Truck.destroy ()
 });
 
+let nav_width = 0;
+let nav_height = 0;
+
 </script>
 
 
@@ -81,7 +84,7 @@ onDestroy (() => {
 		
 		height: 100%;
 		width: 100%;
-		padding: 0 1cm;
+		padding: 0 0cm;
 		
 		display: flex;
 		justify-content: center;
@@ -90,6 +93,9 @@ onDestroy (() => {
 	"
 >
 	<div
+		bind:clientWidth={ nav_width } 
+		bind:clientHeight={ nav_height }
+	
 		style="
 			position: relative;
 			top: 0;
@@ -106,7 +112,10 @@ onDestroy (() => {
 		"
 	>
 		<div>
-			<RadioGroup>
+			<RadioGroup
+				flexDirection={ nav_width <= 800 ? 'flex-col' : 'row'}
+				rounded={ nav_width <= 800 ? 'rounded-container-token' : 'rounded-token'}
+			>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Tutorials" }>Tutorials</RadioItem>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Franchise" }>Franchise</RadioItem>		
 				<RadioItem bind:group={ leaf } name="justify" value={ "Beauty" }>Beauty</RadioItem>	
@@ -114,7 +123,7 @@ onDestroy (() => {
 					<p monitor="accounts opener">Harvests</p>
 				</RadioItem>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>
-					<p monitor="consent opener">Consent</p>
+					<p monitor="consent opener">Elliptic Consent</p>
 				</RadioItem>				
 			</RadioGroup>
 		</div>

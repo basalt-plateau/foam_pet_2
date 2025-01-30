@@ -3,7 +3,7 @@
 
 #
 #
-#	python3 health.proc.py run --path="Regions/Loyals/Addresses/From_Private_Key.Se.py"
+#	python3 health.proc.py run --path="Panels/Addresses/From_Private_Key.Se.py"
 #
 #
 
@@ -43,8 +43,10 @@ def check_1 ():
 			By.CSS_SELECTOR, 
 			f'[monitor="accounts opener"]'
 		))
-		driver.execute_script("arguments[0].scrollIntoView(true);", button)
-		button.click ();
+		driver.execute_script("arguments[0].click();", button)
+		
+		#driver.execute_script("arguments[0].scrollIntoView(true);", button)
+		#button.click ();
 	
 	open_accounts_panel ();
 	
@@ -140,7 +142,9 @@ def check_1 ():
 			
 			loop (lambda : input_amount_is (fields ["private_key_hexadecimal_textarea"], private_key_hexadecimal))
 			
-			fields ["calculate_account"].click ()
+			driver.execute_script("arguments[0].click();", fields ["calculate_account"])
+			
+			#fields ["calculate_account"].click ()
 		
 		def verify_the_presentation ():
 			assert (

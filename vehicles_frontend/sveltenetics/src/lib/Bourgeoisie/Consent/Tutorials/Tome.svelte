@@ -173,7 +173,7 @@ onMount (() => {
 		<header
 			style="font-size: 2.5em; 
 			text-align: center"
-		>Offline <Slang text="Signature" /></header>
+		>Offline Elliptic <Slang text="Signature" /></header>
 		
 		<div style="height: 1cm"></div>
 	

@@ -44,17 +44,7 @@ let Milieus_Freight = "";
 				padding: 0.25cm 1cm;
 			"
 		/>
-		<Milieus_Button
-			monitor="Bourgeoisie"
-		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Bourgeoisie"] : "Bourgeoisie" }
-			location={[ "Bourgeoisie" ]}
-			is_open_location={[ "Bourgeoisie" ]}
-			
-			style="
-				padding: 0.25cm 1cm;
-			"
-		/>
+
 		<Greetings_Frontier />
 	</div>
 

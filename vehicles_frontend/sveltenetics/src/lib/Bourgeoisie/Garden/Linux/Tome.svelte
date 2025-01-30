@@ -48,7 +48,7 @@ const releases = "https://github.com/Planet-IV/Mech_Pet/releases"
 
 
 <div
-	class="card p-2"
+	class="card p-2 variant-soft-surface"
 	style="
 		width: 100%;
 	"

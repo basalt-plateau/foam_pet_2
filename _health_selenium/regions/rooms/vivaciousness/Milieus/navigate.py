@@ -16,6 +16,10 @@
 "'''
 
 ''''
+	#
+	#	The Offline Wallet
+	#
+	#
 	from vivaciousness.Milieus.navigate import Milieus_Navigate_to_Greetings
 	Milieus_Navigate_to_Greetings ({ "driver": driver });
 "'''
@@ -29,6 +33,18 @@ import time
 
 def Milieus_Navigate_to_Greetings (packet):
 	driver = packet ["driver"]
+	
+	def open_wallet ():
+		def find_button ():
+			return driver.find_element (
+				By.CSS_SELECTOR, 
+				f'[monitor="navigator 1 structure"] button[monitor="Wallet"]'
+			)
+			
+		button = loop (lambda : find_button ())
+		button.click ();
+	
+	open_wallet ();
 	
 	def go ():
 		def find_button ():
@@ -95,8 +111,6 @@ def Milieus_Navigate (packet):
 	location_at_index_0 = location [0]
 	
 	
-	
-	#
 	#
 	#	[monitor="navigator 1 structure"]
 	#		button[monitor="Scholars"]
@@ -140,11 +154,7 @@ def Milieus_Navigate (packet):
 		
 		
 	click_index_0 ();
-	
-	#print ("location_1:", location_1)
-	#print ("location_2:", location_2)
-	
-	
+
 		
 	if (len (location) >= 2):
 		location_at_index_1 = location [1]

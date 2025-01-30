@@ -63,9 +63,11 @@ a {
 
 		<p
 			style="
-				width: 500px;
+				max-width: 500px;
+				width: 100%;
+				
 				text-align: center;
-				margin: 0 auto;
+				margin: 0 auto 1cm;
 			"
 		>The entire domain <Slang text="this_domain" /> can be obtained and run as a Linux dapp.</p>
 		

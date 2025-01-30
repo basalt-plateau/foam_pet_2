@@ -38,7 +38,7 @@ const form_note = '/pictures/orbital/form_note.svg';
 						font-size: 1.5em;
 					"
 				>
-					<p>Offline <Slang text="Signing" /> Example</p>
+					<p>Offline Elliptic <Slang text="Signature" /> Example</p>
 				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="content">

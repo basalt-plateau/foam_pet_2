@@ -10,7 +10,9 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
 
 import Wallet_Plug from './Wallet_Plug/Tome.svelte'
+import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 
+	
 
 const obtain_wallet = ({ wallet }) => {
 	console.log ("obtain_wallet:", { wallet });
@@ -95,19 +97,19 @@ onDestroy (async () => {
 				justify-content: center;
 			"
 		>
-			<span><b>Keystone 3 Pro</b> with the <b>Petra Extension</b> is recommended.</span>
+			<span><b>Petra</b> with <b>Keystone 3 Pro</b> is recommended.</span>
 		</header>
-		<div class="card p-2">
-			<a 
-				target="_blank"
-				href="https://keyst.one"
-			>https://keyst.one</a>
-		</div>
 		<div class="card p-2">
 			<a 
 				target="_blank"
 				href="https://petra.app"
 			>https://petra.app</a>
+		</div>
+		<div class="card p-2">
+			<a 
+				target="_blank"
+				href="https://keyst.one"
+			>https://keyst.one</a>
 		</div>
 	</div>
 	
@@ -123,6 +125,8 @@ onDestroy (async () => {
 		"
 		class="card p-2"
 	>
+		<header>Extension Wallets</header>
+	
 		{#each Object.keys (flourisher_freight.stages) as stage_name }
 		<Wallet_Plug 
 			stage_name={ stage_name }
@@ -130,4 +134,27 @@ onDestroy (async () => {
 		/>		
 		{/each}
 	</div>	
+	
+	<div 
+		style="
+			width: 100%;
+			height: 400px;
+			
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+		"
+		class="card p-4"
+	>
+		<header>Offline Software Wallets</header>
+	
+		<Milieus_Button
+			monitor={ "Bourgeoisie" }
+		
+			name={ "Bourgeoisie" }
+			location={[ "Bourgeoisie" ]}
+			is_open_location={[ "Bourgeoisie" ]}
+		/>
+	</div>
 </div>	

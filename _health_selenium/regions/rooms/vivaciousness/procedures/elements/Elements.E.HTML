@@ -35,8 +35,14 @@
 
 
 	button:
-		[click]
+		[click anywhere on scroll]
+			driver.execute_script("arguments[0].click();", button)
+	
+		[click if visible]
 			button.click ()
+
+		
+
 
 		[scroll + click]
 			driver.execute_script ("arguments[0].scrollIntoView(true);", button)
