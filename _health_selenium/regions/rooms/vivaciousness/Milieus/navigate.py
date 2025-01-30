@@ -42,7 +42,7 @@ def Milieus_Navigate_to_Greetings (packet):
 			)
 			
 		button = loop (lambda : find_button ())
-		button.click ();
+		driver.execute_script("arguments[0].click();", button)
 	
 	open_wallet ();
 	

@@ -9,8 +9,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "Mech_Pet"
-version = "2.1.0"
-description = "A foam pet that can play with Aptos from offline."
+version = "3.0.0"
+description = "A mechanical pet that can play with Aptos from offline."
 authors = []
 readme = "vehicles/Mech_Pet/readme.md"
 packages = [
