@@ -19,11 +19,14 @@ module builder_1::Vow_Parts_01 {
 		//
 		//	Update the Clock
 		//		Epoch IX = January 1, 1970
+		//
 		//		2100 = around 55 * 60 * 60 * 24 * 365 * 1000 
+		//			130
 		//
 		let year_ms : u64 = 31557600000;
+		let begin_ms : u64 = year_ms * 30;
 		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
-		timestamp::update_global_time_for_test (year_ms * 130);
+		timestamp::update_global_time_for_test (begin_ms);
 	}
 	
 	/*

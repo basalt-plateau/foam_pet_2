@@ -1,11 +1,8 @@
 
 
 
-module Builder_01::Game_Vows {
+module Builder_01::Game_can_begin_then_end {
 	use std::string::{ String };
-	use aptos_framework::timestamp;
-	
-	use Builder_01::Vow_Parts_01;
 	
 	#[view] public fun Volitions () : String { 
 		use ride::Rules_10;
@@ -13,15 +10,12 @@ module Builder_01::Game_Vows {
 	}
 	
 	
-	
 	#[test (
 		aptos_framework_consenter = @0x1, 
-		builder_01_consenter = @0x9999,
 		producer_01_consenter = @Producer_01
 	)]
 	public fun Vow_01 (
 		aptos_framework_consenter : signer,
-		builder_01_consenter : signer,
 		producer_01_consenter : signer
 	) {	
 		use std::string_utils;
@@ -66,9 +60,15 @@ module Builder_01::Game_Vows {
 		//
 		//	Boar_Game End
 		//
+		// let year_ms : u64 = 31557600000;
+		// let ending_ms : u64 = year_ms * 31;
 		let year_ms : u64 = 31557600000;
-		timestamp::update_global_time_for_test (year_ms * 281);
+		timestamp::update_global_time_for_test (year_ms * 31);
+		//
+		//  timestamp::update_global_time_for_test (ending_ms);
 		let ending = Game_Module::End_Game ();
+		assert! (ending == utf8 (b"The game ended."), 1);
+		
 		debug::print (& string_utils::format1 (& b"Ending: {}", ending));	
 		assert! (Game_Module::is_Game_built () == utf8 (b"no"), 1);
 		//

@@ -4,13 +4,7 @@
 
 
 /*
-	Boar_Producer:
-		
-	
-	Fonctions:
-		position
-		ask_if_consenter_is_Boar_Producer
-		ask_if_address_is_Boar_Producer
+
 */
 module Builder_01::Producer_Module {	
 	friend Builder_01::Game_Module;
