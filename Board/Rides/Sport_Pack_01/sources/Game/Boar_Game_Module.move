@@ -1,6 +1,8 @@
 
 
 
+
+
 module builder_1::Boar_Game_Module {
 	
 	use std::vector;
@@ -36,7 +38,6 @@ module builder_1::Boar_Game_Module {
 		use ride::Rules_10;
 		Rules_10::Volitions_01 () 
 	}
-	
 	
 	
 	////

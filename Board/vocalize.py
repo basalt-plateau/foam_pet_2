@@ -27,14 +27,16 @@ import Rides_Published_Mainnet.Rules as Rules_Moves
 import Rides_Published_Mainnet.Rules_10 as Rules_10
 #
 #
-import Rides.Motions_01 as Motions_01_Moves
-import Rides.Allowed_Wallets_02 as Allowed_Wallets_02
-
+import Rides_Published_Mainnet.Allowed_Wallets_02 as Allowed_Wallets_02
+#
+#
+import Rides_02.Textboard as Textboard
 #
 #
 import Rides.APT_Octas_Math_01 as APT_Octas_Math_01
 
 import Rides.APT_Asks_01 as APT_Asks_01
+import Rides.Motions_01 as Motions_01_Moves
 
 import Rides.Peptyde as Peptyde_Moves
 import Rides.Rhythm_01 as Rhythm_01
@@ -124,11 +126,11 @@ def motion_for_named_addresses (packet):
 		f"""Formulator_1={ owner_1 ["address"] }, """,
 		f"""Boar_Producer_1={ owner_1 ["address"] }, """,
 
+		f"""Builder_01={ builder_1 ["address"] }, """,
 		f"""Publisher_01={ builder_1 ["address"] }, """,
 		f"""Ride_01={ builder_1 ["address"] }, """,
 		f"""ride={ builder_1 ["address"] }, """,		
 		f"""builder_1={ builder_1 ["address"] },""",		
-		f"""Builder_01={ builder_1 ["address"] }, """,
 
 		f"""boar_Team_01={ boar_Team_01 ["legacy address"] }, """,
 		f"""boar_Team_02={ boar_Team_02 ["legacy address"] }, """,
@@ -151,7 +153,7 @@ moves_structures = {
 	"Sport_Pack_01": Sport_Pack_01,
 	
 	"Allowed_Wallets_02": Allowed_Wallets_02,
-	
+	"Textboard": Textboard,
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
 	"Rules_10": Rules_10,
@@ -172,6 +174,8 @@ def clique ():
 
 
 	"""
+		python3 vocalize.py vocalize --steady --move Textboard
+		
 		python3 vocalize.py vocalize --steady --move Allowed_Wallets_02
 		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --publisher Petra
 		
@@ -195,7 +199,6 @@ def clique ():
 			#
 			#
 			publisher_address = publisher_addresses [ publisher ];
-		
 			moves_structures [ move ].publish ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
@@ -203,15 +206,18 @@ def clique ():
 				})
 			});
 			
+			
+			
 		elif (steady):
 			publisher_address = publisher_addresses [ "Dev" ];
-		
 			moves_structures [ move ].steady ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
 					"publisher_address": publisher_address
 				})
 			});
+			
+			
 			
 		else:
 			print ("");

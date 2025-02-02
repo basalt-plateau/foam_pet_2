@@ -15,7 +15,7 @@ build_exe_options = {
 
 # .py_3_11
 
-version = "v2_1_0_0"
+version = "v3_0_0_0"
 
 
 #

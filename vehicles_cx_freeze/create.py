@@ -8,7 +8,10 @@ import os
 import time
 import shutil
 
-version = "v2_1_0_0"
+#version = "v2_1_0_0"
+
+version = "v3_0_0_0"
+
 Le_OS = "linux-x86_64"
 
 name_softwhere = f"Mech_Pet.{ Le_OS }.{ version }"
@@ -25,20 +28,25 @@ distributions_path = f"/Metro/vehicles_cx_freeze/_distributions"
 #
 module_build_path = f"{ build_path }/{ name_softwhere }"
 module_rules_path = f"{ build_path }/{ name_softwhere }/lib/Mech_Pet/Rules"
+module_build_path_zip = f"{ build_path }/{ name_softwhere }.zip"
 
 #
 #	Build: The outer rules
 #
 #
 module_outer_rules_path = f"{ build_path }/{ name_rules }"
+module_outer_rules_path_zip = f"{ build_path }/{ name_rules }.zip"
 
 
 #
 #	The distribution
 #
 #
-distribution_path_softwhere =	f"{ distributions_path }/{ version }/{ name_softwhere }"
-distribution_path_rules = 		f"{ distributions_path }/{ version }/{ name_rules }"
+distribution_path_softwhere =		f"{ distributions_path }/{ version }/{ name_softwhere }"
+distribution_path_softwhere_zip = 	f"{ distributions_path }/{ version }/{ name_softwhere }.zip"
+
+distribution_path_rules = 			f"{ distributions_path }/{ version }/{ name_rules }"
+distribution_path_rules_zip =		f"{ distributions_path }/{ version }/{ name_rules }.zip"
 
 
 
@@ -146,6 +154,15 @@ mimic_recursively ({
 mimic_recursively ({
 	"origin": 	module_rules_path,
 	"to": 		distribution_path_rules
+})
+
+mimic ({
+	"origin": 	module_build_path_zip,
+	"to":		distribution_path_softwhere_zip
+})
+mimic ({
+	"origin": 	module_outer_rules_path_zip,
+	"to":		distribution_path_rules_zip
 })
 
 #

@@ -25,7 +25,7 @@ botanist==1.0.0
     #   biotech
     #   body-scan
     #   emergency
-certifi==2024.12.14
+certifi==2025.1.31
     # via requests
 charset-normalizer==3.4.1
     # via requests
@@ -107,7 +107,7 @@ pip-licenses==5.0.0
     # via mech-pet (pyproject.toml)
 pipdeptree==2.25.0
     # via mech-pet (pyproject.toml)
-prettytable==3.13.0
+prettytable==3.14.0
     # via pip-licenses
 psutil==5.9.8
     # via

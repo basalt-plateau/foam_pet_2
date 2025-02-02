@@ -13,26 +13,55 @@
 		Scholars_Truck
 */
 
+/*
+	Wonder ({
+		path: './Venues/Talents/Trinket.svelte',
+		
+		
+	})
+*/
+
+
+
 
 import { onMount, onDestroy } from 'svelte'
 
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import { parse_styles } from '$lib/trinkets/styles/parse'
 	
-import { technicians_leaves } from './Venues/Scholars/Resilience/Leaves.js'
+import { technicians_leaves } from './Venues/Vows/Leaves.js'
 
+/*
+	//
+	//	status:
+	//		here
+	//		importing
+	//		there
+	//
+	
+	
+	Wonder ({
+		obtain: async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') }
+	}) 
+*/
+const Wonder = ({ obtain, spot }) => {
+	// async () => { return await import ('./Venues/Talents/Trinket.svelte') }
+	
+	return {
+		obtain: async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
+		status: "there"
+	}
+}
 
 let Milieus = {
 	"Ecology": {
 		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
-		// "Resilience": technicians_leaves
 	},
 	
 	"Vows": technicians_leaves,
 	
 	"Talents": async () => { return await import ('./Venues/Talents/Trinket.svelte') },
 	"Wallet": async () => { return await import ('$lib/Les_Talents/_Wallet/Panel/Leaf.svelte') },
-	
 	
 	"Bourgeoisie": async () => { return await import ('$lib/Bourgeoisie/Trinket.svelte') },
 }
