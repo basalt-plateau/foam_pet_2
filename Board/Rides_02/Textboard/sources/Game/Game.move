@@ -120,27 +120,22 @@ module Builder_01::Game_Module {
 		let game = borrow_global_mut<Game>(Producer_Module::obtain_address ());
 		let game_texts = &mut game.texts;
 		
-		
 		let already_has_text = false;
 		for (index in 0..vector::length (game_texts)) {
 			let text_ref = vector::borrow_mut (game_texts, index);
 			if (text_ref.writer_address == writer_address) {
 				// vector::remove (game_texts, index);
 				
-				already_has_text = true;
-				
 				text_ref.text = text;
 				text_ref.platforms = platforms;
 				text_ref.allow_translation = allow_translation;
 				
-				return;
+				already_has_text = true;
+				break;
 			}
 		};
 		
-		if (already_has_text) {
-			
-		}
-		else {
+		if (already_has_text == false) {
 			let this_text = Text {
 				writer_address : writer_address,
 				text : text,

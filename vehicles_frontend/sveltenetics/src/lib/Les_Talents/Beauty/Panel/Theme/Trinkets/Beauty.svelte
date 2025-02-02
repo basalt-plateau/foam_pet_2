@@ -151,10 +151,11 @@ const change_visibility = () => {
 		<RadioItem bind:group={theme} name="justify" value="Domes">Domes</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Gauze">Gauze</RadioItem>		
 		<RadioItem bind:group={theme} name="justify" value="Hacienda">Hacienda</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="HD 40307g">HD 40307g</RadioItem>
+		<RadioItem bind:group={theme} name="justify" value="Lentils">Lentils</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="Motto">Motto</RadioItem>	
 		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="HD 40307g">HD 40307g</RadioItem>		
 	</RadioGroup>
 
 	<div style="height: 0.2cm"></div>

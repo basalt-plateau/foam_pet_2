@@ -17,6 +17,7 @@ import { Motto_Theme } from './_themes/skeleton.motto.theme'
 import { Gauze_Theme } from './_themes/skeleton.Gauze.theme'
 import { Domes_Theme } from './_themes/skeleton.Domes.theme'
 import { HD_Theme } from './_themes/skeleton.HD.theme'
+import { Lentils_Theme } from './_themes/skeleton.Lentils.theme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -52,7 +53,8 @@ export default {
 					Motto_Theme,
 					Gauze_Theme,
 					Domes_Theme,
-					HD_Theme
+					HD_Theme,
+					Lentils_Theme
 					
 					// Rust_Theme, 
 					// Established_Theme 

@@ -1,8 +1,9 @@
 
 
 
-module Builder_01::Game_can_begin_then_end {
+module Builder_01::Text_can_be_added_then_deleted {
 	use std::string::{ String };
+
 	
 	#[view] public fun Volitions () : String { 
 		use ride::Rules_10;
@@ -55,22 +56,22 @@ module Builder_01::Game_can_begin_then_end {
 		assert! (Game_Module::is_Game_built () == utf8 (b"yup"), 1);
 		//
 		////
-
+	
+		
+	
+	
 		////
 		//
 		//	Game End
 		//
-		// let year_ms : u64 = 31557600000;
-		// let ending_ms : u64 = year_ms * 31;
 		let year_ms : u64 = 31557600000;
-		timestamp::update_global_time_for_test (year_ms * 31);
+		let year_2026_ms : u64 = year_ms * 31;
+		timestamp::update_global_time_for_test (year_2026_ms - 1);
 		//
-		//  timestamp::update_global_time_for_test (ending_ms);
 		let ending = Game_Module::End_Game ();
-		assert! (ending == utf8 (b"The game ended."), 1);
-		
-		debug::print (& string_utils::format1 (& b"Ending: {}", ending));	
-		assert! (Game_Module::is_Game_built () == utf8 (b"no"), 1);
+		debug::print (& string_utils::format1 (& b"Ending: {}", ending));			
+		assert! (ending == utf8 (b"The game cannot be ended yet. Now is 978285599999. The game can end at 978285600000"), 1);
+		assert! (Game_Module::is_Game_built () == utf8 (b"yup"), 1);
 		//
 		////
 		

@@ -48,7 +48,7 @@ module Builder_01::Game_can_begin_then_keeps_going {
 		
 		////
 		//
-		//	Boar_Game Begin
+		//	Game Begin
 		//
 		//
 		assert! (Game_Module::is_Game_built () == utf8 (b"no"), 1);
@@ -59,7 +59,7 @@ module Builder_01::Game_can_begin_then_keeps_going {
 
 		////
 		//
-		//	Boar_Game End
+		//	Game End
 		//
 		let year_ms : u64 = 31557600000;
 		let year_2026_ms : u64 = year_ms * 31;
