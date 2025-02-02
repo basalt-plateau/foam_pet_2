@@ -18,6 +18,7 @@ import { Gauze_Theme } from './_themes/skeleton.Gauze.theme'
 import { Domes_Theme } from './_themes/skeleton.Domes.theme'
 import { HD_Theme } from './_themes/skeleton.HD.theme'
 import { Lentils_Theme } from './_themes/skeleton.Lentils.theme'
+import { Bayanihan_Theme } from './_themes/skeleton.Bayanihan.theme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -46,6 +47,8 @@ export default {
 		skeleton({
 			themes: {
 				custom: [ 
+					Bayanihan_Theme,
+				
 					Atolls_Theme,
 					Rhubarb_Theme, 
 					PTO_theme, 

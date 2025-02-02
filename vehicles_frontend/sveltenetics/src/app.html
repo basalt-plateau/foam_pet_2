@@ -11,16 +11,10 @@
 		%sveltekit.head%
 		
 		<script>
-			window.allow_wallets = {
-				"Petra": "yup",
-				"Rise": "yup",
-				"Pontem": "yup"
-			};
-		
-			const lentils_theme = "Lentils";
-			// const arrival_theme = "HD 40307g"
-			// const arrival_theme = "Atolls"
-			// const arrival_theme = "Domes"
+			const opener_theme = "Bayanihan";
+			// const opener_theme = "HD 40307g"
+			// const opener_theme = "Atolls"
+			// const opener_theme = "Domes"
 		
 			window.onload = function () {
 				let local_storage_theme = localStorage.getItem ('body-theme');
@@ -30,7 +24,7 @@
 					return;
 				}
 				
-				document.body.setAttribute ('data-theme', arrival_theme)
+				document.body.setAttribute ('data-theme', opener_theme)
 			};
 		</script>
 	</head>
