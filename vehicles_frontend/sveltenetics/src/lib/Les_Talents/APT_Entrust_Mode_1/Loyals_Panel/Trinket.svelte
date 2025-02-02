@@ -12,28 +12,28 @@
 import { getModalStore } from '@skeletonlabs/skeleton';
 import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
 import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
+import { ConicGradient } from '@skeletonlabs/skeleton';
 import { onMount, onDestroy } from 'svelte';
 //
 //
 import { parse_styles } from '$lib/trinkets/styles/parse.js';
-//
 //
 import Transaction_Petition_Field from './Leaves/1_Transaction_Petition_Field/Trinket.svelte';
 import Unsigned_Transaction_Trinket from './Leaves/2_Transaction_Petition/Trinket.svelte';
 import Unsigned_Transaction_Signature_Trinket from './Leaves/3_Transaction_Signature_Field/Trinket.svelte';
 import Signature_Verification_Trinket from './Leaves/4_Signature_Verification/Trinket.svelte'
 import Signature_Trinket from './Leaves/5_Signature/Trinket.svelte'
+import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
+import { check_roomies_truck } from '$lib/Versies/Trucks'
+import Radial_Progress from '$lib/trinkets/Progress/Radial/Trinket.svelte'
 //
 //
 import Unfinished from './Trinkets/Unfinished.svelte'
 //
-import { ConicGradient } from '@skeletonlabs/skeleton';
 //
 //\
 //\\
-import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
-import { check_roomies_truck } from '$lib/Versies/Trucks'
-import Radial_Progress from '$lib/trinkets/Progress/Radial/Trinket.svelte'
+
 	
 ////
 ///

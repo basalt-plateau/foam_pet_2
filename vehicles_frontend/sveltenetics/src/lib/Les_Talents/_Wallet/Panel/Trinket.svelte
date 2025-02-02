@@ -20,7 +20,7 @@ import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
 //
 ////
 
-import Wallet_Leaf from "./Leaf.svelte"
+import Wallet_Leaf from "./../Leaf/Board.svelte"
 	
 
 

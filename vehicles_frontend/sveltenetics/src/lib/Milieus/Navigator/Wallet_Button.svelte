@@ -112,7 +112,7 @@ export let buttons_styles = {}
 		>{ wallet_provider }</span>
 	</span>
 	{:else}
-	Wallet
+	Address
 	{/if}
 </Milieus_Button>
 

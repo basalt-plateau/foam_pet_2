@@ -18,7 +18,7 @@
 */
 
 
-//
+////
 //
 import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 import _merge from 'lodash/merge'
@@ -29,10 +29,11 @@ import Barcode_Visual from '$lib/trinkets/Barcode/Visual/Trinket.svelte'
 import Leaf from '$lib/trinkets/Layout/Leaf/Trinket.svelte'
 import Barcode_Vision from '$lib/trinkets/Barcode/Vision/Trinket.svelte'
 //
-//
 import Alert_Success from '$lib/trinkets/Alerts/Success.svelte'
 import Code_Wall from '$lib/trinkets/Code_Wall/Trinket.svelte' 
-	
+//
+////
+
 
 const alert_success_note = "The bits were received successfully."
 let received_bits = "";

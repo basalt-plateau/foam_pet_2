@@ -33,6 +33,7 @@ import Dapp_Network_Frontier from '$lib/Les_Talents/Dapp_Network/Frontier/Tome.s
 ////
 //
 //	Frontiers (Porticos)
+//		These could be imported when button is touched.
 //
 import Address_Search from '$lib/Les_Talents/Address_Search/Frontier/Board.svelte'
 import APT_Passes from '$lib/Les_Talents/APT_Passes/Frontier/Tome.svelte'
@@ -74,7 +75,7 @@ const Les_Talents = [
 	},
 	{
 		"Frontier": APT_Entrust_Friends,
-		"Mode": "business"
+		"Mode": "nurture"
 	},
 	{
 		"Frontier": APT_Passes,
@@ -86,7 +87,7 @@ const Les_Talents = [
 	},
 	{
 		"Frontier": Bit_Pack,
-		"Mode": "business"
+		"Mode": "nurture"
 	},
 	{
 		"Frontier": Digital_Assets_Portico,

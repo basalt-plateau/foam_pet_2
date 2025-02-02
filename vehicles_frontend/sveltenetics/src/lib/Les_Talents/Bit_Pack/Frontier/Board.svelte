@@ -10,6 +10,7 @@
 	Frontier, Event Horizon
 */
 
+import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 const modal_store = getModalStore ();
 
@@ -32,7 +33,15 @@ let open = async () => {
 </script>
 
 
-<div class="relative inline-block">
+<div 
+	style="
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	"
+	class="relative inline-block"
+>
 	<button 
 		monitor="glyph for adaptation"
 		
@@ -52,4 +61,11 @@ let open = async () => {
 	>
 		<p>Bit Pack</p>
 	</button>
+	
+	<div style="height: 0.25cm" />
+	<p
+		style="
+			text-align: center;
+		"
+	>This requires <Slang text="Label_Wallet_Extension" />.</p>
 </div>

@@ -52,15 +52,61 @@ const style_2 = parse_styles (Object.assign ({}, {
 	type="button" 
 	class="btn bg-gradient-to-br variant-gradient-primary-secondary"
 	style="
+		position: relative;
+
 		font-size: 1.3em;
-		padding: 12px 54px;
-		margin-top: 10px;
+		padding: 16px 44px;
 		
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		
+		border-top-left-radius: 35px;
+		border-bottom-left-radius: 10px;
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 39px;
+		
+		background: radial-gradient(
+			rgb(var(--color-primary-500)), 
+			rgb(var(--color-secondary-500)),
+			rgb(var(--color-secondary-400)),
+			rgb(var(--color-secondary-600))
+		);
 	"
 >
-	<p>Beauty</p>
+	<div
+		style="
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+			background: linear-gradient(
+				22deg,
+				rgb(var(--color-primary-500)), 
+				rgb(var(--color-secondary-500)),
+				rgb(var(--color-secondary-400)),
+				rgb(var(--color-secondary-600))
+			);
+			
+			border-top-left-radius: 35px;
+			border-bottom-left-radius: 10px;
+			border-top-right-radius: 10px;
+			border-bottom-right-radius: 39px;
+			
+			opacity: 0.5;
+		"
+	></div>
+	<p
+		style="
+			position: relative;
+		"
+	>Beauty</p>
 </button>
