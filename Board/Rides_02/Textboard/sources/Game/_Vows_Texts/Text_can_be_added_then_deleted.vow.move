@@ -22,8 +22,8 @@ module Builder_01::Text_can_be_added_then_deleted {
 		aptos_framework_consenter : signer,
 		producer_01_consenter : signer,
 		
-		organization_01_consenter : signer,
-		organization_02_consenter : signer
+		organization_01_consenter : & signer,
+		organization_02_consenter : & signer
 	) {	
 		use std::vector;
 		use std::string_utils;

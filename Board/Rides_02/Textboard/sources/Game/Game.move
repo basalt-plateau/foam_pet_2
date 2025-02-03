@@ -158,6 +158,17 @@ module Builder_01::Game_Module {
 			}
 		};
 	}
+	
+	#[view] public fun retrieve_texts () : vector<String> acquires Game {
+		let game = borrow_global_mut<Game>(Producer_Module::obtain_address ());
+		let game_texts = &mut game.texts;
+		
+		let platforms_01 = vector::empty<String>();
+		
+		
+		platforms_01
+	}
+	
 	//
 	////
 }
