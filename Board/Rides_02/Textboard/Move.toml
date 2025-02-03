@@ -4,7 +4,7 @@
 name = "Textboard"
 version = "1.0.0"
 authors = []
-upgrade_policy = "immutable"
+# upgrade_policy = "immutable"
 
 [addresses]
 Builder_01 = "_"
@@ -17,8 +17,5 @@ local = "/Metro/aptos-core/aptos-move/framework/aptos-framework"
 
 [dependencies.AptosStdlib]
 local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib" 
-
-[dependencies.Rules_10]
-local = "/Metro/Board/Rides_Published_Mainnet/Rules_10" 
 
 

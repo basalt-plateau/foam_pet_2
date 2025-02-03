@@ -16,8 +16,8 @@ module Builder_01::Game_Module {
 	
 	
 	#[view] public fun Volitions () : String { 
-		use ride::Rules_10;
-		Rules_10::Volitions_01 () 
+		use Builder_01::Rules_Module;
+		Rules_Module::Volitions_01 () 
 	}
 	
 	/*
@@ -160,7 +160,14 @@ module Builder_01::Game_Module {
 	}
 	
 	
-	
+	/*
+		Bracket: {
+			"writer_address": "",
+			"text": "",
+			"platforms": "",
+			"allow_translation": ""
+		}
+	*/
 	#[view] public fun retrieve_texts () : vector<Text> acquires Game {
 		let game = borrow_global_mut<Game>(Producer_Module::obtain_address ());
 		let game_texts = &mut game.texts;

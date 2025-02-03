@@ -62,6 +62,7 @@ module builder_1::Vow_Parts_01 {
 		coin::destroy_freeze_cap (freeze_cap);
 		coin::destroy_burn_cap (burn_cap);
 	*/
+	#[test_only]
 	public fun origin (
 		aptos_framework_consenter: & signer
 	) : (

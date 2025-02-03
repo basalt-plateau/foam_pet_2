@@ -6,8 +6,8 @@ module Builder_01::Text_can_be_added_then_deleted {
 
 	
 	#[view] public fun Volitions () : String { 
-		use ride::Rules_10;
-		Rules_10::Volitions_01 () 
+		use Builder_01::Rules_Module;
+		Rules_Module::Volitions_01 () 
 	}
 	
 	
@@ -65,15 +65,31 @@ module Builder_01::Text_can_be_added_then_deleted {
 		////
 		
 		
-		let text_01 : String = utf8 (b"This");
+		
+		//
+		//	Send Texts
+		//
+		//
+		let text_01_text : String = utf8 (b"This");
 		let platforms_01 = vector::empty<String>();
 		let allow_translation : String = utf8 (b"This");
 		Game_Module::send_text (
 			organization_01_consenter,
-			text_01,
+			text_01_text,
 			platforms_01,
 			allow_translation
 		);
+		
+		//
+		//	Retrieve Texts
+		//
+		//
+		let texts : vector<Game_Module::Text> = Game_Module::retrieve_texts ();
+		assert! (vector::length (& texts) == 1);
+		
+		// assert! (vector::borrow (& texts, 0).text == utf8 (b"This"));
+		
+		
 		
 		
 		////

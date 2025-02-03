@@ -143,7 +143,7 @@ onDestroy (async () => {});
 	</div>	
 	
 	
-	{#if typeof Versies_Freight.mode === "nurture"}
+	{#if Versies_Freight.mode === "nurture" }
 	<div 
 		style="
 			width: 100%;

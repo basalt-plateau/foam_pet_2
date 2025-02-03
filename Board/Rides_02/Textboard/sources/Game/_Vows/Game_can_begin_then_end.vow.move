@@ -5,8 +5,8 @@ module Builder_01::Game_can_begin_then_end {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
-		use ride::Rules_10;
-		Rules_10::Volitions_01 () 
+		use Builder_01::Rules_Module;
+		Rules_Module::Volitions_01 () 
 	}
 	
 	
