@@ -121,13 +121,25 @@ export let buttons_styles = {}
 	<div
 		style="
 			display: flex;
-			
 			flex-direction: column;
-			gap: 0px;
-			line-height: 1em;
+			justify-content: center;
+			align-items: center;
+			
+			transform: translateY(-4px);
 		"
 	>
-		<p>Wallets</p>
+		<span
+			style="
+				height: 1em;
+				font-size: 0.75em;
+			"
+		>Wallet</span>
+		<span
+			style="
+				height: 1em;
+				font-size: 0.65em;
+			"
+		>Sensor</span>
 	</div>
 	{/if}
 </Milieus_Button>
