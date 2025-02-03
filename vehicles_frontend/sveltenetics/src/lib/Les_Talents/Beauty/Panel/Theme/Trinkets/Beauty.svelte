@@ -51,6 +51,19 @@ const change_tints = ({ theme: _theme }) => {
 }
 
 
+const Options = [
+	"Atolls",
+	"Bayanihan",
+	"Domes",
+	"Gauze",
+	"Hacienda",
+	"HD 40307g",
+	"Lentils",
+	"Motto",
+	"PTO",
+	"Rhubarb"
+]
+
 /*
 	This is for learning the name of the theme.
 	
@@ -143,6 +156,16 @@ const change_visibility = () => {
 	
 	<div style="height: 0.2cm"></div>
 	
+	<select 
+		bind:value={theme}
+		class="select"
+	>
+		{#each Options as name, index}
+		<option value={ name }>{ name }</option>
+		{/each}
+	</select>
+	
+	{#if false}
 	<RadioGroup 
 		flexDirection={ VF.window_width <= 1000 ? 'flex-col' : 'row'}
 		rounded={ VF.window_width <= 1000 ? 'rounded-container-token' : 'rounded-token'}
@@ -157,6 +180,7 @@ const change_visibility = () => {
 		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
 		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
 	</RadioGroup>
+	{/if}
 
 	<div style="height: 0.2cm"></div>
 

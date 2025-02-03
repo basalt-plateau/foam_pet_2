@@ -12,10 +12,13 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 import Wallet_Plug from './Wallet_Plug/Tome.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 
 
-let Versies_Freight = false
 	
+
+let Versies_Freight = false;
+let Extension_Winch_Freight = false;
 	
 	
 
@@ -61,6 +64,8 @@ onDestroy (async () => {
 	"
 >
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
+	{#if typeof Extension_Winch_Freight === "object"}
 	{#if typeof Versies_Freight === "object"}
 	
 	
@@ -107,19 +112,28 @@ onDestroy (async () => {
 				justify-content: center;
 			"
 		>
-			<span><b>Petra</b> with <b>Keystone 3 Pro</b> is recommended.</span>
+			<span><b>Petra</b> with <b>Keystone 3 Pro</b> (or perhaps a later version) is recommended.</span>
 		</header>
-		<div class="card p-2">
-			<a 
-				target="_blank"
-				href="https://petra.app"
-			>https://petra.app</a>
-		</div>
-		<div class="card p-2">
-			<a 
-				target="_blank"
-				href="https://keyst.one"
-			>https://keyst.one</a>
+		<div
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.25cm;
+				justify-content: center;
+			"
+		>
+			<div class="card p-2 variant-soft-primary">
+				<a 
+					target="_blank"
+					href="https://petra.app"
+				>https://petra.app</a>
+			</div>
+			<div class="card p-2 variant-soft-primary">
+				<a 
+					target="_blank"
+					href="https://keyst.one"
+				>https://keyst.one</a>
+			</div>
 		</div>
 	</div>
 	
@@ -145,6 +159,8 @@ onDestroy (async () => {
 		{/each}
 	</div>	
 	
+	
+	{#if typeof Versies_Freight.mode === "nurture"}
 	<div 
 		style="
 			width: 100%;
@@ -167,6 +183,8 @@ onDestroy (async () => {
 			is_open_location={[ "Bourgeoisie" ]}
 		/>
 	</div>
+	{/if}
+	{/if}
 	
 	{/if}
 </div>	

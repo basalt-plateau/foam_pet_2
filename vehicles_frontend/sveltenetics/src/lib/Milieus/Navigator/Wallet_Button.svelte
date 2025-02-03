@@ -121,8 +121,7 @@ export let buttons_styles = {}
 			line-height: 1em;
 		"
 	>
-		<p>Wallet</p>
-		<p>Sensor</p>
+		<p>Account</p>
 	</div>
 	{/if}
 </Milieus_Button>
