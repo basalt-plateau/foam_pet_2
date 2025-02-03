@@ -75,12 +75,15 @@ onDestroy (() => {
 
 
 const ask_for_wallet_address = () => {
+	console.info ("ask_for_wallet_address");
+	
 	try {
 		if (flourisher_freight.stage_name_connected.length === 0) {
 			return;
 		}
 		
 		let stage = flourisher_freight.ask_for_stage ();
+		console.info ({ stage });
 		
 		let address = stage.account.address;
 		if (address.substring (0,2) === "0x") {

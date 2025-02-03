@@ -210,7 +210,7 @@ let untapped = "variant-filled-primary"
 	{:else if use_slot === "yes" }
 	<slot></slot>
 	{:else}
-	{ name }	
+	{ name }
 	{/if}
 </button>
 {/if}

@@ -120,7 +120,7 @@ beforeUpdate (async () => {
 	}
 });
 
-const nav_heights = [ "1.5cm", "2.5cm" ]
+const nav_heights = [ "1.5cm", "2cm" ]
 
 
 let Versies_Freight = false

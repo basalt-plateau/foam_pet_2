@@ -110,8 +110,5 @@ const build = () => {
 	<Wallet_Button 
 		buttons_styles={ buttons_styles }
 	/>
-	
-	
-	<!-- <Wallet_Frontier /> -->
 	{/if}
 </div>

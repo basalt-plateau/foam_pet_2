@@ -1,24 +1,32 @@
 
 <script>
 
-//
+////
 //
 import { onMount, onDestroy } from 'svelte'
 //
 //
-import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 //
+import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
+////
 
+let Extension_Winch_Freight = false
+
+	
 
 let wallet_address = ""
 let wallet_provider = "?"
 
 let mounted = "no"
-let flourisher_freight = ""
-let flourisher_monitor = ""
-onMount (() => {
-	flourisher_freight = Extension_Winch.freight ();
+
+
+
+let flourisher_freight = Extension_Winch.freight ();
+let flourisher_monitor;
+onMount (async () => {
 	flourisher_monitor = Extension_Winch.monitor (async ({
 		original_freight,
 		pro_freight, 
@@ -35,7 +43,7 @@ onMount (() => {
 	ask_for_wallet_address ();
 	mounted = "yes"
 });
-onDestroy (() => {
+onDestroy (async () => {
 	flourisher_monitor.stop ()
 });
 
@@ -55,25 +63,23 @@ const ask_for_wallet_address = () => {
 			wallet_address = address.substring (0,4) + ".." + address.substring (address.length - 4);
 		}
 		
-		wallet_provider = flourisher_freight.stage_name_connected;
-		
 		return;
 	}
 	catch (imperfection) {
 		console.error ("wallet address imperfection:", imperfection);
 	}
 
-	wallet_provider = "?";
 	wallet_address = "?";
 }
 
 
 
-import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
+
 
 export let buttons_styles = {}
 
 </script>
+
 
 <Milieus_Button
 	monitor="Wallet"
@@ -109,7 +115,7 @@ export let buttons_styles = {}
 				height: 1em;
 				font-size: 0.65em;
 			"
-		>{ wallet_provider }</span>
+		>{ flourisher_freight.stage_name_connected }</span>
 	</span>
 	{:else}
 	<div
@@ -121,9 +127,8 @@ export let buttons_styles = {}
 			line-height: 1em;
 		"
 	>
-		<p>Consent</p>
+		<p>Wallets</p>
 	</div>
 	{/if}
 </Milieus_Button>
-
 
