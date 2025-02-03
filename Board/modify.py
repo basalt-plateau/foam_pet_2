@@ -30,7 +30,7 @@ places = [
 '''
 find_and_replace = [
 	[ "boar_Pass", "boar_Planet_IV" ],
-	[ "Boar_Pass", "Boar_Planet_IV" ]	
+	[ "Boar_Pass", "Boar_Planet_IV" ]
 ]
 
 

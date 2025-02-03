@@ -45,7 +45,6 @@ import Drink_Shop from '$lib/Les_Talents/Drink_Shop/Frontier/Trinket.svelte'
 import Faucet from '$lib/Les_Talents/Faucet/Frontier/Board.svelte'
 import Harvests_Portico from '$lib/Les_Talents/Harvests/Portico/Trinket.svelte'
 import Mercy_Frontier from '$lib/Les_Talents/Mercy/Frontier/Trinket.svelte'
-import Rondovals_Portico from '$lib/Les_Talents/Rondovals/Portico/Trinket.svelte'
 import Venues_Portico from '$lib/Les_Talents/Venues/Portico/Trinket.svelte'
 import Sport_Pack from '$lib/Les_Talents/Sport_Pack/Frontier/Tome.svelte'
 //
@@ -107,10 +106,6 @@ const Les_Talents = [
 	},
 	{
 		"Frontier": Mercy_Frontier,
-		"Mode": "nurture"
-	},
-	{
-		"Frontier": Rondovals_Portico,
 		"Mode": "nurture"
 	},
 	{

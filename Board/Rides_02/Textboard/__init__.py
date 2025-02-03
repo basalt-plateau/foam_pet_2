@@ -11,7 +11,6 @@ import sys
 this_directory = pathlib.Path (__file__).parent.resolve ()	
 
 
-
 def roster ():
 	mascots = []
 	counter = 1;

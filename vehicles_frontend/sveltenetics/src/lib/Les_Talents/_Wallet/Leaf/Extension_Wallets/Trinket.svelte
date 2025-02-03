@@ -13,39 +13,23 @@ import _merge from 'lodash/merge'
 import { has_field } from 'procedures/object/has_field'
 //
 //
-import * as Extension_Winch from "$lib/Singles/Extension_Winch"
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 //
 //
 import Wallet_Plugs from "./Wallet_Plugs/Tome.svelte"
 import Connected from "./Connected/Tome.svelte"
 //
-import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+////
+
 let Extension_Winch_Freight = false
 
 	
 
 let mounted = "no"
-let flourisher_monitor = ""
-let flourisher_freight = ""
 onMount (async () => {
-	flourisher_freight = Extension_Winch.freight ();
-	flourisher_monitor = Extension_Winch.monitor (async ({
-		original_freight,
-		pro_freight, 
-		//
-		target,
-		//
-		property, 
-		value
-	}) => {
-		flourisher_freight = pro_freight;
-	});
-	
 	mounted = "yup"
 });
-onDestroy (() => {
-	flourisher_monitor.stop ()
-});
+onDestroy (() => {});
 
 </script>
 

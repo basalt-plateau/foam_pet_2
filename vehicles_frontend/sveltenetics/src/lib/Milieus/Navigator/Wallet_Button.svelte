@@ -121,7 +121,7 @@ export let buttons_styles = {}
 			line-height: 1em;
 		"
 	>
-		<p>Account</p>
+		<p>Consent</p>
 	</div>
 	{/if}
 </Milieus_Button>

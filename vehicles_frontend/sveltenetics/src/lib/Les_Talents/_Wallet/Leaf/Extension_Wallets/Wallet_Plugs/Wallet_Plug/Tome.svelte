@@ -70,7 +70,7 @@ const obtain_wallet = ({ stage }) => {
 		{#if stage.installed === "yes" }
 		<button 
 			type="button" 
-			class="btn btn-sm variant-filled"
+			class="btn btn-sm variant-filled-primary"
 			on:click={() => {
 				Extension_Winch_Freight.connect ({ stage_name: stage.name });
 			}}
@@ -78,7 +78,7 @@ const obtain_wallet = ({ stage }) => {
 		{:else if stage.installed === "no" }
 		<button 
 			type="button" 
-			class="btn btn-sm variant-filled"
+			class="btn btn-sm variant-filled-primary"
 			on:click={() => {
 				obtain_wallet ({ stage });
 			}}

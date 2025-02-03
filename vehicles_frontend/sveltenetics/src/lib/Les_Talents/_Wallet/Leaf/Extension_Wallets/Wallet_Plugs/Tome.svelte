@@ -27,24 +27,8 @@ const obtain_wallet = ({ wallet }) => {
 	window.open (wallet.url, '_blank');
 }
 
-let flourisher_freight = Extension_Winch.freight ();
-let flourisher_monitor;
-onMount (async () => {
-	flourisher_monitor = Extension_Winch.monitor (async ({
-		original_freight,
-		pro_freight, 
-		//
-		target,
-		//
-		property, 
-		value
-	}) => {
-		flourisher_freight = pro_freight;
-	});
-});
-onDestroy (async () => {
-	flourisher_monitor.stop ()
-});
+onMount (async () => {});
+onDestroy (async () => {});
 
 </script>
 
@@ -67,7 +51,6 @@ onDestroy (async () => {
 	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
 	{#if typeof Extension_Winch_Freight === "object"}
 	{#if typeof Versies_Freight === "object"}
-	
 	
 	<div 
 		style="
@@ -151,10 +134,10 @@ onDestroy (async () => {
 	>
 		<header>Extension Wallets</header>
 	
-		{#each Object.keys (flourisher_freight.stages) as stage_name }
+		{#each Object.keys (Extension_Winch_Freight.stages) as stage_name }
 		<Wallet_Plug 
 			stage_name={ stage_name }
-			stage={ flourisher_freight.stages [ stage_name ] }	
+			stage={ Extension_Winch_Freight.stages [ stage_name ] }	
 		/>		
 		{/each}
 	</div>	
