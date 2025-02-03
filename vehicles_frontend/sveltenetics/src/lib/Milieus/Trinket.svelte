@@ -48,15 +48,13 @@ const Wonder = ({ obtain, spot }) => {
 	// async () => { return await import ('./Venues/Talents/Trinket.svelte') }
 	
 	return {
-		obtain: async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
+		obtain,
 		status: "there"
 	}
 }
 
 let Milieus = {
-	"Ecology": {
-		"Hints": async () => { return await import ('./Venues/Scholars/Hints/Trinket.svelte') },
-	},
+	"Scrolls": async () => { return await import ('./Venues/Scrolls/Trinket.svelte') },
 	
 	"Vows": technicians_leaves,
 	

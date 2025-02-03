@@ -81,25 +81,13 @@ const monitor_local_storage = () => {}
 
 const Location_Bracket = {
 	find () {
-		let location_1 = [
-			"Ecology",
-			"Hints"
-		]
+		let location_1 = [ "Scrolls" ]
 		
 		let location = []
 		try {
 			if (has_field (sessionStorage, "location")) {
 				let local_storage_location = JSON.parse (sessionStorage.getItem ("location"));
 				if (Array.isArray (local_storage_location)) {
-					
-					/*
-					console.info ({ local_storage_location })
-					console.log (
-						"Local Storage Location:", 
-						local_storage_location [0], 
-						local_storage_location [1]
-					)*/
-					
 					if (local_storage_location.length === 2) {
 						return local_storage_location;
 					}
@@ -118,7 +106,7 @@ const Location_Bracket = {
 }
 
 const intercept = () => {
-	history.pushState(null, null, location.href);
+	history.pushState (null, null, location.href);
 	window.onpopstate = function (event) {
 		console.log ("onpopstate");
 		history.pushState (null, null, location.href);
@@ -126,44 +114,8 @@ const intercept = () => {
 }
 
 
-/*
-	Ecology:
-		Hints:
-		Garden:
-		Theme:
-		Resilience:
-	
-	Talents:
-		
-	
-	Wallets (Loyalty):
-		Offline:
-			Hints:
-			Harvest:
-			Consent:			
-		
-		Online:
-			
-*/
-/*
-	let header_1_saying = {
-		name: (
-			"പരിസ്ഥിതി"
-		),
-		language: (
-			"Malayalam"
-		),
-		pronunciation: (
-			"Paristetry"
-		),
-		english: "Ecology"
-	}
-
-*/
 export const lease_Milieus_truck = () => {
 	let location = Location_Bracket.find ()
-	
-	
 	let nav_linguistics = "no"
 	
 

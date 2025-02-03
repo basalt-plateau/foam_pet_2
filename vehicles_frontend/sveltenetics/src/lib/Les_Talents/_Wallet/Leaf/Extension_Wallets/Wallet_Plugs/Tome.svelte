@@ -95,7 +95,7 @@ onDestroy (async () => {});
 				justify-content: center;
 			"
 		>
-			<span><b>Petra</b> with <b>Keystone 3 Pro</b> (or perhaps a later version) is recommended.</span>
+			<span><b>Petra</b> with <b>Keystone 3 Pro</b> is recommended.</span>
 		</header>
 		<div
 			style="

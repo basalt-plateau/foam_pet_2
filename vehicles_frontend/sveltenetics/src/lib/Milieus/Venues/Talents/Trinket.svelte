@@ -123,7 +123,7 @@ let Versies_Freight = false;
 <style>
 
 @media (max-width: 600px) {
-    .latest-block-panel {
+	.latest-block-panel {
 		flex-direction: column !important;
 	}
 }

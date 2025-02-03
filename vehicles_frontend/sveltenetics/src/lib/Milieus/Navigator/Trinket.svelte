@@ -89,11 +89,11 @@ const build = () => {
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	{#if typeof Milieus_Freight === "object"}
 	<Milieus_Button
-		monitor="Ecology"
+		monitor="Scrolls"
 		
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Scrolls"] : "Scrolls" }
-		location={[ "Ecology", "Hints" ]}
-		is_open_location={[ "Ecology" ]}
+		name={ "Scrolls" }
+		location={[ "Scrolls" ]}
+		is_open_location={[ "Scrolls" ]}
 		
 		style={ buttons_styles }
 	/>

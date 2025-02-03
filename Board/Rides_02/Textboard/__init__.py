@@ -20,6 +20,7 @@ def roster ():
 
 
 filter = ""
+filter = "--filter Vow_Text_can_be_added_then_deleted"
 
 def steady (envelope):
 	ride_plate = envelope ["ride_plate"]

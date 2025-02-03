@@ -27,6 +27,9 @@ import Regions from './Regions/Estate.svelte'
 ////
 import Rules_Frontier from "$lib/Les_Talents/Rules/Frontier/Board.svelte"
 
+import Textboard_Leaf from "$lib/Les_Talents/Textboard/Leaf/Board.svelte"
+	
+
 const modal_store = getModalStore ();
 const mode = check_roomies_truck ().freight.mode;		
 
@@ -105,49 +108,11 @@ let Milieus_Freight = false;
 			<Rules_Frontier />
 		</div>
 	</div>
+	
+	<div style="height: 0.5cm"></div>
+	
+	<Textboard_Leaf />
 
-	<div style="height: 0.5cm"></div>
-	<!-- <Getting_Moving /> -->
-	
-	<div style="height: 0.5cm"></div>
-	
-	<div
-		class="card p-4"
-		style="
-			display: none;
-		
-			margin: 0 auto;
-			text-align: center;
-		"
-	>
-		<header 
-			style="
-				font-size: 2em; 
-				text-align: center;
-				padding: 0cm 0;
-			"
-		>Asks</header>
-		
-		
-		<p
-			style="
-				display: none;
-			"
-		>
-			<span>For any asks please open an <b>issue</b> or <b>pull request</b> at</span>
-			<br />
-			<a 
-				target="_blank"
-				href="https://github.com/basalt-plateau/foam_pet/issues"
-			>https://github.com/basalt-plateau/foam_pet/issues</a>
-			<br />
-			<a 
-				target="_blank"
-				href="https://github.com/basalt-plateau/foam_pet/pulls"
-			>https://github.com/basalt-plateau/foam_pet/pulls</a>
-		</p>
-	</div>
-	
 	<div style="height: 5cm"></div>
 	{/if}
 </Leaf>

@@ -13,12 +13,19 @@ module Builder_01::Text_can_be_added_then_deleted {
 	
 	#[test (
 		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01
+		producer_01_consenter = @Producer_01,
+		
+		organization_01_consenter = @1000001,
+		organization_02_consenter = @1000002
 	)]
-	public fun Vow_01 (
+	public fun Vow_Text_can_be_added_then_deleted (
 		aptos_framework_consenter : signer,
-		producer_01_consenter : signer
+		producer_01_consenter : signer,
+		
+		organization_01_consenter : signer,
+		organization_02_consenter : signer
 	) {	
+		use std::vector;
 		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -56,10 +63,19 @@ module Builder_01::Text_can_be_added_then_deleted {
 		assert! (Game_Module::is_Game_built () == utf8 (b"yup"), 1);
 		//
 		////
-	
 		
-	
-	
+		
+		let text_01 : String = utf8 (b"This");
+		let platforms_01 = vector::empty<String>();
+		let allow_translation : String = utf8 (b"This");
+		Game_Module::send_text (
+			organization_01_consenter,
+			text_01,
+			platforms_01,
+			allow_translation
+		);
+		
+		
 		////
 		//
 		//	Game End
