@@ -159,12 +159,25 @@ module Builder_01::Game_Module {
 		};
 	}
 	
-	#[view] public fun retrieve_texts () : vector<String> acquires Game {
+	
+	
+	#[view] public fun retrieve_texts () : vector<Text> acquires Game {
 		let game = borrow_global_mut<Game>(Producer_Module::obtain_address ());
 		let game_texts = &mut game.texts;
 		
-		let platforms_01 = vector::empty<String>();
-		
+		let platforms_01 = vector::empty<Text>();
+		for (index in 0..vector::length (game_texts)) {
+			let text_ref = vector::borrow_mut (game_texts, index);
+			
+			let this_text = Text {
+				writer_address : text_ref.writer_address,
+				text : text_ref.text,
+				platforms : text_ref.platforms,
+				allow_translation : text_ref.allow_translation
+			};
+			
+			vector::push_back (&mut platforms_01, this_text);
+		};
 		
 		platforms_01
 	}
