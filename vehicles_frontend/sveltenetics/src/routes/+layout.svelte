@@ -120,6 +120,8 @@ beforeUpdate (async () => {
 	}
 });
 
+const nav_heights = [ "1.5cm", "2.5cm" ]
+
 
 let Versies_Freight = false
 
@@ -154,7 +156,6 @@ let transform = "scale(0.5)"
 	{#if typeof Versies_Freight === "object"}
 	
 	<div
-		
 		in:fade={{ duration: 500 }} 
 		style="
 			position: relative;
@@ -187,7 +188,7 @@ let transform = "scale(0.5)"
 					left: 0;
 					right: 0;
 					bottom: 0;
-					height: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
+					height: { Versies_Freight.window_width <= 800 ? nav_heights [0] : nav_heights [1] };
 				" 
 			>
 				<Navigator />
@@ -195,8 +196,12 @@ let transform = "scale(0.5)"
 			
 			<div
 				style="
-					height: { Versies_Freight.window_width <= 800 ? 'calc(100vh - 1.5cm)' : 'calc(100vh - 2cm)' };
-					top: { Versies_Freight.window_width <= 800 ? '1.5cm' : '2cm' };
+					height: {(
+						Versies_Freight.window_width <= 800 ? 
+						`calc(100vh - ${ nav_heights [0] })` : 
+						`calc(100vh - ${ nav_heights [1] })` 
+					)};
+					top: { Versies_Freight.window_width <= 800 ? nav_heights [0] : nav_heights [1] };
 					
 					position: absolute;
 					left: 0;

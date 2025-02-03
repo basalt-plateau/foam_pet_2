@@ -11,7 +11,12 @@ import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 
 import Wallet_Plug from './Wallet_Plug/Tome.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
 
+
+let Versies_Freight = false
+	
+	
 	
 
 const obtain_wallet = ({ wallet }) => {
@@ -40,6 +45,8 @@ onDestroy (async () => {
 
 </script>
 
+
+
 <div 
 	style="
 		width: 100%;
@@ -53,6 +60,9 @@ onDestroy (async () => {
 		flex-direction: column;
 	"
 >
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	{#if typeof Versies_Freight === "object"}
+	
 	
 	<div 
 		style="
@@ -157,4 +167,6 @@ onDestroy (async () => {
 			is_open_location={[ "Bourgeoisie" ]}
 		/>
 	</div>
+	
+	{/if}
 </div>	

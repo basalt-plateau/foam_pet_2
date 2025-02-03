@@ -112,7 +112,18 @@ export let buttons_styles = {}
 		>{ wallet_provider }</span>
 	</span>
 	{:else}
-	Address
+	<div
+		style="
+			display: flex;
+			
+			flex-direction: column;
+			gap: 0px;
+			line-height: 1em;
+		"
+	>
+		<p>Wallet</p>
+		<p>Sensor</p>
+	</div>
 	{/if}
 </Milieus_Button>
 
