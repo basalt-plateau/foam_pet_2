@@ -160,6 +160,15 @@ module Builder_01::Game_Module {
 	}
 	
 	
+	struct Text_02 has store, drop {
+		writer_address : address,
+		writer_balance : u64,
+		
+		text : String,
+		platforms : vector<String>,
+		allow_translation: String
+	}
+	
 	/*
 		Bracket: {
 			"writer_address": "",
@@ -168,16 +177,23 @@ module Builder_01::Game_Module {
 			"allow_translation": ""
 		}
 	*/
-	#[view] public fun retrieve_texts () : vector<Text> acquires Game {
+	#[view] public fun retrieve_texts () : vector<Text_02> acquires Game {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin;
+		
 		let game = borrow_global_mut<Game>(Producer_Module::obtain_address ());
 		let game_texts = &mut game.texts;
 		
-		let platforms_01 = vector::empty<Text>();
+		
+		let platforms_01 = vector::empty<Text_02>();
 		for (index in 0..vector::length (game_texts)) {
 			let text_ref = vector::borrow_mut (game_texts, index);
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref.writer_address);
 			
-			let this_text = Text {
+			let this_text = Text_02 {
 				writer_address : text_ref.writer_address,
+				writer_balance : writer_balance,
+				
 				text : text_ref.text,
 				platforms : text_ref.platforms,
 				allow_translation : text_ref.allow_translation
@@ -188,7 +204,6 @@ module Builder_01::Game_Module {
 		
 		platforms_01
 	}
-	
 	//
 	////
 }

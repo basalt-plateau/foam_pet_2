@@ -211,7 +211,7 @@ def clique ():
 			
 			
 		elif (steady):
-			publisher_address = publisher_addresses [ "Dev" ];
+			publisher_address = publisher_addresses [ "Bourgeoisie_01" ];
 			moves_structures [ move ].steady ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({

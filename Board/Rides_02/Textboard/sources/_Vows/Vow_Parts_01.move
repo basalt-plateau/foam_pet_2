@@ -72,7 +72,7 @@ module builder_1::Vow_Parts_01 {
 	) {
 		use std::string;
 		use aptos_framework::chain_id;
-		chain_id::initialize_for_test (aptos_framework_consenter, 3);
+		chain_id::initialize_for_test (aptos_framework_consenter, 2);
 		
 		/*
 			public fun initialize<CoinType>(

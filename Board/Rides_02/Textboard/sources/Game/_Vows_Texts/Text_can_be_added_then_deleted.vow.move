@@ -84,7 +84,7 @@ module Builder_01::Text_can_be_added_then_deleted {
 		//	Retrieve Texts
 		//
 		//
-		let texts : vector<Game_Module::Text> = Game_Module::retrieve_texts ();
+		let texts : vector<Game_Module::Text_02> = Game_Module::retrieve_texts ();
 		assert! (vector::length (& texts) == 1);
 		
 		// assert! (vector::borrow (& texts, 0).text == utf8 (b"This"));
