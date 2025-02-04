@@ -27,6 +27,7 @@ module Builder_01::Games_can_text_to_front {
 		organization_01_consenter : & signer,
 		organization_02_consenter : & signer
 	) {	
+		use std::vector;
 		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -87,6 +88,22 @@ module Builder_01::Games_can_text_to_front {
 		//
 		//
 		let texts : vector<Games_Module::Text_Envelope> = Games_Module::Retrieve_Texts (text_01_platform);
+		assert! (vector::length (& texts) == 1, 1);		
+		let text_ref = vector::borrow (& texts, 0);
+		assert! (Games_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
+		//
+		////
+		
+		////
+		//
+		//	Delete Text
+		//
+		//
+		Games_Module::Delete_Text (
+			organization_01_consenter,
+			text_01_platform
+		);
+		assert! (vector::length (& Games_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	
 		//
 		////
 

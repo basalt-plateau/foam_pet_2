@@ -160,7 +160,34 @@ module Builder_01::Games_Module {
 			vector::push_back (game_texts, this_text);
 		}
 	}
+	public entry fun Delete_Text (
+		consenter : & signer,
+		platform : String
+	) acquires Games {
+		let writer_address = signer::address_of (consenter);		
+		
+		let game_ref : &mut Game;
+		if (platform == utf8 (b"")) {
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = &mut games.front;
+		}
+		else {
+			let index_of_game = search_for_index_of_game (platform);
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = vector::borrow_mut (&mut games.games, index_of_game);
+		};
 
+		let game_texts = &mut game_ref.texts;
+		for (index in 0..vector::length (game_texts)) {
+			let text_ref = vector::borrow_mut (game_texts, index);
+			if (text_ref.writer_address == writer_address) {
+				vector::remove (game_texts, index);
+				return;
+			}
+		};
+		
+		abort 260141
+	}
 
 	#[view] public fun Retrieve_Texts (platform : String) : vector<Text_Envelope> acquires Games {
 		use aptos_framework::coin;
@@ -195,6 +222,9 @@ module Builder_01::Games_Module {
 		
 		game_texts_envelope
 	}
+	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
+		envelope.text
+	}
 	//
 	////
 	
@@ -204,10 +234,10 @@ module Builder_01::Games_Module {
 	//	Producer Moves
 	//
 	//
-	public entry fun Games_Pause () {}
-	public entry fun Game_Pause () {}
-	public entry fun Game_Delete_Then_End () {}
-	public entry fun Delete_Text () {}
+	public entry fun Producer_Games_Pause () {}
+	public entry fun Producer_Game_Pause () {}
+	public entry fun Producer_Game_Delete_Then_End () {}
+	public entry fun Producer_Delete_Text () {}
 	//
 	////
 	
