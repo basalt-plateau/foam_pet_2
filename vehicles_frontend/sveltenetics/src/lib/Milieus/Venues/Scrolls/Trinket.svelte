@@ -57,8 +57,15 @@ let Milieus_Freight = false;
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	{#if typeof Milieus_Freight === "object"}
 	
+	{#if false}
 	<div style="height: 0.5cm"></div>
 	<Boards />
+	{/if}
+	
+	<div style="height: 0.5cm"></div>
+	
+	<Textboard_Leaf />
+	
 	<div style="height: 0.5cm"></div>
 	<Pleasantries />
 	<div style="height: 0.5cm"></div>
@@ -81,9 +88,7 @@ let Milieus_Freight = false;
 		</div>
 	</div>
 	
-	<div style="height: 0.5cm"></div>
 	
-	<Textboard_Leaf />
 
 	<div style="height: 5cm"></div>
 	{/if}

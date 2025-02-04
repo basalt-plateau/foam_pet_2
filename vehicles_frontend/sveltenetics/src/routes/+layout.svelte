@@ -149,6 +149,10 @@ let transform = "scale(0.5)"
 		flex-direction: column;
 		min-height: 100vh;
 		// min-width: 100vw;
+		
+		background: url('/pictures/Bothies.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
 	"
 >	
 	{#if built === "yes" && trucks_prepared === "yes" }
@@ -208,6 +212,8 @@ let transform = "scale(0.5)"
 					right: 0;
 					
 					overflow-y: scroll;
+					
+					
 				"
 			>
 				<div

@@ -1,0 +1,222 @@
+
+
+
+module Builder_01::Games_Module {
+	
+	use std::vector;
+	use std::string::{ String, utf8 };
+	use std::string_utils;
+	use std::signer;
+	use std::debug;
+	
+	use aptos_framework::timestamp;
+	
+	use Builder_01::Endings_Module;
+	use Builder_01::Producer_Module::{ Self, ensure_consenter_is_producer };
+	
+	
+	#[view] public fun Volitions () : String { 
+		use Builder_01::Rules_Module;
+		Rules_Module::Volitions_01 () 
+	}
+	
+	/*
+		platforms: vector::empty<String>()
+	*/
+	struct Text has store, drop {
+		writer_address : address,
+		text : String
+	}
+	struct Text_Envelope has store, drop {
+		writer_address : address,
+		writer_balance : u64,
+		text : String
+	}
+	
+	/*
+		status:
+			began
+	*/
+	struct Game has store, drop {
+		status : String,
+		platform : String,
+		price_of_text_in_octas : u64,
+		texts : vector<Text>
+	}
+	
+	struct Games has key, drop {
+		status : String,
+		front : Game,
+		games : vector<Game>
+	}
+	
+	////
+	//
+	//	Games
+	//
+	//
+	public entry fun Begin_Games (consenter : & signer) {
+		ensure_consenter_is_producer (consenter);
+		
+		let price_of_text_in_octas : u64 = 100000000;
+		
+		let front = Game {
+			status: utf8 (b"began"),
+			platform : utf8 (b""),
+			price_of_text_in_octas : price_of_text_in_octas,
+			texts : vector::empty<Text>()
+		};
+		
+		let games = Games {
+			status: utf8 (b"began"),
+			front : front,
+			games : vector::empty<Game>()
+		};
+		
+		move_to<Games>(consenter, games)
+	}
+	#[view] public fun are_Games_built () : String {
+		if (exists<Games>(Producer_Module::obtain_address ())) {
+			return utf8 (b"yup")
+		};
+		
+		utf8 (b"no")
+	}
+	public fun search_for_index_of_game (platform : String) : u64 acquires Games {
+		let games = borrow_global<Games>(Producer_Module::obtain_address ());
+		
+		let games_length = vector::length (& games.games);
+		for (index in 0..games_length) {
+			let game_ref = vector::borrow (& games.games, index);
+			if (game_ref.platform == platform) {
+				return index
+			}
+		};
+		
+		abort 1
+	}
+	//
+	////
+	
+	////
+	//
+	//	Texts
+	//
+	//
+	public entry fun Send_Text (
+		consenter : & signer,
+		text : String,
+		platform : String
+	) acquires Games {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin;
+		
+		let writer_address = signer::address_of (consenter);
+		
+		let game_ref : &mut Game;
+		if (platform == utf8 (b"")) {
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = &mut games.front;
+		}
+		else {
+			let index_of_game = search_for_index_of_game (platform);
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = vector::borrow_mut (&mut games.games, index_of_game);
+		};
+		
+		//
+		//
+		//	Deduct 1 APT
+		//
+		//
+		
+		
+		
+		let game_texts = &mut game_ref.texts;
+		let already_has_text = false;
+		for (index in 0..vector::length (game_texts)) {
+			let text_ref = vector::borrow_mut (game_texts, index);
+			if (text_ref.writer_address == writer_address) {
+				// vector::remove (game_texts, index);
+				
+				//
+				//	The writer already has a text on this platform,
+				//	therefore a text modification occurs.
+				//
+				text_ref.text = text;
+				
+				
+				already_has_text = true;
+				break;
+			}
+		};
+		
+		if (already_has_text == false) {
+			let this_text = Text {
+				writer_address : writer_address,
+				text : text
+			};
+			
+			vector::push_back (game_texts, this_text);
+		}
+	}
+
+
+	#[view] public fun Retrieve_Texts (platform : String) : vector<Text_Envelope> acquires Games {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin;
+		
+		let game_ref : &mut Game;
+		if (platform == utf8 (b"")) {
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = &mut games.front;
+		}
+		else {
+			let index_of_game = search_for_index_of_game (platform);
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = vector::borrow_mut (&mut games.games, index_of_game);
+		};
+		
+		let game_texts = &mut game_ref.texts;
+		
+		let game_texts_envelope = vector::empty<Text_Envelope>();
+		for (index in 0..vector::length (game_texts)) {
+			let text_ref = vector::borrow_mut (game_texts, index);
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref.writer_address);
+			
+			let this_text = Text_Envelope {
+				writer_address : text_ref.writer_address,
+				writer_balance : writer_balance,
+				text : text_ref.text
+			};
+			
+			vector::push_back (&mut game_texts_envelope, this_text);
+		};
+		
+		game_texts_envelope
+	}
+	//
+	////
+	
+	
+	////
+	//
+	//	Producer Moves
+	//
+	//
+	public entry fun Games_Pause () {}
+	public entry fun Game_Pause () {}
+	public entry fun Game_Delete_Then_End () {}
+	public entry fun Delete_Text () {}
+	//
+	////
+	
+	////
+	//
+	//	Anyone Moves
+	//
+	//
+	public entry fun Clean_Texts () {}
+	//
+	////
+}
