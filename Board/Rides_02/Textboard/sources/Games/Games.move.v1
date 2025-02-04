@@ -46,6 +46,7 @@ module Builder_01::Games_Module {
 	
 	struct Games has key, drop {
 		status : String,
+		front : Game,
 		games : vector<Game>
 	}
 	
@@ -66,11 +67,12 @@ module Builder_01::Games_Module {
 			texts : vector::empty<Text>()
 		};
 		
-		let games_vector = vector::empty<Game>();
-		vector::push_back (&mut games_vector, front);
+		let games_vector = vector::empty<Game>()
+		vector::push_back (front);
 		
 		let games = Games {
 			status: utf8 (b"began"),
+			// front : front,
 			games : games_vector
 		};
 		
@@ -91,7 +93,7 @@ module Builder_01::Games_Module {
 		
 		let price_of_text_in_octas : u64 = 100000000;
 		
-		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+		let games = borrow_global<Games>(Producer_Module::obtain_address ());
 		
 		let games_length = vector::length (& games.games);
 		for (index in 0..games_length) {
@@ -108,10 +110,7 @@ module Builder_01::Games_Module {
 			texts : vector::empty<Text>()
 		};
 		
-		vector::push_back (&mut games.games, game);
-		
-		let index = vector::length (& games.games) - 1;
-		index
+		abort 1
 	}
 	public fun search_for_index_of_game (platform : String) : u64 acquires Games {
 		let games = borrow_global<Games>(Producer_Module::obtain_address ());
@@ -144,10 +143,17 @@ module Builder_01::Games_Module {
 		
 		let writer_address = signer::address_of (consenter);
 		
-		let index_of_game = search_or_begin_game (platform);
-		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
-		let game_ref : &mut Game = vector::borrow_mut (&mut games.games, index_of_game);
-	
+		let game_ref : &mut Game;
+		if (platform == utf8 (b"")) {
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = &mut games.front;
+		}
+		else {
+			let index_of_game = search_for_index_of_game (platform);
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = vector::borrow_mut (&mut games.games, index_of_game);
+		};
+		
 		//
 		//
 		//	Deduct 1 APT
@@ -190,9 +196,16 @@ module Builder_01::Games_Module {
 	) acquires Games {
 		let writer_address = signer::address_of (consenter);		
 		
-		let index_of_game = search_for_index_of_game (platform);
-		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
-		let game_ref : &mut Game = vector::borrow_mut (&mut games.games, index_of_game);
+		let game_ref : &mut Game;
+		if (platform == utf8 (b"")) {
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = &mut games.front;
+		}
+		else {
+			let index_of_game = search_for_index_of_game (platform);
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = vector::borrow_mut (&mut games.games, index_of_game);
+		};
 
 		let game_texts = &mut game_ref.texts;
 		for (index in 0..vector::length (game_texts)) {
@@ -210,9 +223,16 @@ module Builder_01::Games_Module {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin;
 		
-		let index_of_game = search_for_index_of_game (platform);
-		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
-		let game_ref : &mut Game = vector::borrow_mut (&mut games.games, index_of_game);
+		let game_ref : &mut Game;
+		if (platform == utf8 (b"")) {
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = &mut games.front;
+		}
+		else {
+			let index_of_game = search_for_index_of_game (platform);
+			let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+			game_ref = vector::borrow_mut (&mut games.games, index_of_game);
+		};
 		
 		let game_texts = &mut game_ref.texts;
 		
