@@ -5,19 +5,21 @@
 		white-space: pre-wrap;
 	"
 >
-	<header>License (for motion picture use)</header>
-	<p>
-		Picture:
+	<header>License (for reality use)</header>
 	
-		Name: Foam Pet
+	<!-- SVG picture -->
+	
+	<p>
+		Name: Mech Pet
 		DOB: A while ago
 
-		Foam Number: +1 (555) FOAM PET
+		Foam Number: +1 (555) MECH PET
 		Home Address: Aquí
 		
-		Medical Conditions: Foamy
+		Medical Enhancements: 
+		Medical Conditions: 
 		Organ Donor: Yes
-		Blood Type: Memory Foam
+		Blood Type: Oil
 		
 		Taxonomy:
 			Dominion: Tekcyixor

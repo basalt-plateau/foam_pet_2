@@ -44,8 +44,6 @@ module Builder_01::Producer_Game_can_play_and_pause {
 		coin::register<AptosCoin>(producer_01_consenter);
 		coin::deposit (producer_address, coins);
 		
-		
-		
 		////
 		//
 		//	writers:

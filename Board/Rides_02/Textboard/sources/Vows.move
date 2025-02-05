@@ -35,6 +35,10 @@ module Builder_01::Vows {
 			vector::pop_back (signers)
 		);
 		
+		
+
+		
+		
         account::create_account_for_test (signer::address_of (& signer_01));
         account::create_account_for_test (signer::address_of (& signer_02));
         // (alice, bob)
@@ -120,16 +124,21 @@ module Builder_01::Vows {
 		writer_01_consenter : & signer,
 		writer_02_consenter : & signer
 	) {
+		use aptos_framework::account; 
+		
 		use Builder_01::Producer_Game_can_play_and_pause;
 		
 		let consenters = create_consenters (2);
-		let writer_03_consenter = vector::borrow (& consenters, 0);
+		// let writer_03_consenter = vector::borrow (& consenters, 0);
+		
+		let consenter_01 = account::create_account_for_test (@0x1000001);
 		
 		Producer_Game_can_play_and_pause::Vow_01 (
 			aptos_framework_consenter,
 			producer_01_consenter,
-			writer_01_consenter,
-			writer_03_consenter
+			& consenter_01,
+			// vector::borrow (& consenters, 0),
+			vector::borrow (& consenters, 1)
 		)		
 	}
 	
