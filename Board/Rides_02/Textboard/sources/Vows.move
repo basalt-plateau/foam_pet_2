@@ -76,19 +76,10 @@ module Builder_01::Vows {
 			Unwritten:
 				* While Paused, can't text anything
 	*/
-	#[test (
-		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01
-	)]
-	public fun Vow_Games_01 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : signer
-	) {
+	#[test]
+	public fun Vow_Games_01 () {
 		use Builder_01::Games_can_begin;
-		Games_can_begin::Vow_01 (
-			aptos_framework_consenter,
-			producer_01_consenter
-		)		
+		Games_can_begin::Vow_01 ()		
 	}
 	#[test (
 		aptos_framework_consenter = @0x1, 

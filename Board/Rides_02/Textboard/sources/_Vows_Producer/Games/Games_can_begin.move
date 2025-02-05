@@ -12,11 +12,10 @@ module Builder_01::Games_can_begin {
 		Rules_Module::Volitions_01 () 
 	}
 	
+	// producer_01_consenter : signer
+	
 	#[test_only]
-	public fun Vow_01 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : signer
-	) {	
+	public fun Vow_01 () {	
 		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -28,6 +27,9 @@ module Builder_01::Games_can_begin {
 	
 		use Builder_01::Games_Module; 
 		use Builder_01::Vow_Parts_01; 
+	
+		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
+		let producer_01_consenter : signer = account::create_account_for_test (@Producer_01);
 	
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;

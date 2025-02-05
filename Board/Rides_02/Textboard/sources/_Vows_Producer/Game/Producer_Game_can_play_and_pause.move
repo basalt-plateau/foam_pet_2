@@ -34,7 +34,9 @@ module Builder_01::Producer_Game_can_play_and_pause {
 	
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
-		
+
+
+
 		let producer_address = signer::address_of (producer_01_consenter);
 		Vow_Parts_01::clock (& aptos_framework_consenter);
 		
