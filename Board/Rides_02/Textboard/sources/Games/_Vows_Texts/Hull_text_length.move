@@ -12,7 +12,6 @@ module Builder_01::Hull_text_length {
 		Rules_Module::Volitions_01 () 
 	}
 	
-	
 	#[test (
 		aptos_framework_consenter = @0x1, 
 		producer_01_consenter = @Producer_01,

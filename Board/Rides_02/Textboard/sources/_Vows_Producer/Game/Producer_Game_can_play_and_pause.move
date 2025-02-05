@@ -12,14 +12,8 @@ module Builder_01::Producer_Game_can_play_and_pause {
 		Rules_Module::Volitions_01 () 
 	}
 	
-	
-	#[test (
-		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01,
-		
-		writer_01_consenter = @1000001,
-		writer_02_consenter = @1000002
-	)]
+
+	#[test_only]
 	public fun Vow_01 (
 		aptos_framework_consenter : signer,
 		producer_01_consenter : & signer,

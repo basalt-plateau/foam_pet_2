@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Games_Producer_can_delete_a_text {
+module Builder_01::Producer_Texts_can_delete_a_text {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -13,14 +13,9 @@ module Builder_01::Games_Producer_can_delete_a_text {
 	}
 	
 	
-	#[test (
-		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01,
-		
-		writer_01_consenter = @1000001,
-		writer_02_consenter = @1000002
-	)]
-	public fun Vow_Games_can_text_to_front (
+	
+	#[test_only]
+	public fun Vow_01 (
 		aptos_framework_consenter : signer,
 		producer_01_consenter : & signer,
 		
