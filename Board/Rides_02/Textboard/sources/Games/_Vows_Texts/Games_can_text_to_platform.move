@@ -22,7 +22,7 @@ module Builder_01::Games_can_text_to_platform {
 	)]
 	public fun Vow_01 (
 		aptos_framework_consenter : signer,
-		producer_01_consenter : signer,
+		producer_01_consenter : & signer,
 		
 		organization_01_consenter : & signer,
 		organization_02_consenter : & signer
@@ -44,15 +44,32 @@ module Builder_01::Games_can_text_to_platform {
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
 		
-		let producer_address = signer::address_of (& producer_01_consenter);
+		let producer_address = signer::address_of (producer_01_consenter);
 		Vow_Parts_01::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(apt_mint, & mint_cap);
 		account::create_account_for_test (producer_address);
-		coin::register<AptosCoin>(& producer_01_consenter);
+		coin::register<AptosCoin>(producer_01_consenter);
 		coin::deposit (producer_address, coins);
 		
+		
+		////
+		//
+		//	Organizations:
+		//		
+		//
+		let organization_01_address = signer::address_of (organization_01_consenter);
+		account::create_account_for_test (organization_01_address);
+		coin::register<AptosCoin>(organization_01_consenter);
+		//
+		let organization_02_address = signer::address_of (organization_02_consenter);
+		account::create_account_for_test (organization_02_address);
+		coin::register<AptosCoin>(organization_02_consenter);
+		//
+		coin::transfer<AptosCoin>(producer_01_consenter, organization_01_address, one_APT * 10);
+		//
+		////
 		
 		
 		////
@@ -61,7 +78,7 @@ module Builder_01::Games_can_text_to_platform {
 		//
 		//
 		assert! (Games_Module::are_Games_built () == utf8 (b"no"), 1);
-		Games_Module::Begin_Games (& producer_01_consenter);
+		Games_Module::Begin_Games (producer_01_consenter);
 		assert! (Games_Module::are_Games_built () == utf8 (b"yup"), 1);
 		//
 		////

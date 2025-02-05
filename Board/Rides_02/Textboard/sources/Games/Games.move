@@ -14,6 +14,8 @@ module Builder_01::Games_Module {
 	use Builder_01::Endings_Module;
 	use Builder_01::Producer_Module::{ Self, ensure_consenter_is_producer };
 	
+	const Abortion_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 57843;
+	const One_APT : u64 = 100000000;
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module;
@@ -40,12 +42,12 @@ module Builder_01::Games_Module {
 	struct Game has store, drop {
 		status : String,
 		platform : String,
-		price_of_text_in_octas : u64,
 		texts : vector<Text>
 	}
 	
 	struct Games has key, drop {
 		status : String,
+		price_of_text_in_octas : u64,
 		games : vector<Game>
 	}
 	
@@ -62,7 +64,6 @@ module Builder_01::Games_Module {
 		let front = Game {
 			status: utf8 (b"began"),
 			platform : utf8 (b""),
-			price_of_text_in_octas : price_of_text_in_octas,
 			texts : vector::empty<Text>()
 		};
 		
@@ -71,6 +72,7 @@ module Builder_01::Games_Module {
 		
 		let games = Games {
 			status: utf8 (b"began"),
+			price_of_text_in_octas : price_of_text_in_octas,
 			games : games_vector
 		};
 		
@@ -89,8 +91,7 @@ module Builder_01::Games_Module {
 			If the game does not exist, then start it.
 		*/
 		
-		let price_of_text_in_octas : u64 = 100000000;
-		
+
 		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
 		
 		let games_length = vector::length (& games.games);
@@ -104,7 +105,6 @@ module Builder_01::Games_Module {
 		let game = Game {
 			status: utf8 (b"began"),
 			platform: platform,
-			price_of_text_in_octas : price_of_text_in_octas,
 			texts : vector::empty<Text>()
 		};
 		
@@ -135,25 +135,30 @@ module Builder_01::Games_Module {
 	//
 	//
 	public entry fun Send_Text (
-		consenter : & signer,
+		writer : & signer,
 		text : String,
 		platform : String
 	) acquires Games {
 		use aptos_framework::coin;
-		use aptos_framework::aptos_coin;
+		use aptos_framework::aptos_coin::{ Self, AptosCoin };
 		
-		let writer_address = signer::address_of (consenter);
+		let writer_address = signer::address_of (writer);
+		let producer_address = Producer_Module::obtain_address ();
 		
 		let index_of_game = search_or_begin_game (platform);
-		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+		let games = borrow_global_mut<Games>(producer_address);
 		let game_ref : &mut Game = vector::borrow_mut (&mut games.games, index_of_game);
+		let price_of_text_in_octas = games.price_of_text_in_octas;
 	
 		//
-		//
 		//	Deduct 1 APT
+		//		* Ensure Consenter has >= 1 * "amount_of_plays_to_buy" APT.
+		//		* Deduct the APT
 		//
-		//
-		
+		if (coin::balance<AptosCoin>(writer_address) < price_of_text_in_octas) { 
+			abort Abortion_writer_has_less_than_the_amount_of_Octas_necessary_to_send
+		};
+		coin::transfer<AptosCoin>(writer, producer_address, price_of_text_in_octas);
 		
 		
 		let game_texts = &mut game_ref.texts;
