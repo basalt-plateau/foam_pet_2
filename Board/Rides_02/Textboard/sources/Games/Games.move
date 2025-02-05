@@ -4,7 +4,7 @@
 module Builder_01::Games_Module {
 	
 	use std::vector;
-	use std::string::{ String, utf8 };
+	use std::string::{ Self, String, utf8 };
 	use std::string_utils;
 	use std::signer;
 	use std::debug;
@@ -13,8 +13,12 @@ module Builder_01::Games_Module {
 	
 	use Builder_01::Endings_Module;
 	use Builder_01::Producer_Module::{ Self, ensure_consenter_is_producer };
+
+	const Abortion_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
+	const Abortion_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
+	const Abortion_the_game_is_not_going : u64 = 100002;
+	const Hull_Text_String_needs_to_be_less_than_one_hundred_characters : u64 = 100003;	
 	
-	const Abortion_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 57843;
 	const One_APT : u64 = 100000000;
 	
 	#[view] public fun Volitions () : String { 
@@ -37,7 +41,8 @@ module Builder_01::Games_Module {
 	
 	/*
 		status:
-			began
+			playing
+			paused
 	*/
 	struct Game has store, drop {
 		status : String,
@@ -45,6 +50,11 @@ module Builder_01::Games_Module {
 		texts : vector<Text>
 	}
 	
+	/*
+		status:
+			playing
+			paused
+	*/
 	struct Games has key, drop {
 		status : String,
 		price_of_text_in_octas : u64,
@@ -56,13 +66,19 @@ module Builder_01::Games_Module {
 	//	Games
 	//
 	//
+	public entry fun Ensure_Games_is_Playing () acquires Games {
+		let games = borrow_global<Games>(Producer_Module::obtain_address ());
+		if (games.status != utf8 (b"playing")) {
+			abort Abortion_the_game_is_not_going
+		}
+	}
 	public entry fun Begin_Games (consenter : & signer) {
 		ensure_consenter_is_producer (consenter);
 		
 		let price_of_text_in_octas : u64 = 100000000;
 		
 		let front = Game {
-			status: utf8 (b"began"),
+			status: utf8 (b"playing"),
 			platform : utf8 (b""),
 			texts : vector::empty<Text>()
 		};
@@ -71,7 +87,7 @@ module Builder_01::Games_Module {
 		vector::push_back (&mut games_vector, front);
 		
 		let games = Games {
-			status: utf8 (b"began"),
+			status: utf8 (b"playing"),
 			price_of_text_in_octas : price_of_text_in_octas,
 			games : games_vector
 		};
@@ -85,6 +101,17 @@ module Builder_01::Games_Module {
 		
 		utf8 (b"no")
 	}
+	//
+	////
+	
+	////
+	//
+	//	Game
+	//
+	//
+	public fun Ensure_Game_is_Playing () {
+		
+	}	
 	public fun search_or_begin_game (platform : String) : u64 acquires Games {
 		/*
 			Search for the index of the game.
@@ -141,6 +168,11 @@ module Builder_01::Games_Module {
 	) acquires Games {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::{ Self, AptosCoin };
+		
+		if (string::length (& text) > 100) {
+			abort Hull_Text_String_needs_to_be_less_than_one_hundred_characters
+		};
+		
 		
 		let writer_address = signer::address_of (writer);
 		let producer_address = Producer_Module::obtain_address ();
@@ -248,11 +280,77 @@ module Builder_01::Games_Module {
 	//
 	//	Producer Moves
 	//
+	//		Games
 	//
-	public entry fun Producer_Games_Pause () {}
-	public entry fun Producer_Game_Pause () {}
+	public entry fun Producer_Games_Pause () {
+			
+	}
+	//
+	//	
+	//
+	//		Game
+	//
+	//
+	public fun Producer_Game_Change_Status (
+		consenter : & signer,
+		writer_address : address,
+		platform : String,
+		status : String
+	) acquires Games {
+		ensure_consenter_is_producer (consenter);
+		let producer_address = Producer_Module::obtain_address ();
+	
+		let index_of_game = search_for_index_of_game (platform);
+		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
+		let game_ref : &mut Game = vector::borrow_mut (&mut games.games, index_of_game);
+		
+		game_ref.status = status;
+	}
+	public entry fun Producer_Game_Pause (
+		consenter : & signer,
+		writer_address : address,
+		platform : String
+	) acquires Games {
+		Producer_Game_Change_Status (consenter, writer_address, platform, utf8 (b"pause"));
+	}
+	public entry fun Producer_Game_Playing (
+		consenter : & signer,
+		writer_address : address,
+		platform : String 
+	) acquires Games {
+		Producer_Game_Change_Status (consenter, writer_address, platform, utf8 (b"playing"));
+	}
 	public entry fun Producer_Game_Delete_Then_End () {}
-	public entry fun Producer_Delete_Text () {}
+	//
+	//
+	//
+	//		Text
+	//
+	//
+	public entry fun Producer_Delete_Text (
+		consenter : & signer,
+		writer_address : address,
+		platform : String 
+	) acquires Games {
+		ensure_consenter_is_producer (consenter);
+
+		let producer_address = Producer_Module::obtain_address ();
+
+		let index_of_game = search_for_index_of_game (platform);
+		let games = borrow_global_mut<Games>(producer_address);
+		let game_ref : &mut Game = vector::borrow_mut (&mut games.games, index_of_game);	
+		
+		let game_texts = &mut game_ref.texts;
+		for (index_of_text in 0..vector::length (game_texts)) {
+			let text_ref = vector::borrow_mut (game_texts, index_of_text);
+			if (text_ref.writer_address == writer_address) {
+				vector::remove (game_texts, index_of_text);
+				return;
+			}
+		};
+		
+		abort Abortion_Producer_the_platform_with_writer_address_is_empty
+	}
 	//
 	////
 	

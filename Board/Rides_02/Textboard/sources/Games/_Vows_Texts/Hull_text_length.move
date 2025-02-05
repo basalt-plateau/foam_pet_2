@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Games_can_text_to_front {
+module Builder_01::Hull_text_length {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -20,7 +20,8 @@ module Builder_01::Games_can_text_to_front {
 		organization_01_consenter = @1000001,
 		organization_02_consenter = @1000002
 	)]
-	public fun Vow_Games_can_text_to_front (
+	#[expected_failure (abort_code = 100003, location = Builder_01::Games_Module)]
+	public fun Vow_Hull_text_length (
 		aptos_framework_consenter : signer,
 		producer_01_consenter : & signer,
 		
@@ -89,7 +90,9 @@ module Builder_01::Games_can_text_to_front {
 		//	Send Text
 		//
 		//
-		let text_01_text : String = utf8 (b"This is a text.");
+		let text_01_text : String = utf8 (
+			b"100000000001000000000010000000000100000000001000000000010000000000100000000001000000000010000000000100000000002"
+		);
 		let text_01_platform : String = utf8 (b"");		
 		Games_Module::Send_Text (
 			organization_01_consenter,
@@ -98,6 +101,7 @@ module Builder_01::Games_can_text_to_front {
 		);
 		//
 		////
+
 
 		////
 		//

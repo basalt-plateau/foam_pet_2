@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Games_can_text_to_front {
+module Builder_01::Games_Producer_can_delete_a_text {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -17,15 +17,15 @@ module Builder_01::Games_can_text_to_front {
 		aptos_framework_consenter = @0x1, 
 		producer_01_consenter = @Producer_01,
 		
-		organization_01_consenter = @1000001,
-		organization_02_consenter = @1000002
+		writer_01_consenter = @1000001,
+		writer_02_consenter = @1000002
 	)]
 	public fun Vow_Games_can_text_to_front (
 		aptos_framework_consenter : signer,
 		producer_01_consenter : & signer,
 		
-		organization_01_consenter : & signer,
-		organization_02_consenter : & signer
+		writer_01_consenter : & signer,
+		writer_02_consenter : & signer
 	) {	
 		use std::vector;
 		use std::string_utils;
@@ -57,18 +57,18 @@ module Builder_01::Games_can_text_to_front {
 		
 		////
 		//
-		//	Organizations:
+		//	writers:
 		//		
 		//
-		let organization_01_address = signer::address_of (organization_01_consenter);
-		account::create_account_for_test (organization_01_address);
-		coin::register<AptosCoin>(organization_01_consenter);
+		let writer_01_address = signer::address_of (writer_01_consenter);
+		account::create_account_for_test (writer_01_address);
+		coin::register<AptosCoin>(writer_01_consenter);
 		//
-		let organization_02_address = signer::address_of (organization_02_consenter);
-		account::create_account_for_test (organization_02_address);
-		coin::register<AptosCoin>(organization_02_consenter);
+		let writer_02_address = signer::address_of (writer_02_consenter);
+		account::create_account_for_test (writer_02_address);
+		coin::register<AptosCoin>(writer_02_consenter);
 		//
-		coin::transfer<AptosCoin>(producer_01_consenter, organization_01_address, one_APT * 10);
+		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_APT * 10);
 		//
 		////
 		
@@ -92,7 +92,7 @@ module Builder_01::Games_can_text_to_front {
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"");		
 		Games_Module::Send_Text (
-			organization_01_consenter,
+			writer_01_consenter,
 			text_01_text,
 			text_01_platform
 		);
@@ -113,11 +113,12 @@ module Builder_01::Games_can_text_to_front {
 		
 		////
 		//
-		//	Delete Text
+		//	Producer Delete Text
 		//
 		//
-		Games_Module::Delete_Text (
-			organization_01_consenter,
+		Games_Module::Producer_Delete_Text (
+			producer_01_consenter,
+			writer_01_address,
 			text_01_platform
 		);
 		assert! (vector::length (& Games_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	
