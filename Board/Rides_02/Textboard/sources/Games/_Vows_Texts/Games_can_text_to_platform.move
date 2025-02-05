@@ -31,6 +31,9 @@ module Builder_01::Games_can_text_to_platform {
 		use std::string::{ utf8 };
 		use std::signer;
 		
+		use std::debug;
+		use std::string_utils;
+		
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
@@ -77,6 +80,7 @@ module Builder_01::Games_can_text_to_platform {
 		assert! (Games_Module::are_Games_built () == utf8 (b"no"), 1);
 		Games_Module::Begin_Games (producer_01_consenter);
 		assert! (Games_Module::are_Games_built () == utf8 (b"yup"), 1);
+		assert! (vector::length (& Games_Module::retrieve_vector_of_game_names ()) == 1, 1);
 		//
 		////
 		
@@ -102,11 +106,33 @@ module Builder_01::Games_can_text_to_platform {
 		//
 		//
 		let texts : vector<Games_Module::Text_Envelope> = Games_Module::Retrieve_Texts (text_01_platform);
-		assert! (vector::length (& texts) == 1, 1);		
 		let text_ref = vector::borrow (& texts, 0);
+		assert! (vector::length (& texts) == 1, 1);		
 		assert! (Games_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
 		//
 		////
+		
+		
+		////
+		//
+		//	Ensure platform exists
+		//
+		//
+		let platforms : vector<String> = Games_Module::retrieve_vector_of_game_names ();
+			
+		
+		
+		debug::print (& string_utils::format1 (
+			& b"platforms: {}", 
+			platforms
+		));
+		
+		assert! (vector::length (& platforms) == 2, 1);		
+		assert! (vector::borrow (& platforms, 1) == & utf8 (b"Dimension 3"), 1);
+		//
+		////
+		
+		
 		
 		////
 		//

@@ -153,6 +153,7 @@ let transform = "scale(0.5)"
 		background: url('/pictures/Bothies.svg');
 		background-size: cover;
 		background-repeat: no-repeat;
+		background-position: center center;
 	"
 >	
 	{#if built === "yes" && trucks_prepared === "yes" }
