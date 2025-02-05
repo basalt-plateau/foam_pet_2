@@ -61,16 +61,19 @@ module Builder_01::Games_Module {
 		games : vector<Game>
 	}
 	
+
+	
 	////
 	//
 	//	Games
 	//
 	//
-	public entry fun Ensure_Games_is_Playing () acquires Games {
-		let games = borrow_global<Games>(Producer_Module::obtain_address ());
-		if (games.status != utf8 (b"playing")) {
-			abort Abortion_the_game_is_not_going
-		}
+	#[view] public fun are_Games_built () : String {
+		if (exists<Games>(Producer_Module::obtain_address ())) {
+			return utf8 (b"yup")
+		};
+		
+		utf8 (b"no")
 	}
 	public entry fun Begin_Games (consenter : & signer) {
 		ensure_consenter_is_producer (consenter);
@@ -94,12 +97,13 @@ module Builder_01::Games_Module {
 		
 		move_to<Games>(consenter, games)
 	}
-	#[view] public fun are_Games_built () : String {
-		if (exists<Games>(Producer_Module::obtain_address ())) {
-			return utf8 (b"yup")
-		};
-		
-		utf8 (b"no")
+	#[view] public fun Games_Status () : String acquires Games {
+		borrow_global<Games>(Producer_Module::obtain_address ()).status
+	}
+	public entry fun Ensure_Games_is_Playing () acquires Games {
+		if (Games_Status () != utf8 (b"playing")) {
+			abort Abortion_the_game_is_not_going
+		}
 	}
 	//
 	////
@@ -109,18 +113,26 @@ module Builder_01::Games_Module {
 	//	Game
 	//
 	//
-	public fun Ensure_Game_is_Playing () {
+	#[view] public fun retrieve_vector_of_game_names () : vector<String> acquires Games {
+		let games_envelope = vector::empty<String>();
 		
-	}	
+		let games = borrow_global<Games>(Producer_Module::obtain_address ());
+		let games_length = vector::length (& games.games);
+		for (index in 0..games_length) {
+			let game_ref = vector::borrow (& games.games, index);
+			vector::push_back (&mut games_envelope, game_ref.platform);
+		};
+		
+		games_envelope
+	}
+	public fun Ensure_Game_is_Playing () {}	
 	public fun search_or_begin_game (platform : String) : u64 acquires Games {
 		/*
 			Search for the index of the game.
 			If the game does not exist, then start it.
 		*/
-		
 
 		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
-		
 		let games_length = vector::length (& games.games);
 		for (index in 0..games_length) {
 			let game_ref = vector::borrow (& games.games, index);
@@ -140,7 +152,7 @@ module Builder_01::Games_Module {
 		let index = vector::length (& games.games) - 1;
 		index
 	}
-	public fun search_for_index_of_game (platform : String) : u64 acquires Games {
+	#[view] public fun search_for_index_of_game (platform : String) : u64 acquires Games {
 		let games = borrow_global<Games>(Producer_Module::obtain_address ());
 		
 		let games_length = vector::length (& games.games);
@@ -155,6 +167,8 @@ module Builder_01::Games_Module {
 	}
 	//
 	////
+	
+	
 	
 	////
 	//
@@ -221,10 +235,7 @@ module Builder_01::Games_Module {
 			vector::push_back (game_texts, this_text);
 		}
 	}
-	public entry fun Delete_Text (
-		consenter : & signer,
-		platform : String
-	) acquires Games {
+	public entry fun Delete_Text (consenter : & signer, platform : String) acquires Games {
 		let writer_address = signer::address_of (consenter);		
 		
 		let index_of_game = search_for_index_of_game (platform);
@@ -282,8 +293,21 @@ module Builder_01::Games_Module {
 	//
 	//		Games
 	//
-	public entry fun Producer_Games_Pause () {
-			
+	public fun Producer_Games_Change_Status (
+		consenter : & signer,
+		status : String
+	) acquires Games {
+		ensure_consenter_is_producer (consenter);
+		let producer_address = Producer_Module::obtain_address ();
+	
+		let games = borrow_global_mut<Games>(producer_address);
+		games.status = status;
+	}
+	public entry fun Producer_Games_Pause (consenter : & signer) acquires Games {
+		Producer_Games_Change_Status (consenter, utf8 (b"paused"));
+	}
+	public entry fun Producer_Games_Play (consenter : & signer) acquires Games {
+		Producer_Games_Change_Status (consenter, utf8 (b"playing"));
 	}
 	//
 	//	
@@ -293,12 +317,10 @@ module Builder_01::Games_Module {
 	//
 	public fun Producer_Game_Change_Status (
 		consenter : & signer,
-		writer_address : address,
 		platform : String,
 		status : String
 	) acquires Games {
 		ensure_consenter_is_producer (consenter);
-		let producer_address = Producer_Module::obtain_address ();
 	
 		let index_of_game = search_for_index_of_game (platform);
 		let games = borrow_global_mut<Games>(Producer_Module::obtain_address ());
@@ -308,17 +330,15 @@ module Builder_01::Games_Module {
 	}
 	public entry fun Producer_Game_Pause (
 		consenter : & signer,
-		writer_address : address,
 		platform : String
 	) acquires Games {
-		Producer_Game_Change_Status (consenter, writer_address, platform, utf8 (b"pause"));
+		Producer_Game_Change_Status (consenter, platform, utf8 (b"paused"));
 	}
 	public entry fun Producer_Game_Playing (
 		consenter : & signer,
-		writer_address : address,
 		platform : String 
 	) acquires Games {
-		Producer_Game_Change_Status (consenter, writer_address, platform, utf8 (b"playing"));
+		Producer_Game_Change_Status (consenter, platform, utf8 (b"playing"));
 	}
 	public entry fun Producer_Game_Delete_Then_End () {}
 	//

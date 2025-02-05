@@ -28,12 +28,9 @@ module Builder_01::Games_can_text_to_platform {
 		organization_02_consenter : & signer
 	) {	
 		use std::vector;
-		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
-		use std::debug;
 		
-		use aptos_framework::timestamp;
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
