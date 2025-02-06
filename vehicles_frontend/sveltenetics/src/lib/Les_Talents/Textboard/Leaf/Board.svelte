@@ -119,21 +119,14 @@ let input_demo = '';
 
 
 
-function onFlavorSelection (event) {
-	
-}
 
 
 let platform = '';
-let popupSettings = {
-	event: 'focus-click',
-	target: 'popupAutocomplete',
-	placement: 'bottom',
-};
 
-let onPopupDemoSelect = (event) => {
+
+let on_popup_select = (event) => {
 	platform = event.detail.label;
-	console.log ("onPopupDemoSelect", { platform });
+	console.log ("on_popup_select", { platform });
 }
 				
 
@@ -162,47 +155,61 @@ onDestroy (() => {
 	class="card p-2"
 	style="
 		width: 100%;
-		height: 15cm;
+		height: 80vh;
+		
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
 	"
 >	
 	<div
 		style="
 			display: flex;
-			border-radius: 4px;
-			justify-content: center;
+			justify-content: space-between;
 			align-items: center;
+			
 			gap: 0.25cm;
+			
+			border-radius: 4px;
 		"
 		class="card p-2 variant-soft-surface"
 	>
-		<header>Textboard</header>
 		<div>
-			
+			<header>Textboard</header>
+		</div>
+		
+		<div
+			style=""
+		>
+			<header>{ platform }</header>
+		</div>
+		
+		<div>
 			<input
 				class="input autocomplete p-2"
 				type="search"
 				name="autocomplete-search"
-				bind:value={platform}
+				bind:value={ platform }
 				placeholder="Search..."
-				use:popup={popupSettings}
+				use:popup={{
+					event: 'focus-click',
+					target: 'popupAutocomplete',
+					placement: 'bottom',
+				}}
 			/>
 			<div 
 				class="card p-1"
 				data-popup="popupAutocomplete"
 			>
 				<Autocomplete
-					bind:input={platform}
-					options={hull_names}
-					on:selection={onPopupDemoSelect}
+					bind:input={ platform }
+					options={ hull_names }
+					on:selection={ on_popup_select }
 				/>
 			</div>
 		</div>
-		<div>
-		
-		</div>
 	</div>
 	
-	<div style="height: 1cm" />
 	
 	<div
 		style="
@@ -246,13 +253,9 @@ onDestroy (() => {
 				APT="1"
 				clicked={ on_send }
 			/>
-
 		</div>
-		
-		
 	</div>
 
-	<div style="height: 1cm" />
 </div>
 {/if}
 {/if}

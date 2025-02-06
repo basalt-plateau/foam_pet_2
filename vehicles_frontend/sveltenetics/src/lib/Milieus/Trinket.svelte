@@ -53,6 +53,12 @@ const Wonder = ({ obtain, spot }) => {
 	}
 }
 
+// import Scrolls from './Venues/Scrolls/Trinket.svelte'
+// "Scrolls": async () => { return await import ('./Venues/Scrolls/Trinket.svelte') }
+// const Scrolls = await import ('./Venues/Scrolls/Trinket.svelte');
+
+import ('./Venues/Scrolls/Trinket.svelte')
+
 let Milieus = {
 	"Scrolls": async () => { return await import ('./Venues/Scrolls/Trinket.svelte') },
 	
@@ -67,7 +73,6 @@ let Milieus = {
 let milieu_venue;
 
 let location = []
-// let component = Milieus [ "Ecology" ] [ "Hints" ]
 let component;
 
 let style = parse_styles ({
@@ -79,8 +84,6 @@ let Milieus_freight = {}
 let Milieus_truck_prepared = "no"
 const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	Milieus_freight = _freight;
-	
-	
 	const location = Milieus_freight.location;
 	console.log ("on_Milieus_truck_change:", { location });
 	
@@ -102,7 +105,7 @@ const on_Milieus_truck_change = async ({ freight: _freight, happening }) => {
 	}
 	else {
 		console.error ("Location was not accounted for:", { location })
-		next_component = (await Milieus [ "Ecology" ] [ "Hints" ] ()).default;
+		next_component = (await Milieus [ "Scrolls" ] ()).default;
 	}
 
 	

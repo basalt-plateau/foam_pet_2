@@ -43,7 +43,7 @@ coverage==7.6.10
     # via
     #   biotech
     #   emergency
-cx-freeze==7.2.9
+cx-freeze==7.2.10
     # via mech-pet (pyproject.toml)
 dnspython==2.7.0
     # via pymongo
