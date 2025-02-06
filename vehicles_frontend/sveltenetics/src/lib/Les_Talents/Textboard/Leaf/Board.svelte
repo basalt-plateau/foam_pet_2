@@ -11,17 +11,32 @@
 
 
 /*
-	Builder: 
+	Producer: 
+		1. Hulls_Module::Begin_Hulls
 	
+	Then anyone can start sending texts..?
 */
 
-import { onMount } from "svelte"
+
+/*
+	Fonctions:
+		
+
+*/
+import { onMount, onDestroy } from 'svelte'
+import * as Textboard_Truck from '$lib/Les_Talents/Textboard/Truck/index.js'
+
+
+
 
 import { SlideToggle } from '@skeletonlabs/skeleton';
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 
 import { view_fonction } from "$lib/PTO_API/View/index.js"
+import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
+let Textboard_Freight = false
+
 	
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
@@ -29,28 +44,31 @@ let petition_APT_button = "";
 	
 
 
-const Builder_01 = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD";
+const Bourgeoisie_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+const Builder_01 = Bourgeoisie_01_LA;
+
+
 const Vacations = async () => {
 	const Fonctions = {
-		Begin_Games: `${ Builder_01 }::Game_Module::Begin_Games`,
-		End_Games: `${ Builder_01 }::Game_Module::End_Games`,
+		Begin_Hulls: `${ Builder_01 }::Hulls_Module::Begin_Hulls`,
+		End_Hulls: `${ Builder_01 }::Hulls_Module::End_Hulls`,
 		
-		send_text: `${ Builder_01 }::Game_Module::send_text`,
-		delete_text: `${ Builder_01 }::Game_Module::delete_text`,
+		send_text: `${ Builder_01 }::Hulls_Module::send_text`,
+		delete_text: `${ Builder_01 }::Hulls_Module::delete_text`,
 	};
 	
 	const View_Fonctions = {
-		is_Game_built: `${ Builder_01 }::Game_Module::is_Game_built`,
+		is_Hull_built: `${ Builder_01 }::Hulls_Module::is_Hull_built`,
 		
 		// platform names
-		retrieve_vector_of_game_names: `${ Builder_01 }::Game_Module::retrieve_vector_of_game_names`,
+		retrieve_vector_of_Hull_names: `${ Builder_01 }::Hulls_Module::retrieve_vector_of_Hull_names`,
 		
-		retrieve_texts: `${ Builder_01 }::Game_Module::retrieve_texts`
+		retrieve_texts: `${ Builder_01 }::Hulls_Module::retrieve_texts`
 	};
 	
 	const { result } = await view_fonction ({
 		body: {
-			"function": View_Fonctions ["retrieve_vector_of_game_names"],
+			"function": View_Fonctions ["retrieve_vector_of_Hull_names"],
 			"type_arguments": [],
 			"arguments": []
 		}
@@ -59,17 +77,17 @@ const Vacations = async () => {
 }
 const Scout = async () => {
 	const View_Fonctions = {
-		is_Game_built: `${ Builder_01 }::Game_Module::is_Game_built`,
+		is_Hull_built: `${ Builder_01 }::Hulls_Module::is_Hull_built`,
 		
 		// platform names
-		retrieve_vector_of_game_names: `${ Builder_01 }::Game_Module::retrieve_vector_of_game_names`,
+		retrieve_vector_of_hull_names: `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
 		
-		retrieve_texts: `${ Builder_01 }::Game_Module::retrieve_texts`
+		retrieve_texts: `${ Builder_01 }::Hulls_Module::retrieve_texts`
 	};
 	
 	const { result } = await view_fonction ({
 		body: {
-			"function": View_Fonctions ["retrieve_vector_of_game_names"],
+			"function": View_Fonctions ["retrieve_vector_of_hull_names"],
 			"type_arguments": [],
 			"arguments": []
 		}
@@ -108,7 +126,6 @@ let popupSettings = {
 
 let onPopupDemoSelect = (event) => {
 	platform = event.detail.label;
-	
 	console.log ("onPopupDemoSelect", { platform });
 }
 				
@@ -118,14 +135,22 @@ let on_send = () => {
 	
 }
 
-
-onMount (async () => {
+let Textboard_Truck_Made = "no";
+onMount (async () => {	
+	Textboard_Truck.make ()
+	Textboard_Truck_Made = "yurp";
+	
 	Scout ();
+});
+onDestroy (() => {
+	Textboard_Truck.destroy ()
 });
 
 </script>
 
-
+{#if Textboard_Truck_Made === "yurp" }
+<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { Textboard_Freight = pro_freight; } } />
+{#if typeof Textboard_Freight === "object"}
 <div
 	class="card p-4"
 	style="
@@ -145,6 +170,7 @@ onMount (async () => {
 	>
 		<header>Textboard</header>
 		<div>
+			
 			<input
 				class="input autocomplete p-1"
 				type="search"
@@ -163,6 +189,9 @@ onMount (async () => {
 					on:selection={onPopupDemoSelect}
 				/>
 			</div>
+		</div>
+		<div>
+		
 		</div>
 	</div>
 	
@@ -217,5 +246,7 @@ onMount (async () => {
 	</div>
 
 	<div style="height: 1cm" />
-
 </div>
+{/if}
+{/if}
+

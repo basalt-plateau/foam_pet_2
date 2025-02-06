@@ -14,7 +14,7 @@ module Builder_01::Producer_Module {
 	
 	use aptos_framework::chain_id;
 	
-	const Imperfection_that_is_not_the_address_of_the_producer : u64 = 10;
+	const Imperfection_that_is_not_the_address_of_the_producer : u64 = 9;
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module;
@@ -29,7 +29,7 @@ module Builder_01::Producer_Module {
 		//	Foam 1: 652b8d45aebc4237cb4a4ca1d8b99725d8f973676844fe85eb09286d7f9d3808
 		//	Foam 2: af545705ec7dbc1630376fd22313c973e5e8a4edd51343a1ddd05353e72fd5bf
 		//
-		//	Open 1: 2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
+		//	Bourgeoisie 1: 2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
 		//
 		//	Keystone 1: FBE0B4ECA5928CC51E2A36EF25BC479CF24B22040B5571DD6D0A37283F99A240
 		//	
@@ -41,7 +41,7 @@ module Builder_01::Producer_Module {
 			return @0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
 		};
 		
-		let position : address = @0xFBE0B4ECA5928CC51E2A36EF25BC479CF24B22040B5571DD6D0A37283F99A240;
+		let position : address = @0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD;
 		position
 	}
 	public fun ensure_consenter_is_producer (consenter : & signer) {

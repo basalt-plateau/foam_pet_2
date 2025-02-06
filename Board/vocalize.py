@@ -45,6 +45,10 @@ import Rides.Sport_Pack_01 as Sport_Pack_01
 
 ''''
 	Publisher is the account that is loggen in @ .aptos/config.yaml
+	
+	Bourgeoisie_01:
+		Private Key: 	0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C
+		Legacy Address: 2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
 "'''
 Builder_Addresses = {
 	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
@@ -121,6 +125,9 @@ def clique ():
 
 
 	"""
+		python3 vocalize.py vocalize --publish --move Rules_10 --builder Bourgeoisie_01
+		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --builder Bourgeoisie_01
+	
 		python3 vocalize.py vocalize --steady --move Textboard
 		python3 vocalize.py vocalize --publish --move Textboard --builder Bourgeoisie_01
 		python3 vocalize.py vocalize --publish --move Textboard --builder Petra

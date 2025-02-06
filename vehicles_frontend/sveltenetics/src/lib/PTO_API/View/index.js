@@ -27,8 +27,13 @@
 
 import { ask_for_freight } from '$lib/Versies/Trucks'
 	
-export const view_fonction = async ({ body }) => {
-	const net_path = ask_for_freight ().dapp_network.net_path;
+export const view_fonction = async ({ 
+	body,
+	net_path = ""
+}) => {
+	if (net_path.length === 0) {
+		net_path = ask_for_freight ().dapp_network.net_path;
+	}
 	
 	const proceeds = await fetch (`${ net_path }/view`, {
 		method: "POST",
