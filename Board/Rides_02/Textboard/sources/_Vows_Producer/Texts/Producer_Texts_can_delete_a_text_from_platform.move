@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Producer_Texts_can_delete_a_text {
+module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -13,15 +13,8 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 	}
 	
 	
-	
 	#[test_only]
-	public fun Vow_01 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer,
-		
-		writer_01_consenter : & signer,
-		writer_02_consenter : & signer
-	) {	
+	public fun Vow () {	
 		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -33,18 +26,27 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		use Builder_01::Games_Module; 
 		use Builder_01::Vow_Parts_01; 
 	
+		////
+		//
+		let aptos_framework_consenter : & signer = & account::create_account_for_test (@0x1);
+		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
+		let producer_01_address = signer::address_of (producer_01_consenter);
+		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
+		let writer_01_address = signer::address_of (writer_01_consenter);
+		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
+		let writer_02_address = signer::address_of (writer_02_consenter);
+		//
+		////
+	
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
 		
-		let producer_address = signer::address_of (producer_01_consenter);
-		Vow_Parts_01::clock (& aptos_framework_consenter);
+		Vow_Parts_01::clock (aptos_framework_consenter);
 		
-		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (& aptos_framework_consenter);
+		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(apt_mint, & mint_cap);
-		account::create_account_for_test (producer_address);
 		coin::register<AptosCoin>(producer_01_consenter);
-		coin::deposit (producer_address, coins);
-		
+		coin::deposit (producer_01_address, coins);
 		
 		
 		////
@@ -52,12 +54,7 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		//	writers:
 		//		
 		//
-		let writer_01_address = signer::address_of (writer_01_consenter);
-		account::create_account_for_test (writer_01_address);
 		coin::register<AptosCoin>(writer_01_consenter);
-		//
-		let writer_02_address = signer::address_of (writer_02_consenter);
-		account::create_account_for_test (writer_02_address);
 		coin::register<AptosCoin>(writer_02_consenter);
 		//
 		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_APT * 10);
@@ -82,12 +79,8 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		//
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
-		let text_01_platform : String = utf8 (b"");		
-		Games_Module::Send_Text (
-			writer_01_consenter,
-			text_01_text,
-			text_01_platform
-		);
+		let text_01_platform : String = utf8 (b"Platform 01");		
+		Games_Module::Send_Text (writer_01_consenter, text_01_text, text_01_platform);
 		//
 		////
 

@@ -4,13 +4,14 @@
 
 
 
-module Builder_01::Games_can_text_to_front {
+module Builder_01::Producer_Texts_can_delete_a_text {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module;
 		Rules_Module::Volitions_01 () 
 	}
+	
 	
 	
 	#[test_only]
@@ -25,12 +26,12 @@ module Builder_01::Games_can_text_to_front {
 	
 		use Builder_01::Games_Module; 
 		use Builder_01::Vow_Parts_01; 
-
+	
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
 		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
-
+	
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
 		
@@ -81,11 +82,7 @@ module Builder_01::Games_can_text_to_front {
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"");		
-		Games_Module::Send_Text (
-			writer_01_consenter,
-			text_01_text,
-			text_01_platform
-		);
+		Games_Module::Send_Text (writer_01_consenter, text_01_text, text_01_platform);
 		//
 		////
 
@@ -103,11 +100,12 @@ module Builder_01::Games_can_text_to_front {
 		
 		////
 		//
-		//	Delete Text
+		//	Producer Delete Text
 		//
 		//
-		Games_Module::Delete_Text (
-			writer_01_consenter,
+		Games_Module::Producer_Delete_Text (
+			producer_01_consenter,
+			writer_01_address,
 			text_01_platform
 		);
 		assert! (vector::length (& Games_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	

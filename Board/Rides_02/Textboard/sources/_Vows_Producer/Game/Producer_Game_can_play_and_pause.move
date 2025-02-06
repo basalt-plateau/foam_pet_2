@@ -12,15 +12,16 @@ module Builder_01::Producer_Game_can_play_and_pause {
 		Rules_Module::Volitions_01 () 
 	}
 	
-
-	#[test_only]
-	public fun Vow_01 (
+	/*
 		aptos_framework_consenter : signer,
 		producer_01_consenter : & signer,
 		
 		writer_01_consenter : & signer,
 		writer_02_consenter : & signer
-	) {	
+	*/
+
+	#[test_only]
+	public fun Vow_01 () {	
 		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -35,7 +36,10 @@ module Builder_01::Producer_Game_can_play_and_pause {
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
 
-
+		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
+		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
+		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
+		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
 
 		let producer_address = signer::address_of (producer_01_consenter);
 		Vow_Parts_01::clock (& aptos_framework_consenter);

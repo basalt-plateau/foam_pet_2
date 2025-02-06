@@ -17,7 +17,7 @@ module Builder_01::Games_Module {
 	const Abortion_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Abortion_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
 	const Abortion_the_game_is_not_going : u64 = 100002;
-	const Hull_Text_String_needs_to_be_less_than_one_hundred_characters : u64 = 100003;	
+	const Limiter_Text_String_needs_to_be_less_than_one_hundred_characters : u64 = 100003;	
 	
 	const One_APT : u64 = 100000000;
 	
@@ -61,11 +61,9 @@ module Builder_01::Games_Module {
 		games : vector<Game>
 	}
 	
-
-	
 	////
 	//
-	//	Games
+	//	Games View
 	//
 	//
 	#[view] public fun are_Games_built () : String {
@@ -75,6 +73,51 @@ module Builder_01::Games_Module {
 		
 		utf8 (b"no")
 	}
+	#[view] public fun Games_Status () : String acquires Games {
+		borrow_global<Games>(Producer_Module::obtain_address ()).status
+	}
+	#[view] public fun retrieve_vector_of_game_names () : vector<String> acquires Games {
+		let games_envelope = vector::empty<String>();
+		
+		let games = borrow_global<Games>(Producer_Module::obtain_address ());
+		let games_length = vector::length (& games.games);
+		for (index in 0..games_length) {
+			let game_ref = vector::borrow (& games.games, index);
+			vector::push_back (&mut games_envelope, game_ref.platform);
+		};
+		
+		games_envelope
+	}
+	//
+	////
+
+	////
+	//
+	//	Game View
+	//
+	//
+	#[view] public fun search_for_index_of_game (platform : String) : u64 acquires Games {
+		let games = borrow_global<Games>(Producer_Module::obtain_address ());
+		
+		let games_length = vector::length (& games.games);
+		for (index in 0..games_length) {
+			let game_ref = vector::borrow (& games.games, index);
+			if (game_ref.platform == platform) {
+				return index
+			}
+		};
+		
+		abort 1
+	}
+	//
+	////
+
+	
+	////
+	//
+	//	Games
+	//
+	//
 	public entry fun Begin_Games (consenter : & signer) {
 		ensure_consenter_is_producer (consenter);
 		
@@ -97,9 +140,6 @@ module Builder_01::Games_Module {
 		
 		move_to<Games>(consenter, games)
 	}
-	#[view] public fun Games_Status () : String acquires Games {
-		borrow_global<Games>(Producer_Module::obtain_address ()).status
-	}
 	public entry fun Ensure_Games_is_Playing () acquires Games {
 		if (Games_Status () != utf8 (b"playing")) {
 			abort Abortion_the_game_is_not_going
@@ -113,18 +153,6 @@ module Builder_01::Games_Module {
 	//	Game
 	//
 	//
-	#[view] public fun retrieve_vector_of_game_names () : vector<String> acquires Games {
-		let games_envelope = vector::empty<String>();
-		
-		let games = borrow_global<Games>(Producer_Module::obtain_address ());
-		let games_length = vector::length (& games.games);
-		for (index in 0..games_length) {
-			let game_ref = vector::borrow (& games.games, index);
-			vector::push_back (&mut games_envelope, game_ref.platform);
-		};
-		
-		games_envelope
-	}
 	public fun Ensure_Game_is_Playing () {}	
 	public fun search_or_begin_game (platform : String) : u64 acquires Games {
 		/*
@@ -152,19 +180,7 @@ module Builder_01::Games_Module {
 		let index = vector::length (& games.games) - 1;
 		index
 	}
-	#[view] public fun search_for_index_of_game (platform : String) : u64 acquires Games {
-		let games = borrow_global<Games>(Producer_Module::obtain_address ());
-		
-		let games_length = vector::length (& games.games);
-		for (index in 0..games_length) {
-			let game_ref = vector::borrow (& games.games, index);
-			if (game_ref.platform == platform) {
-				return index
-			}
-		};
-		
-		abort 1
-	}
+	
 	//
 	////
 	
@@ -184,7 +200,7 @@ module Builder_01::Games_Module {
 		use aptos_framework::aptos_coin::{ Self, AptosCoin };
 		
 		if (string::length (& text) > 100) {
-			abort Hull_Text_String_needs_to_be_less_than_one_hundred_characters
+			abort Limiter_Text_String_needs_to_be_less_than_one_hundred_characters
 		};
 		
 		

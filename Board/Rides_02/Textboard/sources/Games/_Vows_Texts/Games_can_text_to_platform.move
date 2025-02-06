@@ -5,28 +5,16 @@
 
 
 module Builder_01::Games_can_text_to_platform {
-	use std::string::{ String };
 	
+	
+	use std::string::{ String };
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module;
 		Rules_Module::Volitions_01 () 
 	}
 	
-	
-	#[test (
-		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01,
-		
-		organization_01_consenter = @1000001,
-		organization_02_consenter = @1000002
-	)]
-	public fun Vow_01 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer,
-		
-		organization_01_consenter : & signer,
-		organization_02_consenter : & signer
-	) {	
+	#[test_only]
+	public fun Vow () {	
 		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -40,6 +28,11 @@ module Builder_01::Games_can_text_to_platform {
 	
 		use Builder_01::Games_Module; 
 		use Builder_01::Vow_Parts_01; 
+	
+		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
+		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
+		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
+		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
 	
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
@@ -56,18 +49,18 @@ module Builder_01::Games_can_text_to_platform {
 		
 		////
 		//
-		//	Organizations:
+		//	writers:
 		//		
 		//
-		let organization_01_address = signer::address_of (organization_01_consenter);
-		account::create_account_for_test (organization_01_address);
-		coin::register<AptosCoin>(organization_01_consenter);
+		let writer_01_address = signer::address_of (writer_01_consenter);
+		account::create_account_for_test (writer_01_address);
+		coin::register<AptosCoin>(writer_01_consenter);
 		//
-		let organization_02_address = signer::address_of (organization_02_consenter);
-		account::create_account_for_test (organization_02_address);
-		coin::register<AptosCoin>(organization_02_consenter);
+		let writer_02_address = signer::address_of (writer_02_consenter);
+		account::create_account_for_test (writer_02_address);
+		coin::register<AptosCoin>(writer_02_consenter);
 		//
-		coin::transfer<AptosCoin>(producer_01_consenter, organization_01_address, one_APT * 10);
+		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_APT * 10);
 		//
 		////
 		
@@ -93,7 +86,7 @@ module Builder_01::Games_can_text_to_platform {
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"Dimension 3");		
 		Games_Module::Send_Text (
-			organization_01_consenter,
+			writer_01_consenter,
 			text_01_text,
 			text_01_platform
 		);
@@ -140,7 +133,7 @@ module Builder_01::Games_can_text_to_platform {
 		//
 		//
 		Games_Module::Delete_Text (
-			organization_01_consenter,
+			writer_01_consenter,
 			text_01_platform
 		);
 		assert! (vector::length (& Games_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	

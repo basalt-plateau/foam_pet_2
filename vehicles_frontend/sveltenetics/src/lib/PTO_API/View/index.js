@@ -11,8 +11,9 @@
 		],
 		"arguments": []
 	}'
+*/
 
-
+/*
 	import { view_fonction } from "$lib/PTO_API/View/index.js"
 	const { result } = await view_fonction ({
 		body: {

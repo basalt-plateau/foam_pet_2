@@ -15,40 +15,74 @@
 	
 */
 
+import { onMount } from "svelte"
+
 import { SlideToggle } from '@skeletonlabs/skeleton';
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
 
+import { view_fonction } from "$lib/PTO_API/View/index.js"
+	
+
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 let petition_APT_button = "";
 	
-	
+
 
 const Builder_01 = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD";
-
-const Fonctions = {
-	Begin_Game: `${ Builder_01 }::Game_Module::Begin_Game`,
-	End_Game: `${ Builder_01 }::Game_Module::End_Game`,
-	is_Game_built: `${ Builder_01 }::Game_Module::is_Game_built`,
+const Vacations = async () => {
+	const Fonctions = {
+		Begin_Games: `${ Builder_01 }::Game_Module::Begin_Games`,
+		End_Games: `${ Builder_01 }::Game_Module::End_Games`,
+		
+		send_text: `${ Builder_01 }::Game_Module::send_text`,
+		delete_text: `${ Builder_01 }::Game_Module::delete_text`,
+	};
 	
-	send_text: `${ Builder_01 }::Game_Module::send_text`,
-	delete_text: `${ Builder_01 }::Game_Module::delete_text`,
-	retrieve_texts: `${ Builder_01 }::Game_Module::retrieve_texts`
-};
+	const View_Fonctions = {
+		is_Game_built: `${ Builder_01 }::Game_Module::is_Game_built`,
+		
+		// platform names
+		retrieve_vector_of_game_names: `${ Builder_01 }::Game_Module::retrieve_vector_of_game_names`,
+		
+		retrieve_texts: `${ Builder_01 }::Game_Module::retrieve_texts`
+	};
+	
+	const { result } = await view_fonction ({
+		body: {
+			"function": View_Fonctions ["retrieve_vector_of_game_names"],
+			"type_arguments": [],
+			"arguments": []
+		}
+	});
+	console.info ({ result });
+}
+const Scout = async () => {
+	const View_Fonctions = {
+		is_Game_built: `${ Builder_01 }::Game_Module::is_Game_built`,
+		
+		// platform names
+		retrieve_vector_of_game_names: `${ Builder_01 }::Game_Module::retrieve_vector_of_game_names`,
+		
+		retrieve_texts: `${ Builder_01 }::Game_Module::retrieve_texts`
+	};
+	
+	const { result } = await view_fonction ({
+		body: {
+			"function": View_Fonctions ["retrieve_vector_of_game_names"],
+			"type_arguments": [],
+			"arguments": []
+		}
+	});
+	console.info ({ result });
+}
+
 
 
 let value = false;
 
 let input_demo = '';
 
-const flavorOptionsz = [
-	{ label: 'Vanilla', value: 'vanilla', keywords: 'plain, basic', meta: { healthy: false } },
-	{ label: 'Chocolate', value: 'chocolate', keywords: 'dark, white', meta: { healthy: false } },
-	{ label: 'Strawberry', value: 'strawberry', keywords: 'fruit', meta: { healthy: true } },
-	{ label: 'Neapolitan', value: 'neapolitan', keywords: 'mix, strawberry, chocolate, vanilla', meta: { healthy: false } },
-	{ label: 'Pineapple', value: 'pineapple', keywords: 'fruit', meta: { healthy: true } },
-	{ label: 'Peach', value: 'peach', keywords: 'fruit', meta: { healthy: true } }
-];
 
 const flavorOptions = [
 	{ label: 'Vanilla', value: 'vanilla' },
@@ -83,6 +117,11 @@ let onPopupDemoSelect = (event) => {
 let on_send = () => {
 	
 }
+
+
+onMount (async () => {
+	Scout ();
+});
 
 </script>
 
@@ -165,7 +204,7 @@ let on_send = () => {
 				}}
 			
 				button_text={ 
-					platform === "" ? "Send" : `Send to ${ platform }` 
+					platform === "" ? "Tag" : `Tag on ${ platform }` 
 				}
 				
 				APT="1"
@@ -179,36 +218,4 @@ let on_send = () => {
 
 	<div style="height: 1cm" />
 
-
-	<div class="card p-4 variant-soft-surface">
-		<div>
-			<header
-				style="
-					font-size: 1.5em;
-					font-weight: bold;
-					text-align: center;
-				"
-			>Rules</header>
-			<p>
-				Texts should be approriate for most audiences.  If they're not appropriate for most audiences,
-				or are otherwise deemed unappropriate by the censors, they might be deleted.  If deleted, any
-				sort of refund is at the discretion of the censors.  Thus a full refund, partial refund, or zero
-				refund might be sent depending on the unappropriateness of the content.  
-				
-			</p>
-		</div>
-		
-		<div>
-			<header
-				style="
-					font-size: 1.5em;
-					font-weight: bold;
-					text-align: center;
-				"
-			>Moves</header>
-			<p>
-			
-			</p>
-		</div>
-	</div>
 </div>

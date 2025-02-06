@@ -8,7 +8,6 @@ module builder_1::Vow_Parts_01 {
 	use aptos_framework::aptos_coin::AptosCoin;
 	use aptos_framework::coin;
 	
-	
 	#[test (aptos_framework_consenter = @0x1)]
 	public fun clock (aptos_framework_consenter: & signer) {
 		use aptos_framework::timestamp;
@@ -24,6 +23,7 @@ module builder_1::Vow_Parts_01 {
 		//
 		let year_ms : u64 = 31557600000;
 		let begin_ms : u64 = year_ms * 30;
+		//
 		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
 		timestamp::update_global_time_for_test (begin_ms);
 	}
@@ -53,6 +53,48 @@ module builder_1::Vow_Parts_01 {
 		)
 	}
 	*/
+	
+	
+	#[test_only]
+	public fun create_consenters (count : u64) : vector<signer> {
+		use std::unit_test;
+		
+		use std::signer;
+		use std::string::{ String };
+		use std::vector;
+
+		use aptos_framework::create_signer;
+		use aptos_framework::account;
+		
+		let vector_of_signers = vector::empty<signer>();
+		
+		/*
+		// let APTOS_FRAMEWORK_ADDRESS : address = 0x1;
+		let test_signer : signer = create_signer::create_signer (@0x1);
+		// let signer_address = signer::address_of(&test_signer);
+		
+		// let aptos_framework_signer = signer::borrow_global_mut<signer>(@0x1);
+		vector::push_back (&mut signers, test_signer);
+		*/
+		
+		let signers = &mut unit_test::create_signers_for_testing (2);
+        let (signer_01, signer_02) = (
+			vector::pop_back (signers), 
+			vector::pop_back (signers)
+		);
+
+        account::create_account_for_test (signer::address_of (& signer_01));
+        account::create_account_for_test (signer::address_of (& signer_02));
+        // (alice, bob)
+		
+		vector::push_back (&mut vector_of_signers, signer_01);
+		vector::push_back (&mut vector_of_signers, signer_02);
+		
+		
+		// signers
+		
+		vector_of_signers
+	}
 	
 	/*
 		let (burn_cap, freeze_cap, mint_cap) = origin (& aptos_framework_flourisher);

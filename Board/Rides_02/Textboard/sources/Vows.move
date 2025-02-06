@@ -4,53 +4,7 @@
 module Builder_01::Vows {
 
 	
-	
-	use std::signer;
-	use std::string::{ String };
-	use std::vector;
 
-	use aptos_framework::create_signer;
-	use aptos_framework::account;
-	
-
-	#[test_only]
-	public fun create_consenters (count : u64) : vector<signer> {
-		use std::unit_test;
-		use aptos_framework::account;
-		
-		let vector_of_signers = vector::empty<signer>();
-		
-		/*
-		// let APTOS_FRAMEWORK_ADDRESS : address = 0x1;
-		let test_signer : signer = create_signer::create_signer (@0x1);
-		// let signer_address = signer::address_of(&test_signer);
-		
-		// let aptos_framework_signer = signer::borrow_global_mut<signer>(@0x1);
-		vector::push_back (&mut signers, test_signer);
-		*/
-		
-		let signers = &mut unit_test::create_signers_for_testing (2);
-        let (signer_01, signer_02) = (
-			vector::pop_back (signers), 
-			vector::pop_back (signers)
-		);
-		
-		
-
-		
-		
-        account::create_account_for_test (signer::address_of (& signer_01));
-        account::create_account_for_test (signer::address_of (& signer_02));
-        // (alice, bob)
-		
-		vector::push_back (&mut vector_of_signers, signer_01);
-		vector::push_back (&mut vector_of_signers, signer_02);
-		
-		
-		// signers
-		
-		vector_of_signers
-	}
 	
 	
 	/*
@@ -62,102 +16,60 @@ module Builder_01::Vows {
 		Game
 	*/
 	
-	/*
-		Text
-	*/
 	
+	/*
+		Text:
+			01 Can Text to Platform "" (front)
+			02 Can Text To Platform "Dimension 3"
+			03 Text Length Limiter
+	*/
+	#[test] public fun Text_01 () { 
+		use Builder_01::Games_can_text_to_front::{ Vow }; Vow (); 
+	}
+	#[test] public fun Text_02 () { 
+		use Builder_01::Games_can_text_to_platform::{ Vow }; Vow (); 
+	}
+	#[test] 
+	#[expected_failure (abort_code = 100003, location = Builder_01::Games_Module)]
+	public fun Text_03 () { 
+		use Builder_01::Text_Length_Limiter::{ Vow }; Vow (); 
+	}
 	
 	
 	/*
 		Producer Games
-			* Can begin
-			* Can play and pause
+			01 Can begin
+			02 Can play and pause
 			
 			Unwritten:
 				* While Paused, can't text anything
 	*/
-	#[test]
-	public fun Vow_Games_01 () {
-		use Builder_01::Games_can_begin;
-		Games_can_begin::Vow_01 ()		
+	#[test] public fun Producer_Games_01 () { 
+		use Builder_01::Games_can_begin::{ Vow_01 }; Vow_01 (); 
 	}
-	#[test (
-		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01
-	)]
-	public fun Vow_Games_02 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer
-	) {
-		use Builder_01::Games_can_play_and_pause;
-		Games_can_play_and_pause::Vow_01 (
-			aptos_framework_consenter,
-			producer_01_consenter
-		)		
+	#[test] public fun Producer_Games_02 () { 
+		use Builder_01::Games_can_play_and_pause::{ Vow_01 }; Vow_01 (); 
 	}
 	
 	
 	/*
 		Producer Game:
-			* 
+			01 Can play then pause
 	*/
-	#[test (
-		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01,
-		
-		writer_01_consenter = @1000001,
-		writer_02_consenter = @1000002
-	)]
-	public fun Producer_Game_01 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer,
-		
-		writer_01_consenter : & signer,
-		writer_02_consenter : & signer
-	) {
-		use aptos_framework::account; 
-		
-		use Builder_01::Producer_Game_can_play_and_pause;
-		
-		let consenters = create_consenters (2);
-		// let writer_03_consenter = vector::borrow (& consenters, 0);
-		
-		let consenter_01 = account::create_account_for_test (@0x1000001);
-		
-		Producer_Game_can_play_and_pause::Vow_01 (
-			aptos_framework_consenter,
-			producer_01_consenter,
-			& consenter_01,
-			// vector::borrow (& consenters, 0),
-			vector::borrow (& consenters, 1)
-		)		
+	#[test] public fun Producer_Game_01 () { 
+		use Builder_01::Producer_Game_can_play_and_pause::{ Vow_01 }; Vow_01 (); 
 	}
 	
 	
 	/*
 		Producer Text
-			* Can delete a text from platform ""
+			01 Can delete a text from platform ""
+			02 Can delete a text from platform ""			
 	*/
-	#[test (
-		aptos_framework_consenter = @0x1, 
-		producer_01_consenter = @Producer_01,
-		
-		writer_01_consenter = @9000000,
-		writer_02_consenter = @9000001
-	)]
-	public fun Producer_Text_01 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer,
-		
-		writer_01_consenter : & signer,
-		writer_02_consenter : & signer
-	) {
-		use Builder_01::Producer_Texts_can_delete_a_text;
-		Producer_Texts_can_delete_a_text::Vow_01 (
-			aptos_framework_consenter,
-			producer_01_consenter,
-			writer_01_consenter,
-			writer_02_consenter
-		)		
+	#[test] public fun Producer_Text_01 () {
+		use Builder_01::Producer_Texts_can_delete_a_text::{ Vow }; Vow ();
+	}
+	#[test] public fun Producer_Text_02 () {
+		use Builder_01::Producer_Texts_can_delete_a_text_from_platform::{ Vow }; Vow ();
 	}
 }

@@ -15,10 +15,7 @@ module Builder_01::Games_can_play_and_pause {
 	}
 	
 	#[test_only]
-	public fun Vow_01 (
-		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer
-	) {	
+	public fun Vow_01 () {	
 		use std::string::{ utf8 };
 		use std::signer;
 		use std::debug;
@@ -30,6 +27,9 @@ module Builder_01::Games_can_play_and_pause {
 	
 		use Builder_01::Games_Module; 
 		use Builder_01::Vow_Parts_01; 
+	
+		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
+		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
 	
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
