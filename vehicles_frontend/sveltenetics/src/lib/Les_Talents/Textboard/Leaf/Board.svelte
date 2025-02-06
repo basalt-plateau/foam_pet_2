@@ -43,66 +43,23 @@ import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Butto
 let petition_APT_button = "";
 	
 
-let hull_names = [
-	{ label: 'Vanilla', value: 'vanilla' },
-	{ label: 'Chocolate', value: 'chocolate' },
-	{ label: 'Strawberry', value: 'strawberry' },
-	{ label: 'Neapolitan', value: 'neapolitan' },
-	{ label: 'Pineapple', value: 'pineapple' },
-	{ label: 'Peach', value: 'peach' }
-];
+let hull_names = [];
 
 
 const Bourgeoisie_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 const Builder_01 = Bourgeoisie_01_LA;
 
+const retrieve_hull_names = async () => {
+	const { result } = await view_fonction ({
+		body: {
+			"function": `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
+			"type_arguments": [],
+			"arguments": []
+		}
+	});
 
-const Vacations = async () => {
-	const Fonctions = {
-		Begin_Hulls: `${ Builder_01 }::Hulls_Module::Begin_Hulls`,
-		End_Hulls: `${ Builder_01 }::Hulls_Module::End_Hulls`,
-		
-		send_text: `${ Builder_01 }::Hulls_Module::send_text`,
-		delete_text: `${ Builder_01 }::Hulls_Module::delete_text`,
-	};
-	
-	const View_Fonctions = {
-		is_Hull_built: `${ Builder_01 }::Hulls_Module::is_Hull_built`,
-		
-		// platform names
-		retrieve_vector_of_Hull_names: `${ Builder_01 }::Hulls_Module::retrieve_vector_of_Hull_names`,
-		
-		retrieve_texts: `${ Builder_01 }::Hulls_Module::retrieve_texts`
-	};
-	
-	const { result } = await view_fonction ({
-		body: {
-			"function": View_Fonctions ["retrieve_vector_of_Hull_names"],
-			"type_arguments": [],
-			"arguments": []
-		}
-	});
 	console.info ({ result });
-}
-const Scout = async () => {
-	const View_Fonctions = {
-		is_Hull_built: `${ Builder_01 }::Hulls_Module::is_Hull_built`,
-		
-		// platform names
-		retrieve_vector_of_hull_names: `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
-		
-		retrieve_texts: `${ Builder_01 }::Hulls_Module::retrieve_texts`
-	};
-	
-	const { result } = await view_fonction ({
-		body: {
-			"function": View_Fonctions ["retrieve_vector_of_hull_names"],
-			"type_arguments": [],
-			"arguments": []
-		}
-	});
-	console.info ({ result });
-	
+
 	hull_names = result[0].map (name => {
 		if (name === "") {
 			return {
@@ -116,6 +73,42 @@ const Scout = async () => {
 			label: name
 		}
 	});
+}
+
+const retrieve_texts_for_platform = async ({ platform_name }) => {
+	const { result } = await view_fonction ({
+		body: {
+			"function": `${ Builder_01 }::Hulls_Module::Retrieve_Texts`,
+			"type_arguments": [],
+			"arguments": [
+				platform_name
+			]
+		}
+	});
+}
+
+
+const Vacations = async () => {
+	const Fonctions = {
+		Begin_Hulls: `${ Builder_01 }::Hulls_Module::Begin_Hulls`,
+		End_Hulls: `${ Builder_01 }::Hulls_Module::End_Hulls`,
+		
+		send_text: `${ Builder_01 }::Hulls_Module::send_text`,
+		delete_text: `${ Builder_01 }::Hulls_Module::delete_text`,
+	};
+	
+
+
+}
+const Scout = async () => {
+	const View_Fonctions = {
+		is_Hull_built: `${ Builder_01 }::Hulls_Module::is_Hull_built`,
+		
+		// platform names
+		retrieve_vector_of_hull_names: `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
+		
+		retrieve_texts: `${ Builder_01 }::Hulls_Module::retrieve_texts`
+	};
 }
 
 
@@ -154,7 +147,7 @@ onMount (async () => {
 	Textboard_Truck.make ()
 	Textboard_Truck_Made = "yurp";
 	
-	Scout ();
+	await retrieve_hull_names ();
 });
 onDestroy (() => {
 	Textboard_Truck.destroy ()
@@ -226,7 +219,7 @@ onDestroy (() => {
 			style="
 				width: 100%;
 			"
-			class="textarea"
+			class="textarea p-1"
 		></textarea>
 		
 		<div
