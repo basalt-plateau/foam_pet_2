@@ -43,6 +43,15 @@ import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Butto
 let petition_APT_button = "";
 	
 
+let hull_names = [
+	{ label: 'Vanilla', value: 'vanilla' },
+	{ label: 'Chocolate', value: 'chocolate' },
+	{ label: 'Strawberry', value: 'strawberry' },
+	{ label: 'Neapolitan', value: 'neapolitan' },
+	{ label: 'Pineapple', value: 'pineapple' },
+	{ label: 'Peach', value: 'peach' }
+];
+
 
 const Bourgeoisie_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 const Builder_01 = Bourgeoisie_01_LA;
@@ -93,6 +102,20 @@ const Scout = async () => {
 		}
 	});
 	console.info ({ result });
+	
+	hull_names = result[0].map (name => {
+		if (name === "") {
+			return {
+				value: name,
+				label: "front"
+			}
+		}
+		
+		return {
+			value: name,
+			label: name
+		}
+	});
 }
 
 
@@ -101,15 +124,6 @@ let value = false;
 
 let input_demo = '';
 
-
-const flavorOptions = [
-	{ label: 'Vanilla', value: 'vanilla' },
-	{ label: 'Chocolate', value: 'chocolate' },
-	{ label: 'Strawberry', value: 'strawberry' },
-	{ label: 'Neapolitan', value: 'neapolitan' },
-	{ label: 'Pineapple', value: 'pineapple' },
-	{ label: 'Peach', value: 'peach' }
-];
 
 
 function onFlavorSelection (event) {
@@ -152,7 +166,7 @@ onDestroy (() => {
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { Textboard_Freight = pro_freight; } } />
 {#if typeof Textboard_Freight === "object"}
 <div
-	class="card p-4"
+	class="card p-2"
 	style="
 		width: 100%;
 		height: 15cm;
@@ -166,13 +180,13 @@ onDestroy (() => {
 			align-items: center;
 			gap: 0.25cm;
 		"
-		class="card p-4 variant-soft-surface"
+		class="card p-2 variant-soft-surface"
 	>
 		<header>Textboard</header>
 		<div>
 			
 			<input
-				class="input autocomplete p-1"
+				class="input autocomplete p-2"
 				type="search"
 				name="autocomplete-search"
 				bind:value={platform}
@@ -185,7 +199,7 @@ onDestroy (() => {
 			>
 				<Autocomplete
 					bind:input={platform}
-					options={flavorOptions}
+					options={hull_names}
 					on:selection={onPopupDemoSelect}
 				/>
 			</div>
