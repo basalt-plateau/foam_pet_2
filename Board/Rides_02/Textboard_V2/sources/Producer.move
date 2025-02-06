@@ -7,7 +7,7 @@
 
 */
 module Builder_01::Producer_Module {	
-	friend Builder_01::Hulls_Module;
+	friend Builder_01::Games_Module;
 	
 	use std::string::{ String, utf8 };
 	use std::signer;

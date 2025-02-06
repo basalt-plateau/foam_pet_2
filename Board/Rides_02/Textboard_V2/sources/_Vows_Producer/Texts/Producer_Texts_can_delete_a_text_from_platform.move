@@ -23,7 +23,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use Builder_01::Hulls_Module; 
+		use Builder_01::Games_Module; 
 		use Builder_01::Vow_Parts_01; 
 	
 		////
@@ -63,12 +63,12 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		
 		////
 		//
-		//	Hull Begin
+		//	Game Begin
 		//
 		//
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"no"), 1);
-		Hulls_Module::Begin_Hulls (producer_01_consenter);
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"yup"), 1);
+		assert! (Games_Module::are_Games_built () == utf8 (b"no"), 1);
+		Games_Module::Begin_Games (producer_01_consenter);
+		assert! (Games_Module::are_Games_built () == utf8 (b"yup"), 1);
 		//
 		////
 		
@@ -80,7 +80,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"Platform 01");		
-		Hulls_Module::Send_Text (writer_01_consenter, text_01_text, text_01_platform);
+		Games_Module::Send_Text (writer_01_consenter, text_01_text, text_01_platform);
 		//
 		////
 
@@ -89,10 +89,10 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		//	Ensure text exists
 		//
 		//
-		let texts : vector<Hulls_Module::Text_Envelope> = Hulls_Module::Retrieve_Texts (text_01_platform);
+		let texts : vector<Games_Module::Text_Envelope> = Games_Module::Retrieve_Texts (text_01_platform);
 		let text_ref = vector::borrow (& texts, 0);
 		assert! (vector::length (& texts) == 1, 1);		
-		assert! (Hulls_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
+		assert! (Games_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
 		//
 		////
 		
@@ -101,12 +101,12 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		//	Producer Delete Text
 		//
 		//
-		Hulls_Module::Producer_Delete_Text (
+		Games_Module::Producer_Delete_Text (
 			producer_01_consenter,
 			writer_01_address,
 			text_01_platform
 		);
-		assert! (vector::length (& Hulls_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	
+		assert! (vector::length (& Games_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	
 		//
 		////
 

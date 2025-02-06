@@ -1,7 +1,7 @@
 
-'''
-	python3 /Metro/Board/Rides/Sport_Pack_01/modify.py
-'''
+
+
+
 
 import ships.paths.directory.find_and_replace_string_v2 as find_and_replace_string_v2
 import pathlib
@@ -14,13 +14,7 @@ places = [
 	str (normpath (join (this_directory, "tests")))
 ]
 
-#
-#	B0r, b0r
-#	boar_, Boar_
-#	p1g_, P1g_
-#
-#	
-#
+
 '''
 	boar_, Boar_
 	
@@ -29,8 +23,8 @@ places = [
 		Play
 '''
 find_and_replace = [
-	[ "boar_Pass", "boar_Planet_IV" ],
-	[ "Boar_Pass", "Boar_Planet_IV" ]
+	[ "Game", "Hull" ],
+	[ "game", "hull" ]
 ]
 
 
