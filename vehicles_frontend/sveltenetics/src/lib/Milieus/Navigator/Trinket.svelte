@@ -11,12 +11,14 @@ import { check_roomies_truck, monitor_roomies_truck } from '$lib/Versies/Trucks'
 //
 import { parse_styles } from '$lib/trinkets/styles/parse'
 import Wallet_Frontier from "$lib/Les_Talents/_Wallet/Frontier/Trinket.svelte"
+// import Wallet_Milieu_Frontier from "$lib/Les_Talents/_Wallet/Frontier_Milieu/Board.svelte"
 //
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
+//
+//
 ////
-import Wallet_Button from './Wallet_Button.svelte'
 
 	
 let mode = check_roomies_truck ().freight.mode;
@@ -27,7 +29,6 @@ let Scholars_Trucks_Monitor;
 let Scholars_Trucks_Freight;
 onMount (async () => {
 	Scholars_Trucks_Freight = check_roomies_truck ().freight;
-	
 	Scholars_Trucks_Monitor = monitor_roomies_truck ((_freight) => {
 		Scholars_Trucks_Freight = _freight;
 		build ()
@@ -97,18 +98,19 @@ const build = () => {
 		
 		style={ buttons_styles }
 	/>
+	
 	<Milieus_Button
 		monitor="Talents"
 	
-		name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Panels"] : "Panels" }
+		name={ "Panels" }
 		location={[ "Talents" ]}
 		is_open_location={[ "Talents" ]}
 		
 		style={ buttons_styles }
 	/>
 	
-	<Wallet_Button 
-		buttons_styles={ buttons_styles }
-	/>
+	<Wallet_Frontier />
+	
+	<!-- <Wallet_Milieu_Frontier  buttons_styles={ buttons_styles } /> -->
 	{/if}
 </div>

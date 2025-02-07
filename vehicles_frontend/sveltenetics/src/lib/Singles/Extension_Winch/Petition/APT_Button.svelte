@@ -4,6 +4,7 @@
 <script>
 
 /*
+	import { APT_Button_Press } from "$lib/Singles/Extension_Winch/Petition/APT_Button_Press.js"
 	import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 	let petition_APT_button = "";
 	
@@ -17,9 +18,9 @@
 		button_text="Buy 1 Membership Pass"
 		
 		APT="0"
-		clicked={}
-		
-		
+		clicked={
+			APT_Button_Press ()
+		}
 	/>
 */
 
@@ -116,12 +117,15 @@ _onMount (() => {
 		on:click={ clicked }
 
 		style={ parse_styles (Object.assign ({}, {
-			padding: "0.2cm 0.25cm 0.2cm 0.5cm",
+			padding: "0.1cm 0.15cm 0.1cm 0.25cm",
 			position: "relative",
 			overflow: 'hidden',
 			background: 'linear-gradient(22deg, rgb(var(--color-surface-500)), rgb(var(--color-primary-500)), rgb(var(--color-success-300)))',
-			border: '2px solid rgb(var(--color-surface-300))' 
+			border: '2px solid rgb(var(--color-surface-300))',
+			
+			
 		})) }
+		
 		class="btn variant-filled-primary"
 	>
 		<span 
@@ -165,8 +169,10 @@ _onMount (() => {
 					flex-direction: row;
 					gap: 0.0cm;
 					
-					background: linear-gradient(80deg, rgb(var(--color-surface-300)), rgb(var(--color-surface-400)));
-					border: 1px solid rgb(var(--color-surface-500) / 0.4);
+					background: linear-gradient(22deg, rgb(var(--color-success-500)), rgb(var(--color-surface-500)), rgb(var(--color-primary-300)));
+					border: 2px solid rgb(var(--color-surface-500) / 0.4);
+					
+					padding: 0.1cm 0.4cm;
 				"
 				class="badge variant-filled-surface"
 			>

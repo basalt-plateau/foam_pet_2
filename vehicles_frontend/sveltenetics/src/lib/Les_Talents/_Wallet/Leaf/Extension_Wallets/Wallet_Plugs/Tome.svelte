@@ -140,34 +140,8 @@ onDestroy (async () => {});
 			stage={ Extension_Winch_Freight.stages [ stage_name ] }	
 		/>		
 		{/each}
-	</div>	
-	
-	
-	{#if Versies_Freight.mode === "nurture" }
-	<div 
-		style="
-			width: 100%;
-			height: 400px;
-			
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 10px;
-		"
-		class="card p-4"
-	>
-		<header>Offline Software Wallets</header>
-	
-		<Milieus_Button
-			monitor={ "Bourgeoisie" }
-		
-			name={ "Bourgeoisie" }
-			location={[ "Bourgeoisie" ]}
-			is_open_location={[ "Bourgeoisie" ]}
-		/>
 	</div>
-	{/if}
-	{/if}
 	
+	{/if}
 	{/if}
 </div>	

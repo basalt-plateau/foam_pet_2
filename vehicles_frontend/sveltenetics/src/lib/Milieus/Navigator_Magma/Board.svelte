@@ -7,11 +7,13 @@
 //
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
 //
 ////
 import Greetings_Frontier from "$lib/Les_Talents/Greetings/Frontier/Board.svelte"
 
 let Milieus_Freight = "";
+let Versies_Freight = "";
 
 </script>
 
@@ -25,7 +27,8 @@ let Milieus_Freight = "";
 	"
 >
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
-	{#if typeof Milieus_Freight === "object" }
+	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+	{#if typeof Milieus_Freight === "object" && typeof Versies_Freight === "object" }
 	<div
 		style="
 			display: flex;
@@ -46,7 +49,15 @@ let Milieus_Freight = "";
 		/>
 
 		<Greetings_Frontier />
-	</div>
 
+		{#if Versies_Freight.mode === "nurture" }
+		<Milieus_Button
+			monitor={ "Bourgeoisie" }
+			name={ "Bourgeoisie" }
+			location={[ "Bourgeoisie" ]}
+			is_open_location={[ "Bourgeoisie" ]}
+		/>
+		{/if}
+	</div>
 	{/if}
 </div>

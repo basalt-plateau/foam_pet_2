@@ -109,6 +109,61 @@ module Builder_01::Hulls_Module {
 		
 		abort 1
 	}
+	#[view] public fun search_for_index_of_hull_v2 (platform : String) : (bool, u64) acquires Hulls {
+		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		
+		let hulls_length = vector::length (& hulls.hulls);
+		for (index in 0..hulls_length) {
+			let hull_ref = vector::borrow (& hulls.hulls, index);
+			if (hull_ref.platform == platform) {
+				return (true, index)
+			}
+		};
+		
+		(false, 0)
+	}
+	//
+	////	
+	
+	
+	////
+	//
+	//	Texts View
+	//
+	//
+	#[view] public fun Retrieve_Texts (platform : String) : vector<Text_Envelope> acquires Hulls {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin;
+		
+		let hull_texts_envelope = vector::empty<Text_Envelope>();
+		
+		//
+		//	if hull not found, 
+		//	return an empty vector.
+		//
+		let (exists, index_of_hull) = search_for_index_of_hull_v2 (platform);
+		if (exists != true) {
+			return hull_texts_envelope
+		};
+		
+		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		let hull_texts = &mut hull_ref.texts;
+		for (index in 0..vector::length (hull_texts)) {
+			let text_ref = vector::borrow_mut (hull_texts, index);
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref.writer_address);
+			
+			let this_text = Text_Envelope {
+				writer_address : text_ref.writer_address,
+				writer_balance : writer_balance,
+				text : text_ref.text
+			};
+			
+			vector::push_back (&mut hull_texts_envelope, this_text);
+		};
+		
+		hull_texts_envelope
+	}
 	//
 	////
 
@@ -270,32 +325,7 @@ module Builder_01::Hulls_Module {
 		abort 260141
 	}
 
-	#[view] public fun Retrieve_Texts (platform : String) : vector<Text_Envelope> acquires Hulls {
-		use aptos_framework::coin;
-		use aptos_framework::aptos_coin;
-		
-		let index_of_hull = search_for_index_of_hull (platform);
-		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
-		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
-		
-		let hull_texts = &mut hull_ref.texts;
-		
-		let hull_texts_envelope = vector::empty<Text_Envelope>();
-		for (index in 0..vector::length (hull_texts)) {
-			let text_ref = vector::borrow_mut (hull_texts, index);
-			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref.writer_address);
-			
-			let this_text = Text_Envelope {
-				writer_address : text_ref.writer_address,
-				writer_balance : writer_balance,
-				text : text_ref.text
-			};
-			
-			vector::push_back (&mut hull_texts_envelope, this_text);
-		};
-		
-		hull_texts_envelope
-	}
+	
 	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
 		envelope.text
 	}

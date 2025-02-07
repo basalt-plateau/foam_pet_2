@@ -15,7 +15,6 @@ import { has_field } from 'procedures/object/has_field'
 //
 //
 import Wallet_Polytope from './Polytope/Tome.svelte'
-import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
 //
 import Wallet_Leaf from "./../Leaf/Board.svelte"
 //

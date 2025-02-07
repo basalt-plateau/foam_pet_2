@@ -151,7 +151,30 @@ const ask_for_wallet_address = () => {
 		>{ wallet_provider }</span>
 	</span>
 	{:else}
-	Wallet
+	<div
+		style="
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+			transform: translateY(-4px);
+			font-size: 1.2em;
+		"
+	>
+		<span
+			style="
+				height: 1em;
+				font-size: 0.75em;
+			"
+		>Wallet</span>
+		<span
+			style="
+				height: 1em;
+				font-size: 0.65em;
+			"
+		>Sensor</span>
+	</div>
 	{/if}
 </button>
 {/if}

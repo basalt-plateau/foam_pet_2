@@ -57,8 +57,12 @@ onMount (() => {
 		padding: 0;
 		
 		width: 90vw;
+		max-width: 25cm;
+		
 		height: 90vh;
-
+		max-height: 30cm;
+		
+		
 		overflow-y: scroll;
 	"
 >

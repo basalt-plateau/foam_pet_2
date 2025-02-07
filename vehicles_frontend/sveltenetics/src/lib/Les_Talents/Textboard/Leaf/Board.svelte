@@ -17,75 +17,38 @@
 	Then anyone can start sending texts..?
 */
 
-
-/*
-	Fonctions:
-		
-
-*/
+////
+//
 import { onMount, onDestroy } from 'svelte'
-import * as Textboard_Truck from '$lib/Les_Talents/Textboard/Truck/index.js'
-
-
-
-
+import { fade } from "svelte/transition"
+//
 import { SlideToggle } from '@skeletonlabs/skeleton';
 import { Autocomplete } from '@skeletonlabs/skeleton';
 import { popup } from '@skeletonlabs/skeleton';
-
+//
+//
 import { view_fonction } from "$lib/PTO_API/View/index.js"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
-let Textboard_Freight = false
-
-	
-
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
+import * as Textboard_Truck from '$lib/Les_Talents/Textboard/Truck/index.js'
+import Progress_Wall from '$lib/trinkets/Progress/Wall/Trinket.svelte'
+//
+//
+import { retrieve_hull_names, retrieve_texts_for_platform, Send_Text } from './Board'
+//
+////
+
+let Textboard_Freight = false
+let le_textboard = ""
+let platform_name = '';
 let petition_APT_button = "";
-	
+let searching_for_texts = "no"
 
 let hull_names = [];
-
+let le_texts = []
 
 const Bourgeoisie_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 const Builder_01 = Bourgeoisie_01_LA;
-
-const retrieve_hull_names = async () => {
-	const { result } = await view_fonction ({
-		body: {
-			"function": `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
-			"type_arguments": [],
-			"arguments": []
-		}
-	});
-
-	console.info ({ result });
-
-	hull_names = result[0].map (name => {
-		if (name === "") {
-			return {
-				value: name,
-				label: "front"
-			}
-		}
-		
-		return {
-			value: name,
-			label: name
-		}
-	});
-}
-
-const retrieve_texts_for_platform = async ({ platform_name }) => {
-	const { result } = await view_fonction ({
-		body: {
-			"function": `${ Builder_01 }::Hulls_Module::Retrieve_Texts`,
-			"type_arguments": [],
-			"arguments": [
-				platform_name
-			]
-		}
-	});
-}
 
 
 const Vacations = async () => {
@@ -93,12 +56,9 @@ const Vacations = async () => {
 		Begin_Hulls: `${ Builder_01 }::Hulls_Module::Begin_Hulls`,
 		End_Hulls: `${ Builder_01 }::Hulls_Module::End_Hulls`,
 		
-		send_text: `${ Builder_01 }::Hulls_Module::send_text`,
+		Send_Text: `${ Builder_01 }::Hulls_Module::Send_Text`,
 		delete_text: `${ Builder_01 }::Hulls_Module::delete_text`,
 	};
-	
-
-
 }
 const Scout = async () => {
 	const View_Fonctions = {
@@ -111,28 +71,31 @@ const Scout = async () => {
 	};
 }
 
-
-
-let value = false;
-
-let input_demo = '';
-
-
-
-
-
-let platform = '';
+const Search = async () => {
+	le_textboard = platform_name;
+	
+	searching_for_texts = "yup"
+	le_texts = []
+	
+	const { texts } = await retrieve_texts_for_platform ({
+		Builder_01,
+		platform_name
+	});
+	
+	le_texts = texts;
+	searching_for_texts = "no"
+}
 
 
 let on_popup_select = (event) => {
-	platform = event.detail.label;
-	console.log ("on_popup_select", { platform });
+	le_textboard = event.detail.label;
 }
-				
+
 
 // on_write
 let on_send = () => {
-	
+	console.info ("on_send");
+	Send_Text ({})
 }
 
 let Textboard_Truck_Made = "no";
@@ -140,7 +103,7 @@ onMount (async () => {
 	Textboard_Truck.make ()
 	Textboard_Truck_Made = "yurp";
 	
-	await retrieve_hull_names ();
+	hull_names = await retrieve_hull_names ({ Builder_01 });
 });
 onDestroy (() => {
 	Textboard_Truck.destroy ()
@@ -154,16 +117,21 @@ onDestroy (() => {
 <div
 	class="card p-2"
 	style="
+		position: relative;
+	
 		width: 100%;
 		height: 80vh;
 		
 		display: flex;
 		justify-content: space-between;
 		flex-direction: column;
+		gap: 0.1cm;
 	"
 >	
 	<div
 		style="
+			position: relative;
+		
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -171,25 +139,34 @@ onDestroy (() => {
 			gap: 0.25cm;
 			
 			border-radius: 4px;
+			
+			z-index: 1;
 		"
 		class="card p-2 variant-soft-surface"
 	>
-		<div>
-			<header>Textboard</header>
-		</div>
-		
 		<div
 			style=""
 		>
-			<header>{ platform }</header>
+			<span 
+				style="
+					font-size: 1.3em;
+					padding: 0.25cm;
+				"
+				class="badge variant-filled"
+			>{ le_textboard }</span>
 		</div>
 		
-		<div>
+		<div
+			style="
+				display: flex;
+				gap: 0.25cm;
+			"
+		>
 			<input
 				class="input autocomplete p-2"
 				type="search"
 				name="autocomplete-search"
-				bind:value={ platform }
+				bind:value={ platform_name }
 				placeholder="Search..."
 				use:popup={{
 					event: 'focus-click',
@@ -202,21 +179,61 @@ onDestroy (() => {
 				data-popup="popupAutocomplete"
 			>
 				<Autocomplete
-					bind:input={ platform }
+					bind:input={ platform_name }
 					options={ hull_names }
 					on:selection={ on_popup_select }
 				/>
 			</div>
+			<button 
+				type="button" 
+				class="btn variant-filled-primary"
+				on:click={ Search }
+			>search</button>
+		</div>
+	</div>
+	
+	<div
+		style="
+			position: relative;
+			height: 100%;
+			width: 100%;
+		"
+		class="card p-2 variant-soft-surface"
+	>
+		{#if searching_for_texts === "yup" }
+		<div
+			transition:fade={{
+				duration: 1000
+			}}
+			style="
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				height: calc(100% - 20px);
+				width: calc(100% - 20px);
+				border-radius: 8px;
+			"
+		>
+			<Progress_Wall show={ "yes" } />
+		</div>
+		{/if}
+		
+		<div>
+			{#each le_texts as text }
+			<p>{ text }</p>
+			{/each}
 		</div>
 	</div>
 	
 	
 	<div
 		style="
+			position: relative;
+		
 			display: flex;
 			border-radius: 4px;
 			justify-content: right;
-			flex-direction: column;
+			flex-direction: row;
 			
 			gap: 0.1cm;
 		"
@@ -247,7 +264,7 @@ onDestroy (() => {
 				}}
 			
 				button_text={ 
-					platform === "" ? "Tag" : `Tag on ${ platform }` 
+					platform_name === "" ? "Tag" : `Tag on ${ platform_name }` 
 				}
 				
 				APT="1"

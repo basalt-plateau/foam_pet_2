@@ -61,13 +61,12 @@ import ('./Venues/Scrolls/Trinket.svelte')
 
 let Milieus = {
 	"Scrolls": async () => { return await import ('./Venues/Scrolls/Trinket.svelte') },
-	
-	"Vows": technicians_leaves,
-	
 	"Talents": async () => { return await import ('./Venues/Talents/Trinket.svelte') },
 	"Wallet": async () => { return await import ('$lib/Les_Talents/_Wallet/Leaf/Board.svelte') },
 	
+	
 	"Bourgeoisie": async () => { return await import ('$lib/Bourgeoisie/Trinket.svelte') },
+	"Vows": technicians_leaves
 }
 
 let milieu_venue;
