@@ -19,11 +19,9 @@ let Versies_Freight = "";
 
 <div
 	style="
-		padding: 2cm 1cm;
+		padding: 1cm 1cm;
 		
-		display: flex;
-		gap: 1cm;
-		flex-direction: column;
+		background: rgba(var(--color-surface-400));
 	"
 >
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
@@ -32,14 +30,15 @@ let Versies_Freight = "";
 	<div
 		style="
 			display: flex;
-			gap: 1cm;
+			gap: 0.5cm;
 			flex-direction: row;
+			justify-content: center;
 		"
 	>
 		<Milieus_Button
 			monitor="Vows"
 		
-			name={ Milieus_Freight.nav_linguistics === "yes" ? Milieus_Freight.linguistics ["Vows"] : "Vows" }
+			name={ "Vows" }
 			location={[ "Vows", "Leaf" ]}
 			is_open_location={[ "Vows" ]}
 			

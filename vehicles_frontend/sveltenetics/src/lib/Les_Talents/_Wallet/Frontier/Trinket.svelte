@@ -8,17 +8,8 @@
 	<Wallet_Frontier />
 */
 
-/*
-	import Loyals from "$lib/Les_Talents/_Wallet/Frontier/Letters/Loyals.svelte"
-	<Loyals 
-		style={{
-			width: "50px",
-			height: "28px"
-		}}
-	/>
-*/
 
-//
+////
 //
 import { onMount, onDestroy } from 'svelte'
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
@@ -27,22 +18,12 @@ import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
 //
 //
-
+import { show_wallets_panel } from "../Panel/Show.js"
+//
+////
 
 const modal_store = getModalStore ();
 
-let open = async () => {
-	modal_store.trigger ({
-		type: 'component',
-		backdropClasses: '!p-0',
-		component: {
-			ref: (await import ('./../Panel/Trinket.svelte')).default,
-			props: { 
-				modal_store
-			}
-		}
-	});
-}
 
 
 let wallet_address = ""
@@ -111,7 +92,7 @@ const ask_for_wallet_address = () => {
 <button 
 	monitor="APT Transfer"
 	
-	on:click={ open }
+	on:click={() => { show_wallets_panel ({ modal_store }) }}
 	type="button" 
 	class="btn bg-gradient-to-br variant-gradient-primary-secondary"
 	style="

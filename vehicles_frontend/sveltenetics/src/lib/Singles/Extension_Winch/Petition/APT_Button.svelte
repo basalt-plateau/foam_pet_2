@@ -72,6 +72,11 @@ export let clicked = () => {}
 export let onMount = () => {}
 
 
+const _clicked = (event) => {
+	clicked (event);
+}
+
+
 let details = ""
 let the_mode = "off"
 export const mode = (next_the_mode, next_details) => {
