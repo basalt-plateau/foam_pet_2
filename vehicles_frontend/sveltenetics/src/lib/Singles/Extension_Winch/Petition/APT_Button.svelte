@@ -122,6 +122,7 @@ _onMount (() => {
 	style="
 		position: relative;
 		display: inline-block;
+		width: 100%;
 	"
 >
 	
@@ -135,6 +136,8 @@ _onMount (() => {
 			overflow: 'hidden',
 			background: 'linear-gradient(22deg, rgb(var(--color-surface-500)), rgb(var(--color-primary-500)), rgb(var(--color-success-300)))',
 			border: '2px solid rgb(var(--color-surface-300))',
+			
+			width: '100%'
 		})) }
 		
 		class="btn variant-filled-primary"

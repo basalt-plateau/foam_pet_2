@@ -38,6 +38,9 @@ import { retrieve_hull_names, retrieve_texts_for_platform, Send_Text } from './B
 //
 ////
 
+import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
+	
+
 let Textboard_Freight = false
 let le_textboard = ""
 let platform_name = '';
@@ -46,6 +49,19 @@ let searching_for_texts = "no"
 
 let hull_names = [];
 let le_texts = []
+
+let le_text = "";
+$: {
+	let _le_text = le_text;
+	if (typeof petition_APT_button === "object") {
+		if (_le_text.length >= 1) {
+			petition_APT_button.mode ("on");
+		}
+		else {
+			petition_APT_button.mode ("off");
+		}
+	}
+}
 
 const Bourgeoisie_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 const Builder_01 = Bourgeoisie_01_LA;
@@ -82,20 +98,27 @@ const Search = async () => {
 		platform_name
 	});
 	
+	console.log ({ texts });
+	
 	le_texts = texts;
 	searching_for_texts = "no"
 }
 
 
 let on_popup_select = (event) => {
-	le_textboard = event.detail.label;
+	platform_name = event.detail.label;
+	Search ();
 }
 
 
 // on_write
 let on_send = () => {
 	console.info ("on_send");
-	Send_Text ({})
+	Send_Text ({
+		Builder_01,
+		le_textboard,
+		le_text
+	});
 }
 
 let Textboard_Truck_Made = "no";
@@ -104,6 +127,7 @@ onMount (async () => {
 	Textboard_Truck_Made = "yurp";
 	
 	hull_names = await retrieve_hull_names ({ Builder_01 });
+	Search ();
 });
 onDestroy (() => {
 	Textboard_Truck.destroy ()
@@ -121,6 +145,7 @@ onDestroy (() => {
 	
 		width: 100%;
 		height: 80vh;
+		min-height: 15cm;
 		
 		display: flex;
 		justify-content: space-between;
@@ -220,8 +245,46 @@ onDestroy (() => {
 		
 		<div>
 			{#each le_texts as text }
-			<p>{ text }</p>
+			<div
+				style="
+					display: flex;
+					flex-direction: column;
+					gap: 0.1cm;
+				"
+				class="card p-2 variant-soft-surface"
+			>	
+				<div class="card p-2">
+					<p>{ text.text }</p>
+				</div>
+				<div
+					style="
+						display: flex;
+						justify-content: center;
+						gap: 0.1cm;
+					"
+				>
+					<span 
+						style="
+							border-radius: var(--theme-rounded-base);
+							padding: 0 0.25cm;
+							word-break: break-all;
+						"
+						class="variant-filled-surface"
+					>{ text.writer_address }</span>
+					<span 
+						style="
+							border-radius: var(--theme-rounded-base);
+							padding: 0 0.25cm;
+						"
+						class="variant-filled-surface"
+					>{ text.writer_balance } Octas</span>
+				</div>
+			</div>
 			{/each}
+			
+			{#if le_texts.length === 0 }
+			<p>There are zero texts about "{ le_textboard }".</p>
+			{/if}
 		</div>
 	</div>
 	
@@ -233,13 +296,14 @@ onDestroy (() => {
 			display: flex;
 			border-radius: 4px;
 			justify-content: right;
-			flex-direction: row;
+			flex-direction: column;
 			
 			gap: 0.1cm;
 		"
 		class="card p-4 variant-soft-surface"
 	>
 		<textarea
+			bind:value={ le_text }
 			style="
 				width: 100%;
 			"
@@ -249,17 +313,18 @@ onDestroy (() => {
 		<div
 			style="
 				border-radius: 4px;
+				width: 100%;
 			"
 		>	
 			<Petition_APT_Button
 				bind:this={ petition_APT_button }
 				
 				onMount={() => {
-					petition_APT_button.mode ("progress");
+					petition_APT_button.mode ("off");
 				}}
 			
 				button_text={ 
-					platform_name === "" ? "Tag" : `Tag on ${ platform_name }` 
+					platform_name === "" ? "Text" : `Text about ${ platform_name }` 
 				}
 				
 				APT="1"

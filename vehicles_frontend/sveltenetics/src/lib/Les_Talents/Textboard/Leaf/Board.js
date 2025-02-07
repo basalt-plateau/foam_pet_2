@@ -2,7 +2,10 @@
 
 
 import { view_fonction } from "$lib/PTO_API/View/index.js"
-import { APT_Button_Press } from "$lib/Singles/Extension_Winch/Petition/APT_Button_Press.js"
+// import { APT_Button_Press } from "$lib/Singles/Extension_Winch/Petition/APT_Button_Press.js"
+
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
+import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"		
 
 export const retrieve_hull_names = async ({
 	Builder_01
@@ -38,9 +41,36 @@ export const retrieve_hull_names = async ({
 
 
 export const Send_Text = async ({
-	Builder_01
+	Builder_01,
+	le_textboard,
+	le_text
 }) => {
-	APT_Button_Press ({});
+	let EWF = Extension_Winch.freight ();
+	
+	/*
+		public entry fun Send_Text (
+			writer : & signer,
+			text : String,
+			platform : String
+		)
+	
+	*/
+	const { result, note, transaction } = EWF.prompt ({
+		petition: {
+			function: `${ Builder_01 }::Hulls_Module::Send_Text`,
+			type_arguments: [],
+			arguments: [
+				le_text,
+				le_textboard
+			]
+		}
+	});
+	if (result === "discovered") {
+		petition_APT_button.mode ("success", { note });
+	}
+	else {
+		petition_APT_button.mode ("imperfection", { note });
+	}
 }
 
 export const retrieve_texts_for_platform = async ({ 
@@ -58,9 +88,14 @@ export const retrieve_texts_for_platform = async ({
 	});
 
 	console.info ("retrieve_texts_for_platform:", { result });
-
 	
-	const texts = result [0];
+	const texts = result [0].map (text => {
+		return {
+			text: text.text,
+			writer_address: address_to_hexadecimal (text.writer_address),
+			writer_balance: text.writer_balance
+		}
+	});
 	
 	return {
 		texts
