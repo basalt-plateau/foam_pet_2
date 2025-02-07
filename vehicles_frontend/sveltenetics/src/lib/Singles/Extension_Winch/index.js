@@ -21,10 +21,10 @@ import { Pontem_stage_creator } from "./Stages/Pontem.js"
 //
 import { ask_for_extension_network_connection_status } from './Tracks/ask_for_extension_network_connection_status'
 import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
+import { ask_for_freight } from '$lib/Versies/Trucks'
 //
 //
 ////
-import { ask_for_freight } from '$lib/Versies/Trucks'
 	
 
 const trucks = {}
@@ -66,8 +66,6 @@ export const make = async (packet) => {
 	*/
 	trucks [1] = build_truck ({
 		freight: {
-			
-			
 			stages: {
 				// Rise: {},
 				// Petra: {},
@@ -75,18 +73,6 @@ export const make = async (packet) => {
 			},
 			stage_name_connected: "",
 			stage: {},
-			
-			//
-			//	This is vintage.  Don't use this.
-			//
-			//
-			// network_status: {
-			// 	connected: "",
-			// 	aptos: "",
-			// 	status: {},
-			// 	UTC_orbit: ""
-			// },
-			// 
 			
 			propose_for_account_address () {
 				try {

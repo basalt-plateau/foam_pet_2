@@ -15,7 +15,7 @@ import { onMount, onDestroy } from 'svelte'
 import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
-import * as Extension_Winch from "$lib/Singles/Extension_Winch"		
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
 //
 //
 import { show_wallets_panel } from "../Panel/Show.js"

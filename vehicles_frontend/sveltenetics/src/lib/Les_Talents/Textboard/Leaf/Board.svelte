@@ -248,19 +248,14 @@ onDestroy (() => {
 		
 		<div
 			style="
-				display: flex;
 				border-radius: 4px;
-				justify-content: right;
-				flex-direction: row;
-				gap: 0.25cm;
 			"
 		>	
-			
 			<Petition_APT_Button
 				bind:this={ petition_APT_button }
 				
 				onMount={() => {
-					petition_APT_button.mode ("on");
+					petition_APT_button.mode ("progress");
 				}}
 			
 				button_text={ 

@@ -10,11 +10,9 @@
 	
 	<Petition_APT_Button
 		bind:this={ petition_APT_button }
-		
 		onMount={() => {
 			petition_APT_button.mode ("on");
 		}}
-	
 		button_text="Buy 1 Membership Pass"
 		
 		APT="0"
@@ -26,9 +24,7 @@
 
 /*
 	petition_APT_button.mode ("on");
-
 	petition_APT_button.mode ("progress");
-
 	petition_APT_button.mode ("success", {
 		note: "was successful"
 	});
@@ -62,6 +58,12 @@ import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
 //
 ////
 
+import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+import { show_wallets_panel } from "$lib/Les_Talents/_Wallet/Panel/Show.js"
+	
+const modal_store = getModalStore ();
+	
+
 		
 
 let Extension_Winch_Freight = false
@@ -71,8 +73,15 @@ export let APT = ""
 export let clicked = () => {}
 export let onMount = () => {}
 
-
-const _clicked = (event) => {
+const click_middle = async (event) => {
+	if (Extension_Winch_Freight.stage_name_connected === "") {
+		/*
+			open the wallet sensor
+		*/
+		await show_wallets_panel ({ modal_store })
+		return;
+	}
+	
 	clicked (event);
 }
 
@@ -90,7 +99,6 @@ export const mode = (next_the_mode, next_details) => {
 
 const EWR_Change = ({ pro_freight }) => {
 	Extension_Winch_Freight = pro_freight;
-	
 	if (typeof Extension_Winch_Freight === "object") {
 		
 	}
@@ -119,7 +127,7 @@ _onMount (() => {
 	
 	<button 
 		type="button" 
-		on:click={ clicked }
+		on:click={ click_middle }
 
 		style={ parse_styles (Object.assign ({}, {
 			padding: "0.1cm 0.15cm 0.1cm 0.25cm",
@@ -127,8 +135,6 @@ _onMount (() => {
 			overflow: 'hidden',
 			background: 'linear-gradient(22deg, rgb(var(--color-surface-500)), rgb(var(--color-primary-500)), rgb(var(--color-success-300)))',
 			border: '2px solid rgb(var(--color-surface-300))',
-			
-			
 		})) }
 		
 		class="btn variant-filled-primary"
@@ -234,6 +240,8 @@ _onMount (() => {
 			opacity: 0.7;
 			
 			cursor: not-allowed;
+			
+			border-radius: var(--theme-rounded-base);
 		"
 	>		
 		{#if [ "progress" ].includes (the_mode) }
