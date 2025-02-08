@@ -4,8 +4,6 @@
 module Builder_01::Vows {
 
 	
-
-	
 	
 	/*
 		Hulls

@@ -13,7 +13,7 @@ export const blockchain = {
 	
 	//
 	//	Turn, Moment, Blink
-	//
+	//	Commitment, Immortalization
 	//
 	"Block": "Turn",
 	"block": "turn",
