@@ -63,9 +63,8 @@ import { show_wallets_panel } from "$lib/Les_Talents/_Wallet/Panel/Show.js"
 	
 const modal_store = getModalStore ();
 	
-
-		
-
+	
+	
 let Extension_Winch_Freight = false
 
 export let button_text = ""
@@ -105,9 +104,9 @@ const EWR_Change = ({ pro_freight }) => {
 }
 
 _onMount (() => {
-	onMount (() => {
-		
-	});
+	// onMount (() => {});
+	onMount ({ mode });
+	
 });
 
 /*

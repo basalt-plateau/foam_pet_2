@@ -4,11 +4,10 @@
 
 /*
 	Perhaps:
-		import Dimensions_Maker from "$lib/trinkets/Dimensions/Tome.svelte"
-		import Dimensions_Truck from "$lib/trinkets/Dimensions/Truck.svelte"
+		import Stack_Board from "$lib/trinkets/Stack/Board.svelte"
+		import * as Stack_Truck from "$lib/trinkets/Stack/Truck.js"
 	
 		<Dimensions_Maker>
-		
 		
 		let Le_Dimension = Dimensions_Truck.add ({
 			epithet: "",
@@ -18,14 +17,12 @@
 		
 		
 		Dimensions_Truck.remove ({ name: "" });
-
 */
-
 
 </script>
 
 
 <div>
-
-
+	
+	
 </div>

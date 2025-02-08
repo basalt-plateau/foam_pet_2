@@ -7,6 +7,9 @@ import { view_fonction } from "$lib/PTO_API/View/index.js"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
 import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"		
 
+import { ask_convert_Octas_to_APT } from '$lib/taverns/APT/Octas_to_APT.js'
+
+
 export const retrieve_hull_names = async ({
 	Builder_01
 }) => {
@@ -55,7 +58,7 @@ export const Send_Text = async ({
 		)
 	
 	*/
-	const { result, note, transaction } = EWF.prompt ({
+	const { result, note, transaction } = await EWF.prompt ({
 		petition: {
 			function: `${ Builder_01 }::Hulls_Module::Send_Text`,
 			type_arguments: [],
@@ -65,12 +68,17 @@ export const Send_Text = async ({
 			]
 		}
 	});
+	console.info ({ result, note, transaction });
+	
+	
+	/*
 	if (result === "discovered") {
 		petition_APT_button.mode ("success", { note });
 	}
 	else {
 		petition_APT_button.mode ("imperfection", { note });
 	}
+	*/
 }
 
 export const retrieve_texts_for_platform = async ({ 
@@ -93,7 +101,7 @@ export const retrieve_texts_for_platform = async ({
 		return {
 			text: text.text,
 			writer_address: address_to_hexadecimal (text.writer_address),
-			writer_balance: text.writer_balance
+			writer_balance: ask_convert_Octas_to_APT ({ Octas: text.writer_balance }) 
 		}
 	});
 	

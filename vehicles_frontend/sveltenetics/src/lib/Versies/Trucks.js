@@ -26,6 +26,7 @@ import { ask_for_origin_address } from './Screenplays/ask_for_origin_address.js'
 import { ask_for_wallet_network } from './Screenplays/ask_for_wallet_network.js'
 import { ask_for_dapp_network } from './Screenplays/ask_for_dapp_network.js'
 import { ask_for_dapp_network_connection_status } from './Screenplays/ask_for_dapp_network_connection_status.js'
+import { ask_is_producer } from './Screenplays/ask_is_producer.js'
 //
 ////
 
@@ -74,7 +75,6 @@ export const lease_roomies_truck = () => {
 	let origin_address = ask_for_origin_address ();
 	let mode = ask_for_mode ();
 	let commas_every = ask_for_commas_every ();
-	let use_slang = ask_for_slang ();
 	
 	const { net_path, net_name } = wallet_network;
 	
@@ -91,8 +91,10 @@ export const lease_roomies_truck = () => {
 			},
 			
 			mode,
+			is_producer: ask_is_producer (),
+			
 			origin_address,
-			use_slang,
+			use_slang: ask_for_slang (),
 			commas_every,
 			
 			

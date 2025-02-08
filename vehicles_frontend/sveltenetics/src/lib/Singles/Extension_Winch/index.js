@@ -96,10 +96,11 @@ export const make = async (packet) => {
 			},
 			
 			
+			
 			/*
 				// result: discovered, otiose
 				//
-				const { result, note, transaction } = EWF.prompt ({
+				const { result, note, transaction } = await EWF.prompt ({
 					petition: {
 						function: '0x1::coin::transfer',
 						type_arguments: ['0x1::aptos_coin::AptosCoin'],

@@ -11,6 +11,12 @@
 
 /*	
 	import { ask_for_freight } from '$lib/Versies/Trucks'
+	const is_producer = ask_for_freight ().is_producer;
+*/
+
+
+/*	
+	import { ask_for_freight } from '$lib/Versies/Trucks'
 	const freight = ask_for_freight ();
 */
 

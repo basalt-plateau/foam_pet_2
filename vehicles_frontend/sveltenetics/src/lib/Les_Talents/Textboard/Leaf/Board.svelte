@@ -21,6 +21,7 @@
 //
 import { onMount, onDestroy } from 'svelte'
 import { fade } from "svelte/transition"
+import _get from "lodash/get"
 //
 import { SlideToggle } from '@skeletonlabs/skeleton';
 import { Autocomplete } from '@skeletonlabs/skeleton';
@@ -37,10 +38,19 @@ import Progress_Wall from '$lib/trinkets/Progress/Wall/Trinket.svelte'
 import { retrieve_hull_names, retrieve_texts_for_platform, Send_Text } from './Board'
 //
 ////
-
+import { ask_for_freight } from '$lib/Versies/Trucks'
+	
 import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+import Versies_Truck from '$lib/Versies/Trucks.svelte'
+	
+	
 	
 
+let Extension_Winch_Freight = false
+let Versies_Freight = false
+	
+		
 let Textboard_Freight = false
 let le_textboard = ""
 let platform_name = '';
@@ -112,13 +122,15 @@ let on_popup_select = (event) => {
 
 
 // on_write
-let on_send = () => {
+let on_send = async () => {
 	console.info ("on_send");
-	Send_Text ({
+	await Send_Text ({
 		Builder_01,
 		le_textboard,
 		le_text
 	});
+	
+	Search ();
 }
 
 let Textboard_Truck_Made = "no";
@@ -133,11 +145,33 @@ onDestroy (() => {
 	Textboard_Truck.destroy ()
 });
 
+let account_address = "";
+const change_account_address = () => {
+	try {
+		account_address = address_to_hexadecimal (
+			_get (Extension_Winch_Freight, [ "stage", "account", "address" ], "")
+		);
+	}
+	catch (impefection) {
+		console.error (imperfection);
+	}
+}
 </script>
 
 {#if Textboard_Truck_Made === "yurp" }
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { Textboard_Freight = pro_freight; } } />
-{#if typeof Textboard_Freight === "object"}
+<Extension_Winch_Ride 
+	on_change={ ({ pro_freight }) => { 
+		Extension_Winch_Freight = pro_freight; 
+		change_account_address ();
+	}} 
+/>
+<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+{#if 
+	typeof Versies_Freight === "object" &&
+	typeof Extension_Winch_Freight === "object" &&
+	typeof Textboard_Freight === "object"
+}
 <div
 	class="card p-2"
 	style="
@@ -177,7 +211,7 @@ onDestroy (() => {
 					font-size: 1.3em;
 					padding: 0.25cm;
 				"
-				class="badge variant-filled"
+				class="badge variant-soft-surface"
 			>{ le_textboard }</span>
 		</div>
 		
@@ -217,6 +251,39 @@ onDestroy (() => {
 		</div>
 	</div>
 	
+	<div>
+		{#if Versies_Freight.is_producer === "yup" }
+		<div
+			style="
+				display: grid;
+				gap: 0.1cm;
+				grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
+			"
+		>
+			<Petition_APT_Button
+				onMount={({ mode }) => {
+					mode ("on");
+				}}
+				button_text={ `Delete "${ le_textboard }" as Producer` }
+				APT="0"
+				clicked={() => {
+					
+				}}
+			/>
+			<Petition_APT_Button
+				onMount={({ mode }) => {
+					mode ("on");
+				}}
+				button_text={ `Pause "${ le_textboard }" as Producer` }
+				APT="0"
+				clicked={() => {
+					
+				}}
+			/>
+		</div>
+		{/if}
+	</div>
+	
 	<div
 		style="
 			position: relative;
@@ -253,8 +320,16 @@ onDestroy (() => {
 				"
 				class="card p-2 variant-soft-surface"
 			>	
-				<div class="card p-2">
+				<div 
+					style="
+						display: flex;
+						justify-content: space-between;
+					"
+					class="card p-2"
+				>
 					<p>{ text.text }</p>
+					
+					
 				</div>
 				<div
 					style="
@@ -266,19 +341,82 @@ onDestroy (() => {
 					<span 
 						style="
 							border-radius: var(--theme-rounded-base);
-							padding: 0 0.25cm;
+							padding: 0.05cm 0.2cm;
 							word-break: break-all;
 						"
-						class="variant-filled-surface"
+						class="variant-soft-surface"
 					>{ text.writer_address }</span>
-					<span 
+					
+					<div
 						style="
+							display: flex;
+							align-items: center;
 							border-radius: var(--theme-rounded-base);
-							padding: 0 0.25cm;
+							padding: 0.05cm 0.2cm;
 						"
-						class="variant-filled-surface"
-					>{ text.writer_balance } Octas</span>
+						class="variant-soft-surface"
+					>
+						<img src="/_Licensed/Aptos/aptos.png" style="width: 0.5cm; height: 0.5cm;">
+						<span 
+							style="
+								border-radius: var(--theme-rounded-base);
+								padding: 0 0.25cm;
+							"
+							
+						>{ text.writer_balance }</span>
+					</div>
 				</div>
+				
+				{#if text.writer_address === account_address }
+				<div
+					style="
+						display: flex;
+						justify-content: space-between;
+						gap: 0.1cm;
+					"
+				>
+					<div></div>
+					<Petition_APT_Button
+						onMount={({ mode }) => {
+							mode ("on");
+						}}
+						button_text="Delete Text"
+						APT="0"
+						clicked={() => {
+							
+						}}
+					/>
+				</div>
+				{/if}
+				
+				{#if Versies_Freight.is_producer === "yup" }
+				<div
+					style="
+						display: flex;
+						justify-content: space-between;
+						gap: 0.1cm;
+					"
+				>
+					<input 
+						style="
+							text-indent: 0.1cm;
+						"
+						class="input" 
+						type="text" 
+						placeholder="Refund" 
+					/>
+					<Petition_APT_Button
+						onMount={({ mode }) => {
+							mode ("on");
+						}}
+						button_text="Delete Text as Producer"
+						APT="0"
+						clicked={() => {
+							
+						}}
+					/>
+				</div>
+				{/if}
 			</div>
 			{/each}
 			
@@ -324,7 +462,7 @@ onDestroy (() => {
 				}}
 			
 				button_text={ 
-					platform_name === "" ? "Text" : `Text about ${ platform_name }` 
+					platform_name === "" ? "Text" : `Text about ${ le_textboard }` 
 				}
 				
 				APT="1"
@@ -336,4 +474,3 @@ onDestroy (() => {
 </div>
 {/if}
 {/if}
-
