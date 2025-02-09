@@ -31,12 +31,14 @@ module Builder_01::Hulls_Module {
 	*/
 	struct Text has store, drop {
 		writer_address : address,
-		text : String
+		text : String,
+		now_seconds : u64
 	}
 	struct Text_Envelope has store, drop {
 		writer_address : address,
 		writer_balance : u64,
-		text : String
+		text : String,
+		now_seconds : u64
 	}
 	
 	/*
@@ -173,7 +175,8 @@ module Builder_01::Hulls_Module {
 			let this_text = Text_Envelope {
 				writer_address : text_ref.writer_address,
 				writer_balance : writer_balance,
-				text : text_ref.text
+				text : text_ref.text,
+				now_seconds : text_ref.now_seconds
 			};
 			
 			vector::push_back (&mut hull_texts_envelope, this_text);
@@ -317,7 +320,8 @@ module Builder_01::Hulls_Module {
 		if (already_has_text == false) {
 			let this_text = Text {
 				writer_address : writer_address,
-				text : text
+				text : text,
+				now_seconds : timestamp::now_seconds ()
 			};
 			
 			vector::push_back (hull_texts, this_text);

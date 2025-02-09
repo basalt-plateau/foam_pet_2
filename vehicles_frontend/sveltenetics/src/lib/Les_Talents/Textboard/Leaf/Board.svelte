@@ -396,6 +396,7 @@ const change_account_address = () => {
 						justify-content: space-between;
 						gap: 0.1cm;
 					"
+					class="card p-2 variant-filled-surface"
 				>
 					<input 
 						style="
