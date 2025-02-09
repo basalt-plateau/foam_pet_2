@@ -84,8 +84,8 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//	Send Text
 		//
 		//
-		let text_01_platform : String = utf8 (b"");	
 		let text_01_text : String = utf8 (b"This is a text.");
+		let text_01_platform : String = utf8 (b"");		
 		Hulls_Module::Send_Text (
 			writer_01_consenter,
 			text_01_text,
@@ -100,8 +100,6 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//
 		//
 		let texts : vector<Hulls_Module::Text_Envelope> = Hulls_Module::Retrieve_Texts (text_01_platform);
-		assert! (vector::length (& texts) == 1, 1);		
-		
 		let text_ref = vector::borrow (& texts, 0);
 		assert! (vector::length (& texts) == 1, 1);		
 		assert! (Hulls_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);

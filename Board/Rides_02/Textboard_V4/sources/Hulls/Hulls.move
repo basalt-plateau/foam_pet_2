@@ -24,17 +24,6 @@ module Builder_01::Hulls_Module {
 		Text__retrieve_text,
 		Text__retrieve_now_seconds
 	};
-	use Builder_01::Hull_Module::{
-		Hull,
-		Hull__create,
-		Hull__ensure_is_playing,
-		Hull__change_status,		
-		Hull__mut_retrieve_texts,
-		Hull__retrieve_status,
-		Hull__retrieve_platform,
-		Hull__retrieve_texts,
-		Hull__retrieve_created_at_now_seconds
-	};
 
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
@@ -53,7 +42,18 @@ module Builder_01::Hulls_Module {
 		text : String,
 		now_seconds : u64
 	}
-
+	
+	/*
+		status:
+			playing
+			paused
+	*/
+	struct Hull has store, drop {
+		status : String,
+		platform : String,
+		texts : vector<Text>
+	}
+	
 	/*
 		status:
 			playing
@@ -80,33 +80,33 @@ module Builder_01::Hulls_Module {
 	#[view] public fun Hulls_Status () : String acquires Hulls {
 		borrow_global<Hulls>(Producer_Module::obtain_address ()).status
 	}
+	#[view] public fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
+		let hulls_envelope = vector::empty<String>();
+		
+		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		let hulls_length = vector::length (& hulls.hulls);
+		for (index in 0..hulls_length) {
+			let hull_ref = vector::borrow (& hulls.hulls, index);
+			vector::push_back (&mut hulls_envelope, hull_ref.platform);
+		};
+		
+		hulls_envelope
+	}
 	//
 	////
 
 	////
 	//
-	//	Hulls:Hull View
+	//	Hull View
 	//
 	//
-	#[view] public fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
-		let hulls_envelope = vector::empty<String>();
-		
-		let hulls_ref = borrow_global<Hulls>(Producer_Module::obtain_address ());
-		let hulls_length = vector::length (& hulls_ref.hulls);
-		for (index in 0..hulls_length) {
-			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
-			vector::push_back (&mut hulls_envelope, Hull__retrieve_platform (hull_ref));
-		};
-		
-		hulls_envelope
-	}
 	#[view] public fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
 		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls.hulls, index);
-			if (Hull__retrieve_platform (hull_ref) == platform) {
+			if (hull_ref.platform == platform) {
 				return index
 			}
 		};
@@ -119,7 +119,7 @@ module Builder_01::Hulls_Module {
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls.hulls, index);
-			if (Hull__retrieve_platform (hull_ref) == platform) {
+			if (hull_ref.platform == platform) {
 				return (true, index)
 			}
 		};
@@ -132,7 +132,7 @@ module Builder_01::Hulls_Module {
 	
 	////
 	//
-	//	Hulls:Hull:Texts View
+	//	Texts View
 	//
 	//
 	#[view] public fun Retrieve_Count_of_Texts (platform : String) : u64 acquires Hulls {
@@ -145,9 +145,9 @@ module Builder_01::Hulls_Module {
 			return 0
 		};
 		
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
-		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
-		let hull_texts = & Hull__retrieve_texts (hull_ref);
+		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		let hull_texts = &mut hull_ref.texts;
 		
 		vector::length (hull_texts)
 	}
@@ -168,7 +168,7 @@ module Builder_01::Hulls_Module {
 		
 		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
-		let hull_texts = & Hull__retrieve_texts (hull_ref);
+		let hull_texts = & hull_ref.texts;
 		let count_of_hull_texts = vector::length (hull_texts);
 		for (index in 0..count_of_hull_texts) {
 			let text_ref = vector::borrow (hull_texts, index);
@@ -211,7 +211,7 @@ module Builder_01::Hulls_Module {
 		
 		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
-		let hull_texts = & Hull__retrieve_texts (hull_ref);
+		let hull_texts = & hull_ref.texts;
 		let count_of_hull_texts = vector::length (hull_texts);
 		for (index in 0..count_of_hull_texts) {
 			let text_ref = vector::borrow (hull_texts, index);
@@ -249,12 +249,11 @@ module Builder_01::Hulls_Module {
 		
 		let price_of_text_in_octas : u64 = 100000000;
 		
-		let front = Hull__create (
-			utf8 (b"playing"),
-			utf8 (b""),
-			vector::empty<Text>()
-		);
-		
+		let front = Hull {
+			status: utf8 (b"playing"),
+			platform : utf8 (b""),
+			texts : vector::empty<Text>()
+		};
 		
 		let hulls_vector = vector::empty<Hull>();
 		vector::push_back (&mut hulls_vector, front);
@@ -280,25 +279,27 @@ module Builder_01::Hulls_Module {
 	//	Hull
 	//
 	//
+	public fun Ensure_Hull_is_Playing () {}	
 	public fun search_or_begin_hull (platform : String) : u64 acquires Hulls {
 		/*
 			Search for the index of the hull.
 			If the hull does not exist, then start it.
 		*/
+
 		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls.hulls, index);
-			if (Hull__retrieve_platform (hull_ref) == platform) {
+			if (hull_ref.platform == platform) {
 				return index
 			}
 		};
-		
-		let hull = Hull__create (
-			utf8 (b"playing"),
-			platform,
-			vector::empty<Text>()
-		);
+
+		let hull = Hull {
+			status: utf8 (b"began"),
+			platform: platform,
+			texts : vector::empty<Text>()
+		};
 		
 		vector::push_back (&mut hulls.hulls, hull);
 		
@@ -324,26 +325,19 @@ module Builder_01::Hulls_Module {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::{ Self, AptosCoin };
 		
-		////
-		//
-		//	Rules
-		//
-		//
 		if (string::length (& text) > 100) {
 			abort Limiter_Text_String_needs_to_be_less_than_one_hundred_characters
 		};
-		//
-		////
+		
 		
 		let writer_address = signer::address_of (writer);
 		let producer_address = Producer_Module::obtain_address ();
 		
 		let index_of_hull = search_or_begin_hull (platform);
-		let hulls_mref = borrow_global_mut<Hulls>(producer_address);
-		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls_mref.hulls, index_of_hull);
-		let price_of_text_in_octas = hulls_mref.price_of_text_in_octas;
+		let hulls = borrow_global_mut<Hulls>(producer_address);
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		let price_of_text_in_octas = hulls.price_of_text_in_octas;
 	
-		////
 		//
 		//	Deduct 1 APT
 		//		* Ensure Consenter has >= 1 * "amount_of_plays_to_buy" APT.
@@ -353,30 +347,33 @@ module Builder_01::Hulls_Module {
 			abort Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send
 		};
 		coin::transfer<AptosCoin>(writer, producer_address, price_of_text_in_octas);
-		//
-		////
 		
-		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
+		
+		let hull_texts = &mut hull_ref.texts;
+		let already_has_text = false;
 		for (index in 0..vector::length (hull_texts)) {
-			let text_mref = vector::borrow_mut (hull_texts, index);
-			if (Text__retrieve_writer_address (text_mref) == writer_address) {
+			let text_ref = vector::borrow_mut (hull_texts, index);
+			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
+			
+			if (text_ref_writer_address == writer_address) {
+				// vector::remove (hull_texts, index);
+				
 				//
 				//	The writer already has a text on this platform,
 				//	therefore a text modification occurs.
 				//
-				Text__change_text (text_mref, text);
-				Text__change_now_seconds (text_mref);
-				return;
+				Text__change_text (text_ref, text);
+				Text__change_now_seconds (text_ref);
+				
+				already_has_text = true;
+				break;
 			}
 		};
 		
-		
-		//
-		//	The writer does not have a text on this platform,
-		//	therefore a text is written.
-		//
-		let this_text = Text__create (writer_address, text);
-		vector::push_back (hull_texts, this_text);
+		if (already_has_text == false) {
+			let this_text = Text__create (writer_address, text);
+			vector::push_back (hull_texts, this_text);
+		}
 	}
 	public entry fun Delete_Text (consenter : & signer, platform : String) acquires Hulls {
 		let writer_address = signer::address_of (consenter);		
@@ -385,7 +382,7 @@ module Builder_01::Hulls_Module {
 		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
 		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
 
-		let hull_texts = Hull__mut_retrieve_texts (hull_ref);
+		let hull_texts = &mut hull_ref.texts;
 		for (index in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index);
 			if (Text__retrieve_writer_address (text_ref) == writer_address) {
@@ -441,10 +438,10 @@ module Builder_01::Hulls_Module {
 		ensure_consenter_is_producer (consenter);
 	
 		let index_of_hull = search_for_index_of_hull (platform);
-		let hulls_mref = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
-		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls_mref.hulls, index_of_hull);
+		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
 		
-		Hull__change_status (hull_mref, status);
+		hull_ref.status = status;
 	}
 	public entry fun Producer_Hull_Pause (
 		consenter : & signer,
@@ -476,9 +473,9 @@ module Builder_01::Hulls_Module {
 
 		let index_of_hull = search_for_index_of_hull (platform);
 		let hulls = borrow_global_mut<Hulls>(producer_address);
-		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);	
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);	
 		
-		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
+		let hull_texts = &mut hull_ref.texts;
 		for (index_of_text in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
 			if (Text__retrieve_writer_address (text_ref) == writer_address) {

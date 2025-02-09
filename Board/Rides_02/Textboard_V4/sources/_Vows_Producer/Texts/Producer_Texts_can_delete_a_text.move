@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Producer_Hull_can_play_and_pause {
+module Builder_01::Producer_Texts_can_delete_a_text {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -12,16 +12,10 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		Rules_Module::Volitions_01 () 
 	}
 	
-	/*
-		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer,
-		
-		writer_01_consenter : & signer,
-		writer_02_consenter : & signer
-	*/
-
+	
+	
 	#[test_only]
-	public fun Vow_01 () {	
+	public fun Vow () {	
 		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -33,14 +27,14 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		use Builder_01::Hulls_Module; 
 		use Builder_01::Vow_Parts_01; 
 	
-		let one_APT : u64 = 100000000; 
-		let apt_mint : u64 = one_APT * 100;
-
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
 		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
-
+	
+		let one_APT : u64 = 100000000; 
+		let apt_mint : u64 = one_APT * 100;
+		
 		let producer_address = signer::address_of (producer_01_consenter);
 		Vow_Parts_01::clock (& aptos_framework_consenter);
 		
@@ -49,6 +43,8 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		account::create_account_for_test (producer_address);
 		coin::register<AptosCoin>(producer_01_consenter);
 		coin::deposit (producer_address, coins);
+		
+		
 		
 		////
 		//
@@ -84,13 +80,9 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//	Send Text
 		//
 		//
-		let text_01_platform : String = utf8 (b"");	
 		let text_01_text : String = utf8 (b"This is a text.");
-		Hulls_Module::Send_Text (
-			writer_01_consenter,
-			text_01_text,
-			text_01_platform
-		);
+		let text_01_platform : String = utf8 (b"");		
+		Hulls_Module::Send_Text (writer_01_consenter, text_01_text, text_01_platform);
 		//
 		////
 
@@ -100,18 +92,11 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//
 		//
 		let texts : vector<Hulls_Module::Text_Envelope> = Hulls_Module::Retrieve_Texts (text_01_platform);
-		assert! (vector::length (& texts) == 1, 1);		
-		
 		let text_ref = vector::borrow (& texts, 0);
 		assert! (vector::length (& texts) == 1, 1);		
 		assert! (Hulls_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
 		//
 		////
-		
-		
-		////
-		//
-		
 		
 		////
 		//
@@ -141,4 +126,3 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 
 	
 }
-

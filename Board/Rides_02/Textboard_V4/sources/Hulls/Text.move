@@ -6,7 +6,6 @@
 
 module Builder_01::Text_Module {
 	friend Builder_01::Hulls_Module;
-	friend Builder_01::Hull_Module;
 	
 	use std::string::{ String };
 	use aptos_framework::timestamp;
@@ -17,7 +16,7 @@ module Builder_01::Text_Module {
 	
 	////
 	//
-	struct Text has store, drop, copy {
+	struct Text has store, drop {
 		writer_address : address,
 		text : String,
 		now_seconds : u64
