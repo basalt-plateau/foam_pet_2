@@ -7,6 +7,7 @@ module Builder_01::Hulls_Module {
 	use std::string::{ Self, String, utf8 };
 	use std::string_utils;
 	use std::signer;
+	use std::option::{ Option, some, none };
 	use std::debug;
 	
 	use aptos_framework::timestamp;
@@ -34,6 +35,19 @@ module Builder_01::Hulls_Module {
 		text : String,
 		now_seconds : u64
 	}
+	public fun retrieve_text_writer_address (text : Text) : address {
+		text.writer_address
+	}
+	public fun retrieve_text_text (text : Text) : String {
+		text.text
+	}
+	public fun retrieve_text_now_seconds (text : Text) : u64 {
+		text.now_seconds
+	}
+	fun change_text_writer_address (text : Text, writer_address : address) {
+		text.writer_address = writer_address;
+	}
+	
 	struct Text_Envelope has store, drop {
 		writer_address : address,
 		writer_balance : u64,
