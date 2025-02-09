@@ -2,8 +2,8 @@
 
 
 module Builder_01::Hull_Module {
-	friend Builder_01::Hull_Module_Producer;	
 	friend Builder_01::Hulls_Module;
+	friend Builder_01::Hull_Module_Producer;
 	
 	use std::string::{ String, utf8 };
 	use aptos_framework::timestamp;

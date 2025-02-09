@@ -2,7 +2,6 @@
 
 
 module Builder_01::Hulls_Module {
-	friend Builder_01::Hull_Module_Producer;
 	
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
@@ -64,31 +63,6 @@ module Builder_01::Hulls_Module {
 		status : String,
 		price_of_text_in_octas : u64,
 		hulls : vector<Hull>
-	}
-	
-	////
-	//
-	//	Retrieve
-	//
-	friend fun Hulls__mut_retrieve_hulls (hulls : &mut Hulls) : &mut vector<Hull> {
-		&mut hulls.hulls
-	}
-	//
-	////
-	
-	
-	friend fun Hulls__Hull__change_status (
-		consenter : & signer,
-		platform : String,
-		status : String
-	) acquires Hulls {
-		let index_of_hull = search_for_index_of_hull (platform);
-		
-		let hulls_key_mref = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
-		let hulls_mref = &mut hulls_key_mref.hulls;
-		let hull_mref : &mut Hull = vector::borrow_mut (hulls_mref, index_of_hull);
-		
-		Hull__change_status (hull_mref, status);
 	}
 	
 	////
@@ -281,6 +255,7 @@ module Builder_01::Hulls_Module {
 			vector::empty<Text>()
 		);
 		
+		
 		let hulls_vector = vector::empty<Hull>();
 		vector::push_back (&mut hulls_vector, front);
 		
@@ -297,7 +272,6 @@ module Builder_01::Hulls_Module {
 			abort Limiter_the_hull_is_not_going
 		}
 	}
-	
 	//
 	////
 	
@@ -453,7 +427,38 @@ module Builder_01::Hulls_Module {
 	public entry fun Producer_Hulls_Play (consenter : & signer) acquires Hulls {
 		Producer_Hulls_Change_Status (consenter, utf8 (b"playing"));
 	}
-
+	//
+	//	
+	//
+	//		Hull
+	//
+	//
+	public fun Producer_Hull_Change_Status (
+		consenter : & signer,
+		platform : String,
+		status : String
+	) acquires Hulls {
+		ensure_consenter_is_producer (consenter);
+	
+		let index_of_hull = search_for_index_of_hull (platform);
+		let hulls_mref = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls_mref.hulls, index_of_hull);
+		
+		Hull__change_status (hull_mref, status);
+	}
+	public entry fun Producer_Hull_Pause (
+		consenter : & signer,
+		platform : String
+	) acquires Hulls {
+		Producer_Hull_Change_Status (consenter, platform, utf8 (b"paused"));
+	}
+	public entry fun Producer_Hull_Playing (
+		consenter : & signer,
+		platform : String 
+	) acquires Hulls {
+		Producer_Hull_Change_Status (consenter, platform, utf8 (b"playing"));
+	}
+	public entry fun Producer_Hull_Delete_Then_End () {}
 	//
 	//
 	//
