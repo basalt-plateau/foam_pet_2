@@ -23,30 +23,31 @@ module Builder_01::Hulls_Module {
 	const One_APT : u64 = 100000000;
 	
 	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module;
-		Rules_Module::Volitions_01 () 
+		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}
 	
-	/*
-		platforms: vector::empty<String>()
-	*/
+	////
+	//
 	struct Text has store, drop {
 		writer_address : address,
 		text : String,
 		now_seconds : u64
 	}
-	public fun retrieve_text_writer_address (text : Text) : address {
+	public fun Text__retrieve_writer_address (text : Text) : address {
 		text.writer_address
 	}
-	public fun retrieve_text_text (text : Text) : String {
+	public fun Text__retrieve_text (text : Text) : String {
 		text.text
 	}
-	public fun retrieve_text_now_seconds (text : Text) : u64 {
+	public fun Text__retrieve_now_seconds (text : Text) : u64 {
 		text.now_seconds
 	}
-	fun change_text_writer_address (text : Text, writer_address : address) {
+	fun Text__change_writer_address (text : Text, writer_address : address) {
 		text.writer_address = writer_address;
 	}
+	//
+	////
+	
 	
 	struct Text_Envelope has store, drop {
 		writer_address : address,
