@@ -463,7 +463,7 @@ const change_account_address = () => {
 				}}
 			
 				button_text={ 
-					`Send to "${ le_textboard }"` 
+					`Write or overwrite on "${ le_textboard }"` 
 				}
 				
 				APT="1"

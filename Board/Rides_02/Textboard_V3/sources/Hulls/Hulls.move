@@ -14,16 +14,6 @@ module Builder_01::Hulls_Module {
 	
 	use Builder_01::Endings_Module;
 	use Builder_01::Producer_Module::{ Self, ensure_consenter_is_producer };
-	use Builder_01::Text_Module::{
-		Text,
-		Text__create,
-		Text__change_writer_address,
-		Text__change_text,
-		Text__change_now_seconds,
-		Text__retrieve_writer_address,
-		Text__retrieve_text,
-		Text__retrieve_now_seconds
-	};
 
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
@@ -35,7 +25,28 @@ module Builder_01::Hulls_Module {
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}
-
+	
+	////
+	//
+	struct Text has store, drop {
+		writer_address : address,
+		text : String,
+		now_seconds : u64
+	}
+	public fun Text__retrieve_writer_address (text : Text) : address {
+		text.writer_address
+	}
+	public fun Text__retrieve_text (text : Text) : String {
+		text.text
+	}
+	public fun Text__retrieve_now_seconds (text : Text) : u64 {
+		text.now_seconds
+	}
+	fun Text__change_writer_address (text : Text, writer_address : address) {
+		text.writer_address = writer_address;
+	}
+	//
+	////
 	
 	
 	struct Text_Envelope has store, drop {
@@ -168,23 +179,19 @@ module Builder_01::Hulls_Module {
 			return hull_texts_envelope
 		};
 		
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
-		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
-		let hull_texts = & hull_ref.texts;
+		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		let hull_texts = &mut hull_ref.texts;
 		let count_of_hull_texts = vector::length (hull_texts);
 		for (index in 0..count_of_hull_texts) {
-			let text_ref = vector::borrow (hull_texts, index);
-			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
-			
-			let writer_balance = coin::balance<aptos_coin::AptosCoin>(
-				text_ref_writer_address
-			);
+			let text_ref = vector::borrow_mut (hull_texts, index);
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref.writer_address);
 			
 			let this_text = Text_Envelope {
-				writer_address : 	text_ref_writer_address,
-				writer_balance : 	writer_balance,
-				text : 				Text__retrieve_text (text_ref),
-				now_seconds : 		Text__retrieve_now_seconds (text_ref)
+				writer_address : text_ref.writer_address,
+				writer_balance : writer_balance,
+				text : text_ref.text,
+				now_seconds : text_ref.now_seconds
 			};
 			
 			vector::push_back (&mut hull_texts_envelope, this_text);
@@ -211,26 +218,23 @@ module Builder_01::Hulls_Module {
 			return hull_texts_envelope
 		};
 		
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
-		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
-		let hull_texts = & hull_ref.texts;
+		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		let hull_texts = &mut hull_ref.texts;
 		let count_of_hull_texts = vector::length (hull_texts);
 		for (index in 0..count_of_hull_texts) {
-			let text_ref = vector::borrow (hull_texts, index);
-			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
-			let text_ref_now_seconds = Text__retrieve_now_seconds (text_ref);
+			let text_ref = vector::borrow_mut (hull_texts, index);
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref.writer_address);
+			let text_now_seconds = text_ref.now_seconds;
 			
-			let writer_balance = coin::balance<aptos_coin::AptosCoin>(
-				text_ref_writer_address
-			);
-			
-			if (text_ref_now_seconds >= seconds_begin && text_ref_now_seconds <= seconds_end) {
+			if (text_now_seconds >= seconds_begin && text_now_seconds <= seconds_end) {
 				let this_text = Text_Envelope {
-					writer_address : 	text_ref_writer_address,
-					writer_balance : 	writer_balance,
-					text : 				Text__retrieve_text (text_ref),
-					now_seconds : 		Text__retrieve_now_seconds (text_ref)
+					writer_address : text_ref.writer_address,
+					writer_balance : writer_balance,
+					text : text_ref.text,
+					now_seconds : text_ref.now_seconds
 				};
+				
 				vector::push_back (&mut hull_texts_envelope, this_text);
 			}
 		};
@@ -355,17 +359,15 @@ module Builder_01::Hulls_Module {
 		let already_has_text = false;
 		for (index in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index);
-			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
-			
-			if (text_ref_writer_address == writer_address) {
+			if (text_ref.writer_address == writer_address) {
 				// vector::remove (hull_texts, index);
 				
 				//
 				//	The writer already has a text on this platform,
 				//	therefore a text modification occurs.
 				//
-				Text__change_text (text_ref, text);
-				Text__change_now_seconds (text_ref);
+				text_ref.text = text;
+				
 				
 				already_has_text = true;
 				break;
@@ -373,7 +375,12 @@ module Builder_01::Hulls_Module {
 		};
 		
 		if (already_has_text == false) {
-			let this_text = Text__create (writer_address, text);
+			let this_text = Text {
+				writer_address : writer_address,
+				text : text,
+				now_seconds : timestamp::now_seconds ()
+			};
+			
 			vector::push_back (hull_texts, this_text);
 		}
 	}
@@ -387,7 +394,7 @@ module Builder_01::Hulls_Module {
 		let hull_texts = &mut hull_ref.texts;
 		for (index in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index);
-			if (Text__retrieve_writer_address (text_ref) == writer_address) {
+			if (text_ref.writer_address == writer_address) {
 				vector::remove (hull_texts, index);
 				return;
 			}
@@ -480,7 +487,7 @@ module Builder_01::Hulls_Module {
 		let hull_texts = &mut hull_ref.texts;
 		for (index_of_text in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
-			if (Text__retrieve_writer_address (text_ref) == writer_address) {
+			if (text_ref.writer_address == writer_address) {
 				vector::remove (hull_texts, index_of_text);
 				return;
 			}
