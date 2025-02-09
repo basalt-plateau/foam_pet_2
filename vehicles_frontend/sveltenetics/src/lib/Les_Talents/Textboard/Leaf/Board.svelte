@@ -463,7 +463,7 @@ const change_account_address = () => {
 				}}
 			
 				button_text={ 
-					platform_name === "" ? "Text" : `Text about ${ le_textboard }` 
+					`Send to "${ le_textboard }"` 
 				}
 				
 				APT="1"

@@ -184,6 +184,48 @@ module Builder_01::Hulls_Module {
 		
 		hull_texts_envelope
 	}
+	#[view] public fun Retrieve_Texts_Between (
+		platform : String,
+		seconds_begin : u64,
+		seconds_end : u64
+	) : vector<Text_Envelope> acquires Hulls {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin;
+		
+		let hull_texts_envelope = vector::empty<Text_Envelope>();
+		
+		//
+		//	if hull not found, 
+		//	return an empty vector.
+		//
+		let (exists, index_of_hull) = search_for_index_of_hull_v2 (platform);
+		if (exists != true) {
+			return hull_texts_envelope
+		};
+		
+		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		let hull_texts = &mut hull_ref.texts;
+		let count_of_hull_texts = vector::length (hull_texts);
+		for (index in 0..count_of_hull_texts) {
+			let text_ref = vector::borrow_mut (hull_texts, index);
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref.writer_address);
+			let text_now_seconds = text_ref.now_seconds;
+			
+			if (text_now_seconds >= seconds_begin && text_now_seconds <= seconds_end) {
+				let this_text = Text_Envelope {
+					writer_address : text_ref.writer_address,
+					writer_balance : writer_balance,
+					text : text_ref.text,
+					now_seconds : text_ref.now_seconds
+				};
+				
+				vector::push_back (&mut hull_texts_envelope, this_text);
+			}
+		};
+		
+		hull_texts_envelope
+	}
 	//
 	////
 

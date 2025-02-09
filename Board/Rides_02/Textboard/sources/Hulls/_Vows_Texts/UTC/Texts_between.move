@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Hulls_can_text_to_front {
+module Builder_01::Texts_between {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -18,7 +18,8 @@ module Builder_01::Hulls_can_text_to_front {
 		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
-		
+
+		use aptos_framework::timestamp;		
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
@@ -76,45 +77,45 @@ module Builder_01::Hulls_can_text_to_front {
 		
 		////
 		//
-		//	Send Text
+		//	Send Texts
 		//
 		//
-		let text_01_text : String = utf8 (b"This is a text.");
-		let text_01_platform : String = utf8 (b"");		
-		Hulls_Module::Send_Text (
-			writer_01_consenter,
-			text_01_text,
-			text_01_platform
-		);
+		Hulls_Module::Send_Text (writer_01_consenter, utf8 (b"This is text 000001."), utf8 (b""));
+		Hulls_Module::Send_Text (writer_01_consenter, utf8 (b"This is text 000002."), utf8 (b""));
+		timestamp::update_global_time_for_test (31557600000 * 50);
+		Hulls_Module::Send_Text (writer_01_consenter, utf8 (b"This is text 000003."), utf8 (b""));
+		Hulls_Module::Send_Text (writer_01_consenter, utf8 (b"This is text 000004."), utf8 (b""));
+		//
+		////
+			
+			
+		////
+		//
+		//	Retrieve Texts 20_40
+		//
+		//
+		let texts_20_40 = Hulls_Module::Retrieve_Texts_Between (utf8 (b""), 31557600000 * 20, 31557600000 * 40);
+		assert! (vector::length (& texts_20_40) == 2, 1);	
+		assert! (Hulls_Module::Text_Envelope_Text (vector::borrow (& texts_20_40, 0)) == utf8 (b"This is text 000001."), 1);
+		assert! (Hulls_Module::Text_Envelope_Text (vector::borrow (& texts_20_40, 1)) == utf8 (b"This is text 000002."), 1);
+		//
+		////	
+			
+		////
+		//
+		//	Retrieve Texts 40_60
+		//
+		//
+		let texts_40_60 = Hulls_Module::Retrieve_Texts_Between (utf8 (b""), 31557600000 * 40, 31557600000 * 60);
+		assert! (vector::length (& texts_40_60) == 2, 1);	
+		assert! (Hulls_Module::Text_Envelope_Text (vector::borrow (& texts_20_40, 0)) == utf8 (b"This is text 000003."), 1);
+		assert! (Hulls_Module::Text_Envelope_Text (vector::borrow (& texts_20_40, 1)) == utf8 (b"This is text 000004."), 1);
 		//
 		////
 
 		////
 		//
-		//	Ensure text exists
-		//
-		//
-		let texts : vector<Hulls_Module::Text_Envelope> = Hulls_Module::Retrieve_Texts (text_01_platform);
-		let text_ref = vector::borrow (& texts, 0);
-		assert! (vector::length (& texts) == 1, 1);		
-		assert! (Hulls_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
-		//
-		////
-		
-		////
-		//
-		//	Delete Text
-		//
-		//
-		Hulls_Module::Delete_Text (writer_01_consenter, text_01_platform);
-		assert! (vector::length (& Hulls_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	
-		//
-		////
-
-		
-		////
-		//
-		//	After Party
+		//	Cleaning
 		//
 		coin::destroy_mint_cap (mint_cap);
 		coin::destroy_freeze_cap (freeze_cap);
@@ -125,3 +126,5 @@ module Builder_01::Hulls_can_text_to_front {
 
 	
 }
+
+

@@ -85,10 +85,12 @@ def motion_for_named_addresses (packet):
 	named_addresses = "".join ([
 		f"""--named-addresses '""",
 
+		f"""Producer_000001={ Producer_01 ["address"] }, """,
 		f"""Producer_01={ Producer_01 ["address"] }, """,
 		f"""Formulator_1={ Producer_01 ["address"] }, """,
 		f"""Boar_Producer_1={ Producer_01 ["address"] }, """,
 
+		f"""Builder_000001={ Builder_01 ["address"] }, """,
 		f"""Builder_01={ Builder_01 ["address"] }, """,
 		f"""Publisher_01={ Builder_01 ["address"] }, """,
 		f"""Ride_01={ Builder_01 ["address"] }, """,

@@ -21,6 +21,8 @@ module Builder_01::Vows {
 			02 Can Text To Platform "Dimension 3"
 			03 Text Length Limiter
 			04 Text Retrieval From Empty Platform
+			
+			05 Search was written between two seconds.
 	*/
 	#[test] public fun Text_01 () { 
 		use Builder_01::Hulls_can_text_to_front::{ Vow }; Vow (); 

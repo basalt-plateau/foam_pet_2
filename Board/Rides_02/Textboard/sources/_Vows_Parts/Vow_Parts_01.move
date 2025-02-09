@@ -22,7 +22,7 @@ module builder_1::Vow_Parts_01 {
 		//			130
 		//
 		let year_ms : u64 = 31557600000;
-		let begin_ms : u64 = year_ms * 30;
+		let begin_ms : u64 = 31557600000 * 30;
 		//
 		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
 		timestamp::update_global_time_for_test (begin_ms);
