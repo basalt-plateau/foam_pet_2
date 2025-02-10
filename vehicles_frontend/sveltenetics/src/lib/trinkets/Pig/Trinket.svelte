@@ -21,6 +21,7 @@ let show_dialogue = "no"
 let chat_timeout;
 
 let cow_clicked = () => {
+	return;
 	console.log ("cow_clicked");
 	show_dialogue = "yes"
 	sound_gem.playa ();
@@ -48,8 +49,6 @@ let cow_clicked = () => {
 		width: 100%;
 
 		border-radius: 50%;
-		
-		cursor: pointer;
 	"
 >
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
@@ -78,8 +77,6 @@ let cow_clicked = () => {
 			
 			border-radius: 15px;
 			
-			cursor: pointer;
-			
 			overflow-y: scroll;
 		"
 	>
@@ -96,13 +93,12 @@ let cow_clicked = () => {
 				padding: 0.25cm;
 			"
 		>
-			Oynk
+			Cluck
 		</div>
 	</div>
 	{/if}
 
-	<button
-		on:click={ cow_clicked }
+	<div
 		style="
 			position: absolute;
 			bottom: 0.125cm;
@@ -115,8 +111,6 @@ let cow_clicked = () => {
 			border: 4px solid rgba(var(--color-primary-100));
 			
 			border-radius: 50%;
-			
-			cursor: pointer;
 		"
 	>
 		<div
@@ -156,9 +150,9 @@ let cow_clicked = () => {
 			"
 			class="card p-1 variant-filled-surface"
 		>
-			<p>Taxonomy</p>
+			<p>Mutualism</p>
 		</div>
-	</button>
+	</div>
 	
 	{/if}
 </div>
