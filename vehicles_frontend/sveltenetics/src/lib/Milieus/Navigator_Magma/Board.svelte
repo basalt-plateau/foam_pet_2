@@ -69,10 +69,10 @@ let Versies_Freight = "";
 			
 			{#if Versies_Freight.mode === "nurture" }
 			<Milieus_Button
-				monitor={ "Bourgeoisie" }
-				name={ "Bourgeoisie" }
-				location={[ "Bourgeoisie" ]}
-				is_open_location={[ "Bourgeoisie" ]}
+				monitor={ "Motte" }
+				name={ "Motte" }
+				location={[ "Motte" ]}
+				is_open_location={[ "Motte" ]}
 			/>
 			{/if}
 		</div>

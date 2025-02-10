@@ -14,7 +14,7 @@
 
 /*
 	Aristocracy, Oligarchy, Government
-	Bourgeoisie
+	Motte
 */
 
 /*

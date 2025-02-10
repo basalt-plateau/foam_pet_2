@@ -22,7 +22,7 @@
 				text-align: center;
 				font-size: 1em;
 			"
-		>Bourgeoisie Wallets and Aristocracy Wallets.</p>
+		>Validator Wallets and Participant Wallets.</p>
 	</div>
 
 	<div style="height: 0.5cm"></div>
@@ -40,13 +40,13 @@
 				text-align: center;
 				font-weight: bold;
 			"
-		>Aristocracy Wallets</header>
+		>Validator Wallets</header>
 		<p
 			style="
 				text-align: center;
 				font-size: 1em;
 			"
-		>An Aristocracy Wallet (know as a Validator Wallet) is constantly connected to the internet so that it can subconsciously rule on the legitimacy of petitions.</p>
+		>An Validator Wallet is constantly connected to the internet so that it can subconsciously rule on the legitimacy of petitions.</p>
 		
 		<div style="height: 0.5cm"></div>
 		
@@ -77,19 +77,19 @@
 				text-align: center;
 				font-weight: bold;
 			"
-		>Bourgeoisie Wallets</header>
+		>Participant Wallets</header>
 		<p
 			style="
 				text-align: center;
 				font-size: 1em;
 			"
-		>A Bourgeoisie Wallet (like a Lobbyist) is for consenting to suggestions that are to be requested of the Aristocracy.</p>
+		>A Participant Wallet (like a Lobbyist) is for consenting to suggestions that are to be requested of the Validators.</p>
 		<p
 			style="
 				text-align: center;
 				font-size: 1em;
 			"
-		>The best Bourgeoisie Wallet for Aptos might be Keystone <a href="https://keyst.one" target="_blank">https://keyst.one</a>.</p>
+		>The best Participant Wallet for Aptos might be Keystone <a href="https://keyst.one" target="_blank">https://keyst.one</a>.</p>
 	</div>
 
 	<div style="height: 0.5cm"></div>
@@ -110,7 +110,7 @@
 				text-align: center;
 				font-size: 1em;
 			"
-		>If installed on an offline computer, this wallet is Bourgeoisie Wallet software.</p>
+		>If installed on an offline computer, this wallet is Participant Wallet software.</p>
 	</div>
 
 	<div style="height: 0.5cm"></div>

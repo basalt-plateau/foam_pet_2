@@ -27,7 +27,7 @@ import Slang from '$lib/trinkets/Slang/Trinket.svelte'
 				text-align: center;
 				font-size: 1em;
 			"
-		>This is the <Slang text="Label" /> Bourgeoisie Wallet prototype.</p>
+		>This is the <Slang text="Label" /> Wallet prototype.</p>
 	</div>
 
 	<div style="height: 0.5cm"></div>

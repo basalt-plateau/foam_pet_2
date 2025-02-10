@@ -73,8 +73,8 @@ $: {
 	}
 }
 
-const Bourgeoisie_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
-const Builder_01 = Bourgeoisie_01_LA;
+const Motte_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+const Builder_01 = Motte_01_LA;
 
 
 const Vacations = async () => {

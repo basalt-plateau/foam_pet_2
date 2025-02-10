@@ -8,8 +8,8 @@
 
 
 /*
-	import Bourgeoisie from "$lib/Bourgeoisie/Trinket.svelte"
-	<Bourgeoisie />
+	import Motte from "$lib/Motte/Trinket.svelte"
+	<Motte />
 */
 
 
@@ -34,7 +34,7 @@ import Consent_Leaf from './Consent/Trinket.svelte'
 import Garden_Leaf from './Garden/Tome.svelte'
 import Beauty_Leaf from './Beauty/Tome.svelte'
 //
-import * as Bourgeoisie_Truck from "./_Truck/index.js"
+import * as Motte_Truck from "./_Truck/index.js"
 //
 ////
 
@@ -42,11 +42,11 @@ let leaf = "Tutorials";
 
 
 let prepared = "no"
-let Bourgeoisie_Truck_Freight;
-let Bourgeoisie_Truck_Monitor;
+let Motte_Truck_Freight;
+let Motte_Truck_Monitor;
 onMount (async () => {	
-	Bourgeoisie_Truck.make ()
-	Bourgeoisie_Truck_Monitor = Bourgeoisie_Truck.monitor (async ({
+	Motte_Truck.make ()
+	Motte_Truck_Monitor = Motte_Truck.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -56,19 +56,19 @@ onMount (async () => {
 		value
 	}) => {
 		try {
-			Bourgeoisie_Truck_Freight = Bourgeoisie_Truck.retrieve ().pro_freight; 
+			Motte_Truck_Freight = Motte_Truck.retrieve ().pro_freight; 
 		}
 		catch (imperfection) {
 			console.error (imperfection);
 		}
 	});
 	
-	Bourgeoisie_Truck_Freight = Bourgeoisie_Truck.retrieve ().pro_freight;  
+	Motte_Truck_Freight = Motte_Truck.retrieve ().pro_freight;  
 	prepared = "yep"
 });
 onDestroy (() => {
-	Bourgeoisie_Truck_Monitor.stop ()
-	Bourgeoisie_Truck.destroy ()
+	Motte_Truck_Monitor.stop ()
+	Motte_Truck.destroy ()
 });
 
 let nav_width = 0;
