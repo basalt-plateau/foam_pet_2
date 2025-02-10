@@ -47,9 +47,11 @@
 ////
 //
 import { onMount as _onMount } from 'svelte'
+import { Modal, getModalStore } from '@skeletonlabs/skeleton';
 //
 //
 import { parse_styles } from '$lib/trinkets/styles/parse'
+import { show_wallets_panel } from "$lib/Les_Talents/_Wallet/Panel/Show.js"
 //
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Radial_Progress from '$lib/trinkets/Progress/Radial/Trinket.svelte'
@@ -58,11 +60,9 @@ import Problem_Alert from '$lib/trinkets/Alerts/Problem.svelte'
 //
 ////
 
-import { Modal, getModalStore } from '@skeletonlabs/skeleton';
-import { show_wallets_panel } from "$lib/Les_Talents/_Wallet/Panel/Show.js"
+
 	
 const modal_store = getModalStore ();
-	
 	
 	
 let Extension_Winch_Freight = false
@@ -109,9 +109,7 @@ _onMount (() => {
 	
 });
 
-/*
 
-*/
 </script>
 
 
@@ -158,6 +156,8 @@ _onMount (() => {
 					
 					height: 100%;
 					padding: 0 0.5cm;
+					
+					white-space: normal;
 				"	
 			>{ button_text }</span>
 		</span>
@@ -189,7 +189,6 @@ _onMount (() => {
 				"
 				class="badge variant-filled-surface"
 			>
-				
 				<img 
 					src="/_Licensed/Aptos/aptos.png" 
 					style="
@@ -255,7 +254,7 @@ _onMount (() => {
 	{#if [ "success" ].includes (the_mode) }
 	<Alert_Success 
 		text={ details }
-	/>	
+	/>
 	{/if}
 	
 	{#if [ "imperfection" ].includes (the_mode) }
