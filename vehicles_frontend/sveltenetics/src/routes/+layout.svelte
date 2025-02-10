@@ -4,7 +4,7 @@
 
 
 
-///
+////
 //
 import * as AptosSDK from "@aptos-labs/ts-sdk";
 //
@@ -22,27 +22,24 @@ import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floati
 import Navigator from "$lib/Milieus/Navigator/Trinket.svelte";
 import Footer from "$lib/trinkets/Footer/Trinket.svelte";
 //
-import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
-import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
-//
-import { lease_roomies_truck, give_back_roomies_truck } from '$lib/Versies/Trucks'
-//
 import Milieus_Trinket from '$lib/Milieus/Trinket.svelte'
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 //
 import Navigator_Foundation from '$lib/Milieus/Navigator_Foundation/Trinket.svelte'
 import Navigator_Magma from '$lib/Milieus/Navigator_Magma/Board.svelte'
 //
-import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck'
+import { string_from_Uint8Array } from '$lib/taverns/hexadecimal/string_from_Uint8Array'
+import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 //
-//\
-//\\
+import { lease_roomies_truck, give_back_roomies_truck } from '$lib/Versies/Trucks'
+import { lease_Milieus_truck, give_back_Milieus_truck } from '$lib/Milieus/Truck'
+import { latch_wallets } from "$lib/Singles/Extension_Winch/_screenplays/latch_wallets.js"
+//
+//
+////
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
 
-	
-
-import { latch_wallets } from "$lib/Singles/Extension_Winch/_screenplays/latch_wallets.js"
 
 
 ///
@@ -64,7 +61,7 @@ const drawerStore = getDrawerStore ();
 let trucks_prepared = "no"
 onMount (async () => {
 	autoModeWatcher ();
-	setInitialClassState ()
+	setInitialClassState ();
 	
 	////
 	//
@@ -72,8 +69,6 @@ onMount (async () => {
 	//		The versies (roomies) truck is subscribed
 	//		to the extension winch.
 	//
-	
-		
 	await Extension_Winch.make ();
 	lease_roomies_truck ()
 	lease_Milieus_truck ()
@@ -121,7 +116,6 @@ beforeUpdate (async () => {
 });
 
 const nav_heights = [ "1.5cm", "2cm" ]
-
 
 let Versies_Freight = false
 
@@ -247,7 +241,7 @@ let transform = "scale(0.5)"
 				left: 0;
 				
 				width: 100%;
-				height: 100px;
+				height: 60px;
 				
 				z-index: 1;
 			"

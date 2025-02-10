@@ -5,15 +5,14 @@
 <script>
 
 
-///
+////
 //
 // https://lucide.dev/guide/packages/lucide-svelte#one-generic-icon-component
 // https://lucide.dev/icons/
 //
-//
+////
 
-//\\
-//
+////
 //
 import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
@@ -101,8 +100,6 @@ let buttons_styles = ""
 		"
 		class="bg-surface-100-800-token w-full"
 	>
-		
-	
 		{#each Milieus_Freight.location as location_ }
 		<span class="badge variant-filled-surface"
 			style="

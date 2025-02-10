@@ -96,7 +96,6 @@ onMount (() => {
 				width: "80vw",
 				height: "80vh",
 
-				"overflow-y": "scroll"
 			}, style)
 		) 
 	}
@@ -148,8 +147,6 @@ onMount (() => {
 			
 			box-sizing: border-box;
 			padding: 0 10px 0;
-			
-			overflow: scroll;
 			
 			display: flex;
 			flex-direction: column;

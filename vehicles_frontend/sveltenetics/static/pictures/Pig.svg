@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="-129.40054"
-     inkscape:cy="516.89506"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="31.466252"
+     inkscape:cy="213.19269"
      inkscape:window-width="1676"
      inkscape:window-height="947"
      inkscape:window-x="26"
@@ -524,7 +524,7 @@
        ry="0.2728509" />
     <g
        id="g3"
-       transform="matrix(1.2557312,0,0,1.2557312,-173.36352,-9.3181693)"
+       transform="matrix(1.2557312,0,0,1.2557312,-172.30238,-15.570293)"
        style="opacity:0.615826;filter:url(#filter5)">
       <ellipse
          style="fill:#ff66ff;fill-opacity:1;stroke-width:0.16057;stroke-linecap:round"
@@ -640,7 +640,7 @@
     </g>
     <g
        id="g5"
-       transform="translate(98.237629,-73.993569)">
+       transform="translate(98.601575,-80.678336)">
       <ellipse
          style="fill:#ff66ff;fill-opacity:1;stroke-width:0.182115;stroke-linecap:round"
          id="path2-2-9-62"

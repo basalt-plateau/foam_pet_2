@@ -2,6 +2,12 @@
 
 <script>
 
+
+/*
+
+
+*/
+
 ////
 //
 import { onMount, onDestroy } from 'svelte'
@@ -20,10 +26,14 @@ import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 //
 ////
 
+
 	
 let mode = check_roomies_truck ().freight.mode;
 let window_width = check_roomies_truck ().freight.window_width;
-
+let Milieus_Freight = false;
+	
+	
+	
 let Scholars_Trucks_Prepared = "no"
 let Scholars_Trucks_Monitor;
 let Scholars_Trucks_Freight;
@@ -35,7 +45,6 @@ onMount (async () => {
 	})
 	
 	build ();
-	
 	Scholars_Trucks_Prepared = "yes"
 });
 
@@ -43,7 +52,6 @@ onDestroy (() => {
 	Scholars_Trucks_Monitor.stop ()
 }); 
 
-let Milieus_Freight = false;
 
 
 let buttons_styles = ""

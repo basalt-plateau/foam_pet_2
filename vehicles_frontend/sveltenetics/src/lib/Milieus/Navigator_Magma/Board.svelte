@@ -46,9 +46,9 @@ let Versies_Freight = "";
 				padding: 0.25cm 1cm;
 			"
 		/>
-
+		
 		<Greetings_Frontier />
-
+		
 		{#if Versies_Freight.mode === "nurture" }
 		<Milieus_Button
 			monitor={ "Bourgeoisie" }
