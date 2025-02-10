@@ -46,8 +46,6 @@ let cow_clicked = () => {
 		bottom: 10px;
 		left: 10px;
 		
-		width: 100%;
-
 		border-radius: 50%;
 	"
 >

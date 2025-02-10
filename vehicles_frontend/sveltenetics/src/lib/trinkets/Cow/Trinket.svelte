@@ -52,8 +52,6 @@ let cow_clicked = () => {
 		bottom: 10px;
 		right: 10px;
 		
-		width: 100%;
-
 		border-radius: 50%;
 		
 		cursor: pointer;

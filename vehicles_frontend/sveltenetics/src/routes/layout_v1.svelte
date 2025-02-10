@@ -53,7 +53,7 @@ import "../app.css";
 
 
 
-storePopup.set ({ computePosition, autoUpdate, offset, shift, flip, arrow });
+storePopup.set ({ computePosition, autoUpdate, offset, shift, flip, arrow });			
 initializeStores ();
 
 
@@ -161,95 +161,108 @@ let transform = "scale(0.5)"
 	{#if typeof Versies_Freight === "object"}
 	
 	<div
-		style="
-			position: absolute;
-			top: 0;
-			left: 0;
-			
-			width: 100%;
-			height: 100%;
-		"
-	>
-		<Modal />
-		<Toast />
-		<Drawer />
-	</div>
-	
-	<div
 		in:fade={{ duration: 500 }} 
-		
-		monitor="parador"
 		style="
 			position: relative;
 		
 			display: flex;
 			flex-direction: column;
-			height: 100vh;
+			min-height: 100%;
 		"
 	>
+		<Modal />
+		<Toast />
+		<Drawer />
+		
 		<div
+			monitor="parador"
 			style="
-				position: relative;
-				height: { Versies_Freight.window_width <= 800 ? nav_heights [0] : nav_heights [1] };
-			" 
-		>
-			<Navigator />
-		</div>
-			
-		<div
-			style="
-				position: relative;
+				position: absolute;
+				bottom: 0;
 				left: 0;
-				right: 0;
-				overflow-y: scroll;
+				width: 100%;
+				height: 100vh;
+				
+				transform: { Versies_Freight.parador.transform };
 			"
 		>
 			<div
 				style="
-					position: relative;
-					display: flex;
-					flex-direction: column;
-				"
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					height: { Versies_Freight.window_width <= 800 ? nav_heights [0] : nav_heights [1] };
+				" 
 			>
-				<div 
-					style="
-						position: static;
-						min-height: 100vh;
-						
-						flex: 1;
-						display: flex;
-						flex-direction: column;
-						padding: 1rem;
-						width: 100%;
-						
-						margin: 0 auto;
-						box-sizing: border-box;
-					"
-				>	
-					<Milieus_Trinket />
-				</div>
+				<Navigator />
 			</div>
 			
-			<div style="height: 0.25cm"></div>
-			<hr class="!border-t-8 !border-double" />
-			
-			<Navigator_Magma />
-			
-			<hr class="!border-t-8 !border-double" />
-			<div style="height: 0.25cm"></div>
+			<div
+				style="
+					height: {(
+						Versies_Freight.window_width <= 800 ? 
+						`calc(100vh - ${ nav_heights [0] })` : 
+						`calc(100vh - ${ nav_heights [1] })` 
+					)};
+					top: { Versies_Freight.window_width <= 800 ? nav_heights [0] : nav_heights [1] };
+					
+					position: absolute;
+					left: 0;
+					right: 0;
+					
+					overflow-y: scroll;
+					
+					
+				"
+			>
+				<div
+					style="
+						position: relative;
+					
+						display: flex;
+						flex-direction: column;
+						min-height: 100%;
+					"
+				>
+					<div 
+						style="
+							position: static;
+							min-height: 100vh;
+							
+							flex: 1;
+							display: flex;
+							flex-direction: column;
+							padding: 1rem;
+							width: 100%;
+							
+							margin: 0 auto;
+							box-sizing: border-box;
+						"
+					>	
+						<Milieus_Trinket />
+					</div>
+				</div>
+				
+				<div style="height: 0.25cm"></div>
+				<hr class="!border-t-8 !border-double" />
+				
+				<Navigator_Magma />
+				
+				
+				<hr class="!border-t-8 !border-double" />
+				<div style="height: 0.25cm"></div>
+			</div>
 		</div>
 		
 		
 		<div
 			style="
-				position: relative;
+				position: absolute;
 				bottom: 0;
 				left: 0;
-				
 				width: 100%;
-				height: 100px;
-				
-				z-index: 1;
 			"
 		>
 			<Navigator_Foundation />

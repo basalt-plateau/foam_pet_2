@@ -4,10 +4,6 @@
 
 <script>
 
-/*
-	This is..
-
-*/
 
 ///
 //
@@ -32,9 +28,7 @@ import { check_roomies_truck } from '$lib/Versies/Trucks'
 
 let mode = check_roomies_truck ().freight.mode;
 
-
 let navigator_1;
-
 let location = []
 
 let seeds_freight = {}
@@ -64,29 +58,51 @@ let buttons_styles = ""
 <nav
 	style="
 		position: relative;
-		// background: black;
+		height: 100%;
+		width: 100%;
+		
+		overflow-x: visible;
 	"
 >
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
-	<Cow />
-	<Pig />
+	<div
+		style="
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			
+			width: 100%;
+			
+			z-index: 1
+		"
+	>	
+		<Cow />
+		<Pig />
+	</div>
 	
 	{#if typeof Milieus_Freight === "object" && typeof Versies_Freight === "object" }
 	{#if mode === "nurture" }
-	<hr class="!border-t-2" />
-	
-	
-	<div class="bg-surface-100-800-token w-full"
+	<div 
 		style="
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		
 			display: flex;
 			align-items: center;
 			justify-content: left;
 			gap: 6px;
 			
+			box-sizing: border-box;
 			padding: 2px;
+			height: 100%;
+			width: 100%;
 		"
+		class="bg-surface-100-800-token w-full"
 	>
+		
+	
 		{#each Milieus_Freight.location as location_ }
 		<span class="badge variant-filled-surface"
 			style="
