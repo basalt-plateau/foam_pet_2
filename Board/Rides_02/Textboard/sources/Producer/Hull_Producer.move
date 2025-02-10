@@ -45,9 +45,10 @@ module Builder_01::Hull_Module_Producer {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__change_status (consenter, platform, utf8 (b"playing"));
 	}
-	public entry fun Producer_Hull_Delete_Then_Pause () {
+	public entry fun Producer_Hull_Delete_Then_Pause (
+		consenter : & signer,
+		platform : String
+	) {
 		ensure_consenter_is_producer (consenter);
-		
-		
 	}
 }

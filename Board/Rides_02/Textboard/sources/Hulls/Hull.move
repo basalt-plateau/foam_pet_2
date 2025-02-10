@@ -80,26 +80,25 @@ module Builder_01::Hull_Module {
 	//
 	////
 	
-	
 	////
 	//
-	//	retrieve vector
+	//	retrieve mut
 	//
-	public fun Hull__retrieve_texts (hull : & Hull) : vector<Text> {
-		// presumably this returns a copy of the vector<Text>
-		hull.texts
-	}
 	public fun Hull__mut_retrieve_texts (hull : &mut Hull) : &mut vector<Text> {
 		&mut hull.texts
 	}
+	
 	//
 	////
 	
 	
 	////
 	//
-	//	retrieve
+	//	retrieve imut
 	//
+	public fun Hull__retrieve_texts (hull : & Hull) : vector<Text> {
+		hull.texts
+	}
 	public fun Hull__retrieve_status (hull : & Hull) : String {
 		hull.status
 	}

@@ -23,6 +23,7 @@ import Milieus_Truck from '$lib/Milieus/Truck/Trinket.svelte'
 import Milieus_Button from '$lib/Milieus/Button/Trinket.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
 //
+import Pig from "$lib/trinkets/Pig/Trinket.svelte"
 import Cow from "$lib/trinkets/Cow/Trinket.svelte"
 //
 import { check_roomies_truck } from '$lib/Versies/Trucks'
@@ -69,6 +70,7 @@ let buttons_styles = ""
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 	<Cow />
+	<Pig />
 	
 	{#if typeof Milieus_Freight === "object" && typeof Versies_Freight === "object" }
 	{#if mode === "nurture" }

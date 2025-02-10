@@ -3,26 +3,19 @@
 <script>
 
 /*
-	import Cow from "$lib/trinkets/Cow/Trinket.svelte"
+	import Pig from "$lib/trinkets/Pig/Trinket.svelte"
 */
 
-////
-//
 import { fade } from 'svelte/transition';
-//
-//
 import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
-//
-////
-
 let Versies_Freight = false
 	
 	
 
 let sound_gem = ""
 
-const Cow = '/pictures/Cow.svg';
+const Pig = '/pictures/Pig.svg';
 
 let show_dialogue = "no"
 let chat_timeout;
@@ -50,7 +43,7 @@ let cow_clicked = () => {
 	style="
 		position: absolute;
 		bottom: 10px;
-		right: 10px;
+		left: 10px;
 		
 		width: 100%;
 
@@ -73,7 +66,7 @@ let cow_clicked = () => {
 		style="
 			position: absolute;
 			bottom: 80px;
-			right: 10px;
+			left: 10px;
 
 			box-sizing: border-box;
 			height: 3cm;
@@ -113,7 +106,7 @@ let cow_clicked = () => {
 		style="
 			position: absolute;
 			bottom: 0.125cm;
-			right: 0.5cm;
+			left: 0.5cm;
 			
 			height: 3cm;
 			width: 3cm;
@@ -143,8 +136,8 @@ let cow_clicked = () => {
 			"
 		>
 			<img 
-				src={ Cow } 
-				alt="cow"
+				src={ Pig } 
+				alt="pig"
 				
 				style=""
 			/>
@@ -157,12 +150,13 @@ let cow_clicked = () => {
 				left: 50%;
 				transform: translateX(-50%);
 				
+				
 				padding: 0cm 0.75cm;
 				border: 2px solid rgba(var(--color-primary-100));
 			"
 			class="card p-1 variant-filled-surface"
 		>
-			<p>Peptide</p>
+			<p>Taxonomy</p>
 		</div>
 	</button>
 	

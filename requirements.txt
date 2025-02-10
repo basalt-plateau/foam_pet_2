@@ -101,7 +101,7 @@ pexpect==4.9.0
     # via
     #   biotech
     #   emergency
-pip==25.0
+pip==25.0.1
     # via pipdeptree
 pip-licenses==5.0.0
     # via mech-pet (pyproject.toml)
