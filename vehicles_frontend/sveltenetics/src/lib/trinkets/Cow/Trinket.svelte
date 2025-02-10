@@ -17,9 +17,6 @@ import Versies_Truck from '$lib/Versies/Trucks.svelte'
 ////
 
 let Versies_Freight = false
-	
-	
-
 let sound_gem = ""
 
 const Cow = '/pictures/Cow.svg';
@@ -48,12 +45,8 @@ let cow_clicked = () => {
 
 <div
 	style="
-		position: absolute;
-		bottom: 10px;
-		right: 10px;
-		
+		position: relative;
 		border-radius: 50%;
-		
 		cursor: pointer;
 	"
 >
@@ -109,10 +102,7 @@ let cow_clicked = () => {
 	<button
 		on:click={ cow_clicked }
 		style="
-			position: absolute;
-			bottom: 0.125cm;
-			right: 0.5cm;
-			
+			position: relative;
 			height: 3cm;
 			width: 3cm;
 
@@ -127,9 +117,6 @@ let cow_clicked = () => {
 		<div
 			style="
 				position: relative;
-				top: 0%;
-				left: 0%;
-				
 				height: 100%;
 				width: 100%;
 
@@ -150,7 +137,7 @@ let cow_clicked = () => {
 		
 		<div 
 			style="
-				position: absolute;
+				position: relative;
 				bottom: -0.25cm;
 				left: 50%;
 				transform: translateX(-50%);
@@ -163,6 +150,5 @@ let cow_clicked = () => {
 			<p>Peptide</p>
 		</div>
 	</button>
-	
 	{/if}
 </div>

@@ -42,10 +42,7 @@ let cow_clicked = () => {
 
 <div
 	style="
-		position: absolute;
-		bottom: 10px;
-		left: 10px;
-		
+		position: relative;
 		border-radius: 50%;
 	"
 >
@@ -98,7 +95,7 @@ let cow_clicked = () => {
 
 	<div
 		style="
-			position: absolute;
+			position: relative;
 			bottom: 0.125cm;
 			left: 0.5cm;
 			

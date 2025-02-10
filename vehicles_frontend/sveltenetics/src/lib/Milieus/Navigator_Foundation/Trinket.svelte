@@ -67,6 +67,8 @@ let buttons_styles = ""
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
 	<div
 		style="
+			display: none;
+		
 			position: absolute;
 			bottom: 10px;
 			left: 0;
