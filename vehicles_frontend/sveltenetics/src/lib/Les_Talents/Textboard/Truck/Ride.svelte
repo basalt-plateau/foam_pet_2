@@ -2,11 +2,11 @@
 <script>
 
 /*
-	import Truck_1_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
-	let Truck_1_Freight = false
+	import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
+	let Textboard_Freight = false
 
-	<Truck_1_Ride on_change={ ({ pro_freight }) => { Truck_1_Freight = pro_freight; } } />
-	{#if typeof Truck_1_Freight === "object"}
+	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { Textboard_Freight = pro_freight; } } />
+	{#if typeof Textboard_Freight === "object"}
 	
 	{/if}
 */

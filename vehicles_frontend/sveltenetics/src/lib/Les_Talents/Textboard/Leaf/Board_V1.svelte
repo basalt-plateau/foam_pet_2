@@ -1,7 +1,6 @@
 
 
 
-
 <script>
 
 
@@ -51,11 +50,11 @@ import Versies_Truck from '$lib/Versies/Trucks.svelte'
 	
 	
 	
-	
+
 let Extension_Winch_Freight = false
 let Versies_Freight = false
 	
-	
+		
 let Textboard_Freight = false
 let le_textboard = ""
 let platform_name = '';
@@ -82,6 +81,26 @@ const Motte_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A
 const Builder_01 = Motte_01_LA;
 
 let leaf = "platforms";
+
+const Vacations = async () => {
+	const Fonctions = {
+		Begin_Hulls: `${ Builder_01 }::Hulls_Module::Begin_Hulls`,
+		End_Hulls: `${ Builder_01 }::Hulls_Module::End_Hulls`,
+		
+		Send_Text: `${ Builder_01 }::Hulls_Module::Send_Text`,
+		delete_text: `${ Builder_01 }::Hulls_Module::delete_text`,
+	};
+}
+const Scout = async () => {
+	const View_Fonctions = {
+		is_Hull_built: `${ Builder_01 }::Hulls_Module::is_Hull_built`,
+		
+		// platform names
+		retrieve_vector_of_hull_names: `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
+		
+		retrieve_texts: `${ Builder_01 }::Hulls_Module::retrieve_texts`
+	};
+}
 
 const Search = async () => {
 	le_textboard = platform_name;
@@ -139,9 +158,6 @@ const change_account_address = () => {
 		console.error (imperfection);
 	}
 }
-
-
-
 </script>
 
 {#if Textboard_Truck_Made === "yurp" }
