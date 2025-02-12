@@ -35,8 +35,10 @@ export const make = () => {
 				is_producer: ask_is_producer (),
 				
 				Builder_01: Motte_01_LA,
+				
 				texts: [],
 				platform_name: "",
+				text: "",
 				
 				searching_for_texts: "no"
 			},

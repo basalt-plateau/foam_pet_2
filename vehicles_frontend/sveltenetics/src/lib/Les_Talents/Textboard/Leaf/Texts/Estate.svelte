@@ -8,6 +8,7 @@ import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Butto
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 
 import Platform_Texts from './Platform_Texts.svelte'
+import Text_Writer from './Text_Writer.svelte'
 
 let Textboard_Freight = false
 let Versies_Freight = false
@@ -96,48 +97,6 @@ onDestroy (async () => {});
 	
 	<Platform_Texts />
 	
-	<div
-		style="
-			position: relative;
-		
-			display: flex;
-			border-radius: 4px;
-			justify-content: right;
-			flex-direction: column;
-			
-			gap: 0.1cm;
-		"
-		class="card p-4 variant-soft-surface"
-	>
-		<textarea
-			bind:value={ le_text }
-			style="
-				width: 100%;
-			"
-			class="textarea p-1"
-		></textarea>
-		
-		<div
-			style="
-				border-radius: 4px;
-				width: 100%;
-			"
-		>	
-			<Petition_APT_Button
-				bind:this={ petition_APT_button }
-				
-				onMount={() => {
-					petition_APT_button.mode ("off");
-				}}
-			
-				button_text={ 
-					`Write or overwrite on "${ le_textboard }"` 
-				}
-				
-				APT="1"
-				clicked={ on_send }
-			/>
-		</div>
-	</div>
+	<Text_Writer />
 </div>
 {/if}

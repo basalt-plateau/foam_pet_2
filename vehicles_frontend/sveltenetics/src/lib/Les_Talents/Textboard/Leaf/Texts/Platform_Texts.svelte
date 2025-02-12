@@ -80,9 +80,7 @@ let TF = false;
 				}}
 				button_text="Delete Text"
 				APT="0"
-				clicked={() => {
-					
-				}}
+				clicked={() => {}}
 			/>
 		</div>
 		{/if}
@@ -110,17 +108,15 @@ let TF = false;
 				}}
 				button_text="Delete Text as Producer"
 				APT="0"
-				clicked={() => {
-					
-				}}
+				clicked={() => {}}
 			/>
 		</div>
 		{/if}
 	</div>
 	{/each}
 	
-	{#if le_texts.length === 0 }
-	<p>There are zero texts about "{ le_textboard }".</p>
+	{#if TF.info.texts.length === 0 }
+	<p>There are zero texts about "{ TF.info.platform_name }".</p>
 	{/if}
 </div>
 {/if}
