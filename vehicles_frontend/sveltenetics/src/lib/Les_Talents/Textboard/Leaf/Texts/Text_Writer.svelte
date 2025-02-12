@@ -2,11 +2,9 @@
 
 <script>
 
+import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 let TF = "";
-
-let le_text = "";
-let le_textboard = "";
 
 let petition_APT_button = "";
 
@@ -46,15 +44,8 @@ let on_send = () => {}
 	>	
 		<Petition_APT_Button
 			bind:this={ petition_APT_button }
-			
-			onMount={() => {
-				petition_APT_button.mode ("off");
-			}}
-		
-			button_text={
-				`Write or overwrite on "${ TF.info.platform_name }"` 
-			}
-			
+			onMount={() => { petition_APT_button.mode ("off"); }}
+			button_text={ `Write or overwrite on "${ TF.info.platform_name }"` }
 			APT="1"
 			clicked={ on_send }
 		/>

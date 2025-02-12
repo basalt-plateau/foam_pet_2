@@ -80,7 +80,7 @@ $: {
 const Motte_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 const Builder_01 = Motte_01_LA;
 
-let leaf = "platforms";
+let leaf = "texts";
 
 const Search = async () => {
 	le_textboard = platform_name;
@@ -272,199 +272,12 @@ const change_account_address = () => {
 	<Texts_Estate />
 	{/if}
 	
-	<!-- Texts -->
-	<div
-		style="
-			position: relative;
-			height: 100%;
-			width: 100%;
-		"
-		class="card p-2 variant-soft-surface"
-	>
-		{#if searching_for_texts === "yup" }
-		<div
-			transition:fade={{
-				duration: 1000
-			}}
-			style="
-				position: absolute;
-				top: 10px;
-				left: 10px;
-				height: calc(100% - 20px);
-				width: calc(100% - 20px);
-				border-radius: 8px;
-			"
-		>
-			<Progress_Wall show={ "yes" } />
-		</div>
-		{/if}
-		
-		<div>
-			{#each le_texts as text }
-			<div
-				style="
-					display: flex;
-					flex-direction: column;
-					gap: 0.1cm;
-				"
-				class="card p-2 variant-soft-surface"
-			>	
-				<div 
-					style="
-						display: flex;
-						justify-content: space-between;
-					"
-					class="card p-2"
-				>
-					<p>{ text.text }</p>
-					
-					
-				</div>
-				<div
-					style="
-						display: flex;
-						justify-content: center;
-						gap: 0.1cm;
-					"
-				>
-					<span 
-						style="
-							border-radius: var(--theme-rounded-base);
-							padding: 0.05cm 0.2cm;
-							word-break: break-all;
-						"
-						class="variant-soft-surface"
-					>{ text.writer_address }</span>
-					
-					<div
-						style="
-							display: flex;
-							align-items: center;
-							border-radius: var(--theme-rounded-base);
-							padding: 0.05cm 0.2cm;
-						"
-						class="variant-soft-surface"
-					>
-						<img src="/_Licensed/Aptos/aptos.png" style="width: 0.5cm; height: 0.5cm;">
-						<span 
-							style="
-								border-radius: var(--theme-rounded-base);
-								padding: 0 0.25cm;
-							"
-							
-						>{ text.writer_balance }</span>
-					</div>
-				</div>
-				
-				{#if text.writer_address === account_address }
-				<div
-					style="
-						display: flex;
-						justify-content: space-between;
-						gap: 0.1cm;
-					"
-				>
-					<div></div>
-					<Petition_APT_Button
-						onMount={({ mode }) => {
-							mode ("on");
-						}}
-						button_text="Delete Text"
-						APT="0"
-						clicked={() => {
-							
-						}}
-					/>
-				</div>
-				{/if}
-				
-				{#if Versies_Freight.is_producer === "yup" }
-				<div
-					style="
-						display: flex;
-						justify-content: space-between;
-						gap: 0.1cm;
-					"
-					class="card p-2 variant-filled-surface"
-				>
-					<input 
-						style="
-							text-indent: 0.1cm;
-						"
-						class="input" 
-						type="text" 
-						placeholder="Refund" 
-					/>
-					<Petition_APT_Button
-						onMount={({ mode }) => {
-							mode ("on");
-						}}
-						button_text="Delete Text as Producer"
-						APT="0"
-						clicked={() => {
-							
-						}}
-					/>
-				</div>
-				{/if}
-			</div>
-			{/each}
-			
-			{#if le_texts.length === 0 }
-			<p>There are zero texts about "{ le_textboard }".</p>
-			{/if}
-		</div>
-	</div>
+	
 	
 	
 	{#if leaf === "platforms" }
 	
 	{/if}
-	
-	<div
-		style="
-			position: relative;
-		
-			display: flex;
-			border-radius: 4px;
-			justify-content: right;
-			flex-direction: column;
-			
-			gap: 0.1cm;
-		"
-		class="card p-4 variant-soft-surface"
-	>
-		<textarea
-			bind:value={ le_text }
-			style="
-				width: 100%;
-			"
-			class="textarea p-1"
-		></textarea>
-		
-		<div
-			style="
-				border-radius: 4px;
-				width: 100%;
-			"
-		>	
-			<Petition_APT_Button
-				bind:this={ petition_APT_button }
-				
-				onMount={() => {
-					petition_APT_button.mode ("off");
-				}}
-			
-				button_text={ 
-					`Write or overwrite on "${ le_textboard }"` 
-				}
-				
-				APT="1"
-				clicked={ on_send }
-			/>
-		</div>
-	</div>
-
 </div>
 {/if}
 {/if}
