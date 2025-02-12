@@ -10,10 +10,14 @@ import { build_truck } from '@visiwa/trucks'
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
 //
 //
-import { retrieve_hull_names, retrieve_texts_for_platform, Send_Text } from './../Leaf/Board'
+import { retrieve_hull_names, Send_Text } from './../Leaf/Board'
 import { ask_is_producer } from './screenplays/ask_is_producer.js'
 //
 ////
+
+import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"		
+import { ask_convert_Octas_to_APT } from '$lib/taverns/APT/Octas_to_APT.js'
+import { view_fonction } from "$lib/PTO_API/View/index.js"
 
 const trucks = {}
 
@@ -56,7 +60,7 @@ export const make = () => {
 					trucks [1].freight.searching_for_texts = "yup"
 					
 					const Builder_01 = trucks [1].freight.info.Builder_01;
-					const { texts } = await retrieve_texts_for_platform ({
+					const { texts } = await trucks [1].freight.fonctions.retrieve_texts_for_platform ({
 						Builder_01,
 						platform_name
 					});
@@ -104,7 +108,7 @@ export const make = () => {
 							]
 						}
 					});
-
+					
 					console.info ("retrieve_texts_for_platform:", { result });
 					
 					const texts = result [0].map (text => {
