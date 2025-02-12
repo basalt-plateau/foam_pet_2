@@ -2,13 +2,19 @@
 
 <script>
 
+////
+//
 import { onMount, onDestroy } from 'svelte'
-
+//
+//
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
-
+//
+//
 import Platform_Texts from './Platform_Texts.svelte'
 import Text_Writer from './Text_Writer.svelte'
+//
+////
 
 let TF = false
 let Versies_Freight = false
@@ -18,10 +24,8 @@ export let le_textboard = ""
 export let searching_for_texts = ""
 
 let le_text = ""
-
 let petition_APT_button = "";
 
-// on_write
 let on_send = async () => {
 	await Send_Text ({ Builder_01, le_textboard, le_text });
 	TF.Fonction.Search ();
@@ -67,7 +71,7 @@ onDestroy (async () => {});
 	</div>
 	{/if}
 	
-	{#if Versies_Freight.is_producer === "yup" }
+	{#if TF.info.is_producer === "yup" }
 	<div
 		style="
 			display: grid;
@@ -79,21 +83,17 @@ onDestroy (async () => {});
 			onMount={({ mode }) => {
 				mode ("on");
 			}}
-			button_text={ `Delete "${ le_textboard }" as Producer` }
+			button_text={ `Delete "${ TF.info.platform_name }" as Producer` }
 			APT="0"
-			clicked={() => {
-				
-			}}
+			clicked={() => {}}
 		/>
 		<Petition_APT_Button
 			onMount={({ mode }) => {
 				mode ("on");
 			}}
-			button_text={ `Pause "${ le_textboard }" as Producer` }
+			button_text={ `Pause "${ TF.info.platform_name }" as Producer` }
 			APT="0"
-			clicked={() => {
-				
-			}}
+			clicked={() => {}}
 		/>
 	</div>
 	{/if}

@@ -25,6 +25,8 @@ export const make = () => {
 	
 	const Motte_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 	
+	
+	
 	/*
 		Freight is the "state" or the object that is
 		is monitored.
