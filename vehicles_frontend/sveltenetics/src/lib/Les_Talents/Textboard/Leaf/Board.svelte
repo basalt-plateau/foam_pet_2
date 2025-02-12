@@ -44,7 +44,6 @@ import Platforms_Estate from "./Platforms/Estate.svelte"
 import Texts_Estate from "./Texts/Estate.svelte"
 //
 ////
-import { ask_for_freight } from '$lib/Versies/Trucks'
 	
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
@@ -107,12 +106,7 @@ let on_popup_select = (event) => {
 
 // on_write
 let on_send = async () => {
-	await Send_Text ({
-		Builder_01,
-		le_textboard,
-		le_text
-	});
-	
+	await Send_Text ({ Builder_01, le_textboard, le_text });
 	Search ();
 }
 
@@ -194,9 +188,7 @@ const change_account_address = () => {
 			<RadioItem bind:group={ leaf } name="justify" value={ "platforms" }>Platforms</RadioItem>
 		</RadioGroup>
 		
-		<div
-			style=""
-		>
+		<div style="" >
 			<span 
 				style="
 					font-size: 1.3em;

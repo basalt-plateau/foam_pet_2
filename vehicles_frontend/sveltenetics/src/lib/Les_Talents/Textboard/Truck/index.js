@@ -1,10 +1,19 @@
 
 
+
+
+////
+//
 import { build_truck } from '@visiwa/trucks'
-
-
+//
+//
+import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
+//
+//
 import { retrieve_hull_names, retrieve_texts_for_platform, Send_Text } from './../Leaf/Board'
-
+import { ask_is_producer } from './screenplays/ask_is_producer.js'
+//
+////
 
 const trucks = {}
 
@@ -23,8 +32,12 @@ export const make = () => {
 	trucks [1] = build_truck ({
 		freight: {
 			info: {
+				is_producer: ask_is_producer (),
+				
 				Builder_01: Motte_01_LA,
 				texts: [],
+				platform_name: "",
+				
 				searching_for_texts: "no"
 			},
 			fonctions: {
@@ -39,7 +52,6 @@ export const make = () => {
 					trucks [1].freight.searching_for_texts = "yup"
 					
 					const Builder_01 = trucks [1].freight.info.Builder_01;
-					
 					const { texts } = await retrieve_texts_for_platform ({
 						Builder_01,
 						platform_name
@@ -47,7 +59,64 @@ export const make = () => {
 					
 					trucks [1].freight.info.texts = texts;
 					trucks [1].freight.info.searching_for_texts = "no"
+				},
+				send_text: async ({ text }) => {
+					let EWF = Extension_Winch.freight ();
+					
+					const Builder_01 = trucks [1].freight.info.Builder_01;
+					const platform_name = trucks [1].freight.info.platform_name;
+					
+					/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
+					const { result, note, transaction } = await EWF.prompt ({
+						petition: {
+							function: `${ Builder_01 }::Hulls_Module::Send_Text`,
+							type_arguments: [],
+							arguments: [
+								le_text,
+								platform_name
+							]
+						}
+					});
+					console.info ({ result, note, transaction });
+					
+					/*
+					if (result === "discovered") {
+						petition_APT_button.mode ("success", { note });
+					}
+					else {
+						petition_APT_button.mode ("imperfection", { note });
+					}
+					*/
+				},
+				retrieve_texts_for_platform: async ({ platform_name }) => {
+					const Builder_01 = trucks [1].freight.info.Builder_01;
+					
+					const { result } = await view_fonction ({
+						body: {
+							"function": `${ Builder_01 }::Hulls_Module::Retrieve_Texts`,
+							"type_arguments": [],
+							"arguments": [
+								platform_name
+							]
+						}
+					});
+
+					console.info ("retrieve_texts_for_platform:", { result });
+					
+					const texts = result [0].map (text => {
+						return {
+							text: text.text,
+							writer_address: address_to_hexadecimal (text.writer_address),
+							writer_balance: ask_convert_Octas_to_APT ({ Octas: text.writer_balance }) 
+						}
+					});
+					
+					return {
+						texts
+					}
+					
 				}
+
 			}
 		}
 	});
@@ -78,15 +147,7 @@ export const make = () => {
 		value
 	}) => {
 		try {
-			// leaf name changed
-			if (bracket === original_freight && property === "leaf_name") {
-				console.info ("leaf name changed");
-			}
 			
-			// Leaf 1 alert_success changed
-			if (bracket === original_freight.leaves ["Leaf 1"] && property === "alert_success") {
-				console.info ("Leaf 1 alert_success changed.");
-			}
 		}
 		catch (imperfection) {
 			console.error (imperfection);

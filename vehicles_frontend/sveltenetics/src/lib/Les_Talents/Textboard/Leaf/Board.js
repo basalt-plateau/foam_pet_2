@@ -70,7 +70,6 @@ export const Send_Text = async ({
 	});
 	console.info ({ result, note, transaction });
 	
-	
 	/*
 	if (result === "discovered") {
 		petition_APT_button.mode ("success", { note });
