@@ -4,18 +4,9 @@
 
 <script>
 
-
 /*
 	import Textboard_Leaf from "$lib/Les_Talents/Textboard/Leaf/Board.svelte"
 	<Textboard_Leaf />
-*/
-
-
-/*
-	Producer: 
-		1. Hulls_Module::Begin_Hulls
-	
-	Then anyone can start sending texts..?
 */
 
 ////
@@ -254,6 +245,7 @@ const change_account_address = () => {
 					
 				}}
 			/>
+			
 			<Petition_APT_Button
 				onMount={({ mode }) => {
 					mode ("on");
@@ -271,8 +263,6 @@ const change_account_address = () => {
 	{#if leaf === "texts" }
 	<Texts_Estate />
 	{/if}
-	
-	
 	
 	
 	{#if leaf === "platforms" }

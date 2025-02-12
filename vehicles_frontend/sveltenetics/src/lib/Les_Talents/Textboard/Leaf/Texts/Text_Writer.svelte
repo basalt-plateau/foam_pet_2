@@ -4,8 +4,8 @@
 
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
-let TF = "";
 
+let TF = "";
 let petition_APT_button = "";
 
 let on_send = () => {}
@@ -13,9 +13,9 @@ let on_send = () => {}
 </script>
 
 
-<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
-{#if typeof TF === "object" }
+
 <div
+	monitor="text writer"
 	style="
 		position: relative;
 	
@@ -28,6 +28,8 @@ let on_send = () => {}
 	"
 	class="card p-4 variant-soft-surface"
 >
+	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
+	{#if typeof TF === "object" }
 	<textarea
 		bind:value={ TF.info.text }
 		style="
@@ -50,5 +52,5 @@ let on_send = () => {}
 			clicked={ on_send }
 		/>
 	</div>
+	{/if}
 </div>
-{/if}

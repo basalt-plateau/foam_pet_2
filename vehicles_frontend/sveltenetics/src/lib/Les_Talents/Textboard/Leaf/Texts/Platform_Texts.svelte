@@ -6,9 +6,10 @@ let TF = false;
 
 </script>
 
-<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
-{#if typeof TF === "object" }
-<div>
+
+<div monitor="platform texts">
+	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
+	{#if typeof TF === "object" }
 	{#each TF.info.texts as text }
 	<div
 		style="
@@ -26,8 +27,6 @@ let TF = false;
 			class="card p-2"
 		>
 			<p>{ text.text }</p>
-			
-			
 		</div>
 		<div
 			style="
@@ -118,5 +117,5 @@ let TF = false;
 	{#if TF.info.texts.length === 0 }
 	<p>There are zero texts about "{ TF.info.platform_name }".</p>
 	{/if}
+	{/if}
 </div>
-{/if}

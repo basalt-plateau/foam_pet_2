@@ -10,7 +10,7 @@ import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 import Platform_Texts from './Platform_Texts.svelte'
 import Text_Writer from './Text_Writer.svelte'
 
-let Textboard_Freight = false
+let TF = false
 let Versies_Freight = false
 
 export let le_texts = []
@@ -24,7 +24,7 @@ let petition_APT_button = "";
 // on_write
 let on_send = async () => {
 	await Send_Text ({ Builder_01, le_textboard, le_text });
-	Textboard_Freight.Fonction.Search ();
+	TF.Fonction.Search ();
 }
 
 
@@ -34,8 +34,8 @@ onDestroy (async () => {});
 
 </script>
 
-<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { Textboard_Freight = pro_freight; } } />
-{#if typeof Textboard_Freight === "object" }
+<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
+{#if typeof TF === "object" }
 <div
 	style="
 		position: relative;
@@ -49,7 +49,7 @@ onDestroy (async () => {});
 	"
 	class="card p-2 variant-soft-surface"
 >
-	{#if Textboard_Freight.info.searching_for_texts === "yup" }
+	{#if TF.info.searching_for_texts === "yup" }
 	<div
 		transition:fade={{
 			duration: 1000
@@ -67,41 +67,38 @@ onDestroy (async () => {});
 	</div>
 	{/if}
 	
-	<div>
-		{#if Versies_Freight.is_producer === "yup" }
-		<div
-			style="
-				display: grid;
-				gap: 0.1cm;
-				grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
-			"
-		>
-			<Petition_APT_Button
-				onMount={({ mode }) => {
-					mode ("on");
-				}}
-				button_text={ `Delete "${ le_textboard }" as Producer` }
-				APT="0"
-				clicked={() => {
-					
-				}}
-			/>
-			<Petition_APT_Button
-				onMount={({ mode }) => {
-					mode ("on");
-				}}
-				button_text={ `Pause "${ le_textboard }" as Producer` }
-				APT="0"
-				clicked={() => {
-					
-				}}
-			/>
-		</div>
-		{/if}
+	{#if Versies_Freight.is_producer === "yup" }
+	<div
+		style="
+			display: grid;
+			gap: 0.1cm;
+			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
+		"
+	>
+		<Petition_APT_Button
+			onMount={({ mode }) => {
+				mode ("on");
+			}}
+			button_text={ `Delete "${ le_textboard }" as Producer` }
+			APT="0"
+			clicked={() => {
+				
+			}}
+		/>
+		<Petition_APT_Button
+			onMount={({ mode }) => {
+				mode ("on");
+			}}
+			button_text={ `Pause "${ le_textboard }" as Producer` }
+			APT="0"
+			clicked={() => {
+				
+			}}
+		/>
 	</div>
-	
+	{/if}
+
 	<Platform_Texts />
-	
 	<Text_Writer />
 </div>
 {/if}
