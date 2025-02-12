@@ -10,7 +10,7 @@ import { build_truck } from '@visiwa/trucks'
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
 //
 //
-import { retrieve_hull_names, Send_Text } from './../Leaf/Board'
+import { retrieve_hull_names } from './../Leaf/Board'
 import { ask_is_producer } from './screenplays/ask_is_producer.js'
 //
 ////
@@ -123,6 +123,33 @@ export const make = () => {
 						texts
 					}
 					
+				},
+				export const retrieve_hull_names = async ({ Builder_01 }) => {
+					const Builder_01 = trucks [1].freight.info.Builder_01;
+					
+					const { result } = await view_fonction ({
+						body: {
+							"function": `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
+							"type_arguments": [],
+							"arguments": []
+						}
+					});
+					
+					const hull_names = result [0].map (name => {
+						if (name === "") {
+							return {
+								value: name,
+								label: "front"
+							}
+						}
+						
+						return {
+							value: name,
+							label: name
+						}
+					});
+					
+					return hull_names;
 				}
 
 			}
