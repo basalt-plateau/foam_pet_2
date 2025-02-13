@@ -1,15 +1,60 @@
 
 
+
+
+
 <script>
 
+import { onMount, onDestroy } from 'svelte'
+import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 
 let TF = "";
 let petition_APT_button = "";
 
-let on_send = () => {}
 
+let on_send = async () => {
+	TF.fonctions.send_text ();
+}
+
+
+
+
+let TT_Monitor;
+let TT_Freight;
+onMount (async () => {
+	TT_Freight = Textboard_Truck.retrieve ().pro_freight; 
+	
+	TT_Monitor = Textboard_Truck.monitor (async ({
+		original_freight,
+		pro_freight, 
+		//
+		target,
+		//
+		property, 
+		value
+	}) => {
+		try {
+			if (target === original_freight.info && property === "text") {
+				console.info ("text changed", pro_freight.info.text);
+				if (pro_freight.info.text.length >= 1) {
+					petition_APT_button.mode ("on");
+				}
+				else {
+					petition_APT_button.mode ("off");
+				}
+			}
+		}
+		catch (imperfection) {
+			console.error (imperfection);
+		}
+	});
+});
+
+onDestroy (() => {
+	TT_Monitor.stop ()
+});
 </script>
 
 

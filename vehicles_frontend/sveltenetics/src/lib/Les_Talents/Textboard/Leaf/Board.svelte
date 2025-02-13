@@ -29,16 +29,14 @@ import Progress_Wall from '$lib/trinkets/Progress/Wall/Trinket.svelte'
 import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
 //
 //
-import { retrieve_hull_names, retrieve_texts_for_platform, Send_Text } from './Board'
-//
-import Platforms_Estate from "./Platforms/Estate.svelte"
+import Index_of_Platforms from "./Index_of_Platforms/Estate.svelte"
 import Texts_Estate from "./Texts/Estate.svelte"
 //
 ////
 	
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
-	
+
 	
 	
 	
@@ -78,13 +76,14 @@ const Search = async () => {
 	
 	searching_for_texts = "yup"
 	le_texts = []
-	
+	/*
 	const { texts } = await retrieve_texts_for_platform ({
 		Builder_01,
 		platform_name
 	});
+	*/
 	
-	le_texts = texts;
+	// le_texts = texts;
 	searching_for_texts = "no"
 }
 
@@ -106,7 +105,7 @@ onMount (async () => {
 	Textboard_Truck.make ()
 	Textboard_Truck_Made = "yurp";
 	
-	hull_names = await retrieve_hull_names ({ Builder_01 });
+	// hull_names = await retrieve_hull_names ({ Builder_01 });
 	Search ();
 });
 onDestroy (() => {
@@ -174,10 +173,7 @@ const change_account_address = () => {
 		"
 		class="card p-2 variant-soft-surface"
 	>
-		<RadioGroup>
-			<RadioItem bind:group={ leaf } name="justify" value={ "texts" }>Texts</RadioItem>
-			<RadioItem bind:group={ leaf } name="justify" value={ "platforms" }>Platforms</RadioItem>
-		</RadioGroup>
+		
 		
 		<div style="" >
 			<span 
@@ -186,12 +182,17 @@ const change_account_address = () => {
 					padding: 0.25cm;
 				"
 				class="badge variant-soft-surface"
-			>{ le_textboard }</span>
+			>"{ le_textboard }"</span>
 		</div>
+		
+		<RadioGroup>
+			<RadioItem bind:group={ leaf } name="justify" value={ "texts" }>Texts</RadioItem>
+			<RadioItem bind:group={ leaf } name="justify" value={ "platforms" }>Platforms</RadioItem>
+		</RadioGroup>
 		
 		<div
 			style="
-				display: flex;
+				display: none;
 				gap: 0.25cm;
 			"
 		>
@@ -266,7 +267,7 @@ const change_account_address = () => {
 	
 	
 	{#if leaf === "platforms" }
-	
+	<Index_of_Platforms />
 	{/if}
 </div>
 {/if}

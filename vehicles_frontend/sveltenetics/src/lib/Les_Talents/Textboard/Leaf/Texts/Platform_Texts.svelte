@@ -1,8 +1,13 @@
 
 <script>
 
+/*
+	This is the texts of the presently open platform.
+*/
+
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 let TF = false;
+
 
 </script>
 

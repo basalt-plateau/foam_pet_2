@@ -2,6 +2,12 @@
 
 <script>
 
+
+/*
+
+
+*/
+
 ////
 //
 import { onMount, onDestroy } from 'svelte'
@@ -17,7 +23,6 @@ import Text_Writer from './Text_Writer.svelte'
 ////
 
 let TF = false
-let Versies_Freight = false
 
 export let le_texts = []
 export let le_textboard = ""
@@ -25,11 +30,6 @@ export let searching_for_texts = ""
 
 let le_text = ""
 let petition_APT_button = "";
-
-let on_send = async () => {
-	await Send_Text ({ Builder_01, le_textboard, le_text });
-	TF.Fonction.Search ();
-}
 
 
 onMount (async () => {});

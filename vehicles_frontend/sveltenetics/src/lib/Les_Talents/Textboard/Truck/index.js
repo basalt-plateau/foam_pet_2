@@ -1,6 +1,50 @@
 
 
+/*
+	import { onMount, onDestroy } from 'svelte'
+	import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 
+	onMount (async () => {	
+		Textboard_Truck.make ()
+	});
+	onDestroy (() => {
+		Textboard_Truck.destroy ()
+	});
+*/
+
+/*
+	import { onMount, onDestroy } from 'svelte'
+	import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
+	
+	let TT_Monitor;
+	let TT_Freight;
+	onMount (async () => {
+		TT_Freight = Textboard_Truck.retrieve ().pro_freight; 
+		
+		TT_Monitor = Textboard_Truck.monitor (async ({
+			original_freight,
+			pro_freight, 
+			//
+			target,
+			//
+			property, 
+			value
+		}) => {
+			try {
+				if (bracket === original_freight.info && property === "text") {
+					console.info ("text changed.");
+				}
+			}
+			catch (imperfection) {
+				console.error (imperfection);
+			}
+		});
+	});
+
+	onDestroy (() => {
+		TT_Monitor.stop ()
+	}); 
+*/
 
 ////
 //
@@ -8,16 +52,16 @@ import { build_truck } from '@visiwa/trucks'
 //
 //
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
+import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"		
+import { ask_convert_Octas_to_APT } from '$lib/taverns/APT/Octas_to_APT.js'
+import { view_fonction } from "$lib/PTO_API/View/index.js"
 //
 //
-import { retrieve_hull_names } from './../Leaf/Board'
 import { ask_is_producer } from './screenplays/ask_is_producer.js'
 //
 ////
 
-import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"		
-import { ask_convert_Octas_to_APT } from '$lib/taverns/APT/Octas_to_APT.js'
-import { view_fonction } from "$lib/PTO_API/View/index.js"
+
 
 const trucks = {}
 
@@ -68,11 +112,12 @@ export const make = () => {
 					trucks [1].freight.info.texts = texts;
 					trucks [1].freight.info.searching_for_texts = "no"
 				},
-				send_text: async ({ text }) => {
+				send_text: async () => {
 					let EWF = Extension_Winch.freight ();
 					
 					const Builder_01 = trucks [1].freight.info.Builder_01;
 					const platform_name = trucks [1].freight.info.platform_name;
+					const text = trucks [1].freight.info.text;
 					
 					/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
 					const { result, note, transaction } = await EWF.prompt ({
@@ -109,7 +154,7 @@ export const make = () => {
 						}
 					});
 					
-					console.info ("retrieve_texts_for_platform:", { result });
+					// console.info ("retrieve_texts_for_platform:", { result });
 					
 					const texts = result [0].map (text => {
 						return {
@@ -124,7 +169,7 @@ export const make = () => {
 					}
 					
 				},
-				export const retrieve_hull_names = async ({ Builder_01 }) => {
+				retrieve_hull_names: async () => {
 					const Builder_01 = trucks [1].freight.info.Builder_01;
 					
 					const { result } = await view_fonction ({

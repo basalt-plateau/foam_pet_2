@@ -13,7 +13,6 @@ module Builder_01::Hull_Module {
 	}
 	
 	const Ending__Hull_is_not_playing : u64 = 9937483;
-
 	
 	use Builder_01::Text_Module::{
 		Text,
