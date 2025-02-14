@@ -154,8 +154,6 @@ onDestroy (() => {
 		"
 		class="card p-2 variant-soft-surface"
 	>
-		
-		
 		<div style="" >
 			<span 
 				style="
@@ -163,7 +161,7 @@ onDestroy (() => {
 					padding: 0.25cm;
 				"
 				class="badge variant-soft-surface"
-			>"{ le_textboard }"</span>
+			>"{ Textboard_Freight.info.platform_name }"</span>
 		</div>
 		
 		<RadioGroup>

@@ -96,7 +96,15 @@ onDestroy (() => {
 	>	
 		<Petition_APT_Button
 			bind:this={ petition_APT_button }
-			onMount={() => { petition_APT_button.mode ("off"); }}
+			onMount={() => { 
+				if (TF.info.platform_name.length >= 1) {
+					petition_APT_button.mode ("on"); 
+				}
+				else {
+					petition_APT_button.mode ("off"); 
+				}
+			}}
+			
 			button_text={ `Write or overwrite on "${ TF.info.platform_name }"` }
 			APT="1"
 			clicked={ on_send }

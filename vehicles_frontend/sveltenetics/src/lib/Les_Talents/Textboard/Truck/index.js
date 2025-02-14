@@ -86,11 +86,12 @@ export const make = () => {
 				
 				Builder_01: Motte_01_LA,
 				
-				texts: [],
-				platform_name: "",
-				text: "",
-				
 				hulls: [],
+				
+				platform_name: "",				
+				texts: [],
+				
+				text: "",
 				
 				searching_for_texts: "no"
 			},
@@ -142,6 +143,8 @@ export const make = () => {
 						petition_APT_button.mode ("imperfection", { note });
 					}
 					*/
+					
+					await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
 				},
 				retrieve_texts_for_platform: async () => {
 					const Builder_01 = trucks [1].freight.info.Builder_01;

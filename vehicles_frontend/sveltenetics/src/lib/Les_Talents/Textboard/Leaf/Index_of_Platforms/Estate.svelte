@@ -3,14 +3,21 @@
 
 <script>
 
+////
+//
 import { onMount, onDestroy } from 'svelte'
+//
+//
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
+//
+////
 
 let TF = false;
 
 const on_click = ({ name }) => {
 	console.info (`on_click: "${ name }"`);
+	TF.info.platform_name = name;
 }
 
 onMount (() => {
@@ -28,9 +35,18 @@ onMount (() => {
 >
 	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 	{#if typeof TF === "object" }
-	<div
-		
-	>
+	<label class="label">
+		<input 
+			bind:value={ TF.info.platform_name }
+			style="
+				padding: 0.25cm;
+			"
+			class="input" 
+			type="text" 
+		/>
+	</label>
+	
+	<div>
 		{#each TF.info.hulls as hull }
 		<div
 			style="
