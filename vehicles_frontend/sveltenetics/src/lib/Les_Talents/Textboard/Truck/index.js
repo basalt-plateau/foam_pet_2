@@ -90,6 +90,8 @@ export const make = () => {
 				platform_name: "",
 				text: "",
 				
+				hulls: [],
+				
 				searching_for_texts: "no"
 			},
 			fonctions: {
@@ -125,7 +127,7 @@ export const make = () => {
 							function: `${ Builder_01 }::Hulls_Module::Send_Text`,
 							type_arguments: [],
 							arguments: [
-								le_text,
+								text,
 								platform_name
 							]
 						}
@@ -141,8 +143,9 @@ export const make = () => {
 					}
 					*/
 				},
-				retrieve_texts_for_platform: async ({ platform_name }) => {
+				retrieve_texts_for_platform: async () => {
 					const Builder_01 = trucks [1].freight.info.Builder_01;
+					const platform_name = trucks [1].freight.info.platform_name;
 					
 					const { result } = await view_fonction ({
 						body: {
@@ -154,8 +157,6 @@ export const make = () => {
 						}
 					});
 					
-					// console.info ("retrieve_texts_for_platform:", { result });
-					
 					const texts = result [0].map (text => {
 						return {
 							text: text.text,
@@ -164,12 +165,9 @@ export const make = () => {
 						}
 					});
 					
-					return {
-						texts
-					}
-					
+					trucks [1].freight.info.texts = texts;
 				},
-				retrieve_hull_names: async () => {
+				retrieve_hulls: async () => {
 					const Builder_01 = trucks [1].freight.info.Builder_01;
 					
 					const { result } = await view_fonction ({
@@ -180,21 +178,24 @@ export const make = () => {
 						}
 					});
 					
-					const hull_names = result [0].map (name => {
+					console.log ("retrieve_hull_names:", { result });
+					
+					const hulls = result [0].map (name => {
+						/*
 						if (name === "") {
 							return {
-								value: name,
+								name: ,
 								label: "front"
 							}
 						}
+						*/
 						
 						return {
-							value: name,
-							label: name
+							name
 						}
 					});
 					
-					return hull_names;
+					trucks [1].freight.info.hulls = hulls;
 				}
 
 			}
@@ -242,7 +243,9 @@ export const destroy = () => {
 export const retrieve = () => {
 	return trucks [1];
 }
-
+export const freight = () => {
+	return trucks [1].freight;
+}
 
 /*
 	Changes to the freight can also be monitored like this.

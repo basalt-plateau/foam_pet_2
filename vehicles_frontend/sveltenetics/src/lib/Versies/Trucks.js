@@ -220,7 +220,7 @@ export const lease_roomies_truck = () => {
 		property, 
 		value
 	}) => {
-		console.log ("🌾 Extension_Winch_Monitor", value, property);
+		// console.log ("🌾 Extension_Winch_Monitor", value, property);
 		check_cohesion ();
 	});
 

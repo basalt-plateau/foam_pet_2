@@ -3,13 +3,18 @@
 	import { latch_wallets } from "$lib/Singles/Extension_Winch/_screenplays/latch_wallets.js"
 */
 
+
+////
+//
 import { view_fonction } from "$lib/PTO_API/View/index.js"
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
-
+//
+//
 import { Rise_stage_creator } from "./../Stages/Rise.js"
 import { Petra_stage_creator } from "./../Stages/Petra.js"
 import { Pontem_stage_creator } from "./../Stages/Pontem.js"
-
+//
+////
 
 
 export const latch_wallets = async () => {
@@ -21,9 +26,13 @@ export const latch_wallets = async () => {
 		
 		const net_path = "https://api.mainnet.aptoslabs.com/v1";
 		
-		console.info ("Allowed wallets is connecting to hard coded net_path address:", {
-			net_path
-		})
+		console.info (
+			"Allowed wallets is connecting to hard coded net_path address:", 
+			{
+				net_path
+			}
+		);
+		
 		
 		const { result, result_string } = await view_fonction ({
 			net_path,
@@ -33,8 +42,6 @@ export const latch_wallets = async () => {
 				"arguments": []
 			}
 		});
-		
-		console.log ({ result });
 		
 		
 		const allowed_wallets = result [0];
@@ -71,7 +78,8 @@ export const latch_wallets = async () => {
 				console.error (imperfection);
 			}
 		}
-		
+			
+			
 		let stages = EWF.stages;
 		for (let stage_name in stages) {
 			console.info ("searching for:", stage_name);
@@ -83,6 +91,10 @@ export const latch_wallets = async () => {
 				console.error (imperfection);
 			}
 		}
+		
+		console.info ("checking for local storage connection");
+		EWF.check_for_local_storage_connection ();
+		console.info ("checked for local storage connection");
 	}
 	catch (imperfection) {
 		console.error (imperfection);

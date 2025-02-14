@@ -4,10 +4,10 @@
 
 /*
 	import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
-	let Extension_Winch_Freight = false
+	let EWF = false
 
-	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; } } />
-	{#if typeof Extension_Winch_Freight === "object"}
+	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { EWF = pro_freight; } } />
+	{#if typeof EWF === "object"}
 	
 	{/if}
 */

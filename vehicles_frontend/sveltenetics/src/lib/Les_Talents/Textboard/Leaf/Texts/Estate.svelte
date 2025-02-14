@@ -3,10 +3,6 @@
 <script>
 
 
-/*
-
-
-*/
 
 ////
 //
@@ -17,8 +13,8 @@ import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Butto
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 //
 //
-import Platform_Texts from './Platform_Texts.svelte'
-import Text_Writer from './Text_Writer.svelte'
+import Platform_Texts from './Structures/Platform_Texts.svelte'
+import Text_Writer from './Structures/Text_Writer.svelte'
 //
 ////
 
@@ -78,6 +74,7 @@ onDestroy (async () => {});
 			gap: 0.1cm;
 			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
 		"
+		class="card p-2 variant-soft-surface"
 	>
 		<Petition_APT_Button
 			onMount={({ mode }) => {

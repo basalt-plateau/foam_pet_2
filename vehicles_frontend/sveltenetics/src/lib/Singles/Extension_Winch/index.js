@@ -96,7 +96,6 @@ export const make = async (packet) => {
 			},
 			
 			
-			
 			/*
 				// result: discovered, otiose
 				//
@@ -135,7 +134,7 @@ export const make = async (packet) => {
 								},
 								discovered ({ note, bracket }) {
 									console.log ("discovered", { note, bracket });
-
+									
 									resolve ({
 										result: "discovered",
 										note,
@@ -275,60 +274,12 @@ export const make = async (packet) => {
 			send_to_extension,
 		}
 	});
-	
-	/*
-	
-	if (allow_wallets [ "Rise" ] === "yup") {
-		try {
-			trucks [1].freight.stages.Rise = await Rise_stage_creator ({ freight: trucks [1].freight });
-		}
-		catch (imperfection) {
-			console.error (imperfection);
-		}
-	}
-	
-	if (allow_wallets [ "Petra" ] === "yup") {
-		try {
-			trucks [1].freight.stages.Petra = await Petra_stage_creator ({ freight: trucks [1].freight });
-		}
-		catch (imperfection) {
-			console.error (imperfection);
-		}
-	}
-	
-	if (allow_wallets [ "Pontem" ] === "yup") {
-		try {
-			trucks [1].freight.stages.Pontem = await Pontem_stage_creator ({ freight: trucks [1].freight });
-		}
-		catch (imperfection) {
-			console.error (imperfection);
-		}
-	}
 
-	
-	let stages = trucks [1].freight.stages;
-	for (let stage_name in stages) {
-		console.info ("searching for:", stage_name);
-		
-		try {
-			await trucks [1].freight.stages [ stage_name ].status ();
-		}
-		catch (imperfection) {
-			console.error (imperfection);
-		}
-	}
-	*/
-
-
-	//
-	console.info ("checking for local storage connection");
-	trucks [1].freight.check_for_local_storage_connection ();
-	console.info ("checked for local storage connection");
 	
 	window.extension_winch = trucks [1].freight;
-
-
-	/*
+	
+	
+	/*	
 		Changes to the freight can be monitored here:
 		
 			* 	original_freight: 
@@ -356,8 +307,6 @@ export const make = async (packet) => {
 	}) => {
 		try {
 			// console.info ("😃 extension winch changed", property, value)
-			
-			
 		}
 		catch (imperfection) {
 			console.error (imperfection);

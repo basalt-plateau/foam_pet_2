@@ -32,7 +32,7 @@ export let on_change = () => {}
 let Truck_Monitor;
 let freight;
 onMount (() => {
-	console.log ("truck:", check_Milieus_truck ().freight)
+	// console.log ("truck:", check_Milieus_truck ().freight)
 	
 	freight = check_Milieus_truck ().freight; 
 	

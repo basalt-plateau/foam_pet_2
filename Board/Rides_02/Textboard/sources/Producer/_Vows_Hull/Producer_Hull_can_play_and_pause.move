@@ -19,7 +19,6 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		writer_01_consenter : & signer,
 		writer_02_consenter : & signer
 	*/
-
 	#[test_only]
 	public fun Vow_01 () {	
 		use std::vector;

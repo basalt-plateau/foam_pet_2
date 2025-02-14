@@ -5,16 +5,38 @@
 	This is the texts of the presently open platform.
 */
 
+import { onMount, onDestroy } from 'svelte'
+
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
+import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
+import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+
+
 let TF = false;
+let EWF = false
+
+onMount (() => {
+	Textboard_Truck.freight ().fonctions.retrieve_texts_for_platform ();
+}); 
+
 
 
 </script>
 
 
-<div monitor="platform texts">
+<div 
+	monitor="platform texts"
+	style="
+		height: 100%;
+	"
+	class="card p-2 variant-soft-surface"
+>
 	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
-	{#if typeof TF === "object" }
+	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { EWF = pro_freight; } } />
+	{#if 
+		typeof TF === "object" &&
+		typeof EWF === "object"
+	}
 	{#each TF.info.texts as text }
 	<div
 		style="
@@ -69,7 +91,7 @@ let TF = false;
 			</div>
 		</div>
 		
-		{#if text.writer_address === account_address }
+		{#if text.writer_address === EWF.account_address }
 		<div
 			style="
 				display: flex;

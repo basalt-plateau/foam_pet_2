@@ -5,20 +5,23 @@
 
 <script>
 
+////
+//
 import { onMount, onDestroy } from 'svelte'
+//
+//
 import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
+//
+////
 
 let TF = "";
 let petition_APT_button = "";
 
-
 let on_send = async () => {
 	TF.fonctions.send_text ();
 }
-
-
 
 
 let TT_Monitor;
@@ -55,6 +58,8 @@ onMount (async () => {
 onDestroy (() => {
 	TT_Monitor.stop ()
 });
+
+
 </script>
 
 

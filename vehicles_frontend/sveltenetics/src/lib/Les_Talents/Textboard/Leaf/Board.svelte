@@ -41,7 +41,6 @@ import Versies_Truck from '$lib/Versies/Trucks.svelte'
 	
 	
 let Extension_Winch_Freight = false
-let Versies_Freight = false
 	
 	
 let Textboard_Freight = false
@@ -112,17 +111,6 @@ onDestroy (() => {
 	Textboard_Truck.destroy ()
 });
 
-let account_address = "";
-const change_account_address = () => {
-	try {
-		account_address = address_to_hexadecimal (
-			_get (Extension_Winch_Freight, [ "stage", "account", "address" ], "")
-		);
-	}
-	catch (impefection) {
-		console.error (imperfection);
-	}
-}
 
 
 
@@ -130,15 +118,8 @@ const change_account_address = () => {
 
 {#if Textboard_Truck_Made === "yurp" }
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { Textboard_Freight = pro_freight; } } />
-<Extension_Winch_Ride 
-	on_change={ ({ pro_freight }) => { 
-		Extension_Winch_Freight = pro_freight; 
-		change_account_address ();
-	}} 
-/>
-<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
+<Extension_Winch_Ride on_change={ ({ pro_freight }) => { Extension_Winch_Freight = pro_freight; }} />
 {#if 
-	typeof Versies_Freight === "object" &&
 	typeof Extension_Winch_Freight === "object" &&
 	typeof Textboard_Freight === "object"
 }
@@ -226,45 +207,9 @@ const change_account_address = () => {
 		</div>
 	</div>
 	
-	<!-- Producer Options -->
-	<div>
-		{#if Versies_Freight.is_producer === "yup" }
-		<div
-			style="
-				display: grid;
-				gap: 0.1cm;
-				grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
-			"
-		>
-			<Petition_APT_Button
-				onMount={({ mode }) => {
-					mode ("on");
-				}}
-				button_text={ `Delete "${ le_textboard }" as Producer` }
-				APT="0"
-				clicked={() => {
-					
-				}}
-			/>
-			
-			<Petition_APT_Button
-				onMount={({ mode }) => {
-					mode ("on");
-				}}
-				button_text={ `Pause "${ le_textboard }" as Producer` }
-				APT="0"
-				clicked={() => {
-					
-				}}
-			/>
-		</div>
-		{/if}
-	</div>
-	
 	{#if leaf === "texts" }
 	<Texts_Estate />
 	{/if}
-	
 	
 	{#if leaf === "platforms" }
 	<Index_of_Platforms />
