@@ -73,18 +73,83 @@ module Builder_01::Module_Hulls {
 	
 	////
 	//
-	//	Retrieve
+	//	Hulls
+	//		[Retrieve]
 	//
 	friend fun Hulls__mut_retrieve_hulls (hulls : &mut Hulls) : &mut vector<Hull> {
 		&mut hulls.hulls
 	}
 	//
 	////
+	//
+	//		[Flux]
+	//
+	friend fun Begin_Hulls (consenter : & signer) {
+		ensure_consenter_is_producer (consenter);
+		
+		let price_of_text_in_octas : u64 = 100000000;
+		
+		let front = Hull__create (
+			utf8 (b"playing"),
+			utf8 (b""),
+			vector::empty<Text>()
+		);
+		
+		let hulls_vector = vector::empty<Hull>();
+		vector::push_back (&mut hulls_vector, front);
+		
+		let hulls = Hulls {
+			status: utf8 (b"playing"),
+			price_of_text_in_octas : price_of_text_in_octas,
+			hulls : hulls_vector
+		};
+		
+		move_to<Hulls>(consenter, hulls)
+	}
+	//
+	////
+	//
+	//		[Constants]
+	//
+	friend fun are_Hulls_built () : String {
+		if (exists<Hulls>(Module_Producer::obtain_address ())) {
+			return utf8 (b"yup")
+		};
+		
+		utf8 (b"no")
+	}
+	friend fun Hulls_Status () : String acquires Hulls {
+		borrow_global<Hulls>(Module_Producer::obtain_address ()).status
+	}
+	fun Ensure_Hulls_is_Playing () acquires Hulls {
+		if (Hulls_Status () != utf8 (b"playing")) {
+			abort Limiter_the_hull_is_not_going
+		}
+	}
+	friend fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
+		let envelope = vector::empty<String>();
+		
+		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_length = vector::length (& hulls_ref.hulls);
+		for (index in 0..hulls_length) {
+			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
+			vector::push_back (&mut envelope, Hull__retrieve_platform (hull_ref));
+		};
+		
+		envelope
+	}
+	//
+	////
 	
+	
+	
+	
+
 	
 	////
 	//
-	//	Changes:
+	//	Hull:
+	//		[Flux]
 	//
 	friend fun Hulls__Hull__change_status (
 		consenter : & signer,
@@ -100,42 +165,7 @@ module Builder_01::Module_Hulls {
 		Hull__change_status (hull_mref, status);
 	}
 	//
-	////
-	
-	////
-	//
-	//	Constants:
-	//
-	//		Hulls:
-	//			These don't modify the Hulls key structure.
-	//
-	//
-	friend fun are_Hulls_built () : String {
-		if (exists<Hulls>(Module_Producer::obtain_address ())) {
-			return utf8 (b"yup")
-		};
-		
-		utf8 (b"no")
-	}
-	friend fun Hulls_Status () : String acquires Hulls {
-		borrow_global<Hulls>(Module_Producer::obtain_address ()).status
-	}
-	friend fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
-		let envelope = vector::empty<String>();
-		
-		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
-		let hulls_length = vector::length (& hulls_ref.hulls);
-		for (index in 0..hulls_length) {
-			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
-			vector::push_back (&mut envelope, Hull__retrieve_platform (hull_ref));
-		};
-		
-		envelope
-	}
-	//
-	//
-	//		Hull:
-	//			These don't modify the Hulls key structure.
+	//		[Constants]
 	//
 	//
 	friend fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
@@ -165,9 +195,42 @@ module Builder_01::Module_Hulls {
 		(false, 0)
 	}
 	//
+	//	[Internal]
 	//
-	//		Texts: 
-	//			These don't modify the Hulls key structure.
+	//
+	fun search_or_begin_hull (platform : String) : u64 acquires Hulls {
+		/*
+			Search for the index of the hull.
+			If the hull does not exist, then start it.
+		*/
+		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_length = vector::length (& hulls.hulls);
+		for (index in 0..hulls_length) {
+			let hull_ref = vector::borrow (& hulls.hulls, index);
+			if (Hull__retrieve_platform (hull_ref) == platform) {
+				return index
+			}
+		};
+		
+		let hull = Hull__create (
+			utf8 (b"playing"),
+			platform,
+			vector::empty<Text>()
+		);
+		
+		vector::push_back (&mut hulls.hulls, hull);
+		
+		let index = vector::length (& hulls.hulls) - 1;
+		index
+	}
+	//
+	////
+	
+	
+	////
+	//
+	//	Texts: 
+	//		[Constants]
 	//
 	//
 	friend fun Retrieve_Count_of_Texts (platform : String) : u64 acquires Hulls {
@@ -274,76 +337,6 @@ module Builder_01::Module_Hulls {
 	////
 	
 
-	
-	////
-	//
-	//	Fluctuations:
-	//		Hulls
-	//
-	friend fun Begin_Hulls (consenter : & signer) {
-		ensure_consenter_is_producer (consenter);
-		
-		let price_of_text_in_octas : u64 = 100000000;
-		
-		let front = Hull__create (
-			utf8 (b"playing"),
-			utf8 (b""),
-			vector::empty<Text>()
-		);
-		
-		let hulls_vector = vector::empty<Hull>();
-		vector::push_back (&mut hulls_vector, front);
-		
-		let hulls = Hulls {
-			status: utf8 (b"playing"),
-			price_of_text_in_octas : price_of_text_in_octas,
-			hulls : hulls_vector
-		};
-		
-		move_to<Hulls>(consenter, hulls)
-	}
-	public entry fun Ensure_Hulls_is_Playing () acquires Hulls {
-		if (Hulls_Status () != utf8 (b"playing")) {
-			abort Limiter_the_hull_is_not_going
-		}
-	}
-	//
-	////
-	
-	////
-	//
-	//	Hull
-	//
-	//
-	public fun search_or_begin_hull (platform : String) : u64 acquires Hulls {
-		/*
-			Search for the index of the hull.
-			If the hull does not exist, then start it.
-		*/
-		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
-		let hulls_length = vector::length (& hulls.hulls);
-		for (index in 0..hulls_length) {
-			let hull_ref = vector::borrow (& hulls.hulls, index);
-			if (Hull__retrieve_platform (hull_ref) == platform) {
-				return index
-			}
-		};
-		
-		let hull = Hull__create (
-			utf8 (b"playing"),
-			platform,
-			vector::empty<Text>()
-		);
-		
-		vector::push_back (&mut hulls.hulls, hull);
-		
-		let index = vector::length (& hulls.hulls) - 1;
-		index
-	}
-	
-	//
-	////
-	
 	
 	
 	////
