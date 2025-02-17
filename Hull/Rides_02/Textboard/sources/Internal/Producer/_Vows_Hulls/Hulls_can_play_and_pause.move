@@ -24,7 +24,8 @@ module Builder_01::Hulls_can_play_and_pause {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
-	
+		
+		use Builder_01::Module_Producer_Hulls;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
@@ -52,7 +53,7 @@ module Builder_01::Hulls_can_play_and_pause {
 		//
 		//
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
-		Module_Hulls::Begin_Hulls (producer_01_consenter);
+		Module_Producer_Hulls::Begin (producer_01_consenter);
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////

@@ -2,7 +2,7 @@
 
 
 module Builder_01::Module_Hulls {
-	friend Builder_01::Module_Hull_Producer;
+	friend Builder_01::Module_Producer_Hull;
 
 	friend Builder_01::Module_Guest_Hulls;
 	friend Builder_01::Module_Guest_Hull;
@@ -103,9 +103,11 @@ module Builder_01::Module_Hulls {
 	
 	////
 	//
-	//	Hulls:
-	//		Constants: 
+	//	Constants:
+	//
+	//		Hulls:
 	//			These don't modify the Hulls key structure.
+	//
 	//
 	friend fun are_Hulls_built () : String {
 		if (exists<Hulls>(Module_Producer::obtain_address ())) {
@@ -130,14 +132,10 @@ module Builder_01::Module_Hulls {
 		envelope
 	}
 	//
-	////
-	
-	
-	////
 	//
-	//	Hull:
-	//		Constants: 
+	//		Hull:
 	//			These don't modify the Hulls key structure.
+	//
 	//
 	friend fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
 		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
@@ -166,13 +164,10 @@ module Builder_01::Module_Hulls {
 		(false, 0)
 	}
 	//
-	////
-	
-	////
 	//
-	//	Texts:
-	//		Constants: 
+	//		Texts: 
 	//			These don't modify the Hulls key structure.
+	//
 	//
 	friend fun Retrieve_Count_of_Texts (platform : String) : u64 acquires Hulls {
 		
@@ -281,10 +276,10 @@ module Builder_01::Module_Hulls {
 	
 	////
 	//
-	//	Hulls
+	//	Fluctuations:
+	//		Hulls
 	//
-	//
-	public entry fun Begin_Hulls (consenter : & signer) {
+	friend fun Begin_Hulls (consenter : & signer) {
 		ensure_consenter_is_producer (consenter);
 		
 		let price_of_text_in_octas : u64 = 100000000;
@@ -311,7 +306,6 @@ module Builder_01::Module_Hulls {
 			abort Limiter_the_hull_is_not_going
 		}
 	}
-	
 	//
 	////
 	
