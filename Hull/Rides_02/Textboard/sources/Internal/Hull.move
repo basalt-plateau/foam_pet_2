@@ -1,9 +1,9 @@
 
 
 
-module Builder_01::Hull_Module {
-	friend Builder_01::Hull_Module_Producer;	
-	friend Builder_01::Hulls_Module;
+module Builder_01::Module_Hull {
+	friend Builder_01::Module_Hull_Producer;	
+	friend Builder_01::Module_Hulls;
 	
 	use std::string::{ String, utf8 };
 	use aptos_framework::timestamp;	
@@ -41,6 +41,8 @@ module Builder_01::Hull_Module {
 	
 	////
 	//
+	//	friend create
+	//
 	friend fun Hull__create (
 		status : String,
 		platform : String,
@@ -59,13 +61,14 @@ module Builder_01::Hull_Module {
 	
 	////
 	//
-	//	change
+	//	friend changes
 	//
-	public fun Hull__change_status (hull : &mut Hull, status : String) {
+	friend fun Hull__change_status (hull : &mut Hull, status : String) {
 		hull.status = status;
 	}
 	//
 	////
+	
 	
 	////
 	//

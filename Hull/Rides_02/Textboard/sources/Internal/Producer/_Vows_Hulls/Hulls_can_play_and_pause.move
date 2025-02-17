@@ -25,7 +25,8 @@ module Builder_01::Hulls_can_play_and_pause {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use Builder_01::Hulls_Module; 
+		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 	
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
@@ -49,17 +50,17 @@ module Builder_01::Hulls_can_play_and_pause {
 		//	Hulls Begin
 		//
 		//
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"no"), 1);
-		Hulls_Module::Begin_Hulls (producer_01_consenter);
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"yup"), 1);
+		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
+		Module_Hulls::Begin_Hulls (producer_01_consenter);
+		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
 		
-		assert! (Hulls_Module::Hulls_Status () == utf8 (b"playing"), 1);
-		Hulls_Module::Producer_Hulls_Pause (producer_01_consenter);	
-		assert! (Hulls_Module::Hulls_Status () == utf8 (b"paused"), 1);
-		Hulls_Module::Producer_Hulls_Play (producer_01_consenter);
-		assert! (Hulls_Module::Hulls_Status () == utf8 (b"playing"), 1);
+		assert! (Module_Hulls::Hulls_Status () == utf8 (b"playing"), 1);
+		Module_Hulls::Producer_Hulls_Pause (producer_01_consenter);	
+		assert! (Module_Hulls::Hulls_Status () == utf8 (b"paused"), 1);
+		Module_Hulls::Producer_Hulls_Play (producer_01_consenter);
+		assert! (Module_Hulls::Hulls_Status () == utf8 (b"playing"), 1);
 		
 		////
 		//

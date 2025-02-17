@@ -4,7 +4,7 @@
 
 
 module Builder_01::Endings_Module {
-	friend Builder_01::Hulls_Module;
+	friend Builder_01::Module_Hulls;
 	
 	use std::string::{ String };
 

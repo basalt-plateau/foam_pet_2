@@ -6,7 +6,7 @@
 	Is between UTC span?
 */
 module Builder_01::Beats {
-	friend Builder_01::Hulls_Module;
+	friend Builder_01::Module_Hulls;
 	
 	use std::string::{ String, utf8 };
 

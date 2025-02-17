@@ -1,9 +1,13 @@
 
 
 
-module Builder_01::Hulls_Module {
-	friend Builder_01::Hull_Module_Producer;
-	
+module Builder_01::Module_Hulls {
+	friend Builder_01::Module_Hull_Producer;
+
+	friend Builder_01::Module_Guest_Hulls;
+	friend Builder_01::Module_Guest_Hull;
+	friend Builder_01::Module_Guest_Texts;
+
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
 	use std::string_utils;
@@ -14,7 +18,7 @@ module Builder_01::Hulls_Module {
 	use aptos_framework::timestamp;
 	
 	use Builder_01::Endings_Module;
-	use Builder_01::Producer_Module::{ Self, ensure_consenter_is_producer };
+	use Builder_01::Module_Producer::{ Self, ensure_consenter_is_producer };
 	use Builder_01::Text_Module::{
 		Text,
 		Text__create,
@@ -25,7 +29,7 @@ module Builder_01::Hulls_Module {
 		Text__retrieve_text,
 		Text__retrieve_now_seconds
 	};
-	use Builder_01::Hull_Module::{
+	use Builder_01::Module_Hull::{
 		Hull,
 		Hull__create,
 		Hull__ensure_is_playing,
@@ -88,7 +92,7 @@ module Builder_01::Hulls_Module {
 	) acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform);
 		
-		let hulls_key_mref = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
 		let hulls_mref = &mut hulls_key_mref.hulls;
 		let hull_mref : &mut Hull = vector::borrow_mut (hulls_mref, index_of_hull);
 		
@@ -102,15 +106,15 @@ module Builder_01::Hulls_Module {
 	//	Hulls View
 	//
 	//
-	#[view] public fun are_Hulls_built () : String {
-		if (exists<Hulls>(Producer_Module::obtain_address ())) {
+	friend fun are_Hulls_built () : String {
+		if (exists<Hulls>(Module_Producer::obtain_address ())) {
 			return utf8 (b"yup")
 		};
 		
 		utf8 (b"no")
 	}
 	#[view] public fun Hulls_Status () : String acquires Hulls {
-		borrow_global<Hulls>(Producer_Module::obtain_address ()).status
+		borrow_global<Hulls>(Module_Producer::obtain_address ()).status
 	}
 	//
 	////
@@ -123,7 +127,7 @@ module Builder_01::Hulls_Module {
 	#[view] public fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
 		let hulls_envelope = vector::empty<String>();
 		
-		let hulls_ref = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		let hulls_length = vector::length (& hulls_ref.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
@@ -133,7 +137,7 @@ module Builder_01::Hulls_Module {
 		hulls_envelope
 	}
 	#[view] public fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
@@ -146,7 +150,7 @@ module Builder_01::Hulls_Module {
 		abort 1
 	}
 	#[view] public fun search_for_index_of_hull_v2 (platform : String) : (bool, u64) acquires Hulls {
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
@@ -177,7 +181,7 @@ module Builder_01::Hulls_Module {
 			return 0
 		};
 		
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
 		let hull_texts = & Hull__retrieve_texts (hull_ref);
 		
@@ -198,7 +202,7 @@ module Builder_01::Hulls_Module {
 			return hull_texts_envelope
 		};
 		
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
 		let hull_texts = & Hull__retrieve_texts (hull_ref);
 		let count_of_hull_texts = vector::length (hull_texts);
@@ -241,7 +245,7 @@ module Builder_01::Hulls_Module {
 			return hull_texts_envelope
 		};
 		
-		let hulls = borrow_global<Hulls>(Producer_Module::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
 		let hull_texts = & Hull__retrieve_texts (hull_ref);
 		let count_of_hull_texts = vector::length (hull_texts);
@@ -317,7 +321,7 @@ module Builder_01::Hulls_Module {
 			Search for the index of the hull.
 			If the hull does not exist, then start it.
 		*/
-		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls.hulls, index);
@@ -368,7 +372,7 @@ module Builder_01::Hulls_Module {
 		////
 		
 		let writer_address = signer::address_of (writer);
-		let producer_address = Producer_Module::obtain_address ();
+		let producer_address = Module_Producer::obtain_address ();
 		
 		let index_of_hull = search_or_begin_hull (platform);
 		let hulls_mref = borrow_global_mut<Hulls>(producer_address);
@@ -414,7 +418,7 @@ module Builder_01::Hulls_Module {
 		let writer_address = signer::address_of (consenter);		
 		
 		let index_of_hull = search_for_index_of_hull (platform);
-		let hulls = borrow_global_mut<Hulls>(Producer_Module::obtain_address ());
+		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
 		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
 
 		let hull_texts = Hull__mut_retrieve_texts (hull_ref);
@@ -448,7 +452,7 @@ module Builder_01::Hulls_Module {
 		status : String
 	) acquires Hulls {
 		ensure_consenter_is_producer (consenter);
-		let producer_address = Producer_Module::obtain_address ();
+		let producer_address = Module_Producer::obtain_address ();
 	
 		let hulls = borrow_global_mut<Hulls>(producer_address);
 		hulls.status = status;
@@ -473,7 +477,7 @@ module Builder_01::Hulls_Module {
 	) acquires Hulls {
 		ensure_consenter_is_producer (consenter);
 
-		let producer_address = Producer_Module::obtain_address ();
+		let producer_address = Module_Producer::obtain_address ();
 
 		let index_of_hull = search_for_index_of_hull (platform);
 		let hulls = borrow_global_mut<Hulls>(producer_address);

@@ -5,8 +5,8 @@
 
 
 module Builder_01::Text_Module {
-	friend Builder_01::Hulls_Module;
-	friend Builder_01::Hull_Module;
+	friend Builder_01::Module_Hulls;
+	friend Builder_01::Module_Hull;
 	
 	use std::string::{ String };
 	use aptos_framework::timestamp;
@@ -43,7 +43,7 @@ module Builder_01::Text_Module {
 	
 	////
 	//
-	//	change
+	//	friend: flux
 	//
 	friend fun Text__change_writer_address (text : &mut Text, writer_address : address) {
 		text.writer_address = writer_address;
@@ -59,7 +59,7 @@ module Builder_01::Text_Module {
 	
 	////
 	//
-	//	retrieve
+	//	public: retrieve
 	//
 	public fun Text__retrieve_writer_address (text : & Text) : address {
 		text.writer_address

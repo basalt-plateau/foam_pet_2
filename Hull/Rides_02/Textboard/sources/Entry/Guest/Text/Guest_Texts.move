@@ -5,7 +5,7 @@
 
 
 
-module Builder_01::Guest {
+module Builder_01::Module_Guest_Texts {
 	use std::string::{ String, utf8 };
 
 	#[view] public fun Volitions () : String { 

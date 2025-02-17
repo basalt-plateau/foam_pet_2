@@ -1,6 +1,6 @@
 
 
-module Builder_01::Hull_Module_Producer {
+module Builder_01::Module_Hull_Producer {
 
 	use std::vector;
 	use std::string::{ String, utf8 };
@@ -11,27 +11,27 @@ module Builder_01::Hull_Module_Producer {
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}
 	
-	use Builder_01::Producer_Module::{ 
+	use Builder_01::Module_Producer::{ 
 		Self,
 		ensure_consenter_is_producer 
 	};
 	
-	use Builder_01::Hulls_Module::{
+	use Builder_01::Module_Hulls::{
 		Hulls,
 		Hulls__mut_retrieve_hulls,
 		search_for_index_of_hull,
 		Hulls__Hull__change_status
 	};
 	
-	use Builder_01::Hull_Module::{
+	use Builder_01::Module_Hull::{
 		Hull,
 		Hull__change_status
 	};
 	
 	////
 	//
-	//	Entry: Status Changing
-	//
+	//	Entry Flux: 
+	//		Status 
 	//
 	public entry fun Producer_Hull_Pause (consenter : & signer, platform : String) {
 		ensure_consenter_is_producer (consenter);
@@ -41,6 +41,16 @@ module Builder_01::Hull_Module_Producer {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__change_status (consenter, platform, utf8 (b"playing"));
 	}
+	//
+	////
+	
+	
+	////
+	//
+	//	View Constant
+	//
+	//
+
 	//
 	////
 	

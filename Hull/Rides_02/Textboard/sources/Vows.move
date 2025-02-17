@@ -31,7 +31,7 @@ module Builder_01::Vows {
 		use Builder_01::Hulls_can_text_to_platform::{ Vow }; Vow (); 
 	}
 	#[test] 
-	#[expected_failure (abort_code = 100003, location = Builder_01::Hulls_Module)]
+	#[expected_failure (abort_code = 100003, location = Builder_01::Module_Hulls)]
 	public fun Text_03 () { 
 		use Builder_01::Text_Length_Limiter::{ Vow }; Vow (); 
 	}

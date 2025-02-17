@@ -23,8 +23,9 @@ module Builder_01::Hulls_can_text_to_front {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use Builder_01::Hulls_Module; 
+		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
+		use Builder_01::Module_Guest_Hulls;
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -67,9 +68,9 @@ module Builder_01::Hulls_can_text_to_front {
 		//	Hull Begin
 		//
 		//
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"no"), 1);
-		Hulls_Module::Begin_Hulls (producer_01_consenter);
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"yup"), 1);
+		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
+		Module_Hulls::Begin_Hulls (producer_01_consenter);
+		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
 		
@@ -81,7 +82,7 @@ module Builder_01::Hulls_can_text_to_front {
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"");		
-		Hulls_Module::Send_Text (
+		Module_Hulls::Send_Text (
 			writer_01_consenter,
 			text_01_text,
 			text_01_platform
@@ -94,10 +95,10 @@ module Builder_01::Hulls_can_text_to_front {
 		//	Ensure text exists
 		//
 		//
-		let texts : vector<Hulls_Module::Text_Envelope> = Hulls_Module::Retrieve_Texts (text_01_platform);
+		let texts : vector<Module_Hulls::Text_Envelope> = Module_Hulls::Retrieve_Texts (text_01_platform);
 		let text_ref = vector::borrow (& texts, 0);
 		assert! (vector::length (& texts) == 1, 1);		
-		assert! (Hulls_Module::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
+		assert! (Module_Hulls::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
 		//
 		////
 		
@@ -106,8 +107,8 @@ module Builder_01::Hulls_can_text_to_front {
 		//	Delete Text
 		//
 		//
-		Hulls_Module::Delete_Text (writer_01_consenter, text_01_platform);
-		assert! (vector::length (& Hulls_Module::Retrieve_Texts (text_01_platform)) == 0, 1);	
+		Module_Hulls::Delete_Text (writer_01_consenter, text_01_platform);
+		assert! (vector::length (& Module_Hulls::Retrieve_Texts (text_01_platform)) == 0, 1);	
 		//
 		////
 

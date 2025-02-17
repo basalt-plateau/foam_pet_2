@@ -6,8 +6,9 @@
 /*
 
 */
-module Builder_01::Producer_Module {	
-	friend Builder_01::Hulls_Module;
+module Builder_01::Module_Producer {	
+	friend Builder_01::Module_Hulls;
+	friend Builder_01::Module_Guest_Hulls;
 	
 	use std::string::{ String, utf8 };
 	use std::signer;

@@ -22,8 +22,9 @@ module Builder_01::Hull_Name_Length_Limit {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use Builder_01::Hulls_Module; 
+		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
+		use Builder_01::Module_Guest_Hulls;
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -66,16 +67,16 @@ module Builder_01::Hull_Name_Length_Limit {
 		//	Hull Begin
 		//
 		//
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"no"), 1);
-		Hulls_Module::Begin_Hulls (producer_01_consenter);
-		assert! (Hulls_Module::are_Hulls_built () == utf8 (b"yup"), 1);
+		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
+		Module_Hulls::Begin_Hulls (producer_01_consenter);
+		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
 		
-		assert! (vector::length (& Hulls_Module::Retrieve_Texts (utf8 (b""))) == 0, 1);
-		assert! (vector::length (& Hulls_Module::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
+		assert! (vector::length (& Module_Hulls::Retrieve_Texts (utf8 (b""))) == 0, 1);
+		assert! (vector::length (& Module_Hulls::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
 		
-		Hulls_Module::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""));
+		Module_Hulls::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""));
 		
 		
 		
