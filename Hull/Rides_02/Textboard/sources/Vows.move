@@ -59,7 +59,7 @@ module Builder_01::Vows {
 		Producer Hull:
 			01 Can play then pause
 	*/
-	#[test] public fun Producer_Hull_01 () { 
+	#[test] public fun Producer_Hull_01_Can_Play_then_Pause () { 
 		use Builder_01::Producer_Hull_can_play_and_pause::{ Vow_01 }; Vow_01 (); 
 	}
 	

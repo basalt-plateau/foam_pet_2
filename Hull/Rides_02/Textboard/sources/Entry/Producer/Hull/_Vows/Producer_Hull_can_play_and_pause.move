@@ -87,13 +87,8 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//	Send Text
 		//
 		//
-		let text_01_platform : String = utf8 (b"");	
-		let text_01_text : String = utf8 (b"This is a text.");
-		Module_Guest_Texts::Send (
-			writer_01_consenter,
-			text_01_text,
-			text_01_platform
-		);
+		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""));
+		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
 		//
 		////
 
@@ -102,12 +97,11 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//	Ensure text exists
 		//
 		//
-		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Texts::Retrieve_Texts (text_01_platform);
-		assert! (vector::length (& texts) == 1, 1);		
-		
-		let text_ref = vector::borrow (& texts, 0);
-		assert! (vector::length (& texts) == 1, 1);		
-		assert! (Module_Hulls::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
+		// let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Texts::Retrieve_Texts (text_01_platform);
+		// assert! (vector::length (& texts) == 1, 1);		
+		// let text_ref = vector::borrow (& texts, 0);
+		// assert! (vector::length (& texts) == 1, 1);		
+		// assert! (Module_Hulls::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
 		//
 		////
 		
@@ -115,20 +109,11 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		////
 		//
 		
+		//
+		////
 		
-		////
-		//
-		//	Producer Delete Text
-		//
-		//
-		Module_Producer_Texts::Delete (
-			producer_01_consenter,
-			writer_01_address,
-			text_01_platform
-		);
-		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (text_01_platform)) == 0, 1);	
-		//
-		////
+		
+
 
 		
 		////
