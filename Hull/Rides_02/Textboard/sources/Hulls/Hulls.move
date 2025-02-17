@@ -44,10 +44,6 @@ module Builder_01::Hulls_Module {
 	
 	const One_APT : u64 = 100000000;
 	
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
-	}
-	
 	struct Text_Envelope has store, drop {
 		writer_address : address,
 		writer_balance : u64,
@@ -66,6 +62,10 @@ module Builder_01::Hulls_Module {
 		hulls : vector<Hull>
 	}
 	
+	#[view] public fun Volitions () : String { 
+		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
+	}	
+	
 	////
 	//
 	//	Retrieve
@@ -77,6 +77,10 @@ module Builder_01::Hulls_Module {
 	////
 	
 	
+	////
+	//
+	//	Enhance
+	//
 	friend fun Hulls__Hull__change_status (
 		consenter : & signer,
 		platform : String,
@@ -90,6 +94,8 @@ module Builder_01::Hulls_Module {
 		
 		Hull__change_status (hull_mref, status);
 	}
+	//
+	////
 	
 	////
 	//

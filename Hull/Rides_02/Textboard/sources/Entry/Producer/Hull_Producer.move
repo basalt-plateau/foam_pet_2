@@ -28,15 +28,11 @@ module Builder_01::Hull_Module_Producer {
 		Hull__change_status
 	};
 	
-	
-	public fun Producer_Hull_Change_Status (
-		consenter : & signer,
-		platform : String,
-		status : String
-	) {
-		ensure_consenter_is_producer (consenter);
-		Hulls__Hull__change_status (consenter, platform, status);
-	}
+	////
+	//
+	//	Entry: Status Changing
+	//
+	//
 	public entry fun Producer_Hull_Pause (consenter : & signer, platform : String) {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__change_status (consenter, platform, utf8 (b"paused"));
@@ -45,10 +41,34 @@ module Builder_01::Hull_Module_Producer {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__change_status (consenter, platform, utf8 (b"playing"));
 	}
+	//
+	////
+	
+	
+	////
+	//
+	fun Producer_Hull_Change_Status (
+		consenter : & signer,
+		platform : String,
+		status : String
+	) {
+		ensure_consenter_is_producer (consenter);
+		Hulls__Hull__change_status (consenter, platform, status);
+	}
+	//
+	////
+	
+	
+	////
+	//
+	//	Unfinished
+	//
 	public entry fun Producer_Hull_Delete_Then_Pause (
 		consenter : & signer,
 		platform : String
 	) {
 		ensure_consenter_is_producer (consenter);
 	}
+	//
+	////
 }

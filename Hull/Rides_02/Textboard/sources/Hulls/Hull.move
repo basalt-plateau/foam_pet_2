@@ -6,13 +6,7 @@ module Builder_01::Hull_Module {
 	friend Builder_01::Hulls_Module;
 	
 	use std::string::{ String, utf8 };
-	use aptos_framework::timestamp;
-
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
-	}
-	
-	const Ending__Hull_is_not_playing : u64 = 9937483;
+	use aptos_framework::timestamp;	
 	
 	use Builder_01::Text_Module::{
 		Text,
@@ -24,7 +18,10 @@ module Builder_01::Hull_Module {
 		Text__retrieve_text,
 		Text__retrieve_now_seconds
 	};
-	
+
+	const Ending__Hull_is_not_playing : u64 = 9937483;
+
+
 	/*
 		task:
 			ensure status is:
@@ -38,6 +35,9 @@ module Builder_01::Hull_Module {
 		created_at_now_seconds : u64
 	}
 	
+	#[view] public fun Volitions () : String { 
+		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
+	}
 	
 	////
 	//
