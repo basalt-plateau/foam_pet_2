@@ -59,9 +59,9 @@ module Builder_01::Hulls_can_play_and_pause {
 		////
 		
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
-		Module_Hulls::Producer_Hulls_Pause (producer_01_consenter);	
+		Module_Producer_Hulls::Pause (producer_01_consenter);	
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"paused"), 1);
-		Module_Hulls::Producer_Hulls_Play (producer_01_consenter);
+		Module_Producer_Hulls::Play (producer_01_consenter);
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
 		
 		////

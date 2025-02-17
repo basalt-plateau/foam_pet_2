@@ -106,6 +106,16 @@ module Builder_01::Module_Hulls {
 		
 		move_to<Hulls>(consenter, hulls)
 	}
+	friend fun Hulls_Change_Status (
+		consenter : & signer,
+		status : String
+	) acquires Hulls {
+		ensure_consenter_is_producer (consenter);
+		let producer_address = Module_Producer::obtain_address ();
+	
+		let hulls = borrow_global_mut<Hulls>(producer_address);
+		hulls.status = status;
+	}
 	//
 	////
 	//
@@ -424,9 +434,6 @@ module Builder_01::Module_Hulls {
 	//	Texts
 	//
 	//
-	
-
-	
 	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
 		envelope.text
 	}
@@ -440,22 +447,7 @@ module Builder_01::Module_Hulls {
 	//
 	//		Hulls
 	//
-	public fun Producer_Hulls_Change_Status (
-		consenter : & signer,
-		status : String
-	) acquires Hulls {
-		ensure_consenter_is_producer (consenter);
-		let producer_address = Module_Producer::obtain_address ();
 	
-		let hulls = borrow_global_mut<Hulls>(producer_address);
-		hulls.status = status;
-	}
-	public entry fun Producer_Hulls_Pause (consenter : & signer) acquires Hulls {
-		Producer_Hulls_Change_Status (consenter, utf8 (b"paused"));
-	}
-	public entry fun Producer_Hulls_Play (consenter : & signer) acquires Hulls {
-		Producer_Hulls_Change_Status (consenter, utf8 (b"playing"));
-	}
 	//
 	////////
 
