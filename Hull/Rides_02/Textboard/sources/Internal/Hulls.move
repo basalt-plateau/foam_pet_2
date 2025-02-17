@@ -2,6 +2,7 @@
 
 
 module Builder_01::Module_Hulls {
+	friend Builder_01::Module_Producer_Hulls;	
 	friend Builder_01::Module_Producer_Hull;
 
 	friend Builder_01::Module_Guest_Hulls;
