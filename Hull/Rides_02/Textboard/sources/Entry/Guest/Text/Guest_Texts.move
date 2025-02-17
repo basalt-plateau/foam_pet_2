@@ -27,6 +27,17 @@ module Builder_01::Module_Guest_Texts {
 	) : vector<Module_Hulls::Text_Envelope> {
 		Module_Hulls::Retrieve_Texts (platform_name)
 	}
+	#[view] public fun Retrieve_Texts_Between (
+		platform_name : String,
+		seconds_begin : u64,
+		seconds_end : u64
+	) : vector<Module_Hulls::Text_Envelope> {
+		Module_Hulls::Retrieve_Texts_Between (
+			platform_name,
+			seconds_begin,
+			seconds_end
+		)
+	}
 	//
 	////
 }

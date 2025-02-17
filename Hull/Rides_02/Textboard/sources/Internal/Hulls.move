@@ -229,16 +229,7 @@ module Builder_01::Module_Hulls {
 		
 		hull_texts_envelope
 	}
-	//
-	////
-	
-	////
-	//
-	//	Hulls:Hull:Texts View
-	//
-	//
-	
-	#[view] public fun Retrieve_Texts_Between (
+	friend fun Retrieve_Texts_Between (
 		platform : String,
 		seconds_begin : u64,
 		seconds_end : u64
@@ -285,6 +276,7 @@ module Builder_01::Module_Hulls {
 	}
 	//
 	////
+	
 
 	
 	////
