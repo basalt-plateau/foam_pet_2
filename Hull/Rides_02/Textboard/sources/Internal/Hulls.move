@@ -4,6 +4,7 @@
 module Builder_01::Module_Hulls {
 	friend Builder_01::Module_Producer_Hulls;	
 	friend Builder_01::Module_Producer_Hull;
+	friend Builder_01::Module_Producer_Texts;
 
 	friend Builder_01::Module_Guest_Hulls;
 	friend Builder_01::Module_Guest_Hull;
@@ -424,40 +425,7 @@ module Builder_01::Module_Hulls {
 		
 		abort 260141
 	}
-	//
-	////////
-	
-
-	
-	////////
-	//
-	//	Texts
-	//
-	//
-	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
-		envelope.text
-	}
-	//
-	////////
-	
-	
-	////////
-	//
-	//	Producer Moves
-	//
-	//		Hulls
-	//
-	
-	//
-	////////
-
-	//
-	//
-	//
-	//		Text
-	//
-	//
-	public entry fun Producer_Delete_Text (
+	friend fun Producer_Delete_Text (
 		consenter : & signer,
 		writer_address : address,
 		platform : String 
@@ -482,14 +450,20 @@ module Builder_01::Module_Hulls {
 		abort Limiter_Producer_the_platform_with_writer_address_is_empty
 	}
 	//
-	////
+	////////
 	
-	////
+
+	
+	////////
 	//
-	//	Anyone Moves
+	//	Text_Envelope
+	//		[Constants]
 	//
+	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
+		envelope.text
+	}
 	//
-	public entry fun Clean_Texts () {}
-	//
-	////
+	////////
+
+
 }

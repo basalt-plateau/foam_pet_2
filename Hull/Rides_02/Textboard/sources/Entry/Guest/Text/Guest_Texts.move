@@ -17,6 +17,8 @@ module Builder_01::Module_Guest_Texts {
 	////
 	//
 	//	Entry Flux: 
+	//		* Send
+	//		* Delete
 	//
 	public entry fun Send (
 		consenter : & signer,

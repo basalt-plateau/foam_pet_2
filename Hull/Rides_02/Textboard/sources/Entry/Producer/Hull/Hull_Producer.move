@@ -33,11 +33,11 @@ module Builder_01::Module_Producer_Hull {
 	//	Entry Flux: 
 	//		Status 
 	//
-	public entry fun Producer_Hull_Pause (consenter : & signer, platform : String) {
+	public entry fun Pause (consenter : & signer, platform : String) {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__change_status (consenter, platform, utf8 (b"paused"));
 	}
-	public entry fun Producer_Hull_Play (consenter : & signer, platform : String) {
+	public entry fun Play (consenter : & signer, platform : String) {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__change_status (consenter, platform, utf8 (b"playing"));
 	}
@@ -55,18 +55,6 @@ module Builder_01::Module_Producer_Hull {
 	////
 	
 	
-	////
-	//
-	fun Producer_Hull_Change_Status (
-		consenter : & signer,
-		platform : String,
-		status : String
-	) {
-		ensure_consenter_is_producer (consenter);
-		Hulls__Hull__change_status (consenter, platform, status);
-	}
-	//
-	////
 	
 	
 	////

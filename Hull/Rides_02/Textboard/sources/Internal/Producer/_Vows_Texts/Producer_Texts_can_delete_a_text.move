@@ -25,6 +25,7 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		use aptos_framework::account;		
 		
 		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Producer_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
@@ -106,7 +107,7 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		//	Producer Delete Text
 		//
 		//
-		Module_Hulls::Producer_Delete_Text (
+		Module_Producer_Texts::Delete (
 			producer_01_consenter,
 			writer_01_address,
 			text_01_platform
