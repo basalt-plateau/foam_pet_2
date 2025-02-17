@@ -18,7 +18,13 @@ module Builder_01::Module_Guest_Texts {
 	//
 	//	Entry Flux: 
 	//
-	
+	public entry fun Send (
+		writer : & signer,
+		text : String,
+		platform_name : String
+	) {
+		Module_Hulls::Send_Text (writer, text, platform_name);
+	}
 	//
 	////
 	

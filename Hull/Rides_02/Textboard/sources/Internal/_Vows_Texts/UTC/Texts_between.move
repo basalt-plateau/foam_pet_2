@@ -83,11 +83,11 @@ module Builder_01::Texts_between {
 		//	Send Texts
 		//
 		//
-		Module_Hulls::Send_Text (writer_01_consenter, utf8 (b"This is text 000001."), utf8 (b""));
-		Module_Hulls::Send_Text (writer_01_consenter, utf8 (b"This is text 000002."), utf8 (b""));
+		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is text 000001."), utf8 (b""));
+		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is text 000002."), utf8 (b""));
 		timestamp::update_global_time_for_test (31557600000 * 50);
-		Module_Hulls::Send_Text (writer_01_consenter, utf8 (b"This is text 000003."), utf8 (b""));
-		Module_Hulls::Send_Text (writer_01_consenter, utf8 (b"This is text 000004."), utf8 (b""));
+		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is text 000003."), utf8 (b""));
+		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is text 000004."), utf8 (b""));
 		//
 		////
 			

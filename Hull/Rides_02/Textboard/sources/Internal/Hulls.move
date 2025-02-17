@@ -71,7 +71,7 @@ module Builder_01::Module_Hulls {
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}	
 	
-	////
+	////////
 	//
 	//	Hulls
 	//		[Retrieve]
@@ -139,14 +139,14 @@ module Builder_01::Module_Hulls {
 		envelope
 	}
 	//
-	////
+	////////
 	
 	
 	
 	
 
 	
-	////
+	////////
 	//
 	//	Hull:
 	//		[Flux]
@@ -224,17 +224,15 @@ module Builder_01::Module_Hulls {
 		index
 	}
 	//
-	////
+	////////
 	
 	
-	////
+	////////
 	//
 	//	Texts: 
 	//		[Constants]
 	//
-	//
 	friend fun Retrieve_Count_of_Texts (platform : String) : u64 acquires Hulls {
-		
 		//
 		//	if hull not found, 
 		//
@@ -334,17 +332,10 @@ module Builder_01::Module_Hulls {
 		hull_texts_envelope
 	}
 	//
-	////
-	
-
-	
-	
-	////
 	//
-	//	Texts
+	//	[Flux]
 	//
-	//
-	public entry fun Send_Text (
+	friend fun Send_Text (
 		writer : & signer,
 		text : String,
 		platform : String
@@ -406,6 +397,17 @@ module Builder_01::Module_Hulls {
 		let this_text = Text__create (writer_address, text);
 		vector::push_back (hull_texts, this_text);
 	}
+	//
+	////////
+	
+
+	
+	
+	////////
+	//
+	//	Texts
+	//
+	//
 	public entry fun Delete_Text (consenter : & signer, platform : String) acquires Hulls {
 		let writer_address = signer::address_of (consenter);		
 		
@@ -430,10 +432,10 @@ module Builder_01::Module_Hulls {
 		envelope.text
 	}
 	//
-	////
+	////////
 	
 	
-	////
+	////////
 	//
 	//	Producer Moves
 	//
@@ -455,6 +457,8 @@ module Builder_01::Module_Hulls {
 	public entry fun Producer_Hulls_Play (consenter : & signer) acquires Hulls {
 		Producer_Hulls_Change_Status (consenter, utf8 (b"playing"));
 	}
+	//
+	////////
 
 	//
 	//
