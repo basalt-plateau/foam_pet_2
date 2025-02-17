@@ -55,14 +55,14 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		//
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
 		Module_Hulls::Begin_Hulls (producer_01_consenter);
-		assert! (Module_Hulls::Hulls_Status () == utf8 (b"playing"), 1);
+		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
 		
 		
 		Module_Hulls::Producer_Hulls_Pause (producer_01_consenter);	
-		assert! (Module_Hulls::Hulls_Status () == utf8 (b"paused"), 1);
+		assert! (Module_Guest_Hulls::Status () == utf8 (b"paused"), 1);
 		
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"");		
@@ -75,7 +75,7 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		
 		
 		Module_Hulls::Producer_Hulls_Play (producer_01_consenter);
-		assert! (Module_Hulls::Hulls_Status () == utf8 (b"playing"), 1);
+		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
 		
 		
 		

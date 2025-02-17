@@ -113,7 +113,7 @@ module Builder_01::Module_Hulls {
 		
 		utf8 (b"no")
 	}
-	#[view] public fun Hulls_Status () : String acquires Hulls {
+	friend fun Hulls_Status () : String acquires Hulls {
 		borrow_global<Hulls>(Module_Producer::obtain_address ()).status
 	}
 	//

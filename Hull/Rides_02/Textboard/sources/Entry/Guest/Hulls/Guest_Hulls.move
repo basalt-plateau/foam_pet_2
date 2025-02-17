@@ -23,6 +23,9 @@ module Builder_01::Module_Guest_Hulls {
 	#[view] public fun are_built () : String {
 		Module_Hulls::are_Hulls_built ()
 	}
+	#[view] public fun Status () : String {
+		Module_Hulls::Hulls_Status ()
+	}
 	//
 	////
 }
