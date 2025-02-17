@@ -25,6 +25,7 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01;
 	
@@ -92,7 +93,7 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		//	Ensure text exists
 		//
 		//
-		let texts : vector<Module_Hulls::Text_Envelope> = Module_Hulls::Retrieve_Texts (text_01_platform);
+		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Texts::Retrieve_Texts (text_01_platform);
 		let text_ref = vector::borrow (& texts, 0);
 		assert! (vector::length (& texts) == 1, 1);		
 		assert! (Module_Hulls::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
@@ -109,7 +110,7 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 			writer_01_address,
 			text_01_platform
 		);
-		assert! (vector::length (& Module_Hulls::Retrieve_Texts (text_01_platform)) == 0, 1);	
+		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (text_01_platform)) == 0, 1);	
 		//
 		////
 

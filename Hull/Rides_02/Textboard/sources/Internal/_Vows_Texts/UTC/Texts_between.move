@@ -27,6 +27,7 @@ module Builder_01::Texts_between {
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Texts;
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -95,7 +96,7 @@ module Builder_01::Texts_between {
 		//	Retrieve Texts 20_40
 		//
 		//
-		let texts_20_40 = Module_Hulls::Retrieve_Texts_Between (utf8 (b""), 31557600000 * 20, 31557600000 * 40);
+		let texts_20_40 = Module_Guest_Texts::Retrieve_Texts_Between (utf8 (b""), 31557600000 * 20, 31557600000 * 40);
 		assert! (vector::length (& texts_20_40) == 2, 1);	
 		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_20_40, 0)) == utf8 (b"This is text 000001."), 1);
 		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_20_40, 1)) == utf8 (b"This is text 000002."), 1);
@@ -107,7 +108,7 @@ module Builder_01::Texts_between {
 		//	Retrieve Texts 40_60
 		//
 		//
-		let texts_40_60 = Module_Hulls::Retrieve_Texts_Between (utf8 (b""), 31557600000 * 40, 31557600000 * 60);
+		let texts_40_60 = Module_Guest_Texts::Retrieve_Texts_Between (utf8 (b""), 31557600000 * 40, 31557600000 * 60);
 		assert! (vector::length (& texts_40_60) == 2, 1);	
 		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_20_40, 0)) == utf8 (b"This is text 000003."), 1);
 		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_20_40, 1)) == utf8 (b"This is text 000004."), 1);

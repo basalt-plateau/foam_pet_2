@@ -26,6 +26,7 @@ module Builder_01::Hulls_can_text_to_front {
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Texts;
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -95,7 +96,7 @@ module Builder_01::Hulls_can_text_to_front {
 		//	Ensure text exists
 		//
 		//
-		let texts : vector<Module_Hulls::Text_Envelope> = Module_Hulls::Retrieve_Texts (text_01_platform);
+		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Texts::Retrieve_Texts (text_01_platform);
 		let text_ref = vector::borrow (& texts, 0);
 		assert! (vector::length (& texts) == 1, 1);		
 		assert! (Module_Hulls::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
@@ -108,7 +109,7 @@ module Builder_01::Hulls_can_text_to_front {
 		//
 		//
 		Module_Hulls::Delete_Text (writer_01_consenter, text_01_platform);
-		assert! (vector::length (& Module_Hulls::Retrieve_Texts (text_01_platform)) == 0, 1);	
+		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (text_01_platform)) == 0, 1);	
 		//
 		////
 

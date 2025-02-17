@@ -83,7 +83,7 @@ module Builder_01::Module_Hulls {
 	
 	////
 	//
-	//	Enhance
+	//	Changes:
 	//
 	friend fun Hulls__Hull__change_status (
 		consenter : & signer,
@@ -103,8 +103,9 @@ module Builder_01::Module_Hulls {
 	
 	////
 	//
-	//	Hulls View
-	//
+	//	Hulls:
+	//		Constants: 
+	//			These don't modify the Hulls key structure.
 	//
 	friend fun are_Hulls_built () : String {
 		if (exists<Hulls>(Module_Producer::obtain_address ())) {
@@ -116,27 +117,29 @@ module Builder_01::Module_Hulls {
 	friend fun Hulls_Status () : String acquires Hulls {
 		borrow_global<Hulls>(Module_Producer::obtain_address ()).status
 	}
-	//
-	////
-
-	////
-	//
-	//	Hulls:Hull View
-	//
-	//
-	#[view] public fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
-		let hulls_envelope = vector::empty<String>();
+	friend fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
+		let envelope = vector::empty<String>();
 		
 		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		let hulls_length = vector::length (& hulls_ref.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
-			vector::push_back (&mut hulls_envelope, Hull__retrieve_platform (hull_ref));
+			vector::push_back (&mut envelope, Hull__retrieve_platform (hull_ref));
 		};
 		
-		hulls_envelope
+		envelope
 	}
-	#[view] public fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
+	//
+	////
+	
+	
+	////
+	//
+	//	Hull:
+	//		Constants: 
+	//			These don't modify the Hulls key structure.
+	//
+	friend fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
 		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
@@ -149,7 +152,7 @@ module Builder_01::Module_Hulls {
 		
 		abort 1
 	}
-	#[view] public fun search_for_index_of_hull_v2 (platform : String) : (bool, u64) acquires Hulls {
+	friend fun search_for_index_of_hull_v2 (platform : String) : (bool, u64) acquires Hulls {
 		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
@@ -165,13 +168,13 @@ module Builder_01::Module_Hulls {
 	//
 	////
 	
-	
 	////
 	//
-	//	Hulls:Hull:Texts View
+	//	Texts:
+	//		Constants: 
+	//			These don't modify the Hulls key structure.
 	//
-	//
-	#[view] public fun Retrieve_Count_of_Texts (platform : String) : u64 acquires Hulls {
+	friend fun Retrieve_Count_of_Texts (platform : String) : u64 acquires Hulls {
 		
 		//
 		//	if hull not found, 
@@ -187,7 +190,7 @@ module Builder_01::Module_Hulls {
 		
 		vector::length (hull_texts)
 	}
-	#[view] public fun Retrieve_Texts (platform : String) : vector<Text_Envelope> acquires Hulls {
+	friend fun Retrieve_Texts (platform : String) : vector<Text_Envelope> acquires Hulls {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin;
 		
@@ -226,6 +229,15 @@ module Builder_01::Module_Hulls {
 		
 		hull_texts_envelope
 	}
+	//
+	////
+	
+	////
+	//
+	//	Hulls:Hull:Texts View
+	//
+	//
+	
 	#[view] public fun Retrieve_Texts_Between (
 		platform : String,
 		seconds_begin : u64,

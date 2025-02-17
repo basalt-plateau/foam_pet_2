@@ -26,6 +26,7 @@ module Builder_01::Hulls_can_begin {
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 	

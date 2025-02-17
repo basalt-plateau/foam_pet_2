@@ -26,7 +26,13 @@ module Builder_01::Module_Guest_Hulls {
 	#[view] public fun Status () : String {
 		Module_Hulls::Hulls_Status ()
 	}
+	#[view] public fun Hull_Names () : vector<String> {
+		Module_Hulls::retrieve_vector_of_hull_names ()
+	}
 	//
 	////
+	
+	
+	
 }
 

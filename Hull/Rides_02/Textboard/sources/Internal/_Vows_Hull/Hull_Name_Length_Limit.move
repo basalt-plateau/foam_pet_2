@@ -25,6 +25,7 @@ module Builder_01::Hull_Name_Length_Limit {
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Texts;
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -73,8 +74,8 @@ module Builder_01::Hull_Name_Length_Limit {
 		//
 		////
 		
-		assert! (vector::length (& Module_Hulls::Retrieve_Texts (utf8 (b""))) == 0, 1);
-		assert! (vector::length (& Module_Hulls::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
+		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (utf8 (b""))) == 0, 1);
+		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
 		
 		Module_Hulls::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""));
 		
