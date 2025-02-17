@@ -389,7 +389,6 @@ module Builder_01::Module_Hulls {
 			}
 		};
 		
-		
 		//
 		//	The writer does not have a text on this platform,
 		//	therefore a text is written.
@@ -397,18 +396,7 @@ module Builder_01::Module_Hulls {
 		let this_text = Text__create (writer_address, text);
 		vector::push_back (hull_texts, this_text);
 	}
-	//
-	////////
-	
-
-	
-	
-	////////
-	//
-	//	Texts
-	//
-	//
-	public entry fun Delete_Text (consenter : & signer, platform : String) acquires Hulls {
+	friend fun Delete_Text (consenter : & signer, platform : String) acquires Hulls {
 		let writer_address = signer::address_of (consenter);		
 		
 		let index_of_hull = search_for_index_of_hull (platform);
@@ -426,6 +414,17 @@ module Builder_01::Module_Hulls {
 		
 		abort 260141
 	}
+	//
+	////////
+	
+
+	
+	////////
+	//
+	//	Texts
+	//
+	//
+	
 
 	
 	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {

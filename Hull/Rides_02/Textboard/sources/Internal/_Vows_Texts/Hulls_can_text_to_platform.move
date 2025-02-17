@@ -135,7 +135,7 @@ module Builder_01::Hulls_can_text_to_platform {
 		//	Delete Text
 		//
 		//
-		Module_Hulls::Delete_Text (
+		Module_Guest_Texts::Delete (
 			writer_01_consenter,
 			text_01_platform
 		);

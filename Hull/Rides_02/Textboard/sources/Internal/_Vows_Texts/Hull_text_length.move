@@ -111,7 +111,7 @@ module Builder_01::Text_Length_Limiter {
 		//	Delete Text
 		//
 		//
-		Module_Hulls::Delete_Text (
+		Module_Guest_Texts::Delete (
 			writer_01_consenter,
 			text_01_platform
 		);

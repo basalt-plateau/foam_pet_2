@@ -109,7 +109,7 @@ module Builder_01::Hulls_can_text_to_front {
 		//	Delete Text
 		//
 		//
-		Module_Hulls::Delete_Text (writer_01_consenter, text_01_platform);
+		Module_Guest_Texts::Delete (writer_01_consenter, text_01_platform);
 		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (text_01_platform)) == 0, 1);	
 		//
 		////
