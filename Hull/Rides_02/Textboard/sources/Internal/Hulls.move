@@ -88,7 +88,6 @@ module Builder_01::Module_Hulls {
 		&mut hulls.hulls
 	}
 	//
-	////
 	//
 	//		[Flux]
 	//
@@ -125,7 +124,6 @@ module Builder_01::Module_Hulls {
 		hulls.status = status;
 	}
 	//
-	////
 	//
 	//		[Constants]
 	//
@@ -138,11 +136,6 @@ module Builder_01::Module_Hulls {
 	}
 	friend fun Hulls_Status () : String acquires Hulls {
 		borrow_global<Hulls>(Module_Producer::obtain_address ()).status
-	}
-	fun Ensure_Hulls_is_Playing () acquires Hulls {
-		if (Hulls_Status () != utf8 (b"playing")) {
-			abort Limiter_the_hull_is_not_going
-		}
 	}
 	friend fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
 		let envelope = vector::empty<String>();
@@ -174,6 +167,11 @@ module Builder_01::Module_Hulls {
 		};
 		
 		envelope
+	}
+	fun Ensure_Hulls_is_Playing () acquires Hulls {
+		if (Hulls_Status () != utf8 (b"playing")) {
+			abort Limiter_the_hull_is_not_going
+		}
 	}
 	//
 	////////
