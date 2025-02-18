@@ -38,8 +38,8 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 	
-		let one_APT : u64 = 100000000; 
-		let apt_mint : u64 = one_APT * 100;
+		let one_apt : u64 = 100000000; 
+		let apt_mint : u64 = one_apt * 100;
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -63,12 +63,13 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		let writer_01_address = signer::address_of (writer_01_consenter);
 		account::create_account_for_test (writer_01_address);
 		coin::register<AptosCoin>(writer_01_consenter);
+		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_apt * 10);
 		//
 		let writer_02_address = signer::address_of (writer_02_consenter);
 		account::create_account_for_test (writer_02_address);
 		coin::register<AptosCoin>(writer_02_consenter);
+		coin::transfer<AptosCoin>(producer_01_consenter, writer_02_address, one_apt * 10);
 		//
-		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_APT * 10);
 		//
 		////
 		
@@ -90,15 +91,19 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//
 		//
 		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""));
-		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
 		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 1);
+		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
 		//
 		////
-		
-		Module_Producer_Hull::Play (producer_01_consenter, utf8 (b""));
-		Module_Producer_Hull::Pause (producer_01_consenter, utf8 (b""));
-		
 
+		Module_Producer_Hull::Pause (producer_01_consenter, utf8 (b""));
+		Module_Producer_Hull::Play (producer_01_consenter, utf8 (b""));
+
+		Module_Guest_Texts::Send (writer_02_consenter, utf8 (b"This is text 2."), utf8 (b""));	
+		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 2);
+		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
+		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_02_address, utf8 (b"This is text 2."), 1);
+		
 		
 		////
 		//

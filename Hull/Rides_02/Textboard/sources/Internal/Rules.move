@@ -52,7 +52,6 @@ module Builder_01::Rules_Module {
 	
 	#[test]
     public fun steady_1 () {
-		
 		use std::string::{ Self, String };
 		
 		let rules : String = Volitions_01 ();

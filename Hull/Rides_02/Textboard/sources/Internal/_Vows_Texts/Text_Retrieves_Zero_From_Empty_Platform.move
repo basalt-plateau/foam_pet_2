@@ -24,10 +24,10 @@ module Builder_01::Text_Retrieves_Zero_From_Empty_Platform {
 	
 		use Builder_01::Module_Producer_Hulls;
 		use Builder_01::Module_Producer_Texts;
-		use Builder_01::Module_Hulls; 
-		use Builder_01::Vow_Parts_01; 
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
+		use Builder_01::Vow_Parts_01; 
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -76,8 +76,8 @@ module Builder_01::Text_Retrieves_Zero_From_Empty_Platform {
 		//
 		////
 		
-		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (utf8 (b""))) == 0, 1);
-		assert! (vector::length (& Module_Guest_Texts::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
+		assert! (vector::length (& Module_Guest_Hull::Retrieve_Texts (utf8 (b""))) == 0, 1);
+		assert! (vector::length (& Module_Guest_Hull::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
 		
 		////
 		//

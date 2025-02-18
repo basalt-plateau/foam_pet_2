@@ -10,7 +10,8 @@ module Builder_01::Module_Guest_Texts {
 	use std::vector;
 
 	use Builder_01::Module_Hulls;
-
+	use Builder_01::Module_Guest_Hull;
+	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}
@@ -42,37 +43,16 @@ module Builder_01::Module_Guest_Texts {
 	//	View Constant
 	//
 	//
-	
-	#[view] public fun Retrieve_Texts (
-		platform_name : String
-	) : vector<Module_Hulls::Text_Envelope> {
-		Module_Hulls::Retrieve_Texts (platform_name)
-	}
-	#[view] public fun Retrieve_Texts_Between (
-		platform_name : String,
-		seconds_begin : u64,
-		seconds_end : u64
-	) : vector<Module_Hulls::Text_Envelope> {
-		Module_Hulls::Retrieve_Texts_Between (
-			platform_name,
-			seconds_begin,
-			seconds_end
-		)
-	}
 	#[view] public fun Ensure_Text_Exists_at_Index (
 		platform_name : String,
 		writer_address : address,
 		text : String,
 		text_index : u64
 	) : String {
-		let texts : vector<Module_Hulls::Text_Envelope> = Retrieve_Texts (platform_name);
-		
+		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (platform_name);
 		let text_ref = vector::borrow (& texts, text_index);
 		
-		assert! (
-			Module_Hulls::Text_Envelope_Text (vector::borrow (& texts, text_index)) == text, 
-			1
-		);
+		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts, text_index)) == text, 1);
 		
 		utf8 (b"exists")
 	}

@@ -28,6 +28,7 @@ module Builder_01::Hulls_can_play_and_pause {
 		use Builder_01::Module_Producer_Hulls;
 		use Builder_01::Module_Producer_Texts;
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
