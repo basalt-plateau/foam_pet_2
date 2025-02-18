@@ -29,8 +29,8 @@ module Builder_01::Module_Guest_Hulls {
 	#[view] public fun Hull_Names () : vector<String> {
 		Module_Hulls::retrieve_vector_of_hull_names ()
 	}
-	#[view] public fun Retrieve_Hulls_Info () : vector<String> {
-		Module_Hulls::retrieve_vector_of_hull_names ()
+	#[view] public fun Retrieve_Hulls_Info () : vector<Module_Hulls::Hull_Info_Envelope> {
+		Module_Hulls::retrieve_vector_of_hulls_info ()
 	}
 	//
 	////
