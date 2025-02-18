@@ -47,7 +47,6 @@ module Builder_01::Text_Length_Limiter {
 		coin::deposit (producer_address, coins);
 		
 		
-		
 		////
 		//
 		//	writers:
@@ -64,6 +63,7 @@ module Builder_01::Text_Length_Limiter {
 		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_APT * 10);
 		//
 		////
+		
 		
 		////
 		//

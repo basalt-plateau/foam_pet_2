@@ -89,6 +89,7 @@ module Builder_01::Producer_Texts_can_delete_a_text {
 		Module_Guest_Texts::Send (writer_01_consenter, text_01_text, text_01_platform);
 		//
 		////
+		
 
 		////
 		//

@@ -29,6 +29,12 @@ module Builder_01::Module_Guest_Hull {
 	//	View Constant
 	//
 	//
+	#[view] public fun Ensure_Count_of_Texts (platform_name : String, count : u64) {
+		assert! (Module_Hulls::Retrieve_Count_of_Texts (platform_name) == count, 1);
+	}
+	#[view] public fun Count_of_Texts (platform_name : String) : u64 {
+		Module_Hulls::Retrieve_Count_of_Texts (platform_name)
+	}
 	#[view] public fun Hull_Index (platform_name : String) : u64 {
 		Module_Hulls::search_for_index_of_hull (platform_name)
 	}
@@ -37,6 +43,7 @@ module Builder_01::Module_Guest_Hull {
 	}
 	//
 	////
+	
 }
 
 

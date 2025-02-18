@@ -42,9 +42,7 @@ module Builder_01::Module_Guest_Texts {
 	//	View Constant
 	//
 	//
-	#[view] public fun Count_of_Texts (platform_name : String) : u64 {
-		Module_Hulls::Retrieve_Count_of_Texts (platform_name)
-	}
+	
 	#[view] public fun Retrieve_Texts (
 		platform_name : String
 	) : vector<Module_Hulls::Text_Envelope> {
