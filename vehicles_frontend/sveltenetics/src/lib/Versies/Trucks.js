@@ -91,6 +91,10 @@ export const lease_roomies_truck = () => {
 			},
 			
 			mode,
+			affirmations: {
+				"Motte_Wallet": "yup"
+			},
+			
 			is_producer: ask_is_producer (),
 			
 			origin_address,

@@ -3,23 +3,19 @@
 <script>
 
 /*
-	import Cow from "$lib/trinkets/Cow/Trinket.svelte"
+	import Pig from "$lib/trinkets/Pig/Trinket.svelte"
 */
 
-////
-//
 import { fade } from 'svelte/transition';
-//
-//
 import Sound_Gem from '$lib/trinkets/Sound/Gem.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
-//
-////
-
 let Versies_Freight = false
+	
+	
+
 let sound_gem = ""
 
-const Cow = '/pictures/Cow.svg';
+const Picture = '/pictures/Cow.svg';
 
 let show_dialogue = "no"
 let chat_timeout;
@@ -28,8 +24,6 @@ let cow_clicked = () => {
 	console.log ("cow_clicked");
 	show_dialogue = "yes"
 	sound_gem.playa ();
-	
-	// Versies_Freight.shrink ();
 	
 	clearTimeout (chat_timeout);
 	chat_timeout = setTimeout (() => {
@@ -44,10 +38,10 @@ let cow_clicked = () => {
 
 
 <div
+	monitor="Cow"
 	style="
 		position: relative;
 		border-radius: 50%;
-		cursor: pointer;
 	"
 >
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
@@ -64,7 +58,7 @@ let cow_clicked = () => {
 		style="
 			position: absolute;
 			bottom: 80px;
-			right: 10px;
+			left: 10px;
 
 			box-sizing: border-box;
 			height: 3cm;
@@ -75,9 +69,6 @@ let cow_clicked = () => {
 			// border: 4px solid rgba(var(--color-primary-100));
 			
 			border-radius: 15px;
-			
-			cursor: pointer;
-			
 			overflow-y: scroll;
 		"
 	>
@@ -90,7 +81,6 @@ let cow_clicked = () => {
 				border: 4px solid rgba(var(--color-primary-100));
 				border-radius: 15px;
 				
-				
 				padding: 0.25cm;
 			"
 		>
@@ -99,28 +89,25 @@ let cow_clicked = () => {
 	</div>
 	{/if}
 
-	<button
-		on:click={ cow_clicked }
+	<div
 		style="
 			position: relative;
-			height: 3cm;
-			width: 3cm;
-
-			background: rgba(var(--color-primary-500));
-			border: 4px solid rgba(var(--color-primary-100));
-			
 			border-radius: 50%;
-			
-			cursor: pointer;
 		"
 	>
 		<div
 			style="
 				position: relative;
-				height: 100%;
-				width: 100%;
-
+				top: 0%;
+				left: 50%;
+				transform: translateX(-50%);
+				
+				height: 3cm;
+				width: 3cm;
+				
 				border-radius: 50%;
+				background: rgba(var(--color-primary-500));
+				border: 4px solid rgba(var(--color-primary-100));
 				
 				font-size: 2em;
 				
@@ -128,17 +115,16 @@ let cow_clicked = () => {
 			"
 		>
 			<img 
-				src={ Cow } 
-				alt="cow"
-				
+				src={ Picture } 
+				alt="pig"
 				style=""
 			/>
 		</div>
 		
 		<div 
 			style="
-				position: relative;
-				bottom: -0.25cm;
+				position: absolute;
+				bottom: -10px;
 				left: 50%;
 				transform: translateX(-50%);
 				
@@ -147,8 +133,10 @@ let cow_clicked = () => {
 			"
 			class="card p-1 variant-filled-surface"
 		>
+			<!-- Mutualism -->
 			<p>Peptide</p>
 		</div>
-	</button>
+	</div>
+	
 	{/if}
 </div>

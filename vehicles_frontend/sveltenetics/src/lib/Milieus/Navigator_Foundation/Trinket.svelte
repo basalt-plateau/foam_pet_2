@@ -65,23 +65,6 @@ let buttons_styles = ""
 >
 	<Milieus_Truck on_change={ ({ freight }) => { Milieus_Freight = freight; } } />
 	<Versies_Truck on_change={ ({ freight }) => { Versies_Freight = freight } } />
-	<div
-		style="
-			display: none;
-		
-			position: absolute;
-			bottom: 10px;
-			left: 0;
-			
-			width: 100%;
-			
-			z-index: 1
-		"
-	>	
-		<Cow />
-		<Pig />
-	</div>
-	
 	{#if typeof Milieus_Freight === "object" && typeof Versies_Freight === "object" }
 	{#if mode === "nurture" }
 	<div 

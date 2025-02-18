@@ -40,14 +40,11 @@ let Versies_Freight = "";
 			align-items: center;
 		"
 	>
-		
-		<Pig />
-		
 		<div
 			style="
 				position: relative;
 				display: flex;
-				gap: 0.5cm;
+				gap: 1cm;
 				flex-direction: row;
 				justify-content: center;
 				align-items: center;
@@ -75,9 +72,10 @@ let Versies_Freight = "";
 				is_open_location={[ "Motte" ]}
 			/>
 			{/if}
+
 		</div>
 		
-		<Cow />
+		
 	</div>
 	{/if}
 </div>
