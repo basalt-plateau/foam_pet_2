@@ -40,6 +40,7 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_status,
 		Hull__retrieve_platform,
 		Hull__retrieve_texts,
+		Hull__retrieve_count_of_texts,
 		Hull__retrieve_created_at_now_seconds
 	};
 
@@ -55,6 +56,12 @@ module Builder_01::Module_Hulls {
 		writer_balance : u64,
 		text : String,
 		now_seconds : u64
+	}
+	
+	struct Hull_Info_Envelope has store, drop {
+		status : String,
+		platform_name : String,
+		count_of_texts : u64
 	}
 
 	/*
@@ -145,6 +152,38 @@ module Builder_01::Module_Hulls {
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
 			vector::push_back (&mut envelope, Hull__retrieve_platform (hull_ref));
+		};
+		
+		envelope
+	}
+	friend fun retrieve_vector_of_hulls_info () : vector<Hull_Info_Envelope> acquires Hulls {
+		let envelope = vector::empty<Hull_Info_Envelope>();
+		
+		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_length = vector::length (& hulls_ref.hulls);
+		for (index in 0..hulls_length) {
+			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
+			
+			/*
+			let front = Hull_Info_Envelope (
+				utf8 (b"playing"),
+				utf8 (b""),
+				vector::empty<Text>()
+			);			
+			struct Hull_Info_Envelope has store, drop {
+				status : String,
+				platform_name : String,
+				count_of_texts : u64
+			}
+			*/
+			
+			let hull_info_envelope = Hull_Info_Envelope {
+				status : Hull__retrieve_status (hull_ref),
+				platform_name : Hull__retrieve_platform (hull_ref),
+				count_of_texts : Hull__retrieve_count_of_texts (hull_ref)
+			};
+			
+			vector::push_back (&mut envelope, hull_info_envelope);
 		};
 		
 		envelope

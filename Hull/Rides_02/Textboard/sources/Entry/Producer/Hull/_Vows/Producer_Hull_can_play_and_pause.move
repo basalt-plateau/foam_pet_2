@@ -104,7 +104,6 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
 		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_02_address, utf8 (b"This is text 2."), 1);
 		
-		
 		////
 		//
 		//	After Party

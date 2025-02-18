@@ -56,11 +56,13 @@ module Builder_01::Module_Producer_Hull {
 	//
 	//	Unfinished
 	//
-	public entry fun Producer_Hull_Delete_Then_Pause (
+	public entry fun Producer_Hull_Delete_Every_Text_For_Platform (
 		consenter : & signer,
-		platform : String
+		platform_name : String
 	) {
 		ensure_consenter_is_producer (consenter);
+		
+		
 	}
 	//
 	////

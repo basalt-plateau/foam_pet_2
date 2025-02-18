@@ -4,8 +4,10 @@
 module Builder_01::Module_Hull {
 	friend Builder_01::Module_Producer_Hull;	
 	friend Builder_01::Module_Hulls;
-	
+
+	use std::vector;	
 	use std::string::{ String, utf8 };
+	
 	use aptos_framework::timestamp;	
 	
 	use Builder_01::Text_Module::{
@@ -100,6 +102,9 @@ module Builder_01::Module_Hull {
 	//
 	public fun Hull__retrieve_texts (hull : & Hull) : vector<Text> {
 		hull.texts
+	}
+	public fun Hull__retrieve_count_of_texts (hull : & Hull) : u64 {
+		vector::length (& hull.texts)
 	}
 	public fun Hull__retrieve_status (hull : & Hull) : String {
 		hull.status
