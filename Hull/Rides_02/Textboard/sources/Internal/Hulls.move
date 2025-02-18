@@ -164,19 +164,6 @@ module Builder_01::Module_Hulls {
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
 			
-			/*
-			let front = Hull_Info_Envelope (
-				utf8 (b"playing"),
-				utf8 (b""),
-				vector::empty<Text>()
-			);			
-			struct Hull_Info_Envelope has store, drop {
-				status : String,
-				platform_name : String,
-				count_of_texts : u64
-			}
-			*/
-			
 			let hull_info_envelope = Hull_Info_Envelope {
 				status : Hull__retrieve_status (hull_ref),
 				platform_name : Hull__retrieve_platform (hull_ref),
