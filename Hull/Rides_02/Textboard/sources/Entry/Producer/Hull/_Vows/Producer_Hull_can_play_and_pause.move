@@ -30,8 +30,10 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		use aptos_framework::account;		
 		
 		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Producer_Hull;		
 		use Builder_01::Module_Producer_Texts;
 		use Builder_01::Module_Guest_Hulls;
+		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
@@ -89,31 +91,13 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//
 		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""));
 		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
-		//
-		////
-
-		////
-		//
-		//	Ensure text exists
-		//
-		//
-		// let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Texts::Retrieve_Texts (text_01_platform);
-		// assert! (vector::length (& texts) == 1, 1);		
-		// let text_ref = vector::borrow (& texts, 0);
-		// assert! (vector::length (& texts) == 1, 1);		
-		// assert! (Module_Hulls::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
+		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 1);
 		//
 		////
 		
+		Module_Producer_Hull::Play (producer_01_consenter, utf8 (b""));
+		Module_Producer_Hull::Pause (producer_01_consenter, utf8 (b""));
 		
-		////
-		//
-		
-		//
-		////
-		
-		
-
 
 		
 		////

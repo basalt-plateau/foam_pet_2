@@ -28,13 +28,13 @@ module Builder_01::Module_Producer_Hull {
 	//	Entry Flux: 
 	//		Status 
 	//
-	public entry fun Pause (consenter : & signer, platform : String) {
+	public entry fun Pause (consenter : & signer, platform_name : String) {
 		ensure_consenter_is_producer (consenter);
-		Hulls__Hull__change_status (consenter, platform, utf8 (b"paused"));
+		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"paused"));
 	}
-	public entry fun Play (consenter : & signer, platform : String) {
+	public entry fun Play (consenter : & signer, platform_name : String) {
 		ensure_consenter_is_producer (consenter);
-		Hulls__Hull__change_status (consenter, platform, utf8 (b"playing"));
+		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"playing"));
 	}
 	//
 	////
