@@ -21,7 +21,6 @@ import { Slangify } from "$lib/trinkets/Slang"
 import Getting_Moving from './Getting_Moving/Trinket.svelte'
 import Preparation_Tutorial from './Preparation_Tutorial/Trinket.svelte'
 import Boards from './Boards/Trinket.svelte'
-import Pleasantries from './Pleasantries/Trinket.svelte'
 import Regions from './Regions/Estate.svelte'
 //
 ////
