@@ -26,7 +26,6 @@ import Regions from './Regions/Estate.svelte'
 //
 ////
 import Rules_Frontier from "$lib/Les_Talents/Rules/Frontier/Board.svelte"
-
 import Textboard_Leaf from "$lib/Les_Talents/Textboard/Leaf/Board.svelte"
 	
 
@@ -63,11 +62,7 @@ let Milieus_Freight = false;
 	{/if}
 	
 	<div style="height: 0.5cm"></div>
-	
 	<Textboard_Leaf />
-	
-	<div style="height: 0.5cm"></div>
-	<Pleasantries />
 	<div style="height: 0.5cm"></div>
 	
 	<div

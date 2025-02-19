@@ -93,7 +93,11 @@ let jargon = "Centaurus A";
 				line-height: 100%;
 			"
 		>Eclecticism</header>
+		<!-- ambassador mode -->
+		<!-- finesse, thematicism, eccentric, surrealism, aestheticism -->
 	</div>
+
+	<span>Codexes with an <b>Eclecticism</b> cipher can be found throughout.</span>
 
 	<div
 		style="
