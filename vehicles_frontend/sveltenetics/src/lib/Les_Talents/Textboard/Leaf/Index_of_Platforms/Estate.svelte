@@ -18,6 +18,8 @@ let TF = false;
 const on_click = ({ name }) => {
 	console.info (`on_click: "${ name }"`);
 	TF.info.platform_name = name;
+	
+	TF.fonctions.platform.show ({ name });
 }
 
 onMount (() => {
@@ -62,7 +64,10 @@ onMount (() => {
 					min-height: 20px;
 					min-width: 50px;
 				"
-			>"{ hull.name }"</button>
+			>
+				"{ hull.name }"
+				<span class="badge variant-filled-surface">{ hull.count_of_texts } { hull.button_text }</span>
+			</button>
 		</div>
 		{/each}
 	</div>

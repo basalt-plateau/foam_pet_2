@@ -125,26 +125,34 @@ def clique ():
 	def group ():
 		pass
 
-
+	"""
+	
+	
+	"""
+	
 	"""
 		aptos account fund-with-faucet
 	
 		python3 vocalize.py vocalize --publish --move Rules_10 --builder Bourgeoisie_01
 		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --builder Bourgeoisie_01
+		python3 vocalize.py vocalize --publish --move Textboard --builder Bourgeoisie_01
 	"""
 	
 	"""	
 		python3 vocalize.py vocalize --steady --move Textboard
+	"""
+
+	"""
 		python3 vocalize.py vocalize --publish --move Textboard --builder Bourgeoisie_01
 		python3 vocalize.py vocalize --publish --move Textboard --builder Petra
 	"""
 	"""
 aptos account fund-with-faucet
 
-aptos move run --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Hulls_Module::Begin_Hulls
-aptos move view --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Hulls_Module::are_Hulls_built
+aptos move run --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hulls::Begin --assume-yes
+aptos move view --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Hulls::Status
 
-aptos move run --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Hulls_Module::Send_Text --args String:text String:text
+aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Texts::Send --args String:text String:text
 
 	"""
 	@click.command ("vocalize")

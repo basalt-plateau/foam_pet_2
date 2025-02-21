@@ -8,8 +8,8 @@
 
 
 /*
-	import Motte from "$lib/Motte/Trinket.svelte"
-	<Motte />
+	import Pannier from "$lib/Pannier/Trinket.svelte"
+	<Pannier />
 */
 
 
@@ -34,7 +34,7 @@ import Consent_Leaf from './Consent/Trinket.svelte'
 import Garden_Leaf from './Garden/Tome.svelte'
 import Beauty_Leaf from './Beauty/Tome.svelte'
 //
-import * as Motte_Truck from "./_Truck/index.js"
+import * as Pannier_Truck from "./_Truck/index.js"
 //
 ////
 
@@ -42,11 +42,11 @@ let leaf = "Tutorials";
 
 
 let prepared = "no"
-let Motte_Truck_Freight;
-let Motte_Truck_Monitor;
+let Pannier_Truck_Freight;
+let Pannier_Truck_Monitor;
 onMount (async () => {	
-	Motte_Truck.make ()
-	Motte_Truck_Monitor = Motte_Truck.monitor (async ({
+	Pannier_Truck.make ()
+	Pannier_Truck_Monitor = Pannier_Truck.monitor (async ({
 		original_freight,
 		pro_freight, 
 		//
@@ -56,19 +56,19 @@ onMount (async () => {
 		value
 	}) => {
 		try {
-			Motte_Truck_Freight = Motte_Truck.retrieve ().pro_freight; 
+			Pannier_Truck_Freight = Pannier_Truck.retrieve ().pro_freight; 
 		}
 		catch (imperfection) {
 			console.error (imperfection);
 		}
 	});
 	
-	Motte_Truck_Freight = Motte_Truck.retrieve ().pro_freight;  
+	Pannier_Truck_Freight = Pannier_Truck.retrieve ().pro_freight;  
 	prepared = "yep"
 });
 onDestroy (() => {
-	Motte_Truck_Monitor.stop ()
-	Motte_Truck.destroy ()
+	Pannier_Truck_Monitor.stop ()
+	Pannier_Truck.destroy ()
 });
 
 let nav_width = 0;

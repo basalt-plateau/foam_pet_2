@@ -4,8 +4,8 @@
 
 
 /*
-	import Motte_Truck from "../_Truck/index.js"
-	const Motte_Truck_Freight = Truck_1.retrieve ().pro_freight;
+	import Pannier_Truck from "../_Truck/index.js"
+	const Pannier_Truck_Freight = Truck_1.retrieve ().pro_freight;
 */
 
 import { build_truck } from '@visiwa/trucks'

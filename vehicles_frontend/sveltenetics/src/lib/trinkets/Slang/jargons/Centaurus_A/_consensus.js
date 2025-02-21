@@ -14,7 +14,7 @@
 
 /*
 	Aristocracy, Oligarchy, Government
-	Motte
+	Pannier
 */
 
 /*

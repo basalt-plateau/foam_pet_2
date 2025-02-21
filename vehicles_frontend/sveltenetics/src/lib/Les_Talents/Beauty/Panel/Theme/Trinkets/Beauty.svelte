@@ -17,6 +17,7 @@
 		by last glyph.
 */
 
+////
 //
 import { onMount, onDestroy } from 'svelte'
 import { LightSwitch } from '@skeletonlabs/skeleton';
@@ -31,7 +32,7 @@ import Seeds_Trucks from '$lib/Versies/Trucks.svelte'
 import { check_roomies_truck } from '$lib/Versies/Trucks'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
 //
-//
+////
 
 
 let VF = false;
@@ -47,7 +48,7 @@ const change_tints = ({ theme: _theme }) => {
 		localStorage.setItem ('body-theme', _theme);
 		document.body.setAttribute ('data-theme', _theme)
 		theme = _theme;
-	}	
+	}
 }
 
 
@@ -66,7 +67,6 @@ const Options = [
 
 /*
 	This is for learning the name of the theme.
-	
 */
 const ask_for_theme = () => {
 	let body_theme = document.body.getAttribute ('data-theme') 
@@ -76,7 +76,6 @@ const ask_for_theme = () => {
 	
 	return ''
 }
-
 
 
 
@@ -93,7 +92,6 @@ onMount (() => {
 	
 	mounted = "yes"
 });
-
 
 
 const change_visibility = () => {
@@ -165,22 +163,6 @@ const change_visibility = () => {
 		{/each}
 	</select>
 	
-	{#if false}
-	<RadioGroup 
-		flexDirection={ VF.window_width <= 1000 ? 'flex-col' : 'row'}
-		rounded={ VF.window_width <= 1000 ? 'rounded-container-token' : 'rounded-token'}
-	>
-		<RadioItem bind:group={theme} name="justify" value="Atolls">Atolls</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="Domes">Domes</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="Gauze">Gauze</RadioItem>		
-		<RadioItem bind:group={theme} name="justify" value="Hacienda">Hacienda</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="HD 40307g">HD 40307g</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="Lentils">Lentils</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="Motto">Motto</RadioItem>	
-		<RadioItem bind:group={theme} name="justify" value="PTO">PTO</RadioItem>
-		<RadioItem bind:group={theme} name="justify" value="rhubarb">Rhubarb</RadioItem>
-	</RadioGroup>
-	{/if}
 
 	<div style="height: 0.2cm"></div>
 

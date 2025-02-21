@@ -20,7 +20,7 @@ import { Pontem_stage_creator } from "./../Stages/Pontem.js"
 export const latch_wallets = async () => {
 	try {
 		const Petra_01 = "0xf5565cc1d71781d6ef766a2a50ed459b9d3b430ceb6f7bbf79393c3626a979cd";
-		const Motte_01 = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD";
+		const Pannier_01 = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD";
 		
 		const Wallet_Address = Petra_01;
 		

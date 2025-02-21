@@ -65,7 +65,7 @@ let Milieus = {
 	"Wallet": async () => { return await import ('$lib/Les_Talents/_Wallet/Leaf/Board.svelte') },
 	
 	
-	"Motte": async () => { return await import ('$lib/Motte/Trinket.svelte') },
+	"Pannier": async () => { return await import ('$lib/Pannier/Trinket.svelte') },
 	"Vows": technicians_leaves
 }
 

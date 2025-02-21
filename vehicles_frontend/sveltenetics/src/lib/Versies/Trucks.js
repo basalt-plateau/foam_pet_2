@@ -30,7 +30,6 @@ import { ask_is_producer } from './Screenplays/ask_is_producer.js'
 //
 ////
 
-		
 
 
 let dapp_network_connection_loop;
@@ -47,15 +46,10 @@ const monitor_local_storage = () => {}
 
 var window_size_changed;
 const monitor_window = ({ truck }) => {
-	console.log ({ truck })	
-	
-	var RF = rhythm_filter ({
-		every: 200
-	});
+	var RF = rhythm_filter ({ every: 200 });
 	window_size_changed = (event) => {
 		RF.attempt (({ ellipse, is_last }) => {
 			console.log ("window size changed", { event })
-			
 			truck.freight.window_width = window.innerWidth;
 		});
 	}
@@ -92,7 +86,7 @@ export const lease_roomies_truck = () => {
 			
 			mode,
 			affirmations: {
-				"Motte_Wallet": "yup"
+				"Pannier_Wallet": "yup"
 			},
 			
 			is_producer: ask_is_producer (),

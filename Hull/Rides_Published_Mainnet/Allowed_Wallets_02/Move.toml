@@ -18,6 +18,6 @@ local = "/Metro/aptos-core/aptos-move/framework/aptos-stdlib"
 local = "/Metro/aptos-core/aptos-move/framework/aptos-framework" 
 
 [dependencies.Rules_10]
-local = "/Metro/Board/Rides_Published_Mainnet/Rules_10" 
+local = "/Metro/Hull/Rides_Published_Mainnet/Rules_10" 
 
 

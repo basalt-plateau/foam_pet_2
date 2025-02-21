@@ -1,7 +1,7 @@
 
 
 export const Rhubarb_Theme = {
-    name: 'rhubarb',
+    name: 'Rhubarb',
     properties: {
 		// =~= Theme Properties =~=
 		"--theme-font-family-base": `system-ui`,

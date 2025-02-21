@@ -36,7 +36,7 @@ export const le_label = {
 	//	Extension Wallet
 	//		Greetings, Nose
 	//
-	"Label_Wallet_Extension": "Motte Wallet",
+	"Label_Wallet_Extension": "Pannier Wallet",
 
 	////
 	//

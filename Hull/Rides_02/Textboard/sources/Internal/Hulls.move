@@ -229,6 +229,51 @@ module Builder_01::Module_Hulls {
 		
 		(false, 0)
 	}
+	friend fun Retrieve_Texts_Between (
+		platform : String,
+		seconds_begin : u64,
+		seconds_end : u64
+	) : vector<Text_Envelope> acquires Hulls {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin;
+		
+		let hull_texts_envelope = vector::empty<Text_Envelope>();
+		
+		//
+		//	if hull not found, 
+		//	return an empty vector.
+		//
+		let (exists, index_of_hull) = search_for_index_of_hull_v2 (platform);
+		if (exists != true) {
+			return hull_texts_envelope
+		};
+		
+		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
+		let hull_texts = & Hull__retrieve_texts (hull_ref);
+		let count_of_hull_texts = vector::length (hull_texts);
+		for (index in 0..count_of_hull_texts) {
+			let text_ref = vector::borrow (hull_texts, index);
+			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
+			let text_ref_now_seconds = Text__retrieve_now_seconds (text_ref);
+			
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(
+				text_ref_writer_address
+			);
+			
+			if (text_ref_now_seconds >= seconds_begin && text_ref_now_seconds <= seconds_end) {
+				let this_text = Text_Envelope {
+					writer_address : 	text_ref_writer_address,
+					writer_balance : 	writer_balance,
+					text : 				Text__retrieve_text (text_ref),
+					now_seconds : 		Text__retrieve_now_seconds (text_ref)
+				};
+				vector::push_back (&mut hull_texts_envelope, this_text);
+			}
+		};
+		
+		hull_texts_envelope
+	}
 	//
 	//	[Internal]
 	//
@@ -321,51 +366,7 @@ module Builder_01::Module_Hulls {
 		
 		hull_texts_envelope
 	}
-	friend fun Retrieve_Texts_Between (
-		platform : String,
-		seconds_begin : u64,
-		seconds_end : u64
-	) : vector<Text_Envelope> acquires Hulls {
-		use aptos_framework::coin;
-		use aptos_framework::aptos_coin;
-		
-		let hull_texts_envelope = vector::empty<Text_Envelope>();
-		
-		//
-		//	if hull not found, 
-		//	return an empty vector.
-		//
-		let (exists, index_of_hull) = search_for_index_of_hull_v2 (platform);
-		if (exists != true) {
-			return hull_texts_envelope
-		};
-		
-		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
-		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
-		let hull_texts = & Hull__retrieve_texts (hull_ref);
-		let count_of_hull_texts = vector::length (hull_texts);
-		for (index in 0..count_of_hull_texts) {
-			let text_ref = vector::borrow (hull_texts, index);
-			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
-			let text_ref_now_seconds = Text__retrieve_now_seconds (text_ref);
-			
-			let writer_balance = coin::balance<aptos_coin::AptosCoin>(
-				text_ref_writer_address
-			);
-			
-			if (text_ref_now_seconds >= seconds_begin && text_ref_now_seconds <= seconds_end) {
-				let this_text = Text_Envelope {
-					writer_address : 	text_ref_writer_address,
-					writer_balance : 	writer_balance,
-					text : 				Text__retrieve_text (text_ref),
-					now_seconds : 		Text__retrieve_now_seconds (text_ref)
-				};
-				vector::push_back (&mut hull_texts_envelope, this_text);
-			}
-		};
-		
-		hull_texts_envelope
-	}
+	
 	//
 	//
 	//	[Flux]

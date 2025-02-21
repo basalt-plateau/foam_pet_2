@@ -37,7 +37,6 @@ export const ask_for_dapp_network = () => {
 				* dapp_net_name
 				* dapp_chain_id				
 	*/
-	
 	let net_path = "https://api.mainnet.aptoslabs.com/v1"
 	let net_name = "mainnet"
 	let chain_id = "1"

@@ -1,50 +1,6 @@
 
 
-/*
-	import { onMount, onDestroy } from 'svelte'
-	import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 
-	onMount (async () => {	
-		Textboard_Truck.make ()
-	});
-	onDestroy (() => {
-		Textboard_Truck.destroy ()
-	});
-*/
-
-/*
-	import { onMount, onDestroy } from 'svelte'
-	import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
-	
-	let TT_Monitor;
-	let TT_Freight;
-	onMount (async () => {
-		TT_Freight = Textboard_Truck.retrieve ().pro_freight; 
-		
-		TT_Monitor = Textboard_Truck.monitor (async ({
-			original_freight,
-			pro_freight, 
-			//
-			target,
-			//
-			property, 
-			value
-		}) => {
-			try {
-				if (bracket === original_freight.info && property === "text") {
-					console.info ("text changed.");
-				}
-			}
-			catch (imperfection) {
-				console.error (imperfection);
-			}
-		});
-	});
-
-	onDestroy (() => {
-		TT_Monitor.stop ()
-	}); 
-*/
 
 ////
 //
@@ -65,13 +21,28 @@ import { ask_is_producer } from './screenplays/ask_is_producer.js'
 
 const trucks = {}
 
+const Guest_Fonctions = {
+	view: {
+	
+	},
+	entry: {
+		
+	}
+};
+
+const Producer_Fonctions = {
+	entry: {
+		
+	}
+}
+
 /*
 	This adds a truck to the trucks object as trucks [1] = ...
 	Such, the truck can then be deleted with the "destroy" method.
 */
 export const make = () => {
 	
-	const Motte_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+	const Pannier_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
 	
 	
 	
@@ -84,35 +55,36 @@ export const make = () => {
 			info: {
 				is_producer: ask_is_producer (),
 				
-				Builder_01: Motte_01_LA,
+				Builder_01: Pannier_01_LA,
 				
 				hulls: [],
 				
 				platform_name: "",				
 				texts: [],
-				
 				text: "",
 				
 				searching_for_texts: "no"
 			},
 			fonctions: {
-				scout: async () => {
-					const View_Fonctions = {
-						is_Hull_built: `${ Builder_01 }::Hulls_Module::is_Hull_built`,
-						retrieve_vector_of_hull_names: `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
-						retrieve_texts: `${ Builder_01 }::Hulls_Module::retrieve_texts`
-					};
+				platform: {
+					async show ({ name }) {
+						TF.info.platform_name = name;
+						await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
+					}
 				},
+				
+				scout: async () => {},
+				
 				retrieve_texts: async ({ platform_name }) => {
 					trucks [1].freight.searching_for_texts = "yup"
+					trucks [1].freight.info.texts = []
 					
 					const Builder_01 = trucks [1].freight.info.Builder_01;
-					const { texts } = await trucks [1].freight.fonctions.retrieve_texts_for_platform ({
+					await trucks [1].freight.fonctions.retrieve_texts_for_platform ({
 						Builder_01,
 						platform_name
 					});
 					
-					trucks [1].freight.info.texts = texts;
 					trucks [1].freight.info.searching_for_texts = "no"
 				},
 				send_text: async () => {
@@ -125,7 +97,7 @@ export const make = () => {
 					/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
 					const { result, note, transaction } = await EWF.prompt ({
 						petition: {
-							function: `${ Builder_01 }::Hulls_Module::Send_Text`,
+							function: `${ Builder_01 }::Module_Guest_Texts::Send`,
 							type_arguments: [],
 							arguments: [
 								text,
@@ -147,12 +119,15 @@ export const make = () => {
 					await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
 				},
 				retrieve_texts_for_platform: async () => {
+					trucks [1].freight.searching_for_texts = "yup"
+					trucks [1].freight.info.texts = []
+					
 					const Builder_01 = trucks [1].freight.info.Builder_01;
 					const platform_name = trucks [1].freight.info.platform_name;
 					
 					const { result } = await view_fonction ({
 						body: {
-							"function": `${ Builder_01 }::Hulls_Module::Retrieve_Texts`,
+							"function": `${ Builder_01 }::Module_Guest_Hull::Retrieve_Texts`,
 							"type_arguments": [],
 							"arguments": [
 								platform_name
@@ -169,32 +144,31 @@ export const make = () => {
 					});
 					
 					trucks [1].freight.info.texts = texts;
+					trucks [1].freight.info.searching_for_texts = "no"
 				},
 				retrieve_hulls: async () => {
 					const Builder_01 = trucks [1].freight.info.Builder_01;
 					
 					const { result } = await view_fonction ({
 						body: {
-							"function": `${ Builder_01 }::Hulls_Module::retrieve_vector_of_hull_names`,
+							// "function": `${ Builder_01 }::Module_Guest_Hulls::Hull_Names`,
+							"function": `${ Builder_01 }::Module_Guest_Hulls::Retrieve_Hulls_Info`,							
 							"type_arguments": [],
 							"arguments": []
 						}
 					});
 					
-					console.log ("retrieve_hull_names:", { result });
+					console.log ("retrieve_hulls:", { result });
 					
-					const hulls = result [0].map (name => {
-						/*
-						if (name === "") {
-							return {
-								name: ,
-								label: "front"
-							}
-						}
-						*/
+					const hulls = result [0].map (platform => {
+						let button_text = platform.count_of_texts === "1" ? "text" : "texts"
 						
 						return {
-							name
+							name: platform.platform_name,
+							count_of_texts: platform.count_of_texts,
+							status: platform.count_of_texts,
+							
+							button_text
 						}
 					});
 					
