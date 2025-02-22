@@ -5,11 +5,19 @@
 	This is the texts of the presently open platform.
 */
 
+////
+//
 import { onMount, onDestroy } from 'svelte'
-
+//
+//
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
-import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
+import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
+//
+//
+import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
+//
+////
 
 
 let TF = false;
@@ -70,7 +78,6 @@ onMount (() => {
 				"
 				class="variant-soft-surface"
 			>{ text.writer_address }</span>
-			
 			<div
 				style="
 					display: flex;
@@ -87,7 +94,7 @@ onMount (() => {
 						padding: 0 0.25cm;
 					"
 					
-				>{ text.writer_balance }</span>
+				>{ text.writer_balance_apt }</span>
 			</div>
 		</div>
 		
@@ -111,7 +118,7 @@ onMount (() => {
 		</div>
 		{/if}
 		
-		{#if TF.is_producer === "yup" }
+		{#if TF.info.is_producer === "yup" }
 		<div
 			style="
 				display: flex;

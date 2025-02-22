@@ -27,9 +27,7 @@ const Guest_Fonctions = {
 };
 
 const Producer_Fonctions = {
-	entry: {
-		
-	}
+	entry: {}
 }
 
 /*
@@ -138,12 +136,21 @@ export const make = () => {
 					});
 					
 					const texts = result [0].map (text => {
+						const writer_balance_apt = ask_convert_Octas_to_APT ({ Octas: text.writer_balance });
+						const writer_balance_octas = text.writer_balance;
+						
+						
 						return {
-							text: text.text,
 							writer_address: address_to_hexadecimal (text.writer_address),
-							writer_balance: ask_convert_Octas_to_APT ({ Octas: text.writer_balance }) 
+							writer_balance_apt,
+							writer_balance_octas,
+							text: text.text
 						}
+					})
+					.sort ((a, b) => {
+						return parseInt (b.writer_balance_octas) - parseInt (a.writer_balance_octas)
 					});
+					
 					
 					trucks [1].freight.info.texts = texts;
 					trucks [1].freight.info.searching_for_texts = "no"

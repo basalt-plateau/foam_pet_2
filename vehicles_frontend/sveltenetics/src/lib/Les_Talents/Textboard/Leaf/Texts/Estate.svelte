@@ -68,8 +68,7 @@ onDestroy (async () => {});
 		<Progress_Wall show={ "yes" } />
 	</div>
 	{/if}
-
-
+	
 	<Platform_Texts />
 	<Text_Writer />
 </div>

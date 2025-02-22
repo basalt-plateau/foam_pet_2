@@ -29,10 +29,7 @@ module Builder_01::Module_Guest_Texts {
 	) {
 		Module_Hulls::Send_Text (consenter, text, platform_name);
 	}
-	public entry fun Delete (
-		consenter : & signer,
-		platform_name : String
-	) {
+	public entry fun Delete (consenter : & signer, platform_name : String) {
 		Module_Hulls::Delete_Text (consenter, platform_name);
 	}
 	//

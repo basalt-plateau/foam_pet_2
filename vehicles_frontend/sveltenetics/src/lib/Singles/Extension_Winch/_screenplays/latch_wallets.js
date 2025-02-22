@@ -1,6 +1,14 @@
 
 /*
 	import { latch_wallets } from "$lib/Singles/Extension_Winch/_screenplays/latch_wallets.js"
+	import * as Extension_Winch from "$lib/Singles/Extension_Winch"
+
+	
+	await Extension_Winch.make ();
+	lease_roomies_truck ()
+	lease_Milieus_truck ()
+	
+	await latch_wallets ();
 */
 
 
@@ -28,9 +36,7 @@ export const latch_wallets = async () => {
 		
 		console.info (
 			"Allowed wallets is connecting to hard coded net_path address:", 
-			{
-				net_path
-			}
+			{ net_path }
 		);
 		
 		
@@ -51,7 +57,6 @@ export const latch_wallets = async () => {
 		
 		
 		let EWF = Extension_Winch.freight ();
-		
 		if (allowed_wallets.includes ("Petra")) {
 			try {
 				EWF.stages.Petra = await Petra_stage_creator ({ freight: EWF });
@@ -60,7 +65,6 @@ export const latch_wallets = async () => {
 				console.error (imperfection);
 			}
 		}
-		
 		if (allowed_wallets.includes ("Rise")) {
 			try {
 				EWF.stages.Rise = await Rise_stage_creator ({ freight: EWF });
@@ -69,7 +73,6 @@ export const latch_wallets = async () => {
 				console.error (imperfection);
 			}
 		}
-		
 		if (allowed_wallets.includes ("Pontem")) {
 			try {
 				EWF.stages.Pontem = await Pontem_stage_creator ({ freight: EWF });
@@ -78,6 +81,8 @@ export const latch_wallets = async () => {
 				console.error (imperfection);
 			}
 		}
+		
+		
 			
 			
 		let stages = EWF.stages;

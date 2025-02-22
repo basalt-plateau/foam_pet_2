@@ -1,11 +1,19 @@
 
+/*
+	import { latch_wallets } from "$lib/Singles/Extension_Winch/_screenplays/latch_wallets.js"
+	import * as Extension_Winch from "$lib/Singles/Extension_Winch"
 
-
+	
+	await Extension_Winch.make ();
+	lease_roomies_truck ()
+	lease_Milieus_truck ()
+	
+	await latch_wallets ();
+*/
 /*
 	Could ask for wallet network status if the wallet 
 	is asking to connect to a trusted node.
 */
-
 
 ////
 //
@@ -237,7 +245,6 @@ export const make = async (packet) => {
 				trucks [1].freight.stage_name_connected = stage_name
 				trucks [1].freight.stage = stage;
 				console.info ("connected to:", stage_name);
-				
 				
 				
 				localStorage.setItem ("extension winch connected", stage_name);

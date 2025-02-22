@@ -70,6 +70,10 @@ let Versies_Freight = "";
 				name={ "Pannier" }
 				location={[ "Pannier" ]}
 				is_open_location={[ "Pannier" ]}
+				
+				style="
+					padding: 0.25cm 1cm;
+				"
 			/>
 			{/if}
 

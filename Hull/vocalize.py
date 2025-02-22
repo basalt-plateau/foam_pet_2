@@ -124,36 +124,48 @@ def clique ():
 	@click.group ()
 	def group ():
 		pass
-
-	"""
 	
 	
 	"""
-	
-	"""
-		aptos account fund-with-faucet
-	
-		python3 vocalize.py vocalize --publish --move Rules_10 --builder Bourgeoisie_01
-		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --builder Bourgeoisie_01
 		python3 vocalize.py vocalize --publish --move Textboard --builder Bourgeoisie_01
+		python3 vocalize.py vocalize --publish --move Textboard --builder Petra
 	"""
 	
 	"""	
 		python3 vocalize.py vocalize --steady --move Textboard
 	"""
-
+	
 	"""
+		python3 vocalize.py vocalize --publish --move Rules_10 --builder Bourgeoisie_01
+		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --builder Bourgeoisie_01
 		python3 vocalize.py vocalize --publish --move Textboard --builder Bourgeoisie_01
-		python3 vocalize.py vocalize --publish --move Textboard --builder Petra
 	"""
+
 	"""
-aptos account fund-with-faucet
-
-aptos move run --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hulls::Begin --assume-yes
-aptos move view --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Hulls::Status
-
-aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Texts::Send --args String:text String:text
-
+		(cd /Metro/Hull && aptos init --assume-yes --network devnet --private-key 0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C) 
+		aptos account fund-with-faucet --amount 1000000000
+		aptos move run --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hulls::Begin --assume-yes
+		aptos move view --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Hulls::Status
+		aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Texts::Send --args String:Platform_1 String:Text_1
+	"""
+	
+	"""
+		(cd /Metro/Hull && aptos init --assume-yes --network devnet --private-key B779524378A5B497896AB4B5A9EA4B7869AB548796AB4B5A694B7796A4B52617) 
+		aptos account fund-with-faucet --amount 100000000
+		aptos move run --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hulls::Begin --assume-yes
+		aptos move view --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Hulls::Status
+		aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Texts::Send --args String:Platform_1 String:Text_1
+	"""
+	
+	"""
+		(cd /Metro/Hull && aptos init --assume-yes --network devnet --private-key B4079EADBC8F9EACB0712365BC9EADBC8F9EADBC0712365BC9EADBC8F9EADBC8) 
+		aptos account fund-with-faucet --amount 1000000000
+		aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Texts::Send --args String:Platform_1 String:Text_1
+		aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Guest_Texts::Send --args String:Platform_1 String:Text_2
+	"""
+	
+	"""
+aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hull::Pause --args String:Platform_1
 	"""
 	@click.command ("vocalize")
 	@click.option ('--move', type = str, help = '')
