@@ -11,6 +11,9 @@ importers:
       '@aptos-labs/ts-sdk':
         specifier: ^1.33.1
         version: 1.33.1
+      '@bothy/trucks':
+        specifier: ^2.0.0
+        version: 2.0.0
       '@floating-ui/dom':
         specifier: ^1.6.11
         version: 1.6.11
@@ -32,9 +35,6 @@ importers:
       '@sveltejs/adapter-static':
         specifier: ^3.0.2
         version: 3.0.5(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)))(svelte@4.2.19)(vite@5.4.8(@types/node@22.7.5)))
-      '@visiwa/trucks':
-        specifier: ^1.5.0
-        version: 1.5.0
       '@zxing/browser':
         specifier: 0.1.5
         version: 0.1.5(@zxing/library@0.21.2)
@@ -330,6 +330,9 @@ packages:
   '@babel/types@7.25.7':
     resolution: {integrity: sha512-vwIVdXG+j+FOpkwqHRcBgHLYNL7XMkufrlaFvL9o6Ai9sJn9+PdyIL5qa0XzTZw084c+u9LOls53eoZWP/W5WQ==}
     engines: {node: '>=6.9.0'}
+
+  '@bothy/trucks@2.0.0':
+    resolution: {integrity: sha512-xtPLExsOWC5i6qPDiZbiwZT6z41yZSedjm84ewkTLAnU7mGpscMqtUOga24Hfk8jQJjiDPwyiNGT3kCWuH9zoQ==}
 
   '@commander-js/extra-typings@12.1.0':
     resolution: {integrity: sha512-wf/lwQvWAA0goIghcb91dQYpkLBcyhOhQNqG/VgWhnKzgt+UOMvra7EX/2fv70arm5RW+PUHoQHHDa6/p77Eqg==}
@@ -1159,9 +1162,6 @@ packages:
     resolution: {integrity: sha512-Z2kq/hSv1RC3PYAaoXOGB0PEWXCVsgYtdnuFXR/8Tp0Yj2Wdeq906/s411/sqMUvXIaIhm2O9WaDfe0ISoV0sg==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
-
-  '@visiwa/trucks@1.5.0':
-    resolution: {integrity: sha512-JwPkteJoeiMm51HkBH/ojt7qRwkuraOc+fR3OXifXdKgSZl+rgzEyUShptZqc0cHd7AMyXZAhC/tiSMeS6uaSQ==}
 
   '@vitest/expect@1.6.0':
     resolution: {integrity: sha512-ixEvFVQjycy/oNgHjqsL6AZCDduC+tflRluaHIzKIsdbzkLn2U/iBnVeJwB6HsIjQBdfMR8Z0tRxKUsvFJEeWQ==}
@@ -3623,6 +3623,10 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.7
       to-fast-properties: 2.0.0
 
+  '@bothy/trucks@2.0.0':
+    dependencies:
+      lodash: 4.17.21
+
   '@commander-js/extra-typings@12.1.0(commander@12.1.0)':
     dependencies:
       commander: 12.1.0
@@ -4614,10 +4618,6 @@ snapshots:
       vite: 5.4.8(@types/node@22.7.5)
     transitivePeerDependencies:
       - rollup
-
-  '@visiwa/trucks@1.5.0':
-    dependencies:
-      lodash: 4.17.21
 
   '@vitest/expect@1.6.0':
     dependencies:

@@ -22,11 +22,11 @@ import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 //
 //
 import { view_fonction } from "$lib/PTO_API/View/index.js"
+import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
-import * as Textboard_Truck from '$lib/Les_Talents/Textboard/Truck/index.js'
 import Progress_Wall from '$lib/trinkets/Progress/Wall/Trinket.svelte'
-import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
+import * as Textboard_Truck from '$lib/Les_Talents/Textboard/Truck/index.js'
 //
 //
 import Index_of_Platforms from "./Index_of_Platforms/Estate.svelte"

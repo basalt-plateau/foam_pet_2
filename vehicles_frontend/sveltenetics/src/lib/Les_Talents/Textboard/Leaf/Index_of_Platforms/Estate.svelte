@@ -9,6 +9,7 @@ import { onMount, onDestroy } from 'svelte'
 //
 //
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
+import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 //
 ////
@@ -16,9 +17,6 @@ import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 let TF = false;
 
 const on_click = ({ name }) => {
-	console.info (`on_click: "${ name }"`);
-	TF.info.platform_name = name;
-	
 	TF.fonctions.platform.show ({ name });
 }
 
@@ -48,12 +46,22 @@ onMount (() => {
 		/>
 	</label>
 	
-	<div>
+	<div
+		style="
+			padding: 0.25cm 0;
+		
+			display: flex;
+			flex-direction: column;
+			gap: 0.1cm;
+		"
+	>
 		{#each TF.info.hulls as hull }
 		<div
 			style="
-				padding: 0.25cm 0;
+				padding: 0.25cm;
+				width: 100%;
 			"
+			class="card p-4"
 		>
 			<button
 				on:click={() => { 
@@ -65,9 +73,40 @@ onMount (() => {
 					min-width: 50px;
 				"
 			>
-				"{ hull.name }"
+				<span>"{ hull.name }"</span>
 				<span class="badge variant-filled-surface">{ hull.count_of_texts } { hull.button_text }</span>
 			</button>
+			
+			{#if TF.info.is_producer === "yup" }
+			<div
+				style="
+					margin-top: 0.1cm;
+					
+					display: flex;
+					flex-direction: row;
+					gap: 0.1cm;
+				"
+			>
+				<Petition_APT_Button
+					onMount={({ mode }) => {
+						mode ("on");
+					}}
+					button_text={ `Delete "${ hull.name }" as Producer` }
+					APT="0"
+					clicked={() => {
+						
+					}}
+				/>
+				<Petition_APT_Button
+					onMount={({ mode }) => {
+						mode ("on");
+					}}
+					button_text={ `Pause "${ hull.name }" as Producer` }
+					APT="0"
+					clicked={() => {}}
+				/>
+			</div>
+			{/if}
 		</div>
 		{/each}
 	</div>

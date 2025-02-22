@@ -4,7 +4,7 @@
 
 ////
 //
-import { build_truck } from '@visiwa/trucks'
+import { build_truck } from '@bothy/trucks'
 //
 //
 import * as Extension_Winch from "$lib/Singles/Extension_Winch"	
@@ -22,12 +22,8 @@ import { ask_is_producer } from './screenplays/ask_is_producer.js'
 const trucks = {}
 
 const Guest_Fonctions = {
-	view: {
-	
-	},
-	entry: {
-		
-	}
+	view: {},
+	entry: {}
 };
 
 const Producer_Fonctions = {
@@ -66,9 +62,15 @@ export const make = () => {
 				searching_for_texts: "no"
 			},
 			fonctions: {
+				producer: {
+					async pause_hull () {
+						
+					}
+				},
+				
 				platform: {
 					async show ({ name }) {
-						TF.info.platform_name = name;
+						trucks [1].freight.info.platform_name = name;
 						await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
 					}
 				},
@@ -151,7 +153,6 @@ export const make = () => {
 					
 					const { result } = await view_fonction ({
 						body: {
-							// "function": `${ Builder_01 }::Module_Guest_Hulls::Hull_Names`,
 							"function": `${ Builder_01 }::Module_Guest_Hulls::Retrieve_Hulls_Info`,							
 							"type_arguments": [],
 							"arguments": []

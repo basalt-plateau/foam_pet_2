@@ -10,7 +10,7 @@
 ////
 //
 //
-import { build_truck } from '@visiwa/trucks'
+import { build_truck } from '@bothy/trucks'
 //
 //
 import { send_to_extension } from './Petition/send_to_extension.js'

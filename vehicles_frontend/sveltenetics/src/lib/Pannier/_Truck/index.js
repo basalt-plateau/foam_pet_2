@@ -8,7 +8,7 @@
 	const Pannier_Truck_Freight = Truck_1.retrieve ().pro_freight;
 */
 
-import { build_truck } from '@visiwa/trucks'
+import { build_truck } from '@bothy/trucks'
 
 const trucks = {}
 

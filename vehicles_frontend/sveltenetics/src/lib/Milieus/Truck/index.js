@@ -60,7 +60,7 @@
 import * as AptosSDK from "@aptos-labs/ts-sdk";
 //
 //
-import { build_truck } from '@visiwa/trucks'
+import { build_truck } from '@bothy/trucks'
 //
 //
 import { has_field } from '$lib/taverns/procedures/object/has_field'

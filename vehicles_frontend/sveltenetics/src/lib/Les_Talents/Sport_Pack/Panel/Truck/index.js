@@ -5,7 +5,7 @@
 	https://explorer.aptoslabs.com/account/0x2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd/modules/view/Rules_10?network=devnet
 */
 
-import { build_truck } from '@visiwa/trucks'
+import { build_truck } from '@bothy/trucks'
 
 const trucks = {}
 

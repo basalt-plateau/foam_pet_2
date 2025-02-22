@@ -27,13 +27,13 @@
 */
 
 /*
-	https://www.npmjs.com/package/@visiwa/trucks
+	https://www.npmjs.com/package/@bothy/trucks
 */
 
 // $lib/trucks/truck_1/index.js
 
 
-import { build_truck } from '@visiwa/trucks'
+import { build_truck } from '@bothy/trucks'
 
 const trucks = {}
 

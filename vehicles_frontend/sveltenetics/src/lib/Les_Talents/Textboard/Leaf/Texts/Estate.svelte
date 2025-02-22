@@ -68,34 +68,7 @@ onDestroy (async () => {});
 		<Progress_Wall show={ "yes" } />
 	</div>
 	{/if}
-	
-	{#if TF.info.is_producer === "yup" }
-	<div
-		style="
-			display: grid;
-			gap: 0.1cm;
-			grid-template-columns: repeat(auto-fit, minmax(10cm, 1fr));
-		"
-		class="card p-2 variant-soft-surface"
-	>
-		<Petition_APT_Button
-			onMount={({ mode }) => {
-				mode ("on");
-			}}
-			button_text={ `Delete "${ TF.info.platform_name }" as Producer` }
-			APT="0"
-			clicked={() => {}}
-		/>
-		<Petition_APT_Button
-			onMount={({ mode }) => {
-				mode ("on");
-			}}
-			button_text={ `Pause "${ TF.info.platform_name }" as Producer` }
-			APT="0"
-			clicked={() => {}}
-		/>
-	</div>
-	{/if}
+
 
 	<Platform_Texts />
 	<Text_Writer />
