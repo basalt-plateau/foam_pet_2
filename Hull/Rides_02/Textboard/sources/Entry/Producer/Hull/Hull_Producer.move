@@ -58,7 +58,6 @@ module Builder_01::Module_Producer_Hull {
 	) {
 		ensure_consenter_is_producer (consenter);
 		
-		
 	}
 	//
 	////

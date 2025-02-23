@@ -32,6 +32,7 @@
 			
 		Delete with Refund:
 			aptos account fund-with-faucet --amount 1000000000
+			
 			aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Texts::Delete_with_Refund \
 			--args address:0xC2C8122F7AC679D06BF31CEDA9F8AEFD382DB97A63D403C1686BFBA1BE5F25B5 \
 			--args String:Topic_1 \

@@ -58,6 +58,7 @@ Builder_Addresses = {
 
 def motion_for_named_addresses (packet):
 	publisher_address = packet ["publisher_address"]
+	dev = packet ["dev"]
 	
 	
 	#
@@ -65,10 +66,15 @@ def motion_for_named_addresses (packet):
 	#	Publisher
 	#
 	#
-	Builder_01 = {
-		"address": publisher_address
-	}
-	
+	if (dev == "yup"):
+		Builder_01 = {
+			"address": publisher_address
+		}
+	else:
+		Builder_01 = {
+			"address": "0xE"
+		}
+		
 	#
 	#	Producer (Owner, etc.)
 	#		This is so that a producer address doesn't need to be passed
@@ -183,6 +189,7 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 			moves_structures [ move ].publish ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
+					"dev": "yup",
 					"publisher_address": publisher_address
 				})
 			});
@@ -194,6 +201,7 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 			moves_structures [ move ].steady ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
+					"dev": "nah",
 					"publisher_address": publisher_address
 				})
 			});
