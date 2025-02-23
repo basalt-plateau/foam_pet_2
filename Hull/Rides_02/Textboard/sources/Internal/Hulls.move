@@ -469,12 +469,12 @@ module Builder_01::Module_Hulls {
 		platform : String 
 	) acquires Hulls {
 		ensure_consenter_is_producer (consenter);
-
+		
 		let producer_address = Module_Producer::obtain_address ();
-
+		
 		let index_of_hull = search_for_index_of_hull (platform);
 		let hulls = borrow_global_mut<Hulls>(producer_address);
-		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);	
+		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
 		
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
 		for (index_of_text in 0..vector::length (hull_texts)) {

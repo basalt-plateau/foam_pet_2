@@ -140,7 +140,7 @@ def clique ():
 		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --builder Bourgeoisie_01
 		python3 vocalize.py vocalize --publish --move Textboard --builder Bourgeoisie_01
 	"""
-
+	
 	"""
 		(cd /Metro/Hull && aptos init --assume-yes --network devnet --private-key 0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C) 
 		aptos account fund-with-faucet --amount 1000000000

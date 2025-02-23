@@ -36,7 +36,10 @@ const Producer_Fonctions = {
 */
 export const make = () => {
 	
+	
+	
 	const Pannier_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+	
 	
 	
 	
@@ -53,7 +56,7 @@ export const make = () => {
 				
 				hulls: [],
 				
-				platform_name: "",				
+				platform_name: "",
 				texts: [],
 				text: "",
 				
@@ -61,9 +64,7 @@ export const make = () => {
 			},
 			fonctions: {
 				producer: {
-					async pause_hull () {
-						
-					}
+					async pause_hull () {}
 				},
 				
 				platform: {

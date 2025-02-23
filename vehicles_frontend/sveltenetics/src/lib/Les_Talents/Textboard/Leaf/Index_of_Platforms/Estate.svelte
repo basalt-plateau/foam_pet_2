@@ -81,7 +81,6 @@ onMount (() => {
 				"
 			>
 				<button
-					disabled={ hull.status !== "playing" }
 					on:click={() => { 
 						on_click ({ name: hull.name });
 					}}
@@ -90,8 +89,7 @@ onMount (() => {
 					style={
 						parse_styles ({
 							"min-height": "20px",
-							"min-width": "50px",
-							"opacity": hull.status !== "playing" ? 0.3 : 1
+							"min-width": "50px"
 						})
 					}
 				>
