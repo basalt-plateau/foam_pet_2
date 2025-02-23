@@ -19,6 +19,7 @@ import { Domes_Theme } from './_themes/skeleton.Domes.theme'
 import { HD_Theme } from './_themes/skeleton.HD.theme'
 import { Lentils_Theme } from './_themes/skeleton.Lentils.theme'
 import { Bayanihan_Theme } from './_themes/skeleton.Bayanihan.theme'
+import { Room_Theme } from './_themes/skeleton.Room.theme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -57,7 +58,9 @@ export default {
 					Gauze_Theme,
 					Domes_Theme,
 					HD_Theme,
-					Lentils_Theme
+					Lentils_Theme,
+					
+					Room_Theme
 					
 					// Rust_Theme, 
 					// Established_Theme 

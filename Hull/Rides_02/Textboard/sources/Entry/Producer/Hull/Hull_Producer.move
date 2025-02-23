@@ -20,7 +20,8 @@ module Builder_01::Module_Producer_Hull {
 		Hulls,
 		Hulls__mut_retrieve_hulls,
 		search_for_index_of_hull,
-		Hulls__Hull__change_status
+		Hulls__Hull__change_status,
+		Hulls__Hull__delete_every_text
 	};
 	
 	////
@@ -57,7 +58,7 @@ module Builder_01::Module_Producer_Hull {
 		platform_name : String
 	) {
 		ensure_consenter_is_producer (consenter);
-		
+		Hulls__Hull__delete_every_text (consenter, platform_name);
 	}
 	//
 	////

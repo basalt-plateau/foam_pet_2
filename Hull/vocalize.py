@@ -189,7 +189,7 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 			moves_structures [ move ].publish ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
-					"dev": "yup",
+					"dev": "nah",
 					"publisher_address": publisher_address
 				})
 			});
@@ -201,7 +201,7 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 			moves_structures [ move ].steady ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
-					"dev": "nah",
+					"dev": "yup",
 					"publisher_address": publisher_address
 				})
 			});
