@@ -68,6 +68,9 @@ module Builder_01::Module_Hull {
 	friend fun Hull__change_status (hull : &mut Hull, status : String) {
 		hull.status = status;
 	}
+	friend fun Hull__delete_texts (hull : &mut Hull) {
+		hull.texts = vector::empty<Text>();
+	}
 	//
 	////
 	

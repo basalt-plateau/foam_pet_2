@@ -35,7 +35,8 @@ module Builder_01::Module_Hulls {
 		Hull,
 		Hull__create,
 		Hull__ensure_is_playing,
-		Hull__change_status,		
+		Hull__change_status,
+		Hull__delete_texts,
 		Hull__mut_retrieve_texts,
 		Hull__retrieve_status,
 		Hull__retrieve_platform,
@@ -201,14 +202,17 @@ module Builder_01::Module_Hulls {
 		
 		Hull__change_status (hull_mref, status);
 	}
-	friend fun Hulls__Hull__delete_every_text (consenter : & signer, platform_name : String) acquires Hulls {
+	friend fun Hulls__Hull__delete_every_text (
+		consenter : & signer, 
+		platform_name : String
+	) acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform_name);
 		
 		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
 		let hulls_mref = &mut hulls_key_mref.hulls;
 		let hull_mref : &mut Hull = vector::borrow_mut (hulls_mref, index_of_hull);
 		
-		
+		Hull__delete_texts (hull_mref);
 	}
 	//
 	//		[Flux Internal]
