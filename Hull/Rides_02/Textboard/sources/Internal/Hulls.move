@@ -184,7 +184,20 @@ module Builder_01::Module_Hulls {
 	////////
 	//
 	//	Hull:
+	//		[View]
+	//
+	friend fun Hulls__Hull__retrieve_status (platform : String) acquires Hulls {
+		let index_of_hull = search_for_index_of_hull (platform);
+		
+		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_mref = &mut hulls_key_mref.hulls;
+		let hull_mref : &mut Hull = vector::borrow_mut (hulls_mref, index_of_hull);
+		
+		Hull__retrieve_status (hull_mref)
+	}
+	//
 	//		[Flux]
+	//
 	//
 	friend fun Hulls__Hull__change_status (
 		consenter : & signer,

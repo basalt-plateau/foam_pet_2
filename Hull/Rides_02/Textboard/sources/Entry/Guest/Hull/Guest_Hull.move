@@ -31,6 +31,9 @@ module Builder_01::Module_Guest_Hull {
 	//	View Constant
 	//
 	//
+	#[view] public fun Status (platform_name : String) : String {
+		Hulls__Hull__retrieve_status (platform_name)
+	}
 	#[view] public fun Ensure_Count_of_Texts (platform_name : String, count : u64) : String {
 		assert! (Module_Hulls::Retrieve_Count_of_Texts (platform_name) == count, 1);
 		utf8 (b"exists")

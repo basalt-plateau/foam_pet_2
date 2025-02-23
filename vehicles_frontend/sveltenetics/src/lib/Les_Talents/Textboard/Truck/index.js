@@ -174,7 +174,7 @@ export const make = () => {
 						return {
 							name: platform.platform_name,
 							count_of_texts: platform.count_of_texts,
-							status: platform.count_of_texts,
+							status: platform.status,
 							
 							button_text
 						}

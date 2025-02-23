@@ -14,6 +14,9 @@ import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 //
 ////
 
+import { parse_styles } from '$lib/trinkets/styles/parse'
+
+
 let TF = false;
 
 const on_click = ({ name }) => {
@@ -27,14 +30,12 @@ onMount (() => {
 </script>
 
 
+<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
+{#if typeof TF === "object" }
 <div 
-	style="
-		height: 100%;
-	"
+	style=""
 	class="card p-2 variant-soft-surface"
 >
-	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
-	{#if typeof TF === "object" }
 	<label class="label">
 		<input 
 			bind:value={ TF.info.platform_name }
@@ -45,7 +46,15 @@ onMount (() => {
 			type="text" 
 		/>
 	</label>
-	
+</div>
+
+<div 
+	style="
+		height: 100%;
+		overflow-y: scroll;
+	"
+	class="card p-2 variant-soft-surface"
+>
 	<div
 		style="
 			padding: 0.25cm 0;
@@ -63,19 +72,37 @@ onMount (() => {
 			"
 			class="card p-4"
 		>
-			<button
-				on:click={() => { 
-					on_click ({ name: hull.name });
-				}}
-				class="card p-2 variant-filled-primary"
+			<div
 				style="
-					min-height: 20px;
-					min-width: 50px;
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					gap: 0.1cm;
 				"
 			>
-				<span>"{ hull.name }"</span>
-				<span class="badge variant-filled-surface">{ hull.count_of_texts } { hull.button_text }</span>
-			</button>
+				<button
+					disabled={ hull.status !== "playing" }
+					on:click={() => { 
+						on_click ({ name: hull.name });
+					}}
+					class="card p-2 variant-filled-primary"
+
+					style={
+						parse_styles ({
+							"min-height": "20px",
+							"min-width": "50px",
+							"opacity": hull.status !== "playing" ? 0.3 : 1
+						})
+					}
+				>
+					<span>"{ hull.name }"</span>
+					<span class="badge variant-filled-surface">{ hull.count_of_texts } { hull.button_text }</span>
+				</button>
+				
+				{#if hull.status !== "playing" }
+				<span class="badge variant-filled-surface">{ hull.status }</span>
+				{/if}
+			</div>
 			
 			{#if TF.info.is_producer === "yup" }
 			<div
@@ -110,5 +137,5 @@ onMount (() => {
 		</div>
 		{/each}
 	</div>
-	{/if}
 </div>
+{/if}

@@ -41,10 +41,7 @@ onMount (() => {
 >
 	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { EWF = pro_freight; } } />
-	{#if 
-		typeof TF === "object" &&
-		typeof EWF === "object"
-	}
+	{#if typeof TF === "object" && typeof EWF === "object" }
 	{#each TF.info.texts as text }
 	<div
 		style="
