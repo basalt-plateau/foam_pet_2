@@ -62,7 +62,8 @@ const Options = [
 	"Lentils",
 	"Motto",
 	"PTO",
-	"Rhubarb"
+	"Rhubarb",
+	"Room"
 ]
 
 /*

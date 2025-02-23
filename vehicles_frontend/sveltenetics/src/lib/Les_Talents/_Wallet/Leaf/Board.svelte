@@ -8,7 +8,6 @@ import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Extension_Wallets from './Extension_Wallets/Trinket.svelte'
 import Pannier from "$lib/Pannier/Trinket.svelte"
 
-
 let Extension_Winch_Freight = false
 let leaf = "Extensions"
 
