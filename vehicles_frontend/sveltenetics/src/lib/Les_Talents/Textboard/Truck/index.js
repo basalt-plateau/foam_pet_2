@@ -64,7 +64,56 @@ export const make = () => {
 			},
 			fonctions: {
 				producer: {
-					async pause_hull () {}
+					hull: {
+						async pause () {
+							
+						}
+					},
+					text: {
+						async delete_with_refund ({
+							text,
+							amount_of_octas,
+							platform_name
+						}) {
+							/*
+								public entry fun Delete_with_Refund (
+									consenter : & signer, 
+									writer_address : address, 
+									platform_name : String,
+									octas_refund : u64
+								) {
+							*/
+							
+							console.info ("delete_with_refund", {
+								text,
+								amount_of_octas,
+								platform_name
+							});
+							
+							const writer_address = text.writer_address;
+							const octas_refund = amount_of_octas;
+							
+							let EWF = Extension_Winch.freight ();
+					
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							
+							/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
+							const { result, note, transaction } = await EWF.prompt ({
+								petition: {
+									function: `${ Builder_01 }::Module_Producer_Texts::Delete_with_Refund`,
+									type_arguments: [],
+									arguments: [
+										writer_address,
+										platform_name,
+										octas_refund
+									]
+								}
+							});
+							console.info ({ result, note, transaction });
+							
+							await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
+						}
+					}
 				},
 				
 				platform: {

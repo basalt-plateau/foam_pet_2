@@ -26,8 +26,15 @@ module Builder_01::Module_Producer_Hull {
 	////
 	//
 	//	Entry Flux: 
-	//		Status 
+	//		Status:
+	//			playing
+	//			paused
+	//			disappeared: exists in struct, but not on dapp
 	//
+	public entry fun Disappear (consenter : & signer, platform_name : String) {
+		ensure_consenter_is_producer (consenter);
+		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"disappeared"));
+	}
 	public entry fun Pause (consenter : & signer, platform_name : String) {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"paused"));

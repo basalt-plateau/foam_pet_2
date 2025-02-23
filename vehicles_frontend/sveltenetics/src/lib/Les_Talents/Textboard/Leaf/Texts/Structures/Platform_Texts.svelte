@@ -19,6 +19,9 @@ import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 //
 ////
 
+import Delete_as_Producer from "./Delete_as_Producer/Tome.svelte"
+
+let octas_refund = 0;
 
 let TF = false;
 let EWF = false
@@ -116,31 +119,9 @@ onMount (() => {
 		{/if}
 		
 		{#if TF.info.is_producer === "yup" }
-		<div
-			style="
-				display: flex;
-				justify-content: space-between;
-				gap: 0.1cm;
-			"
-			class="card p-2 variant-filled-surface"
-		>
-			<input 
-				style="
-					text-indent: 0.1cm;
-				"
-				class="input" 
-				type="text" 
-				placeholder="Refund" 
-			/>
-			<Petition_APT_Button
-				onMount={({ mode }) => {
-					mode ("on");
-				}}
-				button_text="Delete Text as Producer"
-				APT="0"
-				clicked={() => {}}
-			/>
-		</div>
+		<Delete_as_Producer 
+			text={ text }
+		/>
 		{/if}
 	</div>
 	{/each}

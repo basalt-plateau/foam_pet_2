@@ -84,14 +84,13 @@ onMount (() => {
 					on:click={() => { 
 						on_click ({ name: hull.name });
 					}}
-					class="card p-2 variant-filled-primary"
-
 					style={
 						parse_styles ({
 							"min-height": "20px",
 							"min-width": "50px"
 						})
 					}
+					class="card p-2 variant-filled-primary"
 				>
 					<span>"{ hull.name }"</span>
 					<span class="badge variant-filled-surface">{ hull.count_of_texts } { hull.button_text }</span>

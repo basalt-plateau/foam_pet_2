@@ -48,6 +48,7 @@ module Builder_01::Module_Hulls {
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
 	const Limiter_the_hull_is_not_going : u64 = 100002;
 	const Limiter_Text_String_needs_to_be_less_than_one_hundred_characters : u64 = 100003;	
+	const Limiter_Refund_must_be_1_apt_or_fewer : u64 = 100004;	
 	
 	const One_APT : u64 = 100000000;
 	
@@ -186,7 +187,7 @@ module Builder_01::Module_Hulls {
 	//	Hull:
 	//		[View]
 	//
-	friend fun Hulls__Hull__retrieve_status (platform : String) acquires Hulls {
+	friend fun Hulls__Hull__retrieve_status (platform : String) : String acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform);
 		
 		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
@@ -462,6 +463,34 @@ module Builder_01::Module_Hulls {
 		};
 		
 		abort 260141
+	}
+	friend fun Producer_Text_Delete_with_Refund (
+		consenter : & signer,
+		writer_address : address,
+		platform : String,
+		octas_refund : u64
+	) acquires Hulls {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin::{ Self, AptosCoin };
+		
+		Producer_Delete_Text (consenter, writer_address, platform);
+		
+		if (octas_refund > 100000000) { 
+			abort Limiter_Refund_must_be_1_apt_or_fewer
+		};
+		
+		////
+		//
+		//	Deduct Refund Octas
+		//		* Ensure Consenter has >= 1 * "amount_of_plays_to_buy" APT.
+		//		* Deduct the APT
+		//
+		if (coin::balance<AptosCoin>(writer_address) < octas_refund) { 
+			abort Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send
+		};
+		coin::transfer<AptosCoin>(consenter, writer_address, octas_refund);
+		//
+		////
 	}
 	friend fun Producer_Delete_Text (
 		consenter : & signer,
