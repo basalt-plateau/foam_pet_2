@@ -44,6 +44,7 @@ export const make = () => {
 	*/
 	trucks [1] = build_truck ({
 		freight: {
+			change: 0,
 			info: {
 				is_producer: ask_is_producer (),
 				
@@ -86,6 +87,7 @@ export const make = () => {
 							console.info ({ result, note, transaction });
 							
 							await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
+							trucks [1].freight.change++;
 						}
 					},
 					text: {

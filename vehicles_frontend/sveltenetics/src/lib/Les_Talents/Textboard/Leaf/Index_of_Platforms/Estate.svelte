@@ -8,14 +8,12 @@
 import { onMount, onDestroy } from 'svelte'
 //
 //
+import { parse_styles } from '$lib/trinkets/styles/parse'
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 //
 ////
-
-import { parse_styles } from '$lib/trinkets/styles/parse'
-
 
 let TF = false;
 
@@ -28,6 +26,7 @@ onMount (() => {
 }); 
 
 </script>
+
 
 
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
@@ -47,6 +46,8 @@ onMount (() => {
 		/>
 	</label>
 </div>
+
+changes: { TF.change }
 
 <div 
 	style="

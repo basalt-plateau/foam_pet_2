@@ -21,7 +21,8 @@ module Builder_01::Module_Producer_Hull {
 		Hulls__mut_retrieve_hulls,
 		search_for_index_of_hull,
 		Hulls__Hull__change_status,
-		Hulls__Hull__delete_every_text
+		Hulls__Hull__delete_every_text,
+		Hulls__Hull__delete_platform
 	};
 	
 	////
@@ -54,7 +55,7 @@ module Builder_01::Module_Producer_Hull {
 	}
 	public entry fun Delete (consenter : & signer, platform_name : String) {
 		ensure_consenter_is_producer (consenter);
-		Hulls__Hull__delete_every_text (consenter, platform_name);
+		Hulls__Hull__delete_platform (consenter, platform_name);
 	}
 	public entry fun Producer_Hull_Delete_Every_Text_For_Platform (
 		consenter : & signer,
