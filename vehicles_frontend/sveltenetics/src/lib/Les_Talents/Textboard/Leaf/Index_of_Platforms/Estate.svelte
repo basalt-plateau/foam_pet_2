@@ -106,7 +106,7 @@ onMount (() => {
 				style="
 					margin-top: 0.1cm;
 					
-					display: flex;
+					display: grid;
 					flex-direction: row;
 					gap: 0.1cm;
 				"
@@ -125,9 +125,23 @@ onMount (() => {
 					onMount={({ mode }) => {
 						mode ("on");
 					}}
+					button_text={ `Delete Every Text of "${ hull.name }" as Producer` }
+					APT="0"
+					clicked={() => {
+						TF.fonctions.producer.hull.delete_every_text ({
+							platform_name: hull.name
+						});
+					}}
+				/>
+				<Petition_APT_Button
+					onMount={({ mode }) => {
+						mode ("on");
+					}}
 					button_text={ `Pause "${ hull.name }" as Producer` }
 					APT="0"
-					clicked={() => {}}
+					clicked={() => {
+						
+					}}
 				/>
 			</div>
 			{/if}

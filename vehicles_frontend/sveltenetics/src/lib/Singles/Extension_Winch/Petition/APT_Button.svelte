@@ -88,7 +88,7 @@ const click_middle = async (event) => {
 let details = ""
 let the_mode = "off"
 export const mode = (next_the_mode, next_details) => {
-	console.log (next_the_mode, next_details);
+	// console.log (next_the_mode, next_details);
 	
 	if (next_details && next_details.note) {
 		details = next_details.note;

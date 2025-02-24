@@ -45,21 +45,27 @@ module Builder_01::Module_Producer_Hull {
 		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"playing"));
 	}
 	//
-	////
-	
-	
-	
-	////
 	//
-	//	Unfinished
 	//
+	//
+	public entry fun Delete_Every_Text_For_Platform (consenter : & signer, platform_name : String) {
+		ensure_consenter_is_producer (consenter);
+		Hulls__Hull__delete_every_text (consenter, platform_name);
+	}
+	public entry fun Delete (consenter : & signer, platform_name : String) {
+		ensure_consenter_is_producer (consenter);
+		Hulls__Hull__delete_every_text (consenter, platform_name);
+	}
 	public entry fun Producer_Hull_Delete_Every_Text_For_Platform (
 		consenter : & signer,
 		platform_name : String
 	) {
+		// Ancient.. use "Delete_Every_Text_For_Platform"
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__delete_every_text (consenter, platform_name);
 	}
 	//
 	////
+	
+
 }

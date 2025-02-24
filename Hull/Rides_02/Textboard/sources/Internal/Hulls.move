@@ -214,6 +214,17 @@ module Builder_01::Module_Hulls {
 		
 		Hull__delete_texts (hull_mref);
 	}
+	friend fun Hulls__Hull__delete_platform (
+		consenter : & signer, 
+		platform_name : String
+	) acquires Hulls {
+		let index_of_hull = search_for_index_of_hull (platform_name);
+		
+		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_mref = &mut hulls_key_mref.hulls;
+		
+		vector::remove (hulls_mref, index_of_hull);
+	}
 	//
 	//		[Flux Internal]
 	//

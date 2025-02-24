@@ -119,9 +119,7 @@ onMount (() => {
 		{/if}
 		
 		{#if TF.info.is_producer === "yup" }
-		<Delete_as_Producer 
-			text={ text }
-		/>
+		<Delete_as_Producer text={ text } />
 		{/if}
 	</div>
 	{/each}

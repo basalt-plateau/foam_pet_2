@@ -35,12 +35,7 @@ const Producer_Fonctions = {
 	Such, the truck can then be deleted with the "destroy" method.
 */
 export const make = () => {
-	
-	
-	
 	const Pannier_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
-	
-	
 	
 	
 	/*
@@ -65,8 +60,32 @@ export const make = () => {
 			fonctions: {
 				producer: {
 					hull: {
-						async pause () {
+						status: {
+							async pause ({ platform_name }) {
+								
+							},
+							async play ({ platform_name }) {
+								
+							}
+						},
+						async delete_platform ({ platform_name }) {
 							
+						},
+						async delete_every_text ({ platform_name }) {
+							let EWF = Extension_Winch.freight ();
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const { result, note, transaction } = await EWF.prompt ({
+								petition: {
+									function: `${ Builder_01 }::Module_Producer_Hull::Delete_Every_Text_For_Platform`,
+									type_arguments: [],
+									arguments: [
+										platform_name
+									]
+								}
+							});
+							console.info ({ result, note, transaction });
+							
+							await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
 						}
 					},
 					text: {
@@ -83,18 +102,11 @@ export const make = () => {
 									octas_refund : u64
 								) {
 							*/
-							
-							console.info ("delete_with_refund", {
-								text,
-								amount_of_octas,
-								platform_name
-							});
-							
 							const writer_address = text.writer_address;
 							const octas_refund = amount_of_octas;
 							
 							let EWF = Extension_Winch.freight ();
-					
+							
 							const Builder_01 = trucks [1].freight.info.Builder_01;
 							
 							/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */

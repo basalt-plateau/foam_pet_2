@@ -58,7 +58,7 @@ Builder_Addresses = {
 
 def motion_for_named_addresses (packet):
 	publisher_address = packet ["publisher_address"]
-	dev = packet ["dev"]
+	publisher = packet ["publisher"]
 	
 	
 	#
@@ -66,7 +66,7 @@ def motion_for_named_addresses (packet):
 	#	Publisher
 	#
 	#
-	if (dev == "yup"):
+	if (publisher == "yup"):
 		Builder_01 = {
 			"address": publisher_address
 		}
@@ -101,7 +101,7 @@ def motion_for_named_addresses (packet):
 		f"""Publisher_01={ Builder_01 ["address"] }, """,
 		f"""Ride_01={ Builder_01 ["address"] }, """,
 		f"""ride={ Builder_01 ["address"] }, """,		
-		f"""builder_1={ Builder_01 ["address"] },""",		
+		f"""builder_1={ Builder_01 ["address"] },""",
 		"'"
 	]);
 	
@@ -133,18 +133,21 @@ def clique ():
 	
 	
 	"""
-		python3 vocalize.py vocalize --publish --move Textboard --builder Pannier_01
-		python3 vocalize.py vocalize --publish --move Textboard --builder Petra
+		Mainnet Publications:
+			python3 vocalize.py vocalize --publish --move Textboard --builder Petra
+			
+		Devnet Publications:
+			python3 vocalize.py vocalize --publish --move Textboard --builder Pannier_01
 	"""
 	
 	"""
-		python3 vocalize.py vocalize --steady --move Textboard
+		Steadiness:
+			python3 vocalize.py vocalize --steady --move Textboard
 	"""
 	
 	"""
 		python3 vocalize.py vocalize --publish --move Rules_10 --builder Pannier_01
 		python3 vocalize.py vocalize --publish --move Allowed_Wallets_02 --builder Pannier_01
-		python3 vocalize.py vocalize --publish --move Textboard --builder Pannier_01
 	"""
 	
 	"""
@@ -189,7 +192,7 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 			moves_structures [ move ].publish ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
-					"dev": "nah",
+					"publisher": "yup",
 					"publisher_address": publisher_address
 				})
 			});
@@ -201,7 +204,7 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 			moves_structures [ move ].steady ({
 				"ride_plate": publisher_address,
 				"named_addresses": motion_for_named_addresses ({
-					"dev": "yup",
+					"publisher": "nah",
 					"publisher_address": publisher_address
 				})
 			});
