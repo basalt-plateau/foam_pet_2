@@ -80,11 +80,11 @@ module Builder_01::Text_Length_Limiter {
 		
 		////
 		//
-		//	Send Text
+		//	Send Text: 126 Characters -> Error
 		//
 		//
 		let text_01_text : String = utf8 (
-			b"100000000001000000000010000000000100000000001000000000010000000000100000000001000000000010000000000100000000002"
+			b"100000000001000000000010000000000100000000001000000000010000000000100000000001000000000010000000000100000000001000000000555550"
 		);
 		let text_01_platform : String = utf8 (b"");		
 		Module_Guest_Texts::Send (
@@ -94,8 +94,8 @@ module Builder_01::Text_Length_Limiter {
 		);
 		//
 		////
-
-
+		
+		
 		////
 		//
 		//	Ensure text exists

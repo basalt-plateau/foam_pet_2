@@ -50,6 +50,7 @@ module Builder_01::Module_Hulls {
 	const Limiter_the_hull_is_not_going : u64 = 100002;
 	const Limiter_Text_String_needs_to_be_less_than_one_hundred_characters : u64 = 100003;	
 	const Limiter_Refund_must_be_1_apt_or_fewer : u64 = 100004;	
+	const Limiter_Hull_String_needs_to_be_less_than_characters_limit : u64 = 100005;
 	
 	const One_APT : u64 = 100000000;
 	
@@ -70,6 +71,8 @@ module Builder_01::Module_Hulls {
 		status:
 			playing
 			paused
+			
+		text length limit is 125
 	*/
 	struct Hulls has key, drop {
 		status : String,
@@ -180,9 +183,6 @@ module Builder_01::Module_Hulls {
 	
 	
 	
-	
-
-	
 	////////
 	//
 	//	Hull:
@@ -229,7 +229,7 @@ module Builder_01::Module_Hulls {
 	//		[Flux Internal]
 	//
 	//
-	fun search_or_begin_hull (platform : String) : u64 acquires Hulls {
+	fun search_or_begin_hull (platform_name : String) : u64 acquires Hulls {
 		/*
 			Search for the index of the hull.
 			If the hull does not exist, then start it.
@@ -238,14 +238,18 @@ module Builder_01::Module_Hulls {
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls.hulls, index);
-			if (Hull__retrieve_platform (hull_ref) == platform) {
+			if (Hull__retrieve_platform (hull_ref) == platform_name) {
 				return index
 			}
 		};
 		
+		if (string::length (& platform_name) > 125) {
+			abort Limiter_Hull_String_needs_to_be_less_than_characters_limit
+		};
+		
 		let hull = Hull__create (
 			utf8 (b"playing"),
-			platform,
+			platform_name,
 			vector::empty<Text>()
 		);
 		
@@ -268,12 +272,7 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_status (hull_mref)
 	}
 	friend fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
-		/*
-		
-		
-		*/
-		
-		
+		/**/
 		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
@@ -433,7 +432,7 @@ module Builder_01::Module_Hulls {
 		//	Rules
 		//
 		//
-		if (string::length (& text) > 100) {
+		if (string::length (& text) > 125) {
 			abort Limiter_Text_String_needs_to_be_less_than_one_hundred_characters
 		};
 		//
@@ -442,11 +441,18 @@ module Builder_01::Module_Hulls {
 		let writer_address = signer::address_of (writer);
 		let producer_address = Module_Producer::obtain_address ();
 		
+		////
+		//
+		//	
+		//
+		//
 		let index_of_hull = search_or_begin_hull (platform);
 		let hulls_mref = borrow_global_mut<Hulls>(producer_address);
 		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls_mref.hulls, index_of_hull);
 		let price_of_text_in_octas = hulls_mref.price_of_text_in_octas;
-	
+		//
+		////
+		
 		////
 		//
 		//	Deduct 1 APT

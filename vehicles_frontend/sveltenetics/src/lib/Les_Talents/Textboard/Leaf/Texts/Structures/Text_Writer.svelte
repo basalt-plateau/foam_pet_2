@@ -13,6 +13,7 @@ import { onMount, onDestroy } from 'svelte'
 import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
+import { SlideToggle } from '@skeletonlabs/skeleton';
 //
 ////
 
@@ -23,6 +24,7 @@ let on_send = async () => {
 	TF.fonctions.send_text ();
 }
 
+let slide_toggle_checked = false
 
 let TT_Monitor;
 let TT_Freight;
@@ -110,5 +112,15 @@ onDestroy (() => {
 			clicked={ on_send }
 		/>
 	</div>
+	
+	{#if false}
+	<label class="label">
+		<span>Input</span>
+		<input class="input" type="text" placeholder="Input" />
+	</label>
+	{/if}
+	
+	<SlideToggle name="slide" bind:checked={ slide_toggle_checked } />
+	
 	{/if}
 </div>
