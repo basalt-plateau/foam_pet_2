@@ -47,16 +47,20 @@ module Builder_01::Module_Producer_Hull {
 	}
 	//
 	//
+	//	Delete the entire hull
+	public entry fun Delete (consenter : & signer, platform_name : String) {
+		ensure_consenter_is_producer (consenter);
+		Hulls__Hull__delete_platform (consenter, platform_name);
+	}
+	//
+	//
 	//
 	//
 	public entry fun Delete_Every_Text_For_Platform (consenter : & signer, platform_name : String) {
 		ensure_consenter_is_producer (consenter);
 		Hulls__Hull__delete_every_text (consenter, platform_name);
 	}
-	public entry fun Delete (consenter : & signer, platform_name : String) {
-		ensure_consenter_is_producer (consenter);
-		Hulls__Hull__delete_platform (consenter, platform_name);
-	}
+	
 	public entry fun Producer_Hull_Delete_Every_Text_For_Platform (
 		consenter : & signer,
 		platform_name : String

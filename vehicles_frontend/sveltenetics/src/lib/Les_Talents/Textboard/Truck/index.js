@@ -70,7 +70,22 @@ export const make = () => {
 							}
 						},
 						async delete_platform ({ platform_name }) {
+							let EWF = Extension_Winch.freight ();
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const { result, note, transaction } = await EWF.prompt ({
+								petition: {
+									function: `${ Builder_01 }::Module_Producer_Hull::Delete`,
+									type_arguments: [],
+									arguments: [
+										platform_name
+									]
+								}
+							});
+							console.info ({ result, note, transaction });
 							
+							await trucks [1].freight.fonctions.retrieve_hulls ();
+							// await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
+							trucks [1].freight.change++;
 						},
 						async delete_every_text ({ platform_name }) {
 							let EWF = Extension_Winch.freight ();
@@ -86,7 +101,7 @@ export const make = () => {
 							});
 							console.info ({ result, note, transaction });
 							
-							await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
+							await trucks [1].freight.fonctions.retrieve_hulls ();
 							trucks [1].freight.change++;
 						}
 					},

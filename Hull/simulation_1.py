@@ -39,10 +39,12 @@
 			--args u64:100000000
 			
 		Delete Every Text on Platform:
-			aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hull::Delete_Every_Text_For_Platform \
+			aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hull::Delete \
 			--args String:Topic_2
 			
-			
+		Delete Platform:
+			aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b1f4e961671099a2dc9a24adcfd::Module_Producer_Hull::Delete \
+			--args String:"platform 2"
 """
 
 
