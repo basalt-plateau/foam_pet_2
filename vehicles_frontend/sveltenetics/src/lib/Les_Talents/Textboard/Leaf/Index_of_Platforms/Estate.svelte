@@ -128,10 +128,26 @@ changes: { TF.change }
 					onMount={({ mode }) => {
 						mode ("on");
 					}}
+					button_text={ `Delete Every Text of Platform "${ hull.name }" as Producer` }
+					APT="0"
+					clicked={() => {
+						TF.fonctions.producer.hull.delete_every_text ({
+							platform_name: hull.name
+						});
+					}}
+				/>
+				
+				
+				<div style="height: 0.25cm" />
+				<header>Status</header>
+				<Petition_APT_Button
+					onMount={({ mode }) => {
+						mode ("on");
+					}}
 					button_text={ `Pause Platform "${ hull.name }" as Producer` }
 					APT="0"
 					clicked={() => {
-						
+						TF.fonctions.producer.hull.status.pause ({ platform_name: hull.name });
 					}}
 				/>
 				<Petition_APT_Button
@@ -141,20 +157,7 @@ changes: { TF.change }
 					button_text={ `Play Platform "${ hull.name }" as Producer` }
 					APT="0"
 					clicked={() => {
-						
-					}}
-				/>
-				
-				<Petition_APT_Button
-					onMount={({ mode }) => {
-						mode ("on");
-					}}
-					button_text={ `Delete Every Text of Platform "${ hull.name }" as Producer` }
-					APT="0"
-					clicked={() => {
-						TF.fonctions.producer.hull.delete_every_text ({
-							platform_name: hull.name
-						});
+						TF.fonctions.producer.hull.status.play ({ platform_name: hull.name });
 					}}
 				/>
 			</div>

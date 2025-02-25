@@ -62,11 +62,53 @@ export const make = () => {
 				producer: {
 					hull: {
 						status: {
-							async pause ({ platform_name }) {
+							async disappear ({ platform_name }) {
+								let EWF = Extension_Winch.freight ();
+								const Builder_01 = trucks [1].freight.info.Builder_01;
+								const { result, note, transaction } = await EWF.prompt ({
+									petition: {
+										function: `${ Builder_01 }::Module_Producer_Hull::Disappear`,
+										type_arguments: [],
+										arguments: [
+											platform_name
+										]
+									}
+								});
+								console.info ({ result, note, transaction });
 								
+								await trucks [1].freight.fonctions.retrieve_hulls ();
+							},
+							async pause ({ platform_name }) {
+								let EWF = Extension_Winch.freight ();
+								const Builder_01 = trucks [1].freight.info.Builder_01;
+								const { result, note, transaction } = await EWF.prompt ({
+									petition: {
+										function: `${ Builder_01 }::Module_Producer_Hull::Pause`,
+										type_arguments: [],
+										arguments: [
+											platform_name
+										]
+									}
+								});
+								console.info ({ result, note, transaction });
+								
+								await trucks [1].freight.fonctions.retrieve_hulls ();
 							},
 							async play ({ platform_name }) {
+								let EWF = Extension_Winch.freight ();
+								const Builder_01 = trucks [1].freight.info.Builder_01;
+								const { result, note, transaction } = await EWF.prompt ({
+									petition: {
+										function: `${ Builder_01 }::Module_Producer_Hull::Play`,
+										type_arguments: [],
+										arguments: [
+											platform_name
+										]
+									}
+								});
+								console.info ({ result, note, transaction });
 								
+								await trucks [1].freight.fonctions.retrieve_hulls ();
 							}
 						},
 						async delete_platform ({ platform_name }) {
@@ -85,7 +127,7 @@ export const make = () => {
 							
 							await trucks [1].freight.fonctions.retrieve_hulls ();
 							// await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
-							trucks [1].freight.change++;
+							// trucks [1].freight.change++;
 						},
 						async delete_every_text ({ platform_name }) {
 							let EWF = Extension_Winch.freight ();
