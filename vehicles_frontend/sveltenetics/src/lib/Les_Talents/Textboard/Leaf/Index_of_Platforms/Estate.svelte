@@ -3,6 +3,8 @@
 
 <script>
 
+
+
 ////
 //
 import { onMount, onDestroy } from 'svelte'
@@ -18,11 +20,11 @@ import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 let TF = false;
 
 const on_click = ({ name }) => {
-	TF.fonctions.platform.show ({ name });
+	TF.fonctions.guests.hull.show ({ name });
 }
 
 onMount (() => {
-	Textboard_Truck.freight ().fonctions.retrieve_hulls ();
+	Textboard_Truck.freight ().fonctions.guests.hulls.retrieve_hulls ();
 }); 
 
 </script>
@@ -32,8 +34,12 @@ onMount (() => {
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 {#if typeof TF === "object" }
 <div 
-	style=""
-	class="card p-2 variant-soft-surface"
+	style="
+		display: flex;
+		flex-direction: column;
+		gap: 0.1cm;
+	"
+	class="card p-1 variant-soft-surface"
 >
 	<label class="label">
 		<input 
@@ -45,6 +51,18 @@ onMount (() => {
 			type="text" 
 		/>
 	</label>
+	
+	<div
+		style="
+			width: 100%;
+			max-width: 5cm;
+		"
+	>
+		<select class="select">
+			<option value="1">Option 1</option>
+			<option value="2">Option 2</option>
+		</select>
+	</div>
 </div>
 
 <div 
@@ -128,8 +146,8 @@ onMount (() => {
 					}
 					class="card p-1 variant-filled-primary"
 				>
-					<span>"{ hull.name }"</span>
 					<span class="badge variant-filled-surface">{ hull.count_of_texts } { hull.button_text }</span>
+					<span>"{ hull.name }"</span>
 				</button>
 				
 				{#if hull.status !== "playing" }

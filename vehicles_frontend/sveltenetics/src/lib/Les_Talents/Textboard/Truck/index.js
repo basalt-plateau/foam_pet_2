@@ -187,27 +187,63 @@ export const make = () => {
 					}
 				},
 				
+				guests: {
+					text: {
+						
+					},
+					hull: {
+						retrieve_texts: async ({ platform_name }) => {
+							trucks [1].freight.searching_for_texts = "yup"
+							trucks [1].freight.info.texts = []
+							
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							await trucks [1].freight.fonctions.retrieve_texts_for_platform ({
+								Builder_01,
+								platform_name
+							});
+							
+							trucks [1].freight.info.searching_for_texts = "no"
+						},
+						async show ({ name }) {
+							trucks [1].freight.info.platform_name = name;
+							await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
+						}
+					},
+					hulls: {
+						retrieve_hulls: async () => {
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const { result } = await view_fonction ({
+								body: {
+									"function": `${ Builder_01 }::Module_Guest_Hulls::Retrieve_Hulls_Info`,							
+									"type_arguments": [],
+									"arguments": []
+								}
+							});
+							
+							const hulls = result [0].map (platform => {
+								let button_text = platform.count_of_texts === "1" ? "text" : "texts"
+								
+								return {
+									name: platform.platform_name,
+									count_of_texts: platform.count_of_texts,
+									status: platform.status,
+									
+									button_text
+								}
+							});
+							
+							trucks [1].freight.info.hulls = hulls;
+						}
+					}
+				},
+				
 				platform: {
 					async show ({ name }) {
 						trucks [1].freight.info.platform_name = name;
 						await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
 					}
 				},
-				
-				scout: async () => {},
-				
-				retrieve_texts: async ({ platform_name }) => {
-					trucks [1].freight.searching_for_texts = "yup"
-					trucks [1].freight.info.texts = []
-					
-					const Builder_01 = trucks [1].freight.info.Builder_01;
-					await trucks [1].freight.fonctions.retrieve_texts_for_platform ({
-						Builder_01,
-						platform_name
-					});
-					
-					trucks [1].freight.info.searching_for_texts = "no"
-				},
+
 				send_text: async () => {
 					let EWF = Extension_Winch.freight ();
 					
@@ -276,33 +312,7 @@ export const make = () => {
 					trucks [1].freight.info.texts = texts;
 					trucks [1].freight.info.searching_for_texts = "no"
 				},
-				retrieve_hulls: async () => {
-					const Builder_01 = trucks [1].freight.info.Builder_01;
-					
-					const { result } = await view_fonction ({
-						body: {
-							"function": `${ Builder_01 }::Module_Guest_Hulls::Retrieve_Hulls_Info`,							
-							"type_arguments": [],
-							"arguments": []
-						}
-					});
-					
-					console.log ("retrieve_hulls:", { result });
-					
-					const hulls = result [0].map (platform => {
-						let button_text = platform.count_of_texts === "1" ? "text" : "texts"
-						
-						return {
-							name: platform.platform_name,
-							count_of_texts: platform.count_of_texts,
-							status: platform.status,
-							
-							button_text
-						}
-					});
-					
-					trucks [1].freight.info.hulls = hulls;
-				}
+				
 
 			}
 		}
