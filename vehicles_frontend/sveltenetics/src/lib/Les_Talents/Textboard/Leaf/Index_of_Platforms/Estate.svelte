@@ -47,21 +47,19 @@ onMount (() => {
 	</label>
 </div>
 
-
-
 <div 
 	style="
 		height: 100%;
 		overflow-y: scroll;
 	"
-	
 >
+	{#if TF.info.is_producer === "yup" }
 	<div 
 		style="
 			overflow-y: scroll;
-			height: 200px;
+			min-height: 100px;
 		"
-		class="card p-2 variant-soft-surface"
+		class="card p-1 variant-soft-surface"
 	>
 		<Petition_APT_Button
 			onMount={({ mode }) => {
@@ -88,26 +86,27 @@ onMount (() => {
 			}}
 		/>
 	</div>
+	{/if}
 	
 	<div style="height: 0.25cm" />
 	
 	<div
 		style="
-			padding: 0.25cm 0;
+			padding: 0.1cm;
 		
 			display: flex;
 			flex-direction: column;
 			gap: 0.1cm;
 		"
-		class="card p-2 variant-soft-surface"
+		class="card p-1 variant-soft-surface"
 	>
 		{#each TF.info.hulls as hull }
 		<div
 			style="
-				padding: 0.25cm;
+				padding: 0.1cm;
 				width: 100%;
 			"
-			class="card p-4"
+			class="card"
 		>
 			<div
 				style="
@@ -127,7 +126,7 @@ onMount (() => {
 							"min-width": "50px"
 						})
 					}
-					class="card p-2 variant-filled-primary"
+					class="card p-1 variant-filled-primary"
 				>
 					<span>"{ hull.name }"</span>
 					<span class="badge variant-filled-surface">{ hull.count_of_texts } { hull.button_text }</span>

@@ -36,6 +36,7 @@ import Texts_Estate from "./Texts/Estate.svelte"
 	
 import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
+import Talent from '$lib/Les_Talents/Textboard_Rules/Frontier/Tome.svelte'
 
 	
 	
@@ -204,6 +205,8 @@ onDestroy (() => {
 			>search</button>
 		</div>
 	</div>
+	
+	
 	
 	{#if leaf === "texts" }
 	<Texts_Estate />

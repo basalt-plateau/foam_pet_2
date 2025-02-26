@@ -107,7 +107,7 @@ onDestroy (() => {
 				}
 			}}
 			
-			button_text={ `Write or overwrite on "${ TF.info.platform_name }"` }
+			button_text={ `Fire to "${ TF.info.platform_name }"` }
 			APT="1"
 			clicked={ on_send }
 		/>

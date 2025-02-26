@@ -28,9 +28,7 @@ let le_text = ""
 let petition_APT_button = "";
 
 
-onMount (async () => {
-	
-});
+onMount (async () => {});
 onDestroy (async () => {});
 
 
