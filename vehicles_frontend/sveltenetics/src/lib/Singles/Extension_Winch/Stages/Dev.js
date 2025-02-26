@@ -48,16 +48,18 @@ export const Petra_stage_creator = async ({ freight }) => {
 		async prompt ({ petition }) {
 			const stage = _stage ();
 			
-			const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
-			const pending_transaction_hash = _get (pending_transaction, "hash", "");
+			const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
+				fullnode: net_path,
+				network: Aptos_SDK.Network.CUSTOM
+				// client: { provider: custom_client }
+			}));
 			
-			/*
+			const TP_AO = await aptos.transaction.build.simple (petition);
 			
+			// const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
+			// const pending_transaction_hash = _get (pending_transaction, "hash", "");
 			
-			
-			*/
-			
-			
+			/**/
 			return { pending_transaction_hash }			
 		},
 		

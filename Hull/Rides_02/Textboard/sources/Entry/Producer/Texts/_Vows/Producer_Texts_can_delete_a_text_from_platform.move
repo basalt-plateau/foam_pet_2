@@ -85,7 +85,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"Platform 01");		
-		Module_Guest_Texts::Send (writer_01_consenter, text_01_text, text_01_platform);
+		Module_Guest_Texts::Send_Text (writer_01_consenter, text_01_text, text_01_platform, utf8 (b"agreed"));
 		//
 		////
 

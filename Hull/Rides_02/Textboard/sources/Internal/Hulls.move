@@ -44,7 +44,7 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_count_of_texts,
 		Hull__retrieve_created_at_now_seconds
 	};
-
+	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
 	const Limiter_the_hull_is_not_going : u64 = 100002;
@@ -66,7 +66,7 @@ module Builder_01::Module_Hulls {
 		platform_name : String,
 		count_of_texts : u64
 	}
-
+	
 	/*
 		status:
 			playing
@@ -124,7 +124,7 @@ module Builder_01::Module_Hulls {
 	) acquires Hulls {
 		ensure_consenter_is_producer (consenter);
 		let producer_address = Module_Producer::obtain_address ();
-	
+		
 		let hulls = borrow_global_mut<Hulls>(producer_address);
 		hulls.status = status;
 	}

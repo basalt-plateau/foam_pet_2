@@ -159,7 +159,6 @@ export const create_TP_AO_from_fields = async ({
 		"text": `The second arg: "${ unpacked_amount_hexadecimal_string }" is equal to "${ arg_2nd_conversion }".`
 	}]
 	
-	
 	return {
 		TP_AO,
 		TP_bytes,

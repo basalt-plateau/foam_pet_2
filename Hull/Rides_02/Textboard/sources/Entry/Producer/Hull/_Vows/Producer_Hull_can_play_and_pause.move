@@ -90,7 +90,7 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//	Send Text
 		//
 		//
-		Module_Guest_Texts::Send (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""));
+		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"agreed"));
 		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 1);
 		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
 		//
@@ -99,7 +99,7 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		Module_Producer_Hull::Pause (producer_01_consenter, utf8 (b""));
 		Module_Producer_Hull::Play (producer_01_consenter, utf8 (b""));
 
-		Module_Guest_Texts::Send (writer_02_consenter, utf8 (b"This is text 2."), utf8 (b""));	
+		Module_Guest_Texts::Send_Text (writer_02_consenter, utf8 (b"This is text 2."), utf8 (b""), utf8 (b"agreed"));	
 		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 2);
 		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
 		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_02_address, utf8 (b"This is text 2."), 1);

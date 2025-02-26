@@ -22,11 +22,26 @@ module Builder_01::Module_Guest_Texts {
 	//		* Send
 	//		* Delete
 	//
+	public entry fun Send_Text (
+		consenter : & signer,
+		text : String,
+		platform_name : String,
+		agreed_to_rules : String
+	) {
+		if (utf8 (b"agreed") != agreed_to_rules) {
+			abort 0xE000001;
+		};
+		
+		Module_Hulls::Send_Text (consenter, text, platform_name);
+	}
 	public entry fun Send (
 		consenter : & signer,
 		text : String,
 		platform_name : String
 	) {
+		abort 1;
+		
+		// Vintage: use Send_Text
 		Module_Hulls::Send_Text (consenter, text, platform_name);
 	}
 	public entry fun Delete (consenter : & signer, platform_name : String) {

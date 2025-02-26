@@ -47,15 +47,50 @@ onMount (() => {
 	</label>
 </div>
 
-changes: { TF.change }
+
 
 <div 
 	style="
 		height: 100%;
 		overflow-y: scroll;
 	"
-	class="card p-2 variant-soft-surface"
+	
 >
+	<div 
+		style="
+			overflow-y: scroll;
+			height: 200px;
+		"
+		class="card p-2 variant-soft-surface"
+	>
+		<Petition_APT_Button
+			onMount={({ mode }) => {
+				mode ("on");
+			}}
+			button_text={ `Pause Platforms as Producer` }
+			APT="0"
+			clicked={() => {
+				TF.fonctions.producer.hull.delete_platform ({
+					platform_name: hull.name
+				});
+			}}
+		/>
+		<Petition_APT_Button
+			onMount={({ mode }) => {
+				mode ("on");
+			}}
+			button_text={ `Play Platforms as Producer` }
+			APT="0"
+			clicked={() => {
+				TF.fonctions.producer.hull.delete_platform ({
+					platform_name: hull.name
+				});
+			}}
+		/>
+	</div>
+	
+	<div style="height: 0.25cm" />
+	
 	<div
 		style="
 			padding: 0.25cm 0;
@@ -64,6 +99,7 @@ changes: { TF.change }
 			flex-direction: column;
 			gap: 0.1cm;
 		"
+		class="card p-2 variant-soft-surface"
 	>
 		{#each TF.info.hulls as hull }
 		<div

@@ -87,10 +87,11 @@ module Builder_01::Text_Length_Limiter {
 			b"100000000001000000000010000000000100000000001000000000010000000000100000000001000000000010000000000100000000001000000000555550"
 		);
 		let text_01_platform : String = utf8 (b"");		
-		Module_Guest_Texts::Send (
+		Module_Guest_Texts::Send_Text (
 			writer_01_consenter,
 			text_01_text,
-			text_01_platform
+			text_01_platform,
+			utf8 (b"agreed")
 		);
 		//
 		////
