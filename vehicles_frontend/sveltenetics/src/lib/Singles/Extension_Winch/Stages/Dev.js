@@ -12,7 +12,7 @@ import _get from "lodash/get"
 			prototype
 				isConnected
 */
-export const Petra_stage_creator = async ({ freight }) => {
+export const Dev_stage_creator = async ({ freight }) => {
 	const Petra = window.petra;
 	
 	const _stage = () => {
@@ -94,13 +94,7 @@ export const Petra_stage_creator = async ({ freight }) => {
 			}
 		},
 		async is_installed () {
-			try {
-				if (typeof Petra === "object") {
-					return "yes";
-				}
-			}
-			catch (imperfection) {}
-			return "no";
+			return "yes";
 		},
 		async is_connected () {
 			const stage = _stage ();

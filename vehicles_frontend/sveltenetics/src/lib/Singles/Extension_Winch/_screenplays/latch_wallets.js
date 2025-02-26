@@ -22,11 +22,16 @@ import { Rise_stage_creator } from "./../Stages/Rise.js"
 import { Petra_stage_creator } from "./../Stages/Petra.js"
 import { Pontem_stage_creator } from "./../Stages/Pontem.js"
 //
+import { Dev_stage_creator } from "./../Stages/Dev.js"
+//
 ////
-
+import { ask_for_freight } from '$lib/Versies/Trucks'
+	
 
 export const latch_wallets = async () => {
 	try {
+		const versies_freight = ask_for_freight ();
+		
 		const Petra_01 = "0xf5565cc1d71781d6ef766a2a50ed459b9d3b430ceb6f7bbf79393c3626a979cd";
 		const Pannier_01 = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD";
 		
@@ -82,6 +87,14 @@ export const latch_wallets = async () => {
 			}
 		}
 		
+		if (versies_freight.mode === "nurture") {
+			try {
+				EWF.stages.Dev = await Dev_stage_creator ({ freight: EWF });
+			}
+			catch (imperfection) {
+				console.error (imperfection);
+			}
+		}
 		
 			
 			
