@@ -54,6 +54,9 @@ module Builder_01::Module_Hulls {
 	
 	const One_APT : u64 = 100000000;
 	
+	const Text_length_limit : u64 = 125;
+	const Platform_name_length_limit : u64 = 40;
+	
 	struct Text_Envelope has store, drop {
 		writer_address : address,
 		writer_balance : u64,
@@ -66,6 +69,8 @@ module Builder_01::Module_Hulls {
 		platform_name : String,
 		count_of_texts : u64
 	}
+	
+	
 	
 	/*
 		status:
@@ -243,7 +248,7 @@ module Builder_01::Module_Hulls {
 			}
 		};
 		
-		if (string::length (& platform_name) > 125) {
+		if (string::length (& platform_name) > Platform_name_length_limit) {
 			abort Limiter_Hull_String_needs_to_be_less_than_characters_limit
 		};
 		
@@ -432,7 +437,7 @@ module Builder_01::Module_Hulls {
 		//	Rules
 		//
 		//
-		if (string::length (& text) > 125) {
+		if (string::length (& text) > Text_length_limit) {
 			abort Limiter_Text_String_needs_to_be_less_than_one_hundred_characters
 		};
 		//

@@ -1,10 +1,18 @@
 
 
+
+
 import * as Aptos_SDK from "@aptos-labs/ts-sdk";
+import _get from "lodash/get"
 import { Uint8Array_from_string } from '$lib/taverns/hexadecimal/Uint8Array_from_string'
 import { address_to_hexadecimal } from "$lib/PTO/Address/to_hexadecimal"
 
-import _get from "lodash/get"
+import { request_ledger_info } from '$lib/PTO/General/Ledger_Info.API'
+
+
+
+
+
 
 /*
 	window.petra
@@ -13,10 +21,8 @@ import _get from "lodash/get"
 				isConnected
 */
 export const Dev_stage_creator = async ({ freight }) => {
-	const Petra = window.petra;
-	
 	const _stage = () => {
-		return freight.stages.Petra;
+		return freight.stages.Dev;
 	}
 	
 	const reset = async () => {
@@ -30,11 +36,23 @@ export const Dev_stage_creator = async ({ freight }) => {
 		stage.network.chain_id = "";
 	}
 	
+	const net_path = "https://api.devnet.aptoslabs.com/v1";
+	
+	const account = {
+		private_key: "0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C",
+		public_key: "83918D60A9344D117F6EA231DA15ACEB43711124976E6EC4AC5BC7C4BC772ED5",
+		address: "991378D74FAC384404B971765BEF7525CCE26C8EFD84B9FF27D202E10D7FFBE5",
+		address_legacy: "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+	};
+	
 	return {
-		name: "Dev Wallet",
+		name: "Dev",
 		url: "",
 		icon: "",
-		installed: "",
+
+		installed: "yes",
+		connected: "",
+		
 		network: {
 			name: "",
 			address: "",
@@ -42,8 +60,13 @@ export const Dev_stage_creator = async ({ freight }) => {
 		},
 		account: {
 			address: "",
-			public_key: ""
+			public_key: "",
+			private_key: ""
 		},	
+		
+		async change_account () {
+			
+		},
 		
 		async prompt ({ petition }) {
 			const stage = _stage ();
@@ -51,10 +74,42 @@ export const Dev_stage_creator = async ({ freight }) => {
 			const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
 				fullnode: net_path,
 				network: Aptos_SDK.Network.CUSTOM
-				// client: { provider: custom_client }
 			}));
+			console.info ({ petition });
 			
-			const TP_AO = await aptos.transaction.build.simple (petition);
+			
+			const tx_petition = await aptos.transaction.build.simple ({
+				sender: stage.account.address,
+				data: {
+					function: petition.function,
+					functionArguments: petition.arguments,
+					typeArguments: petition.type_arguments
+				}
+			});
+			
+			const consenter = AptosSDK.Account.fromPrivateKey ({ 
+				privateKey: new AptosSDK.Ed25519PrivateKey (
+					Uint8Array_from_string (stage.account.private_key)
+				), 
+				legacy: true
+			});
+			
+			console.info ({
+				signer: stage.account.address,
+				transaction: tx_petition
+			});
+			
+			const consent = aptos.transaction.sign ({
+				signer: consenter,
+				transaction: tx_petition
+			});
+			const committedTransaction = await aptos.transaction.submit.simple({
+				transaction: tx_petition,
+				senderAuthenticator: consent
+			});
+			const pending_transaction_hash = committedTransaction.hash;
+			
+			console.info ({ committedTransaction });
 			
 			// const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
 			// const pending_transaction_hash = _get (pending_transaction, "hash", "");
@@ -65,6 +120,14 @@ export const Dev_stage_creator = async ({ freight }) => {
 		
 		async status () {
 			const stage = _stage ();
+
+			const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
+				fullnode: net_path,
+				network: Aptos_SDK.Network.CUSTOM
+			}));
+			
+			const { enhanced } = await request_ledger_info ({ net_path })
+			console.info ({ enhanced });
 			
 			try {
 				stage.installed = await stage.is_installed ();
@@ -80,14 +143,13 @@ export const Dev_stage_creator = async ({ freight }) => {
 					return;
 				}
 
-				const account = await Petra.account ();
-				stage.account.address = account.address;
-				stage.account.public_key = account.publicKey;
+				stage.account.address = account.address_legacy;
+				stage.account.public_key = account.public_key;
+				stage.account.private_key = account.private_key;
 				
-				const network = await Petra.getNetwork ();
-				stage.network.name = network.name;
-				stage.network.address = network.url;
-				stage.network.chain_id = network.chainId;
+				stage.network.name = "devnet";
+				stage.network.address = net_path;
+				stage.network.chain_id = enhanced.chain_id;
 			}
 			catch (imperfection) {
 				console.error ("status imperfection:", imperfection);
@@ -98,58 +160,19 @@ export const Dev_stage_creator = async ({ freight }) => {
 		},
 		async is_connected () {
 			const stage = _stage ();
-			if (await stage.is_installed () !== "yes") { return "no" }
-			
-			try {
-				if (await Petra.isConnected () === true) {
-					return "yes";
-				}
-			}
-			catch (imperfection) {}
-			return "no";
+			if (stage.connected === "yes") { return "yes" }
+			return "no"
 		},
 		async connect () {
 			const stage = _stage ();
-
-			await Petra.connect ();
+			
+			stage.connected = "yes";
+			
 			await stage.status ();
-			
-			
-			Petra.onAccountChange (account => {
-				console.log ("onAccountChange bridges:", { account });
-				stage.status ();
-			});
-			
-			
-			Petra.onNetworkChange (network => {
-				console.log ("onNetworkChange bridges:", { network });
-				stage.status ();
-			});
-			
-			//
-			// presumably this listens for a disconnect
-			// that begins in the wallet
-			//
-			Petra.onDisconnect (() => {
-				console.log ("Petra onDisconnect");
-				reset ();
-			});
 		},
 		async disconnect () {
-			try {
-				Petra.transport.eventCallbacks.accountChange = []	
-				Petra.transport.eventCallbacks.networkChange = []	
-				Petra.transport.eventCallbacks.disconnect = []									
-			}	
-			catch (imperfection) {
-				console.error (imperfection);
-			}
-			
-			
-
-			
-			// Petra.removeAllListeners ();
-			Petra.disconnect ()
+			const stage = _stage ();
+			stage.connected = "no";
 		}
 	}
 }

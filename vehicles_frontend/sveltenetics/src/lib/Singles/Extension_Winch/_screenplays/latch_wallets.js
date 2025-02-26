@@ -97,7 +97,6 @@ export const latch_wallets = async () => {
 		}
 		
 			
-			
 		let stages = EWF.stages;
 		for (let stage_name in stages) {
 			console.info ("searching for:", stage_name);

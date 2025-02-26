@@ -51,15 +51,58 @@ export const make = () => {
 				Builder_01: Pannier_01_LA,
 				
 				hulls: [],
+				hulls_status: "",
 				
 				platform_name: "",
 				texts: [],
 				text: "",
 				
-				searching_for_texts: "no"
+				searching_for_texts: "no",
+				
+				le_hulls: {
+					progress: "no"
+				},
+				le_texts: {
+					progress: "no"
+				}
 			},
 			fonctions: {
 				producer: {
+					hulls: {
+						async status_pause () {
+							trucks [1].freight.info.le_hulls.progress = "yes"
+							
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const { result, note, transaction } = await Extension_Winch.freight ().prompt ({
+								petition: {
+									function: `${ Builder_01 }::Module_Producer_Hulls::Pause`,
+									type_arguments: [],
+									arguments: []
+								}
+							});
+							console.info ({ result, note, transaction });
+							
+							await trucks [1].freight.fonctions.guests.hulls.status ();
+							
+							trucks [1].freight.info.le_hulls.progress = "no"
+						},
+						async status_play () {
+							trucks [1].freight.info.le_hulls.progress = "yes"
+							
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const { result, note, transaction } = await Extension_Winch.freight ().prompt ({
+								petition: {
+									function: `${ Builder_01 }::Module_Producer_Hulls::Play`,
+									type_arguments: [],
+									arguments: []
+								}
+							});
+							console.info ({ result, note, transaction });
+							
+							await trucks [1].freight.fonctions.guests.hulls.status ();
+							trucks [1].freight.info.le_hulls.progress = "no"
+						}
+					},
 					hull: {
 						status: {
 							async disappear ({ platform_name }) {
@@ -210,6 +253,20 @@ export const make = () => {
 						}
 					},
 					hulls: {
+						async status () {
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const { result } = await view_fonction ({
+								body: {
+									"function": `${ Builder_01 }::Module_Guest_Hulls::Status`,							
+									"type_arguments": [],
+									"arguments": []
+								}
+							});
+							
+							const status = result [0];
+							
+							trucks [1].freight.info.hulls_status = status;
+						},
 						retrieve_hulls: async () => {
 							const Builder_01 = trucks [1].freight.info.Builder_01;
 							const { result } = await view_fonction ({

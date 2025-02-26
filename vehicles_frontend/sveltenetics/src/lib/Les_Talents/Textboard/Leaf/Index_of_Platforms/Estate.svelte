@@ -15,6 +15,10 @@ import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Button.svelte"
 import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 //
+//
+import Hulls_Estate from "./Hulls/Estate.svelte"
+import Search_Plus_Sort from "./Search_Plus_Sort/Estate.svelte"
+//
 ////
 
 let TF = false;
@@ -33,80 +37,20 @@ onMount (() => {
 
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 {#if typeof TF === "object" }
-<div 
+<div
 	style="
+		position: relative;
+		height: 100%;
+		overflow: hidden;
+		
 		display: flex;
 		flex-direction: column;
 		gap: 0.1cm;
 	"
-	class="card p-1 variant-soft-surface"
 >
-	<label class="label">
-		<input 
-			bind:value={ TF.info.platform_name }
-			style="
-				padding: 0.25cm;
-			"
-			class="input" 
-			type="text" 
-		/>
-	</label>
+	<Search_Plus_Sort />
 	
-	<div
-		style="
-			width: 100%;
-			max-width: 5cm;
-		"
-	>
-		<select class="select">
-			<option value="1">Option 1</option>
-			<option value="2">Option 2</option>
-		</select>
-	</div>
-</div>
-
-<div 
-	style="
-		height: 100%;
-		overflow-y: scroll;
-	"
->
-	{#if TF.info.is_producer === "yup" }
-	<div 
-		style="
-			overflow-y: scroll;
-			min-height: 100px;
-		"
-		class="card p-1 variant-soft-surface"
-	>
-		<Petition_APT_Button
-			onMount={({ mode }) => {
-				mode ("on");
-			}}
-			button_text={ `Pause Platforms as Producer` }
-			APT="0"
-			clicked={() => {
-				TF.fonctions.producer.hull.delete_platform ({
-					platform_name: hull.name
-				});
-			}}
-		/>
-		<Petition_APT_Button
-			onMount={({ mode }) => {
-				mode ("on");
-			}}
-			button_text={ `Play Platforms as Producer` }
-			APT="0"
-			clicked={() => {
-				TF.fonctions.producer.hull.delete_platform ({
-					platform_name: hull.name
-				});
-			}}
-		/>
-	</div>
-	{/if}
-	
-	<div style="height: 0.25cm" />
+	<Hulls_Estate />
 	
 	<div
 		style="
@@ -115,6 +59,9 @@ onMount (() => {
 			display: flex;
 			flex-direction: column;
 			gap: 0.1cm;
+			
+			height: 100%;
+			overflow-y: scroll;
 		"
 		class="card p-1 variant-soft-surface"
 	>

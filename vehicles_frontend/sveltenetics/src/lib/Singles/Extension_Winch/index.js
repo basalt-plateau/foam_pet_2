@@ -21,6 +21,10 @@
 import { build_truck } from '@bothy/trucks'
 //
 //
+import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
+import { ask_for_freight } from '$lib/Versies/Trucks'
+//
+//
 import { send_to_extension } from './Petition/send_to_extension.js'
 //
 import { Rise_stage_creator } from "./Stages/Rise.js"
@@ -28,8 +32,6 @@ import { Petra_stage_creator } from "./Stages/Petra.js"
 import { Pontem_stage_creator } from "./Stages/Pontem.js"
 //
 import { ask_for_extension_network_connection_status } from './Tracks/ask_for_extension_network_connection_status'
-import { find_transaction_by_hash_loop } from '$lib/PTO/Transaction/find_by_hash_loop'
-import { ask_for_freight } from '$lib/Versies/Trucks'
 //
 //
 ////
@@ -229,7 +231,7 @@ export const make = async (packet) => {
 				trucks [1].freight.network_status = {};
 			},
 			connect: async ({ stage_name }) => {	
-				console.info ("extension winch connect:", { stage_name });
+				console.info ("extension winch connect:", { stage_name }, trucks [1].freight.stages);
 				await trucks [1].freight.clear ();
 				
 				const stage = trucks [1].freight.stages [ stage_name ];
