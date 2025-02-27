@@ -69,6 +69,9 @@ export const make = () => {
 			fonctions: {
 				producer: {
 					hulls: {
+						async delete_every_platform () {
+
+						},
 						async status_pause () {
 							trucks [1].freight.info.le_hulls.progress = "yes"
 							
@@ -83,7 +86,6 @@ export const make = () => {
 							console.info ({ result, note, transaction });
 							
 							await trucks [1].freight.fonctions.guests.hulls.status ();
-							
 							trucks [1].freight.info.le_hulls.progress = "no"
 						},
 						async status_play () {
@@ -350,7 +352,6 @@ export const make = () => {
 					const texts = result [0].map (text => {
 						const writer_balance_apt = ask_convert_Octas_to_APT ({ Octas: text.writer_balance });
 						const writer_balance_octas = text.writer_balance;
-						
 						
 						return {
 							writer_address: address_to_hexadecimal (text.writer_address),

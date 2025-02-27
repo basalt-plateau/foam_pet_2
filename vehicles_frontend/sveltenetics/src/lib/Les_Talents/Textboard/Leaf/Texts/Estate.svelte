@@ -27,12 +27,12 @@ export let searching_for_texts = ""
 let le_text = ""
 let petition_APT_button = "";
 
-
 onMount (async () => {});
 onDestroy (async () => {});
 
-
 </script>
+
+
 
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 {#if typeof TF === "object" }

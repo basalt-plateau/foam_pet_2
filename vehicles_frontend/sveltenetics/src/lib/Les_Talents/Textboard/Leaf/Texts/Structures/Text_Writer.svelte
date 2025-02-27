@@ -30,7 +30,7 @@ let accepted_the_rules = "";
 $: {
 	let _accepted_the_rules = accepted_the_rules;
 	if (typeof petition_APT_button === "object") {
-		if (_accepted_the_rules === "yup") {
+		if (_accepted_the_rules === "I consent.") {
 			petition_APT_button.mode ("off");
 		}
 		
@@ -118,7 +118,7 @@ onDestroy (() => { TT_Monitor.stop () });
 			"
 		>
 			<div class="card p-1">
-				<p>Please write "yup" to indicate that you accept these rules.</p>
+				<p>Please write "I consent." to indicate that you accept these rules:</p>
 			</div>
 			<Textboard_Rules_Frontier />
 		</div>

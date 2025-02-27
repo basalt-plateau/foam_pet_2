@@ -61,6 +61,16 @@ onMount (() => {
 				TF.fonctions.producer.hulls.status_play ();
 			}}
 		/>
+		<Petition_APT_Button
+			onMount={({ mode }) => {
+				mode ("on");
+			}}
+			button_text={ `[Caution!] Delete Every Platform as Producer` }
+			APT="0"
+			clicked={() => {
+				TF.fonctions.producer.hulls.delete_every_platform ();
+			}}
+		/>
 	</div>
 	{/if}
 </div>
