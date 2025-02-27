@@ -27,6 +27,16 @@ let on_send = async () => {
 }
 
 let accepted_the_rules = "";
+$: {
+	let _accepted_the_rules = accepted_the_rules;
+	if (typeof petition_APT_button === "object") {
+		if (_accepted_the_rules === "yup") {
+			petition_APT_button.mode ("off");
+		}
+		
+		petition_APT_button.mode ("on");
+	}
+}
 
 let slide_toggle_checked = false
 
@@ -61,9 +71,7 @@ onMount (async () => {
 	});
 });
 
-onDestroy (() => {
-	TT_Monitor.stop ()
-});
+onDestroy (() => { TT_Monitor.stop () });
 
 
 </script>
