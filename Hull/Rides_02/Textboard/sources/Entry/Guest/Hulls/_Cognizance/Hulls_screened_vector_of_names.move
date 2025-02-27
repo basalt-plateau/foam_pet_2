@@ -13,10 +13,13 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 	}
 	
 	// producer_01_consenter : signer
-	struct Boat {}
+	struct Group has drop {
+		consenter : signer,
+		address : address
+	}
 	
 	
-	fun obtain_boats (
+	fun form_groups (
 		private_keys : vector<address>
 	) {
 		use aptos_framework::account;
@@ -27,26 +30,32 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 	
 	
 	/*
-		obtain_boat (@0x100000);
+		form_group (@0x100000);
 	*/
-	fun obtain_boat (
-		boat_private_key : address
-	) {
+	fun form_group (
+		group_private_key : address
+	) : Group {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;
 		use std::signer;
 		
-		let boat_consenter : & signer = & account::create_account_for_test (boat_private_key);
-		let boat_address = signer::address_of (boat_consenter);
-		account::create_account_for_test (boat_address);
-		coin::register<AptosCoin>(boat_consenter);
+		let group_consenter : signer = account::create_account_for_test (group_private_key);
+		let group_address = signer::address_of (& group_consenter);
+		account::create_account_for_test (group_address);
+		coin::register<AptosCoin>(& group_consenter);
 		
+		let group = Group {
+			consenter : group_consenter,
+			address : group_address
+		};
 		
+		group
 	}
 	
 	#[test]
 	public fun Vow_01 () {	
+		use std::vector;
 		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -92,37 +101,37 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 		////
 		
 		
-		obtain_boat (@0x100000);
+		
 		
 		////
 		//	
-		//	Heiress Boats:
+		//	Groups:
 		//	
 		//	
-		let boat_01_consenter : & signer = & account::create_account_for_test (@0x100000);
-		let boat_01_address = signer::address_of (boat_01_consenter);
-		account::create_account_for_test (boat_01_address);
-		coin::register<AptosCoin>(boat_01_consenter);
+		let group_01 = form_group (@0x100000);
+		let group_02 = form_group (@0x100001);
 		//
-		let boat_02_consenter : & signer = & account::create_account_for_test (@0x100001);
-		let boat_02_address = signer::address_of (boat_02_consenter);
-		account::create_account_for_test (boat_02_address);
-		coin::register<AptosCoin>(boat_02_consenter);
-		//
-		coin::transfer<AptosCoin>(& producer_01_consenter, boat_01_address, one_APT * 10);
+		coin::transfer<AptosCoin>(& producer_01_consenter, group_01.address, one_APT * 10);
+		coin::transfer<AptosCoin>(& producer_01_consenter, group_02.address, one_APT * 10);
 		//
 		////
 		
 		
-		Module_Guest_Texts::Send_Text (
-			boat_01_consenter, 
-			utf8 (b""), 
-			utf8 (b""), 
-			utf8 (b"I consent.")
-		);
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 1"), utf8 (b"I consent."));
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 2"), utf8 (b"I consent."));
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 3"), utf8 (b"I consent."));
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"group 1"), utf8 (b"I consent."));
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"group 2"), utf8 (b"I consent."));
+		
+		Module_Guest_Texts::Send_Text (& group_02.consenter, utf8 (b"text 2"), utf8 (b"platform 1"), utf8 (b"I consent."));
+		
+		let hulls_with_group = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"group"));
+		assert! (vector::length (hulls_with_group) == 2, 1);
+		// assert! (vector::borrow ()) == 3, 1);
+		
+		assert! (vector::length (& Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"platform"))) == 3, 1);
 		
 		
-
 		
 		////
 		//

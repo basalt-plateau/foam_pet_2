@@ -201,6 +201,10 @@ module Builder_01::Module_Hulls {
 		
 		envelope
 	}
+	
+	/*
+		let hulls_info = retrieve_screened_vector_of_hulls_info (utf8 (b"platform"));
+	*/
 	friend fun retrieve_screened_vector_of_hulls_info (platform_name_partial : String) : vector<Hull_Info_Envelope> acquires Hulls {
 		let envelope = vector::empty<Hull_Info_Envelope>();
 		

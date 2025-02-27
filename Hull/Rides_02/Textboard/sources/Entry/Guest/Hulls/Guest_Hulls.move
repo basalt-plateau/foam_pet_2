@@ -32,6 +32,15 @@ module Builder_01::Module_Guest_Hulls {
 	#[view] public fun Retrieve_Hulls_Info () : vector<Module_Hulls::Hull_Info_Envelope> {
 		Module_Hulls::retrieve_vector_of_hulls_info ()
 	}
+	
+	/*
+		let hulls_info = Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"platform"));
+	*/
+	#[view] public fun Retrieve_Screened_Hulls_Info (
+		platform_name_partial : String
+	) : vector<Module_Hulls::Hull_Info_Envelope> {
+		Module_Hulls::retrieve_screened_vector_of_hulls_info (platform_name_partial)
+	}
 	//
 	////
 }
