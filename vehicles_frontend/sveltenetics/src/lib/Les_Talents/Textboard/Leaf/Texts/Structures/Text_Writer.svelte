@@ -17,12 +17,16 @@ import { SlideToggle } from '@skeletonlabs/skeleton';
 //
 ////
 
+import Textboard_Rules_Frontier from "$lib/Les_Talents/Textboard_Rules/Frontier/Tome.svelte"
+
 let TF = "";
 let petition_APT_button = "";
 
 let on_send = async () => {
-	TF.fonctions.send_text ();
+	TF.fonctions.guests_plays.text.send_text ();
 }
+
+let accepted_the_rules = "";
 
 let slide_toggle_checked = false
 
@@ -92,6 +96,36 @@ onDestroy (() => {
 	
 	<div
 		style="
+			display: flex;
+			align-items: center;
+			gap: 0.1cm;
+			justify-content: space-between;
+		"
+	>	
+		<div
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.25cm;
+			"
+		>
+			<div class="card p-1">
+				<p>Please write "yup" to indicate that you accept these rules.</p>
+			</div>
+			<Textboard_Rules_Frontier />
+		</div>
+		<input 
+			bind:value={ accepted_the_rules }
+			style="
+				width: 4cm;
+				padding: 0.1cm;
+			"
+			class="input"
+		/>
+	</div>
+	
+	<div
+		style="
 			border-radius: 4px;
 			width: 100%;
 		"
@@ -120,7 +154,7 @@ onDestroy (() => {
 	</label>
 	{/if}
 	
-	<SlideToggle name="slide" bind:checked={ slide_toggle_checked } />
+	
 	
 	{/if}
 </div>

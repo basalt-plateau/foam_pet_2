@@ -3,7 +3,7 @@
 <script>
 
 /*
-	import Template_Frontier from "$lib/Les_Talents/__Template/Frontier/Tome.svelte"
+	import Textboard_Rules_Frontier from "$lib/Les_Talents/Textboard_Rules/Frontier/Tome.svelte"
 */
 
 /*
@@ -42,7 +42,7 @@ let open = async () => {
 		class="btn bg-gradient-to-br variant-gradient-primary-secondary"
 		style="
 			font-size: 1.3em;
-			padding: 12px 54px;
+			padding: 0.05cm 0.5cm;
 			
 			display: flex;
 			flex-direction: column;
@@ -52,6 +52,6 @@ let open = async () => {
 			white-space: break-spaces;
 		"
 	>
-		<p>Talent</p>
+		<p>Rules</p>
 	</button>
 </div>
