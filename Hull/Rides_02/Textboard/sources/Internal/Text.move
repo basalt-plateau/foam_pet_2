@@ -61,13 +61,13 @@ module Builder_01::Text_Module {
 	//
 	//	public: retrieve
 	//
-	public fun Text__retrieve_writer_address (text : & Text) : address {
+	friend fun Text__retrieve_writer_address (text : & Text) : address {
 		text.writer_address
 	}
-	public fun Text__retrieve_text (text : & Text) : String {
+	friend fun Text__retrieve_text (text : & Text) : String {
 		text.text
 	}
-	public fun Text__retrieve_now_seconds (text : & Text) : u64 {
+	friend fun Text__retrieve_now_seconds (text : & Text) : u64 {
 		text.now_seconds
 	}
 	//

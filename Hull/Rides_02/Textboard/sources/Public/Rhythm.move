@@ -1,13 +1,11 @@
 
 
 
-/*
-	Vintage: -> Rhythm
-*/
+
 /*
 	Is between UTC span?
 */
-module Builder_01::Beats {
+module Builder_01::Rhythm {
 	friend Builder_01::Module_Hulls;
 	
 	use std::string::{ String, utf8 };

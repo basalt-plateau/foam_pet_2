@@ -79,7 +79,7 @@ module Builder_01::Module_Hull {
 	//
 	//	ensure
 	//
-	public fun Hull__ensure_is_playing (hull : & Hull) {
+	friend fun Hull__ensure_is_playing (hull : & Hull) {
 		if (hull.status != utf8 (b"playing")) {
 			abort Ending__Hull_is_not_playing
 		}
@@ -91,7 +91,7 @@ module Builder_01::Module_Hull {
 	//
 	//	retrieve mut
 	//
-	public fun Hull__mut_retrieve_texts (hull : &mut Hull) : &mut vector<Text> {
+	friend fun Hull__mut_retrieve_texts (hull : &mut Hull) : &mut vector<Text> {
 		&mut hull.texts
 	}
 	
@@ -103,19 +103,19 @@ module Builder_01::Module_Hull {
 	//
 	//	retrieve imut
 	//
-	public fun Hull__retrieve_texts (hull : & Hull) : vector<Text> {
+	friend fun Hull__retrieve_texts (hull : & Hull) : vector<Text> {
 		hull.texts
 	}
-	public fun Hull__retrieve_count_of_texts (hull : & Hull) : u64 {
+	friend fun Hull__retrieve_count_of_texts (hull : & Hull) : u64 {
 		vector::length (& hull.texts)
 	}
-	public fun Hull__retrieve_status (hull : & Hull) : String {
+	friend fun Hull__retrieve_status (hull : & Hull) : String {
 		hull.status
 	}
-	public fun Hull__retrieve_platform (hull : & Hull) : String {
+	friend fun Hull__retrieve_platform (hull : & Hull) : String {
 		hull.platform
 	}
-	public fun Hull__retrieve_created_at_now_seconds (hull : & Hull) : u64 {
+	friend fun Hull__retrieve_created_at_now_seconds (hull : & Hull) : u64 {
 		hull.created_at_now_seconds
 	}
 	//

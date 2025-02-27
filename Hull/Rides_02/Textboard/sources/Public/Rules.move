@@ -51,26 +51,27 @@ module Builder_01::Rules_Module {
 	}
 	
 	#[test]
-    public fun steady_1 () {
+	public fun steady_1 () {
 		use std::string::{ Self, String };
+		use std::debug;
+		use std::string_utils;
 		
 		let rules : String = Volitions_01 ();
 		
 		/*
-		use std::debug;
-		use std::string_utils;
 		debug::print (& string_utils::format1 (
 			& b"Rules: {}", 
 			rules
 		));
+		*/
+		
 		debug::print (& string_utils::format1 (
 			& b"Rules Length: {}", 
 			string::length (& rules)
 		));
-		*/
 		
-		assert! (string::length (& rules) == 377, 0);
-    }
+		assert! (string::length (& rules) == 381, 0);
+	}
 }
 
 
