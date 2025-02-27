@@ -90,7 +90,7 @@ module Builder_01::Hulls_can_text_to_front {
 			writer_01_consenter,
 			text_01_text,
 			text_01_platform,
-			utf8 (b"agreed")
+			utf8 (b"I consent.")
 		);
 		//
 		////

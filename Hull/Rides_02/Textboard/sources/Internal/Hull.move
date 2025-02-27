@@ -4,7 +4,7 @@
 module Builder_01::Module_Hull {
 	friend Builder_01::Module_Producer_Hull;	
 	friend Builder_01::Module_Hulls;
-
+	
 	use std::vector;	
 	use std::string::{ String, utf8 };
 	

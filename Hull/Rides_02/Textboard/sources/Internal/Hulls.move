@@ -9,7 +9,7 @@ module Builder_01::Module_Hulls {
 	friend Builder_01::Module_Guest_Hulls;
 	friend Builder_01::Module_Guest_Hull;
 	friend Builder_01::Module_Guest_Texts;
-
+	
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
 	use std::string_utils;
@@ -44,6 +44,7 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_count_of_texts,
 		Hull__retrieve_created_at_now_seconds
 	};
+	use Builder_01::Module_String;
 	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
@@ -90,11 +91,23 @@ module Builder_01::Module_Hulls {
 	
 	////////
 	//
-	//	Hulls
-	//		[Retrieve]
+	//	Hulls: Retrieve Mut
+	//
 	//
 	friend fun Hulls__mut_retrieve_hulls (hulls : &mut Hulls) : &mut vector<Hull> {
 		&mut hulls.hulls
+	}
+	friend fun Hulls__mut_retrieve_hull (
+		platform_name : String,
+		hulls_mline: &mut vector<Hull>
+	) : &mut Hull acquires Hulls {
+		/*
+			let hulls_mline = Hulls__mut_retrieve_hull ("Hull 1", borrow_global_mut<Hulls>(Module_Producer::obtain_address ()));
+		*/
+		
+		let index_of_hull = search_for_index_of_hull (platform_name);
+		let hull_mline : &mut Hull = vector::borrow_mut (hulls_mline, index_of_hull);
+		hull_mline
 	}
 	//		
 	//	ensure:
@@ -109,7 +122,7 @@ module Builder_01::Module_Hulls {
 	//
 	//
 	//
-	//		[Flux]
+	//	Hulls: Fluctuate
 	//
 	friend fun Begin_Hulls (consenter : & signer) {
 		ensure_consenter_is_producer (consenter);
@@ -188,6 +201,34 @@ module Builder_01::Module_Hulls {
 		
 		envelope
 	}
+	friend fun retrieve_screened_vector_of_hulls_info (platform_name_partial : String) : vector<Hull_Info_Envelope> acquires Hulls {
+		let envelope = vector::empty<Hull_Info_Envelope>();
+		
+		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_length = vector::length (& hulls_ref.hulls);
+		for (index in 0..hulls_length) {
+			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
+			let platform_name : String = Hull__retrieve_platform (hull_ref);
+			
+			// screen by name
+			if (Module_String::does_string_have_partial (
+				& platform_name, 
+				& platform_name_partial
+			) == utf8 (b"yep")) {
+				let hull_info_envelope = Hull_Info_Envelope {
+					status : Hull__retrieve_status (hull_ref),
+					platform_name : Hull__retrieve_platform (hull_ref),
+					count_of_texts : Hull__retrieve_count_of_texts (hull_ref)
+				};
+				
+				vector::push_back (&mut envelope, hull_info_envelope);
+			}
+		};
+		
+		envelope
+	}
+	//
+	//
 	fun Ensure_Hulls_is_Playing () acquires Hulls {
 		if (Hulls_Status () != utf8 (b"playing")) {
 			abort Limiter_the_hull_is_not_going
@@ -200,16 +241,15 @@ module Builder_01::Module_Hulls {
 	
 	////////
 	//
-	//	Hull:
-	//		Fluctuations:
+	//	Hull Fluctuations:
 	//
 	//
 	friend fun Hulls__Hull__change_status (
 		consenter : & signer,
-		platform : String,
+		platform_name : String,
 		status : String
 	) acquires Hulls {
-		let index_of_hull = search_for_index_of_hull (platform);
+		let index_of_hull = search_for_index_of_hull (platform_name);
 		
 		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
 		let hulls_mref = &mut hulls_key_mref.hulls;
@@ -241,7 +281,7 @@ module Builder_01::Module_Hulls {
 		vector::remove (hulls_mref, index_of_hull);
 	}
 	//
-	//		[Flux Internal]
+	//	Hull Fluctuations Internal
 	//
 	//
 	fun search_or_begin_hull (platform_name : String) : u64 acquires Hulls {
@@ -276,7 +316,9 @@ module Builder_01::Module_Hulls {
 	//
 	//	[Constant]
 	//
-	//
+	/*
+		let status = Hulls__Hull__retrieve_status (utf8 (b""));
+	*/
 	friend fun Hulls__Hull__retrieve_status (platform : String) : String acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform);
 		
@@ -287,7 +329,6 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_status (hull_mref)
 	}
 	friend fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
-		/**/
 		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
