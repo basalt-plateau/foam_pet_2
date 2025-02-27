@@ -119,7 +119,7 @@ export const make = () => {
 								});
 								console.info ({ result, note, transaction });
 								
-								await trucks [1].freight.fonctions.retrieve_hulls ();
+								await trucks [1].freight.fonctions.guests.hulls.retrieve_hulls ();
 							},
 							async pause ({ platform_name }) {
 								let EWF = Extension_Winch.freight ();
@@ -135,7 +135,7 @@ export const make = () => {
 								});
 								console.info ({ result, note, transaction });
 								
-								await trucks [1].freight.fonctions.retrieve_hulls ();
+								await trucks [1].freight.fonctions.guests.hulls.retrieve_hulls ();
 							},
 							async play ({ platform_name }) {
 								let EWF = Extension_Winch.freight ();
@@ -151,7 +151,7 @@ export const make = () => {
 								});
 								console.info ({ result, note, transaction });
 								
-								await trucks [1].freight.fonctions.retrieve_hulls ();
+								await trucks [1].freight.fonctions.guests.hulls.retrieve_hulls ();
 							}
 						},
 						async delete_platform ({ platform_name }) {
@@ -168,7 +168,7 @@ export const make = () => {
 							});
 							console.info ({ result, note, transaction });
 							
-							await trucks [1].freight.fonctions.retrieve_hulls ();
+							await trucks [1].freight.fonctions.guests.hulls.retrieve_hulls ();
 							// await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
 							// trucks [1].freight.change++;
 						},
@@ -186,7 +186,7 @@ export const make = () => {
 							});
 							console.info ({ result, note, transaction });
 							
-							await trucks [1].freight.fonctions.retrieve_hulls ();
+							await trucks [1].freight.fonctions.guests.hulls.retrieve_hulls ();
 							trucks [1].freight.change++;
 						}
 					},
@@ -230,10 +230,38 @@ export const make = () => {
 					}
 				},
 				
-				guests: {
+				guests_plays: {
 					text: {
-						
-					},
+						send_text: async () => {
+							let EWF = Extension_Winch.freight ();
+							
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const platform_name = trucks [1].freight.info.platform_name;
+							const text = trucks [1].freight.info.text;
+							
+							const agreed_to_rules = "agreed";
+							
+							/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
+							const { result, note, transaction } = await EWF.prompt ({
+								petition: {
+									function: `${ Builder_01 }::Module_Guest_Texts::Send_Text`,
+									type_arguments: [],
+									arguments: [
+										text,
+										platform_name,
+										agreed_to_rules
+									]
+								}
+							});
+							console.info ({ result, note, transaction });
+							
+							await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
+						}
+					}
+				},
+				
+				guests: {
+					text: {},
 					hull: {
 						retrieve_texts: async ({ platform_name }) => {
 							trucks [1].freight.searching_for_texts = "yup"
@@ -300,38 +328,8 @@ export const make = () => {
 						await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
 					}
 				},
-
-				send_text: async () => {
-					let EWF = Extension_Winch.freight ();
-					
-					const Builder_01 = trucks [1].freight.info.Builder_01;
-					const platform_name = trucks [1].freight.info.platform_name;
-					const text = trucks [1].freight.info.text;
-					
-					/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
-					const { result, note, transaction } = await EWF.prompt ({
-						petition: {
-							function: `${ Builder_01 }::Module_Guest_Texts::Send`,
-							type_arguments: [],
-							arguments: [
-								text,
-								platform_name
-							]
-						}
-					});
-					console.info ({ result, note, transaction });
-					
-					/*
-					if (result === "discovered") {
-						petition_APT_button.mode ("success", { note });
-					}
-					else {
-						petition_APT_button.mode ("imperfection", { note });
-					}
-					*/
-					
-					await trucks [1].freight.fonctions.retrieve_texts_for_platform ();
-				},
+				
+				
 				retrieve_texts_for_platform: async () => {
 					trucks [1].freight.searching_for_texts = "yup"
 					trucks [1].freight.info.texts = []

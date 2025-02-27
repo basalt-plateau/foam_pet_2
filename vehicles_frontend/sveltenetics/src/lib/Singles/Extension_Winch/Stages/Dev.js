@@ -112,22 +112,37 @@ export const Dev_stage_creator = async ({ freight }) => {
 			const pending_transaction_hash = committed_transaction.hash;
 			console.info ({ aptos });
 			
-			
-			const transaction_result = await aptos.waitForTransaction ({ 
-				transactionHash: pending_transaction_hash
-			});
-			
 			console.info ({ 
-				transaction_result,
 				committed_transaction, 
 				pending_transaction_hash 
 			});
+			
+			let imperfection_occurred = "no"
+			let imperfection_with_transaction = ""			
+			try {
+				const transaction_result = await aptos.waitForTransaction ({ 
+					transactionHash: pending_transaction_hash
+				});
+				console.info ({ transaction_result });
+			}
+			catch (imperfection) {
+				console.error ({ imperfection });
+				imperfection_occurred = "yes";
+				imperfection_with_transaction = imperfection.message;				
+			}
+			
+			console.info ({ imperfection_with_transaction });
+			
 			
 			// const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
 			// const pending_transaction_hash = _get (pending_transaction, "hash", "");
 			
 			/**/
-			return { pending_transaction_hash }			
+			return { 
+				pending_transaction_hash,
+				imperfection_occurred,
+				imperfection_with_transaction
+			}
 		},
 		
 		async status () {
