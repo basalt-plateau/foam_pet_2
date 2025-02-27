@@ -18,7 +18,7 @@ module Builder_01::Rules_Module {
 		by doing this:
 		
 		#[view]
-		public fun Volitions () : String { Rules_10::Volitions_01 () }		
+		public fun Volitions () : String { Rules_Module::Volitions_01 () }		
 	*/
 	
 	use std::string::{ String, utf8 };
@@ -43,7 +43,7 @@ module Builder_01::Rules_Module {
 		vector::append (&mut vectors, b"by doing this:\n");		
 		vector::append (&mut vectors, b"\n");
 		vector::append (&mut vectors, b"#[view]\n");
-		vector::append (&mut vectors, b"public fun Volitions () : String { Rules_10::Volitions_01 () }\n");		
+		vector::append (&mut vectors, b"public fun Volitions () : String { Rules_Module::Volitions_01 () }\n");		
 		vector::append (&mut vectors, b"\n");
 		vector::append (&mut vectors, b"\n");
 

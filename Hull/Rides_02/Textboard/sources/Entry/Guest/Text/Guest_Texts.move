@@ -28,6 +28,7 @@ module Builder_01::Module_Guest_Texts {
 		platform_name : String,
 		agreed_to_rules : String
 	) {
+		Module_Hulls::Hulls__ensure_is_playing ();
 		if (utf8 (b"agreed") != agreed_to_rules) {
 			abort 0xE000001;
 		};

@@ -19,7 +19,7 @@ module Builder_01::Module_Hulls {
 	
 	use aptos_framework::timestamp;
 	
-	use Builder_01::Endings_Module;
+	// use Builder_01::Endings_Module;
 	use Builder_01::Module_Producer::{ Self, ensure_consenter_is_producer };
 	use Builder_01::Text_Module::{
 		Text,
@@ -63,7 +63,6 @@ module Builder_01::Module_Hulls {
 		text : String,
 		now_seconds : u64
 	}
-	
 	struct Hull_Info_Envelope has store, drop {
 		status : String,
 		platform_name : String,
@@ -97,6 +96,17 @@ module Builder_01::Module_Hulls {
 	friend fun Hulls__mut_retrieve_hulls (hulls : &mut Hulls) : &mut vector<Hull> {
 		&mut hulls.hulls
 	}
+	//		
+	//	ensure:
+	//		Hulls__ensure_is_playing ();
+	//		
+	public fun Hulls__ensure_is_playing () acquires Hulls {
+		let hulls_borrowed = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		if (hulls_borrowed.status != utf8 (b"playing")) {
+			abort 0x706175736564
+		}
+	}
+	//
 	//
 	//
 	//		[Flux]
@@ -133,10 +143,10 @@ module Builder_01::Module_Hulls {
 		let hulls = borrow_global_mut<Hulls>(producer_address);
 		hulls.status = status;
 	}
-	//
-	//
-	//		[Constants]
-	//
+	//	
+	//	
+	//	Constants:
+	//	
 	friend fun are_Hulls_built () : String {
 		if (exists<Hulls>(Module_Producer::obtain_address ())) {
 			return utf8 (b"yup")
@@ -191,7 +201,7 @@ module Builder_01::Module_Hulls {
 	////////
 	//
 	//	Hull:
-	//		[Flux]
+	//		Fluctuations:
 	//
 	//
 	friend fun Hulls__Hull__change_status (
@@ -210,7 +220,7 @@ module Builder_01::Module_Hulls {
 	friend fun Hulls__Hull__delete_every_text (
 		consenter : & signer, 
 		platform_name : String
-	) acquires Hulls {
+	) acquires Hulls {		
 		let index_of_hull = search_for_index_of_hull (platform_name);
 		
 		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());

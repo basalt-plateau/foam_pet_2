@@ -30,7 +30,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
-	
+		
 		////
 		//
 		let aptos_framework_consenter : & signer = & account::create_account_for_test (@0x1);
@@ -55,10 +55,10 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		
 		
 		////
-		//
+		//	
 		//	writers:
-		//		
-		//
+		//	
+		//	
 		coin::register<AptosCoin>(writer_01_consenter);
 		coin::register<AptosCoin>(writer_02_consenter);
 		//

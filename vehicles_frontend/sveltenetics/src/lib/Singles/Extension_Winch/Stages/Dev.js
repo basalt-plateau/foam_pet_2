@@ -103,13 +103,25 @@ export const Dev_stage_creator = async ({ freight }) => {
 				signer: consenter,
 				transaction: tx_petition
 			});
-			const committedTransaction = await aptos.transaction.submit.simple({
+			
+			const committed_transaction = await aptos.transaction.submit.simple ({
 				transaction: tx_petition,
 				senderAuthenticator: consent
 			});
-			const pending_transaction_hash = committedTransaction.hash;
 			
-			console.info ({ committedTransaction });
+			const pending_transaction_hash = committed_transaction.hash;
+			console.info ({ aptos });
+			
+			
+			const transaction_result = await aptos.waitForTransaction ({ 
+				transactionHash: pending_transaction_hash
+			});
+			
+			console.info ({ 
+				transaction_result,
+				committed_transaction, 
+				pending_transaction_hash 
+			});
 			
 			// const pending_transaction = await (window).aptos.signAndSubmitTransaction (petition);
 			// const pending_transaction_hash = _get (pending_transaction, "hash", "");
@@ -120,7 +132,7 @@ export const Dev_stage_creator = async ({ freight }) => {
 		
 		async status () {
 			const stage = _stage ();
-
+			
 			const aptos = new Aptos_SDK.Aptos (new Aptos_SDK.AptosConfig ({		
 				fullnode: net_path,
 				network: Aptos_SDK.Network.CUSTOM
@@ -142,7 +154,7 @@ export const Dev_stage_creator = async ({ freight }) => {
 					reset ();
 					return;
 				}
-
+				
 				stage.account.address = account.address_legacy;
 				stage.account.public_key = account.public_key;
 				stage.account.private_key = account.private_key;
