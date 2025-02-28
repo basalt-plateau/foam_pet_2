@@ -127,7 +127,8 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 		
 		let hulls_with_group = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"group"));
 		assert! (vector::length (hulls_with_group) == 2, 1);
-		// assert! (vector::borrow ()) == 3, 1);
+		assert! (vector::borrow (hulls_with_group, 0) == & utf8 (b"group 1"), 1);
+		assert! (vector::borrow (hulls_with_group, 1) == & utf8 (b"group 2"), 1);
 		
 		assert! (vector::length (& Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"platform"))) == 3, 1);
 		
