@@ -35,6 +35,7 @@ module Builder_01::Module_Guest_Hulls {
 	
 	/*
 		let hulls_info = Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"platform"));
+		let hull_01_name = 
 	*/
 	#[view] public fun Retrieve_Screened_Hulls_Info (
 		platform_name_partial : String

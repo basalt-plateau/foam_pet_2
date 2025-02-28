@@ -104,7 +104,6 @@ module Builder_01::Module_Hulls {
 		/*
 			let hulls_mline = Hulls__mut_retrieve_hull ("Hull 1", borrow_global_mut<Hulls>(Module_Producer::obtain_address ()));
 		*/
-		
 		let index_of_hull = search_for_index_of_hull (platform_name);
 		let hull_mline : &mut Hull = vector::borrow_mut (hulls_mline, index_of_hull);
 		hull_mline
@@ -352,7 +351,6 @@ module Builder_01::Module_Hulls {
 				return hull_texts_envelope
 			};
 		*/
-		
 		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);

@@ -15,15 +15,15 @@ module Builder_01::Module_Guest_Hull {
 	}
 	
 	
-	
 	////
 	//
 	//	Entry Flux: 
 	//
+	//
+	
 	
 	//
 	////
-	
 	
 	
 	////
