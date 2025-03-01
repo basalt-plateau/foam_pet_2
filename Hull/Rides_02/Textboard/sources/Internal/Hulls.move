@@ -44,6 +44,11 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_count_of_texts,
 		Hull__retrieve_created_at_now_seconds
 	};
+	use Builder_01::Module_Hull_Info_Envelope::{
+		Hull_Info_Envelope,
+		Hull_Info_Envelope__create
+		
+	};
 	use Builder_01::Module_String;
 	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
@@ -64,24 +69,6 @@ module Builder_01::Module_Hulls {
 		text : String,
 		now_seconds : u64
 	}
-	
-	////
-	//
-	struct Hull_Info_Envelope has store, drop {
-		status : String,
-		platform_name : String,
-		count_of_texts : u64
-	}
-	//
-	//
-	//	retrieve imut
-	//
-	friend fun Hull_Info_Envelope__retrieve_platform_name (hull : & Hull_Info_Envelope) : String acquires Hull_Info_Envelope {
-		hull.platform_name
-	}
-	//
-	////
-	
 	
 	/*
 		status:
@@ -200,11 +187,11 @@ module Builder_01::Module_Hulls {
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
 			
-			let hull_info_envelope = Hull_Info_Envelope {
-				status : Hull__retrieve_status (hull_ref),
-				platform_name : Hull__retrieve_platform (hull_ref),
-				count_of_texts : Hull__retrieve_count_of_texts (hull_ref)
-			};
+			let hull_info_envelope = Hull_Info_Envelope__create (
+				Hull__retrieve_status (hull_ref),
+				Hull__retrieve_platform (hull_ref),
+				Hull__retrieve_count_of_texts (hull_ref)
+			);
 			
 			vector::push_back (&mut envelope, hull_info_envelope);
 		};
@@ -229,11 +216,11 @@ module Builder_01::Module_Hulls {
 				& platform_name, 
 				& platform_name_partial
 			) == utf8 (b"yep")) {
-				let hull_info_envelope = Hull_Info_Envelope {
-					status : Hull__retrieve_status (hull_ref),
-					platform_name : Hull__retrieve_platform (hull_ref),
-					count_of_texts : Hull__retrieve_count_of_texts (hull_ref)
-				};
+				let hull_info_envelope = Hull_Info_Envelope__create (
+					Hull__retrieve_status (hull_ref),
+					Hull__retrieve_platform (hull_ref),
+					Hull__retrieve_count_of_texts (hull_ref)
+				);
 				
 				vector::push_back (&mut envelope, hull_info_envelope);
 			}
@@ -241,6 +228,33 @@ module Builder_01::Module_Hulls {
 		
 		envelope
 	}
+	//
+	friend fun retrieve_screened_vector_of_hulls_info (platform_name_partial : String) : String acquires Hulls {
+		let envelope = vector::empty<Hull_Info_Envelope>();
+		
+		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_length = vector::length (& hulls_ref.hulls);
+		for (index in 0..hulls_length) {
+			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
+			let platform_name : String = Hull__retrieve_platform (hull_ref);
+			
+			// screen by name
+			if (Module_String::does_string_have_partial (
+				& platform_name, 
+				& platform_name_partial
+			) == utf8 (b"yep")) {
+				let hull_info_envelope = Hull_Info_Envelope__create (
+					Hull__retrieve_status (hull_ref),
+					Hull__retrieve_platform (hull_ref),
+					Hull__retrieve_count_of_texts (hull_ref)
+				);
+				
+				vector::push_back (&mut envelope, hull_info_envelope);
+			}
+		};
+		
+		envelope
+	}	
 	//
 	//
 	fun Ensure_Hulls_is_Playing () acquires Hulls {

@@ -10,6 +10,9 @@ module Builder_01::Module_Guest_Hulls {
 	
 	use Builder_01::Module_Producer::{ Self };
 	use Builder_01::Module_Hulls;
+	use Builder_01::Module_Hull_Info_Envelope::{
+		Hull_Info_Envelope
+	};
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
@@ -29,7 +32,7 @@ module Builder_01::Module_Guest_Hulls {
 	#[view] public fun Hull_Names () : vector<String> {
 		Module_Hulls::retrieve_vector_of_hull_names ()
 	}
-	#[view] public fun Retrieve_Hulls_Info () : vector<Module_Hulls::Hull_Info_Envelope> {
+	#[view] public fun Retrieve_Hulls_Info () : vector<Hull_Info_Envelope> {
 		Module_Hulls::retrieve_vector_of_hulls_info ()
 	}
 	
@@ -39,8 +42,15 @@ module Builder_01::Module_Guest_Hulls {
 	*/
 	#[view] public fun Retrieve_Screened_Hulls_Info (
 		platform_name_partial : String
-	) : vector<Module_Hulls::Hull_Info_Envelope> {
+	) : vector<Hull_Info_Envelope> {
 		Module_Hulls::retrieve_screened_vector_of_hulls_info (platform_name_partial)
+	}
+	//
+	#[view] public fun retrieve_platform_name_at_index (
+		index : u64
+	) : String {
+		
+		
 	}
 	//
 	////

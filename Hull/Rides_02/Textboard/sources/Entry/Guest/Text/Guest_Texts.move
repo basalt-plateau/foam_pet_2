@@ -23,7 +23,7 @@ module Builder_01::Module_Guest_Texts {
 	//		* Delete
 	//
 	/*
-		Module_Guest_Texts::Send_Text (consenter, utf8 (b""), utf8 (b""), utf8 (b""), utf8 (b"I consent."))
+		Module_Guest_Texts::Send_Text (consenter, utf8 (b""), utf8 (b""), utf8 (b""), utf8 (b"I accept."))
 	*/
 	public entry fun Send_Text (
 		consenter : & signer,
@@ -32,7 +32,7 @@ module Builder_01::Module_Guest_Texts {
 		agreed_to_rules : String
 	) {
 		Module_Hulls::Hulls__ensure_is_playing ();
-		if (utf8 (b"I consent.") != agreed_to_rules) {
+		if (utf8 (b"I accept.") != agreed_to_rules) {
 			abort 0xE000001;
 		};
 		

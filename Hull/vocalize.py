@@ -198,7 +198,6 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 			});
 			
 			
-			
 		elif (steady):
 			publisher_address = Builder_Addresses [ "Pannier_01" ];
 			moves_structures [ move ].steady ({
@@ -209,7 +208,7 @@ aptos move run --assume-yes --function-id 2f75da076414103c721d195b0376c66897593b
 				})
 			});
 			
-			
+
 			
 		else:
 			print ("");

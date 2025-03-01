@@ -68,7 +68,7 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		Module_Producer_Hulls::Pause (producer_01_consenter);	
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"paused"), 1);
 		
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I consent."));
+		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
 		Module_Producer_Hulls::Play (producer_01_consenter);
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
 		

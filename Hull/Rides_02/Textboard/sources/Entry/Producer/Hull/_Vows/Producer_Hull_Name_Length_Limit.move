@@ -79,7 +79,7 @@ module Builder_01::Hull_Name_Length_Limit {
 		assert! (vector::length (& Module_Guest_Hull::Retrieve_Texts (utf8 (b""))) == 0, 1);
 		assert! (vector::length (& Module_Guest_Hull::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
 		
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I consent."));
+		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
 		
 		
 		

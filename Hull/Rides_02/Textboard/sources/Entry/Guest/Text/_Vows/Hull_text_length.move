@@ -91,7 +91,7 @@ module Builder_01::Text_Length_Limiter {
 			writer_01_consenter,
 			text_01_text,
 			text_01_platform,
-			utf8 (b"I consent.")
+			utf8 (b"I accept.")
 		);
 		//
 		////
