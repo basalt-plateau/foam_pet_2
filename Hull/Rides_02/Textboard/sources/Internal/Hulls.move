@@ -229,33 +229,6 @@ module Builder_01::Module_Hulls {
 		envelope
 	}
 	//
-	friend fun retrieve_screened_vector_of_hulls_info (platform_name_partial : String) : String acquires Hulls {
-		let envelope = vector::empty<Hull_Info_Envelope>();
-		
-		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
-		let hulls_length = vector::length (& hulls_ref.hulls);
-		for (index in 0..hulls_length) {
-			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
-			let platform_name : String = Hull__retrieve_platform (hull_ref);
-			
-			// screen by name
-			if (Module_String::does_string_have_partial (
-				& platform_name, 
-				& platform_name_partial
-			) == utf8 (b"yep")) {
-				let hull_info_envelope = Hull_Info_Envelope__create (
-					Hull__retrieve_status (hull_ref),
-					Hull__retrieve_platform (hull_ref),
-					Hull__retrieve_count_of_texts (hull_ref)
-				);
-				
-				vector::push_back (&mut envelope, hull_info_envelope);
-			}
-		};
-		
-		envelope
-	}	
-	//
 	//
 	fun Ensure_Hulls_is_Playing () acquires Hulls {
 		if (Hulls_Status () != utf8 (b"playing")) {

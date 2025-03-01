@@ -18,7 +18,7 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 		address : address
 	}
 	
-	
+	/*
 	fun form_groups (
 		private_keys : vector<address>
 	) {
@@ -27,6 +27,7 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 		
 		
 	}
+	*/
 	
 	
 	/*
@@ -72,6 +73,9 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
+		use Builder_01::Module_Hull_Info_Envelope::{
+			Hull_Info_Envelope__retrieve_platform_name
+		};
 	
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : signer = account::create_account_for_test (@Producer_01);
@@ -126,24 +130,15 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 		
 		let hulls_with_ride = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"ride"));
 		let hull_at_index_0 = vector::borrow (hulls_with_ride, 0);
-		let hull_index_0_platform_name = Module_Guest_Hulls::retrieve_platform_name (hull_at_index_0);
-		assert! (vector::length (hulls_with_group) == 2, 1);
+		let hull_index_0_platform_name = Hull_Info_Envelope__retrieve_platform_name (hull_at_index_0);
+		assert! (vector::length (hulls_with_ride) == 2, 1);
 		assert! (hull_index_0_platform_name == utf8 (b"ride 1"), 1);
 		
 		
-		// assert! (vector::borrow (hulls_with_group, 1).platform_name == utf8 (b"ride 2"), 1);
 		
 		
 		
-				
-		/*
-		let hulls_with_group = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"platform"));
-		assert! (vector::length (hulls_with_group) == 3, 1);
-		assert! (vector::borrow (hulls_with_group, 0) == & utf8 (b"platform 1"), 1);
-		assert! (vector::borrow (hulls_with_group, 0) == & utf8 (b"platform 2"), 1);
-		assert! (vector::borrow (hulls_with_group, 0) == & utf8 (b"platform 3"), 1);
-		*/
-		
+
 		
 		////
 		//

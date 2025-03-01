@@ -32,7 +32,7 @@ def steady (envelope):
 		f"cd { this_directory }",
 		"&&",
 		"aptos move test",
-		#"--ignore-compile-warnings",
+		"--ignore-compile-warnings",
 		filter,
 		named_addresses
 	]);

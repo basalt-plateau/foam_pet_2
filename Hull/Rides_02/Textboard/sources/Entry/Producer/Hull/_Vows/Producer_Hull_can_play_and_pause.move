@@ -21,7 +21,6 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 	*/
 	#[test_only]
 	public fun Vow_01 () {	
-		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
 		
@@ -31,11 +30,9 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		
 		use Builder_01::Module_Producer_Hulls;
 		use Builder_01::Module_Producer_Hull;		
-		use Builder_01::Module_Producer_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
-		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 	
 		let one_apt : u64 = 100000000; 

@@ -8,7 +8,6 @@
 module Builder_01::Module_Guest_Hulls {
 	use std::string::{ String, utf8 };
 	
-	use Builder_01::Module_Producer::{ Self };
 	use Builder_01::Module_Hulls;
 	use Builder_01::Module_Hull_Info_Envelope::{
 		Hull_Info_Envelope
@@ -47,10 +46,10 @@ module Builder_01::Module_Guest_Hulls {
 	}
 	//
 	#[view] public fun retrieve_platform_name_at_index (
-		index : u64
+		_index : u64
 	) : String {
 		
-		
+		utf8 (b"")
 	}
 	//
 	////

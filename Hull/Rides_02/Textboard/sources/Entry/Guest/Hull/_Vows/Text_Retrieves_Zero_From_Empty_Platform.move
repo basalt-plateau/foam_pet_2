@@ -23,10 +23,8 @@ module Builder_01::Text_Retrieves_Zero_From_Empty_Platform {
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Producer_Hulls;
-		use Builder_01::Module_Producer_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
-		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Vow_Parts_01; 
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);

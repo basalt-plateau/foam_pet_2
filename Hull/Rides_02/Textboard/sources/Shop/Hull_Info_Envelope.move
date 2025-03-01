@@ -25,10 +25,6 @@ module Builder_01::Module_Hull_Info_Envelope {
 	//
 	//	friend create
 	//
-	/*
-	
-	
-	*/
 	friend fun Hull_Info_Envelope__create (
 		status : String,
 		platform_name : String,
@@ -49,7 +45,7 @@ module Builder_01::Module_Hull_Info_Envelope {
 	//
 	//	retrieve imut
 	//
-	friend fun Hull_Info_Envelope__retrieve_platform_name (hull_info_envelope : & Hull_Info_Envelope) : String {
+	public fun Hull_Info_Envelope__retrieve_platform_name (hull_info_envelope : & Hull_Info_Envelope) : String {
 		hull_info_envelope.platform_name
 	}
 	//

@@ -61,12 +61,12 @@ module Builder_01::Module_Guest_Texts {
 	//
 	#[view] public fun Ensure_Text_Exists_at_Index (
 		platform_name : String,
-		writer_address : address,
+		_writer_address : address,
 		text : String,
 		text_index : u64
 	) : String {
 		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (platform_name);
-		let text_ref = vector::borrow (& texts, text_index);
+		// let text_ref = vector::borrow (& texts, text_index);
 		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts, text_index)) == text, 1);
 		utf8 (b"exists")
 	}
