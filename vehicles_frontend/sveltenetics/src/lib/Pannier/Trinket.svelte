@@ -123,7 +123,7 @@ let nav_height = 0;
 					<p monitor="accounts opener">Harvests</p>
 				</RadioItem>
 				<RadioItem bind:group={ leaf } name="justify" value={ "Consent" }>
-					<p monitor="consent opener">Elliptic Consent</p>
+					<p monitor="consent opener">Elliptic Acceptance</p>
 				</RadioItem>				
 			</RadioGroup>
 		</div>

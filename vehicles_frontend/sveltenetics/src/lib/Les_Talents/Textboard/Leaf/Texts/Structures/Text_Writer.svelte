@@ -118,7 +118,7 @@ onDestroy (() => { TT_Monitor.stop () });
 			"
 		>
 			<div class="card p-1">
-				<p>Please write "I consent." to indicate that you accept these rules:</p>
+				<p>Please write "I accept." to indicate that you accept these rules:</p>
 			</div>
 			<Textboard_Rules_Frontier />
 		</div>
@@ -149,7 +149,7 @@ onDestroy (() => { TT_Monitor.stop () });
 				}
 			}}
 			
-			button_text={ `Fire to "${ TF.info.platform_name }"` }
+			button_text={ `Sketch on "${ TF.info.platform_name }"` }
 			APT="1"
 			clicked={ on_send }
 		/>

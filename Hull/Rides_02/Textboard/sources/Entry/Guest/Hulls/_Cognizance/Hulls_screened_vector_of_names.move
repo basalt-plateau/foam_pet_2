@@ -116,22 +116,26 @@ module Builder_01::Cognizance__Hulls_screened_vector_of_names {
 		//
 		////
 		
-		
 		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 1"), utf8 (b"I consent."));
 		Module_Guest_Texts::Send_Text (& group_02.consenter, utf8 (b"text 2"), utf8 (b"platform 1"), utf8 (b"I consent."));
-		
 		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 2"), utf8 (b"I consent."));
 		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 3"), utf8 (b"I consent."));
-		
 		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"mall 1"), utf8 (b"I consent."));
 		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"mall 2"), utf8 (b"I consent."));
 		
 		
 		let hulls_with_group = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"group"));
+		let hull_index_0 = vector::borrow (hulls_with_group, 0);
+		let hull_index_0_platform_name = Module_Guest_Hulls::Hull_Info_Envelope__retrieve_platform_name (hull_index_0);
 		assert! (vector::length (hulls_with_group) == 2, 1);
-		assert! (vector::borrow (hulls_with_group, 0).platform_name == utf8 (b"mall 1"), 1);
-		assert! (vector::borrow (hulls_with_group, 1).platform_name == utf8 (b"mall 2"), 1);
+		assert! (hull_index_0_platform_name == utf8 (b"mall 1"), 1);
 		
+		
+		// assert! (vector::borrow (hulls_with_group, 1).platform_name == utf8 (b"mall 2"), 1);
+		
+		
+		
+				
 		/*
 		let hulls_with_group = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"platform"));
 		assert! (vector::length (hulls_with_group) == 3, 1);

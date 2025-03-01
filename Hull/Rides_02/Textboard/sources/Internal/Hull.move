@@ -94,7 +94,6 @@ module Builder_01::Module_Hull {
 	friend fun Hull__mut_retrieve_texts (hull : &mut Hull) : &mut vector<Text> {
 		&mut hull.texts
 	}
-	
 	//
 	////
 	

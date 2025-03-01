@@ -64,12 +64,23 @@ module Builder_01::Module_Hulls {
 		text : String,
 		now_seconds : u64
 	}
+	
+	////
+	//
 	struct Hull_Info_Envelope has store, drop {
 		status : String,
 		platform_name : String,
 		count_of_texts : u64
 	}
-	
+	//
+	//
+	//	retrieve imut
+	//
+	friend fun Hull_Info_Envelope__retrieve_platform_name (hull : & Hull_Info_Envelope) : String acquires Hull_Info_Envelope {
+		hull.platform_name
+	}
+	//
+	////
 	
 	
 	/*
