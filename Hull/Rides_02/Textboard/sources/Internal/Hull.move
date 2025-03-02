@@ -28,7 +28,7 @@ module Builder_01::Module_Hull {
 		platform : String,
 		texts : vector<Text>,
 		
-		verse: u64,
+		hull_index: u64,
 		created_at_now_seconds : u64
 	}
 	
@@ -44,14 +44,14 @@ module Builder_01::Module_Hull {
 		status : String,
 		platform : String,
 		texts : vector<Text>,
-		verse : u64
+		hull_index : u64
 	) : Hull {
 		let hull = Hull {
 			status : status,
 			platform : platform,
 			texts : texts,
 			
-			verse,
+			hull_index,
 			created_at_now_seconds : timestamp::now_seconds ()
 		};
 		hull

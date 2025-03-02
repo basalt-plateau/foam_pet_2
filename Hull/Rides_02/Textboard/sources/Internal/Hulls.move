@@ -84,7 +84,7 @@ module Builder_01::Module_Hulls {
 		
 		logs : vector<Log>,
 		
-		hull_next_verse: u64
+		hull_next_index: u64
 	}
 	
 	#[view] public fun Volitions () : String { 
@@ -151,7 +151,7 @@ module Builder_01::Module_Hulls {
 			hulls : hulls_vector,
 			
 			logs : vector::empty<Log>(),
-			hull_next_verse : verse
+			hull_next_index : verse
 		};
 		
 		move_to<Hulls>(consenter, hulls)
@@ -341,8 +341,8 @@ module Builder_01::Module_Hulls {
 			If the hull does not exist, then start it.
 		*/
 		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
-		let hull_next_verse = hulls.hull_next_verse;
-		hulls.hull_next_verse = hulls.hull_next_verse + 1;
+		let hull_next_index = hulls.hull_next_index;
+		hulls.hull_next_index = hulls.hull_next_index + 1;
 		
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
@@ -360,7 +360,7 @@ module Builder_01::Module_Hulls {
 			utf8 (b"playing"),
 			platform_name,
 			vector::empty<Text>(),
-			hull_next_verse
+			hull_next_index
 		);
 		
 		vector::push_back (&mut hulls.hulls, hull);
