@@ -19,18 +19,19 @@ module Builder_01::Module_Producer_Hulls {
 	//	Entry Flux: 
 	//		Status 
 	//
-	public entry fun Begin (consenter : & signer) {
-		Module_Hulls::Begin_Hulls (consenter);
+	public entry fun Begin (acceptor : & signer) {
+		Module_Hulls::Begin_Hulls (acceptor);
 	}
-	public entry fun Pause (consenter : & signer) {
-		Module_Hulls::Hulls_Change_Status (consenter, utf8 (b"paused"));
+	public entry fun Pause (acceptor : & signer) {
+		Module_Hulls::Hulls_Change_Status (acceptor, utf8 (b"paused"));
 	}
-	public entry fun Play (consenter : & signer) {
-		Module_Hulls::Hulls_Change_Status (consenter, utf8 (b"playing"));
+	public entry fun Play (acceptor : & signer) {
+		Module_Hulls::Hulls_Change_Status (acceptor, utf8 (b"playing"));
 	}
 	//
 	////
 	
-	
-	
+	public entry fun Feed (acceptor : & signer) {
+		
+	}
 }
