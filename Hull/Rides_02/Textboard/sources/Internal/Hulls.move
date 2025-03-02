@@ -9,6 +9,7 @@ module Builder_01::Module_Hulls {
 	friend Builder_01::Module_Guest_Hulls;
 	friend Builder_01::Module_Guest_Hull;
 	friend Builder_01::Module_Guest_Texts;
+	friend Builder_01::Module_Guest_Logs;
 	
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
@@ -44,7 +45,10 @@ module Builder_01::Module_Hulls {
 	use Builder_01::Module_String;
 	use Builder_01::Module_Logs::{
 		Log,
-		Log__create
+		Log__create,
+		Log__name,
+		Log__address,
+		Log__now_seconds
 	};
 	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
@@ -258,6 +262,19 @@ module Builder_01::Module_Hulls {
 		let logs_length = vector::length (& hulls_ref.logs);
 		for (index in 0..logs_length) {
 			let log = * vector::borrow (& hulls_ref.logs, index);
+
+			if (Log__name (log) != name) {
+				continue;
+			};
+			
+			let now_second = Log__now_seconds (log);
+			if (now_second < from_ms) {
+				continue;
+			};
+			if (now_second > to_ms) {
+				continue;
+			};
+			
 			vector::push_back (&mut envelope, log);
 		};
 		

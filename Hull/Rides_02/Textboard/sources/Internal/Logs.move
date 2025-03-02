@@ -48,5 +48,20 @@ module Builder_01::Module_Logs {
 		log
 	}
 	
+	
+	friend fun Log__name (log : Log) : String {
+		log.name
+	}
+	friend fun Log__address (log : Log) : address {
+		log.address
+	}
+	friend fun Log__amount_of_apt (log : Log) : u64 {
+		log.amount_of_apt
+	}
+	friend fun Log__now_seconds (log : Log) : u64 {
+		log.now_seconds
+	}
+
+	
 	// friend fun Log__ditto () : Log {}
 }
