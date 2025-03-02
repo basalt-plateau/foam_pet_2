@@ -27,6 +27,8 @@ module Builder_01::Module_Hull {
 		status : String,
 		platform : String,
 		texts : vector<Text>,
+		
+		verse: u64,
 		created_at_now_seconds : u64
 	}
 	
@@ -41,12 +43,15 @@ module Builder_01::Module_Hull {
 	friend fun Hull__create (
 		status : String,
 		platform : String,
-		texts : vector<Text>
+		texts : vector<Text>,
+		verse : u64
 	) : Hull {
 		let hull = Hull {
 			status : status,
 			platform : platform,
 			texts : texts,
+			
+			verse,
 			created_at_now_seconds : timestamp::now_seconds ()
 		};
 		hull

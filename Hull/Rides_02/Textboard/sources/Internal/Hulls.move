@@ -83,6 +83,8 @@ module Builder_01::Module_Hulls {
 		hulls : vector<Hull>,
 		
 		logs : vector<Log>,
+		
+		hull_next_verse: u64
 	}
 	
 	#[view] public fun Volitions () : String { 
@@ -131,21 +133,25 @@ module Builder_01::Module_Hulls {
 		
 		let price_of_text_in_octas : u64 = 100000000;
 		
+		let hull_verse = 0;
 		let front = Hull__create (
 			utf8 (b"playing"),
 			utf8 (b""),
-			vector::empty<Text>()
+			vector::empty<Text>(),
+			hull_verse
 		);
 		
 		let hulls_vector = vector::empty<Hull>();
 		vector::push_back (&mut hulls_vector, front);
 		
+		let verse = 1;
 		let hulls = Hulls {
 			status: utf8 (b"playing"),
 			price_of_text_in_octas : price_of_text_in_octas,
 			hulls : hulls_vector,
 			
-			logs : vector::empty<Log>()
+			logs : vector::empty<Log>(),
+			hull_next_verse : verse
 		};
 		
 		move_to<Hulls>(consenter, hulls)
@@ -335,6 +341,9 @@ module Builder_01::Module_Hulls {
 			If the hull does not exist, then start it.
 		*/
 		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hull_next_verse = hulls.hull_next_verse;
+		hulls.hull_next_verse = hulls.hull_next_verse + 1;
+		
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls.hulls, index);
@@ -350,7 +359,8 @@ module Builder_01::Module_Hulls {
 		let hull = Hull__create (
 			utf8 (b"playing"),
 			platform_name,
-			vector::empty<Text>()
+			vector::empty<Text>(),
+			hull_next_verse
 		);
 		
 		vector::push_back (&mut hulls.hulls, hull);
