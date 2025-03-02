@@ -16,10 +16,6 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		use Builder_01::Rules_Module;
 		Rules_Module::Volitions_01 () 
 	}
-	
-	
-	
-
 
 	
 	#[test]
@@ -33,11 +29,8 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		use aptos_framework::account;		
 		
 		use Builder_01::Module_Producer_Hulls;
-		use Builder_01::Module_Producer_Texts;
 		use Builder_01::Module_Guest_Hulls;
-		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
-		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 		use Builder_01::Module_Hull_Info_Envelope::{
 			Hull_Info_Envelope__retrieve_platform_name
@@ -69,8 +62,6 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
-		
-		
 		
 		
 		////
