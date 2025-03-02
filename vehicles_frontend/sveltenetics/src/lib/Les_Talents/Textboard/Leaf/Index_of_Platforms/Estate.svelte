@@ -16,7 +16,6 @@ import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Butto
 import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 //
 //
-import Hulls_Estate from "./Hulls/Estate.svelte"
 import Search_Plus_Sort from "./Search_Plus_Sort/Estate.svelte"
 //
 ////
@@ -49,9 +48,7 @@ onMount (() => {
 	"
 >
 	<Search_Plus_Sort />
-	
-	<Hulls_Estate />
-	
+		
 	<div
 		style="
 			padding: 0.1cm;

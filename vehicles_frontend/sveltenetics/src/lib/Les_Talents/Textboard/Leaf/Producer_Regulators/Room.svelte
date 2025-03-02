@@ -1,6 +1,7 @@
 
 
 <script>
+import Hulls_Estate from "./Hulls/Estate.svelte"
 
 
 </script>
@@ -30,6 +31,8 @@
 		class="card p-4 variant-soft-surface"
 	>
 		<header>Producer Regulators</header>
+
+		<Hulls_Estate />
 
 	</div>
 </div>

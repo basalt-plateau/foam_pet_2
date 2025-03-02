@@ -24,7 +24,8 @@ module Builder_01::Module_Hulls {
 		Text__change_now_seconds,
 		Text__retrieve_writer_address,
 		Text__retrieve_text,
-		Text__retrieve_now_seconds
+		Text__retrieve_now_seconds,
+		Text__retrieve_envelope_index
 	};
 	use Builder_01::Module_Hull::{
 		Hull,
@@ -36,7 +37,8 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_platform,
 		Hull__retrieve_texts,
 		Hull__retrieve_count_of_texts,
-		Hull__retrieve_index_of_next_text
+		Hull__retrieve_index_of_next_text,
+		Hull__increase_index_of_next_text
 	};
 	use Builder_01::Module_Hull_Info_Envelope::{
 		Hull_Info_Envelope,
@@ -156,6 +158,11 @@ module Builder_01::Module_Hulls {
 		};
 		
 		move_to<Hulls>(consenter, hulls)
+	}
+	friend fun Hulls_Delete (acceptor : & signer) {
+		
+		
+
 	}
 	friend fun Hulls_Change_Status (
 		consenter : & signer,
@@ -590,6 +597,7 @@ module Builder_01::Module_Hulls {
 		////
 		
 		let index_of_next_text = Hull__retrieve_index_of_next_text (hull_mref);
+		Hull__increase_index_of_next_text (hull_mref);
 		
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
 		for (index in 0..vector::length (hull_texts)) {
@@ -630,6 +638,75 @@ module Builder_01::Module_Hulls {
 		};
 		
 		abort 260141
+	}
+	friend fun Producer_Text_Delete_with_Refund_at_Index (
+		acceptor : & signer,
+		platform : String,
+		envelope_index : u64, 
+		octas_refund : u64
+	) acquires Hulls {
+		use aptos_framework::coin;
+		use aptos_framework::aptos_coin::{ AptosCoin };
+		
+		let texter_address = Producer_Text_Delete_at_Index (acceptor, platform, envelope_index);
+		
+		
+		
+		////
+		//
+		//	Deduct Refund Octas
+		//		* Ensure octas_refund is less than 1 apt.
+		//		* Deduct the APT
+		//
+		if (octas_refund > 100000000) { 
+			abort Limiter_Refund_must_be_1_apt_or_fewer
+		};
+		coin::transfer<AptosCoin>(acceptor, texter_address, octas_refund);
+		//
+		////
+		
+		
+		////
+		//
+		//	Add to Log
+		//
+		//
+		let hulls_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		vector::push_back (
+			&mut hulls_mref.logs, 
+			Log__create (utf8 (b"refund"), texter_address, 1)
+		);
+		//
+		////
+	}
+	
+	/*
+		Delete a platform text by it's envelope index.
+	*/
+	friend fun Producer_Text_Delete_at_Index (
+		consenter : & signer,
+		platform_name : String,
+		envelope_index : u64
+	) : address acquires Hulls {
+		ensure_consenter_is_producer (consenter);
+		
+		let producer_address = Module_Producer::obtain_address ();
+		
+		let index_of_hull = search_for_index_of_hull (platform_name);
+		let hulls = borrow_global_mut<Hulls>(producer_address);
+		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		
+		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
+		for (index_of_text in 0..vector::length (hull_texts)) {
+			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
+			if (Text__retrieve_envelope_index (text_ref) == envelope_index) {
+				let texter_address = Text__retrieve_writer_address (text_ref);
+				vector::remove (hull_texts, index_of_text);
+				return texter_address
+			}
+		};
+		
+		abort Limiter_Producer_the_platform_with_writer_address_is_empty
 	}
 	friend fun Producer_Text_Delete_with_Refund (
 		consenter : & signer,

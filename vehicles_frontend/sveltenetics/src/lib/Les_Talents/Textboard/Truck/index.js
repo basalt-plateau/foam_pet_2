@@ -69,7 +69,7 @@ export const make = () => {
 			fonctions: {
 				producer: {
 					hulls: {
-						async delete_every_platform () {
+						async delete_textboard () {
 
 						},
 						async status_pause () {

@@ -75,6 +75,9 @@ module Builder_01::Module_Hull {
 	friend fun Hull__delete_texts (hull : &mut Hull) {
 		hull.texts = vector::empty<Text>();
 	}
+	friend fun Hull__increase_index_of_next_text (hull : &mut Hull) {
+		hull.index_of_next_text = hull.index_of_next_text + 1;
+	}
 	//
 	////
 	

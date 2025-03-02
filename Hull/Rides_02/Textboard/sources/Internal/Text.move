@@ -21,7 +21,8 @@ module Builder_01::Text_Module {
 		writer_address : address,
 		text : String,
 		
-		index: u64,
+		
+		envelope_index: u64,
 		
 		now_seconds : u64
 	}
@@ -33,12 +34,12 @@ module Builder_01::Text_Module {
 	friend fun Text__create (
 		writer_address : address,
 		text : String,
-		index : u64
+		envelope : u64
 	) : Text {
 		let text = Text {
 			writer_address : writer_address,
 			text : text,
-			index : index,
+			envelope_index : envelope,
 			now_seconds : timestamp::now_seconds ()
 		};
 		text
@@ -66,6 +67,9 @@ module Builder_01::Text_Module {
 	//
 	//	public: retrieve
 	//
+	friend fun Text__retrieve_envelope_index (text : & Text) : u64 {
+		text.envelope_index
+	}
 	friend fun Text__retrieve_writer_address (text : & Text) : address {
 		text.writer_address
 	}

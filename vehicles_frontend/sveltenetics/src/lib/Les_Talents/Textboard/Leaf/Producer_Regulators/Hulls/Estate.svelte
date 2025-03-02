@@ -30,13 +30,30 @@ onMount (() => {
 {#if typeof TF === "object" }
 <div
 	monitor="hulls producer navigation"
+	style="
+		display: flex;
+		gap: 0.25cm;
+		flex-direction: column;
+	"
 >
 	{#if TF.info.is_producer === "yup" }
 	<div 
-		style="
-			overflow-y: scroll;
-			min-height: 100px;
-		"
+		style=""
+		class="card p-1 variant-soft-surface"
+	>
+		<Petition_APT_Button
+			onMount={({ mode }) => {
+				mode ("on");
+			}}
+			button_text={ `Begin Platforms as Producer` }
+			APT="0"
+			clicked={() => {
+				TF.fonctions.producer.hulls.status_pause ();
+			}}
+		/>
+	</div>
+	<div 
+		style=""
 		class="card p-1 variant-soft-surface"
 	>
 		status: { TF.info.hulls_status }
@@ -61,14 +78,19 @@ onMount (() => {
 				TF.fonctions.producer.hulls.status_play ();
 			}}
 		/>
+	</div>
+	<div 
+		style=""
+		class="card p-1 variant-soft-surface"
+	>
 		<Petition_APT_Button
 			onMount={({ mode }) => {
 				mode ("on");
 			}}
-			button_text={ `[Caution!] Delete Every Platform as Producer` }
+			button_text={ `[Caution!] Delete Textboard` }
 			APT="0"
 			clicked={() => {
-				TF.fonctions.producer.hulls.delete_every_platform ();
+				TF.fonctions.producer.hulls.delete_textboard ();
 			}}
 		/>
 	</div>
