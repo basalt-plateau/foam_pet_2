@@ -43,11 +43,8 @@ module Builder_01::Module_Hulls {
 	};
 	use Builder_01::Module_String;
 	use Builder_01::Module_Logs::{
-		Log_Text_Sent,
-		Log_Text_Sent__create,
-		
-		Log_Refund,
-		Log_Refund__create
+		Log,
+		Log__create
 	};
 	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
@@ -81,8 +78,7 @@ module Builder_01::Module_Hulls {
 		price_of_text_in_octas : u64,
 		hulls : vector<Hull>,
 		
-		logs_texts_sent : vector<Log_Text_Sent>,
-		logs_refunds : vector<Log_Refund>		
+		logs : vector<Log>,
 	}
 	
 	#[view] public fun Volitions () : String { 
@@ -102,7 +98,10 @@ module Builder_01::Module_Hulls {
 		hulls_mline: &mut vector<Hull>
 	) : &mut Hull acquires Hulls {
 		/*
-			let hulls_mline = Hulls__mut_retrieve_hull ("Hull 1", borrow_global_mut<Hulls>(Module_Producer::obtain_address ()));
+			let hulls_mline = Hulls__mut_retrieve_hull (
+				"Hull 1", 
+				borrow_global_mut<Hulls>(Module_Producer::obtain_address ())
+			);
 		*/
 		let index_of_hull = search_for_index_of_hull (platform_name);
 		let hull_mline : &mut Hull = vector::borrow_mut (hulls_mline, index_of_hull);
@@ -142,8 +141,7 @@ module Builder_01::Module_Hulls {
 			price_of_text_in_octas : price_of_text_in_octas,
 			hulls : hulls_vector,
 			
-			logs_texts_sent : vector::empty<Log_Text_Sent>(),
-			logs_refunds : vector::empty<Log_Refund>()
+			logs : vector::empty<Log>()
 		};
 		
 		move_to<Hulls>(consenter, hulls)
@@ -243,6 +241,31 @@ module Builder_01::Module_Hulls {
 	//
 	////////
 	
+	
+	////////
+	//
+	//	Logs
+	//
+	//
+	friend fun retrieve__text_sent_logs (
+		name : String,
+		from_ms : u64,
+		to_ms : u64
+	) : vector<Log> acquires Hulls {
+		let envelope = vector::empty<Log>();
+		
+		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let logs_length = vector::length (& hulls_ref.logs);
+		for (index in 0..logs_length) {
+			let hull_ref = vector::borrow (& hulls_ref.logs, index);
+			
+
+		};
+		
+		envelope
+	}
+	//
+	////////
 	
 	
 	////////
@@ -533,8 +556,8 @@ module Builder_01::Module_Hulls {
 		//
 		//
 		vector::push_back (
-			&mut hulls_mref.logs_texts_sent, 
-			Log_Text_Sent__create (writer_address, 1)
+			&mut hulls_mref.logs, 
+			Log__create (utf8 (b"send_text"), writer_address, 1)
 		);
 		//
 		////
@@ -614,8 +637,8 @@ module Builder_01::Module_Hulls {
 		//
 		let hulls_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
 		vector::push_back (
-			&mut hulls_mref.logs_refunds, 
-			Log_Refund__create (writer_address, octas_refund)
+			&mut hulls_mref.logs, 
+			Log__create (utf8 (b"refund"), writer_address, 1)
 		);
 		//
 		////

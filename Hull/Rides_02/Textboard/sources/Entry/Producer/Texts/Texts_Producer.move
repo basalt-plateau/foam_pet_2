@@ -19,7 +19,11 @@ module Builder_01::Module_Producer_Texts {
 	//	Entry Flux: 
 	//		Status 
 	//
-	public entry fun Delete (consenter : & signer, writer_address : address, platform_name : String) {
+	public entry fun Delete (
+		consenter : & signer, 
+		writer_address : address, 
+		platform_name : String
+	) {
 		Module_Hulls::Producer_Delete_Text (consenter, writer_address, platform_name);
 	}
 	public entry fun Delete_with_Refund (

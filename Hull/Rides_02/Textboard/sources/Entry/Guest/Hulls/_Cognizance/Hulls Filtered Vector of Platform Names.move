@@ -57,10 +57,8 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 	#[test]
 	public fun Vow_01 () {	
 		use std::vector;
-		use std::string_utils;
 		use std::string::{ utf8 };
 		use std::signer;
-		use std::debug;
 		
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;

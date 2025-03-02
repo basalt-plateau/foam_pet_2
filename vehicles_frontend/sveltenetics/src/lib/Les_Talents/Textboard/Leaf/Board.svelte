@@ -31,6 +31,7 @@ import * as Textboard_Truck from '$lib/Les_Talents/Textboard/Truck/index.js'
 //
 import Index_of_Platforms from "./Index_of_Platforms/Estate.svelte"
 import Texts_Estate from "./Texts/Estate.svelte"
+import Producer_Regulators from "./Producer_Regulators/Room.svelte"
 //
 ////
 	
@@ -38,7 +39,7 @@ import Extension_Winch_Ride from '$lib/Singles/Extension_Winch/Ride.svelte'
 import Versies_Truck from '$lib/Versies/Trucks.svelte'
 import Talent from '$lib/Les_Talents/Textboard_Rules/Frontier/Tome.svelte'
 
-	
+
 	
 	
 let Extension_Winch_Freight = false
@@ -168,6 +169,11 @@ onDestroy (() => {
 		<RadioGroup>
 			<RadioItem bind:group={ leaf } name="justify" value={ "texts" }>Texts</RadioItem>
 			<RadioItem bind:group={ leaf } name="justify" value={ "platforms" }>Platforms</RadioItem>
+			
+			{#if Textboard_Freight.info.is_producer === "yup" }
+			<RadioItem bind:group={ leaf } name="justify" value={ "producer" }>Producer</RadioItem>		
+			{/if}
+			
 		</RadioGroup>
 		
 		<div
@@ -214,6 +220,10 @@ onDestroy (() => {
 	
 	{#if leaf === "platforms" }
 	<Index_of_Platforms />
+	{/if}
+	
+	{#if leaf === "producer" }
+	<Producer_Regulators />
 	{/if}
 </div>
 {/if}

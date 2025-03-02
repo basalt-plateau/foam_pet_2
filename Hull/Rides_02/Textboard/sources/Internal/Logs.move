@@ -11,7 +11,7 @@
 */
 module Builder_01::Module_Logs {
 	friend Builder_01::Module_Hulls;
-	
+	friend Builder_01::Module_Guest_Logs;
 	
 	use std::timestamp;
 	
@@ -19,39 +19,30 @@ module Builder_01::Module_Logs {
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}
-	
-	struct Log_Text_Sent has store, drop {
+
+	struct Log has store, drop {
+		name : String,
 		address : address,
 		amount_of_apt : u64,
 		now_seconds : u64
 	}
-	struct Log_Refund has store, drop {
-		address : address,
-		amount_of_apt : u64,
-		now_seconds : u64
-	}
 	
-	friend fun Log_Text_Sent__create (
+	/*
+		names:
+			send_text
+			refund
+	*/
+	friend fun Log__create (
+		name : String,
 		address : address,
 		amount_of_apt : u64
-	) : Log_Text_Sent {
-		let log_text_send = Log_Text_Sent {
+	) : Log {
+		let log = Log {
+			name : name,
 			address : address,
 			amount_of_apt : amount_of_apt,
 			now_seconds : timestamp::now_seconds ()
 		};
-		log_text_send
-	}
-	
-	friend fun Log_Refund__create (
-		address : address,
-		amount_of_apt : u64
-	) : Log_Refund {
-		let log_refund = Log_Refund {
-			address : address,
-			amount_of_apt : amount_of_apt,
-			now_seconds : timestamp::now_seconds ()
-		};
-		log_refund
+		log
 	}
 }
