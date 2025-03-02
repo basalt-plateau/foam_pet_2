@@ -46,7 +46,8 @@ module Builder_01::Module_Hulls {
 		Log_Text_Sent,
 		Log_Text_Sent__create,
 		
-		Log_Refund
+		Log_Refund,
+		Log_Refund__create
 	};
 	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
@@ -602,6 +603,20 @@ module Builder_01::Module_Hulls {
 			abort Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send
 		};
 		coin::transfer<AptosCoin>(consenter, writer_address, octas_refund);
+		//
+		////
+		
+		
+		////
+		//
+		//	Add to Log
+		//
+		//
+		let hulls_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		vector::push_back (
+			&mut hulls_mref.logs_refunds, 
+			Log_Refund__create (writer_address, octas_refund)
+		);
 		//
 		////
 	}
