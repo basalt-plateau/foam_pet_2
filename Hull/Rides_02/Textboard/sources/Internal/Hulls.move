@@ -257,9 +257,8 @@ module Builder_01::Module_Hulls {
 		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
 		let logs_length = vector::length (& hulls_ref.logs);
 		for (index in 0..logs_length) {
-			let hull_ref = vector::borrow (& hulls_ref.logs, index);
-			
-
+			let log = * vector::borrow (& hulls_ref.logs, index);
+			vector::push_back (&mut envelope, log);
 		};
 		
 		envelope

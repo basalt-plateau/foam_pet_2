@@ -20,7 +20,7 @@ module Builder_01::Module_Logs {
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}
 
-	struct Log has store, drop {
+	struct Log has copy, store, drop {
 		name : String,
 		address : address,
 		amount_of_apt : u64,
@@ -31,6 +31,8 @@ module Builder_01::Module_Logs {
 		names:
 			send_text
 			refund
+			
+		let log = Log__create ()
 	*/
 	friend fun Log__create (
 		name : String,
@@ -45,4 +47,6 @@ module Builder_01::Module_Logs {
 		};
 		log
 	}
+	
+	// friend fun Log__ditto () : Log {}
 }
