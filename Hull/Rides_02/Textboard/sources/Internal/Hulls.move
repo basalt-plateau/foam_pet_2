@@ -42,6 +42,10 @@ module Builder_01::Module_Hulls {
 		
 	};
 	use Builder_01::Module_String;
+	use Builder_01::Module_Logs::{
+		Log_Text_Sent,
+		Log_Refund
+	};
 	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
@@ -72,7 +76,10 @@ module Builder_01::Module_Hulls {
 	struct Hulls has key, drop {
 		status : String,
 		price_of_text_in_octas : u64,
-		hulls : vector<Hull>
+		hulls : vector<Hull>,
+		
+		logs_texts_sent : vector<Log_Text_Sent>,
+		logs_refunds : vector<Log_Refund>		
 	}
 	
 	#[view] public fun Volitions () : String { 
@@ -130,7 +137,10 @@ module Builder_01::Module_Hulls {
 		let hulls = Hulls {
 			status: utf8 (b"playing"),
 			price_of_text_in_octas : price_of_text_in_octas,
-			hulls : hulls_vector
+			hulls : hulls_vector,
+			
+			logs_texts_sent : vector::empty<Log_Text_Sent>(),
+			logs_refunds : vector::empty<Log_Refund>()
 		};
 		
 		move_to<Hulls>(consenter, hulls)

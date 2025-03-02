@@ -149,7 +149,7 @@ onDestroy (() => { TT_Monitor.stop () });
 				}
 			}}
 			
-			button_text={ `Sketch on "${ TF.info.platform_name }"` }
+			button_text={ `Send to "${ TF.info.platform_name }"` }
 			APT="1"
 			clicked={ on_send }
 		/>

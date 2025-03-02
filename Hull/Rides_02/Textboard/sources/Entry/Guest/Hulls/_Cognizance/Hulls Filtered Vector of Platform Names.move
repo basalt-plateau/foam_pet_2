@@ -120,25 +120,26 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		//
 		////
 		
-		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 1"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (& group_02.consenter, utf8 (b"text 2"), utf8 (b"platform 1"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 2"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"platform 3"), utf8 (b"I accept."));
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"room 1"), utf8 (b"I accept."));
+		Module_Guest_Texts::Send_Text (& group_02.consenter, utf8 (b"text 2"), utf8 (b"room 1"), utf8 (b"I accept."));
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"room 2"), utf8 (b"I accept."));
+		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"room 3"), utf8 (b"I accept."));
 		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"ride 1"), utf8 (b"I accept."));
 		Module_Guest_Texts::Send_Text (& group_01.consenter, utf8 (b"text 1"), utf8 (b"ride 2"), utf8 (b"I accept."));
 		
 		
 		let hulls_with_ride = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"ride"));
-		let hull_at_index_0 = vector::borrow (hulls_with_ride, 0);
-		let hull_index_0_platform_name = Hull_Info_Envelope__retrieve_platform_name (hull_at_index_0);
 		assert! (vector::length (hulls_with_ride) == 2, 1);
-		assert! (hull_index_0_platform_name == utf8 (b"ride 1"), 1);
+		assert! (Hull_Info_Envelope__retrieve_platform_name (vector::borrow (hulls_with_ride, 0)) == utf8 (b"ride 1"), 1);
+		assert! (Hull_Info_Envelope__retrieve_platform_name (vector::borrow (hulls_with_ride, 1)) == utf8 (b"ride 2"), 1);
 		
 		
+		let hulls_with_room = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"room"));
+		assert! (vector::length (hulls_with_room) == 3, 1);
+		assert! (Hull_Info_Envelope__retrieve_platform_name (vector::borrow (hulls_with_room, 0)) == utf8 (b"room 1"), 1);
+		assert! (Hull_Info_Envelope__retrieve_platform_name (vector::borrow (hulls_with_room, 1)) == utf8 (b"room 2"), 1);
+		assert! (Hull_Info_Envelope__retrieve_platform_name (vector::borrow (hulls_with_room, 2)) == utf8 (b"room 3"), 1);
 		
-		
-		
-
 		
 		////
 		//
