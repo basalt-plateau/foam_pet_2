@@ -20,6 +20,9 @@ module Builder_01::Text_Module {
 	struct Text has store, drop, copy {
 		writer_address : address,
 		text : String,
+		
+		index: u64,
+		
 		now_seconds : u64
 	}
 	//
@@ -29,11 +32,13 @@ module Builder_01::Text_Module {
 	//
 	friend fun Text__create (
 		writer_address : address,
-		text : String
+		text : String,
+		index : u64
 	) : Text {
 		let text = Text {
 			writer_address : writer_address,
 			text : text,
+			index : index,
 			now_seconds : timestamp::now_seconds ()
 		};
 		text

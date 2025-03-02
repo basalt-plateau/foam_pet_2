@@ -35,7 +35,8 @@ module Builder_01::Module_Hulls {
 		Hull__retrieve_status,
 		Hull__retrieve_platform,
 		Hull__retrieve_texts,
-		Hull__retrieve_count_of_texts
+		Hull__retrieve_count_of_texts,
+		Hull__retrieve_index_of_next_text
 	};
 	use Builder_01::Module_Hull_Info_Envelope::{
 		Hull_Info_Envelope,
@@ -588,6 +589,8 @@ module Builder_01::Module_Hulls {
 		//
 		////
 		
+		let index_of_next_text = Hull__retrieve_index_of_next_text (hull_mref);
+		
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
 		for (index in 0..vector::length (hull_texts)) {
 			let text_mref = vector::borrow_mut (hull_texts, index);
@@ -602,11 +605,12 @@ module Builder_01::Module_Hulls {
 			}
 		};
 		
+		
 		//
 		//	The writer does not have a text on this platform,
 		//	therefore a text is written.
 		//
-		let this_text = Text__create (writer_address, text);
+		let this_text = Text__create (writer_address, text, index_of_next_text);
 		vector::push_back (hull_texts, this_text);
 	}
 	friend fun Delete_Text (consenter : & signer, platform : String) acquires Hulls {

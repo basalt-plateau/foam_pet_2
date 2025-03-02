@@ -27,8 +27,10 @@ module Builder_01::Module_Hull {
 		status : String,
 		platform : String,
 		texts : vector<Text>,
-		
-		hull_index: u64,
+
+		index_of_hull: u64,
+		index_of_next_text : u64,
+
 		created_at_now_seconds : u64
 	}
 	
@@ -44,14 +46,18 @@ module Builder_01::Module_Hull {
 		status : String,
 		platform : String,
 		texts : vector<Text>,
-		hull_index : u64
+		index_of_hull : u64
 	) : Hull {
+		let index_of_next_text = 0;
+		
 		let hull = Hull {
 			status : status,
 			platform : platform,
 			texts : texts,
 			
-			hull_index,
+			index_of_hull,
+			index_of_next_text : index_of_next_text,
+			
 			created_at_now_seconds : timestamp::now_seconds ()
 		};
 		hull
@@ -100,6 +106,9 @@ module Builder_01::Module_Hull {
 	//
 	//	retrieve imut
 	//
+	friend fun Hull__retrieve_index_of_next_text (hull : & Hull) : u64 {
+		hull.index_of_next_text
+	}
 	friend fun Hull__retrieve_texts (hull : & Hull) : vector<Text> {
 		hull.texts
 	}
