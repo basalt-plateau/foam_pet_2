@@ -6,9 +6,7 @@
 module Builder_01::Module_String {
 	
 	use std::string::{ Self, utf8, String };
-	use std::debug;
-	use std::string_utils;
-		
+
 		
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module; Rules_Module::Volitions_01 () 
@@ -38,9 +36,6 @@ module Builder_01::Module_String {
 	
 	#[test]
 	fun watch__string_has_partial () {
-		use std::debug;
-		use std::string_utils;
-		
 		assert! (
 			does_string_have_partial (
 				& utf8 (b"GCATGACTATCATACTATCACGTGACATGCTAGCT"), 

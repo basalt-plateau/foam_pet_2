@@ -21,7 +21,7 @@ module builder_1::Vow_Parts_01 {
 		//		2100 = around 55 * 60 * 60 * 24 * 365 * 1000 
 		//			130
 		//
-		let year_ms : u64 = 31557600000;
+		// let year_ms : u64 = 31557600000;
 		let begin_ms : u64 = 31557600000 * 30;
 		//
 		timestamp::set_time_has_started_for_testing (aptos_framework_consenter);
@@ -29,7 +29,7 @@ module builder_1::Vow_Parts_01 {
 	}
 	
 	/*
-	public fun denim () {
+	public fun embark () {
 		use aptos_framework::genesis;
 		
 		// https://aptos.dev/en/build/smart-contracts/reference?page=aptos-framework%2Fdoc%2Fgenesis.md#0x1_genesis_initialize
@@ -56,14 +56,13 @@ module builder_1::Vow_Parts_01 {
 	
 	
 	#[test_only]
-	public fun create_consenters (count : u64) : vector<signer> {
+	public fun create_consenters (_count : u64) : vector<signer> {
 		use std::unit_test;
 		
 		use std::signer;
-		use std::string::{ String };
 		use std::vector;
 
-		use aptos_framework::create_signer;
+		// use aptos_framework::create_signer;
 		use aptos_framework::account;
 		
 		let vector_of_signers = vector::empty<signer>();

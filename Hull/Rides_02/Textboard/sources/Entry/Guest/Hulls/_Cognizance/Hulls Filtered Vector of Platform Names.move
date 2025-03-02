@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Cognizance__Hulls_screened_vector_of_names {
+module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 

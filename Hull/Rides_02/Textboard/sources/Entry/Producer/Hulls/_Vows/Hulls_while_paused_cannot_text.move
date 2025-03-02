@@ -20,19 +20,14 @@ module Builder_01::Hulls_while_paused_cannot_text {
 	public fun Vow () {	
 		use std::string::{ utf8 };
 		use std::signer;
-		use std::debug;
-		use std::string_utils;
 		
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Producer_Hulls;
-		use Builder_01::Module_Producer_Texts;
 		use Builder_01::Module_Guest_Hulls;
-		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
-		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 	
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);

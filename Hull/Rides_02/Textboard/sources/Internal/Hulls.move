@@ -12,19 +12,13 @@ module Builder_01::Module_Hulls {
 	
 	use std::vector;
 	use std::string::{ Self, String, utf8 };
-	use std::string_utils;
 	use std::signer;
-	use std::option::{ Option, some, none };
-	use std::debug;
-	
-	use aptos_framework::timestamp;
 	
 	// use Builder_01::Endings_Module;
 	use Builder_01::Module_Producer::{ Self, ensure_consenter_is_producer };
 	use Builder_01::Text_Module::{
 		Text,
 		Text__create,
-		Text__change_writer_address,
 		Text__change_text,
 		Text__change_now_seconds,
 		Text__retrieve_writer_address,
@@ -34,15 +28,13 @@ module Builder_01::Module_Hulls {
 	use Builder_01::Module_Hull::{
 		Hull,
 		Hull__create,
-		Hull__ensure_is_playing,
 		Hull__change_status,
 		Hull__delete_texts,
 		Hull__mut_retrieve_texts,
 		Hull__retrieve_status,
 		Hull__retrieve_platform,
 		Hull__retrieve_texts,
-		Hull__retrieve_count_of_texts,
-		Hull__retrieve_created_at_now_seconds
+		Hull__retrieve_count_of_texts
 	};
 	use Builder_01::Module_Hull_Info_Envelope::{
 		Hull_Info_Envelope,
@@ -246,7 +238,7 @@ module Builder_01::Module_Hulls {
 	//
 	//
 	friend fun Hulls__Hull__change_status (
-		consenter : & signer,
+		_consenter : & signer,
 		platform_name : String,
 		status : String
 	) acquires Hulls {
@@ -259,7 +251,7 @@ module Builder_01::Module_Hulls {
 		Hull__change_status (hull_mref, status);
 	}
 	friend fun Hulls__Hull__delete_every_text (
-		consenter : & signer, 
+		_consenter : & signer, 
 		platform_name : String
 	) acquires Hulls {		
 		let index_of_hull = search_for_index_of_hull (platform_name);
@@ -271,7 +263,7 @@ module Builder_01::Module_Hulls {
 		Hull__delete_texts (hull_mref);
 	}
 	friend fun Hulls__Hull__delete_platform (
-		consenter : & signer, 
+		_consenter : & signer, 
 		platform_name : String
 	) acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform_name);
@@ -481,7 +473,7 @@ module Builder_01::Module_Hulls {
 		platform : String
 	) acquires Hulls {
 		use aptos_framework::coin;
-		use aptos_framework::aptos_coin::{ Self, AptosCoin };
+		use aptos_framework::aptos_coin::{ AptosCoin };
 		
 		////
 		//
@@ -568,7 +560,7 @@ module Builder_01::Module_Hulls {
 		octas_refund : u64
 	) acquires Hulls {
 		use aptos_framework::coin;
-		use aptos_framework::aptos_coin::{ Self, AptosCoin };
+		use aptos_framework::aptos_coin::{ AptosCoin };
 		
 		Producer_Delete_Text (consenter, writer_address, platform);
 		

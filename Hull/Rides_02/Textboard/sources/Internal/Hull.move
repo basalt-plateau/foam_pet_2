@@ -11,14 +11,7 @@ module Builder_01::Module_Hull {
 	use aptos_framework::timestamp;	
 	
 	use Builder_01::Text_Module::{
-		Text,
-		Text__create,
-		Text__change_writer_address,
-		Text__change_text,
-		Text__change_now_seconds,
-		Text__retrieve_writer_address,
-		Text__retrieve_text,
-		Text__retrieve_now_seconds
+		Text
 	};
 
 	const Ending__Hull_is_not_playing : u64 = 9937483;
