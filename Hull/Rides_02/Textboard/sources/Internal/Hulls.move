@@ -524,6 +524,15 @@ module Builder_01::Module_Hulls {
 		//
 		////
 		
+		////
+		//
+		//	Add to Log
+		//
+		//
+		
+		//
+		////
+		
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
 		for (index in 0..vector::length (hull_texts)) {
 			let text_mref = vector::borrow_mut (hull_texts, index);
