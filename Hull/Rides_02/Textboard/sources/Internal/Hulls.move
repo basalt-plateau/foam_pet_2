@@ -44,6 +44,8 @@ module Builder_01::Module_Hulls {
 	use Builder_01::Module_String;
 	use Builder_01::Module_Logs::{
 		Log_Text_Sent,
+		Log_Text_Sent__create,
+		
 		Log_Refund
 	};
 	
@@ -529,7 +531,10 @@ module Builder_01::Module_Hulls {
 		//	Add to Log
 		//
 		//
-		
+		vector::push_back (
+			&mut hulls_mref.logs_texts_sent, 
+			Log_Text_Sent__create (writer_address, 1)
+		);
 		//
 		////
 		

@@ -10,6 +10,8 @@
 	Memoir, Story, Accounting, Novel, Scroll, Log
 */
 module Builder_01::Module_Logs {
+	friend Builder_01::Module_Hulls;
+	
 	
 	use std::timestamp;
 	
@@ -29,7 +31,7 @@ module Builder_01::Module_Logs {
 		now_seconds : u64
 	}
 	
-	friend fun Log_Text_Send__create (
+	friend fun Log_Text_Sent__create (
 		address : address,
 		amount_of_apt : u64
 	) : Log_Text_Sent {
@@ -39,5 +41,17 @@ module Builder_01::Module_Logs {
 			now_seconds : timestamp::now_seconds ()
 		};
 		log_text_send
+	}
+	
+	friend fun Log_Refund__create (
+		address : address,
+		amount_of_apt : u64
+	) : Log_Refund {
+		let log_refund = Log_Refund {
+			address : address,
+			amount_of_apt : amount_of_apt,
+			now_seconds : timestamp::now_seconds ()
+		};
+		log_refund
 	}
 }
