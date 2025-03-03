@@ -128,5 +128,9 @@ module Builder_01::Module_Hull {
 		hull.created_at_now_seconds
 	}
 	//
+	friend fun Hull__retrieve_text (hull : & Hull) {
+		
+	}
+	//
 	////
 }

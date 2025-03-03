@@ -6,6 +6,8 @@ module Builder_01::Module_Hulls {
 	friend Builder_01::Module_Producer_Hull;
 	friend Builder_01::Module_Producer_Texts;
 
+	friend Builder_01::Module_Denizen_Texts;
+
 	friend Builder_01::Module_Guest_Hulls;
 	friend Builder_01::Module_Guest_Hull;
 	friend Builder_01::Module_Guest_Texts;
@@ -53,6 +55,10 @@ module Builder_01::Module_Hulls {
 		Log__address,
 		Log__now_seconds
 	};
+	use Builder_01::Module_Guest_Show::{
+		Guest_Shows,
+		create_guest_shows
+	};
 	
 	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
@@ -76,6 +82,17 @@ module Builder_01::Module_Hulls {
 		now_seconds : u64
 	}
 	
+	
+	/*
+		MVP2:
+			struct TextVitrine has key, drop {
+				hulls : Hulls
+			}
+		
+			struct Hulls has store, drop {
+				hulls_vector : vector<Hull>
+			}
+	*/
 	/*
 		status:
 			playing
@@ -90,7 +107,9 @@ module Builder_01::Module_Hulls {
 		
 		logs : vector<Log>,
 		
-		hull_next_index: u64
+		hull_next_index: u64,
+		
+		guest_shows : Guest_Shows
 	}
 	
 	#[view] public fun Volitions () : String { 
@@ -157,7 +176,9 @@ module Builder_01::Module_Hulls {
 			hulls : hulls_vector,
 			
 			logs : vector::empty<Log>(),
-			hull_next_index : verse
+			hull_next_index : verse,
+			
+			guest_shows : create_guest_shows ()
 		};
 		
 		move_to<Hulls>(consenter, hulls)
@@ -630,8 +651,8 @@ module Builder_01::Module_Hulls {
 		let this_text = Text__create (writer_address, text, index_of_next_text);
 		vector::push_back (hull_texts, this_text);
 	}
-	friend fun Delete_Text (consenter : & signer, platform : String) acquires Hulls {
-		let writer_address = signer::address_of (consenter);		
+	friend fun Delete_Text (texter : & signer, platform : String) acquires Hulls {
+		let texter_address = signer::address_of (texter);		
 		
 		let index_of_hull = search_for_index_of_hull (platform);
 		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
@@ -640,7 +661,7 @@ module Builder_01::Module_Hulls {
 		let hull_texts = Hull__mut_retrieve_texts (hull_ref);
 		for (index in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index);
-			if (Text__retrieve_writer_address (text_ref) == writer_address) {
+			if (Text__retrieve_writer_address (text_ref) == texter_address) {
 				vector::remove (hull_texts, index);
 				return;
 			}
@@ -658,7 +679,6 @@ module Builder_01::Module_Hulls {
 		use aptos_framework::aptos_coin::{ AptosCoin };
 		
 		let texter_address = Producer_Text_Delete_at_Index (acceptor, platform, envelope_index);
-		
 		
 		
 		////
