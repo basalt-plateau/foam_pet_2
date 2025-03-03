@@ -1,8 +1,12 @@
 
 
 <script>
+
+import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+
 import Hulls_Estate from "./Hulls/Estate.svelte"
 
+let leaf = "drums";
 
 </script>
 
@@ -21,6 +25,21 @@ import Hulls_Estate from "./Hulls/Estate.svelte"
 	<div 
 		style="
 			position: relative;
+			
+			display: flex;
+			flex-direction: column;
+			gap: 0.1cm;
+		"
+		class="card p-2 variant-soft-surface"
+	>
+		<RadioGroup>
+			<RadioItem bind:group={ leaf } name="justify" value={ "drums" }>Drums</RadioItem>
+			<RadioItem bind:group={ leaf } name="justify" value={ "logs" }>Logs</RadioItem>
+		</RadioGroup>
+	</div>
+	<div 
+		style="
+			position: relative;
 			height: 100%;
 			overflow: hidden;
 			
@@ -30,9 +49,8 @@ import Hulls_Estate from "./Hulls/Estate.svelte"
 		"
 		class="card p-4 variant-soft-surface"
 	>
-		<header>Producer Regulators</header>
-
+		{#if leaf === "drums" }	
 		<Hulls_Estate />
-
+		{/if}
 	</div>
 </div>

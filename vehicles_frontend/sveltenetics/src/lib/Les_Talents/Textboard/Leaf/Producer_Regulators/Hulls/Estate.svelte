@@ -36,7 +36,8 @@ onMount (() => {
 		flex-direction: column;
 	"
 >
-	{#if TF.info.is_producer === "yup" }
+	<header>Producer Regulators</header>
+
 	<div 
 		style=""
 		class="card p-1 variant-soft-surface"
@@ -48,7 +49,7 @@ onMount (() => {
 			button_text={ `Begin Platforms as Producer` }
 			APT="0"
 			clicked={() => {
-				TF.fonctions.producer.hulls.status_pause ();
+				TF.fonctions.producer.hulls.begin ();
 			}}
 		/>
 	</div>
@@ -87,13 +88,12 @@ onMount (() => {
 			onMount={({ mode }) => {
 				mode ("on");
 			}}
-			button_text={ `[Caution!] Delete Textboard` }
+			button_text={ `[Caution!] Delete Entire TextVitrine` }
 			APT="0"
 			clicked={() => {
 				TF.fonctions.producer.hulls.delete_textboard ();
 			}}
 		/>
 	</div>
-	{/if}
 </div>
 {/if}

@@ -35,8 +35,9 @@ const Producer_Fonctions = {
 	Such, the truck can then be deleted with the "destroy" method.
 */
 export const make = () => {
-	const Pannier_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
-	
+	// const Pannier_01_LA = "0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+	const Pannier_01_Legacy_Address = "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+	const Pannier_02_Legacy_Address = "DE5FBA4CB03AB1F6565E2864428140384C0982826511D49921E9744CE81978D7"
 	
 	/*
 		Freight is the "state" or the object that is
@@ -48,7 +49,7 @@ export const make = () => {
 			info: {
 				is_producer: ask_is_producer (),
 				
-				Builder_01: Pannier_01_LA,
+				Builder_01: Pannier_02_Legacy_Address,
 				
 				hulls: [],
 				hulls_status: "",
@@ -69,6 +70,22 @@ export const make = () => {
 			fonctions: {
 				producer: {
 					hulls: {
+						async begin () {
+							trucks [1].freight.info.le_hulls.progress = "yes"
+							
+							const Builder_01 = trucks [1].freight.info.Builder_01;
+							const { result, note, transaction } = await Extension_Winch.freight ().prompt ({
+								petition: {
+									function: `${ Builder_01 }::Module_Producer_Hulls::Begin`,
+									type_arguments: [],
+									arguments: []
+								}
+							});
+							console.info ({ result, note, transaction });
+							
+							await trucks [1].freight.fonctions.guests.hulls.status ();
+							trucks [1].freight.info.le_hulls.progress = "no"
+						},
 						async delete_textboard () {
 
 						},
@@ -241,7 +258,7 @@ export const make = () => {
 							const platform_name = trucks [1].freight.info.platform_name;
 							const text = trucks [1].freight.info.text;
 							
-							const agreed_to_rules = "agreed";
+							const accepted_the_rules = "I accept.";
 							
 							/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
 							const { result, note, transaction } = await EWF.prompt ({
@@ -251,7 +268,7 @@ export const make = () => {
 									arguments: [
 										text,
 										platform_name,
-										agreed_to_rules
+										accepted_the_rules
 									]
 								}
 							});

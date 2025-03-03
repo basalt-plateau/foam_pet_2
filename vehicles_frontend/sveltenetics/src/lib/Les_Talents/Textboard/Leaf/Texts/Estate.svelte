@@ -47,7 +47,7 @@ onDestroy (async () => {});
 		flex-direction: column;
 		gap: 0.1cm;
 	"
-	class="card p-2 variant-soft-surface"
+	
 >
 	{#if TF.info.searching_for_texts === "yup" }
 	<div
@@ -67,7 +67,20 @@ onDestroy (async () => {});
 	</div>
 	{/if}
 	
-	<Platform_Texts />
-	<Text_Writer />
+	<div 
+		style="
+			height: 100%;
+		"
+		class="card p-2 variant-soft-surface"
+	>
+		<Platform_Texts />
+	</div>
+	<div
+		style="
+		"
+		class="card p-2 variant-soft-surface"
+	>
+		<Text_Writer />
+	</div>
 </div>
 {/if}

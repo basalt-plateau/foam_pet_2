@@ -90,7 +90,6 @@ onDestroy (() => { TT_Monitor.stop () });
 		
 		gap: 0.1cm;
 	"
-	class="card p-4 variant-soft-surface"
 >
 	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 	{#if typeof TF === "object" }

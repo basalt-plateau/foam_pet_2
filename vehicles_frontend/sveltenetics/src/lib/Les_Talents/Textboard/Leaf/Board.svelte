@@ -225,6 +225,16 @@ onDestroy (() => {
 	{#if leaf === "producer" }
 	<Producer_Regulators />
 	{/if}
+	
+	<div
+		style="
+			text-align: center;
+		"
+		class="card p-0 variant-soft-surface"
+	>
+		Address: { Textboard_Freight.info.Builder_01 }
+	
+	</div>
 </div>
 {/if}
 {/if}

@@ -40,7 +40,6 @@ onMount (() => {
 	style="
 		height: 100%;
 	"
-	class="card p-2 variant-soft-surface"
 >
 	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 	<Extension_Winch_Ride on_change={ ({ pro_freight }) => { EWF = pro_freight; } } />
@@ -52,14 +51,15 @@ onMount (() => {
 			flex-direction: column;
 			gap: 0.1cm;
 		"
-		class="card p-2 variant-soft-surface"
+		class="card p-1 variant-soft-surface"
 	>	
 		<div 
 			style="
 				display: flex;
 				justify-content: space-between;
+				padding: 0.1cm 0.25cm;
 			"
-			class="card p-2"
+			class="card"
 		>
 			<p>{ text.text }</p>
 		</div>
@@ -67,31 +67,29 @@ onMount (() => {
 			style="
 				display: flex;
 				justify-content: center;
-				gap: 0.1cm;
+				gap: 0.3cm;
 			"
 		>
 			<span 
 				style="
 					border-radius: var(--theme-rounded-base);
-					padding: 0.05cm 0.2cm;
+					padding: 0.0cm;
 					word-break: break-all;
 				"
-				class="variant-soft-surface"
 			>{ text.writer_address }</span>
 			<div
 				style="
 					display: flex;
 					align-items: center;
 					border-radius: var(--theme-rounded-base);
-					padding: 0.05cm 0.2cm;
+					padding: 0.0cm;
 				"
-				class="variant-soft-surface"
 			>
-				<img src="/_Licensed/Aptos/aptos.png" style="width: 0.5cm; height: 0.5cm;">
+				<img src="/_Licensed/Aptos/aptos.png" style="width: 0.4cm; height: 0.4cm;">
 				<span 
 					style="
 						border-radius: var(--theme-rounded-base);
-						padding: 0 0.25cm;
+						padding: 0 0.2cm;
 					"
 					
 				>{ text.writer_balance_apt }</span>

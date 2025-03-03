@@ -30,7 +30,7 @@ import Rides_Published_Mainnet.Rules_10 as Rules_10
 import Rides_Published_Mainnet.Allowed_Wallets_02 as Allowed_Wallets_02
 #
 #
-import Rides_02.Textboard as Textboard
+import Rides_02.TextVitrine as TextVitrine
 #
 #
 import Rides.APT_Octas_Math_01 as APT_Octas_Math_01
@@ -49,10 +49,15 @@ import Rides.Sport_Pack_01 as Sport_Pack_01
 	Pannier_01:
 		Private Key: 	0C1218C9ABC123C812359AB7689AB765C89EABCAD9E8CBE9F8CBE9DABC8F152C
 		Legacy Address: 2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
+		
+	Pannier_02:
+		Private Key:	64AC89AEBC071263C89A7BC89E9DACB8FDAEE9CBF8E9CB61423784BE9EADBC8F
+		Legacy Address:	DE5FBA4CB03AB1F6565E2864428140384C0982826511D49921E9744CE81978D7
 "'''
 Builder_Addresses = {
 	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
-	"Pannier_01": "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD"
+	"Pannier_01": "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD",
+	"Pannier_02": "DE5FBA4CB03AB1F6565E2864428140384C0982826511D49921E9744CE81978D7"
 }
 
 
@@ -112,7 +117,7 @@ moves_structures = {
 	"Sport_Pack_01": Sport_Pack_01,
 	
 	"Allowed_Wallets_02": Allowed_Wallets_02,
-	"Textboard": Textboard,
+	"TextVitrine": TextVitrine,
 	
 	"APT_Octas_Math_01": APT_Octas_Math_01,
 	"Rules_10": Rules_10,
@@ -134,15 +139,19 @@ def clique ():
 	
 	"""
 		Mainnet Publications:
-			python3 vocalize.py vocalize --publish --move Textboard --builder Petra
-			
+			python3 vocalize.py vocalize --publish --move TextVitrine --builder Petra
+	
+		#
+		# You need to run aptos login if you change the builder.
+		#
+		#
 		Devnet Publications:
-			python3 vocalize.py vocalize --publish --move Textboard --builder Pannier_01
+			python3 vocalize.py vocalize --publish --move TextVitrine --builder Pannier_02
 	"""
 	
 	"""
 		Steadiness:
-			python3 vocalize.py vocalize --steady --move Textboard
+			python3 vocalize.py vocalize --steady --move TextVitrine
 	"""
 	
 	"""
