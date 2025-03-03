@@ -42,8 +42,8 @@ let amount_of_octas = "100000000";
 			
 			amount_of_octas = actual_amount_of_Octas;
 		}}
-		on_amount_prepare={() => {
-			amount_field.modify_octas ("100000000");
+		on_prepare={() => {
+			amount_field.modify_octas ({ Octas: "100000000" });
 		}}
 	/>
 	
@@ -54,7 +54,7 @@ let amount_of_octas = "100000000";
 		button_text="Delete Text as Producer"
 		APT="0"
 		clicked={() => {
-			TF.fonctions.producer.text.delete_with_refund ({
+			TF.fonctions.producer.text.delete_with_refund_with_index ({
 				text,
 				platform_name: TF.info.platform_name,
 				amount_of_octas

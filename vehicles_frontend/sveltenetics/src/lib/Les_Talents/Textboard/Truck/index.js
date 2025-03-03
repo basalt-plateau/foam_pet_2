@@ -210,20 +210,26 @@ export const make = () => {
 						}
 					},
 					text: {
-						async delete_with_refund ({
+						async delete_with_refund_with_index ({
 							text,
 							amount_of_octas,
 							platform_name
 						}) {
 							/*
-								public entry fun Delete_with_Refund (
-									consenter : & signer, 
-									writer_address : address, 
+								Delete_with_Refund_by_index (acceptor, utf8 (b""), 0, 100000000)
+								
+								public entry fun Delete_with_Refund_by_index (
+									acceptor : & signer, 
 									platform_name : String,
+									index_of_text : u64, 
 									octas_refund : u64
 								) {
 							*/
+							
+							console.info ({ text });
+							
 							const writer_address = text.writer_address;
+							const envelope_index = text.envelope_index;
 							const octas_refund = amount_of_octas;
 							
 							let EWF = Extension_Winch.freight ();
@@ -233,11 +239,11 @@ export const make = () => {
 							/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
 							const { result, note, transaction } = await EWF.prompt ({
 								petition: {
-									function: `${ Builder_01 }::Module_Producer_Texts::Delete_with_Refund`,
+									function: `${ Builder_01 }::Module_Producer_Texts::Delete_with_Refund_by_index`,
 									type_arguments: [],
 									arguments: [
-										writer_address,
 										platform_name,
+										envelope_index,
 										octas_refund
 									]
 								}
@@ -374,6 +380,7 @@ export const make = () => {
 							writer_address: address_to_hexadecimal (text.writer_address),
 							writer_balance_apt,
 							writer_balance_octas,
+							envelope_index: text.envelope_index,
 							text: text.text
 						}
 					})

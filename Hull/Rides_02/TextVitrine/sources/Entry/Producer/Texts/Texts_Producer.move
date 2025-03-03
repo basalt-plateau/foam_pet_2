@@ -46,13 +46,7 @@ module Builder_01::Module_Producer_Texts {
 	
 	
 	/*
-		Delete_with_Refund_by_index (
-			acceptor,
-			utf8 (b""),
-			0,
-			100000000
-		)
-	
+		Delete_with_Refund_by_index (acceptor, utf8 (b""), 0, 100000000)
 	*/
 	public entry fun Delete_with_Refund_by_index (
 		acceptor : & signer, 

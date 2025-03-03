@@ -73,6 +73,7 @@ onMount (async () => {
 
 onDestroy (() => { TT_Monitor.stop () });
 
+let value = false;
 
 </script>
 
@@ -88,7 +89,7 @@ onDestroy (() => { TT_Monitor.stop () });
 		justify-content: right;
 		flex-direction: column;
 		
-		gap: 0.1cm;
+		gap: 0.025cm;
 	"
 >
 	<Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
@@ -109,11 +110,12 @@ onDestroy (() => { TT_Monitor.stop () });
 			justify-content: space-between;
 		"
 	>	
+		{#if false}
 		<div
 			style="
 				display: flex;
 				align-items: center;
-				gap: 0.25cm;
+				gap: 0.1cm;
 			"
 		>
 			<div class="card p-1">
@@ -121,6 +123,8 @@ onDestroy (() => { TT_Monitor.stop () });
 			</div>
 			<Textboard_Rules_Frontier />
 		</div>
+		
+		
 		<input 
 			bind:value={ accepted_the_rules }
 			style="
@@ -129,6 +133,33 @@ onDestroy (() => { TT_Monitor.stop () });
 			"
 			class="input"
 		/>
+		{/if}
+		
+		
+		<div
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.1cm;
+			"
+		>
+			<div class="card p-1">
+				<p>The rules must be accepted, by placing the "toggle" in the accept position, to send a text.</p>
+			</div>
+			<Textboard_Rules_Frontier />
+		</div>
+		
+		<div
+			style="
+				display: flex;
+				align-items: center;
+				gap: 0.25cm;
+			"
+			class="card p-1"
+		>
+			<SlideToggle name="slide" bind:checked={ value } />
+			<p>accept</p>
+		</div>
 	</div>
 	
 	<div
@@ -154,14 +185,7 @@ onDestroy (() => { TT_Monitor.stop () });
 		/>
 	</div>
 	
-	{#if false}
-	<label class="label">
-		<span>Input</span>
-		<input class="input" type="text" placeholder="Input" />
-	</label>
-	{/if}
-	
-	
+
 	
 	{/if}
 </div>

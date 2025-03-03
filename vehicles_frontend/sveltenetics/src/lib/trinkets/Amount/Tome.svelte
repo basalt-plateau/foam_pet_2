@@ -17,7 +17,7 @@
 				
 			}
 		}}
-		on_amount_prepare={() => {
+		on_prepare={() => {
 			amount_field.modify_octas ();
 		}}
 	/>
@@ -153,7 +153,7 @@ onMount (async () => {
 
 
 	
-export const modify = ({ Octas }) => {
+export const modify_octas = ({ Octas }) => {
 	if (currency === "APT") {
 		const APT = ask_convert_Octas_to_APT ({ Octas })
 		amount = APT
@@ -211,7 +211,7 @@ const calculate_exponent = () => {1
 					bind:value={ amount }
 					on:keyup={ amount_field_on_key_up }
 					
-					style="padding: 10px 20px; text-align: right;"
+					style="padding: 5px 10px; text-align: right;"
 					class="input" 
 					
 					type="text" 
@@ -221,7 +221,7 @@ const calculate_exponent = () => {1
 
 			<label 
 				style="
-					width: 3cm;
+					width: 3.5cm;
 					border-radius: 8px;
 					text-align: center;
 					
@@ -250,9 +250,7 @@ const calculate_exponent = () => {1
 	
 	
 	{#if effects.problem.length >= 1 }
-	<Problem_Alert 
-		text={ effects.problem }
-	/>
+	<Problem_Alert text={ effects.problem } />
 	{/if}
 </div>
 {/if}

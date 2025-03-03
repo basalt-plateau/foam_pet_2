@@ -13,7 +13,7 @@ import Petition_APT_Button from "$lib/Singles/Extension_Winch/Petition/APT_Butto
 import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 //
 //
-import Platform_Texts from './Structures/Platform_Texts.svelte'
+import Platform_Texts from './Platform_Texts/Ride.svelte'
 import Text_Writer from './Structures/Text_Writer.svelte'
 //
 ////
@@ -71,14 +71,14 @@ onDestroy (async () => {});
 		style="
 			height: 100%;
 		"
-		class="card p-2 variant-soft-surface"
+		class="card p-1 variant-soft-surface"
 	>
 		<Platform_Texts />
 	</div>
 	<div
 		style="
 		"
-		class="card p-2 variant-soft-surface"
+		class="card p-1 variant-soft-surface"
 	>
 		<Text_Writer />
 	</div>
