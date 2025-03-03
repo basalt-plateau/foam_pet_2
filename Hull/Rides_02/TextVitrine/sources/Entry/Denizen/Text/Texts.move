@@ -38,9 +38,9 @@ module Builder_01::Module_Denizen_Texts {
 	
 	
 	/*
-		Module_Denizen_Texts::Delete (acceptor, utf8 (b""), utf8 (b""), utf8 (b""), utf8 (b"I accept."))
+		Module_Denizen_Texts::Delete_Text (acceptor, utf8 (b""))
 	*/
-	public entry fun Delete (texter : & signer, platform_name : String) {
+	public entry fun Delete_Text (texter : & signer, platform_name : String) {
 		Module_Hulls::Delete_Text (texter, platform_name);
 	}
 }

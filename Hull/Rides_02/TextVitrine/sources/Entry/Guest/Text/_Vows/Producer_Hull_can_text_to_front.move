@@ -24,11 +24,14 @@ module Builder_01::Hulls_can_text_to_front {
 		use aptos_framework::account;		
 		
 		use Builder_01::Module_Producer_Hulls;
-		use Builder_01::Module_Hulls; 
-		use Builder_01::Vow_Parts_01; 
+		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
+		
+		use Builder_01::Module_Hulls; 
+		
+		use Builder_01::Vow_Parts_01; 
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
@@ -85,7 +88,7 @@ module Builder_01::Hulls_can_text_to_front {
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"");		
-		Module_Guest_Texts::Send_Text (
+		Module_Denizen_Texts::Send_Text (
 			writer_01_consenter,
 			text_01_text,
 			text_01_platform,
@@ -111,7 +114,7 @@ module Builder_01::Hulls_can_text_to_front {
 		//	Delete Text
 		//
 		//
-		Module_Guest_Texts::Delete (writer_01_consenter, text_01_platform);
+		Module_Denizen_Texts::Delete_Text (writer_01_consenter, text_01_platform);
 		assert! (vector::length (& Module_Guest_Hull::Retrieve_Texts (text_01_platform)) == 0, 1);	
 		//
 		////

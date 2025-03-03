@@ -23,9 +23,11 @@ module Builder_01::Text_Length_Limiter {
 		use aptos_framework::account;		
 		
 		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Denizen_Texts;		
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
+		
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 	
@@ -86,7 +88,7 @@ module Builder_01::Text_Length_Limiter {
 			b"100000000001000000000010000000000100000000001000000000010000000000100000000001000000000010000000000100000000001000000000555550"
 		);
 		let text_01_platform : String = utf8 (b"");		
-		Module_Guest_Texts::Send_Text (
+		Module_Denizen_Texts::Send_Text (
 			writer_01_consenter,
 			text_01_text,
 			text_01_platform,
@@ -113,7 +115,7 @@ module Builder_01::Text_Length_Limiter {
 		//	Delete Text
 		//
 		//
-		Module_Guest_Texts::Delete (
+		Module_Denizen_Texts::Delete_Text (
 			writer_01_consenter,
 			text_01_platform
 		);

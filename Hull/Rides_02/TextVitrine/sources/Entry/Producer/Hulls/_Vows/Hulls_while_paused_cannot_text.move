@@ -26,6 +26,7 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Vow_Parts_01; 
@@ -63,7 +64,7 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		Module_Producer_Hulls::Pause (producer_01_consenter);	
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"paused"), 1);
 		
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
 		Module_Producer_Hulls::Play (producer_01_consenter);
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
 		

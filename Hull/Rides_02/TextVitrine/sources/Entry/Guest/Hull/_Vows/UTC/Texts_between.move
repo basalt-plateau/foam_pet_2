@@ -25,6 +25,7 @@ module Builder_01::Texts_between {
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;	
 		use Builder_01::Module_Guest_Texts;
@@ -84,11 +85,11 @@ module Builder_01::Texts_between {
 		//	Send Texts
 		//
 		//
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000001."), utf8 (b""), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000002."), utf8 (b""), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000001."), utf8 (b""), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000002."), utf8 (b""), utf8 (b"I accept."));
 		timestamp::update_global_time_for_test (31557600000 * 50);
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000003."), utf8 (b""), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000004."), utf8 (b""), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000003."), utf8 (b""), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is text 000004."), utf8 (b""), utf8 (b"I accept."));
 		//
 		////
 			

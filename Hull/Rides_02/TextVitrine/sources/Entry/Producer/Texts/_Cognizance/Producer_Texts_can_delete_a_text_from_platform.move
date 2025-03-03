@@ -25,6 +25,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		
 		use Builder_01::Module_Producer_Hulls;
 		use Builder_01::Module_Producer_Texts;
+		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
@@ -85,7 +86,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"Platform 01");		
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), text_01_platform, utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), text_01_platform, utf8 (b"I accept."));
 		//
 		////
 

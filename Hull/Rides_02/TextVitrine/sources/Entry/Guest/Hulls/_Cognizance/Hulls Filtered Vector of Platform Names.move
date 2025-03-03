@@ -29,6 +29,7 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		};
 		
 		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Vow_Parts_01; 
@@ -82,12 +83,12 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		//
 		////
 		
-		Module_Guest_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"room 1"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (group_02_acceptor_amp, utf8 (b"text 2"), utf8 (b"room 1"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"room 2"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"room 3"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"ride 1"), utf8 (b"I accept."));
-		Module_Guest_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"ride 2"), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"room 1"), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (group_02_acceptor_amp, utf8 (b"text 2"), utf8 (b"room 1"), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"room 2"), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"room 3"), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"ride 1"), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (group_01_acceptor_amp, utf8 (b"text 1"), utf8 (b"ride 2"), utf8 (b"I accept."));
 		
 		let hulls_with_ride = & Module_Guest_Hulls::Retrieve_Screened_Hulls_Info (utf8 (b"ride"));
 		assert! (vector::length (hulls_with_ride) == 2, 1);

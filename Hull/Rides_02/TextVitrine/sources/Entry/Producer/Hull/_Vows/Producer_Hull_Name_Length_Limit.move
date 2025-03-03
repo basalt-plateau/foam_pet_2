@@ -23,6 +23,7 @@ module Builder_01::Hull_Name_Length_Limit {
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
@@ -78,7 +79,7 @@ module Builder_01::Hull_Name_Length_Limit {
 		assert! (vector::length (& Module_Guest_Hull::Retrieve_Texts (utf8 (b""))) == 0, 1);
 		assert! (vector::length (& Module_Guest_Hull::Retrieve_Texts (utf8 (b"Dimension 3"))) == 0, 1);
 		
-		Module_Guest_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
 		
 		
 		
