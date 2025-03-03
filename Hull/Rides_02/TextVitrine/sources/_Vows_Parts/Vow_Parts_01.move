@@ -162,7 +162,7 @@ module builder_1::Vow_Parts_01 {
 		coin::register<AptosCoin>(boar_Team_02_consenter);
 		coin::register<AptosCoin>(boar_Team_03_consenter);	
 		
-		// coin::transfer<AptosCoin>(boar_Producer_1_consenter, boar_Team_01_position, 200000000);
+		// coin::transfer<AptosCoin>(boar_Ruler_1_consenter, boar_Team_01_position, 200000000);
 	}
 	
 	

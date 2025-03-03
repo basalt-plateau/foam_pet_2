@@ -28,7 +28,7 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 			group_address
 		};
 		
-		use Builder_01::Module_Producer_Hulls;
+		use Builder_01::Module_Ruler_Hulls;
 		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Texts;
@@ -38,19 +38,19 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		};
 	
 		let aptos_framework_acceptor : signer = account::create_account_for_test (@0x1);
-		let producer_01_acceptor : signer = account::create_account_for_test (@Producer_01);
+		let ruler_01_acceptor : signer = account::create_account_for_test (@Ruler_01);
 	
 		let one_APT : u64 = 100000000; 
 		let apt_mint : u64 = one_APT * 100;
 		
-		let producer_address = signer::address_of (& producer_01_acceptor);
+		let ruler_address = signer::address_of (& ruler_01_acceptor);
 		Vow_Parts_01::clock (& aptos_framework_acceptor);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (& aptos_framework_acceptor);
 		let coins = coin::mint<AptosCoin>(apt_mint, & mint_cap);
-		account::create_account_for_test (producer_address);
-		coin::register<AptosCoin>(& producer_01_acceptor);
-		coin::deposit (producer_address, coins);
+		account::create_account_for_test (ruler_address);
+		coin::register<AptosCoin>(& ruler_01_acceptor);
+		coin::deposit (ruler_address, coins);
 		
 		
 		////
@@ -59,7 +59,7 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		//
 		//
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
-		Module_Producer_Hulls::Begin (& producer_01_acceptor);
+		Module_Ruler_Hulls::Begin (& ruler_01_acceptor);
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
@@ -78,8 +78,8 @@ module Builder_01::Cognizance__Hulls_filtered_vector_of_names {
 		let group_02_acceptor_amp = group_acceptor_amp (& group_02);
 		let group_02_address = group_address (& group_02);
 		//
-		coin::transfer<AptosCoin>(& producer_01_acceptor, group_01_address, one_APT * 10);
-		coin::transfer<AptosCoin>(& producer_01_acceptor, group_02_address, one_APT * 10);
+		coin::transfer<AptosCoin>(& ruler_01_acceptor, group_01_address, one_APT * 10);
+		coin::transfer<AptosCoin>(& ruler_01_acceptor, group_02_address, one_APT * 10);
 		//
 		////
 		

@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Producer_Hull_can_play_and_pause {
+module Builder_01::Ruler_Hull_can_play_and_pause {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -14,7 +14,7 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 	
 	/*
 		aptos_framework_consenter : signer,
-		producer_01_consenter : & signer,
+		ruler_01_consenter : & signer,
 		
 		writer_01_consenter : & signer,
 		writer_02_consenter : & signer
@@ -28,8 +28,8 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 		
-		use Builder_01::Module_Producer_Hulls;
-		use Builder_01::Module_Producer_Hull;		
+		use Builder_01::Module_Ruler_Hulls;
+		use Builder_01::Module_Ruler_Hull;		
 		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
@@ -40,18 +40,18 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		let apt_mint : u64 = one_apt * 100;
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
-		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
+		let ruler_01_consenter : & signer = & account::create_account_for_test (@Ruler_01);
 		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
 
-		let producer_address = signer::address_of (producer_01_consenter);
+		let ruler_address = signer::address_of (ruler_01_consenter);
 		Vow_Parts_01::clock (& aptos_framework_consenter);
 		
 		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (& aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(apt_mint, & mint_cap);
-		account::create_account_for_test (producer_address);
-		coin::register<AptosCoin>(producer_01_consenter);
-		coin::deposit (producer_address, coins);
+		account::create_account_for_test (ruler_address);
+		coin::register<AptosCoin>(ruler_01_consenter);
+		coin::deposit (ruler_address, coins);
 		
 		////
 		//
@@ -61,12 +61,12 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		let writer_01_address = signer::address_of (writer_01_consenter);
 		account::create_account_for_test (writer_01_address);
 		coin::register<AptosCoin>(writer_01_consenter);
-		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_apt * 10);
+		coin::transfer<AptosCoin>(ruler_01_consenter, writer_01_address, one_apt * 10);
 		//
 		let writer_02_address = signer::address_of (writer_02_consenter);
 		account::create_account_for_test (writer_02_address);
 		coin::register<AptosCoin>(writer_02_consenter);
-		coin::transfer<AptosCoin>(producer_01_consenter, writer_02_address, one_apt * 10);
+		coin::transfer<AptosCoin>(ruler_01_consenter, writer_02_address, one_apt * 10);
 		//
 		//
 		////
@@ -77,7 +77,7 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//
 		//
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
-		Module_Producer_Hulls::Begin (producer_01_consenter);
+		Module_Ruler_Hulls::Begin (ruler_01_consenter);
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
@@ -94,8 +94,8 @@ module Builder_01::Producer_Hull_can_play_and_pause {
 		//
 		////
 
-		Module_Producer_Hull::Pause (producer_01_consenter, utf8 (b""));
-		Module_Producer_Hull::Play (producer_01_consenter, utf8 (b""));
+		Module_Ruler_Hull::Pause (ruler_01_consenter, utf8 (b""));
+		Module_Ruler_Hull::Play (ruler_01_consenter, utf8 (b""));
 
 		Module_Denizen_Texts::Send_Text (writer_02_consenter, utf8 (b"This is text 2."), utf8 (b""), utf8 (b"I accept."));	
 		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 2);

@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
+module Builder_01::Ruler_Texts_can_delete_a_text_from_platform {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -14,7 +14,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 	
 	
 	#[test] 
-	public fun Congizance__Producer_Texts_can_delete_a_text_from_platform () {	
+	public fun Congizance__Ruler_Texts_can_delete_a_text_from_platform () {	
 		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -23,8 +23,8 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 		
-		use Builder_01::Module_Producer_Hulls;
-		use Builder_01::Module_Producer_Texts;
+		use Builder_01::Module_Ruler_Hulls;
+		use Builder_01::Module_Ruler_Texts;
 		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
@@ -35,8 +35,8 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		////
 		//
 		let aptos_framework_consenter : & signer = & account::create_account_for_test (@0x1);
-		let producer_01_consenter : & signer = & account::create_account_for_test (@Producer_01);
-		let producer_01_address = signer::address_of (producer_01_consenter);
+		let ruler_01_consenter : & signer = & account::create_account_for_test (@Ruler_01);
+		let ruler_01_address = signer::address_of (ruler_01_consenter);
 		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 		let writer_01_address = signer::address_of (writer_01_consenter);
 		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
@@ -51,8 +51,8 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		
 		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (aptos_framework_consenter);
 		let coins = coin::mint<AptosCoin>(apt_mint, & mint_cap);
-		coin::register<AptosCoin>(producer_01_consenter);
-		coin::deposit (producer_01_address, coins);
+		coin::register<AptosCoin>(ruler_01_consenter);
+		coin::deposit (ruler_01_address, coins);
 		
 		
 		////
@@ -63,7 +63,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		coin::register<AptosCoin>(writer_01_consenter);
 		coin::register<AptosCoin>(writer_02_consenter);
 		//
-		coin::transfer<AptosCoin>(producer_01_consenter, writer_01_address, one_APT * 10);
+		coin::transfer<AptosCoin>(ruler_01_consenter, writer_01_address, one_APT * 10);
 		//
 		////
 		
@@ -73,7 +73,7 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		//
 		//
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
-		Module_Producer_Hulls::Begin (producer_01_consenter);
+		Module_Ruler_Hulls::Begin (ruler_01_consenter);
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
@@ -104,11 +104,11 @@ module Builder_01::Producer_Texts_can_delete_a_text_from_platform {
 		
 		////
 		//
-		//	Producer Delete Text
+		//	Ruler Delete Text
 		//
 		//
-		Module_Producer_Texts::Delete_with_Refund_by_index (
-			producer_01_consenter,
+		Module_Ruler_Texts::Delete_with_Refund_by_index (
+			ruler_01_consenter,
 			text_01_platform,
 			0,
 			100000000

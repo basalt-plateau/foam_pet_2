@@ -2,9 +2,9 @@
 
 
 module Builder_01::Module_Hulls {
-	friend Builder_01::Module_Producer_Hulls;	
-	friend Builder_01::Module_Producer_Hull;
-	friend Builder_01::Module_Producer_Texts;
+	friend Builder_01::Module_Ruler_Hulls;	
+	friend Builder_01::Module_Ruler_Hull;
+	friend Builder_01::Module_Ruler_Texts;
 
 	friend Builder_01::Module_Denizen_Texts;
 
@@ -18,7 +18,7 @@ module Builder_01::Module_Hulls {
 	use std::signer;
 	
 	// use Builder_01::Endings_Module;
-	use Builder_01::Module_Producer::{ Self, ensure_consenter_is_producer };
+	use Builder_01::Module_Ruler::{ Self, ensure_consenter_is_ruler };
 	use Builder_01::Text_Module::{
 		Text,
 		Text__create,
@@ -60,7 +60,7 @@ module Builder_01::Module_Hulls {
 		create_guest_shows
 	};
 	
-	const Limiter_Producer_the_platform_with_writer_address_is_empty : u64 = 100000;
+	const Limiter_Ruler_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
 	const Limiter_the_hull_is_not_going : u64 = 100002;
 	const Limiter_Text_String_needs_to_be_less_than_one_hundred_characters : u64 = 100003;	
@@ -131,7 +131,7 @@ module Builder_01::Module_Hulls {
 		/*
 			let hulls_mline = Hulls__mut_retrieve_hull (
 				"Hull 1", 
-				borrow_global_mut<Hulls>(Module_Producer::obtain_address ())
+				borrow_global_mut<Hulls>(Module_Ruler::obtain_address ())
 			);
 		*/
 		let index_of_hull = search_for_index_of_hull (platform_name);
@@ -143,7 +143,7 @@ module Builder_01::Module_Hulls {
 	//		Hulls__ensure_is_playing ();
 	//		
 	public fun Hulls__ensure_is_playing () acquires Hulls {
-		let hulls_borrowed = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_borrowed = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		if (hulls_borrowed.status != utf8 (b"playing")) {
 			abort 0x706175736564
 		}
@@ -154,7 +154,7 @@ module Builder_01::Module_Hulls {
 	//	Hulls: Fluctuate
 	//
 	friend fun Begin_Hulls (consenter : & signer) {
-		ensure_consenter_is_producer (consenter);
+		ensure_consenter_is_ruler (consenter);
 		
 		let price_of_text_in_octas : u64 = 100000000;
 		
@@ -192,10 +192,10 @@ module Builder_01::Module_Hulls {
 		consenter : & signer,
 		status : String
 	) acquires Hulls {
-		ensure_consenter_is_producer (consenter);
-		let producer_address = Module_Producer::obtain_address ();
+		ensure_consenter_is_ruler (consenter);
+		let ruler_address = Module_Ruler::obtain_address ();
 		
-		let hulls = borrow_global_mut<Hulls>(producer_address);
+		let hulls = borrow_global_mut<Hulls>(ruler_address);
 		hulls.status = status;
 	}
 	//	
@@ -203,19 +203,19 @@ module Builder_01::Module_Hulls {
 	//	Constants:
 	//	
 	friend fun are_Hulls_built () : String {
-		if (exists<Hulls>(Module_Producer::obtain_address ())) {
+		if (exists<Hulls>(Module_Ruler::obtain_address ())) {
 			return utf8 (b"yup")
 		};
 		
 		utf8 (b"no")
 	}
 	friend fun Hulls_Status () : String acquires Hulls {
-		borrow_global<Hulls>(Module_Producer::obtain_address ()).status
+		borrow_global<Hulls>(Module_Ruler::obtain_address ()).status
 	}
 	friend fun retrieve_vector_of_hull_names () : vector<String> acquires Hulls {
 		let envelope = vector::empty<String>();
 		
-		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_ref = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		let hulls_length = vector::length (& hulls_ref.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
@@ -227,7 +227,7 @@ module Builder_01::Module_Hulls {
 	friend fun retrieve_vector_of_hulls_info () : vector<Hull_Info_Envelope> acquires Hulls {
 		let envelope = vector::empty<Hull_Info_Envelope>();
 		
-		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_ref = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		let hulls_length = vector::length (& hulls_ref.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
@@ -250,7 +250,7 @@ module Builder_01::Module_Hulls {
 	friend fun retrieve_screened_vector_of_hulls_info (platform_name_partial : String) : vector<Hull_Info_Envelope> acquires Hulls {
 		let envelope = vector::empty<Hull_Info_Envelope>();
 		
-		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_ref = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		let hulls_length = vector::length (& hulls_ref.hulls);
 		for (index in 0..hulls_length) {
 			let hull_ref = vector::borrow (& hulls_ref.hulls, index);
@@ -296,7 +296,7 @@ module Builder_01::Module_Hulls {
 	) : vector<Log> acquires Hulls {
 		let envelope = vector::empty<Log>();
 		
-		let hulls_ref = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls_ref = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		let logs_length = vector::length (& hulls_ref.logs);
 		for (index in 0..logs_length) {
 			let log = * vector::borrow (& hulls_ref.logs, index);
@@ -334,7 +334,7 @@ module Builder_01::Module_Hulls {
 	) acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform_name);
 		
-		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		let hulls_mref = &mut hulls_key_mref.hulls;
 		let hull_mref : &mut Hull = vector::borrow_mut (hulls_mref, index_of_hull);
 		
@@ -346,7 +346,7 @@ module Builder_01::Module_Hulls {
 	) acquires Hulls {		
 		let index_of_hull = search_for_index_of_hull (platform_name);
 		
-		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		let hulls_mref = &mut hulls_key_mref.hulls;
 		let hull_mref : &mut Hull = vector::borrow_mut (hulls_mref, index_of_hull);
 		
@@ -358,7 +358,7 @@ module Builder_01::Module_Hulls {
 	) acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform_name);
 		
-		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		let hulls_mref = &mut hulls_key_mref.hulls;
 		
 		vector::remove (hulls_mref, index_of_hull);
@@ -372,7 +372,7 @@ module Builder_01::Module_Hulls {
 			Search for the index of the hull.
 			If the hull does not exist, then start it.
 		*/
-		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		let hull_next_index = hulls.hull_next_index;
 		hulls.hull_next_index = hulls.hull_next_index + 1;
 		
@@ -409,14 +409,14 @@ module Builder_01::Module_Hulls {
 	friend fun Hulls__Hull__retrieve_status (platform : String) : String acquires Hulls {
 		let index_of_hull = search_for_index_of_hull (platform);
 		
-		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_key_mref = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		let hulls_mref = &mut hulls_key_mref.hulls;
 		let hull_mref : &mut Hull = vector::borrow_mut (hulls_mref, index_of_hull);
 		
 		Hull__retrieve_status (hull_mref)
 	}
 	friend fun search_for_index_of_hull (platform : String) : u64 acquires Hulls {
-		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
@@ -435,7 +435,7 @@ module Builder_01::Module_Hulls {
 				return hull_texts_envelope
 			};
 		*/
-		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		
 		let hulls_length = vector::length (& hulls.hulls);
 		for (index in 0..hulls_length) {
@@ -466,7 +466,7 @@ module Builder_01::Module_Hulls {
 			return hull_texts_envelope
 		};
 		
-		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
 		let hull_texts = & Hull__retrieve_texts (hull_ref);
 		let count_of_hull_texts = vector::length (hull_texts);
@@ -514,7 +514,7 @@ module Builder_01::Module_Hulls {
 			return 0
 		};
 		
-		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
 		let hull_texts = & Hull__retrieve_texts (hull_ref);
 		
@@ -535,7 +535,7 @@ module Builder_01::Module_Hulls {
 			return hull_texts_envelope
 		};
 		
-		let hulls = borrow_global<Hulls>(Module_Producer::obtain_address ());
+		let hulls = borrow_global<Hulls>(Module_Ruler::obtain_address ());
 		let hull_ref : & Hull = vector::borrow (& hulls.hulls, index_of_hull);
 		let hull_texts = & Hull__retrieve_texts (hull_ref);
 		let count_of_hull_texts = vector::length (hull_texts);
@@ -587,7 +587,7 @@ module Builder_01::Module_Hulls {
 		////
 		
 		let writer_address = signer::address_of (writer);
-		let producer_address = Module_Producer::obtain_address ();
+		let ruler_address = Module_Ruler::obtain_address ();
 		
 		////
 		//
@@ -595,7 +595,7 @@ module Builder_01::Module_Hulls {
 		//
 		//
 		let index_of_hull = search_or_begin_hull (platform);
-		let hulls_mref = borrow_global_mut<Hulls>(producer_address);
+		let hulls_mref = borrow_global_mut<Hulls>(ruler_address);
 		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls_mref.hulls, index_of_hull);
 		let price_of_text_in_octas = hulls_mref.price_of_text_in_octas;
 		//
@@ -610,7 +610,7 @@ module Builder_01::Module_Hulls {
 		if (coin::balance<AptosCoin>(writer_address) < price_of_text_in_octas) { 
 			abort Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send
 		};
-		coin::transfer<AptosCoin>(writer, producer_address, price_of_text_in_octas);
+		coin::transfer<AptosCoin>(writer, ruler_address, price_of_text_in_octas);
 		//
 		////
 		
@@ -655,7 +655,7 @@ module Builder_01::Module_Hulls {
 		let texter_address = signer::address_of (texter);		
 		
 		let index_of_hull = search_for_index_of_hull (platform);
-		let hulls = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		let hull_ref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
 
 		let hull_texts = Hull__mut_retrieve_texts (hull_ref);
@@ -669,7 +669,7 @@ module Builder_01::Module_Hulls {
 		
 		abort 260141
 	}
-	friend fun Producer_Text_Delete_with_Refund_at_Index (
+	friend fun Ruler_Text_Delete_with_Refund_at_Index (
 		acceptor : & signer,
 		platform : String,
 		envelope_index : u64, 
@@ -678,7 +678,7 @@ module Builder_01::Module_Hulls {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::{ AptosCoin };
 		
-		let texter_address = Producer_Text_Delete_at_Index (acceptor, platform, envelope_index);
+		let texter_address = Ruler_Text_Delete_at_Index (acceptor, platform, envelope_index);
 		
 		
 		////
@@ -700,7 +700,7 @@ module Builder_01::Module_Hulls {
 		//	Add to Log
 		//
 		//
-		let hulls_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_mref = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		vector::push_back (
 			&mut hulls_mref.logs, 
 			Log__create (utf8 (b"refund"), texter_address, 1)
@@ -712,17 +712,17 @@ module Builder_01::Module_Hulls {
 	/*
 		Delete a platform text by it's envelope index.
 	*/
-	friend fun Producer_Text_Delete_at_Index (
+	friend fun Ruler_Text_Delete_at_Index (
 		consenter : & signer,
 		platform_name : String,
 		envelope_index : u64
 	) : address acquires Hulls {
-		ensure_consenter_is_producer (consenter);
+		ensure_consenter_is_ruler (consenter);
 		
-		let producer_address = Module_Producer::obtain_address ();
+		let ruler_address = Module_Ruler::obtain_address ();
 		
 		let index_of_hull = search_for_index_of_hull (platform_name);
-		let hulls = borrow_global_mut<Hulls>(producer_address);
+		let hulls = borrow_global_mut<Hulls>(ruler_address);
 		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
 		
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
@@ -735,9 +735,9 @@ module Builder_01::Module_Hulls {
 			}
 		};
 		
-		abort Limiter_Producer_the_platform_with_writer_address_is_empty
+		abort Limiter_Ruler_the_platform_with_writer_address_is_empty
 	}
-	friend fun Producer_Text_Delete_with_Refund (
+	friend fun Ruler_Text_Delete_with_Refund (
 		consenter : & signer,
 		writer_address : address,
 		platform : String,
@@ -746,7 +746,7 @@ module Builder_01::Module_Hulls {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::{ AptosCoin };
 		
-		Producer_Delete_Text (consenter, writer_address, platform);
+		Ruler_Delete_Text (consenter, writer_address, platform);
 		
 		if (octas_refund > 100000000) { 
 			abort Limiter_Refund_must_be_1_apt_or_fewer
@@ -771,7 +771,7 @@ module Builder_01::Module_Hulls {
 		//	Add to Log
 		//
 		//
-		let hulls_mref = borrow_global_mut<Hulls>(Module_Producer::obtain_address ());
+		let hulls_mref = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		vector::push_back (
 			&mut hulls_mref.logs, 
 			Log__create (utf8 (b"refund"), writer_address, 1)
@@ -779,17 +779,17 @@ module Builder_01::Module_Hulls {
 		//
 		////
 	}
-	friend fun Producer_Delete_Text (
+	friend fun Ruler_Delete_Text (
 		consenter : & signer,
 		writer_address : address,
 		platform : String 
 	) acquires Hulls {
-		ensure_consenter_is_producer (consenter);
+		ensure_consenter_is_ruler (consenter);
 		
-		let producer_address = Module_Producer::obtain_address ();
+		let ruler_address = Module_Ruler::obtain_address ();
 		
 		let index_of_hull = search_for_index_of_hull (platform);
-		let hulls = borrow_global_mut<Hulls>(producer_address);
+		let hulls = borrow_global_mut<Hulls>(ruler_address);
 		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
 		
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
@@ -801,7 +801,7 @@ module Builder_01::Module_Hulls {
 			}
 		};
 		
-		abort Limiter_Producer_the_platform_with_writer_address_is_empty
+		abort Limiter_Ruler_the_platform_with_writer_address_is_empty
 	}
 	//
 	////////

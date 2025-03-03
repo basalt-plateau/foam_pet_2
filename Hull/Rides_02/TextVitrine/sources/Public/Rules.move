@@ -5,7 +5,7 @@
 module Builder_01::Rules_Module {
 	
 	/*
-		These volitions are given by the producer.
+		These volitions are given by the ruler.
 		
 		This module is everyone's to play with however 
 		they so please.
@@ -30,7 +30,7 @@ module Builder_01::Rules_Module {
 
 		vector::append (&mut vectors, b"\n");
 		vector::append (&mut vectors, b"\n");		
-		vector::append (&mut vectors, b"These volitions are given by the producer.\n");
+		vector::append (&mut vectors, b"These volitions are given by the ruler.\n");
 		vector::append (&mut vectors, b"\n");
 		vector::append (&mut vectors, b"This module is everyone's to play with however\n");
 		vector::append (&mut vectors, b"they so please.\n");		
@@ -71,7 +71,7 @@ module Builder_01::Rules_Module {
 			string::length (& rules)
 		));
 		
-		assert! (string::length (& rules) == 381, 0);
+		assert! (string::length (& rules) == 378, 0);
 	}
 }
 

@@ -96,6 +96,7 @@ def motion_for_named_addresses (packet):
 	named_addresses = "".join ([
 		f"""--named-addresses '""",
 
+		f"""Ruler_01={ Producer_01 ["address"] }, """,
 		f"""Producer_000001={ Producer_01 ["address"] }, """,
 		f"""Producer_01={ Producer_01 ["address"] }, """,
 		f"""Formulator_1={ Producer_01 ["address"] }, """,

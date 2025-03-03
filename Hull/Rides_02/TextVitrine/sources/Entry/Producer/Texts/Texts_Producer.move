@@ -4,11 +4,11 @@
 
 
 
-module Builder_01::Module_Producer_Texts {
+module Builder_01::Module_Ruler_Texts {
 	use std::string::{ String };
 	
 	use Builder_01::Module_Hulls;
-	use Builder_01::Module_Producer::{ Self, ensure_consenter_is_producer };
+	use Builder_01::Module_Ruler::{ Self, ensure_consenter_is_ruler };
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
@@ -27,7 +27,7 @@ module Builder_01::Module_Producer_Texts {
 		writer_address : address, 
 		platform_name : String
 	) {
-		Module_Hulls::Producer_Delete_Text (acceptor, writer_address, platform_name);
+		Module_Hulls::Ruler_Delete_Text (acceptor, writer_address, platform_name);
 	}
 	public entry fun Delete_with_Refund (
 		acceptor : & signer, 
@@ -35,7 +35,7 @@ module Builder_01::Module_Producer_Texts {
 		platform_name : String,
 		octas_refund : u64
 	) {
-		Module_Hulls::Producer_Text_Delete_with_Refund (
+		Module_Hulls::Ruler_Text_Delete_with_Refund (
 			acceptor, 
 			writer_address, 
 			platform_name, 
@@ -54,8 +54,8 @@ module Builder_01::Module_Producer_Texts {
 		index_of_text : u64, 
 		octas_refund : u64
 	) {
-		ensure_consenter_is_producer (acceptor);
-		Module_Hulls::Producer_Text_Delete_with_Refund_at_Index (
+		ensure_consenter_is_ruler (acceptor);
+		Module_Hulls::Ruler_Text_Delete_with_Refund_at_Index (
 			acceptor, 
 			platform_name, 
 			index_of_text, 

@@ -6,7 +6,7 @@
 /*
 
 */
-module Builder_01::Module_Producer {	
+module Builder_01::Module_Ruler {	
 	friend Builder_01::Module_Hulls;
 	friend Builder_01::Module_Guest_Hulls;
 	
@@ -15,7 +15,7 @@ module Builder_01::Module_Producer {
 	
 	use aptos_framework::chain_id;
 	
-	const Imperfection_that_is_not_the_address_of_the_producer : u64 = 9;
+	const Imperfection_that_is_not_the_address_of_the_ruler : u64 = 9;
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module;
@@ -45,19 +45,19 @@ module Builder_01::Module_Producer {
 		let position : address = @0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD;
 		position
 	}
-	public fun ensure_consenter_is_producer (consenter : & signer) {
+	public fun ensure_consenter_is_ruler (consenter : & signer) {
 		if (signer::address_of (consenter) != obtain_address ()) {
-			abort Imperfection_that_is_not_the_address_of_the_producer
+			abort Imperfection_that_is_not_the_address_of_the_ruler
 		}
 	}
-	public fun ask_if_consenter_is_producer (consenter : & signer) : String {
+	public fun ask_if_consenter_is_ruler (consenter : & signer) : String {
 		if (signer::address_of (consenter) == obtain_address ()) {
 			return utf8 (b"yup")
 		};
 		
 		utf8 (b"no")
 	}
-	#[view] public fun ask_if_address_is_producer (address_1 : address) : String {
+	#[view] public fun ask_if_address_is_ruler (address_1 : address) : String {
 		if (address_1 == obtain_address ()) {
 			return utf8 (b"yup")
 		};
