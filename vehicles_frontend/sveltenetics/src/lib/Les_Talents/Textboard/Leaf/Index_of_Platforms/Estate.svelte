@@ -99,7 +99,7 @@ onMount (() => {
 				{/if}
 			</div>
 			
-			{#if TF.info.is_producer === "yup" }
+			{#if TF.info.is_ruler === "yup" }
 			<div
 				style="
 					margin-top: 0.1cm;
@@ -113,10 +113,10 @@ onMount (() => {
 					onMount={({ mode }) => {
 						mode ("on");
 					}}
-					button_text={ `Delete Platform "${ hull.name }" as Producer` }
+					button_text={ `Delete Platform "${ hull.name }" as Ruler` }
 					APT="0"
 					clicked={() => {
-						TF.fonctions.producer.hull.delete_platform ({
+						TF.fonctions.ruler.hull.delete_platform ({
 							platform_name: hull.name
 						});
 					}}
@@ -125,10 +125,10 @@ onMount (() => {
 					onMount={({ mode }) => {
 						mode ("on");
 					}}
-					button_text={ `Delete Every Text of Platform "${ hull.name }" as Producer` }
+					button_text={ `Delete Every Text of Platform "${ hull.name }" as Ruler` }
 					APT="0"
 					clicked={() => {
-						TF.fonctions.producer.hull.delete_every_text ({
+						TF.fonctions.ruler.hull.delete_every_text ({
 							platform_name: hull.name
 						});
 					}}
@@ -141,20 +141,20 @@ onMount (() => {
 					onMount={({ mode }) => {
 						mode ("on");
 					}}
-					button_text={ `Pause Platform "${ hull.name }" as Producer` }
+					button_text={ `Pause Platform "${ hull.name }" as Ruler` }
 					APT="0"
 					clicked={() => {
-						TF.fonctions.producer.hull.status.pause ({ platform_name: hull.name });
+						TF.fonctions.ruler.hull.status.pause ({ platform_name: hull.name });
 					}}
 				/>
 				<Petition_APT_Button
 					onMount={({ mode }) => {
 						mode ("on");
 					}}
-					button_text={ `Play Platform "${ hull.name }" as Producer` }
+					button_text={ `Play Platform "${ hull.name }" as Ruler` }
 					APT="0"
 					clicked={() => {
-						TF.fonctions.producer.hull.status.play ({ platform_name: hull.name });
+						TF.fonctions.ruler.hull.status.play ({ platform_name: hull.name });
 					}}
 				/>
 			</div>

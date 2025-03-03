@@ -51,10 +51,10 @@ let amount_of_octas = "100000000";
 		onMount={({ mode }) => {
 			mode ("on");
 		}}
-		button_text="Delete Text as Producer"
+		button_text="Delete Text as Ruler"
 		APT="0"
 		clicked={() => {
-			TF.fonctions.producer.text.delete_with_refund_with_index ({
+			TF.fonctions.ruler.text.delete_with_refund_with_index ({
 				text,
 				platform_name: TF.info.platform_name,
 				amount_of_octas

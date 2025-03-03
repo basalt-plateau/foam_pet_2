@@ -11,7 +11,7 @@
 
 
 /*
-	Producer: 
+	Ruler: 
 		1. Hulls_Module::Begin_Hulls
 	
 	Then anyone can start sending texts..?
@@ -258,9 +258,9 @@ const change_account_address = () => {
 		</div>
 	</div>
 	
-	<!-- Producer Options -->
+	<!-- Ruler Options -->
 	<div>
-		{#if Versies_Freight.is_producer === "yup" }
+		{#if Versies_Freight.is_ruler === "yup" }
 		<div
 			style="
 				display: grid;
@@ -272,7 +272,7 @@ const change_account_address = () => {
 				onMount={({ mode }) => {
 					mode ("on");
 				}}
-				button_text={ `Delete "${ le_textboard }" as Producer` }
+				button_text={ `Delete "${ le_textboard }" as Ruler` }
 				APT="0"
 				clicked={() => {
 					
@@ -282,7 +282,7 @@ const change_account_address = () => {
 				onMount={({ mode }) => {
 					mode ("on");
 				}}
-				button_text={ `Pause "${ le_textboard }" as Producer` }
+				button_text={ `Pause "${ le_textboard }" as Ruler` }
 				APT="0"
 				clicked={() => {
 					
@@ -402,7 +402,7 @@ const change_account_address = () => {
 				</div>
 				{/if}
 				
-				{#if Versies_Freight.is_producer === "yup" }
+				{#if Versies_Freight.is_ruler === "yup" }
 				<div
 					style="
 						display: flex;
@@ -423,7 +423,7 @@ const change_account_address = () => {
 						onMount={({ mode }) => {
 							mode ("on");
 						}}
-						button_text="Delete Text as Producer"
+						button_text="Delete Text as Ruler"
 						APT="0"
 						clicked={() => {
 							

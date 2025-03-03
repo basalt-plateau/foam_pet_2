@@ -19,7 +19,7 @@ import * as Textboard_Truck from "$lib/Les_Talents/Textboard/Truck/index.js"
 //
 ////
 
-import Delete_as_Producer from "./Delete_as_Producer/Tome.svelte"
+import Delete_as_Ruler from "./Delete_as_Ruler/Tome.svelte"
 
 let octas_refund = 0;
 
@@ -116,8 +116,8 @@ onMount (() => {
 		</div>
 		{/if}
 		
-		{#if TF.info.is_producer === "yup" }
-		<Delete_as_Producer text={ text } />
+		{#if TF.info.is_ruler === "yup" }
+		<Delete_as_Ruler text={ text } />
 		{/if}
 	</div>
 	{/each}

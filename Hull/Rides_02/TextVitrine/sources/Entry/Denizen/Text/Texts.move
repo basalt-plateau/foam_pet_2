@@ -41,6 +41,7 @@ module Builder_01::Module_Denizen_Texts {
 		Module_Denizen_Texts::Delete_Text (acceptor, utf8 (b""))
 	*/
 	public entry fun Delete_Text (texter : & signer, platform_name : String) {
+		Module_Hulls::Hulls__ensure_is_playing ();
 		Module_Hulls::Delete_Text (texter, platform_name);
 	}
 }

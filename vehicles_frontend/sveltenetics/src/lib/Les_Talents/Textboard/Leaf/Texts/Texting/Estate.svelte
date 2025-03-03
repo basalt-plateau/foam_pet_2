@@ -138,17 +138,31 @@ let value = false;
 		
 		<div
 			style="
-				display: flex;
+				display: none;
 				align-items: center;
 				gap: 0.1cm;
 			"
 		>
 			<div class="card p-1">
-				<p>The rules must be accepted, by placing the "toggle" in the accept position, to send a text.</p>
+				<p>To send a text, the rules must be accepted by placing the "toggle" in the accept position.</p>
 			</div>
-			<Textboard_Rules_Frontier />
 		</div>
 		
+		
+		
+		
+	</div>
+	
+	<div
+		style="
+			border-radius: 4px;
+			width: 100%;
+			
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(1000px, 1fr));
+			gap: 0.1cm;
+		"
+	>	
 		<div
 			style="
 				display: flex;
@@ -157,17 +171,12 @@ let value = false;
 			"
 			class="card p-1"
 		>
+			<Textboard_Rules_Frontier />
+		
 			<SlideToggle name="slide" bind:checked={ value } />
-			<p>accept</p>
+			<p>I accept the rules.</p>
 		</div>
-	</div>
 	
-	<div
-		style="
-			border-radius: 4px;
-			width: 100%;
-		"
-	>	
 		<Petition_APT_Button
 			bind:this={ petition_APT_button }
 			onMount={() => { 

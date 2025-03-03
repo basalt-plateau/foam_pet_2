@@ -9,7 +9,7 @@ module Builder_01::Module_Ruler_Hull {
 	}
 	
 	use Builder_01::Module_Ruler::{ 
-		ensure_consenter_is_ruler 
+		ensure_acceptor_is_ruler 
 	};
 	
 	use Builder_01::Module_Hulls::{
@@ -27,22 +27,22 @@ module Builder_01::Module_Ruler_Hull {
 	//			disappeared: exists in struct, but not on dapp
 	//
 	public entry fun Disappear (consenter : & signer, platform_name : String) {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"disappeared"));
 	}
 	public entry fun Pause (consenter : & signer, platform_name : String) {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"paused"));
 	}
 	public entry fun Play (consenter : & signer, platform_name : String) {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		Hulls__Hull__change_status (consenter, platform_name, utf8 (b"playing"));
 	}
 	//
 	//
 	//	Delete the entire hull
 	public entry fun Delete (consenter : & signer, platform_name : String) {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		Hulls__Hull__delete_platform (consenter, platform_name);
 	}
 	//
@@ -50,7 +50,7 @@ module Builder_01::Module_Ruler_Hull {
 	//
 	//
 	public entry fun Delete_Every_Text_For_Platform (consenter : & signer, platform_name : String) {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		Hulls__Hull__delete_every_text (consenter, platform_name);
 	}
 	
@@ -59,7 +59,7 @@ module Builder_01::Module_Ruler_Hull {
 		platform_name : String
 	) {
 		// Ancient.. use "Delete_Every_Text_For_Platform"
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		Hulls__Hull__delete_every_text (consenter, platform_name);
 	}
 	//

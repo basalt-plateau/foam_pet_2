@@ -13,7 +13,7 @@ import { ask_convert_Octas_to_APT } from '$lib/taverns/APT/Octas_to_APT.js'
 import { view_fonction } from "$lib/PTO_API/View/index.js"
 //
 //
-import { ask_is_producer } from './screenplays/ask_is_producer.js'
+import { ask_is_ruler } from './screenplays/ask_is_ruler.js'
 //
 ////
 
@@ -26,7 +26,7 @@ const Guest_Fonctions = {
 	entry: {}
 };
 
-const Producer_Fonctions = {
+const Ruler_Fonctions = {
 	entry: {}
 }
 
@@ -47,7 +47,7 @@ export const make = () => {
 		freight: {
 			change: 0,
 			info: {
-				is_producer: ask_is_producer (),
+				is_ruler: ask_is_ruler (),
 				
 				Builder_01: Pannier_02_Legacy_Address,
 				
@@ -68,7 +68,7 @@ export const make = () => {
 				}
 			},
 			fonctions: {
-				producer: {
+				ruler: {
 					hulls: {
 						async begin () {
 							trucks [1].freight.info.le_hulls.progress = "yes"
@@ -76,7 +76,7 @@ export const make = () => {
 							const Builder_01 = trucks [1].freight.info.Builder_01;
 							const { result, note, transaction } = await Extension_Winch.freight ().prompt ({
 								petition: {
-									function: `${ Builder_01 }::Module_Producer_Hulls::Begin`,
+									function: `${ Builder_01 }::Module_Ruler_Hulls::Begin`,
 									type_arguments: [],
 									arguments: []
 								}
@@ -95,7 +95,7 @@ export const make = () => {
 							const Builder_01 = trucks [1].freight.info.Builder_01;
 							const { result, note, transaction } = await Extension_Winch.freight ().prompt ({
 								petition: {
-									function: `${ Builder_01 }::Module_Producer_Hulls::Pause`,
+									function: `${ Builder_01 }::Module_Ruler_Hulls::Pause`,
 									type_arguments: [],
 									arguments: []
 								}
@@ -111,7 +111,7 @@ export const make = () => {
 							const Builder_01 = trucks [1].freight.info.Builder_01;
 							const { result, note, transaction } = await Extension_Winch.freight ().prompt ({
 								petition: {
-									function: `${ Builder_01 }::Module_Producer_Hulls::Play`,
+									function: `${ Builder_01 }::Module_Ruler_Hulls::Play`,
 									type_arguments: [],
 									arguments: []
 								}
@@ -129,7 +129,7 @@ export const make = () => {
 								const Builder_01 = trucks [1].freight.info.Builder_01;
 								const { result, note, transaction } = await EWF.prompt ({
 									petition: {
-										function: `${ Builder_01 }::Module_Producer_Hull::Disappear`,
+										function: `${ Builder_01 }::Module_Ruler_Hull::Disappear`,
 										type_arguments: [],
 										arguments: [
 											platform_name
@@ -145,7 +145,7 @@ export const make = () => {
 								const Builder_01 = trucks [1].freight.info.Builder_01;
 								const { result, note, transaction } = await EWF.prompt ({
 									petition: {
-										function: `${ Builder_01 }::Module_Producer_Hull::Pause`,
+										function: `${ Builder_01 }::Module_Ruler_Hull::Pause`,
 										type_arguments: [],
 										arguments: [
 											platform_name
@@ -161,7 +161,7 @@ export const make = () => {
 								const Builder_01 = trucks [1].freight.info.Builder_01;
 								const { result, note, transaction } = await EWF.prompt ({
 									petition: {
-										function: `${ Builder_01 }::Module_Producer_Hull::Play`,
+										function: `${ Builder_01 }::Module_Ruler_Hull::Play`,
 										type_arguments: [],
 										arguments: [
 											platform_name
@@ -178,7 +178,7 @@ export const make = () => {
 							const Builder_01 = trucks [1].freight.info.Builder_01;
 							const { result, note, transaction } = await EWF.prompt ({
 								petition: {
-									function: `${ Builder_01 }::Module_Producer_Hull::Delete`,
+									function: `${ Builder_01 }::Module_Ruler_Hull::Delete`,
 									type_arguments: [],
 									arguments: [
 										platform_name
@@ -196,7 +196,7 @@ export const make = () => {
 							const Builder_01 = trucks [1].freight.info.Builder_01;
 							const { result, note, transaction } = await EWF.prompt ({
 								petition: {
-									function: `${ Builder_01 }::Module_Producer_Hull::Delete_Every_Text_For_Platform`,
+									function: `${ Builder_01 }::Module_Ruler_Hull::Delete_Every_Text_For_Platform`,
 									type_arguments: [],
 									arguments: [
 										platform_name
@@ -239,7 +239,7 @@ export const make = () => {
 							/* public entry fun Send_Text (writer : & signer, text : String, platform : String) */
 							const { result, note, transaction } = await EWF.prompt ({
 								petition: {
-									function: `${ Builder_01 }::Module_Producer_Texts::Delete_with_Refund_by_index`,
+									function: `${ Builder_01 }::Module_Ruler_Texts::Delete_with_Refund_by_index`,
 									type_arguments: [],
 									arguments: [
 										platform_name,

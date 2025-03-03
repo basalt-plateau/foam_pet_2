@@ -8,7 +8,7 @@ module Builder_01::Module_Ruler_Texts {
 	use std::string::{ String };
 	
 	use Builder_01::Module_Hulls;
-	use Builder_01::Module_Ruler::{ Self, ensure_consenter_is_ruler };
+	use Builder_01::Module_Ruler::{ Self, ensure_acceptor_is_ruler };
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
@@ -54,7 +54,7 @@ module Builder_01::Module_Ruler_Texts {
 		index_of_text : u64, 
 		octas_refund : u64
 	) {
-		ensure_consenter_is_ruler (acceptor);
+		ensure_acceptor_is_ruler (acceptor);
 		Module_Hulls::Ruler_Text_Delete_with_Refund_at_Index (
 			acceptor, 
 			platform_name, 

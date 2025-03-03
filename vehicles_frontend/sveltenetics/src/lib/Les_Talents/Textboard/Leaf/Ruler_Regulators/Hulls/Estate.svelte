@@ -29,14 +29,14 @@ onMount (() => {
 <Textboard_Truck_Ride on_change={ ({ pro_freight }) => { TF = pro_freight; } } />
 {#if typeof TF === "object" }
 <div
-	monitor="hulls producer navigation"
+	monitor="hulls ruler navigation"
 	style="
 		display: flex;
 		gap: 0.25cm;
 		flex-direction: column;
 	"
 >
-	<header>Producer Regulators</header>
+	<header>Ruler Regulators</header>
 
 	<div 
 		style=""
@@ -46,10 +46,10 @@ onMount (() => {
 			onMount={({ mode }) => {
 				mode ("on");
 			}}
-			button_text={ `Begin Platforms as Producer` }
+			button_text={ `Begin Platforms as Ruler` }
 			APT="0"
 			clicked={() => {
-				TF.fonctions.producer.hulls.begin ();
+				TF.fonctions.ruler.hulls.begin ();
 			}}
 		/>
 	</div>
@@ -63,20 +63,20 @@ onMount (() => {
 			onMount={({ mode }) => {
 				mode ("on");
 			}}
-			button_text={ `Pause Platforms as Producer` }
+			button_text={ `Pause Platforms as Ruler` }
 			APT="0"
 			clicked={() => {
-				TF.fonctions.producer.hulls.status_pause ();
+				TF.fonctions.ruler.hulls.status_pause ();
 			}}
 		/>
 		<Petition_APT_Button
 			onMount={({ mode }) => {
 				mode ("on");
 			}}
-			button_text={ `Play Platforms as Producer` }
+			button_text={ `Play Platforms as Ruler` }
 			APT="0"
 			clicked={() => {
-				TF.fonctions.producer.hulls.status_play ();
+				TF.fonctions.ruler.hulls.status_play ();
 			}}
 		/>
 	</div>
@@ -91,7 +91,7 @@ onMount (() => {
 			button_text={ `[Caution!] Delete Entire TextVitrine` }
 			APT="0"
 			clicked={() => {
-				TF.fonctions.producer.hulls.delete_textboard ();
+				TF.fonctions.ruler.hulls.delete_textboard ();
 			}}
 		/>
 	</div>

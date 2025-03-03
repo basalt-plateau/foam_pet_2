@@ -14,7 +14,7 @@ import Textboard_Truck_Ride from '$lib/Les_Talents/Textboard/Truck/Ride.svelte'
 //
 //
 import Platform_Texts from './Platform_Texts/Ride.svelte'
-import Text_Writer from './Structures/Text_Writer.svelte'
+import Texting from './Texting/Estate.svelte'
 //
 ////
 
@@ -80,7 +80,7 @@ onDestroy (async () => {});
 		"
 		class="card p-1 variant-soft-surface"
 	>
-		<Text_Writer />
+		<Texting />
 	</div>
 </div>
 {/if}

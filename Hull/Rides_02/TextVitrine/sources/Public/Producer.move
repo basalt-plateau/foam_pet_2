@@ -54,7 +54,7 @@ module Builder_01::Module_Ruler {
 	}
 	
 	
-	public fun ensure_consenter_is_ruler (consenter : & signer) {
+	public fun ensure_acceptor_is_ruler (consenter : & signer) {
 		if (signer::address_of (consenter) != obtain_address ()) {
 			abort Imperfection_that_is_not_the_address_of_the_ruler
 		}

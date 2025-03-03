@@ -18,7 +18,7 @@ module Builder_01::Module_Hulls {
 	use std::signer;
 	
 	// use Builder_01::Endings_Module;
-	use Builder_01::Module_Ruler::{ Self, ensure_consenter_is_ruler };
+	use Builder_01::Module_Ruler::{ Self, ensure_acceptor_is_ruler };
 	use Builder_01::Text_Module::{
 		Text,
 		Text__create,
@@ -154,7 +154,7 @@ module Builder_01::Module_Hulls {
 	//	Hulls: Fluctuate
 	//
 	friend fun Begin_Hulls (consenter : & signer) {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		
 		let price_of_text_in_octas : u64 = 100000000;
 		
@@ -192,7 +192,7 @@ module Builder_01::Module_Hulls {
 		consenter : & signer,
 		status : String
 	) acquires Hulls {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		let ruler_address = Module_Ruler::obtain_address ();
 		
 		let hulls = borrow_global_mut<Hulls>(ruler_address);
@@ -717,7 +717,7 @@ module Builder_01::Module_Hulls {
 		platform_name : String,
 		envelope_index : u64
 	) : address acquires Hulls {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		
 		let ruler_address = Module_Ruler::obtain_address ();
 		
@@ -784,7 +784,7 @@ module Builder_01::Module_Hulls {
 		writer_address : address,
 		platform : String 
 	) acquires Hulls {
-		ensure_consenter_is_ruler (consenter);
+		ensure_acceptor_is_ruler (consenter);
 		
 		let ruler_address = Module_Ruler::obtain_address ();
 		
