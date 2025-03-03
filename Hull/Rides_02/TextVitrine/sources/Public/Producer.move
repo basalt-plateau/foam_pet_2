@@ -45,6 +45,15 @@ module Builder_01::Module_Ruler {
 		let position : address = @0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD;
 		position
 	}
+	#[view] public fun ask_if_address_is_ruler (address_1 : address) : String {
+		if (address_1 == obtain_address ()) {
+			return utf8 (b"yup")
+		};
+		
+		utf8 (b"no")
+	}
+	
+	
 	public fun ensure_consenter_is_ruler (consenter : & signer) {
 		if (signer::address_of (consenter) != obtain_address ()) {
 			abort Imperfection_that_is_not_the_address_of_the_ruler
@@ -57,11 +66,5 @@ module Builder_01::Module_Ruler {
 		
 		utf8 (b"no")
 	}
-	#[view] public fun ask_if_address_is_ruler (address_1 : address) : String {
-		if (address_1 == obtain_address ()) {
-			return utf8 (b"yup")
-		};
-		
-		utf8 (b"no")
-	}
+	
 }
