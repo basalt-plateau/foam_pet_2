@@ -7,7 +7,7 @@ module Builder_01::Module_Ruler_Hulls {
 	use std::string::{ String, utf8 };
 
 	use Builder_01::Module_Hulls;
-	use Builder_01::Module_Ruler::{ Self, ensure_acceptor_is_ruler };
+	use Builder_01::Module_Ruler::{ ensure_acceptor_is_ruler };
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()

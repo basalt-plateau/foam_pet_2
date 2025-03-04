@@ -9,13 +9,11 @@
 
 module Builder_01::Module_Denizen_Texts {
 	use std::string::{ String, utf8 };
-	use std::vector;
 
 	use Builder_01::Module_Hulls;
-	use Builder_01::Module_Guest_Hull;
 	
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
+	#[view] public fun Volitions () : std::string::String { 
+		Builder_01::Rules_Module::Volitions_01 () 
 	}
 	
 
@@ -51,12 +49,17 @@ module Builder_01::Module_Denizen_Texts {
 		Module_Hulls::Delete_Text (texter, platform_name);
 	}
 	
+	
+	/*
+		Each text has a send_index that corresponds to when it was
+		sequentially added to the vector.
+	*/
 	public entry fun Delete_Text_by_Send_Index (
 		deleter_acceptance : & signer, 
 		platform_name : String, 
 		send_index : u64
 	) {
 		Module_Hulls::Hulls__ensure_is_playing ();
-		Module_Hulls::Denizen_Text_Delete_at_Index (deleter_acceptance, platform_name, send_index);
+		Module_Hulls::Denizen_Text_Delete_at_Send_Index (deleter_acceptance, platform_name, send_index);
 	}
 }

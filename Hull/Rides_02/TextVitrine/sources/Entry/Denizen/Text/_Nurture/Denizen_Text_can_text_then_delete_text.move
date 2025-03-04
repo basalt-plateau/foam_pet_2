@@ -32,7 +32,11 @@ module Builder_01::Denizen_Text__can_text_then_delete_text {
 		);
 		
 		let (milieu_01_address, milieu_01_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100000);
-		aptos_framework::coin::transfer<aptos_framework::aptos_coin::AptosCoin>(ruler_01_consenter, milieu_01_address, one_APT * 10);
+		aptos_framework::coin::transfer<aptos_framework::aptos_coin::AptosCoin>(
+			ruler_01_consenter, 
+			milieu_01_address, 
+			one_APT * 10
+		);
 
 		Builder_01::Module_Ruler_Hulls::Begin (ruler_01_consenter);		
 		Builder_01::Module_Denizen_Texts::Send_Text (
@@ -41,8 +45,15 @@ module Builder_01::Denizen_Text__can_text_then_delete_text {
 			utf8 (b""), 
 			utf8 (b"I accept.")
 		);
+		Builder_01::Module_Guest_Texts::Ensure_Text_Exists_at_Vector_Index (
+			utf8 (b""), 
+			0,
+			milieu_01_address, 
+			utf8 (b"This is a text.")
+		);
 		
 		Builder_01::Module_Denizen_Texts::Delete_Text_by_Send_Index (& milieu_01_acceptance, utf8 (b""), 0);
+		assert! (Builder_01::Module_Guest_Hull::Count_of_Texts (std::string::utf8 (b"")) == 0, 1);
 		
 		Builder_01::Vow_Parts_Embark::Expire (& aptos_framework_consenter, venue);
 	}

@@ -20,7 +20,6 @@ module Builder_01::Hulls_Paused__while_paused_cannot_text {
 	#[expected_failure (abort_code = 0x706175736564, location = Builder_01::Module_Hulls)]
 	public fun Vow () {	
 		use std::string::{ utf8 };
-		use std::signer;
 		
 		use aptos_framework::account;		
 	

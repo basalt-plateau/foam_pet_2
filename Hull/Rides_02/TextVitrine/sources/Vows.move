@@ -3,18 +3,7 @@
 
 module Builder_01::Vows {
 
-	
-	
-	/*
-		Hulls
-	*/
-	
-	
-	/*
-		Hull
-	*/
-	
-	
+
 	/*
 		Text:
 			01 Can Text to Platform "" (front)
@@ -40,22 +29,5 @@ module Builder_01::Vows {
 	}
 	
 	
-	
-	/*
-		Ruler Hull:
-			01 Can play then pause
-	*/
-	#[test] public fun Ruler_Hull_01_Can_Play_then_Pause () { 
-		use Builder_01::Ruler_Hull_can_play_and_pause::{ Vow_01 }; Vow_01 (); 
-	}
-	
-	
-	/*
-		Ruler Text
-			01 Can delete a text from platform ""
-	*/
-	#[test] public fun Ruler_Text_01 () {
-		use Builder_01::Ruler_Texts_can_delete_a_text::{ Vow }; Vow ();
-	}
 
 }

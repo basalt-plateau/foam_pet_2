@@ -1,45 +1,5 @@
 
 
-/*
-	Form
-
-	Medallion
-	Sketch
-	Form, Figure, Self, Consciousness, Collective, Origin
-	Line
-	Silhouette
-	Outline
-	Canvas
-	Nature, Habitat, Milieu, Turf
-	Body
-	Being
-	Creature
-	Team, Party
-	
-	Doll
-	
-	Volunteer
-	
-	Spawn, Posterity
-	
-	venue, exchange, bazaar, mart
-	
-	harvest, collection, trove
-	
-	empire, dominion, reign, director, ruler, realm
-	Presence
-	motto
-	
-	appearance
-	
-	exhale
-	
-	avatar, doll, toy, simulation
-	
-	Prodigy
-	
-	Mode, Style, Vehicle, Ride, Technique
-*/
 module Builder_01::Nurture__Milieu {
 
 	

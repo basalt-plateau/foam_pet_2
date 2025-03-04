@@ -5,18 +5,16 @@
 
 
 module Builder_01::Ruler_Texts_can_delete_a_text_from_platform {
-	use std::string::{ String };
 	
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module;
-		Rules_Module::Volitions_01 () 
+	
+	#[view] public fun Volitions () : std::string::String { 
+		Builder_01::Rules_Module::Volitions_01 () 
 	}
 	
-	
-	#[test] 
-	public fun Congizance__Ruler_Texts_can_delete_a_text_from_platform () {	
+	 
+	#[test] public fun Vow () {	
 		use std::vector;
-		use std::string::{ utf8 };
+		use std::string::{ String, utf8 };
 		use std::signer;
 		
 		use aptos_framework::coin;
@@ -86,7 +84,12 @@ module Builder_01::Ruler_Texts_can_delete_a_text_from_platform {
 		//
 		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"Platform 01");		
-		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), text_01_platform, utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (
+			writer_01_consenter, 
+			utf8 (b"This is a text."), 
+			text_01_platform, 
+			utf8 (b"I accept.")
+		);
 		//
 		////
 
@@ -107,7 +110,7 @@ module Builder_01::Ruler_Texts_can_delete_a_text_from_platform {
 		//	Ruler Delete Text
 		//
 		//
-		Module_Ruler_Texts::Delete_with_Refund_by_index (
+		Module_Ruler_Texts::Delete_with_Refund_by_Send_Index (
 			ruler_01_consenter,
 			text_01_platform,
 			0,

@@ -23,7 +23,7 @@ module Builder_01::Module_Guest_Texts {
 	//
 	//
 	/*
-		Module_Guest_Texts::Ensure_Text_Exists_at_Vector_Index (
+		Builder_01::Module_Guest_Texts::Ensure_Text_Exists_at_Vector_Index (
 			utf8 (b""), 
 			0,
 			texter_01_address, 

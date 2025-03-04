@@ -48,6 +48,8 @@ module Builder_01::Module_Hull {
 		texts : vector<Text>,
 		index_of_hull : u64
 	) : Hull {
+		
+		// envelope_index, send_index
 		let index_of_next_text = 0;
 		
 		let hull = Hull {

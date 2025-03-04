@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Ruler_Hull_can_play_and_pause {
+module Builder_01::Ruler_Hull__can_play_and_pause {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -12,15 +12,7 @@ module Builder_01::Ruler_Hull_can_play_and_pause {
 		Rules_Module::Volitions_01 () 
 	}
 	
-	/*
-		aptos_framework_consenter : signer,
-		ruler_01_consenter : & signer,
-		
-		texter_01_consenter : & signer,
-		texter_02_consenter : & signer
-	*/
-	#[test_only]
-	public fun Vow_01 () {	
+	#[test] public fun Vow () {	
 		use std::string::{ utf8 };
 		use std::signer;
 		

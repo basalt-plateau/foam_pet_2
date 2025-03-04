@@ -21,8 +21,13 @@ module Builder_01::Vow_Parts_Embark {
 
 	
 	/*
-		let venue = Builder_01::Vow_Parts_Embark::Produce (& aptos_framework_acceptor);
-		Builder_01::Vow_Parts_Embark::Expire (& aptos_framework_acceptor, venue);
+		let venue = Builder_01::Vow_Parts_Embark::Produce (
+			& aptos_framework_acceptance, 
+			octas_to_mint,
+			ruler_01_acceptance
+		);
+		
+		Builder_01::Vow_Parts_Embark::Expire (& aptos_framework_acceptance, venue);
 	*/
 	#[test_only]
 	public fun Expire (acceptor : & signer, venue : Venue) {

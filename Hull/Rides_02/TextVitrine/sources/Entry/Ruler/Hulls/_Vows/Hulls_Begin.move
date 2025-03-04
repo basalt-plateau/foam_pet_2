@@ -5,14 +5,9 @@
 
 
 module Builder_01::Hulls_Begin {
-	use std::string::{ String };
-	
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module;
-		Rules_Module::Volitions_01 () 
+	#[view] public fun Volitions () : std::string::String { 
+		Builder_01::Rules_Module::Volitions_01 () 
 	}
-	
-	// ruler_01_consenter : signer
 	
 	#[test]
 	public fun Vow () {	

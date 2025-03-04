@@ -22,8 +22,11 @@ module Builder_01::Module_Hulls {
 	use Builder_01::Text_Module::{
 		Text,
 		Text__create,
+		
 		Text__change_text,
 		Text__change_now_seconds,
+		Text__change_envelope_index,
+		
 		Text__retrieve_writer_address,
 		Text__retrieve_text,
 		Text__retrieve_now_seconds,
@@ -92,6 +95,12 @@ module Builder_01::Module_Hulls {
 	}
 	public fun Text_Envelope__retrieve_writer_address (envelope: & Text_Envelope) : address {
 		envelope.writer_address
+	}
+	/*
+		Builder_01::Module_Hulls::Text_Envelope__retrieve_envelope_index ()
+	*/
+	public fun Text_Envelope__retrieve_envelope_index (envelope: & Text_Envelope) : u64 {
+		envelope.envelope_index
 	}
 	//
 	////////
@@ -582,11 +591,14 @@ module Builder_01::Module_Hulls {
 	//
 	//	[Flux]
 	//
+	/*
+		This returns the send_index (envelope_index)
+	*/
 	friend fun Send_Text (
 		writer : & signer,
 		text : String,
 		platform : String
-	) acquires Hulls {
+	) : u64 acquires Hulls {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::{ AptosCoin };
 		
@@ -641,7 +653,7 @@ module Builder_01::Module_Hulls {
 		//
 		////
 		
-		let index_of_next_text = Hull__retrieve_index_of_next_text (hull_mref);
+		let send_index = Hull__retrieve_index_of_next_text (hull_mref);
 		Hull__increase_index_of_next_text (hull_mref);
 		
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
@@ -649,22 +661,26 @@ module Builder_01::Module_Hulls {
 			let text_mref = vector::borrow_mut (hull_texts, index);
 			if (Text__retrieve_writer_address (text_mref) == writer_address) {
 				//
-				//	The writer already has a text on this platform,
+				//	The texter already has a text on this platform,
 				//	therefore a text modification occurs.
 				//
 				Text__change_text (text_mref, text);
 				Text__change_now_seconds (text_mref);
-				return;
+				Text__change_envelope_index (text_mref, send_index);
+								
+				return send_index
 			}
 		};
 		
 		
 		//
-		//	The writer does not have a text on this platform,
+		//	The texter does not have a text on this platform,
 		//	therefore a text is written.
 		//
-		let this_text = Text__create (writer_address, text, index_of_next_text);
+		let this_text = Text__create (writer_address, text, send_index);
 		vector::push_back (hull_texts, this_text);
+		
+		send_index
 	}
 	friend fun Delete_Text (texter : & signer, platform : String) acquires Hulls {
 		let texter_address = signer::address_of (texter);		
@@ -686,13 +702,13 @@ module Builder_01::Module_Hulls {
 	}
 	
 	/*
-		Denizen_Text_Delete_at_Index (texter_acceptance
+		Denizen_Text_Delete_at_Send_Index (texter_acceptance
 	*/
-	friend fun Denizen_Text_Delete_at_Index (
+	friend fun Denizen_Text_Delete_at_Send_Index (
 		deleter_acceptance : & signer,
 		platform_name : String,
 		sent_index : u64
-	) acquires Hulls {
+	) : String acquires Hulls {
 		let ride_address = Module_Ruler::obtain_address ();
 		let deleter_address = signer::address_of (deleter_acceptance);	
 		
@@ -709,11 +725,34 @@ module Builder_01::Module_Hulls {
 				
 				if (deleter_address == texter_address) {
 					vector::remove (hull_texts, index_of_text);
-					return
+					return utf8 (b"deleted")
 				}
 				else {
-					abort 0xE04938;
+					abort 0x04938;
 				}
+			}
+		};
+		
+		abort Limiter_Ruler_the_platform_with_writer_address_is_empty
+	}
+	
+	friend fun Text_Delete_at_Send_Index (
+		platform_name : String,
+		sent_index : u64
+	) : String acquires Hulls {
+		let ride_address = Module_Ruler::obtain_address ();
+		
+		let index_of_hull = search_for_index_of_hull (platform_name);
+		let hulls = borrow_global_mut<Hulls>(ride_address);
+		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		
+		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
+		for (index_of_text in 0..vector::length (hull_texts)) {
+			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
+			
+			if (Text__retrieve_envelope_index (text_ref) == sent_index) {
+				vector::remove (hull_texts, index_of_text);
+				return utf8 (b"deleted")
 			}
 		};
 		
@@ -722,15 +761,20 @@ module Builder_01::Module_Hulls {
 	
 	
 	friend fun Ruler_Text_Delete_with_Refund_at_Index (
-		acceptor : & signer,
-		platform : String,
-		envelope_index : u64, 
+		deleter_acceptance : & signer,
+		platform_name : String,
+		send_index : u64, 
 		octas_refund : u64
 	) acquires Hulls {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::{ AptosCoin };
 		
-		let texter_address = Ruler_Text_Delete_at_Index (acceptor, platform, envelope_index);
+		let deleter_address = signer::address_of (deleter_acceptance);
+		
+		assert! (
+			Text_Delete_at_Send_Index (platform_name, send_index) == utf8 (b"deleted"),
+			0xEF00000
+		);
 		
 		
 		////
@@ -742,7 +786,7 @@ module Builder_01::Module_Hulls {
 		if (octas_refund > 100000000) { 
 			abort Limiter_Refund_must_be_1_apt_or_fewer
 		};
-		coin::transfer<AptosCoin>(acceptor, texter_address, octas_refund);
+		coin::transfer<AptosCoin>(deleter_acceptance, deleter_address, octas_refund);
 		//
 		////
 		
@@ -755,7 +799,7 @@ module Builder_01::Module_Hulls {
 		let hulls_mref = borrow_global_mut<Hulls>(Module_Ruler::obtain_address ());
 		vector::push_back (
 			&mut hulls_mref.logs, 
-			Log__create (utf8 (b"refund"), texter_address, 1)
+			Log__create (utf8 (b"refund"), deleter_address, 1)
 		);
 		//
 		////

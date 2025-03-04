@@ -27,6 +27,10 @@ module Builder_01::Module_Guest_Hull {
 		assert! (Module_Hulls::Retrieve_Count_of_Texts (platform_name) == count, 1);
 		utf8 (b"exists")
 	}
+	
+	/*
+		assert! (Builder_01::Module_Guest_Hull::Count_of_Texts (std::string::utf8 (b"")) == 0, 1);
+	*/
 	#[view] public fun Count_of_Texts (platform_name : String) : u64 {
 		Module_Hulls::Retrieve_Count_of_Texts (platform_name)
 	}
