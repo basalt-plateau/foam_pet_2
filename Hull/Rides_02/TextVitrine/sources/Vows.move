@@ -39,20 +39,6 @@ module Builder_01::Vows {
 		use Builder_01::Text_Retrieves_Zero_From_Empty_Platform::{ Vow }; Vow (); 
 	}
 	
-	/*
-		Ruler Hulls
-			01 Can begin
-			02 Can play and pause
-			
-			Unwritten:
-				* While Paused, can't text anything
-	*/
-	#[test] public fun Ruler_Hulls_01 () { 
-		use Builder_01::Hulls_can_begin::{ Vow_01 }; Vow_01 (); 
-	}
-	#[test] public fun Ruler_Hulls_02 () { 
-		use Builder_01::Hulls_can_play_and_pause::{ Vow_01 }; Vow_01 (); 
-	}
 	
 	
 	/*

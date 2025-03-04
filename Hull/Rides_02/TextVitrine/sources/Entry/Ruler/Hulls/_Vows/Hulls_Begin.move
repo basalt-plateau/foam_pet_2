@@ -4,7 +4,7 @@
 
 
 
-module Builder_01::Hulls_can_begin {
+module Builder_01::Hulls_Begin {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -14,8 +14,8 @@ module Builder_01::Hulls_can_begin {
 	
 	// ruler_01_consenter : signer
 	
-	#[test_only]
-	public fun Vow_01 () {	
+	#[test]
+	public fun Vow () {	
 		use std::string::{ utf8 };
 		use std::signer;
 		

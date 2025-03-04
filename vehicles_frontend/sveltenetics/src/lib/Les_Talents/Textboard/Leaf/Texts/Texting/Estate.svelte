@@ -149,8 +149,6 @@ let value = false;
 		</div>
 		
 		
-		
-		
 	</div>
 	
 	<div

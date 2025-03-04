@@ -19,7 +19,7 @@ module Builder_01::Module_Guest_Hulls {
 	
 	////
 	//
-	//	View Constant
+	//	View Steady
 	//
 	//
 	#[view] public fun are_built () : String {

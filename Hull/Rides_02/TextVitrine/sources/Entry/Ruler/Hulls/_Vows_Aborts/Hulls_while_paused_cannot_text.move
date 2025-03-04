@@ -16,7 +16,8 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		Rules_Module::Volitions_01 () 
 	}
 	
-	#[test_only]
+	#[test]
+	#[expected_failure (abort_code = 0x706175736564, location = Builder_01::Module_Hulls)]
 	public fun Vow () {	
 		use std::string::{ utf8 };
 		use std::signer;
@@ -31,21 +32,21 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Vow_Parts_01; 
 	
+		use Builder_01::Vow_Parts_Embark;
+		
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let ruler_01_consenter : & signer = & account::create_account_for_test (@Ruler_01);
 		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 	
 		let one_APT : u64 = 100000000; 
-		let apt_mint : u64 = one_APT * 100;
+		let octas_to_mint : u64 = one_APT * 100;
 		
-		let ruler_address = signer::address_of (ruler_01_consenter);
-		Vow_Parts_01::clock (& aptos_framework_consenter);
+		let venue = Vow_Parts_Embark::Produce (
+			& aptos_framework_consenter, 
+			octas_to_mint,
+			ruler_01_consenter
+		);
 		
-		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (& aptos_framework_consenter);
-		let coins = coin::mint<AptosCoin>(apt_mint, & mint_cap);
-		account::create_account_for_test (ruler_address);
-		coin::register<AptosCoin>(ruler_01_consenter);
-		coin::deposit (ruler_address, coins);
 		
 		
 		////
@@ -64,11 +65,15 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		Module_Ruler_Hulls::Pause (ruler_01_consenter);	
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"paused"), 1);
 		
-		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
-		Module_Ruler_Hulls::Play (ruler_01_consenter);
-		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
+		Module_Denizen_Texts::Send_Text (
+			writer_01_consenter, 
+			utf8 (b"This is a text."), 
+			utf8 (b""), 
+			utf8 (b"I accept.")
+		);
 		
 		
+		/*
 		////
 		//
 		//	After Party
@@ -78,6 +83,9 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		coin::destroy_burn_cap (burn_cap);
 		//
 		////
+		*/
+		
+		Vow_Parts_Embark::Expire (& aptos_framework_consenter, venue);
 	}
 
 	

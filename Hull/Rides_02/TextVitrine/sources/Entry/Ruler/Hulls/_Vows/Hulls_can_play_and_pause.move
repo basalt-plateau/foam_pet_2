@@ -14,7 +14,7 @@ module Builder_01::Hulls_can_play_and_pause {
 		Rules_Module::Volitions_01 () 
 	}
 	
-	#[test_only]
+	#[test]
 	public fun Vow_01 () {	
 		use std::string::{ utf8 };
 		use std::signer;

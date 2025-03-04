@@ -3,7 +3,7 @@
 
 
 
-module builder_1::Vow_Parts_01 {
+module Builder_01::Vow_Parts_01 {
 	
 	use aptos_framework::aptos_coin::AptosCoin;
 	use aptos_framework::coin;

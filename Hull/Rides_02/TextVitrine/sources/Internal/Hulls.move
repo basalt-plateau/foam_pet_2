@@ -153,8 +153,8 @@ module Builder_01::Module_Hulls {
 	//
 	//	Hulls: Fluctuate
 	//
-	friend fun Begin_Hulls (consenter : & signer) {
-		ensure_acceptor_is_ruler (consenter);
+	friend fun Begin_Hulls (ruler : & signer) {
+		ensure_acceptor_is_ruler (ruler);
 		
 		let price_of_text_in_octas : u64 = 100000000;
 		
@@ -181,18 +181,19 @@ module Builder_01::Module_Hulls {
 			guest_shows : create_guest_shows ()
 		};
 		
-		move_to<Hulls>(consenter, hulls)
+		move_to<Hulls>(ruler, hulls)
 	}
-	friend fun Hulls_Delete (acceptor : & signer) {
+	friend fun Hulls_Delete (ruler : & signer) acquires Hulls {
+		let ruler = Module_Ruler::obtain_address ();
+		move_from<Hulls>(ruler);
 		
 		
-
 	}
 	friend fun Hulls_Change_Status (
-		consenter : & signer,
+		ruler : & signer,
 		status : String
 	) acquires Hulls {
-		ensure_acceptor_is_ruler (consenter);
+		ensure_acceptor_is_ruler (ruler);
 		let ruler_address = Module_Ruler::obtain_address ();
 		
 		let hulls = borrow_global_mut<Hulls>(ruler_address);
