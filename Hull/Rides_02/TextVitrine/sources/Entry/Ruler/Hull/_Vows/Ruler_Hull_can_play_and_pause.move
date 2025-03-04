@@ -29,39 +29,29 @@ module Builder_01::Ruler_Hull__can_play_and_pause {
 		use Builder_01::Vow_Parts_01; 
 	
 		let one_apt : u64 = 100000000; 
-		let apt_mint : u64 = one_apt * 100;
+		let octas_to_mint : u64 = one_apt * 10000000000;
 
-		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
+		let aptos_framework_acceptance : signer = account::create_account_for_test (@0x1);
+		
 		let ruler_01_consenter : & signer = & account::create_account_for_test (@Ruler_01);
+		let ruler_address = signer::address_of (ruler_01_consenter);
+		
 		let texter_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 		let texter_02_consenter : & signer = & account::create_account_for_test (@0x100001);
 
-		let ruler_address = signer::address_of (ruler_01_consenter);
-		Vow_Parts_01::clock (& aptos_framework_consenter);
 		
-		let (burn_cap, freeze_cap, mint_cap) = Vow_Parts_01::origin (& aptos_framework_consenter);
-		let coins = coin::mint<AptosCoin>(apt_mint, & mint_cap);
-		account::create_account_for_test (ruler_address);
-		coin::register<AptosCoin>(ruler_01_consenter);
-		coin::deposit (ruler_address, coins);
+		let venue = Builder_01::Vow_Parts_Embark::Produce (
+			& aptos_framework_acceptance, 
+			octas_to_mint,
+			ruler_01_consenter
+		);
 		
-		////
-		//
-		//	texters:
-		//		
-		//
-		let texter_01_address = signer::address_of (texter_01_consenter);
-		account::create_account_for_test (texter_01_address);
-		coin::register<AptosCoin>(texter_01_consenter);
+		
+		let (texter_01_address, texter_01_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100000);
+		let (texter_02_address, texter_02_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100001);
 		coin::transfer<AptosCoin>(ruler_01_consenter, texter_01_address, one_apt * 10);
-		//
-		let texter_02_address = signer::address_of (texter_02_consenter);
-		account::create_account_for_test (texter_02_address);
-		coin::register<AptosCoin>(texter_02_consenter);
 		coin::transfer<AptosCoin>(ruler_01_consenter, texter_02_address, one_apt * 10);
-		//
-		//
-		////
+
 		
 		////
 		//
@@ -108,15 +98,10 @@ module Builder_01::Ruler_Hull__can_play_and_pause {
 			texter_02_address, 
 			utf8 (b"This is text 2.")
 		);
-		////
-		//
-		//	After Party
-		//
-		coin::destroy_mint_cap (mint_cap);
-		coin::destroy_freeze_cap (freeze_cap);
-		coin::destroy_burn_cap (burn_cap);
-		//
-		////
+		
+		
+		
+		Builder_01::Vow_Parts_Embark::Expire (& aptos_framework_acceptance, venue);
 	}
 
 	
