@@ -17,10 +17,10 @@ module Builder_01::Rules_Module {
 		the volitions for the entirety of the module 
 		by doing this:
 		
-		#[view]
-		public fun Volitions () : String { Rules_Module::Volitions_01 () }		
+		#[view] public fun Volitions () : std::string::String { 
+			Builder_01::Rules_Module::Volitions_01 () 
+		}	
 	*/
-	
 	use std::string::{ String, utf8 };
 	use std::vector;
 	
@@ -42,36 +42,24 @@ module Builder_01::Rules_Module {
 		vector::append (&mut vectors, b"the volitions for the entirety of the module\n");
 		vector::append (&mut vectors, b"by doing this:\n");		
 		vector::append (&mut vectors, b"\n");
-		vector::append (&mut vectors, b"#[view]\n");
-		vector::append (&mut vectors, b"public fun Volitions () : String { Rules_Module::Volitions_01 () }\n");		
+		vector::append (&mut vectors, b"#[view] public fun Volitions () : std::string::String { Rules_Module::Volitions_01 () }\n");	
+		vector::append (&mut vectors, b"\tBuilder_01::Rules_Module::Volitions_01 ()\n");
+		vector::append (&mut vectors, b"}\n");
 		vector::append (&mut vectors, b"\n");
 		vector::append (&mut vectors, b"\n");
 
 		utf8 (vectors)
 	}
 	
-	#[test]
-	public fun steady_1 () {
-		use std::string::{ Self, String };
-		use std::debug;
-		use std::string_utils;
-		
+	#[test] public fun steady_1 () {
 		let rules : String = Volitions_01 ();
 		
-		/*
-		debug::print (& string_utils::format1 (
-			& b"Rules: {}", 
-			rules
-		));
-		*/
-		
-		
-		debug::print (& string_utils::format1 (
+		std::debug::print (& std::string_utils::format1 (
 			& b"Rules Length: {}", 
-			string::length (& rules)
+			std::string::length (& rules)
 		));
 		
-		assert! (string::length (& rules) == 378, 0);
+		assert! (std::string::length (& rules) == 436, 0);
 	}
 }
 

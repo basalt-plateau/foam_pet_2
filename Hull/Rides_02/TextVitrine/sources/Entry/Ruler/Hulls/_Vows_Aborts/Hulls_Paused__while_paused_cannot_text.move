@@ -8,7 +8,7 @@
 
 
 
-module Builder_01::Hulls_while_paused_cannot_text {
+module Builder_01::Hulls_Paused__while_paused_cannot_text {
 	use std::string::{ String };
 	
 	#[view] public fun Volitions () : String { 
@@ -22,26 +22,18 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		use std::string::{ utf8 };
 		use std::signer;
 		
-		use aptos_framework::coin;
-		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;		
 	
-		use Builder_01::Module_Ruler_Hulls;
-		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
-		use Builder_01::Module_Guest_Texts;
-		use Builder_01::Vow_Parts_01; 
 	
-		use Builder_01::Vow_Parts_Embark;
-		
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let ruler_01_consenter : & signer = & account::create_account_for_test (@Ruler_01);
-		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
+		let texter_01_acceptor : & signer = & account::create_account_for_test (@0x100000);
 	
 		let one_APT : u64 = 100000000; 
 		let octas_to_mint : u64 = one_APT * 100;
 		
-		let venue = Vow_Parts_Embark::Produce (
+		let venue = Builder_01::Vow_Parts_Embark::Produce (
 			& aptos_framework_consenter, 
 			octas_to_mint,
 			ruler_01_consenter
@@ -55,38 +47,23 @@ module Builder_01::Hulls_while_paused_cannot_text {
 		//
 		//
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"no"), 1);
-		Module_Ruler_Hulls::Begin (ruler_01_consenter);
+		Builder_01::Module_Ruler_Hulls::Begin (ruler_01_consenter);
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"playing"), 1);
 		assert! (Module_Guest_Hulls::are_built () == utf8 (b"yup"), 1);
 		//
 		////
 		
 		
-		Module_Ruler_Hulls::Pause (ruler_01_consenter);	
+		Builder_01::Module_Ruler_Hulls::Pause (ruler_01_consenter);	
 		assert! (Module_Guest_Hulls::Status () == utf8 (b"paused"), 1);
 		
-		Module_Denizen_Texts::Send_Text (
-			writer_01_consenter, 
+		Builder_01::Module_Denizen_Texts::Send_Text (
+			texter_01_acceptor, 
 			utf8 (b"This is a text."), 
 			utf8 (b""), 
 			utf8 (b"I accept.")
 		);
 		
-		
-		/*
-		////
-		//
-		//	After Party
-		//
-		coin::destroy_mint_cap (mint_cap);
-		coin::destroy_freeze_cap (freeze_cap);
-		coin::destroy_burn_cap (burn_cap);
-		//
-		////
-		*/
-		
-		Vow_Parts_Embark::Expire (& aptos_framework_consenter, venue);
+		Builder_01::Vow_Parts_Embark::Expire (& aptos_framework_consenter, venue);
 	}
-
-	
 }

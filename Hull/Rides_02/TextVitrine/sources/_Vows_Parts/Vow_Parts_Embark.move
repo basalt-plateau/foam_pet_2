@@ -21,9 +21,8 @@ module Builder_01::Vow_Parts_Embark {
 
 	
 	/*
-		use Builder_01::Vow_Parts_Embark;
-		let venue = Vow_Parts_Embark::Produce (& aptos_framework_flourisher);
-		Vow_Parts_Embark::Expire (& aptos_framework_flourisher, venue);
+		let venue = Builder_01::Vow_Parts_Embark::Produce (& aptos_framework_acceptor);
+		Builder_01::Vow_Parts_Embark::Expire (& aptos_framework_acceptor, venue);
 	*/
 	#[test_only]
 	public fun Expire (acceptor : & signer, venue : Venue) {
@@ -47,7 +46,6 @@ module Builder_01::Vow_Parts_Embark {
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
 		use aptos_framework::account;	
-		use Builder_01::Vow_Parts_Rhythm;
 		
 		
 		chain_id::initialize_for_test (aptos_framework_acceptor, 2);
@@ -91,7 +89,7 @@ module Builder_01::Vow_Parts_Embark {
 		
 		// coin::deposit (estate_1_spot, coins);
 		
-		Vow_Parts_Rhythm::Embark_Clock (aptos_framework_acceptor, 946728000000);
+		Builder_01::Vow_Parts_Rhythm::Embark_Clock (aptos_framework_acceptor, 946728000000);
 		
 		
 		let venue = Venue {

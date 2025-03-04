@@ -1,13 +1,7 @@
 
 
 /*
-	use Builder_01::Cognizance__Group::{
-		make_group,
-		group_acceptor,
-		group_address
-	};
-
-	let group_000001 = Cognizance__Group::make_group (@0x100000);
+	let group_000001 = Builder_01::Cognizance__Group::make_group (@0x100000);
 */
 /*
 
