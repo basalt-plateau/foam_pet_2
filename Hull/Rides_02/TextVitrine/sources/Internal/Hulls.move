@@ -17,6 +17,10 @@ module Builder_01::Module_Hulls {
 	use std::string::{ Self, String, utf8 };
 	use std::signer;
 	
+	#[view] public fun Volitions () : String { 
+		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
+	}	
+
 	// use Builder_01::Endings_Module;
 	use Builder_01::Module_Ruler::{ Self, ensure_acceptor_is_ruler };
 	use Builder_01::Text_Module::{
@@ -133,10 +137,11 @@ module Builder_01::Module_Hulls {
 		
 		guest_shows : Guest_Shows
 	}
+	friend fun Hulls_Count () : u64 acquires Hulls {
+		let hulls_borrowed = borrow_global<Hulls>(Module_Ruler::obtain_address ());
+		vector::length (& hulls_borrowed.hulls)
+	}
 	
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
-	}	
 	
 	////////
 	//

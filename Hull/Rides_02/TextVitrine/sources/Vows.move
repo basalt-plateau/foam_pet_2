@@ -19,11 +19,6 @@ module Builder_01::Vows {
 	#[test] public fun Text_02 () { 
 		use Builder_01::Hulls_can_text_to_platform::{ Vow }; Vow (); 
 	}
-	#[test] 
-	#[expected_failure (abort_code = 100003, location = Builder_01::Module_Hulls)]
-	public fun Text_03 () { 
-		use Builder_01::Text_Length_Limiter::{ Vow }; Vow (); 
-	}
 	#[test] public fun Text_04 () { 
 		use Builder_01::Text_Retrieves_Zero_From_Empty_Platform::{ Vow }; Vow (); 
 	}

@@ -25,7 +25,7 @@ module Builder_01::Module_Ruler_Hulls {
 	}
 	public entry fun Delete (acceptor : & signer) {
 		ensure_acceptor_is_ruler (acceptor);
-		Module_Hulls::Hulls_Delete (acceptor);
+		Module_Hulls::Hulls_Delete ();
 	}
 	//
 	////

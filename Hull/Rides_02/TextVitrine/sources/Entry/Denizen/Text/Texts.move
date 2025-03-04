@@ -20,9 +20,8 @@ module Builder_01::Module_Denizen_Texts {
 	/*
 		Module_Denizen_Texts::Send_Text (
 			acceptor, 
-			utf8 (b""), 
-			utf8 (b""), 
-			utf8 (b""), 
+			utf8 (b"text"), 
+			utf8 (b"platform name"), 
 			utf8 (b"I accept.")
 		)
 	*/

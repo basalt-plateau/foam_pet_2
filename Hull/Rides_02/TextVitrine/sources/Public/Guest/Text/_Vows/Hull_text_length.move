@@ -12,7 +12,9 @@ module Builder_01::Text_Length_Limiter {
 		Rules_Module::Volitions_01 () 
 	}
 	
-	#[test_only]
+	
+	#[test] 
+	#[expected_failure (abort_code = 100003, location = Builder_01::Module_Hulls)]
 	public fun Vow () {	
 		use std::vector;
 		use std::string::{ utf8 };

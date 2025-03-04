@@ -5,15 +5,12 @@
 
 
 module Builder_01::Text_Retrieves_Zero_From_Empty_Platform {
-	use std::string::{ String };
 	
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
+	#[view] public fun Volitions () : std::string::String { 
+		Builder_01::Rules_Module::Volitions_01 () 
 	}
 	
-	
-	#[test_only]
-	public fun Vow () {	
+	#[test] public fun Vow () {	
 		use std::vector;
 		use std::string::{ utf8 };
 		use std::signer;
@@ -23,7 +20,6 @@ module Builder_01::Text_Retrieves_Zero_From_Empty_Platform {
 		use aptos_framework::account;		
 	
 		use Builder_01::Module_Ruler_Hulls;
-		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Vow_Parts_01; 
