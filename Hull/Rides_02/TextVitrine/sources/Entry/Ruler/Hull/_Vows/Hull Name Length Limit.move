@@ -26,7 +26,6 @@ module Builder_01::Hull_Name_Length_Limit {
 		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
-		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Vow_Parts_01; 
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);

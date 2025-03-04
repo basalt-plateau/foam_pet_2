@@ -26,7 +26,6 @@ module Builder_01::Ruler_Texts_can_delete_a_text_from_platform {
 		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
-		use Builder_01::Module_Guest_Texts;
 		use Builder_01::Module_Hulls; 
 		use Builder_01::Vow_Parts_01; 
 		
@@ -38,7 +37,6 @@ module Builder_01::Ruler_Texts_can_delete_a_text_from_platform {
 		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 		let writer_01_address = signer::address_of (writer_01_consenter);
 		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
-		let writer_02_address = signer::address_of (writer_02_consenter);
 		//
 		////
 	
@@ -82,7 +80,6 @@ module Builder_01::Ruler_Texts_can_delete_a_text_from_platform {
 		//	Send Text
 		//
 		//
-		let text_01_text : String = utf8 (b"This is a text.");
 		let text_01_platform : String = utf8 (b"Platform 01");		
 		Module_Denizen_Texts::Send_Text (
 			writer_01_consenter, 

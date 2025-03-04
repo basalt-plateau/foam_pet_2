@@ -55,7 +55,6 @@ module Builder_01::Module_Hulls {
 		Log,
 		Log__create,
 		Log__name,
-		Log__address,
 		Log__now_seconds
 	};
 	use Builder_01::Module_Guest_Show::{
@@ -206,11 +205,9 @@ module Builder_01::Module_Hulls {
 		
 		move_to<Hulls>(ruler, hulls)
 	}
-	friend fun Hulls_Delete (ruler : & signer) acquires Hulls {
+	friend fun Hulls_Delete () acquires Hulls {
 		let ruler = Module_Ruler::obtain_address ();
 		move_from<Hulls>(ruler);
-		
-		
 	}
 	friend fun Hulls_Change_Status (
 		ruler : & signer,

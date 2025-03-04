@@ -16,8 +16,8 @@ module Builder_01::Module_Logs {
 	use std::timestamp;
 	
 	use std::string::{ String, utf8 };
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
+	#[view] public fun Volitions () : std::string::String { 
+		Builder_01::Rules_Module::Volitions_01 () 
 	}
 
 	struct Log has copy, store, drop {

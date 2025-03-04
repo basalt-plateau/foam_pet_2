@@ -5,16 +5,12 @@
 
 
 module Builder_01::Ruler_Hull__can_play_and_pause {
-	use std::string::{ String };
-	
-	#[view] public fun Volitions () : String { 
-		use Builder_01::Rules_Module;
-		Rules_Module::Volitions_01 () 
+	#[view] public fun Volitions () : std::string::String { 
+		Builder_01::Rules_Module::Volitions_01 () 
 	}
 	
 	#[test] public fun Vow () {	
 		use std::string::{ utf8 };
-		use std::signer;
 		
 		use aptos_framework::coin;
 		use aptos_framework::aptos_coin::AptosCoin;
@@ -26,7 +22,6 @@ module Builder_01::Ruler_Hull__can_play_and_pause {
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Module_Guest_Hull;
 		use Builder_01::Module_Guest_Texts;
-		use Builder_01::Vow_Parts_01; 
 	
 		let one_apt : u64 = 100000000; 
 		let octas_to_mint : u64 = one_apt * 10000000000;
@@ -34,7 +29,6 @@ module Builder_01::Ruler_Hull__can_play_and_pause {
 		let aptos_framework_acceptance : signer = account::create_account_for_test (@0x1);
 		
 		let ruler_01_consenter : & signer = & account::create_account_for_test (@Ruler_01);
-		let ruler_address = signer::address_of (ruler_01_consenter);
 		
 		let texter_01_consenter : & signer = & account::create_account_for_test (@0x100000);
 		let texter_02_consenter : & signer = & account::create_account_for_test (@0x100001);
@@ -47,8 +41,8 @@ module Builder_01::Ruler_Hull__can_play_and_pause {
 		);
 		
 		
-		let (texter_01_address, texter_01_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100000);
-		let (texter_02_address, texter_02_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100001);
+		let (texter_01_address, _texter_01_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100000);
+		let (texter_02_address, _texter_02_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100001);
 		coin::transfer<AptosCoin>(ruler_01_consenter, texter_01_address, one_apt * 10);
 		coin::transfer<AptosCoin>(ruler_01_consenter, texter_02_address, one_apt * 10);
 

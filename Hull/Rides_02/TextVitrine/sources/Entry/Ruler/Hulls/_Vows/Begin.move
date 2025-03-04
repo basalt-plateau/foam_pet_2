@@ -19,7 +19,6 @@ module Builder_01::Hulls_Begin {
 		use aptos_framework::account;		
 		
 		use Builder_01::Module_Ruler_Hulls;
-		use Builder_01::Module_Denizen_Texts;
 		use Builder_01::Module_Guest_Hulls;
 		use Builder_01::Vow_Parts_01; 
 	
