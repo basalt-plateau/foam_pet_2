@@ -18,7 +18,6 @@ module Builder_01::Denizen_Text__can_text_then_delete_text {
 	#[test]
 	public fun Vow () {	
 		use std::string::{ utf8 };
-		use std::signer;
 	
 		let aptos_framework_consenter : signer = aptos_framework::account::create_account_for_test (@0x1);
 		let ruler_01_consenter : & signer = & aptos_framework::account::create_account_for_test (@Ruler_01);
@@ -42,6 +41,8 @@ module Builder_01::Denizen_Text__can_text_then_delete_text {
 			utf8 (b""), 
 			utf8 (b"I accept.")
 		);
+		
+		Builder_01::Module_Denizen_Texts::Delete_Text_by_Send_Index (& milieu_01_acceptance, utf8 (b""), 0);
 		
 		Builder_01::Vow_Parts_Embark::Expire (& aptos_framework_consenter, venue);
 	}

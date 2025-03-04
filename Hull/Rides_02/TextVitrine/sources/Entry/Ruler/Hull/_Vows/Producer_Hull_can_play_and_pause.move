@@ -16,8 +16,8 @@ module Builder_01::Ruler_Hull_can_play_and_pause {
 		aptos_framework_consenter : signer,
 		ruler_01_consenter : & signer,
 		
-		writer_01_consenter : & signer,
-		writer_02_consenter : & signer
+		texter_01_consenter : & signer,
+		texter_02_consenter : & signer
 	*/
 	#[test_only]
 	public fun Vow_01 () {	
@@ -41,8 +41,8 @@ module Builder_01::Ruler_Hull_can_play_and_pause {
 
 		let aptos_framework_consenter : signer = account::create_account_for_test (@0x1);
 		let ruler_01_consenter : & signer = & account::create_account_for_test (@Ruler_01);
-		let writer_01_consenter : & signer = & account::create_account_for_test (@0x100000);
-		let writer_02_consenter : & signer = & account::create_account_for_test (@0x100001);
+		let texter_01_consenter : & signer = & account::create_account_for_test (@0x100000);
+		let texter_02_consenter : & signer = & account::create_account_for_test (@0x100001);
 
 		let ruler_address = signer::address_of (ruler_01_consenter);
 		Vow_Parts_01::clock (& aptos_framework_consenter);
@@ -55,18 +55,18 @@ module Builder_01::Ruler_Hull_can_play_and_pause {
 		
 		////
 		//
-		//	writers:
+		//	texters:
 		//		
 		//
-		let writer_01_address = signer::address_of (writer_01_consenter);
-		account::create_account_for_test (writer_01_address);
-		coin::register<AptosCoin>(writer_01_consenter);
-		coin::transfer<AptosCoin>(ruler_01_consenter, writer_01_address, one_apt * 10);
+		let texter_01_address = signer::address_of (texter_01_consenter);
+		account::create_account_for_test (texter_01_address);
+		coin::register<AptosCoin>(texter_01_consenter);
+		coin::transfer<AptosCoin>(ruler_01_consenter, texter_01_address, one_apt * 10);
 		//
-		let writer_02_address = signer::address_of (writer_02_consenter);
-		account::create_account_for_test (writer_02_address);
-		coin::register<AptosCoin>(writer_02_consenter);
-		coin::transfer<AptosCoin>(ruler_01_consenter, writer_02_address, one_apt * 10);
+		let texter_02_address = signer::address_of (texter_02_consenter);
+		account::create_account_for_test (texter_02_address);
+		coin::register<AptosCoin>(texter_02_consenter);
+		coin::transfer<AptosCoin>(ruler_01_consenter, texter_02_address, one_apt * 10);
 		//
 		//
 		////
@@ -88,20 +88,34 @@ module Builder_01::Ruler_Hull_can_play_and_pause {
 		//	Send Text
 		//
 		//
-		Module_Denizen_Texts::Send_Text (writer_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
+		Module_Denizen_Texts::Send_Text (texter_01_consenter, utf8 (b"This is a text."), utf8 (b""), utf8 (b"I accept."));
 		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 1);
-		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
+		Module_Guest_Texts::Ensure_Text_Exists_at_Vector_Index (
+			utf8 (b""), 
+			0,
+			texter_01_address, 
+			utf8 (b"This is a text.")
+		);
 		//
 		////
 
 		Module_Ruler_Hull::Pause (ruler_01_consenter, utf8 (b""));
 		Module_Ruler_Hull::Play (ruler_01_consenter, utf8 (b""));
 
-		Module_Denizen_Texts::Send_Text (writer_02_consenter, utf8 (b"This is text 2."), utf8 (b""), utf8 (b"I accept."));	
+		Module_Denizen_Texts::Send_Text (texter_02_consenter, utf8 (b"This is text 2."), utf8 (b""), utf8 (b"I accept."));	
 		Module_Guest_Hull::Ensure_Count_of_Texts (utf8 (b""), 2);
-		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_01_address, utf8 (b"This is a text."), 0);
-		Module_Guest_Texts::Ensure_Text_Exists_at_Index (utf8 (b""), writer_02_address, utf8 (b"This is text 2."), 1);
-		
+		Module_Guest_Texts::Ensure_Text_Exists_at_Vector_Index (
+			utf8 (b""), 
+			0,
+			texter_01_address, 
+			utf8 (b"This is a text.")
+		);
+		Module_Guest_Texts::Ensure_Text_Exists_at_Vector_Index (
+			utf8 (b""), 
+			1,
+			texter_02_address, 
+			utf8 (b"This is text 2.")
+		);
 		////
 		//
 		//	After Party

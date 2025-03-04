@@ -51,7 +51,12 @@ module Builder_01::Module_Denizen_Texts {
 		Module_Hulls::Delete_Text (texter, platform_name);
 	}
 	
-	public entry fun Delete_Text_by_send_index (texter : & signer, send_index : u64) {
+	public entry fun Delete_Text_by_Send_Index (
+		deleter_acceptance : & signer, 
+		platform_name : String, 
+		send_index : u64
+	) {
 		Module_Hulls::Hulls__ensure_is_playing ();
+		Module_Hulls::Denizen_Text_Delete_at_Index (deleter_acceptance, platform_name, send_index);
 	}
 }

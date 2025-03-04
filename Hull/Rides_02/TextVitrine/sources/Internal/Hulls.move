@@ -72,6 +72,8 @@ module Builder_01::Module_Hulls {
 	const Text_length_limit : u64 = 125;
 	const Platform_name_length_limit : u64 = 40;
 	
+	////////
+	//
 	struct Text_Envelope has store, drop {
 		writer_address : address,
 		writer_balance : u64,
@@ -81,6 +83,18 @@ module Builder_01::Module_Hulls {
 		
 		now_seconds : u64
 	}
+	//
+	//	[Constants]
+	//
+	//
+	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
+		envelope.text
+	}
+	public fun Text_Envelope__retrieve_writer_address (envelope: & Text_Envelope) : address {
+		envelope.writer_address
+	}
+	//
+	////////
 	
 	
 	/*
@@ -670,6 +684,43 @@ module Builder_01::Module_Hulls {
 		
 		abort 260141
 	}
+	
+	/*
+		Denizen_Text_Delete_at_Index (texter_acceptance
+	*/
+	friend fun Denizen_Text_Delete_at_Index (
+		deleter_acceptance : & signer,
+		platform_name : String,
+		sent_index : u64
+	) acquires Hulls {
+		let ride_address = Module_Ruler::obtain_address ();
+		let deleter_address = signer::address_of (deleter_acceptance);	
+		
+		let index_of_hull = search_for_index_of_hull (platform_name);
+		let hulls = borrow_global_mut<Hulls>(ride_address);
+		let hull_mref : &mut Hull = vector::borrow_mut (&mut hulls.hulls, index_of_hull);
+		
+		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
+		for (index_of_text in 0..vector::length (hull_texts)) {
+			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
+			
+			if (Text__retrieve_envelope_index (text_ref) == sent_index) {
+				let texter_address = Text__retrieve_writer_address (text_ref);
+				
+				if (deleter_address == texter_address) {
+					vector::remove (hull_texts, index_of_text);
+					return
+				}
+				else {
+					abort 0xE04938;
+				}
+			}
+		};
+		
+		abort Limiter_Ruler_the_platform_with_writer_address_is_empty
+	}
+	
+	
 	friend fun Ruler_Text_Delete_with_Refund_at_Index (
 		acceptor : & signer,
 		platform : String,
@@ -809,16 +860,7 @@ module Builder_01::Module_Hulls {
 	
 
 	
-	////////
-	//
-	//	Text_Envelope
-	//		[Constants]
-	//
-	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
-		envelope.text
-	}
-	//
-	////////
+	
 
 
 }
