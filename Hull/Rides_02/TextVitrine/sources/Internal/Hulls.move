@@ -484,8 +484,8 @@ module Builder_01::Module_Hulls {
 				let this_text_envelope = Text_Envelope__create (
 					text_ref_writer_address,
 					writer_balance,
-					Text__retrieve_sent_at_index (text_ref),
 					Text__retrieve_text (text_ref),
+					Text__retrieve_sent_at_index (text_ref),
 					Text__retrieve_now_seconds (text_ref)				
 				);
 
@@ -548,8 +548,8 @@ module Builder_01::Module_Hulls {
 			let this_text_envelope = Text_Envelope__create (
 				text_ref_writer_address,
 				writer_balance,
-				Text__retrieve_sent_at_index (text_ref),
 				Text__retrieve_text (text_ref),
+				Text__retrieve_sent_at_index (text_ref),
 				Text__retrieve_now_seconds (text_ref)				
 			);
 			

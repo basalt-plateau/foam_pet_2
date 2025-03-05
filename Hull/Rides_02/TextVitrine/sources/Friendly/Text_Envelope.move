@@ -5,6 +5,9 @@
 
 
 module Builder_01::Module_Text_Envelope {
+	friend Builder_01::Module_Hulls;
+
+	
 	#[view] public fun Volitions () : std::string::String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
 	}
@@ -32,16 +35,16 @@ module Builder_01::Module_Text_Envelope {
 		writer_balance : u64,
 		text : String,
 		sent_at_index : u64,
-		now_seconds : now_seconds
-	) : Text {
-		let text = Text {
+		now_seconds : u64
+	) : Text_Envelope {
+		let text_envelope = Text_Envelope {
 			writer_address : writer_address,
 			writer_balance : writer_balance,
 			text : text,
 			sent_at_index : sent_at_index,
 			now_seconds : now_seconds
 		};
-		text
+		text_envelope
 	}
 	
 	public fun Text_Envelope__retrieve_text (envelope: & Text_Envelope) : String {

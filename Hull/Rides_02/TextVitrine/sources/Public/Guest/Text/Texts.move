@@ -11,6 +11,7 @@ module Builder_01::Module_Guest_Texts {
 
 	use Builder_01::Module_Hulls;
 	use Builder_01::Module_Guest_Hull;
+	use Builder_01::Module_Text_Envelope;
 	
 	#[view] public fun Volitions () : String { 
 		use Builder_01::Rules_Module::{ Volitions_01 }; Volitions_01 ()
@@ -41,7 +42,7 @@ module Builder_01::Module_Guest_Texts {
 		let text_amp = vector::borrow (& texts, vector_index);
 		
 		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (text_amp) == text, 1);
-		assert! (Module_Hulls::Text_Envelope__retrieve_writer_address (text_amp) == texter_address, 1);
+		assert! (Module_Text_Envelope::Text_Envelope__retrieve_writer_address (text_amp) == texter_address, 1);
 		
 		utf8 (b"exists")
 	}
