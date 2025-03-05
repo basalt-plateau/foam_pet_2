@@ -29,7 +29,7 @@ module Builder_01::Text_Module {
 		
 		sent_at_index: u64,
 		
-		now_seconds : u64
+		seconds_IX_planet_3 : u64
 	}
 	//
 	////
@@ -45,7 +45,7 @@ module Builder_01::Text_Module {
 			writer_address : writer_address,
 			text : text,
 			sent_at_index : envelope,
-			now_seconds : timestamp::now_seconds ()
+			seconds_IX_planet_3 : timestamp::now_seconds ()
 		};
 		text
 	}
@@ -62,8 +62,8 @@ module Builder_01::Text_Module {
 	friend fun Text__change_text (text : &mut Text, text_string : String) {
 		text.text = text_string;
 	}
-	friend fun Text__change_now_seconds (text : &mut Text) {
-		text.now_seconds = timestamp::now_seconds ();
+	friend fun Text__change_seconds_IX_planet_3 (text : &mut Text) {
+		text.seconds_IX_planet_3 = timestamp::now_seconds ();
 	}
 	friend fun Text__change_sent_at_index (text : &mut Text, sent_at_index : u64) {
 		text.sent_at_index = sent_at_index;
@@ -87,8 +87,8 @@ module Builder_01::Text_Module {
 	public fun Text__retrieve_text (text : & Text) : String {
 		text.text
 	}
-	public fun Text__retrieve_now_seconds (text : & Text) : u64 {
-		text.now_seconds
+	public fun Text__retrieve_seconds_IX_planet_3 (text : & Text) : u64 {
+		text.seconds_IX_planet_3
 	}
 	//
 	////

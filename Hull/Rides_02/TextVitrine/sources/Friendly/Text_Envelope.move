@@ -25,7 +25,7 @@ module Builder_01::Module_Text_Envelope {
 		
 		sent_at_index: u64,
 		
-		now_seconds : u64
+		seconds_IX_planet_3 : u64
 	}
 	//
 	////
@@ -35,18 +35,21 @@ module Builder_01::Module_Text_Envelope {
 		writer_balance : u64,
 		text : String,
 		sent_at_index : u64,
-		now_seconds : u64
+		seconds_IX_planet_3 : u64
 	) : Text_Envelope {
 		let text_envelope = Text_Envelope {
 			writer_address : writer_address,
 			writer_balance : writer_balance,
 			text : text,
 			sent_at_index : sent_at_index,
-			now_seconds : now_seconds
+			seconds_IX_planet_3 : seconds_IX_planet_3
 		};
 		text_envelope
 	}
 	
+	/*
+		Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_sent_at_index (& text_envelope)
+	*/
 	public fun Text_Envelope__retrieve_text (envelope: & Text_Envelope) : String {
 		envelope.text
 	}

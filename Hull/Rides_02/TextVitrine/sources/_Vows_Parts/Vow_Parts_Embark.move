@@ -92,9 +92,7 @@ module Builder_01::Vow_Parts_Embark {
 		coin::deposit (ruler_address, coins);
 		
 		
-		// coin::deposit (estate_1_spot, coins);
-		
-		Builder_01::Vow_Parts_Rhythm::Embark_Clock (aptos_framework_acceptor, 946728000000);
+		Builder_01::Rhythm::Embark_Nurture_Planet_3_Spot ();
 		
 		
 		let venue = Venue {

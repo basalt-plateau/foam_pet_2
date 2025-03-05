@@ -24,7 +24,7 @@ module Builder_01::Module_Logs {
 		name : String,
 		address : address,
 		amount_of_apt : u64,
-		now_seconds : u64
+		seconds_IX_planet_3 : u64
 	}
 	
 	/*
@@ -43,7 +43,7 @@ module Builder_01::Module_Logs {
 			name : name,
 			address : address,
 			amount_of_apt : amount_of_apt,
-			now_seconds : timestamp::now_seconds ()
+			seconds_IX_planet_3 : timestamp::now_seconds ()
 		};
 		log
 	}
@@ -58,8 +58,8 @@ module Builder_01::Module_Logs {
 	friend fun Log__amount_of_apt (log : Log) : u64 {
 		log.amount_of_apt
 	}
-	friend fun Log__now_seconds (log : Log) : u64 {
-		log.now_seconds
+	friend fun Log__seconds_IX_planet_3 (log : Log) : u64 {
+		log.seconds_IX_planet_3
 	}
 
 	

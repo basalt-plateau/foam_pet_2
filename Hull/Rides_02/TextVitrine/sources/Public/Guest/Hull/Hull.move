@@ -49,7 +49,7 @@ module Builder_01::Module_Guest_Hull {
 		seconds_begin : u64,
 		seconds_end : u64
 	) : vector<Builder_01::Module_Text_Envelope::Text_Envelope> {
-		Module_Hulls::Retrieve_Texts_Between (
+		Module_Hulls::Retrieve_Texts_with_Thresholds (
 			platform_name,
 			seconds_begin,
 			seconds_end

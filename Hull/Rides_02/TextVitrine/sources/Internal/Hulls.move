@@ -28,12 +28,12 @@ module Builder_01::Module_Hulls {
 		Text__create,
 		
 		Text__change_text,
-		Text__change_now_seconds,
+		Text__change_seconds_IX_planet_3,
 		Text__change_sent_at_index,
 		
 		Text__retrieve_writer_address,
 		Text__retrieve_text,
-		Text__retrieve_now_seconds,
+		Text__retrieve_seconds_IX_planet_3,
 		Text__retrieve_sent_at_index
 	};
 	use Builder_01::Module_Hull::{
@@ -59,7 +59,7 @@ module Builder_01::Module_Hulls {
 		Log,
 		Log__create,
 		Log__name,
-		Log__now_seconds
+		Log__seconds_IX_planet_3
 	};
 	use Builder_01::Module_Guest_Show::{
 		Guest_Shows,
@@ -306,7 +306,7 @@ module Builder_01::Module_Hulls {
 				continue;
 			};
 			
-			let now_second = Log__now_seconds (log);
+			let now_second = Log__seconds_IX_planet_3 (log);
 			if (now_second < from_ms) {
 				continue;
 			};
@@ -448,7 +448,7 @@ module Builder_01::Module_Hulls {
 		
 		(false, 0)
 	}
-	friend fun Retrieve_Texts_Between (
+	friend fun Retrieve_Texts_with_Thresholds (
 		platform : String,
 		seconds_begin : u64,
 		seconds_end : u64
@@ -474,19 +474,28 @@ module Builder_01::Module_Hulls {
 		for (index in 0..count_of_hull_texts) {
 			let text_ref = vector::borrow (hull_texts, index);
 			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
-			let text_ref_now_seconds = Text__retrieve_now_seconds (text_ref);
+			let text_ref_seconds_IX_planet_3 = Text__retrieve_seconds_IX_planet_3 (text_ref);
 			
 			let writer_balance = coin::balance<aptos_coin::AptosCoin>(
 				text_ref_writer_address
 			);
 			
-			if (text_ref_now_seconds >= seconds_begin && text_ref_now_seconds <= seconds_end) {
+			std::debug::print (& std::string_utils::format1 (
+				& b"Texts Seconds: {}", 
+				text_ref_seconds_IX_planet_3
+			));
+			std::debug::print (& std::string_utils::format1 (
+				& b"Seconds Begin: {}", 
+				seconds_end
+			));
+			
+			if (text_ref_seconds_IX_planet_3 >= seconds_begin && text_ref_seconds_IX_planet_3 <= seconds_end) {
 				let this_text_envelope = Text_Envelope__create (
 					text_ref_writer_address,
 					writer_balance,
 					Text__retrieve_text (text_ref),
 					Text__retrieve_sent_at_index (text_ref),
-					Text__retrieve_now_seconds (text_ref)				
+					Text__retrieve_seconds_IX_planet_3 (text_ref)				
 				);
 
 				vector::push_back (&mut hull_texts_envelope, this_text_envelope);
@@ -550,7 +559,7 @@ module Builder_01::Module_Hulls {
 				writer_balance,
 				Text__retrieve_text (text_ref),
 				Text__retrieve_sent_at_index (text_ref),
-				Text__retrieve_now_seconds (text_ref)				
+				Text__retrieve_seconds_IX_planet_3 (text_ref)				
 			);
 			
 			vector::push_back (&mut hull_texts_envelope, this_text_envelope);
@@ -637,7 +646,7 @@ module Builder_01::Module_Hulls {
 				//	therefore a text modification occurs.
 				//
 				Text__change_text (text_mref, text);
-				Text__change_now_seconds (text_mref);
+				Text__change_seconds_IX_planet_3 (text_mref);
 				Text__change_sent_at_index (text_mref, send_index);
 								
 				return send_index
