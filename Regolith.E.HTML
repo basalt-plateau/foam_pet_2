@@ -38,14 +38,18 @@
 		<header>on</header>
 			<header>session 1</header>
 			<code>
-				docker stop Mech_Pet && docker rm Mech_Pet
 				docker run --name Mech_Pet -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it boat:v1.0.0 bash
+				
+				
+				docker stop Ploy_Rodeo && docker rm Ploy_Rodeo
+				docker run --name Ploy_Rodeo -v .:/Metro -e HOST_IP=host.docker.internal -p 22000:22000 -p 21000:21000 -p 443:443 -p 80:80 -it ubuntu:latest bash
+				
 				. /Metro/_plays/board/build_1.sh
 			</code>	
 				
 			<header>session 2</header>
 			<code>	
-				docker exec -it Mech_Pet bash -c "bash"
+				docker exec -it Ploy_Rodeo bash -c "bash"
 				. /Metro/_plays/board/build_2.sh
 			</code>
 		</article>

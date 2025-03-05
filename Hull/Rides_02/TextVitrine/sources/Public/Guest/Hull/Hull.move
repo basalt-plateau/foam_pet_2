@@ -44,7 +44,7 @@ module Builder_01::Module_Guest_Hull {
 	#[view] public fun Retrieve_Texts (platform_name : String) : vector<Module_Hulls::Text_Envelope> {
 		Module_Hulls::Retrieve_Texts (platform_name)
 	}
-	#[view] public fun Retrieve_Texts_Between (
+	#[view] public fun Retrieve_Texts_Preferential (
 		platform_name : String,
 		seconds_begin : u64,
 		seconds_end : u64

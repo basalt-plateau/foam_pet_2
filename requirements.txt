@@ -2,8 +2,6 @@
 #    uv pip compile pyproject.toml -o requirements.txt
 aiofiles==24.1.0
     # via sanic
-async-timeout==5.0.1
-    # via redis
 attrs==25.1.0
     # via
     #   jsonschema
@@ -126,7 +124,7 @@ pygments==2.19.1
     #   rich
 pyinotify==0.9.6
     # via ships
-pymongo==4.11.1
+pymongo==4.11.2
     # via
     #   biotech
     #   emergency

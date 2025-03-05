@@ -3,9 +3,12 @@
 
 
 
-mv /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.11/EXTERNALLY-MANAGED.old
 
-pip install uv poetry
+
+
+
+
+
 
 #\
 #
@@ -13,9 +16,18 @@ pip install uv poetry
 #	
 #
 apt update
-apt install curl haproxy -y
+# apt upgrade -y
+
+# DEBIAN_FRONTEND=noninteractive apt install python3-pip -y
+
+apt install python3-pip -y
+apt install curl haproxy git -y
 #
 #/
+
+mv /usr/lib/python3.12/EXTERNALLY-MANAGED /usr/lib/python3.12/EXTERNALLY-MANAGED.old
+
+pip install uv poetry
 
 
 #\
