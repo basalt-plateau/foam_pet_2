@@ -102,10 +102,10 @@ module Builder_01::Hulls_can_text_to_front {
 		//	Ensure text exists
 		//
 		//
-		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (text_01_platform);
+		let texts : vector<Builder_01::Module_Text_Envelope::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (text_01_platform);
 		let text_ref = vector::borrow (& texts, 0);
 		assert! (vector::length (& texts) == 1, 1);		
-		assert! (Module_Hulls::Text_Envelope_Text (text_ref) == utf8 (b"This is a text."), 1);
+		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (text_ref) == utf8 (b"This is a text."), 1);
 		//
 		////
 		

@@ -41,14 +41,14 @@ module Builder_01::Module_Guest_Hull {
 		Module_Hulls::search_for_index_of_hull_v2 (platform_name)
 	}
 	//
-	#[view] public fun Retrieve_Texts (platform_name : String) : vector<Module_Hulls::Text_Envelope> {
+	#[view] public fun Retrieve_Texts (platform_name : String) : vector<Builder_01::Module_Text_Envelope::Text_Envelope> {
 		Module_Hulls::Retrieve_Texts (platform_name)
 	}
 	#[view] public fun Retrieve_Texts_Preferential (
 		platform_name : String,
 		seconds_begin : u64,
 		seconds_end : u64
-	) : vector<Module_Hulls::Text_Envelope> {
+	) : vector<Builder_01::Module_Text_Envelope::Text_Envelope> {
 		Module_Hulls::Retrieve_Texts_Between (
 			platform_name,
 			seconds_begin,

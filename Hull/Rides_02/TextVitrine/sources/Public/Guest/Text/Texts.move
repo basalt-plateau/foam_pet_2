@@ -37,10 +37,10 @@ module Builder_01::Module_Guest_Texts {
 		texter_address : address,
 		text : String
 	) : String {
-		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (platform_name);
+		let texts : vector<Builder_01::Module_Text_Envelope::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (platform_name);
 		let text_amp = vector::borrow (& texts, vector_index);
 		
-		assert! (Module_Hulls::Text_Envelope_Text (text_amp) == text, 1);
+		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (text_amp) == text, 1);
 		assert! (Module_Hulls::Text_Envelope__retrieve_writer_address (text_amp) == texter_address, 1);
 		
 		utf8 (b"exists")

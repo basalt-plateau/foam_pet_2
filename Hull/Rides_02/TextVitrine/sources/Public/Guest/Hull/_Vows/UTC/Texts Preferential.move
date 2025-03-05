@@ -134,10 +134,10 @@ module Builder_01::Texts_Preferential {
 		
 		assert! (vector::length (& texts_00_40) == 2, 1);	
 		assert! (
-			Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_00_40, 0)) == utf8 (b"This is text 000001."), 
+			Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (vector::borrow (& texts_00_40, 0)) == utf8 (b"This is text 000001."), 
 			1
 		);
-		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_00_40, 1)) == utf8 (b"This is text 000002."), 1);
+		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (vector::borrow (& texts_00_40, 1)) == utf8 (b"This is text 000002."), 1);
 		//
 		////	
 			
@@ -148,8 +148,8 @@ module Builder_01::Texts_Preferential {
 		//
 		let texts_40_60 = Module_Guest_Hull::Retrieve_Texts_Preferential (utf8 (b""), 31557600000 * 40, 31557600000 * 60);
 		assert! (vector::length (& texts_40_60) == 2, 1);	
-		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_40_60, 0)) == utf8 (b"This is text 000003."), 1);
-		assert! (Module_Hulls::Text_Envelope_Text (vector::borrow (& texts_40_60, 1)) == utf8 (b"This is text 000004."), 1);
+		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (vector::borrow (& texts_40_60, 0)) == utf8 (b"This is text 000003."), 1);
+		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (vector::borrow (& texts_40_60, 1)) == utf8 (b"This is text 000004."), 1);
 		//
 		////
 

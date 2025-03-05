@@ -69,18 +69,18 @@ module Builder_01::Ruler_Text_Delete {
 		//	Ensure text exists
 		//
 		//
-		let texts : vector<Module_Hulls::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (text_01_platform);
+		let texts : vector<Builder_01::Module_Text_Envelope::Text_Envelope> = Module_Guest_Hull::Retrieve_Texts (text_01_platform);
 		assert! (vector::length (& texts) == 1, 1);	
 		
 		let text_00 = vector::borrow (& texts, 0);
 		
 		std::debug::print (& std::string_utils::format1 (
 			& b"Text Envelope Index: {}", 
-			Builder_01::Module_Hulls::Text_Envelope__retrieve_envelope_index (text_00)
+			Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_sent_at_index (text_00)
 		));
 		
-		assert! (Module_Hulls::Text_Envelope_Text (text_00) == utf8 (b"This is a text."), 1);
-		assert! (Builder_01::Module_Hulls::Text_Envelope__retrieve_envelope_index (text_00) == 0, 1);
+		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (text_00) == utf8 (b"This is a text."), 1);
+		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_sent_at_index (text_00) == 0, 1);
 		//
 		////
 		

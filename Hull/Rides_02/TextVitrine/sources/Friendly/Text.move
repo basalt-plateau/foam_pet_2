@@ -18,16 +18,16 @@ module Builder_01::Text_Module {
 	////
 	//
 	/*
-		Each text has a envelope_index (send_index) that corresponds to when it was
+		Each text has a sent_at_index (send_index) that corresponds to when it was
 		sequentially added to the vector.
 		
-		If a text is deleted, the envelope_index of later and previous texts don't change.
+		If a text is deleted, the sent_at_index of later and previous texts don't change.
 	*/
 	struct Text has store, drop, copy {
 		writer_address : address,
 		text : String,
 		
-		envelope_index: u64,
+		sent_at_index: u64,
 		
 		now_seconds : u64
 	}
@@ -44,7 +44,7 @@ module Builder_01::Text_Module {
 		let text = Text {
 			writer_address : writer_address,
 			text : text,
-			envelope_index : envelope,
+			sent_at_index : envelope,
 			now_seconds : timestamp::now_seconds ()
 		};
 		text
@@ -65,8 +65,8 @@ module Builder_01::Text_Module {
 	friend fun Text__change_now_seconds (text : &mut Text) {
 		text.now_seconds = timestamp::now_seconds ();
 	}
-	friend fun Text__change_envelope_index (text : &mut Text, envelope_index : u64) {
-		text.envelope_index = envelope_index;
+	friend fun Text__change_sent_at_index (text : &mut Text, sent_at_index : u64) {
+		text.sent_at_index = sent_at_index;
 	}
 	//
 	////
@@ -76,10 +76,10 @@ module Builder_01::Text_Module {
 	//	public: retrieve
 	//
 	/*
-		let envelope_index = Builder_01::Text_Module::Text__retrieve_envelope_index (& text);
+		let sent_at_index = Builder_01::Text_Module::Text__retrieve_sent_at_index (& text);
 	*/
-	public fun Text__retrieve_envelope_index (text : & Text) : u64 {
-		text.envelope_index
+	public fun Text__retrieve_sent_at_index (text : & Text) : u64 {
+		text.sent_at_index
 	}
 	public fun Text__retrieve_writer_address (text : & Text) : address {
 		text.writer_address

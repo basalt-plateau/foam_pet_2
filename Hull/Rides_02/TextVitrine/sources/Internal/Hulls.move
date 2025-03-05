@@ -29,12 +29,12 @@ module Builder_01::Module_Hulls {
 		
 		Text__change_text,
 		Text__change_now_seconds,
-		Text__change_envelope_index,
+		Text__change_sent_at_index,
 		
 		Text__retrieve_writer_address,
 		Text__retrieve_text,
 		Text__retrieve_now_seconds,
-		Text__retrieve_envelope_index
+		Text__retrieve_sent_at_index
 	};
 	use Builder_01::Module_Hull::{
 		Hull,
@@ -65,6 +65,10 @@ module Builder_01::Module_Hulls {
 		Guest_Shows,
 		create_guest_shows
 	};
+	use Builder_01::Module_Text_Envelope::{
+		Text_Envelope,
+		Text_Envelope__create
+	};
 	
 	const Limiter_Ruler_the_platform_with_writer_address_is_empty : u64 = 100000;
 	const Limiter_writer_has_less_than_the_amount_of_Octas_necessary_to_send : u64 = 100001;
@@ -77,36 +81,7 @@ module Builder_01::Module_Hulls {
 	
 	const Text_length_limit : u64 = 125;
 	const Platform_name_length_limit : u64 = 40;
-	
-	////////
-	//
-	struct Text_Envelope has store, drop {
-		writer_address : address,
-		writer_balance : u64,
-		text : String,
-		
-		envelope_index: u64,
-		
-		now_seconds : u64
-	}
-	//
-	//	[Constants]
-	//
-	//
-	public fun Text_Envelope_Text (envelope: & Text_Envelope) : String {
-		envelope.text
-	}
-	public fun Text_Envelope__retrieve_writer_address (envelope: & Text_Envelope) : address {
-		envelope.writer_address
-	}
-	/*
-		Builder_01::Module_Hulls::Text_Envelope__retrieve_envelope_index ()
-	*/
-	public fun Text_Envelope__retrieve_envelope_index (envelope: & Text_Envelope) : u64 {
-		envelope.envelope_index
-	}
-	//
-	////////
+
 	
 	
 	/*
@@ -506,16 +481,15 @@ module Builder_01::Module_Hulls {
 			);
 			
 			if (text_ref_now_seconds >= seconds_begin && text_ref_now_seconds <= seconds_end) {
-				let this_text = Text_Envelope {
-					writer_address : 	text_ref_writer_address,
-					writer_balance : 	writer_balance,
-					
-					envelope_index : 	Text__retrieve_envelope_index (text_ref),
-					
-					text : 				Text__retrieve_text (text_ref),
-					now_seconds : 		Text__retrieve_now_seconds (text_ref)
-				};
-				vector::push_back (&mut hull_texts_envelope, this_text);
+				let this_text_envelope = Text_Envelope__create (
+					text_ref_writer_address,
+					writer_balance,
+					Text__retrieve_sent_at_index (text_ref),
+					Text__retrieve_text (text_ref),
+					Text__retrieve_now_seconds (text_ref)				
+				);
+
+				vector::push_back (&mut hull_texts_envelope, this_text_envelope);
 			}
 		};
 		
@@ -569,21 +543,17 @@ module Builder_01::Module_Hulls {
 			let text_ref = vector::borrow (hull_texts, index);
 			let text_ref_writer_address = Text__retrieve_writer_address (text_ref);
 			
-			let writer_balance = coin::balance<aptos_coin::AptosCoin>(
-				text_ref_writer_address
+			let writer_balance = coin::balance<aptos_coin::AptosCoin>(text_ref_writer_address);
+
+			let this_text_envelope = Text_Envelope__create (
+				text_ref_writer_address,
+				writer_balance,
+				Text__retrieve_sent_at_index (text_ref),
+				Text__retrieve_text (text_ref),
+				Text__retrieve_now_seconds (text_ref)				
 			);
 			
-			let this_text = Text_Envelope {
-				writer_address : 	text_ref_writer_address,
-				writer_balance : 	writer_balance,
-				
-				envelope_index : 	Text__retrieve_envelope_index (text_ref),
-				
-				text : 				Text__retrieve_text (text_ref),
-				now_seconds : 		Text__retrieve_now_seconds (text_ref)
-			};
-			
-			vector::push_back (&mut hull_texts_envelope, this_text);
+			vector::push_back (&mut hull_texts_envelope, this_text_envelope);
 		};
 		
 		hull_texts_envelope
@@ -594,7 +564,7 @@ module Builder_01::Module_Hulls {
 	//	[Flux]
 	//
 	/*
-		This returns the send_index (envelope_index)
+		This returns the send_index (sent_at_index)
 	*/
 	friend fun Send_Text (
 		writer : & signer,
@@ -668,7 +638,7 @@ module Builder_01::Module_Hulls {
 				//
 				Text__change_text (text_mref, text);
 				Text__change_now_seconds (text_mref);
-				Text__change_envelope_index (text_mref, send_index);
+				Text__change_sent_at_index (text_mref, send_index);
 								
 				return send_index
 			}
@@ -722,7 +692,7 @@ module Builder_01::Module_Hulls {
 		for (index_of_text in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
 			
-			if (Text__retrieve_envelope_index (text_ref) == sent_index) {
+			if (Text__retrieve_sent_at_index (text_ref) == sent_index) {
 				let texter_address = Text__retrieve_writer_address (text_ref);
 				
 				if (deleter_address == texter_address) {
@@ -752,7 +722,7 @@ module Builder_01::Module_Hulls {
 		for (index_of_text in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
 			
-			if (Text__retrieve_envelope_index (text_ref) == sent_index) {
+			if (Text__retrieve_sent_at_index (text_ref) == sent_index) {
 				vector::remove (hull_texts, index_of_text);
 				return utf8 (b"deleted")
 			}
@@ -813,7 +783,7 @@ module Builder_01::Module_Hulls {
 	friend fun Ruler_Text_Delete_at_Index (
 		consenter : & signer,
 		platform_name : String,
-		envelope_index : u64
+		sent_at_index : u64
 	) : address acquires Hulls {
 		ensure_acceptor_is_ruler (consenter);
 		
@@ -826,7 +796,7 @@ module Builder_01::Module_Hulls {
 		let hull_texts = Hull__mut_retrieve_texts (hull_mref);
 		for (index_of_text in 0..vector::length (hull_texts)) {
 			let text_ref = vector::borrow_mut (hull_texts, index_of_text);
-			if (Text__retrieve_envelope_index (text_ref) == envelope_index) {
+			if (Text__retrieve_sent_at_index (text_ref) == sent_at_index) {
 				let texter_address = Text__retrieve_writer_address (text_ref);
 				vector::remove (hull_texts, index_of_text);
 				return texter_address

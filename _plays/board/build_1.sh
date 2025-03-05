@@ -25,6 +25,9 @@ apt install curl haproxy git -y
 #
 #/
 
+git config --global user.email friends
+git config --global user.name friends
+
 mv /usr/lib/python3.12/EXTERNALLY-MANAGED /usr/lib/python3.12/EXTERNALLY-MANAGED.old
 
 pip install uv poetry
