@@ -98,7 +98,7 @@ module Builder_01::Texts_Preferential {
 		assert! (Builder_01::Module_Guest_Hull::Count_of_Texts (std::string::utf8 (b"")) == 2, 1);
 		
 		
-		
+		// Builder_01::Text_Module::display (text_amp);		
 		
 		////
 		//
@@ -118,17 +118,6 @@ module Builder_01::Texts_Preferential {
 			utf8 (b""), 
 			utf8 (b"I accept.")
 		);
-		
-		
-		std::debug::print (& std::string_utils::format1 (
-			& b"Hulls Count = {}", 
-			Builder_01::Module_Guest_Hulls::Hulls_Count ()
-		));
-		std::debug::print (& std::string_utils::format1 (
-			& b"Texts Count for '' = {}", 
-			Builder_01::Module_Guest_Hull::Count_of_Texts (std::string::utf8 (b""))
-		));
-		
 		assert! (Builder_01::Module_Guest_Hull::Count_of_Texts (std::string::utf8 (b"")) == 4, 1);
 		//
 		////
@@ -151,16 +140,12 @@ module Builder_01::Texts_Preferential {
 			& b"Texts 00 40: {}", 
 			vector::length (& texts_00_40)
 		));
-		std::debug::print (& std::string_utils::format1 (
-			& b"Texts 00 40: {}", 
-			vector::length (& texts_00_40)
-		));
-		
-		
+
 		
 		// Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_sent_at_index (& text_envelope)
 		
-		
+		Builder_01::Module_Text_Envelope::display (vector::borrow (& texts_00_40, 0));	
+		Builder_01::Module_Text_Envelope::display (vector::borrow (& texts_00_40, 1));	
 		
 		assert! (vector::length (& texts_00_40) == 2, 1);	
 		assert! (
@@ -179,7 +164,11 @@ module Builder_01::Texts_Preferential {
 		//	Retrieve Texts 40_60
 		//
 		//
-		let texts_40_60 = Module_Guest_Hull::Retrieve_Texts_Preferential (utf8 (b""), 31557600000 * 40, 31557600000 * 60);
+		let texts_40_60 = Module_Guest_Hull::Retrieve_Texts_Preferential (
+			utf8 (b""), 
+			Builder_01::Rhythm::retrieve__Seconds__roughly_1_planet_3_orbit () * 40, 
+			Builder_01::Rhythm::retrieve__Seconds__roughly_1_planet_3_orbit () *  60
+		);
 		assert! (vector::length (& texts_40_60) == 2, 1);	
 		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (vector::borrow (& texts_40_60, 0)) == utf8 (b"This is text 000003."), 1);
 		assert! (Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_text (vector::borrow (& texts_40_60, 1)) == utf8 (b"This is text 000004."), 1);

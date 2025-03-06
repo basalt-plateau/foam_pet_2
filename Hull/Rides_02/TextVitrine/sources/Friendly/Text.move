@@ -104,21 +104,32 @@ module Builder_01::Text_Module {
 		Builder_01::Text_Module::display (text);
 	*/
 	public fun display (text : & Text) {
+		use std::vector;
+		use std::string::{ utf8 };
+
+		let line_01 = utf8 (b"");
+		std::string::append_utf8 (&mut line_01, b"Text Envelope: ");
+		std::string::append_utf8 (&mut line_01, b"\n  writer_address: ");
+		std::string::append (
+			&mut line_01, 
+			std::string_utils::to_string_with_canonical_addresses (& text.writer_address)
+		);
+		std::string::append_utf8 (&mut line_01, b"\n  text: ");
+		std::string::append (&mut line_01, text.text);
+		std::string::append_utf8 (&mut line_01, b"\n  sent_at_index: ");
+		std::string::append (
+			&mut line_01, 
+			std::string_utils::to_string (& text.sent_at_index)
+		);
+		std::string::append_utf8 (&mut line_01, b"\n  seconds_IX_planet_3_roughly: ");
+		std::string::append (
+			&mut line_01, 
+			std::string_utils::to_string (& text.seconds_IX_planet_3_roughly)
+		);
+		std::string::append_utf8 (&mut line_01, b"\n");
 		std::debug::print (& std::string_utils::format1 (
-			& b"Text texter address: {}", 
-			text.writer_address
-		));
-		std::debug::print (& std::string_utils::format1 (
-			& b"Text text: {}", 
-			text.text
-		));
-		std::debug::print (& std::string_utils::format1 (
-			& b"Text sent_at_index: {}", 
-			text.sent_at_index
-		));
-		std::debug::print (& std::string_utils::format1 (
-			& b"Text seconds_IX_planet_3_roughly: {}", 
-			text.seconds_IX_planet_3_roughly
+			& b"{}", 
+			line_01
 		));
 	}
 	

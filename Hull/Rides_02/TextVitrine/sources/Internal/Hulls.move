@@ -480,8 +480,6 @@ module Builder_01::Module_Hulls {
 				text_ref_writer_address
 			);
 			
-			Builder_01::Text_Module::display (text_amp);
-			
 			if (text_ref_seconds_IX_planet_3_roughly >= seconds_begin && text_ref_seconds_IX_planet_3_roughly <= seconds_end) {
 				let this_text_envelope = Text_Envelope__create (
 					text_ref_writer_address,
@@ -652,8 +650,6 @@ module Builder_01::Module_Hulls {
 		//	therefore a text is written.
 		//
 		let this_text = Text__create (writer_address, text, send_index);
-		Builder_01::Text_Module::display (& this_text);
-		
 		vector::push_back (hull_texts, this_text);
 		
 		send_index

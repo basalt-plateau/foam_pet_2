@@ -20,7 +20,7 @@ def roster ():
 
 
 filter = ""
-filter = "--filter Rhythm_Vow_01"
+filter = "--filter Texts_Preferential"
 
 def steady (envelope):
 	ride_plate = envelope ["ride_plate"]
