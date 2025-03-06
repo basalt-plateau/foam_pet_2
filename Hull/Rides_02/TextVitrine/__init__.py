@@ -11,23 +11,12 @@ import sys
 this_directory = pathlib.Path (__file__).parent.resolve ()	
 
 
-def roster ():
-	mascots = []
-	counter = 1;
-	while (counter <= 10):
-		mascots.append (f"""mascot_{ counter }={ mascot_1 ["legacy address"] }, """);
-		counter += 1;
-
-
 filter = ""
 filter = "--filter Texts_Preferential"
 
 def steady (envelope):
-	ride_plate = envelope ["ride_plate"]
 	named_addresses = envelope ["named_addresses"]
 	
-	print ("steady..");
-
 	screenplay = " ".join ([
 		f"cd { this_directory }",
 		"&&",

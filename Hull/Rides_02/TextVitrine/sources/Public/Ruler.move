@@ -42,7 +42,8 @@ module Builder_01::Module_Ruler {
 			return @0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD
 		};
 		
-		let position : address = @0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD;
+		let position : address = @Ruler_01;
+		// let position : address = @0x2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD;
 		position
 	}
 	#[view] public fun ask_if_address_is_ruler (address_1 : address) : String {

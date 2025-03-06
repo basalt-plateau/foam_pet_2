@@ -67,7 +67,7 @@ def movie (plays):
 		
 		
 
-Build_Address = "DE5FBA4CB03AB1F6565E2864428140384C0982826511D49921E9744CE81978D7";
+Build_Address = "8E0F71D98112EA5DCDAF6BBAB057BBBB9D7132D1AC2F13215D95ED1D15ECAF13";
 
 #
 #		
@@ -101,7 +101,7 @@ def movie_1_producer ():
 
 def begin ():
 	movie ([
-		f"aptos move run --function-id { Build_Address }::Module_Producer_Hulls::Begin --assume-yes",
+		f"aptos move run --function-id { Build_Address }::Module_Ruler_Hulls::Begin --assume-yes",
 		f"aptos move view --function-id { Build_Address }::Module_Guest_Hulls::Status"
 	]);
 
@@ -113,19 +113,35 @@ def begin ():
 #
 def movie_2 ():
 	movie ([
-		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Topic_1",
-		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Topic_2",
-		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Topic_3",
-		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Topic_4",
-		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Topic_5",
-		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Topic_6",
-		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Topic_7",
+		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Veganism String:Vegans",
+		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Silicon",
+		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Plants",
+		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Mercyism",
+		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Nutrition",
+		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Diet",
+		f"aptos move run --assume-yes --function-id { Build_Address }::Module_Denizen_Texts::Send_Text --args String:Text_1 String:Similarities",
 	]);
 	
-def open_account ():
+def publish_dev ():
 	movie ([
-		"(cd /Metro/Hull && aptos init --assume-yes --network devnet --private-key B779524378A5B497896AB4B5A9EA4B7869AB548796AB4B5A694B7796A4B52617) ",
+		f"python3 vocalize.py vocalize --publish --move TextVitrine --builder Pannier_02"
+	])
+
+def open_account (private_key):
+	movie ([
+		f"(cd /Metro/Hull && aptos init --assume-yes --network devnet --private-key { private_key })",
 		"aptos account fund-with-faucet --amount 200000000"
 	]);
-	
-movie_2 ();
+
+account = {
+	"account 1": {
+		"private key": "9687BC1623C8796BC2D1F8E9CBA97043717A69CB7869CADBF8E9DABCBF8E9446",
+		"legacy address": "8E0F71D98112EA5DCDAF6BBAB057BBBB9D7132D1AC2F13215D95ED1D15ECAF13",
+		"address": "989EF5F32A0B5C62ADFCECBCB125AE97DE669FE0B1D2585DC5C7A5D641C77948"
+	}
+}
+
+open_account (account ["account 1"] ["private key"]);
+begin ();
+#movie_2 ();
+

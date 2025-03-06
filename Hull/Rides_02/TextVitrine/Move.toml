@@ -8,6 +8,7 @@ authors = []
 
 [addresses]
 Builder_01 = "_"
+Ruler_01 = "_"
 
 [dev-addresses]
 

@@ -53,11 +53,17 @@ import Rides.Sport_Pack_01 as Sport_Pack_01
 	Pannier_02:
 		Private Key:	64AC89AEBC071263C89A7BC89E9DACB8FDAEE9CBF8E9CB61423784BE9EADBC8F
 		Legacy Address:	DE5FBA4CB03AB1F6565E2864428140384C0982826511D49921E9744CE81978D7
+		
+	Pannier_03:
+		Private Key:	AC9687BC1623C8796BC2D1F8E9CBA97043717A69CB7869CADBF8E9DABCBF8E95
+		Legacy Address:	01F15B9C489F7225A03585B7C701218901EBD0ED66E1E73C0D459D144DFFC92B
 "'''
 Builder_Addresses = {
 	"Petra": "F5565CC1D71781D6EF766A2A50ED459B9D3B430CEB6F7BBF79393C3626A979CD",
 	"Pannier_01": "2F75DA076414103C721D195B0376C66897593B1F4E961671099A2DC9A24ADCFD",
-	"Pannier_02": "DE5FBA4CB03AB1F6565E2864428140384C0982826511D49921E9744CE81978D7"
+	"Pannier_02": "DE5FBA4CB03AB1F6565E2864428140384C0982826511D49921E9744CE81978D7",
+	
+	"Pannier_03": "8E0F71D98112EA5DCDAF6BBAB057BBBB9D7132D1AC2F13215D95ED1D15ECAF13"
 }
 
 
@@ -93,6 +99,13 @@ def motion_for_named_addresses (packet):
 		"address": publisher_address
 	}
 	
+	#
+	#	Build Site:
+	#		
+	#
+	#	Ruler: 
+	#		This one starts everything 
+	#
 	named_addresses = "".join ([
 		f"""--named-addresses '""",
 
@@ -102,8 +115,8 @@ def motion_for_named_addresses (packet):
 		f"""Formulator_1={ Producer_01 ["address"] }, """,
 		f"""Boar_Producer_1={ Producer_01 ["address"] }, """,
 
-		f"""Builder_000001={ Builder_01 ["address"] }, """,
 		f"""Builder_01={ Builder_01 ["address"] }, """,
+		f"""Builder_000001={ Builder_01 ["address"] }, """,
 		f"""Publisher_01={ Builder_01 ["address"] }, """,
 		f"""Ride_01={ Builder_01 ["address"] }, """,
 		f"""ride={ Builder_01 ["address"] }, """,		
@@ -147,7 +160,7 @@ def clique ():
 		#
 		#
 		Devnet Publications:
-			python3 vocalize.py vocalize --publish --move TextVitrine --builder Pannier_02
+			python3 vocalize.py vocalize --publish --move TextVitrine --builder Pannier_03
 	"""
 	
 	"""
