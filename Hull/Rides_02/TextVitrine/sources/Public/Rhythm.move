@@ -25,6 +25,15 @@ module Builder_01::Rhythm {
 	const Seconds__roughly_1_planet_3_orbit : u64 = 31557600;
 	const Seconds__IX_roughly_2000 : u64 = 946728000;
 	
+	/*
+		IX = January 1, 1970
+	
+		Hours__roughly_1_planet_3_orbit:		= 24 * 365.25
+		Hours__IX_roughly_2000:					= 24 * 365.25 * 30
+	*/
+	const Hours__roughly_1_planet_3_orbit : u64 = 8766;
+	const Hours__IX_roughly_2000 : u64 = 		  262980;	
+	
 	public fun retrieve__Seconds__roughly_1_planet_3_orbit () : u64 {
         Seconds__roughly_1_planet_3_orbit
     }
@@ -55,6 +64,25 @@ module Builder_01::Rhythm {
 		orbits_roughly : u64			
 	) {
 		let now_IX_seconds = seconds + (minutes * 60) + (hours * 60 * 60) + (orbits_roughly * 60 * 60 * 24);
-		aptos_framework::timestamp::update_global_time_for_test (now_IX_seconds);
+		let now_IX_micro_seconds = now_IX_seconds * 1000000;
+		
+		std::debug::print (& std::string_utils::format1 (
+			& b"now_IX_micro_seconds '' = {}", 
+			now_IX_micro_seconds
+		));
+		
+		aptos_framework::timestamp::update_global_time_for_test (now_IX_micro_seconds);
+	}
+	
+	#[test] public fun Rhythm_Vow_01 () {	
+		Builder_01::Rhythm::Embark_Nurture_Planet_3_Spot ();
+		Builder_01::Rhythm::Advance_Nurture_Planet_3_Spot (0, 0, 0, 30);
+		
+		std::debug::print (& std::string_utils::format1 (
+			& b"Seconds for '' = {}", 
+			aptos_framework::timestamp::now_seconds ()
+		));
+		
+		assert! (aptos_framework::timestamp::now_seconds () == 2592000, 1);
 	}
 }

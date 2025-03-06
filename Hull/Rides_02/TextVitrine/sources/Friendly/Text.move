@@ -29,7 +29,7 @@ module Builder_01::Text_Module {
 		
 		sent_at_index: u64,
 		
-		seconds_IX_planet_3 : u64
+		seconds_IX_planet_3_roughly : u64
 	}
 	//
 	////
@@ -39,14 +39,20 @@ module Builder_01::Text_Module {
 	friend fun Text__create (
 		writer_address : address,
 		text : String,
-		envelope : u64
+		sent_at_index : u64
 	) : Text {
 		let text = Text {
 			writer_address : writer_address,
 			text : text,
-			sent_at_index : envelope,
-			seconds_IX_planet_3 : timestamp::now_seconds ()
+			sent_at_index : sent_at_index,
+			seconds_IX_planet_3_roughly : timestamp::now_seconds ()
 		};
+		
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text__create seconds_IX_planet_3_roughly: {}", 
+			text.seconds_IX_planet_3_roughly
+		));
+		
 		text
 	}
 	//
@@ -62,8 +68,8 @@ module Builder_01::Text_Module {
 	friend fun Text__change_text (text : &mut Text, text_string : String) {
 		text.text = text_string;
 	}
-	friend fun Text__change_seconds_IX_planet_3 (text : &mut Text) {
-		text.seconds_IX_planet_3 = timestamp::now_seconds ();
+	friend fun Text__change_seconds_IX_planet_3_roughly (text : &mut Text) {
+		text.seconds_IX_planet_3_roughly = timestamp::now_seconds ();
 	}
 	friend fun Text__change_sent_at_index (text : &mut Text, sent_at_index : u64) {
 		text.sent_at_index = sent_at_index;
@@ -87,14 +93,34 @@ module Builder_01::Text_Module {
 	public fun Text__retrieve_text (text : & Text) : String {
 		text.text
 	}
-	public fun Text__retrieve_seconds_IX_planet_3 (text : & Text) : u64 {
-		text.seconds_IX_planet_3
+	public fun Text__retrieve_seconds_IX_planet_3_roughly (text : & Text) : u64 {
+		text.seconds_IX_planet_3_roughly
 	}
 	//
 	////
 	
 	
-	
+	/*
+		Builder_01::Text_Module::display (text);
+	*/
+	public fun display (text : & Text) {
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text texter address: {}", 
+			text.writer_address
+		));
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text text: {}", 
+			text.text
+		));
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text sent_at_index: {}", 
+			text.sent_at_index
+		));
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text seconds_IX_planet_3_roughly: {}", 
+			text.seconds_IX_planet_3_roughly
+		));
+	}
 	
 	
 	

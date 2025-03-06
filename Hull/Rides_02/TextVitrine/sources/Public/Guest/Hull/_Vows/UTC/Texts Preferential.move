@@ -66,6 +66,13 @@ module Builder_01::Texts_Preferential {
 		//
 		//
 		Builder_01::Rhythm::Advance_Nurture_Planet_3_Spot (0, 0, 0, 30);
+		
+		std::debug::print (& std::string_utils::format1 (
+			& b"timestamp = {}", 
+			std::timestamp::now_seconds ()
+		));
+		
+		
 		Builder_01::Module_Denizen_Texts::Send_Text (
 			& texter_01_acceptance, 
 			utf8 (b"This is text 000001."), 
@@ -149,7 +156,10 @@ module Builder_01::Texts_Preferential {
 			vector::length (& texts_00_40)
 		));
 		
+		
+		
 		// Builder_01::Module_Text_Envelope::Text_Envelope__retrieve_sent_at_index (& text_envelope)
+		
 		
 		
 		assert! (vector::length (& texts_00_40) == 2, 1);	

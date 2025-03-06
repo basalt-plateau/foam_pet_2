@@ -25,7 +25,7 @@ module Builder_01::Module_Text_Envelope {
 		
 		sent_at_index: u64,
 		
-		seconds_IX_planet_3 : u64
+		seconds_IX_planet_3_roughly : u64
 	}
 	//
 	////
@@ -35,14 +35,14 @@ module Builder_01::Module_Text_Envelope {
 		writer_balance : u64,
 		text : String,
 		sent_at_index : u64,
-		seconds_IX_planet_3 : u64
+		seconds_IX_planet_3_roughly : u64
 	) : Text_Envelope {
 		let text_envelope = Text_Envelope {
 			writer_address : writer_address,
 			writer_balance : writer_balance,
 			text : text,
 			sent_at_index : sent_at_index,
-			seconds_IX_planet_3 : seconds_IX_planet_3
+			seconds_IX_planet_3_roughly : seconds_IX_planet_3_roughly
 		};
 		text_envelope
 	}
@@ -63,5 +63,31 @@ module Builder_01::Module_Text_Envelope {
 		envelope.sent_at_index
 	}
 	
+	
+	/*
+		Builder_01::Module_Text_Envelope::display (text_envelope);
+	*/
+	public fun display (text_envelope : & Text_Envelope) {
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text Envelope address: {}", 
+			text_envelope.writer_address
+		));
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text Envelope address: {}", 
+			text_envelope.writer_balance
+		));
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text Envelope text: {}", 
+			text_envelope.text
+		));
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text Envelope sent_at_index: {}", 
+			text_envelope.sent_at_index
+		));
+		std::debug::print (& std::string_utils::format1 (
+			& b"Text Envelope seconds_IX_planet_3_roughly: {}", 
+			text_envelope.seconds_IX_planet_3_roughly
+		));
+	}
 	
 }

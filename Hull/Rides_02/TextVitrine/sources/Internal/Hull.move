@@ -31,7 +31,7 @@ module Builder_01::Module_Hull {
 		index_of_hull: u64,
 		index_of_next_text : u64,
 
-		created_at_seconds_IX_planet_3 : u64
+		created_at_seconds_IX_planet_3_roughly : u64
 	}
 	
 	#[view] public fun Volitions () : String { 
@@ -60,7 +60,7 @@ module Builder_01::Module_Hull {
 			index_of_hull,
 			index_of_next_text : index_of_next_text,
 			
-			created_at_seconds_IX_planet_3 : timestamp::now_seconds ()
+			created_at_seconds_IX_planet_3_roughly : timestamp::now_seconds ()
 		};
 		hull
 	}
@@ -126,8 +126,8 @@ module Builder_01::Module_Hull {
 	friend fun Hull__retrieve_platform (hull : & Hull) : String {
 		hull.platform
 	}
-	friend fun Hull__retrieve_created_at_seconds_IX_planet_3 (hull : & Hull) : u64 {
-		hull.created_at_seconds_IX_planet_3
+	friend fun Hull__retrieve_created_at_seconds_IX_planet_3_roughly (hull : & Hull) : u64 {
+		hull.created_at_seconds_IX_planet_3_roughly
 	}
 	//
 	////

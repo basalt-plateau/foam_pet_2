@@ -20,7 +20,7 @@ def roster ():
 
 
 filter = ""
-# filter = "--filter Producer_Hull_01"
+filter = "--filter Rhythm_Vow_01"
 
 def steady (envelope):
 	ride_plate = envelope ["ride_plate"]
