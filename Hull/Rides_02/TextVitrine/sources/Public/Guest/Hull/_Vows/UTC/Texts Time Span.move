@@ -6,7 +6,7 @@
 /*
 	Picky, Filtered, Choosy
 */
-module Builder_01::Texts_Preferential {
+module Builder_01::Texts_Time_Span {
 	
 	
 	#[view] public fun Volitions () : std::string::String { 
@@ -39,15 +39,13 @@ module Builder_01::Texts_Preferential {
 		);
 		
 		let (texter_01_address, texter_01_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100000);
-		coin::transfer<AptosCoin>(& ruler_01_acceptance, texter_01_address, one_APT * 10);
-		
 		let (texter_02_address, texter_02_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100001);
-		coin::transfer<AptosCoin>(& ruler_01_acceptance, texter_02_address, one_APT * 10);
-
 		let (texter_03_address, texter_03_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100002);
-		coin::transfer<AptosCoin>(& ruler_01_acceptance, texter_03_address, one_APT * 10);
-		
 		let (texter_04_address, texter_04_acceptance) = Builder_01::Nurture__Milieu::Embark (@0x100003);
+
+		coin::transfer<AptosCoin>(& ruler_01_acceptance, texter_01_address, one_APT * 10);
+		coin::transfer<AptosCoin>(& ruler_01_acceptance, texter_02_address, one_APT * 10);
+		coin::transfer<AptosCoin>(& ruler_01_acceptance, texter_03_address, one_APT * 10);
 		coin::transfer<AptosCoin>(& ruler_01_acceptance, texter_04_address, one_APT * 10);
 		
 		////
